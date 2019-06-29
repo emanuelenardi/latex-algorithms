@@ -1,0 +1,32 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+\setcounter{section}{3}
+\setcounter{algocf}{7}
+
+\SetKwFunction{rango}{rango}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\begin{algorithm}[H]
+\caption{Stampa il rango}
+\fi
+
+\prototype{\rango{\Sequence L, \Postype p}}{
+	\Postype \(q \Assign L.\listSucc{p}\)\;
+
+	\BlankLine
+	\If{\Not \(L\).\listEnd{q}}{
+
+		\BlankLine
+		\rango{L, q}\;
+		\Int \(a\) \Assign \(L.\listRead{p} + L.\listRead{q}\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\fi
+\end{document}

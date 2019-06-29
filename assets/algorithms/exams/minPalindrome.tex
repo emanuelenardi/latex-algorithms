@@ -1,0 +1,51 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[]{}
+\fi
+
+\prototype{\Int \minPalindrome{\Item{}, \Int n}}{
+	\Matrix{\Int} \(DP\) \Assign \new \Matrix{\Int}{1 \dots n}{1 \dots n}\;
+	\From{\(i \Assign 1\) \DownTo \(n\)}{
+		\From{\(j \Assign 1\) \DownTo \(n\)}{
+			\(\MatrixCall{DP}{i}{j} \Assign  -1\)\;
+		}
+	}
+
+	\BlankLine
+	\Return \minPalRec{S, 1, n, DP}\;
+}
+
+\BlankLine
+\prototype{\minPalRec{\Array{\Item} S, \Int i, \Int j, \Matrix{\Int} \(DP\)}}{
+
+	\BlankLine
+	\If{\(i \geqslant j\)}{
+		\tcp{ho finito di analizzare la parola}
+		\Return \(0\)\;
+	}
+
+	\BlankLine
+	\If{\(\MatrixCall{DP}{i}{j} < 0\)}{
+		\tcp{non ho ancora calcolato quel valore}
+
+		\BlankLine
+		\(\MatrixCall{DP}{i}{j} \Assign \) \(\minFunction(\)
+		\\\hspace{1cm}\(\minPalRec{\(S, i+1, j, DP\)} + 1\),
+		\\\hspace{1cm}\(\minPalRec{\(S, i, j-1, DP\)} + 1\),
+		\\\hspace{1cm}\(\minPalRec{\(S, i+1, j-1, DP\)} + \iif{\(S[i] \Equal S[j], 0, 1\)}\)
+		\\\()\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

@@ -1,0 +1,52 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Algoritmo di Huffman]{}
+\fi
+
+\prototype{\Tree \huffman{\Array{\Int} \(c\), \Array{\Int} \(f\), \Int \(n\)}}{
+	\tcp{\Array{c}{1}{n}: caratteri dell'alfabeto}
+	\tcp{\(f[1 \dots n]\): frequenze dei caratteri}
+	\tcp{\(n\): dimensione dell'alfabeto}
+
+	\BlankLine
+	\Heap \(Q\) \Assign \minHeapConstructor\;
+
+	\BlankLine
+	\From(\Comment*[h]{}{\(\Omicron(n)\)}){\(i \Assign 1\) \DownTo \(n\)}{
+		\(Q\).\heapInsert{\(f[i]\), \treeConstructor{\(f[i]\), \(c[i]\)}} \Comment*[h]{}{\(\Omicron(\log n)\)}
+	}
+
+	\BlankLine
+	\From(\Comment*[h]{\(n\): radice}{\(\Omicron(n)\)}){\(i \Assign 1\) \DownTo \(n-1\)}{
+		\BlankLine
+		\tcp{estraggo i 2 caratteri meno frequenti}
+		\(z_1\) \Assign \(Q\).\heapDeleteMin\;
+		\(z_2\) \Assign \(Q\).\heapDeleteMin\;
+
+		\BlankLine
+		\tcp{Creo un nuovo nodo}
+		\(z \Assign \treeConstructor(z_1.f + z_2.f, \Nil)\)\;
+		\(z.\varLeft \Assign z_1\)\;
+		\(z.\varRight \Assign z_2\)\;
+
+		\BlankLine
+		\tcp{Lo inserisco nella coda}
+		% \marginnote{\color{blue} \(\Omicron(\log n)\)}
+		\(Q\).\heapInsert{z.f, z}\;
+	}
+
+	\Return \(Q\).\heapDeleteMin\;
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

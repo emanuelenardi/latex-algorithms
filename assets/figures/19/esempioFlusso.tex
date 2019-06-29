@@ -1,0 +1,43 @@
+\documentclass{standalone}
+\usepackage{_preamble}
+\newif\ifmaxFlow
+% \maxFlowtrue
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+
+\newcommand\R[1]{\textcolor{red}{#1}}
+\newcommand\B[1]{\textcolor{blue}{#1}}
+\newcommand\showFlow[2]{\R{#1}/\B{#2}}
+
+\begin{tikzpicture}[transform shape, scale = 1]
+	\ifmaxFlow
+	\node[draw] at (-1,2) (label) {\(\abs{f^{*}} = 4\)};
+	\else
+	\node[draw] at (-1,2) (label) {\(\abs{f} = 3\)};
+	\fi
+
+	\node[mynode, source] at (0,1) (a) {a};
+	\node[mynode] at (2,2) (b) {b};
+	\node[mynode] at (2,0) (c) {c};
+	\node[mynode, sink] at (4,1) (d) {d};
+
+	\ifmaxFlow
+	\draw[edgen] (a) edge[above left]  node[values] {\showFlow{2}{2}} (b);
+	\draw[edgen] (a) edge[below left]  node[values] {\showFlow{2}{2}} (c);
+	\draw[edgen] (c) edge[right]       node[values] {\showFlow{1}{1}} (b);
+	\draw[edgen] (c) edge[below right] node[values] {\showFlow{1}{1}} (d);
+	\draw[edgen] (b) edge[above right] node[values] {\showFlow{3}{3}} (d);
+	\else
+	\draw[edgen] (a) edge[above left]  node[values] {\showFlow{2}{2}} (b);
+	\draw[edgen] (a) edge[below left]  node[values] {\showFlow{1}{2}} (c);
+	\draw[edgen] (c) edge[right]       node[values] {\showFlow{0}{1}} (b);
+	\draw[edgen] (c) edge[below right] node[values] {\showFlow{1}{1}} (d);
+	\draw[edgen] (b) edge[above right] node[values] {\showFlow{2}{3}} (d);
+	\fi
+\end{tikzpicture}
+
+
+\end{document}

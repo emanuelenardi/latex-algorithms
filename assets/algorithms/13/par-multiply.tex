@@ -1,0 +1,32 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Moltiplicazione fra matrici]{}
+\fi
+
+\prototype{\Matrix{\Int} \multiplyFunction{\Matrix{\Int} A, \Matrix{\Int} S, \Int i, \Int j}}{
+
+	\BlankLine
+	\eIf{\( i == j \)}
+	{ \Return \Array{A}{i}\; }
+	{
+		\BlankLine
+		\Matrix{\Int} \(X\) = \multiplyFunction{\( \MatrixCall{last}{}{}, i, \MatrixCall{last}{i}{j} \)}\;
+		\Matrix{\Int} \(Y\) = \multiplyFunction{\( \MatrixCall{last}{}{}, \MatrixCall{last}{i}{j} + 1, j \)}\;
+
+		\BlankLine
+		\Return \multiplyMatrices{X,Y}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

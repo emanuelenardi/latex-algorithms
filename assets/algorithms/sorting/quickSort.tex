@@ -1,0 +1,49 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+\setcounter{section}{1}
+% \setcounter{algocf}{5}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\begin{algorithm}[H]
+% \caption{Algoritmo di ordinamento}
+\fi
+
+\prototype{\quickSort{\Item{} A, \Int primo, \Int ultimo}}{
+	\If{\(primo < ultimo\)}{
+		\Int \(j \Assign \pivot{A, primo, ultimo}\)\;
+
+		\BlankLine
+		\quickSort{A, primo, \(j-1\)}\;
+		\quickSort{A, \(j+1\), ultimo}\;
+	}
+}
+
+\BlankLine
+\prototype{\Int \pivot{\Item{} A, \Int primo, \Int ultimo}}{
+	\Item \(x \Assign A[primo]\)\;
+	\Int \(j \Assign primo\)\;
+
+	\BlankLine
+	\From{\(i \Assign primo\) \DownTo \(ultimo\)}{
+		\If{\(A[i] < x\)}{
+			\Increment{j}\;
+			\Swap{\(A[i]\), \(A[j]\)}\;
+		}
+	}
+
+	\BlankLine
+	\(A[primo] \Assign A[j]\)\;
+	\(A[j] \Assign x\)\;
+
+	\BlankLine
+	\Return \(j\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\fi
+\end{document}

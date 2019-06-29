@@ -1,0 +1,132 @@
+\documentclass{standalone}
+
+\usepackage{pgfgantt}
+\usepackage{xcolor}
+
+\colorlet{brighter}{blue!50!white}
+\colorlet{darker}{blue!50!black}
+\colorlet{rose}{red!50}
+
+\colorlet{barcolor}{brighter}
+\colorlet{labelcolor}{darker}
+\colorlet{accentColor}{yellow}
+
+
+% NOTE: de-commenta per produrre il grafico desiderato
+% NB: sono mutualmente esclusivi
+
+\newif\ifpd
+% \pdtrue
+
+\newif\ifpart
+% \parttrue
+
+\newif\ifgreedy
+\greedytrue
+
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+
+% NOTE: tutti i pesi sono pari a 1
+\ifgreedy
+	\ganttset{bar label text = 1}
+\fi
+
+\begin{ganttchart}[
+	,expand chart = \textwidth
+	% NOTE: unità
+	% ,x unit = .5cm % default 1cm
+	,y unit title = .5cm
+	,y unit chart = .4cm % default 1cm
+	%
+	% NOTE: stili
+	,canvas/.style = {shape=rectangle, fill=white, draw=none, ultra thin}
+	,bar/.append style = {fill=barcolor, draw=white}
+	,vrule/.append style = {gray, thick}
+	,vgrid={*{1}{lightgray, ultra thin}}
+	%
+	% NOTE: fonts
+	,title label font = \em\footnotesize\color{darker}
+	% OPTIMIZE: proposta stile per lucidi
+	% ,bar label font = \tiny\color{white}
+	% ,bar height = .5
+	% ,inline
+	,bar label font = \footnotesize\color{darker}
+	% ,bar label text = #1,
+	,title/.style = {draw=none, fill=none}
+	% NOTE: elimina lo spazio del titolo se non mostrato
+	,include title in canvas = false
+]{1}{14}
+	% \gantttitle{Prenotazione di una sala conferenze}{15}
+	\\\gantttitlelist{1,...,14}{1}
+
+	\ifpart\else
+		\ifgreedy
+			\\\ganttbar[bar/.append style = {fill = accentColor}, bar label text = \textcolor{accentColor}{#1}]{1}{2}{5}
+		\else
+			\\\ganttbar{4}{2}{5}
+		\fi
+
+		\ifpd
+			\ganttvrule{}{3}
+			\\\ganttbar[bar/.append style = {fill = accentColor}, bar label text = \textcolor{accentColor}{#1}]{12}{4}{5}
+		\else
+			\\\ganttbar{12}{4}{5}
+		\fi
+
+		\\\ganttbar{3}{1}{6}
+		\ifpd
+			\ganttvrule{}{5}
+			\\\ganttbar[bar/.append style = {fill = accentColor}, bar label text = \textcolor{accentColor}{#1}]{7}{6}{8}
+		\else
+			\ifgreedy
+				\ganttvrule{}{5}
+				\\\ganttbar[bar/.append style = {fill = accentColor}, bar label text = \textcolor{accentColor}{#1}]{1}{6}{8}
+			\else
+				\\\ganttbar{7}{6}{8}
+			\fi
+		\fi
+	\fi
+
+	\ifpart
+		\\\ganttbar[bar/.append style = {fill = accentColor}, bar label text = \textcolor{accentColor}{#1}]{8}{4}{8}
+	\else
+		\\\ganttbar{8}{4}{8}
+	\fi
+
+	\\\ganttbar{12}{6}{9}
+	\\\ganttbar{8}{7}{10}
+
+	\ifpd
+		\ganttvrule{}{8}
+		\\\ganttbar[bar/.append style = {fill = accentColor}, bar label text = \textcolor{accentColor}{#1}]{10}{9}{11}
+	\else
+		\ifgreedy
+			\ganttvrule{}{8}
+			\\\ganttbar[bar/.append style = {fill = accentColor}, bar label text = \textcolor{accentColor}{#1}]{1}{9}{11}
+		\else
+			\\\ganttbar{10}{9}{11}
+		\fi
+	\fi
+
+	\ifpart\else
+		\\\ganttbar{3}{9}{12}
+		\\\ganttbar{15}{3}{13}
+
+		\ifpd
+			\ganttvrule{}{12}
+			\\\ganttbar[bar/.append style = {fill = accentColor}, bar label text = \textcolor{accentColor}{#1}]{7}{13}{14}
+		\else
+			\ifgreedy
+				\ganttvrule{}{11}
+				\\\ganttbar[bar/.append style = {fill = accentColor}, bar label text = \textcolor{accentColor}{#1}]{1}{13}{14}
+			\else
+				\\\ganttbar{7}{13}{14}
+			\fi
+		\fi
+	\fi
+\end{ganttchart}
+\end{document}

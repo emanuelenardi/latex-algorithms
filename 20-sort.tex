@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{../../../main.preamble}
+\usepackage{../../../macros}
+
+\title{Algoritmi di ordinamento}
+\renewcommand\docversion{v1.0.0}
+
+% NOTE ciclo di compilazione
+% arara: pdflatex: { shell: yes, draft: yes }
+% arara: pdflatex: { shell: yes, synctex: yes }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\maketitle
+
+\includestandalone{assets/algorithms/sorting/countingSort}
+\\\includestandalone{assets/algorithms/sorting/insertionSort}
+\\\includestandalone{assets/algorithms/sorting/mergeSort}
+\\\includestandalone{assets/algorithms/sorting/pigeonHoleSort}
+\\\includestandalone{assets/algorithms/sorting/quickSort}
+\\\includestandalone{assets/algorithms/sorting/selectionSort}
+\\\includestandalone{assets/algorithms/sorting/shellSort}
+
+\end{document}

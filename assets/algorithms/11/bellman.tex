@@ -1,0 +1,51 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Bellman-Ford-Moore]{}
+\fi
+
+\prototype{\Array{\Int}, \Array{\Int} \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
+
+	\BlankLine
+	\lnl{bellman:init}%
+	\alert{ \Queue \(S\) \Assign \queueConstructor }\;
+	\alert{ \(S.\queueInsert{s}\) } \Comment*[h]{metto in coda la sorgente}\;
+
+	\BlankLine
+	\While(\Comment*[h]{\(\Omicron(n)\)}){\Not \(S\).\setEmpty}{
+
+		\lnl{bellman:remove}%
+		\alert{ \Int \(u\) \Assign \(S\).\queueRemove } \Comment*[l]{\(\Omicron(1 \cdot n)\)}
+		\ArrayCall{b}{u} \Assign \False\;
+
+		\BlankLine
+		\ForEach{\( v \in G.\adj{u} \)}{
+			\If{\( \ArrayCall{d}{u} + G.\weight{u,v} < \ArrayCall{d}{v} \)}{
+
+				\BlankLine
+				\If{\Not \ArrayCall{b}{v}}{
+					\lnl{bellman:add}%
+					\tcp{lo metto in cosa quando c'è un miglioramento}
+					\alert{ \(S.\queueInsert{v}\) } \Comment*[h]{\(\Omicron(m \cdot n)\)}\;
+					\ArrayCall{b}{v} \Assign \True\;
+				}
+
+				\ArrayCall{T}{v} \Assign \(u\)\;
+				\ArrayCall{d}{v} \Assign \(\ArrayCall{d}{u} + G.\weight{u,v}\)\;
+			}
+		}
+	}
+	\Return \((T, d)\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

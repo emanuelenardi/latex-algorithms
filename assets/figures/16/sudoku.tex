@@ -1,0 +1,78 @@
+% tex.stackexchange.com/questions/43227/
+\documentclass[tikz]{standalone}
+\newcounter{row}
+\newcounter{col}
+
+% NOTE imposta la riga
+\newcommand\setrow[9]{
+	\setcounter{col}{1}
+	\foreach \n in {#1, #2, #3, #4, #5, #6, #7, #8, #9} {
+		\edef\x{\value{col} - 0.5}
+		\edef\y{9.5 - \value{row}}
+		\node[anchor=center] at (\x, \y) {\n};
+		\stepcounter{col}
+	}
+	\stepcounter{row}
+}
+
+\begin{document}
+\begin{tikzpicture}[scale=.5]
+
+	\begin{scope}
+		\draw (0, 0) grid (9, 9);
+		\draw[very thick, scale=3] (0, 0) grid (3, 3);
+
+		\setcounter{row}{1}
+		\setrow { }{2}{ }  {5}{ }{1}  { }{9}{ }
+		\setrow {8}{ }{ }  {2}{ }{3}  { }{ }{6}
+		\setrow { }{3}{ }  { }{6}{ }  { }{7}{ }
+
+		\setrow { }{ }{1}  { }{ }{ }  {6}{ }{ }
+		\setrow {5}{4}{ }  { }{ }{ }  { }{1}{9}
+		\setrow { }{ }{2}  { }{ }{ }  {7}{ }{ }
+
+		\setrow { }{9}{ }  { }{3}{ }  { }{8}{ }
+		\setrow {2}{ }{ }  {8}{ }{4}  { }{ }{7}
+		\setrow { }{1}{ }  {9}{ }{7}  { }{6}{ }
+
+		% \node[anchor=center] at (4.5, -0.5) {Unsolved Sudoku};
+	\end{scope}
+
+	\begin{scope}[xshift=14cm]
+		\draw (0, 0) grid (9, 9);
+		\draw[very thick, scale=3] (0, 0) grid (3, 3);
+
+		\setcounter{row}{1}
+		\setrow { }{2}{ }  {5}{ }{1}  { }{9}{ }
+		\setrow {8}{ }{ }  {2}{ }{3}  { }{ }{6}
+		\setrow { }{3}{ }  { }{6}{ }  { }{7}{ }
+
+		\setrow { }{ }{1}  { }{ }{ }  {6}{ }{ }
+		\setrow {5}{4}{ }  { }{ }{ }  { }{1}{9}
+		\setrow { }{ }{2}  { }{ }{ }  {7}{ }{ }
+
+		\setrow { }{9}{ }  { }{3}{ }  { }{8}{ }
+		\setrow {2}{ }{ }  {8}{ }{4}  { }{ }{7}
+		\setrow { }{1}{ }  {9}{ }{7}  { }{6}{ }
+
+		% \node[anchor=center] at (4.5, -0.5) {Solved Sudoku};
+
+		\begin{scope}[blue, font=\sffamily\slshape]
+			\setcounter{row}{1}
+			\setrow {4}{ }{6}  { }{7}{ }  {3}{ }{8}
+			\setrow { }{5}{7}  { }{9}{ }  {1}{4}{ }
+			\setrow {1}{ }{9}  {4}{ }{8}  {2}{ }{5}
+
+			\setrow {9}{7}{ }  {3}{8}{5}  { }{2}{4}
+			\setrow { }{ }{3}  {7}{2}{6}  {8}{ }{ }
+			\setrow {6}{8}{ }  {1}{4}{9}  { }{5}{3}
+
+			\setrow {7}{ }{4}  {6}{ }{2}  {5}{ }{1}
+			\setrow { }{6}{5}  { }{1}{ }  {9}{3}{ }
+			\setrow {3}{ }{8}  { }{5}{ }  {4}{ }{2}
+		\end{scope}
+
+	\end{scope}
+
+\end{tikzpicture}
+\end{document}

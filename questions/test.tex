@@ -1,0 +1,71 @@
+% \documentclass{article}
+\documentclass[answers]{exam}
+\renewcommand{\solutiontitle}{\noindent\textbf{Risposta:}\par\noindent}
+\SolutionEmphasis{\itshape\small}
+
+% NOTE non ho utlizzato il prembolo comune a tutti i capitoli
+% \usepackage{../../00-main.preamble}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage[useregional]{datetime2}
+
+% NOTE ridefinisco i comandi
+\title{Domande di ripasso}
+\author{Emanuele Nardi}
+
+% arara: pdflatex: { shell: yes, draft: yes }
+% arara: pdflatex: { shell: yes, synctex: yes }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\maketitle
+
+% \begin{abstract}\noindent
+% Ho scritto le domande che mi sono servite per fare un ripasso della materia.
+% \end{abstract}
+
+\section{Introduzione}
+
+\begin{questions}
+	\question Cos'è un problema computazionale?
+
+	\begin{solution}
+		Dati un dominio di input e un dominio di output, un problema computazionale è rappresentato dalla relazione matematica che associa un elemento del dominio di output ad ogni elemento del dominio di input.
+	\end{solution}
+
+	\question Cos'è un algoritmo?
+
+	\begin{solution}
+		Dato un problema computazionale, un algoritmo è un procedimento effettivo, espresso tramite un insieme di passi elementari ben specificati in un sistema formale di calcolo, che risolve il problema in tempo finito.
+	\end{solution}
+
+	\question Cos'è un invariante?
+
+	\begin{solution}
+		Condizione sempre vera in un certo punto del programma.
+    \end{solution}
+
+	\question Cos'è un invariante di ciclo?
+		Cosa ci permette di dimostrare?
+
+	\begin{solution}
+		Una condizione sempre vera all’inizio dell’iterazione di un ciclo.
+		Il concetto di invariante di ciclo ci aiuta a dimostrare la correttezza di un algoritmo iterativo.
+	\end{solution}
+
+	\question Cos'è un invariante di classe?
+
+	\begin{solution}
+		Una condizione sempre vera al termine dell’esecuzione di un metodo della classe.
+	\end{solution}
+
+	\question Quali sono i criteri per calcolare la dimesione dell'input? Fai un esempio.
+
+	\begin{solution}
+		TODO.
+	\end{solution}
+
+\end{questions}
+
+\end{document}

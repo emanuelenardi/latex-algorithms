@@ -1,0 +1,53 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\NoCaptionOfAlgo
+\begin{minipage}{\linewidth}
+\begin{algorithm}[H]
+\caption[]{}
+
+\SetKwFunction{concatenateABRTrees}{concatenate}
+
+\BlankLine
+\tcp{concatena due alberi di ricerca binaria}
+\prototype{\concatenateABRTrees{\Tree \(T_1\), \Tree \(T_2\)}}{
+	\Tree \(v = \maxFunction{\(T_1\)}\)\;
+	\shortcut{v, \(T_2\), \(T_2\).\varValue}\;
+}
+
+\BlankLine
+\tcp{collega un nodo padre \(p\) ad un nodo figlio \(u\)}
+\prototype{\shortcut{\Tree p, \Tree u, \Item x}}{
+	\If{\(u \Neq \Nil\)}{
+		\tcp{il nodo è stato cancellato}
+		\(u.\varParent = p\)\;
+	}
+
+	\BlankLine
+	\If{\(p \Neq \Nil\)}{
+		\eSea{\(x < p.\varKey\)}{
+			\(p.\varLeft = u\)\;
+		}{
+			\(p.\varRight = u\)\;
+		}
+	}
+}
+
+\BlankLine
+Si cerca il massimo valore contenuto in \(T_1\) e lo si \enquote{attacca} alla radice di \(T_2\) come figlio destro di \(v\).
+\concatenateABRTrees ha costo \(\Omicron(h)\), dove \(h\) è l'altezza massima fra i due alberi.
+\shortcut ha costo \(\Omicron(1)\).
+
+\end{algorithm}
+\end{minipage}
+\RestoreCaptionOfAlgo
+
+\end{document}
+
+
+\paragraph{Analisi della complessità}
+L'algoritmo ha complessità \(\Omicron(n)\), in quanto è il costo di una visita.

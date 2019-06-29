@@ -1,0 +1,40 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+\setcounter{section}{4}
+\setcounter{algocf}{3}
+
+\SetKwFunction{tangentopoli}{tangentopoli}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\begin{algorithm}[H]
+\caption{cosa fa?}
+\fi
+
+\prototype{\tangentopoli{\List L}}{
+	\Postype \(p \Assign L.\listHead\)\;
+
+	\BlankLine
+	\While{\Not \(L.\listEmpty\)}{
+		\From{\(i \Assign 1\) \DownTo \(k-1\)}{
+			\(p \Assign L.\listSucc{p}\)\;
+
+			\BlankLine
+			\lIf{\(L.\listEnd{p}\)}{
+				\(p \Assign L.\listHead\)
+			}
+
+			\BlankLine
+			\Print \(L.\listRead{p}\)\;
+			\(p \Assign L.\listRemove{p}\)\;
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\fi
+\end{document}

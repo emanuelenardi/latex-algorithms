@@ -1,0 +1,63 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Calcola il quadrato di un grafo orientato]{}
+
+\SetKwFunction{diameter}{diametro}
+
+Si effettuano \(n\) visite in ampiezza, una a partie da ogni nodo, e si memorizza il massimo valore di distanza trovato in una visita.
+
+\BlankLine
+\tcp{calcola il \enquote{più lungo cammino breve}}
+\fi
+
+\prototype{\diameter{\Graph G}}{
+	\Int \(max \Assign 0\)\;
+	\Queue \(S\) \Assign \new \queueConstructor\;
+	\(S.\queueInsert{r}\)\;
+
+	\BlankLine
+	\tcp{inizializzazione}
+	\Array{\Bool} \(dist\) \Assign \new \Array{\Bool}{1}{G.\graphSize}\;
+	\ForEach{\(u \in G.\VV - \{r\}\)}{
+		\(dist[u] \Assign -1\)\;
+	}
+
+	\BlankLine
+	\(dist[r] = 0\) \Comment*[l]{la radice dista 0 da sé stessa}
+	\While{\Not \(S.\queueEmpty\)}{
+		\Node \(u \Assign S.\queueRemove\) \Comment*[l]{estrai il nodo}
+
+		\BlankLine
+		\ForEach{\(v \in G.\adj{u}\)}{
+
+			\BlankLine
+			\If{\(dist[v] < 0\)}{
+				\tcp{non ho ancora scoperto il nodo}
+
+				\BlankLine
+				\(dist[v] \Assign dist[u] + 1\) \Comment*[l]{imposta la distanza}
+				\If{\(dist[v] > max\)}{
+					\(max = dist[v]\) \Comment*[l]{aggiorna il \(max\)}
+				}
+
+				\BlankLine
+				\(S.\queueInsert{v}\) \Comment*[l]{inserisci il nodo}
+			}
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

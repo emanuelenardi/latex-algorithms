@@ -1,0 +1,25 @@
+\documentclass{standalone}
+\usepackage{_preamble}
+\usepackage{set-math}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+
+\begin{tikzpicture}[transform shape, scale=1]
+	\node[draw] at (-1,2) (label) {\(\abs{f^{*}} = 4\)};
+
+	\node[mynode, label={[label distance=5pt]left:$s$}] at (0,1) (a) {a};
+	\node[mynode] at (2,2) (b) {b};
+	\node[mynode] at (2,0) (c) {c};
+	\node[mynode, label={[label distance=5pt]right:$t$}] at (4,1) (d) {d};
+
+	\draw[edgen] (a) edge[above] node[values] {\R{2}/\B{2}} (b);
+	\draw[edgen] (a) edge[below] node[values] {\R{2}/\B{2}} (c);
+	\draw[edgen] (c) edge[right] node[values] {\R{1}/\B{1}} (b);
+	\draw[edgen] (c) edge[below] node[values] {\R{1}/\B{1}} (d);
+	\draw[edgen] (b) edge[above] node[values] {\R{3}/\B{3}} (d);
+\end{tikzpicture}
+
+\end{document}

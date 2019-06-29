@@ -1,0 +1,33 @@
+\documentclass{standalone}
+\usepackage[ps]{skak} %or xskak
+\usepackage{xcolor}
+\usepackage{chessboard}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: yes }
+%! arara: latexmk: { clean: partial }
+\begin{document}
+
+% \newgame
+% \notationoff
+% \fenboard{Q/4Q/7Q/5Q/2Q/6Q/1Q/3Q}
+% \showboard
+% \setboardfontcolors{
+% 	blackfieldmaskcolor=red!50
+% }
+\def\whitepieces{Qa8,Qe7,Qh6,Qf5,Qc4,Qg3,Qb2,Qd1}
+\chessboard[
+	% ,tinyboard
+	,smallboard
+	% ,normalboard
+	% ,largeboard
+	% ,border=false
+	% ,margin=false
+	,marginwidth=5pt
+	,showmover=false
+	,label=false
+	,setwhite={\whitepieces}
+	,padding=0ex
+]
+
+\end{document}

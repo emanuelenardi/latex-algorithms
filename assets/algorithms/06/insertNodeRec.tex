@@ -1,0 +1,58 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[]{}
+
+\SetKwFunction{nodeInsertRec}{nodeInsertRecursive}
+
+\nodeInsertRec{T, \Nil, x, v}
+
+\BlankLine
+\tcp{inserisce un nodo in un albero ricorsivamente}
+\prototype{\Tree \nodeInsertRec{\Tree T, \Tree p, \Item x, \Item v}}{
+
+	\BlankLine
+	\eSea{\(T = \Nil\)}{
+		\tcp{non esiste l'albero}
+
+		\BlankLine
+		\Tree \(n = \treeConstructor{x,v}\)\;
+		\shortcut{p, n, x}\;
+		\lIf(\Comment*[h]{primo nodo ad essere inserito}){\(p = \Nil\)}{
+			\Return \(n\)
+		}
+	}{
+		\tcp{esiste l'albero}
+
+		\BlankLine
+		\uIf{\(x < T.\varKey\)}{
+			\tcp{inserisci il nodo \emph{a sinistra}}
+			\nodeInsertRec{T.\varLeft, T, x, v}\;
+		}
+		\eSea{\(x > T.\varKey\)}{
+			\tcp{inserisci il nodo \emph{a destra}}
+			\nodeInsertRec{T.\varRight, T, x, v}\;
+		}{
+			\tcp{chiave già presente}
+			\(T.\varValue = v\) \Comment*[l]{sovrascrivila}
+		}
+	}
+
+	\BlankLine
+	\Return \(T\) \Comment*[l]{ritorna albero non modificato}
+}
+
+\end{algorithm}
+\RestoreCaptionOfAlgo
+
+\end{document}
+
+
+\paragraph{Analisi della complessità}
+L'algoritmo ha complessità \(\Omicron(h)\) dove \(h\) è l'altezza dell'albero.

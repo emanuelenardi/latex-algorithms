@@ -1,0 +1,46 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+\setcounter{section}{1}
+% \setcounter{algocf}{5}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[selectionSort]{}
+\fi
+
+\tcp{effettua l'ordinamento di un vettore}
+\prototype{\selectionSort{\Array{\Item} A, \Int n}}{
+	\From{\Int \(i \Assign 1\) \DownTo \(n\)}{
+		\Int \(j \Assign \minFunction{A, i, n}\)\Comment*[l]{ricerca il nuovo minimo}
+		\Swap{\ArrayCall{A}{i}, \ArrayCall{A}{j}}\Comment*[l]{lo metto nella posizione corretta}
+	}
+}
+
+\BlankLine
+\tcp{cerca l'indice dell'elemento più piccolo}
+\prototype{\Int \minFunction{\Array{\Item} A, \Int i, \Int j}}{
+
+	\BlankLine
+	\Int \(min \Assign k\) \Comment*[h]{posizione del minimo parziale}\;
+	\From{\Int \(h \Assign k+1\) \DownTo \(n\)}{
+		\If(\tcp*[h]{ho trovato un nuovo minimo}){\( \ArrayCall{A}{h} < \ArrayCall{A}{min} \)}{
+			\(min \Assign h\) \Comment*[h]{nuovo minimo parziale}\;
+		}
+	}
+
+	\BlankLine
+	\Return \(min\)\Comment*[l]{restituisco l'indice dell'elemento più piccolo}
+}
+% \begin{algomathdisplay}
+% 	\sum_{i=1}^{n-1} (n-1) = \sum_{i=1}^{n-1} i = \frac{n(n-1)}{2} = n^2 - \frac{n}{2} = \Theta(n^2)
+% \end{algomathdisplay}
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

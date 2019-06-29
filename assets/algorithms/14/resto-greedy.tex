@@ -1,0 +1,40 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Approccio ingordo al problema del resto]{}
+\fi
+
+\prototype{\restoGreedy{\Array{\Int} \(t\), \Int \(n\), \Int \(R\), \Array{\Int} \(x\)}}{
+
+	\{ Ordina le monete in modo \emph{decrescente} \}\;
+	\tcp{\(\Omicron(n)\) se già ordinato, \(\Omicron(n \log n)\) altrimenti}
+
+	\BlankLine
+	\From(\Comment*[h]{\(\Omicron(n)\)}){\(i \Assign 1\) \DownTo \(n\)} {
+
+		\BlankLine
+		\tcp{il numero di monete di taglio massimo}
+		\(x[i] \Assign \left\lfloor \dfrac{R}{t[i]} \right\rfloor\)\;
+
+		\BlankLine
+		\tcp{calcolo il resto rimanente}
+		\(R \Assign R - x[i] \cdot t[i]\)\;
+	}
+
+	\Return \(R\)
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}
+
+divido il resto per il taglio della moneta più grande trovando il numero di monete massimo di quel taglio, dopodiché
+tolgo il valore della somma quelle monete dal resto.

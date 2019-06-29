@@ -1,0 +1,72 @@
+\documentclass[varwidth=\linewidth,border=.05cm]{standalone}
+
+\usepackage{xcolor}
+\usepackage{xparse}
+\usepackage{etoolbox}
+
+% % NOTE strato di compatibilità
+% \usepackage{algorithm2e}
+% \newcommand\Set{}
+% \newcommand\Line{}
+% \usepackage{macros}
+
+% https://tex.stackexchange.com/questions/13641/define-same-command-with-dIfferent-amount-of-parameters
+% NOTE: definizione di un array dove specifico l'intervallo
+% NOTE: eseguo un controllo dell'errore fine segnalando all'utente gli errori commessi in rosso
+% g parametro optionale delimitato da parentesi graffe
+\NewDocumentCommand\Intarray{gg}{%
+	\KwSty{int}% <- spazio
+	% <- spazio
+	\ensuremath{%
+		\IfNoValueTF{#1}%
+			{
+				[\,]%
+			}{%
+				\IfNoValueTF{#2}{%
+					\ifblank{#1}{%
+						% WARNING: \Intarray{} -> int{}
+						\color{red}
+						\{\}
+					}{%
+						% NOTE: \Intarray{a} -> int[a]
+						[#1]%
+					}
+				}{%
+					\ifblank{#1}{%
+						\ifblank{#2}{%
+							% WARNING: \Intarray{}{} -> int{}{}
+							\color{red}%
+							\{\}\{\}
+						}{%
+							% WARNING: \Intarray{}{b} -> int[...b]
+							\textcolor{red}{\{\}}[#2]%
+						}
+					}{%
+						\ifblank{#2}{
+							% WARNING: \Intarray{a}{} -> int[a...]
+							[#1]\textcolor{red}{\{\}}%
+						}{%
+							% NOTE: \Intarray{a}{b} -> int[a...b]
+							[#1\dots#2]%
+						}
+					}
+				}
+			}%
+	}%
+	\xspace% corregge errore di spaziatura
+}% <- rimouve spazi successivi, to see the light: \textvisiblespace
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: yes }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+
+\Intarray
+\\\Intarray{}
+\\\Intarray{a}
+\\\Intarray{}{b}
+\\\Intarray{}{}
+\\\Intarray{a}{}
+\\\Intarray{a}{b}
+
+\end{document}

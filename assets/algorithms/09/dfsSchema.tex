@@ -1,0 +1,69 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Schema per visita in profondità]{}
+
+\slide{63}{101}
+\fi
+
+\prototype{\dfsSchema{\Graph \(G\), \Node \(u\), \Int \(\&time\)}}{
+
+	\BlankLine
+	esamina il nodo \(u\) (caso \emph{pre}visita)
+
+	\BlankLine
+	\Increment{time}\;
+	\(dt[u]\) \Assign \(time\) \Comment*[l]{tempo di scoperta}
+
+	\BlankLine
+	\ForEach{\(u \in G.\adj{u}\)}{
+
+		\BlankLine
+		esamina l'arco \((u,v)\) di qualsiasi tipo
+
+		\BlankLine
+		\uIf{\(dt[v] \Equal 0\)}{
+			esamina l'arco \((u,v)\) nell'albero \(T\)\;
+			\tcp{chiamata ricorsiva}
+			\dfsSchema{g,v}
+			\BlankLine
+
+		}
+		\uElseIf{\(dt[u] < dt[v]\) \And \(ft[v] \Equal 0\)}{
+			\tcp{se raggiungo un mio discendente e non ho ancora terminato la mia visita, allora ho trovato un arco \emph{all'indietro}}
+			esamina l'arco \((u,v)\) \emph{all'indietro}
+			\BlankLine
+
+		}
+		\eSea{\(dt[u] < dt[v]\) \And \(ft[v] \Neq 0\)}{
+			\tcp{se raggiungo un mio discendente e non ho ancora terminato la mia visita, allora ho trovato un arco \emph{in avanti}}
+			esamina l'arco \((u,v)\) \emph{in avanti}
+			\BlankLine
+
+		}{
+			esamina l'arco \((u,v)\) \emph{di attraversamento}
+		}
+	}
+
+
+	\BlankLine
+	esamina il nodo \(u\) (caso \emph{post}visita)
+
+	\BlankLine
+	\Increment{time}\;
+	\(ft[u]\) \Assign \(time\) \Comment*[l]{tempo di fine}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

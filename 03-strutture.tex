@@ -1,0 +1,772 @@
+\documentclass[00-main.tex]{subfiles}
+\standalonetrue
+\setcounter{section}{2}
+\pagestyle{footer}
+
+% WARNING do not replace, for any reason
+\usepackage{set-minted}
+
+% TODO spostare in "00-main.preamble.sty"
+% https://tex.stackexchange.com/questions/254044/
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Codice}
+
+\excludecomment{versiona}
+\excludecomment{versionb}
+
+% arara: pdflatex: { shell: yes, draft: yes, synctex: no }
+% arara: pdflatex: { shell: yes, synctex: yes }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\section{Strutture dati}
+
+% \subsection{Strutture dati astratte}
+
+\begin{versiona}
+\begin{fquote}[Steven S. Skiena][The Algorithm Design Manual]%
+	Picking the wrong data structure for the job can be disastrous in terms of performance.
+	Identifying the very best data structure is usually not as critical, because there can be several choices that perform similarly.
+\end{fquote}
+
+\subsection*{Alcune definizioni}
+
+\begin{definition}[Tipo di dato]
+In un linguaggio di programmazione, un dato è un valore che una variabile può assumere.
+\end{definition}
+
+\begin{definition}[Tipo di dato astratto]
+Un modello matematico, dato da una collezione di valori e un insieme di operazioni ammesse su questi valori.
+\end{definition}
+
+\begin{definition}[Tipi di dato primitivi]
+Sono dei tipi di dati che vengono forniti direttamente dal linguaggio.
+Come ad esempio: int (\texttt{+,-,*,/, \%}), boolean (\texttt{!, \&\&, ||}).
+\end{definition}
+
+Ogni tipo di dato deve distinguere \emph{specifica} ed \emph{implementazione} di un tipo di dato astratto.
+La \emph{specifica} è astratta, il \enquote{manuale d'uso} che nasconde i dettagli implementativi all'utente, mentre l'\emph{implementazione} è la realizzazione vera e propria del tipo di dato.
+
+\begin{table}[h]
+	\centering
+	\caption{Differenza fra specifica ed implementazione}
+	\label{tab:differenza-specifica-implementazione}
+	\begin{tabular}{@{} *{2}{l} @{}}
+		\toprule
+			Specifica & Implementazione \\
+		\midrule
+			Numeri reali & IEEE-754\\
+		\addlinespace
+			\multirow{2}{*}{Pile} & Pile basate su vettori\\
+								  & Pile basate su puntatori\\
+	    \addlinespace
+			\multirow{2}{*}{Code} & Code basate su vettori circolari\\
+								  & Code basate su puntatori\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{definition}[Strutture di dati]
+Le strutture di dati sono collezioni di dati, caratterizzate più dall'organizzazione della collezione piuttosto che dal tipo dei dati contenuti.
+\end{definition}
+
+Le strutture dati sono un modo sistematico per organizzare i dati e su di esse sono definite un insieme di operatori che permettono di manipolare la struttura stessa.
+Le strutture dati possono essere caratterizzare in vari modi, possono essere:
+\begin{itemize}
+	\item \emph{lineari} o \emph{non lineari}: presentano una sequenza al loro interno o meno;
+	\item \emph{statiche} o \emph{dinamiche}: possono variare di dimensione o di contenuto;
+	\item \emph{omogenee} o \emph{disomogenee}: si riferisce ai dati contenuti al loro interno.
+\end{itemize}
+
+\begin{table}[h]
+	\centering
+	\caption{Implementazione delle strutture dati nei vari linguaggi, nota che Java distingue chiaramente la specifica dall'implementazione}
+	\label{tab:strutture-dati}
+	\begin{tabular}{@{} l >{\ttfamily}l >{\ttfamily}l >{\ttfamily}l @{}}
+	\toprule
+		Tipo & \normalfont{Java} & \normalfont{\texttt{C++}} & \normalfont{Python} \\
+	\midrule
+		Sequenze & \makecell[l]{\alert{List, Queue, Deque},\\LinkedList, ArrayList,\\Stack, ArrayDeque} & \makecell[l]{list, forward\_list,\\vector, stack,\\queue, dequeue} & \makecell[l]{list,\\tuple}\\
+	\midrule
+		Insiemi & \makecell[l]{\alert{Set},\\TreeSet, HashSet,\\LinkedHashSet} & \makecell[l]{set,\\unordered\_set} & \makecell[l]{set,\\fronzenset}\\
+	\midrule
+		Dizionari & \makecell[l]{\alert{Map},\\HashTree, HashMap,\\LinkedHashMap} & \makecell[l]{map,\\unordered\_map} & \makecell[l]{dict}\\
+	\midrule
+		Alberi & \makecell[cc]{-} & \makecell[cc]{-} & \makecell[cc]{-}\\
+	\midrule
+		Grafi  & \makecell[cc]{-} & \makecell[cc]{-} & \makecell[cc]{-}\\
+	\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{Sequenza}
+
+Una sequenza è una struttura dati \emph{dinamica}, \emph{lineare} che rappresenta una sequenza \emph{ordinata} di valori, dove un valore può comparire più di una volta.
+L'ordine all'interno della sequenza è importante.
+
+\medskip
+Le operazioni ammesse su una sequenza sono:
+\begin{itemize}
+	\item L'aggiunta e la rimozione elementi, specificando la posizione (tipicamente un intero), l'elemento \(s_1\) si trova in posizione \({pos}_i\) ed esistono posizioni fittizie \({pos}_0\) e \({pos}_{n+1}\);
+	\item Accesso diretto alla testa e coda;
+	\item Accesso sequenziale a tutti gli altri elementi.
+\end{itemize}
+\end{versiona}
+
+% NOTE Versione nelle slide
+\begin{versionb}
+\NoCaptionOfAlgo
+\begin{algorithm}
+\caption[Sequenza]{}
+\begin{multicols}{2}
+
+\BlankLine
+\tcp{restituisce true se è vuota}
+\Bool \listEmpty{}
+
+\BlankLine
+\tcp{restituisce true se \(p\) è uguale a \({pos}_0\) oppure a \({pos}_{n+1}\)}
+\Bool \listEnd{\Postype \(p\)}
+
+\BlankLine
+\tcp{restituisce la posizione del primo elemento}
+\Postype \listHead{}
+
+\BlankLine
+\tcp{restituisce la posizione dell'ultimo elemento}
+\Postype \listTail{}
+
+\BlankLine
+\tcp{restituisce la posizione dell'elemento che segue \(p\)}
+\Postype \listSucc{\Postype \(p\)}
+
+\BlankLine
+\tcp{restituisce la posizione dell'elemento che precede \(p\)}
+\Postype \listPred{\Postype \(p\)}
+
+\vspace{15pt}
+
+\BlankLine
+\tcp{inserisce l'elemento \(v\) di tipo \Item nella posizione \(p\)}
+\tcp{restituisce la posizione del nuovo elemento, che diviene il predecessore di \(p\)}
+\Pos \listInsert{\Postype \(p\), \Item \(v\)}
+
+\BlankLine
+\tcp{rimuove l'elemento contenuto nella posizione \(p\)}
+\tcp{restituisce la posizione del successore di \(p\), che diviene il successore del predecessore di \(p\)}
+\Pos \listRemove{\Postype \(p\)}
+
+\BlankLine
+\tcp{legge l'elemento di tipo \Item contenuto nella posizione \(p\)}
+\Item listRead{\Postype \(p\)}
+
+\BlankLine
+\tcp{scrive l'elemento \(v\) di tipo \Item nella posizione \(p\)}
+\listWrite{\Postype \(p\), \Item \(v\)}
+
+\vphantom{0pt}
+\end{multicols}
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\end{versionb}
+
+\begin{versiona}
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Struttura dati sequenza]{}
+\begin{multicols}{2}
+
+Una struttura dati \emph{dinamica}, \emph{lineare} che rappresenta una sequenza \emph{ordinata} di valori, dove lo stesso valore può comparire più volte.
+
+\BlankLine
+\sequenceConstructor
+
+\BlankLine
+\tcp{INTERPRETARE}
+\Bool \listEmpty \Comment*[r]{\True se la sequenza è vuota}
+\Bool \listEnd \Comment*[r]{\True se \(p\) è uguale a \(pos_0\) o a \(pos_{n+1}\)}
+
+\BlankLine
+\tcp{leggere}
+\Postype \listHead \Comment*[r]{posizione del primo elemento}
+\Postype \listTail \Comment*[r]{posizione dell'ultimo elemento}
+
+\BlankLine
+\tcp{iterare}
+\Postype \listSucc \Comment*[l]{posizione dell'elem.\ che segue \(p\)}
+\Postype \listPred \Comment*[l]{posizione dell'elem.\ che precede \(p\)}
+
+\BlankLine
+\tcp{MODIFICA}
+
+\BlankLine
+\tcc{inserisce l'elemento di tipo \Item nella posizione \(p\), ritorna la nuova posizione, che diviene il predecessore di \(p\)}
+\Postype \listInsert{\Postype p, \Item v}
+
+\tcc{rimuove l'elemento contenuto nella posizione \(p\), ritorna il successore di \(p\), che diviene il predecessore di \(p\)}
+\Postype \listRemove{\Pos p}
+
+\BlankLine
+\tcc{legge l'elemento di tipo \Item contenuto nella posizione \(p\)}
+\listRead{\Postype p}
+
+\BlankLine
+\tcc{scrive l'elemento \(v\) di tipo \Item nella posizione \(p\)}
+\listWrite{\Postype p, \Item v}
+
+\end{multicols}
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\end{versiona}
+
+\begin{versiona}
+\subsubsection{Implementazione delle sequenze nei diversi linguaggi}
+
+\begin{code}
+\captionof{listing}{Implementazione delle liste in Java}
+\label{code:java-liste}
+\begin{minted}{java}
+List<String> lista = new LinkedList<String>();
+lista.add("two");
+lista.addFirst("one");
+lista.addLast("three");
+
+Result: [ "one", "two", "three" ]
+\end{minted}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Implementazione delle liste in \texttt{C++}}
+\label{code:cpp-liste}
+\begin{minted}{cpp}
+std::list<int> lista;
+lista.push_front(2);
+lista.push_front(1);
+lista.push_back(3);
+
+Result: [1,2,3]
+\end{minted}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Implementazione delle liste in Python}
+\label{code:python-liste}
+\begin{minted}{python}
+lista = ["one", "three"]
+lista.insert(1, "two")
+
+Result: [ 'one', 'two', 'three' ]
+\end{minted}
+\end{code}
+
+\subsection{Insiemi}
+
+Un insieme è una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{collezione non ordinata di elementi} senza valori ripetuti.
+L'ordinamento fra elementi è dato dall'eventuale relazione d'ordine definita sul tipo degli elementi stessi.
+
+\medskip
+Le operazioni ammesse su un'insieme sono:
+\begin{itemize}
+	\item Operazioni di base: come inserimento, cancellazione e verifica di contenimento;
+	\item Operazione di ordinamento: massimo, minimo;
+	\item Operazioni insiemistiche: unione, intersezione, differenza;
+	\item Iteratori: effettuare operazione per ogni elemento contenuto nell'insieme.
+\end{itemize}
+\end{versiona}
+
+\begin{versiona}
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Struttura dati insieme]{}
+\begin{multicols}{2}
+
+Una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{collezione non ordinata di elementi} senza valori ripetuti.
+
+\BlankLine
+\setConstructor
+
+\BlankLine
+\tcp{INTERPRETARE}
+\Int \setSize \Comment*[r]{cardinalità dell'insieme}
+\Bool \setContains \Comment*[r]{\True se \(x\) è contenuto}
+
+\vspace{20pt}
+
+\BlankLine
+\tcp{OPERAZIONI DI BASE}
+\setInsert \Comment*[r]{inserisce \(x\) nell'insieme, se assente}
+\setRemove \Comment*[r]{rimuove \(x\) nell'insieme, se presente}
+
+\BlankLine
+\tcp{OPERAZIONI INSIEMISTICHE}
+\Set \setUnion{\Set \(A\), \Set \(B\)}
+\Set \setIntersection{\Set \(A\), \Set \(B\)}
+\Set \setDifference{\Set \(A\), \Set \(B\)}
+
+\vphantom{0pt}
+
+\end{multicols}
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\end{versiona}
+
+\begin{versiona}
+\begin{code}
+\captionof{listing}{Implementazione delle liste in Java}
+\label{code:java-liste}
+\begin{minted}{java}
+List<String> lista = new LinkedList<String>();
+Set<String> docenti = new TreeSet<>();
+docenti.add("Alberto");
+docenti.add("Cristian");
+docenti.add("Alessio");
+
+Result: { "Alberto", "Alessio", "Cristian" }
+\end{minted}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Implementazione delle liste in \texttt{C++}}
+\label{code:cpp-liste}
+\begin{minted}{cpp}
+std::set<std::string> frutta;
+frutta.insert("mele");
+frutta.insert("pere");
+frutta.insert("banane");
+frutta.insert("mele");
+frutta.remove("mele")
+
+Result: { "banane", "pere" }
+\end{minted}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Implementazione delle liste in Python}
+\label{code:python-liste}
+\begin{minted}{python}
+items = { "rock", "paper", "scissors", "rock" }
+print(items)
+print("Spock" in items)
+print("lizard" not in items)
+
+Result: { "rock", "paper", "scissors" }
+False
+True
+\end{minted}
+\end{code}
+\end{versiona}
+
+\begin{versiona}
+% \subsubsection{Dizionari}
+
+Un dizionario è una struttura dati che rappresenta il concetto matematico di \emph{relazione univoca} \(R : D \to C\), o associazione chiave-valore, dove:
+\begin{itemize}
+	\item l'insieme \(D\) è il dominio (gli elementi sono detti \emph{chiavi});
+	\item l'insieme \(C\) è il codominio (gli elementi sono detti \emph{valori}).
+\end{itemize}
+
+\medskip
+Le operazioni ammesse sui dizionari sono:
+\begin{itemize}
+	\item Ottenere il valore associato ad una particolare chiave (se presente) o \Nil se assente
+	\item inserire una nuova associazione chiave-valore, cancellando eventuali associazioni precedenti per la stessa chiave
+	\item rimuovere un'associazione chiave-valore esistente
+\end{itemize}
+
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Struttura dati dizionario]{}
+
+Un dizionario è una struttura dati che rappresenta il concetto matematico di \emph{relazione univoca} o associazione chiave-valore.
+
+\BlankLine
+\dictionaryConstructor
+
+\BlankLine
+\dictLookup{\Item \(k\)} \Comment*[r]{rest. il valore associato alla chiave \(k\), \Nil altrimenti}
+\Item \dictInsert{\Item \(k\), \Item \(v\)} \Comment*[r]{associa il valore \(v\) alla chiave \(k\)}
+\dictRemove{\Item \(k\)} \Comment*[r]{rimuove l'associazione della chiave \(k\)}
+
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\end{versiona}
+
+\begin{versiona}
+\begin{code}
+\captionof{listing}{Implementazione dei dizionari in Java}
+\label{code:java-liste}
+\begin{minted}{java}
+Map<String, String> capoluoghi = new HashMap<>();
+capoluoghi.put("Toscana", "Firenze");
+capoluoghi.put("Lombardia", "Milano");
+capoluoghi.put("Sardegna", "Cagliari");
+\end{minted}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Implementazione dei dizionari in \texttt{C++}}
+\label{code:cpp-liste}
+\begin{minted}{cpp}
+std::map<std::string, int> wordcounts;
+std::string s;
+
+while (std::cin >> s && s != "end")
+  ++wordcounts[s];
+\end{minted}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Implementazione dei dizionari in Python}
+\label{code:python-liste}
+\begin{minted}{python}
+v = {}
+v[10] = 5
+v["alberto"] = 42
+v[10]+v["alberto"]
+
+Result: 47
+\end{minted}
+\end{code}
+\end{versiona}
+
+\begin{versiona}
+\subsubsection{Alberi}
+
+Un albero ordinato è dato da un insieme finito di elementi detti nodi.
+Uno di questi nodi è designato come radice.
+I rimanenti nodi, se esistono sono partizionati in insiemi \emph{ordinati} e \emph{disgiunti}, anch'essi alberi ordinati.
+
+\begin{figure}[H]
+	\centering
+	\begin{forest} circled, wide
+	[A
+		[B[C]]
+		[C[F][G]]
+		[D[H][I]]
+	]
+	\end{forest}
+	\caption[]{Un albero}
+\end{figure}
+
+Non vedremo implmentazione nei vari linguaggi in quanto non esiste una struttura dati definita riconosciuta universalmente.
+
+\subsubsection{Grafi}
+
+La struttura dati grafo è composta da:
+\begin{itemize}
+	\item un insieme di elementi detti nodi o vertici
+	\item un insieme di coppie (ordinate oppure no) di nodi detti archi
+\end{itemize}
+
+% TODO inserire l'immagine di un grafo semplice
+
+\medskip
+Tutte le operazioni su alberi e grafi ruotano attorno alla possibilità di effettuare visite su di essi, vedremo la specifica completa più avanti.
+
+\begin{note}
+La scelta della struttura dati ha riflessi sull'efficienza e sulle operazioni ammesse.
+\end{note}
+\end{versiona}
+
+\subsection{Implementazione strutture dati elementari}
+
+\begin{versiona}
+\subsubsection{Lista}
+
+Una lista è una sequenza di nodi, contenenti dati arbitrari e 1-2 puntatori all'elemento successivo e/o precedente.
+
+\medskip
+La contiguità nella lista non implica che ci sia continuità nella memoria.
+Tutte le operazioni effettuate sulla lista hanno complessità \(\Omicron(1)\), ma per fare una ricerca dobbiamo spendere \(\Omicron(n)\).
+
+\medskip
+Esistono diverse implmentazioni della lista, le quali possono essere:
+\begin{itemize}
+	\item bidirezionale o monodirezionale;
+	\item con sentinella o senza;
+	\item circolare o non circolare.
+\end{itemize}
+
+% TODO inserire immagine delle liste (da fare)
+
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Struttura dati lista bidirezionale con sentinella]{}
+\begin{multicols}{2}
+
+\BlankLine
+\List \Comment*[r]{bidirezionale con sentinella}
+\List \Pred		\Comment*[r]{predecessore}
+\List \Succ		\Comment*[r]{successore}
+\List \Value	\Comment*[r]{elemento}
+
+\BlankLine
+\prototype{\List \listConstructor}{
+	\tcp{la sentinella fa riferimento a sé stessa}
+	\(t.\Pred = t\)\;
+	\(t.\Succ = t\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\prototype{\Postype \listHead}{
+	\Return \Succ\;
+}
+
+\BlankLine
+\prototype{\Postype \listTail}{
+	\Return \Pred\;
+}
+
+\BlankLine
+\prototype{\Postype \listSucc}{
+	\Return \(p.\Succ\)\;
+}
+
+\BlankLine
+\prototype{\Postype \listPred}{
+	\Return \(p.\Pred\)\;
+}
+
+\BlankLine
+\prototype{\Bool \listEnd{\Postype p}}{
+	\Return \(p = \This\)\;
+}
+
+\BlankLine
+\prototype{\Item \listRead{\Postype p}}{
+	\Return \(p.\Value\)\;
+}
+
+\BlankLine
+\prototype{\listWrite{\Postype p}}{
+	\Return \(p.\Value\)\;
+}
+
+\BlankLine
+\tcp{posso fare queste operazioni essendo sicuro di avere sempre un predecessore}
+	\prototype{\Postype \listInsert{\Postype p, \Item v}}{
+	\List \(t = \listConstructor\)
+	\(t.\Value = v\)\;
+	\(t.\Pred = p.\Pred\)\;
+	\(p.\Pred.\Succ = t\)\;
+	\(t.\Succ = p\)\;
+	\(p.\Pred = t\)\;
+
+	\BlankLine
+	\Return \(p\)\;
+}
+
+\BlankLine
+\prototype{\Postype \listRemove{\Postype p}}{
+	\(p.\Pred.\Succ = p.\Succ\)\;
+	\(p.\Succ.\Pred = p.\Pred\)\;
+	\List \(t = p.\Succ\)\;
+
+	\BlankLine
+	\Delete \(p\)\;
+	\Return \(t\)\;
+}
+% NOTE soluzione temporanea
+\vspace{15pt}
+\vphantom{0pt}
+\end{multicols}
+\end{algorithm}
+\RestoreCaptionOfAlgo
+
+\paragraph{Commento}
+Il costo delle operazioni per questa struttura è \(\Omicron(1)\).
+
+\begin{code}
+\captionof{listing}{Lista bidirezionale \textbf{senza} sentinella in Java}
+\label{code:java-lista-bidirezionale-sentinella}
+\javafile{assets/codes/03/List.java}
+\end{code}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{assets/figures/03/forgetting}
+	\caption{\texttt{xkcd no.\ 379}}
+	\label{fig:forgetting}
+\end{figure}
+
+\subsubsection{Pila}
+
+La pila è una struttura dati \emph{dinamica}, \emph{lineare} in cui l'elemento rimosso dall'operazione di cancellazione è predeterminato, ed è quello che \enquote{è rimasto per meno tempo nell'insieme} (con strategia \textsc{LIFO}).
+\end{versiona}
+
+% TODO: scrivere interfaccia
+\NoCaptionOfAlgo
+\begin{algorithm}
+
+\Bool \stackEmpty{} \Comment*[l]{restituisce vero se la pila è vuota}
+\stackPush{\Item \(v\)} \Comment*[l]{inserisce \(v\) in cima alla pila}
+\Item \stackPop{} \Comment*[l]{estrae l'elemento in cima alla pila e lo restituisce al chiamante}
+\Item \stackTop{} \Comment*[l]{legge l'elemento in cima alla pila}
+
+\end{algorithm}
+\RestoreCaptionOfAlgo
+
+Ogni volta che si fa una chiamata a funzione si usa implicitamente una pila, in quanto memorizza tutti i record di attivazione delle chiamate effettuare.
+Sfrutteremo questo meccanismo per visitare gli alberi, anche se non esplicitamente.
+
+\medskip
+Le pile possono essere implmentate come:
+\begin{itemize}
+	\item liste bidirezionali, dove il puntatore punta all'elemento \textsf{top} (non utilizzate);
+	\item tramite vettore, dove la dimesione è limitata quindi si crea un \foreign{overhead} più basso.
+\end{itemize}
+
+\NoCaptionOfAlgo
+\begin{algorithm}
+\caption[Struttura dati pila basata su vettore]{Struttura dati pila basata su vettore}
+\begin{multicols}{2}
+
+\BlankLine
+\Item{} \(A\)	\Comment*[r]{elementi}
+\Int \(n\)		\Comment*[r]{cursore}
+\Int \(m\)		\Comment*[r]{dimesione massima}
+
+\BlankLine
+\tcp{crea una pila vuota}
+\prototype{\Stack \stackConstructor{\Int dim}}{
+	\Stack \(t =\) \new \Stack\;
+	\(t.A =\) \new \Array{\Int}{0}{dim-1}\;
+	\(t.m = dim\)\;
+	\(t.n = 0\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\tcp{leggi l'elemento in cima alla pila}
+\prototype{\Item \stackTop}{
+	\precondition{\(n > 0\)}
+
+	\BlankLine
+	\Return \ArrayCall{A}{n}\;
+}
+
+% NOTE soluzione temporanea
+\vspace{10pt}
+
+% \BlankLine
+\tcp{restituisce \True se la pila è vuota}
+\prototype{\Bool \stackEmpty}{
+	\Return \(n \Equal 0\)
+}
+
+\BlankLine
+\tcp{estrae l'elemento in cima alla pila e lo restituisce al chiamante}
+\prototype{\Item \stackPop}{
+	\precondition{\(n > 0\)}
+
+	\BlankLine
+	\Item \(t = \ArrayCall{A}{n}\)\;
+	\Decrement{n}\;
+
+	\BlankLine
+	\Return \(t\)
+}
+
+\BlankLine
+\tcp{inserisce \(v\) in cima alla pila}
+\prototype{\stackPush{\Item v}}{
+	\precondition{\(n < m\)}
+
+	\BlankLine
+	\Increment{n}\;
+	\(\ArrayCall{A}{n} = v\)
+}
+% NOTE soluzione temporanea
+\vphantom{0pt}
+\end{multicols}
+\end{algorithm}
+\RestoreCaptionOfAlgo
+
+\begin{code}
+\captionof{listing}{Pila basata su vettore in Java}
+\label{code:vector-queue}
+\javafile{assets/codes/03/VectorQueue.java}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Coda basata su vettore circolare in Java}
+\label{code:vector-stack}
+\javafile{assets/codes/03/VectorStack.java}
+\end{code}
+
+% \subsubsection{Coda}
+
+\begin{comment}
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Struttura dati coda basata su vettore circolare]{}
+\begin{multicols}{2}
+
+\Item{} \(A\)	\Comment*[r]{elementi}
+\Int \(n\)		\Comment*[r]{dimensione attuale}
+\Int \(testa\)	\Comment*[r]{testa}
+\Int \(m\)		\Comment*[r]{dimesione massima}
+
+\BlankLine
+\tcp{crea una cosa vuota}
+\prototype{\Queue \queueConstructor{\Int dim}}{
+	\Queue \(t =\) \new \Queue\;
+	\(t.A =\) \new \Array{\Int}{0}{dim-1}\;
+	\(t.m = dim\)\;
+	\(t.testa = 0\)\;
+	\(t.n = 0\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\tcp{legge l'elemento in testa alla coda}
+\prototype{\Item \queueTop}{
+	\precondition{\(n > 0\)}
+
+	\BlankLine
+	\Return \ArrayCall{A}{testa}\;
+}
+
+\BlankLine
+\tcp{restituisce \True de la coda è vuota}
+\prototype{\Item \queueEmpty}{
+	\Return \(n \Equal 0\)\;
+}
+
+\BlankLine
+\tcp{estrae l'elemento in testa alla coda e lo restituisce al chiamante}
+\prototype{\Item \queueRemove}{
+	\precondition{\(n > 0\)}
+
+	\BlankLine
+	\Item \(t = \ArrayCall{A}{testa}\)\;
+	\(testa = (testa+1) \bmod m\)\;
+	\Decrement{n}\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\tcp{inserisce \(v\) in fondo alla coda}
+\prototype{\Item \queueInsert}{
+	\precondition{\(n < m\)}
+
+	\BlankLine
+	\ArrayCall{A[(testa+n) \bmod m]}{v}\;
+	\Increment{n}\;
+}
+
+\end{multicols}
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\end{comment}
+
+\end{document}

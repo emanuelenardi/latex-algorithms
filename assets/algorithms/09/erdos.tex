@@ -1,0 +1,59 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Visita in ampiezza (erdos)]{}
+
+\tcp{il camminimo più breve fra due vertici viene memorizzato tramite il vettore dei padri \(p\)}
+\fi
+
+\prototype{\erdos{\Graph \(G\), \Node \(r\), \Array{\Int} \(erdos\), \Node{} \(parent\)}}{
+	\Queue \(S\) \Assign \queueConstructor\;
+	\(S.\queueInsert{r}\) \Comment*[l]{inserisco la radice}
+
+	\BlankLine
+	\tcp{inizializzazione}
+	\Array{\Bool} \(visitato\) \Assign \Array{\Bool}{1}{G.n}\;
+	\lForEach{\(u \in G.\VV - \{r\}\)}{
+		\ArrayCall{erdos}{u} \Assign \(\infty\)
+	}
+
+	\BlankLine
+	\ArrayCall{erdos}{r} \Assign \True \Comment*[l]{erdõs ha distanza 0 da se stesso}
+	\ArrayCall{parent}{r} \Assign \Nil\;
+
+	\BlankLine
+	\While{\Not \(S.\setEmpty\)}{
+		\Node \(u\) \Assign \(S\).\queueRemove\;
+
+		\BlankLine
+		\ForEach{\(u \in G.\adj{u}\)}{
+
+			\BlankLine
+			\{ \accentColor{esamina l'arco \((u,v)\)} \}
+
+			\BlankLine
+			\If{\ArrayCall{erdos}{v} \Assign \(\infty\)}{
+				\tcp{il nodo non è stato ancora scoperto}
+
+				\BlankLine
+				\ArrayCall{erdos}{v} \Assign \(\ArrayCall{erdos}{u} + 1\) \Comment*[l]{gli assegno un livello di erdõs+1}
+				\ArrayCall{parent}{v} \Assign \(u\) \Comment*[l]{memorizzo il figlio nel vettore dei padri}
+				\(S\).\queueInsert{v} \Comment*[l]{è la prima volta che lo raggiungo quindi lo metto in coda}
+			}
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

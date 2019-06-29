@@ -1,0 +1,48 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+\setcounter{section}{1}
+% \setcounter{algocf}{5}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\begin{algorithm}[H]
+% \caption[Shell Sort]{}
+\fi
+
+\prototype{\shellSort{\Item{} A, \Int n}}{
+	\Int \(h \Assign 1\)\;
+
+	\BlankLine
+	\While{\(h \leqslant n\)}{
+		\Int \(h \Assign 3 \cdot h + 1\)\;
+	}
+	\Int \(h \Assign \floor{\nicefrac{h}{3}}\)\;
+
+	\BlankLine
+	\While{\Not \(h \geqslant 1\)}{
+		\From{\(i \Assign h + 1\) \DownTo \(n\)}{
+
+			\BlankLine
+			\Item \(temp \Assign A[i]\)\;
+			\Int \(j \Assign i\)\;
+
+			\BlankLine
+			\While{\(j > h\) \And \(A[j - h] > temp\)}{
+				\(A[j] \Assign A[j - h]\)\;
+				\(j \Assign j - h\)\;
+			}
+
+			\BlankLine
+			\(A[j] \Assign temp\)\;
+		}
+		\Int \(h \Assign \floor{\nicefrac{h}{3}}\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\fi
+\end{document}

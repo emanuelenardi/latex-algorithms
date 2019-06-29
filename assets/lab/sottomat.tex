@@ -1,0 +1,37 @@
+\subsection*{Sottomatrice di somma massima (\texttt{sottomat})}
+
+Data una matrice di interi da \(R\) righe e \(C\) colonne, trovare il rettangolo al suo interno di somma massima. Stamparne
+la somma.
+
+\paragraph{Formato dell'input}
+La prima riga del file di input contiene due interi, \(R\) e \(C\), rispettivamente il numero di \textbf{righe} e di \textbf{colonne} della matrice. Le successive
+\(R\) righe contengono ognuna \(C\) interi separati da spazio. L’\(i\)-esimo intero sulla \(j\)-esima riga corrisponde al valore
+della matrice sulla riga \(i\) e colonna \(j\).
+
+\paragraph{Formato dell'output}
+L'output deve contenere un intero uguale alla somma della sottomatrice di somma massima.
+
+\inputminted[
+	firstline = 5,
+	% caption = {\texttt{sottomatrice}}
+]{cpp}{assets/codes/sottomat.cpp}
+
+\begin{figure}[H]
+
+\[
+\begin{pmatrix}
+	2 & -9 & 2 & 3 \\
+	1 & 4 & 5 & 1  \\
+	-2 & 3 & 4 & 1 \\
+\end{pmatrix}
+\Longrightarrow
+\begin{pmatrix}
+	2 & -7 & -5 & -2 \\
+	1 & 5 & 10 & 11  \\
+	-2 & 1 & 5 & 6   \\
+\end{pmatrix}
+\]
+
+\caption[Rappresentazione con le matrici]{Rappresentazione della matrice di partenza (a sinistra) e di quella che contiene le somme parziali (a destra)}
+\label{fig:sottomat-matrici}
+\end{figure}

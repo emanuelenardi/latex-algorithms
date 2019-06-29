@@ -1,0 +1,32 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Fibonacci iterativo]{}
+\fi
+
+\prototype{\Int \fibonacciIter{\Int \(n\)}}{
+
+	\BlankLine
+	\(DP\) \Assign \new \Array{\Int}{0}{n}\;
+	\ArrayCall{DP}{0} \Assign \ArrayCall{DP}{1} \Assign 1\;
+
+	\BlankLine
+	\From{\(i \Assign 2\) \DownTo \(n\)}{
+		\ArrayCall{DP}{i} \Assign \(\ArrayCall{DP}{i-1} + \ArrayCall{DP}{i-2}\)\;
+	}
+
+	\BlankLine
+	\Return \ArrayCall{DP}{n}\;
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

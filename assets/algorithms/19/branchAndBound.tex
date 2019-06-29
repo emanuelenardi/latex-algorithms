@@ -1,0 +1,55 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Schema degli algoritmi branch\&bound]{}
+\fi
+
+\prototype{\branchAndBound{\Array{Item} \(S\), \Int \(n\), \Int \(i\), \Int \(minCost\), \Int \(minSol\)}}{
+	\Set \(C \Assign \getChoices{S, n, i, \dots}\) \Comment*[l]{determina l'insieme in funzione delle scelte precedenti}
+
+	\BlankLine
+	\tcp{esamino ogni scelta}
+	\ForEach{\(c \in C\)}{
+		\(S[i] \Assign c\)\;
+
+		\BlankLine
+		\tcp{calcolo il lower bound}
+		\Int \(lb \Assign \lowerBound{S, i}\) \Comment*[l]{calcolato in base alle scelte fatte fin'ora}
+
+		\BlankLine
+		\If{\(lb < minCost\)}{
+			\tcp{il limite inferiore non eccede il costo minimo}
+
+			\BlankLine
+			\uIf{\(i < n\)}{
+				\tcp{sono arrivato "in fondo"}
+
+				\BlankLine
+				\tcp{faccio ricorsivamente le scelte successive}
+				\branchAndBound{S, n, \(i+1\), minCost, minSol}
+				\BlankLine
+
+			}
+			\ElseIf{\(c(S,i) < minCost\)}{
+				\tcp{la soluzione trovata è migliore del minimo parziale}
+
+				\BlankLine
+				\(minSol \Assign S\) \Comment*[l]{aggiorno la soluzione minima parziale}
+				\(minCost \Assign c(S,i)\)  \Comment*[l]{aggiorno il costo minimo parziale}
+			}
+		}
+
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

@@ -1,0 +1,36 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Stampare un cammino in un grafo]{}
+
+\tcp{stampa il cammino da \(r\) a \(s\) nell'ordine corretto}
+\fi
+
+\prototype{\printPath{\Graph \(G\), \Node \(r\), \Node \(s\), \Array{\Node} \(parent\)}}{
+
+	\BlankLine
+	\uIf{\(r \Equal s\)}{
+		\Print \(s\)\;
+	}
+	\eSea{\(\ArrayCall{parent}{s} \Equal \Nil\)}{
+		\Print \enquote{nessun cammino da \(r\) a \(s\)}
+	}{
+		\tcp{la chiamata ricorsiva prima della stampa per stampare in ordine}
+		\printPath{\(G\), \(r\), \ArrayCall{parent}{s}, \(p\)}\;
+		\Print \(s\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

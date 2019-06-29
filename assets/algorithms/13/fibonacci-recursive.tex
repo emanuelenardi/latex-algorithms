@@ -1,0 +1,26 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Fibonacci Ricorsivo]{}
+\fi
+
+\prototype{\Int \fibonacciRic{\Int n}}{
+	\eIf{\( n \leqslant 1 \)}{
+		\Return \(1\)\;
+	}{
+		% \tcp{due chiamate ricorsive \(time \to \Omicron(2^n)\)}
+		\Return \(\fibonacciRic{\(n-1\)} + \fibonacciRic{\(n-2\)}\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

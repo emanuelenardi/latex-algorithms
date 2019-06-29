@@ -1,0 +1,36 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+\usepackage{set-quote}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[hateville iterativo]{}
+\fi
+
+\SetKwFunction{hateville}{hateville}
+
+\prototype{\Int \hateville{\Array{\Int} D, \Int n}}{
+
+	\BlankLine
+	\Array{\Int} \(DP\) \Assign \new \Array{\Int}{0}{n}\;
+	\ArrayCall{DP}{0} \Assign 0\;
+	\ArrayCall{DP}{1} \Assign \ArrayCall{DP}{1}\;
+
+	\BlankLine
+	\From{\(i \Assign 2\) \DownTo \(n\)}{
+		\ArrayCall{DP}{i} \Assign \maxFunction{\(DP[i-1]\), \(DP[i-2] + D[i]\)}
+	}
+
+	\BlankLine
+	\Return \ArrayCall{DP}{n}\;
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

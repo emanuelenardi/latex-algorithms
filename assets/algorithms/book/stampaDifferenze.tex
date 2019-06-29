@@ -1,0 +1,41 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+\setcounter{section}{3}
+\setcounter{algocf}{5}
+
+\SetKwFunction{stampaDifferenze}{stampaDifferenze}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\begin{algorithm}[H]
+\caption{Stampa differenze in una sequenza}
+\fi
+
+\prototype{\stampaDifferenze{\Sequence L}}{
+	\Postype \(p_1 \Assign L.\listHead()\)\;
+	\Postype \(p_2 \Assign L.\listHead(p_1)\)\;
+	\Postype \(p_3 \Assign L.\listHead(p_2)\)\;
+
+	\BlankLine
+	\While{\Not \listEnd{\(p_3\)}}{
+
+		\BlankLine
+		\If{\( L.\listRead(p_2) = L.\listRead(p_1) \to L.\listRead(p_3)\)}{
+			\Print \(L.\listRead(p_2)\)
+		}
+
+		\BlankLine
+		\tcp{avanza con i puntatori}
+		\(p_1 \Assign p_2\)\;
+		\(p_2 \Assign p_3\)\;
+		\(p_3 \Assign L.\listSucc(p_2)\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\fi
+\end{document}

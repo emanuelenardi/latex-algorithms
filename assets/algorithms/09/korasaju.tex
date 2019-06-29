@@ -1,0 +1,67 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Algoritmo di Korasaju]{}
+\fi
+
+\tcp{effettua una visita in profondità del grafo, esaminando i nodi nell'ordine inverso di tempo di fine della prima visita.}
+\prototype{\Array{\Int} \scc{\Graph \(G\)}}{
+	\Stack \(S\) \Assign \topSort{G} \Comment*[l]{otteniamo i nodi in ordine decrescente di fine}
+	\(G^T\) \Assign \transpose{G} \Comment*[l]{inverte il senso degli archi}
+	\Return \ConnectedComponents{\(G^T\), \(S\)} \Comment*[h]{esegue una visita dfs sul grafo trasposto}
+}
+
+\BlankLine
+\tcp{parte iterativa}
+\tcp{cc modificato in \slide{88}{101}}
+\prototype{\Array{\Int} \ConnectedComponents{\Graph G, \Stack S}}{
+	\Array{\Int} \(id\) \Assign \new \Array{\Int}{1}{G.\stackSize}
+
+	\BlankLine
+	\ForEach{\(u \in G.\VV\)}{
+		\(id[u]\) \Assign \(0\)
+	}
+
+	\BlankLine
+	\Int \(counter\) \Assign \(0\)\;
+
+	\While{\Not \(S.\stackEmpty\)}{
+		\(u\) \Assign \(S\).\stackPop \Comment*[l]{estrazione in tempo inverso di tempo di fine}
+
+		\BlankLine
+		\If{\(id[u] \Equal 0\)}{
+			\Increment{counter}\;
+			\ccdfs{G, counter, n, id}\;
+		}
+	}
+
+	\BlankLine
+	\Return \(id\)
+}
+
+\BlankLine
+\tcp{parte ricorsiva}
+\prototype{\ccdfs{\Graph G, \Int counter, \Node n, \Array{\Int} id}}{
+	\(id[u]\) \Assign \(counter\) \Comment*[l]{assegna il contatore a tutti i nodi che incontro}
+
+	\BlankLine
+	\ForEach{\(u \in G.\adj{u}\)}{
+		\If{\(id[u] \Equal 0\)}{
+			\ccdfs{G, counter, u, id}
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

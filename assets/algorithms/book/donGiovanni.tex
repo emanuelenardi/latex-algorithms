@@ -1,0 +1,40 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+\setcounter{section}{0}
+\setcounter{algocf}{-1}
+
+\SetKwFunction{donGiovanni}{donGiovanni}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\begin{algorithm}[H]
+\caption{}
+\fi
+
+\prototype{\donGiovanni{\Sequence catalogo}}{
+	\Sequence \(L \Assign \sequenceConstructor\)\;
+	\Postype \(q \Assign catalogo.\listHead\)\;
+
+	\BlankLine
+	\While{\Not \(catalogo.\listEnd\)}{
+		\Item \(v \Assign catalogo.\listRead{q}\)\;
+
+		\BlankLine
+		\lIf{\(v.nazione \Equal spagnola\)}{\(L.\listInsert{L.\listTail.\listSucc, v}\)}
+
+		\BlankLine
+		\eSea{\(v.rango \Equal duchessa\)}{
+		 	\(q \Assign catalogo.\listRemove{q}\)\;
+		}{
+			\(q \Assign catalogo.\listSucc{q}\)\;
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\fi
+\end{document}

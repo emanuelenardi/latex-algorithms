@@ -1,0 +1,21 @@
+\subsection*{Ordinamento pesato (\texttt{sortpesato})}
+
+Vi viene dato un array di \(N\) interi da ordinare. Gli elementi sono tutti diversi, anzi sono precisamente tutti gli interi fra \(1\) e \(N\).
+Visto che sarebbe troppo facile ordinare un array del genere, abbiamo delle restrizioni.
+Ad ogni turno potete scambiare due elementi a scelta dell’array. Per fare ciò, pagate un prezzo pari alla somma dei due elementi.
+Per scambiare di posto l’elemento 3 e l’elemento 4 impiegate un turno e pagate 7.
+Voi dovete risolvere due problemi: qual è il metodo più veloce (che ottimizza il numero di turni) ed il metodo più economico (che ottimizza il prezzo).
+
+\paragraph{Commento}
+Il metodo più veloce è un quickSort o un mergeSort (ossia un algoritmo di ordinamento ottimale).
+Invece il metodo meno costoso potrebbe essere quello di muovere l'intero più piccolo.
+
+\paragraph{Formato dell'input}
+La prima riga del file di input contiene \(N\), la lunghezza dell’array. La riga successiva contiene l’array, con gli elementi separati da
+uno spazio.
+
+\paragraph{Formato dell'output}
+L'output deve contenere due interi. Il primo intero \(S\) rappresenta il numero minimo di turni per ottenere l’array ordinato.
+Il secondo intero \(P\) rappresenta il prezzo minimo per ordinare l’array.
+
+% \inputminted[firstline=7]{assets/codes/sortpesato.cpp}

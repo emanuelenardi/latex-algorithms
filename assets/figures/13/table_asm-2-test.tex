@@ -1,0 +1,51 @@
+\documentclass[border={5pt 15pt 15pt 5pt}]{standalone}
+
+\usepackage{set-tikz}
+
+\usepackage{tabu}
+\usepackage{xcolor}
+\usepackage{colortbl}
+
+\colorlet{rose}{red!25}
+\colorlet{darker}{blue!50!black}
+\colorlet{rough}{red!50!black}
+
+\newif\iflink
+% \linktrue
+
+\iflink
+\colorlet{linkcolor}{blue}
+
+\renewcommand\tikzmark[2]{%
+	\tikz[remember picture,baseline] \node[inner sep=2pt,outer sep=2pt] (#1){#2};%
+}
+
+\newcommand\link[2]{%
+	\begin{tikzpicture}[remember picture, overlay, >=stealth, shift={(0,0)}]
+		\draw[->, linkcolor] (#1) to (#2);
+	\end{tikzpicture}%
+}
+\fi
+
+\tabulinesep = .2cm
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\taburulecolor{lightgray!25}
+\begin{tabu}{ c | >{\color{gray}}c | c | c | c | c | c }
+	P/T &   & A & B & A & B & A \\\hline\rowfont{\color{gray}}
+	    & 0 & 0 & 0 & 0 & 0 & 0 \\\hline
+	B   & 1 & 1 & 0 & 1 & 0 & 1 \\\hline
+	A   & 2 & 1 & 1 & 0 & 1 & 0 \\\hline
+	B   & 3 & 2 & 1 & 1 & 0 & 1 \\
+\end{tabu}
+
+\iflink
+\link{a}{d}
+\link{b}{d}
+\link{c}{d}
+\fi
+
+\end{document}

@@ -1,0 +1,144 @@
+\usepackage{set-utilities}
+
+\begin{comment}
+% NOTE tex.stackexchange.com/questions/39700/
+% save defaults
+\edef\keptrmdefault{\rmdefault}
+\edef\keptsfdefault{\sfdefault}
+\edef\keptttdefault{\ttdefault}
+
+% WARNING creano conflitti con i pacchetti matematici
+% TODO bisogna caricarli dopo?
+% \usepackage[garamond]{mathdesign}
+% \usepackage[charter]{mathdesign}
+
+% NOTE non mi piace, troppo pesante
+% \usepackage{fouriernc}
+
+% NOTE mi piace il font del testo, ma non quello matematico
+% \usepackage{ccfonts}
+\usepackage[euler-digits,euler-hat-accent]{eulervm}
+\usepackage[T1]{fontenc}
+
+% restore defaults
+\edef\rmdefault{\keptrmdefault}
+\edef\sfdefault{\keptsfdefault}
+\edef\ttdefault{\keptttdefault}
+\end{comment}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, italian]{babel}
+\usepackage[
+	% ,activate	= {true, nocompatibility}
+	,activate	= {true}
+	,final
+	% ,draft
+	,tracking	= true
+	,kerning	= true
+	% ,spacing	= true
+	,factor		= 1100
+	,stretch	= 10
+	,shrink		= 10
+]{microtype}
+
+% NOTE ottimizzare la versione stampata in bianco e nero
+\newif\ifprinted
+% \printedtrue
+\printedfalse
+
+% TODO inglobare nei pacchetto 'set-algorithm2e'
+% \usepackage{multicol}
+
+\usepackage{set-color}
+\colorlet{mathcolor}{blue}
+
+\usepackage{set-math}
+
+% \usepackage{set-paragraph}
+\usepackage{set-lists}
+\usepackage{set-tikz}
+\usepackage{set-forest}
+\usepackage{set-tables}
+\usepackage{set-graphics}
+\usepackage{set-automata}
+\usepackage{set-quote}
+\usepackage{set-citations}
+\usepackage{set-notes}
+\usepackage{set-pages}
+
+\usepackage[
+	,top	= 0.8in
+	,bottom	= 1.25in
+	,left	= 1.25in
+	,right	= 1.25in
+	% NOTE tex.stackexchange.com/questions/29125/
+	,marginparwidth=4.6cm
+	,heightrounded
+]{geometry}
+
+\usepackage{set-algorithm2e}
+
+% \usepackage{set-external-files}
+\usepackage[
+	,subpreambles	= false
+	,mode			= buildnew
+]{standalone}
+% WARNING se lo decommenti rompi la build degli appunti sugli esami
+% \standalonetrue
+\usepackage{subfiles}
+
+\usepackage{set-paragraph}
+\usepackage[normalem]{ulem}
+
+% TODO da rimuovere dai documenti
+% \newcommand\diff[1]{{\color{orange} #1}}
+% \newcommand\nota[1]{{\color{darker} #1}}
+% \usepackage{lipsum}
+
+% NOTE utilizzato nel capitolo ??
+\usepackage{chronology}
+\usepackage{pgfgantt}
+
+
+\NewDocumentCommand\exercise{m}{
+\begin{center}
+	\fbox{#1}%
+\end{center}
+}
+
+\NewDocumentCommand{\Orale}{}{%
+	\normalfont\small\marginnote{%
+		\fbox{Domanda orale}%
+	}%
+}
+
+\NewDocumentCommand{\foreign}{m}{%
+	\selectlanguage{english}{%
+		\emph{#1}%
+	}%
+}
+
+\newcommand\docversion{v1.0.0}
+
+\usepackage{titling}
+\newcommand\subtitle[1]{%
+	\posttitle{%
+		\par\end{center}
+		\begin{center}\large#1\end{center}
+		\vskip0.5em}%
+}
+
+\title{Appunti \emph{ordinati} sull'analisi degli algoritmi\\\underline{in preparazione all'orale}}
+\subtitle{(Si può fare meglio di così?)}%\textsuperscript{\texttrademark}
+\author{Emanuele Nardi}
+\date{Compilato il \today\\\texttt{\docversion}}
+
+\newcommand\Title{UNITN -- Algoritmi e Struttre Dati}
+\newcommand\Subject{Algoritmi e Strutture Dati}
+\newcommand\Keywords{Algoritmi, Strutture Dati}
+\newcommand\Author{Emanuele Nardi}
+
+\usepackage{set-pdf-props}
+
+\usepackage{set-links}

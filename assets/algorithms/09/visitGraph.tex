@@ -1,0 +1,56 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Visita di un grafo]{}
+\fi
+
+\prototype{\visitaGrafo{\Graph G, \Node r}}{
+	\Set \(S\) \Assign \setConstructor \Comment*[l]{insieme di nodi (\Stack, \Queue)}
+	\(S.\setInsert{r}\) \Comment*[l]{inserisco il nodo}
+
+	\BlankLine
+	\tcp{ho visitato il nodo}
+	\{ \accentColor{marca il nodo \(r\) come \enquote{scoperto}} \}
+
+	% \BlankLine
+	% \tcp{fintanto che l'insieme non è vuoto}
+	% \While{\(S.\setSize > 0\)}{
+	%
+	% 	\BlankLine
+	% 	\tcp{la politica di rimozione dipende dal problema}
+	% 	\Node \(u \Assign S.\setRemove\)\;
+	%
+	% 	\BlankLine
+	% 	\{ \accentColor{esamina il nodo \(u\)} \}
+	%
+	% 	\BlankLine
+	% 	\ForEach{\(u \in G.\adj{u}\)}{
+	%
+	% 		\BlankLine
+	% 		\{ \accentColor{esamina l'arco \((u,v)\)} \}
+	%
+	% 		\BlankLine
+	% 		\If{\(v\) non è già stato scoperto}{
+	%
+	% 			\BlankLine
+	% 			\tcp{serve a non inserire il nodo più di una volta}
+	% 			\{ \accentColor{marca il nofo \(v\) come \enquote{scoperto}} \}\;
+	% 			\(S.\setInsert\) \Comment*[l]{inserisce il nodo nell'insieme}
+	% 		}
+	% 	}
+	% }
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

@@ -1,0 +1,82 @@
+\documentclass[border={5pt 15pt 15pt 5pt}]{standalone}
+\usepackage{array}
+
+\usepackage{set-tikz}
+
+\usepackage{tabu}
+\usepackage{xcolor}
+\usepackage{colortbl}
+
+\colorlet{rose}{red!25}
+\colorlet{darker}{blue!50!black}
+\colorlet{rough}{red!50!black}
+
+\newif\iflink
+\linktrue
+
+\iflink
+\colorlet{linkcolor}{blue}
+
+\renewcommand\tikzmark[2]{%
+	\tikz[remember picture,baseline] \node[inner sep=2pt,outer sep=2pt] (#1){#2};%
+}
+
+\newcommand\link[2]{%
+	\begin{tikzpicture}[remember picture, overlay, >=stealth, shift={(0,0)}]
+		\draw[->, linkcolor] (#1) to (#2);
+	\end{tikzpicture}%
+}
+
+\tikzstyle{annotazione} = [
+	thick,
+	blue,
+	postaction = {decorate},
+	decoration = {
+		raise = 2pt,
+		text color = blue,
+		text align = center,
+		text along path,
+		text format delimiters = {<}{>},
+		% text = {<\footnotesize>\ testo\ }
+	}
+]
+\fi
+
+\tabulinesep = .4cm
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\taburulecolor{lightgray}
+\begin{tabu}{@{}  c | c | c  @{}}
+	& \(t_{j-1}\) & \(t_j\) \\[5pt]\hline
+	\(p_{i-1}\)   & \tikzmark{a}{D\([i-1,j-1]\)} & \tikzmark{b}{D\([i-1,j]\)} \\ \hline
+	\(p_i\)       & \tikzmark{c}{D\([i,j-1]\)}   & \tikzmark{d}{D\([i,j]\)}   \\
+\end{tabu}
+
+\iflink
+% \link{a}{d}
+% \link{b}{d}
+% \link{c}{d}
+
+\begin{tikzpicture}[remember picture, overlay, >=stealth]
+	% \node (B) at (b.east) {\(\bullet\)};
+	% \node (D1) at (d.east) {\(\bullet\)};
+	% \node (C) at (c.south) {\(\bullet\)};
+	% \node (D2) at (d.south) {\(\bullet\)};
+
+	% \draw (b.east) edge[bend left, thick, blue, ->] (d.east);
+	% \draw (c.south) edge[bend right, thick, blue, ->] (d.south);
+	%
+	% \draw ([xshift=10pt]b.east) edge[bend left, thick, blue, ->] ([xshift=10pt]d.east);
+	% \draw ([yshift=-10pt]c.south) edge[bend right, thick, blue, ->] ([yshift=-10pt]d.south);
+
+	\draw[->, annotazione, decoration = {text = {<\footnotesize>avanzo}}] (a) to[out = south east, in = north west] (d);
+	\draw[->, annotazione, decoration = {text = {<\footnotesize>elimino sx}}] (b) to[out = east, in = east] (d);
+	\draw[->, annotazione, decoration = {text = {<\footnotesize>elimino dx}}] (c) to[out = south, in = south] (d);
+
+\end{tikzpicture}
+\fi
+
+\end{document}

@@ -1,0 +1,66 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Approccio ingordo al problema del commesso viaggiatore]{}
+\fi
+
+\prototype{\greedyTsp{\Graph \(G\)}}{
+	\Set \(S \Assign  \setConstructor\)\;
+	\mfSet \(M \Assign  \mfConstructor{G.\setSize}\)\;
+	\tcp{archi in ingresso ad un nodo}
+	\Array{\Int} \(in \Assign \) \new \Array{\Int}{1}{G.\setSize}\;
+
+	\BlankLine
+	\tcp{inizializzazione}
+	\From{\(i \Assign 1\) \DownTo \(G.\setSize\)}{
+		\(in[i] \Assign  0\)\;
+	}
+
+	\BlankLine
+	\{ ordina gli archi per peso decrescente \}
+
+	\BlankLine
+	\ForEach{\([u,v] \in G.\EE\)}{
+		\If{\(in[u] \Neq 2\) \And \(in[v] \Neq 2\) \And \(M.\mfFind{u} \Neq M.\mfFind{v}\)}{
+			\tcp{non si è formato un ciclo}
+
+			\BlankLine
+			\(S.\setInsert{\(\angleled{u,v}\)}\)\;
+			\(\Increment{in[u]}\)\;
+			\(\Increment{in[v]}\)\;
+			\(M.\mfMerge{u,v}\)\;
+		}
+	}
+
+	\BlankLine
+	\tcp{comment}
+	\Int \(u \Assign  1\)\;
+	\lWhile{\(in[1] \Neq 1\)}{
+		\(\Increment{u}\)
+	}
+
+	\BlankLine
+	\Int \(v \Assign  u + 1\)\;
+	\lWhile{\Not \(in[v] \Neq 1\)}{
+		\(\Increment{v}\)
+	}
+
+	\BlankLine
+	\tcp{chiusura del circuito hamiltoniano}
+	\(S.\setInsert{\(\angleled{u,v}\)}\)
+
+	\BlankLine
+	\Return \(S\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

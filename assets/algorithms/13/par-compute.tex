@@ -1,0 +1,58 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+\SetKwFunction{computePar}{computePar}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Versione bottom-up]{}%
+\label{alg:computePar}
+\fi
+
+\prototype{\computePar{\Int stuff}}{
+
+	\BlankLine
+	\MatrixCall{DP}{}{}   \Assign \new \Matrix{\Int}{1\dots n}{1\dots n}\;
+	\MatrixCall{last}{}{} \Assign \new \Matrix{\Int}{1\dots n}{1\dots n}\;
+
+	\BlankLine
+	\tcp{riempi diagonale principale}
+	\From{\(i \Assign 1\) \DownTo \(n\)}{
+		\(\MatrixCall{DP}{i}{i} \Assign 0\)\;
+	}
+
+	\BlankLine
+	\tcp{Tutta la logica dell'algoritmo}
+	\From(\tcp*[f]{h: indice diagonale}){\(h \Assign 2\) \DownTo \(n\)}{
+		\From(\tcp*[f]{i: riga}){\(i \Assign 1\) \DownTo \(n - h + 1\)}{
+
+			\BlankLine
+
+			\Int \(j \Assign i + h - 1\) \tcp*[r]{j: colonna}
+			\(\MatrixCall{DP}{i}{j} \Assign +\infty\)\;
+
+			\From{\(k \Assign i\) \DownTo \(j - 1\)}{
+
+				\BlankLine
+				\Int \(temp \Assign \MatrixCall{DP}{i}{k} + \MatrixCall{DP}{k + 1}{j} + c_{i-1} \cdot c_k \cdot c_j\)\;
+				\If{\(temp < DP[i][j]\)}{
+
+					\BlankLine
+					\tcp{aggiorna l'ultimo prodotto}
+					\(\MatrixCall{DP}{i}{j} \Assign temp\)\;
+					\(\MatrixCall{last}{i}{j} \Assign k\)\;
+				}
+			}
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

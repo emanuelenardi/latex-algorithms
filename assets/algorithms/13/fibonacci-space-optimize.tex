@@ -1,0 +1,32 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Fibonacci ottimizzato]{}
+\fi
+
+\prototype{\Int \fibonacci{\Int n}}{
+	\Int \(DP_0 = 1\)\;
+	\Int \(DP_1 = 1\)\;
+	\Int \(DP_2 = 1\)\;
+
+	\BlankLine
+	\From{\(i = 2\) \DownTo \(n\)}{
+		\(DP_0 = DP_1\)\;
+		\(DP_1 = DP_2\)\;
+		\(DP_2 = DP_0 + DP_1\)\;
+	}
+
+	\Return \(DP_2\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

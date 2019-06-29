@@ -1,0 +1,33 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+\setcounter{section}{4}
+\setcounter{algocf}{0}
+
+\SetKwFunction{primiN}{primiN}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\begin{algorithm}[H]
+\caption{Costruisce una lista con all'interno i primi \(n\) numeri}
+\fi
+
+\prototype{\primiN{\Int n, \List L, \List M}}{
+
+	\BlankLine
+	\If{\( n \geqslant 1 \)}{
+		\(L.\listInsert{L.\listHead{}, n}\)\;
+		\(M.\listInsert{M.\listTail{}.\listSucc{}, n}\)\;
+
+		\BlankLine
+		\tcp{chiamata ricorsiva}
+		\primiN{\(n-1\), L, M}\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\fi
+\end{document}

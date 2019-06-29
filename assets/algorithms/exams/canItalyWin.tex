@@ -1,0 +1,74 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{minipage}{\linewidth}
+\begin{algorithm}[H]
+\caption[Ordinamento per far vincere l'Italia ai mondiali]{}
+
+\begin{multicols}{2}
+
+\BlankLine
+\tcp{determina un ordinamento in cui l'Italia può vincere i mondiali}
+\fi
+
+\prototype{\Bool \canItalyWin{\Graph G, \Int s}}{
+	\Array{\Int} \(visited\) \Assign \new \Array{\Int}{1}{G.\setSize}\;
+
+	\BlankLine
+	\tcp{inizializzo i nodi come non visitati}
+	\ForEach{\(u \in G.\VV\)}{
+		\(visited[u] \Assign 0\)\;
+	}
+
+	\BlankLine
+	\tcp{identifica le componenti connesse}
+	\ccdfs{G, d, 1, \(visited\)}\;
+
+	\BlankLine
+	\Return \(\sumFunction{\(visited\), 1, \(G.\setSize\)} \Equal G.\setSize\)\;
+}
+
+\ifstandalone
+\begin{minipage}{.85\linewidth}
+\begin{figure}\centering
+	% TODO disegnare ordine topologico
+\end{figure}
+\columnbreak
+\end{minipage}
+\fi
+
+\prototype{\printOrder{\Graph G, \Int s}}{
+	\Array{\Int} \(visited\) \Assign \new \Array{\Int}{1}{G.\setSize}\;
+
+	\tcp{inizializzo i nodi come falsi}
+	\ForEach{\(u \in G.\VV\)}{
+		\(visited[u] \Assign 0\)\;
+	}
+
+	\Return \(\printOrderRec{\(visited\), 1, \(G.\setSize\)} \Equal G.\setSize\)\;
+}
+
+\prototype{\printOrderRec{\Graph G, \Node u, \Array{\Bool} \(visited\)}}{
+	\(visited[u] \Assign \True\)\;
+
+	\BlankLine
+	\ForEach{\(v \in G.\adj{u}\)}{
+		\printOrderRec{G, v, \(visited\)}\;
+		\Print \((u,v)\)\;
+	}
+}
+
+\ifstandalone
+\end{multicols}
+\end{algorithm}
+\end{minipage}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

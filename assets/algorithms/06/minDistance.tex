@@ -1,0 +1,62 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+% \begin{minipage}{\textwidth}
+\begin{algorithm}[H]
+\caption[]{}
+
+\begin{multicols}{2}
+
+\BlankLine
+\tcp{determina la distanza \(d(x,y) = \abs{x-y}\) minima fra due elementi di un albero binario di ricerca}
+\fi
+
+\prototype{\Int \minDist{\Tree t}}{
+	\Tree \(u = t.\minFunction\)\;
+	\Int \(\varMin = +\infty\)\;
+	\Int \(\varPrev = -\infty\)\;
+
+	\BlankLine
+	\While{\(u \Neq \Nil\)}{
+		\If{\(u.\varValue - \varPrev < \varMin\)}{
+			\(\varMin = u.\varValue - \varPrev\)\;
+		}
+		\(\varPrev = u.\varValue\)\;
+		\(u = u.\succNode\)\;
+	}
+}
+\ifstandalone
+\columnbreak
+
+\begin{minipage}{.85\linewidth}
+
+\begin{figure}\centering
+	\begin{forest} circled, math tree
+		[6
+			[4[1][3]]
+			[9[,phantom][,phantom]]
+		]
+	\end{forest}
+\end{figure}
+
+Si analizza l'albero seguendo l'ordine crescente (in-visita);
+per ogni numero incontrato, si calcola la distanza con il valore precedente e la si confronta con il minimo trovato finora
+%  (opportunamente inizializzata a \(+\infty\)).
+% Il costo è pari al costo di visita dell'albero, ovvero \(\Omicron(n)\), dove \(n\) è il numero di nodi.
+
+\end{minipage}
+
+\end{multicols}
+\fi
+\ifstandalone
+\end{algorithm}
+% \end{minipage}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

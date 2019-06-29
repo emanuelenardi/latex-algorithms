@@ -1,0 +1,57 @@
+\documentclass[00-main.tex]{subfiles}
+\standalonetrue
+\setcounter{section}{8}
+\pagestyle{footer}
+
+% arara: pdflatex: { draft: yes, synctex: no }
+% arara: pdflatex: { synctex: yes }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\section{Insiemi e Dizionari}
+
+\subsection{Insiemi}
+
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Struttura dati insieme]{}
+
+\tcp{operazioni di interpretazione}
+\Int \setSize \Comment*[r]{la cardinalità dell'insieme}
+\Bool \setContains{\Item x} \Comment*[r]{\True se \(x\) è contenuto nell'insieme}
+
+\BlankLine
+\tcp{operazioni di modifica}
+\setInsert{\Item x} \Comment*[r]{inserisce \(x\) nell'insieme, se non già presente}
+\setRemove{\Item x} \Comment*[r]{rimuove \(x\) dall'insieme, se presente}
+
+\BlankLine
+\tcp{operazioni insiemistiche}
+\Set \setUnion{\Set A, \Set B} \Comment*[r]{un nuovo insieme che è l'unione di \(A\) e \(B\)}
+\Set \setIntersection{\Set A, \Set B} \Comment*[r]{un nuovo insieme che è l'intersezione di \(A\) e \(B\)}
+\Set \setDifference{\Set A, \Set B} \Comment*[r]{un nuovo insieme che è la differenza di \(A\) e \(B\)}
+
+\end{algorithm}
+\RestoreCaptionOfAlgo
+
+\subsection{Dizionari}
+
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Struttura dati dizionario]{}
+
+Struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una collezione non ordinata di elementi senza valori ripetuti.
+Rappresenta i concetto matematico di \emph{relazione univoca} \(R\colon D \to C\), o associazione chiave-valore. Dove \(D\) rappresenta il dominio di elementi detti \emph{chiave}, mentre \(C\) rappresenta il codominio degli elementi detti \emph{valori}.
+Ogni \emph{valore} può essere associato a più \emph{chiavi}, ma non il contrario.
+
+\BlankLine
+\Item \dictLookup{\Item k} \Comment*[r]{restituisce il valore associato alla chiave \(k\) se presente, \Nil altrimenti}
+
+\dictInsert{\Item k, \Item v} \Comment*[r]{associa il valore \(v\) alla chiave \(k\), sovrascrive se già presente}
+
+\dictRemove{\Item k} \Comment*[r]{rimuove l'associazione della chiave \(k\)}
+
+\end{algorithm}
+\RestoreCaptionOfAlgo
+
+\end{document}

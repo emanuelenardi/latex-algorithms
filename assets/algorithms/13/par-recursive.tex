@@ -1,0 +1,39 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+\usepackage{../../../macros}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Parentesizzazione ricorsiva]{}
+\fi
+
+\prototype{\Int \recPar{\Array{\Int} c, \Int i, \Int j}}{
+
+	\BlankLine
+	\eIf(\tcp*[h]{se gli indici corrispondono}){i \Assign j}{
+		\Return 0 \tcp*[h]{non devo fare operazioni}
+	}{
+		\(min \Assign +\infty\)\;
+
+		\tcp{Tutta la logica dell'algoritmo}
+		\From{\Int \(k \Assign i\) \DownTo \(j - 1\)}{
+			\Int \(q\) \Assign \(\recPar{c, i, k} + \recPar{\(c\), \(k + 1\), \(j\)} + \Array{c}{i - 1} \cdot \Array{c}{k} \cdot \Array{c}{j}\)\;
+
+			\BlankLine
+			\If(\tcp*[h]{se \(q\) è più piccolo del minimo}){\( q < min \)}{
+				\(min \Assign q\) \tcp*[h]{aggiorniamo il minimo}
+			}
+		}
+	}
+	\Return \(min\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

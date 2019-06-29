@@ -1,0 +1,58 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[]{}
+\fi
+
+\tcp{applicabile solo ai DAG, in quanto non hanno archi all'indietro}
+\prototype{\Bool \hasCycle{\Graph \(G\), \Node \(u\)}}{
+	\tcp{\(u\): il primo nodo che viene visitato}
+
+	\BlankLine
+	\Increment{time}\;
+	\(dt[u]\) \Assign \(time\) \Comment*[l]{tempo di scoperta}
+
+	\BlankLine
+	\ForEach{\(u \in G.\adj{u}\)}{
+
+		\BlankLine
+		\uIf{\(dt[v] \Equal 0\)}{
+			\tcp{non ho ancora scoperto questo nodo}
+
+			\BlankLine
+			\tcp{effettuo una visita ricorsiva}
+			\If{\hasCycle{G,v}}{
+				\Return \True\;
+			}
+
+		}
+		\BlankLine
+		\tcp{logica dell'algoritmo}
+		\ElseIf{\(dt[u] < dt[v]\) \And \(ft[v] \Neq 0\)}{
+			\tcp{se raggiungo un mio discendente e non ho ancora terminato la mia visita, allora ho trovato un arco \emph{all'indietro} e quindi un ciclo}
+			\Return \True\;
+		}
+	}
+
+	\BlankLine
+	\Increment{time}\;
+	\(ft[u]\) \Assign \(time\) \Comment*[l]{tempo di fine}
+
+	\BlankLine
+	\tcp{non ho trovato un ciclo}
+	\Return \False\;
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

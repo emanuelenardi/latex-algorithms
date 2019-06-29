@@ -1,0 +1,51 @@
+\subsection*{Intervalli (\texttt{intervalli})}
+
+Vi vengono dati una serie di \(N\) intervalli temporali, ognuno rappresentati come una coppia \(Inizio_i\), \(Fine_i\) di interi.
+Vogliamo sapere quale sia il più lungo periodo non coperto da alcun intervallo, considerando solo gli istanti compresi fra il minimo istante di inizio ed il massimo istante di fine degli intervalli.
+
+\paragraph{Formato dell'input}
+La prima riga del file di input contiene l’intero \(N\), il numero di intervalli. Le successive \(N\) righe contengono due interi separati da spazio, l’istante di inizio e quello di fine dell’intervallo.
+
+\paragraph{Formato dell'output}
+L'output deve contenere due interi che rappresentano l’istante di inizio e quello di fine del più lungo periodo scoperto. Se ci sono più di un periodo scoperto della stessa lunghezza, restituire quello con inizio minore.
+
+% \inputminted[firstline = 7]{assets/codes/intervalli.cpp}
+
+Il Diagramma di Gantt formato dagli intervalli di esempio è mostrato in figura~\ref{fig:ganttchart-intervalli}.
+
+\begin{figure}[H]
+	\centering
+
+	\colorlet{brighter}{blue!50!white}
+	\colorlet{darker}{blue!50!black}
+	\colorlet{barcolor}{brighter}
+	\colorlet{labelcolor}{darker}
+	\colorlet{accentColor}{yellow}
+
+	\begin{ganttchart}[%
+		vgrid={*1{gray, dotted}},
+		bar/.append style={fill=red!50},
+		group/.append style={draw=black, fill=green!50},
+		,expand chart = \textwidth
+		,y unit title = .5cm
+		,y unit chart = .4cm % default 1cm
+		,canvas/.style = {shape=rectangle, fill=white, draw=none, ultra thin}
+		,bar/.append style = {fill=barcolor, draw=white}
+		,vgrid={*{1}{lightgray, ultra thin}}
+		,bar label font = \footnotesize\color{darker}
+		,title/.style = {draw=none, fill=none}
+		,include title in canvas = false
+	]{1}{12}
+
+	\gantttitlelist{1,...,12}{1}
+	\\\ganttbar[bar/.append style = {fill = accentColor}]{pausa}{6}{6}
+	\\\ganttbar{1-4}{1}{4}
+	\\\ganttbar{2-5}{2}{5}
+	\\\ganttbar{7-9}{7}{9}
+	\\\ganttbar{8-12}{8}{12}
+
+	\end{ganttchart}
+
+\caption{Gantt Chart sorted}
+\label{fig:ganttchart-intervalli}
+\end{figure}

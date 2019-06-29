@@ -1,0 +1,81 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\begin{algorithm}[H]
+\caption{Algoritmo generico}
+\fi
+
+\prototype{\Int, \Int \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
+
+	\BlankLine
+	\tcp{Inizializzazione dei vettori}
+	\Array{\Int} \(d\) \Assign \new \Array{\Int}{1}{G.n}
+	\Comment*[r]{distanze dalla sorgente}
+
+	\Array{\Int} \(T\) \Assign \new \Array{\Int}{1}{G.n}
+	\Comment*[r]{vettore dei padri}
+
+	\Array{\Bool} \(b\) \Assign \new \Array{\Bool}{1}{G.n}
+	\Comment*[r]{per sapere in tempo costante se un nodo appartiene alla struttura dati}
+
+	\BlankLine
+	\tcp{Inizializzo tutti i nodi tranne la sorgente}
+	\ForEach{\(u \in G.\VV - \{s\}\)}{
+		\(T[u] \Assign \Nil\) \Comment*[l]{non hanno padri}
+		\(d[u] \Assign +\infty\) \Comment*[l]{non li ho ancora raggiunti}
+		\(b[u] \Assign \False\) \Comment*[l]{non appartengono ancora all'insieme}
+	}
+
+	\BlankLine
+	\tcp{Inizializzo la sorgente}
+	\(T[s] \Assign \Nil\) \Comment*[h]{non ha padre}\;
+	\(d[s] \Assign 0\) \Comment*[h]{per convenzione}\;
+	\(b[s] \Assign \True\) \Comment*[h]{appartiene all'insieme}\;
+
+	\BlankLine
+	\lnl{shortestPath:init}%
+	\alert{\DataStructure \(S \Assign \dsConstructor\)}\;
+	\alert{\(S\).\dsAdd(s)}\;
+
+	\BlankLine
+	\While{\Not \(S.\setEmpty\)}{
+
+		\lnl{shortestPath:remove}%
+		\alert{\Int \(u \Assign S.\extract\)} \Comment*[l]{estraggo un nodo}
+		\Array{b}{u} \Assign \False \Comment*[l]{non è più contenuto nella struttura dati}
+
+		\BlankLine
+		\ForEach(\Comment*[h]{per tutti i vicini}){\(v \in G.\adj(u)\)}{
+
+			\BlankLine
+			\If(\Comment*[h]{se migliora la stima}){\(d[u] + G.\weight{u,v} < d[v]\)}{
+				% TODO eIf incompatibile con l'opzione 'onelanguage'
+				% NOTE: in realtà è la traduzione sbagliata di "Else" in "allora"
+				\eSea(\Comment*[h]{se non fa già parte dell'insieme}){\Not \(b[v]\)}{
+					\lnl{shortestPath:add}%
+					\alert{\(S.\dsAdd(v)\)} \Comment*[h]{aggiungilo}\;
+					\(b[v] \Assign \True\) \Comment*[h]{fa parte dell'insieme}\;
+				}{
+					\lnl{shortestPath:shortest-update}%
+					\alert{\footnotesize\ttfamily// Azione da intraprendere nel caso \(v\) sia già presente in \(S\)}
+				}
+
+				\BlankLine
+				\tcp{aggiorno i vettori}
+				\(T[v] \Assign u\)\;
+				\(d[v] \Assign d[u] + G.\weight{u,v}\)\;
+			}
+		}
+	}
+
+	\Return \((T,d)\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\fi
+\end{document}

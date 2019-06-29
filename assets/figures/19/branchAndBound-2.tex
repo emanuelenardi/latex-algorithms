@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{_preamble}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\begin{forest} circled tree
+	[
+		[18	[21] [22] [18 [21] [21] ] ]
+		[18 [19 [25] [19 [19] ] ] [21] [21] ]
+		[18 [20] [18 [21] [21] ] [18 [19] [24] ] ]
+		[21]
+	]
+\end{forest}
+\end{document}

@@ -1,0 +1,59 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[]{}
+\fi
+
+\SetKwFunction{maxDist}{massimaDistanza}
+
+\tcp{}
+\prototype{\bfsProc{\Graph G, \Node r}}{
+	\Queue \(S = \queueConstructor\)\;
+	\(S.\queueInsert{r}\) \Comment*[l]{inserisco la radice}
+
+	\BlankLine
+	\tcp{inizializzazione}
+	\Array{\Bool} \(visitato = \Array{\Bool}{1}{G.n}\)\;
+	\lForEach{\(u \in G.\VV - \{r\}\)}{
+		\(\ArrayCall{visitato}{u} = \False\)
+	}
+	\(\ArrayCall{visitato}{r} = \True\) \Comment*[l]{radice visitata}
+
+	\BlankLine
+	\tcp{visita del grafo}
+	\While{\Not \(S.\setEmpty\)}{
+		\Node \(u = S.\queueRemove\)\;
+
+		\BlankLine
+		\{ esamina il nodo \(u\) \}
+
+		\BlankLine
+		\ForEach{\(u \in G.\adj{u}\)}{
+
+			\BlankLine
+			\{ esamina l'arco \((u,v)\) \}
+
+			\BlankLine
+			\If{\Not \ArrayCall{visitato}{v}}{
+
+				\BlankLine
+				\(\ArrayCall{visitato}{v} = \True\)\;
+				\(S.\queueInsert\)
+			}
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

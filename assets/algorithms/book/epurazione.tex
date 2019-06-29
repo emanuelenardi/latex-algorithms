@@ -1,0 +1,48 @@
+\documentclass{standalone}
+\usepackage{../_preamble}
+
+\setcounter{section}{4}
+\setcounter{algocf}{0}
+
+\SetKwFunction{epurazione}{epurazione}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\begin{algorithm}[H]
+\caption{}
+\fi
+
+\prototype{\epurazione{\List L, \List M}}{
+	\Postype \(p \Assign L.\listHead\)\;
+
+	\BlankLine
+	\While{\Not \(L.\listEnd{p}\)}{
+		\(conta \Assign 0\)\;
+		\Postype \(q \Assign L.\listHead\)\;
+
+		\BlankLine
+		\While{\Not \(L.\listEnd{q}\)}{
+			\If{\(L.\listRead{q} \Assign L.\listRead{p}\)}{
+				\(conta \Assign conta + 1\)\;
+			}
+
+			\BlankLine
+			\(q \Assign L.\listSucc{q}\)  \Comment*[h]{avanza \(q\)}\;
+		}
+
+		\BlankLine
+		\If{\(conta \Neq 2\)}{
+			\(M\).\listInsert{M.\listTail.\listSucc, L.\listRead{p}}\;
+		}
+
+		\BlankLine
+		\(p \Assign L.\listSucc{p}\) \Comment*[h]{avanza \(p\)}\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\fi
+\end{document}

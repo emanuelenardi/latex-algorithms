@@ -1,0 +1,35 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../_preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[]{}
+\fi
+
+\tcp{restituisce il costo minimo fra due colorazioni}
+\prototype{\Int \minColoring{\Tree T}}{
+	\Return \minFunction{\countRec{T, 1}, \countRec{T, 2}}\;
+}
+
+\BlankLine
+\tcp{calcola il costo di colorazione di un albero a partire dal colore della radice}
+\prototype{\Int \countRec{\Tree T, \Int color}}{
+	\If{\(t \Equal \Nil\)}{
+		\Return \(0\)\;
+	}
+
+	\BlankLine
+	\Return \(color + \countRec{\(T.\varLeft, 3-color\)} + \countRec{\(T.\varRight, 3-color\)}\)\;
+}
+
+% TODO figura esame 28/06/2018
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}
