@@ -1,21 +1,34 @@
+# file ausiliari di latex
 *.aux
+*.cut
 *.fdb_latexmk
 *.fls
-*.log
 *.lof
+*.log
 *.synctex.gz
 *.toc
 
+# file di scripting
+*.bat
+
+# file di cache
 _minted*
 
+# file sorgenti
 *.tex
 *.sty
 
-*.bat
-
-assets/notes/
-exams/compiti/
-exams/soluzioni/
-formulario/preamble/
+# file sorgenti ausiliari
 assets/exercises/
 assets/figures/mwe/
+assets/handouts/
+assets/lab/
+assets/lab-codes/
+assets/notes/
+
+exams/compiti/
+exams/soluzioni/
+
+formulario/preamble/
+
+questions/
