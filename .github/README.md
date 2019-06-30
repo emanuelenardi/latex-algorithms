@@ -1,6 +1,6 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-science.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/cc-by-nd.svg)](https://forthebadge.com)
+<!-- [![forthebadge](https://forthebadge.com/images/badges/cc-by-nd.svg)](https://forthebadge.com) -->
 
 # Dispense di Algoritmi e Strutture Dati
 
@@ -8,32 +8,42 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![GitHub tag](https://img.shields.io/github/tag/emanuelenardi/bobu.svg)](https://gitHub.com/emanuelenardi/bobu/tags/)
 
-Questi sono gli appunti che ho preso in preparazione all'esame di Algoritmi e Strutture Dati tenuto all'Università degli Studi di Trento dal Prof.re Alberto Montresor.
+Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture Dati tenuto all'Università degli Studi di Trento dal Prof.re Alberto Montresor.
 
-## Supporto al progetto
-
-## Contenuto
-
-- Dispensa con tutti i capitoli
-- Capitoli
-	- __2__ Analisi della complessità
-	- __3__ Strutture Dati
-	- __8__ Insiemi e dizionari
-	- __9__ Grafi
-	- __11__ "Scelta"
-	- __13__ Programmazione Dinamica
-	- __14__ Algoritmi ingordi
-	- __15__ Ricerca locale
-	- __16__ Backtrack
-	- __19__ Algoritmi probabilistici
-
-- Esercizi di laboratorio
-- Poster
-
-## Download
+<!-- ## Supporto al progetto -->
 
 ## Licenza 📃
 
-Gran parte degli elaborati presenti in questa repository è basato sulle slide e gli appunti del Prof.re di Alberto Montresor, i quali sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+> Gli elaborati presenti in questa repository è basato sulle trasparenze e gli appunti del Prof.re Alberto Montresor, i quali sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
 
-Quest'opera è rilasciata sotto licenza [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+> Quest'opera è rilasciata sotto licenza [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), il che vuol dire — in breve — che:
+> - puoi condividere questo lavoro
+> - devi attribuirne a me la creazione
+> - puoi creare lavori derivati (come io ho fatto dagli appunti del professore)
+> - non puoi venderli, né il tuo lavoro derivato può essere venduto per denaro
+
+## Contenuto 📖
+
+- Tutti i capitoli
+- Capitoli:
+	- &nbsp;&nbsp;__1__ ❌ Introduzione
+	- &nbsp;&nbsp;__2__ ✔️ Analisi di funzioni
+	- &nbsp;&nbsp;__3__ ✔️ Analisi di algoritmi
+	- &nbsp;&nbsp;__4__ ⚪ Strutture Dati
+	- &nbsp;&nbsp;__5__ ❌ Alberi
+	- &nbsp;&nbsp;__6__ ❌ Alberi Binari di Ricerca
+	- &nbsp;&nbsp;__7__ ❌ Hashing
+	- &nbsp;&nbsp;__8__ ⚪ Insiemi e dizionari
+	- &nbsp;&nbsp;__9__ ⚪ Grafi
+	- __10__ ❌ Strutture dati speciali
+	- __11__ ✔️ "Scelta"
+	- __13__ ✔️ Programmazione Dinamica
+	- __14__ ✔️ Algoritmi ingordi
+	- __15__ ✔️ Ricerca locale
+	- __16__ ✔️ Backtrack
+	- __19__ ✔️ Algoritmi probabilistici
+- Appendici:
+	- __A1__ ⚪ Problema dell'ordinamento
+<!-- - Esercizi di laboratorio -->
+<!-- - Poster -->
+<!-- - Esami -->

@@ -168,13 +168,13 @@
 % NOTE operazioni di visita
 % \SetKwFunction{treeVisitaDFS}{visitaProfondità}
 % \SetKwFunction{treeVisitaBFS}{visitaAmpiezza}
-% \SetKwFunction{treeInVisita}{invisita}
 % \SetKwFunction{treePreVisita}{previsita}
+% \SetKwFunction{treeInVisita}{invisita}
 % \SetKwFunction{treePostVisita}{postvisita}
 
-% NOTE operazioni di lettura-scrittura
-% \SetKwFunction{treeRead}{read}
-% \SetKwFunction{treeWrite}{write}
+% NOTE operazioni di lettura-scrittura (specifica)
+\SetKwFunction{treeRead}{read}
+\SetKwFunction{treeWrite}{write}
 
 % NOTE operazioni di visita
 \SetKwFunction{treeConstructor}{Tree}
@@ -190,10 +190,10 @@
 % \SetKwFunction{deleteSibling}{deleteSibling}
 % \SetKwFunction{treeDelete}{delete}
 % \SetKwFunction{setParent}{setParent}
-% \SetKwFunction{insertRight}{insertRight}
-% \SetKwFunction{deleteRight}{deleteRight}
-% \SetKwFunction{insertLeft}{insertLeft}
-% \SetKwFunction{deleteLeft}{deleteLeft}
+\SetKwFunction{insertRight}{insertRight}
+\SetKwFunction{deleteRight}{deleteRight}
+\SetKwFunction{insertLeft}{insertLeft}
+\SetKwFunction{deleteLeft}{deleteLeft}
 
 \newcommand{\varChild}{\fontvar{child}}
 \newcommand{\varSibling}{\fontvar{sibling}}
@@ -204,8 +204,9 @@
 \newcommand{\varValue}{\fontvar{value}}
 \newcommand{\varKey}{\fontvar{key}}
 
+\SetKwFunction{conteggioNodi}{count}
+\SetKwFunction{stampaEspressioni}{stampaEspressioni}
 % \SetKwFunction{depth}{depth}
-% \SetKwFunction{conteggio}{count}
 % \SetKwFunction{cancellaFoglia}{deleteLeaf}
 % \SetKwFunction{inserisciFoglia}{inserisciFoglia}
 

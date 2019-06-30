@@ -13,11 +13,12 @@
 \prototype{\Matrix{\Int} \multiplyFunction{\Matrix{\Int} A, \Matrix{\Int} S, \Int i, \Int j}}{
 
 	\BlankLine
-	\eIf{\( i == j \)}
+	\eIf{\( i \Equal j \)}
 	{ \Return \Array{A}{i}\; }
 	{
 		\BlankLine
 		\Matrix{\Int} \(X\) = \multiplyFunction{\( \MatrixCall{last}{}{}, i, \MatrixCall{last}{i}{j} \)}\;
+
 		\Matrix{\Int} \(Y\) = \multiplyFunction{\( \MatrixCall{last}{}{}, \MatrixCall{last}{i}{j} + 1, j \)}\;
 
 		\BlankLine

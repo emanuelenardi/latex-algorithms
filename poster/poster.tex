@@ -5,21 +5,21 @@
 ]{article}
 
 \usepackage{poster.preamble}
+\usepackage{lipsum}
 \usepackage{standalone}% \standalonefalse
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \begin{document}
 
-\begin{comment}
 \begin{multicols}{2}
 \raggedcolumns
 
 \begin{algorithm}[H]
 	\caption{Fibonacci}
-	\input{../assets/algorithms/fibonacci-recursive}
-	\input{../assets/algorithms/fibonacci-iterative}
-	\input{../assets/algorithms/fibonacci-space-optimize}
+	\input{../assets/algorithms/13/fibonacci-recursive}
+	\input{../assets/algorithms/13/fibonacci-iterative}
+	\input{../assets/algorithms/13/fibonacci-space-optimize}
 \end{algorithm}
 
 \paragraph{Fibonacci}
@@ -28,7 +28,7 @@ lorem
 
 \begin{algorithm}[H]
 	\caption{Codice di Huffman}
-	\input{../assets/algorithms/huffman}
+	\input{../assets/algorithms/14/huffman}
 \end{algorithm}
 
 \paragraph{Codice di Huffman}
@@ -36,8 +36,8 @@ lorem
 
 \begin{algorithm}[H]
 	\caption{Resto}
-	\input{../assets/algorithms/resto-dp}
-	\input{../assets/algorithms/resto-greedy}
+	\input{../assets/algorithms/14/resto-dp}
+	\input{../assets/algorithms/14/resto-greedy}
 \end{algorithm}
 
 \paragraph{Problema del resto}
@@ -46,7 +46,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 \begin{algorithm}[H]
 	\caption{Zaino}
 	% \input{../assets/algorithms/knapsack-dp}
-	\input{../assets/algorithms/knapsack-greedy}
+	\input{../assets/algorithms/14/knapsack-greedy}
 \end{algorithm}
 
 \paragraph{Problema dello zaino}
@@ -61,7 +61,6 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 \end{multicols}
-\end{comment}
 
 \newpage
 \begin{multicols}{2}
@@ -80,10 +79,10 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 \begin{figure}[H]
 	\centering
-	\input{../assets/figures/mst}
+	\input{../assets/figures/14/mst}
 \end{figure}
 
-\phantom{\lipsum}
+% \phantom{\lipsum}
 
 \begin{algorithm}[H]
 	\caption{Cammini Minimi}

@@ -43,9 +43,8 @@
 ]{microtype}
 
 % NOTE ottimizzare la versione stampata in bianco e nero
-\newif\ifprinted
+% NOTE definito in algorithm2e
 % \printedtrue
-\printedfalse
 
 % TODO inglobare nei pacchetto 'set-algorithm2e'
 % \usepackage{multicol}
@@ -142,3 +141,53 @@
 \usepackage{set-pdf-props}
 
 \usepackage{set-links}
+\usepackage{siunitx}
+
+% NOTE specifica la slide dove è presente l'algoritmo
+\newcommand\slide[2]{%
+	\fbox{#1/#2}%
+}
+
+% NOTE per gli esami
+\usepackage[useregional]{datetime2}
+
+\reversemarginpar
+\NewDocumentCommand{\esercizio}{ o m }{
+	\marginnote{\tiny \fbox{\em\DTMdate{#2}} \IfValueT{#1}{\circled{#1}}}%
+}
+
+\newcommand\intervalNumber{1}
+\NewDocumentEnvironment{ricorrenza}{ s o g }{
+	% \begin{equation*}
+	\[
+		\IfBooleanF{#1}
+		{T(n) =}
+		\IfValueT{#3}{\esercizio[#2]{#3}}
+		% NOTE mi permette di evitare errori se non specifico la data dell'esercizio
+		% TODO de-commetare per avere le equazioni complete
+		% TODO versione con star permette di avere l'equazione pulita
+		\IfBooleanF{#1}
+			{\begin{dcases}}
+}{
+		\IfBooleanF{#1}
+			{
+			& n > \intervalNumber \\
+			1 & n \leqslant \intervalNumber \\
+		\end{dcases}
+			}
+	\]
+	% \end{equation*}
+}
+
+\NewDocumentCommand{\T}{ s o m }{
+	\ensuremath{%
+		\IfValueTF{#2}
+			{T_{#2}}
+			{T}
+		\left(%
+		\IfBooleanTF{#1}
+			{\left\lfloor#3\right\rfloor}
+			{#3}
+		\right)
+	}
+}

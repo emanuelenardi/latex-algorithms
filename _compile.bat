@@ -1,7 +1,7 @@
 REM compilano correttamente al 29 giugno '19
 REM arara 02-analisi
-REM arara 02-funzioni
-REM arara 03-strutture
+REM arara 03-funzioni
+REM arara 04-strutture
 
 REM ANCORA DA PROVARE
 REM arara 08-insiemi-dizionari
