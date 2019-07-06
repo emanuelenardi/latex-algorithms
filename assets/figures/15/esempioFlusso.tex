@@ -1,17 +1,18 @@
-\documentclass{standalone}
-\usepackage{_preamble}
-\usepackage{set-math}
+%&_preamble
+
+% \documentclass{standalone}
+% \usepackage{_preamble}
 
 \newif\ifmaxFlow
 % \maxFlowtrue
+\newcommand\showFlow[2]{%
+	\R{#1}/\B{#2}%
+}
 
 % arara: pdflatex: { draft: yes }
 % arara: pdflatex: { synctex: no }
 % arara: latexmk:  { clean: partial }
 \begin{document}
-
-\newcommand\showFlow[2]{\R{#1}/\B{#2}}
-
 \begin{tikzpicture}[transform shape, scale = 1]
 	\ifmaxFlow
 	\node[draw] at (-1,2) (label) {\(\abs{f^{*}} = 4\)};
@@ -38,6 +39,4 @@
 	\draw[edgen] (b) edge[above right] node[values] {\showFlow{2}{3}} (d);
 	\fi
 \end{tikzpicture}
-
-
 \end{document}

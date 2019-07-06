@@ -1,17 +1,17 @@
-\documentclass[tikz]{standalone}
-\usepackage{_preamble}
+%&_preamble
+
+% \documentclass{standalone}
+% \usepackage{_preamble}
 
 % arara: pdflatex: { draft: yes }
 % arara: pdflatex: { synctex: no }
 % arara: latexmk:  { clean: partial }
 \begin{document}
-
 \begin{tikzpicture}[transform shape, scale=1]
 	\node[mynode] at (0,0) (a) {a};
 	\node[mynode] at (3,0) (b) {b};
-	
+
 	\draw[edgen] (a) edge[bend left=20, above] node[values] {\R{5}} (b);
 	\draw[edgen] (b) edge[dashed, bend left=20,below] node[values] {\R{-5}} (a);
 \end{tikzpicture}
-
 \end{document}

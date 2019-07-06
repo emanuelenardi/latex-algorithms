@@ -1,5 +1,7 @@
-\documentclass{standalone}
-\usepackage{../_preamble}
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
@@ -9,10 +11,9 @@
 \begin{algorithm}[H]
 \caption[Versione ricorsiva di \textsf{insertNode}]{}
 
-\SetKwFunction{verifyABR}{verifyABR}
-
 \BlankLine
-\tcp{verifica se un albero binario è un albero di ricerca, usando gli operatori degli alberi binari}
+\tcp{verifica se un albero binario è un albero di ricerca,}
+\tcp{usando gli operatori degli alberi binari}
 \prototype{\Bool \verifyABR{\Tree t}}{
 
 	\BlankLine

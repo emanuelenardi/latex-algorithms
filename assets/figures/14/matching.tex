@@ -1,7 +1,4 @@
-\documentclass{standalone}
-
-\usepackage[dvipsnames]{xcolor}
-\usepackage{tikz}
+\documentclass[tikz, dvipsnames]{standalone}
 \usetikzlibrary{matrix,positioning}
 \colorlet{rulecolor}{red!15}
 
@@ -18,7 +15,7 @@
 		,space/.style = {
 			,matrix of nodes
 			,minimum height = 1.5em
-			,row sep		= -\pgflinewidth
+			,row sep	= -\pgflinewidth
 			,column sep	= -\pgflinewidth
 			,column 1/.style = {font = \ttfamily}
 		}

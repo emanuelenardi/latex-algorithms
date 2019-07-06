@@ -1,3 +1,7 @@
+% \documentclass[
+% 	% ,draft
+% ]{article}
+
 \usepackage{set-utilities}
 
 \begin{comment}
@@ -143,11 +147,6 @@
 \usepackage{set-links}
 \usepackage{siunitx}
 
-% NOTE specifica la slide dove è presente l'algoritmo
-\newcommand\slide[2]{%
-	\fbox{#1/#2}%
-}
-
 % NOTE per gli esami
 \usepackage[useregional]{datetime2}
 
@@ -191,3 +190,9 @@
 		\right)
 	}
 }
+
+% NOTE riadattate dal documento di Montresor (grazie 😌)
+\usepackage{macros}
+
+% WARNING in fase di test
+\def\preambleloaded{Precompiled preamble loaded.}

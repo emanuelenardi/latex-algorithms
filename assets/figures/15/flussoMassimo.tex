@@ -1,12 +1,12 @@
-\documentclass{standalone}
-\usepackage{_preamble}
-\usepackage{set-math}
+%&_preamble
+
+% \documentclass{standalone}
+% \usepackage{_preamble}
 
 % arara: pdflatex: { draft: yes }
 % arara: pdflatex: { synctex: no }
 % arara: latexmk:  { clean: partial }
 \begin{document}
-
 \begin{tikzpicture}[transform shape, scale=1]
 	\node[draw] at (-1,2) (label) {\(\abs{f^{*}} = 4\)};
 
@@ -21,5 +21,4 @@
 	\draw[edgen] (c) edge[below] node[values] {\R{1}/\B{1}} (d);
 	\draw[edgen] (b) edge[above] node[values] {\R{3}/\B{3}} (d);
 \end{tikzpicture}
-
 \end{document}

@@ -30,8 +30,8 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 	- &nbsp;&nbsp;__2__ ✔️ Analisi di funzioni
 	- &nbsp;&nbsp;__3__ ✔️ Analisi di algoritmi
 	- &nbsp;&nbsp;__4__ ⚪ Strutture Dati
-	- &nbsp;&nbsp;__5__ ❌ Alberi
-	- &nbsp;&nbsp;__6__ ❌ Alberi Binari di Ricerca
+	- &nbsp;&nbsp;__5__ ✔️ Alberi
+	- &nbsp;&nbsp;__6__ ✔️ Alberi Binari di Ricerca
 	- &nbsp;&nbsp;__7__ ❌ Hashing
 	- &nbsp;&nbsp;__8__ ⚪ Insiemi e dizionari
 	- &nbsp;&nbsp;__9__ ⚪ Grafi

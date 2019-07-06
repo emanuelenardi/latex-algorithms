@@ -1,11 +1,12 @@
-\documentclass{standalone}
-\usepackage{_preamble}
+%&_preamble
+
+% \documentclass{standalone}
+% \usepackage{_preamble}
 
 % arara: pdflatex: { draft: yes }
 % arara: pdflatex: { synctex: no }
 % arara: latexmk:  { clean: partial }
 \begin{document}
-
 \begin{tikzpicture}[scale=1.00,transform shape]
 	\node[mynode, label={[label distance=5pt]left:$s$}] at (0, 1.5) (a) {a};
 	\node[mynode] at (3, 3) (b) {b};
@@ -23,5 +24,4 @@
 	\draw[edgen] (b) edge[bend left=20] node[background] {\(\R{2}+\G{1}/\B{3}\)} (d);
 	\draw[edgen] (d) edge[dashed,bend left=20] node[background] {\(\R{-2}+\G{2}/\B{0}\)} (b);
 \end{tikzpicture}
-
 \end{document}
