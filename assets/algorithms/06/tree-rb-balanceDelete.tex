@@ -21,34 +21,47 @@
 	\While{(\(t \Neq T\)) \And (\(t.\varColor \Equal \BLACK\))}{
 
 		\BlankLine
-		\Tree \(f \Assign p.\varRight\) \Comment*[l]{riferimento al fratello}
-		\Tree \(ns \Assign f.\varLeft\) \Comment*[l]{riferimento al nipote sinistro}
-		\Tree \(nd \Assign f.\varRight\) \Comment*[l]{riferimento al nipote destro}
+		\Tree \(p \Assign t.\varParent\) \Comment*[r]{riferimento al padre}
 
 		\BlankLine
-		\eSea{\(f.\varColor \Equal \RED\)}{
-			\(p.\varColor \Assign \RED\)\;
-			\(f.\varColor \Assign \BLACK\)\;
-			\leftRotation{\(p\)}\;
-			\tcp{t viene lasciato inalterato, quindi si ricade nei casi 2, 3, 4}
-		}{
-			\uIf{\(ns.\varColor \Equal nd.\varColor \Equal \BLACK\)}{
-				\(f.\varColor \Equal \RED\)\;
-				\(t \Assign p\) \Comment*[l]{passo il problema al padre}
-			}%
-			\uElseIf{(\(ns.\varColor \Equal \RED\)) \And (\(nd.\varColor \BLACK\))}{
-				\(ns.\varColor \Assign \BLACK\)\;
-				\(f.\varColor \Assign  \RED\)\;
-				rightRotation{\(f\)}\;
-				\tcp{t viene lasciato inalterato, quindi si ricade nel caso 4}
-			}%
-			\ElseIf{\(nd.\varColor \Equal \RED\)}{
-				\(f.\varColor \Equal p.\varColor\)\;
-				\(p.\varColor \Assign \BLACK\)\;
-				\(nd.\varColor \Assign \BLACK\)\;
-				leftRotation{\(p\)}\;
-				\(t \Assign T\)\;
+		\eSea{\(t \Equal p.\varLeft\)}{
+
+			\BlankLine
+			\Tree \(f \Assign p.\varRight\) \Comment*[r]{riferimento al fratello}
+			\Tree \(ns \Assign f.\varLeft\) \Comment*[r]{riferimento al nipote sinistro}
+			\Tree \(nd \Assign f.\varRight\) \Comment*[r]{riferimento al nipote destro}
+
+			\BlankLine
+			\lnl{caso1}%
+			\eSea{\(f.\varColor \Equal \RED\)}{
+				\(p.\varColor \Assign \RED\)\;
+				\(f.\varColor \Assign \BLACK\)\;
+				\leftRotation{\(p\)}\;
+				\tcp{t viene lasciato inalterato, quindi si ricade nei casi 2, 3, 4}
+			}{
+				\lnl{caso2}%
+				\uIf{\(ns.\varColor \Equal nd.\varColor \Equal \BLACK\)}{
+					\(f.\varColor \Equal \RED\)\;
+					\(t \Assign p\) \Comment*[l]{passo il problema al padre}
+				}%
+				\lnl{caso3}%
+				\uElseIf{(\(ns.\varColor \Equal \RED\)) \And (\(nd.\varColor \BLACK\))}{
+					\(ns.\varColor \Assign \BLACK\)\;
+					\(f.\varColor \Assign  \RED\)\;
+					rightRotation{\(f\)}\;
+					\tcp{t viene lasciato inalterato, quindi si ricade nel caso 4}
+				}%
+				\lnl{caso4}%
+				\ElseIf{\(nd.\varColor \Equal \RED\)}{
+					\(f.\varColor \Equal p.\varColor\)\;
+					\(p.\varColor \Assign \BLACK\)\;
+					\(nd.\varColor \Assign \BLACK\)\;
+					leftRotation{\(p\)}\;
+					\(t \Assign T\)\;
+				}
 			}
+		}{
+			\tcp{casi speculari}
 		}
 	}
 }

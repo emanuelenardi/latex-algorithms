@@ -22,6 +22,7 @@
 	\While{\(t \Neq \Nil\)}{
 
 		\BlankLine
+		\lnlset{case:refences}{0}%
 		\Tree \(p \Assign t.\varParent\) \Comment*[r]{riferimento al padre}
 		\Tree \(n \Assign\) \iif{\(p \Neq \Nil, p.\varParent, \Nil\)} \Comment*[r]{riferimento al nonno}
 		\Tree \(z \Assign\) \iif{\(n \Equal \Nil, \Nil\), \iif{\(n.\varLeft, n.\varRight, n.\varLeft\)}} \Comment*[r]{riferimento allo zio}
@@ -33,11 +34,11 @@
 			\(t \Assign \Nil\) \Comment*[l]{fine}
 		}%
 		\lnl{case:black-father}
-		\uIf{\(p.\varColor \Equal \BLACK\)}{
+		\uElseIf{\(p.\varColor \Equal \BLACK\)}{
 			\(t \Assign \Nil\) \Comment*[l]{fine}
 		}%
 		\lnl{case:red-aunt}
-		\uIf{\(z.\varColor \Equal \RED\)}{
+		\uElseIf{\(z.\varColor \Equal \RED\)}{
 			\(p.\varColor \Assign z.\varColor \Assign \BLACK\)\;
 			\(n.\varColor \Assign \RED\)\;
 			\(t \Assign n\) \Comment*[l]{passo il problema al nonno}

@@ -1,48 +1,46 @@
-\documentclass[multi=page, varwidth=6in]{standalone}
-\usepackage{set-tikz}
-\usepackage{set-forest}
+%&_preamble
 
 % arara: pdflatex: { interaction: batchmode }
 % arara: latexmk: { clean: partial }
 \begin{document}
 
 \begin{page}
-	\begin{forest} abr tree, circled
-		[p
-			[x
-				[y
-					[A, subtree]
-					[B, subtree]
+	\begin{forest} abr tree, circled, for tree={s sep=10mm}
+		[p, fill=yellow!30
+			[x, fill=yellow!30
+				[y, fill=yellow!30
+					[, black, little subtree={\textsc{a}}]
+					[, black, little subtree={\textsc{b}}]
 				]
-				[C, subtree]
+				[, black, little subtree={\textsc{c}}]
 			][,phantom]
 		]
 	\end{forest}
 \end{page}
 
 \begin{page}
-	\begin{forest} abr tree, circled
-		[p
-			[x, name=source
-				[y, drop edge
-					[A, subtree]
-					[B, subtree, drop edge, name=target]
+	\begin{forest} abr tree, circled, for tree={s sep=10mm}
+		[p, fill=yellow!30
+			[x, fill=yellow!30, name=source
+				[y, fill=yellow!30, edge={densely dashed, color=red}
+					[, black, little subtree={\textsc{a}}]
+					[, black, little subtree={\textcolor{black}{\textsc{b}}}, edge={densely dashed, color=red}, name=target]
 				]
-				[C, subtree]
+				[, black, little subtree={\textsc{c}}]
 			][,phantom]
 		]
-	\draw[green] (source) to (target);
+	\draw[thick, ForestGreen] (source) to (target);
 	\end{forest}
 \end{page}
 
 \begin{page}
-	\begin{forest} abr tree, circled
-		[p, name=source
-			[y, edge={draw=none}
-				[A, subtree]
-				[x, added edge, name=target
-					[B, subtree]
-					[C, subtree]
+	\begin{forest} abr tree, circled, for tree={s sep=10mm}
+		[p, fill=yellow!30, name=source
+			[y, fill=yellow!30, edge={draw=none}
+				[, black, little subtree={\textsc{a}}]
+				[x, fill=yellow!30, add edge, name=target
+					[, black, little subtree={\textsc{b}}]
+					[, black, little subtree={\textsc{c}}]
 				]
 			][,phantom]
 		]
@@ -51,17 +49,17 @@
 \end{page}
 
 \begin{page}
-	\begin{forest} abr tree, circled
-		[p, name=source
-			[y, added edge
-				[A, subtree]
-				[x, name=target
-					[B, subtree]
-					[C, subtree]
+	\begin{forest} abr tree, circled, for tree={s sep=10mm}
+		[p, fill=yellow!30, name=source
+			[y, fill=yellow!30, add edge
+				[, black, little subtree={\textsc{a}}]
+				[x, fill=yellow!30, name=target
+					[, black, little subtree={\textsc{b}}]
+					[, black, little subtree={\textsc{c}}]
 				]
 			][,phantom]
 		]
-		\draw[densely dashed, red] (source) to (target);
+		\draw[densely dashed, color=red] (source) to (target);
 	\end{forest}
 \end{page}
 \end{document}
