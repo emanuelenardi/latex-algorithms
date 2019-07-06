@@ -1,4 +1,5 @@
 # file ausiliari di latex
+.latexmkrc
 *.aux
 *.cut
 *.fdb_latexmk

@@ -28,8 +28,9 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 - Capitoli:
 	- &nbsp;&nbsp;__1__ ❌ Introduzione
 	- &nbsp;&nbsp;__2__ ✔️ Analisi di funzioni
+	- &nbsp;&nbsp;__2__ ❌ Analisi ammortizzata
 	- &nbsp;&nbsp;__3__ ✔️ Analisi di algoritmi
-	- &nbsp;&nbsp;__4__ ⚪ Strutture Dati
+	- &nbsp;&nbsp;__4__ ✔️ Strutture Dati
 	- &nbsp;&nbsp;__5__ ✔️ Alberi
 	- &nbsp;&nbsp;__6__ ✔️ Alberi Binari di Ricerca
 	- &nbsp;&nbsp;__7__ ❌ Hashing
@@ -37,6 +38,7 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 	- &nbsp;&nbsp;__9__ ⚪ Grafi
 	- __10__ ❌ Strutture dati speciali
 	- __11__ ✔️ "Scelta"
+	- __12__ ❌ Dividi et Impera
 	- __13__ ✔️ Programmazione Dinamica
 	- __14__ ✔️ Algoritmi ingordi
 	- __15__ ✔️ Ricerca locale
