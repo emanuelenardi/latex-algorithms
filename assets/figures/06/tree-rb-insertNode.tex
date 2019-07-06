@@ -1,0 +1,98 @@
+\documentclass[multi=page]{standalone}
+\usepackage{set-tikz}
+\usepackage{set-forest}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\begin{page}
+	\begin{forest} circled, wide
+		[n
+			[p
+				[t]
+				[,phantom]
+			]
+			[z
+				[,phantom]
+				[,phantom]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} circled, wide
+		[t, black[][]]
+	\end{forest}
+	\raisebox{\baselineskip}{
+	\begin{tikzpicture}
+		\node [draw, single arrow] {\footnotesize diventa};
+	\end{tikzpicture}}
+	\begin{forest} circled, wide
+		[t, red[][]]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} circled, wide
+		[p, black
+			[t, red
+				[, black]
+				[, black]
+			]
+			[z
+				[,phantom]
+				[,phantom]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest}
+		circled,
+		wide,
+		for tree = {%
+			l sep = 5mm,
+			s sep = 20mm
+		}
+		[n, black
+			[p, red
+				[t, red
+					[, black, subtree={A}]
+					[, black, subtree={B}]
+				]
+				[, black, subtree={C}]
+			]
+			[z, red
+				[, black, subtree={D}]
+				[, black, subtree={E}]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest}
+		circled,
+		wide,
+		for tree = {%
+				l sep = 5mm,
+				s sep = 20mm
+		}
+		[n, red
+			[p, black
+				[t, red
+					[, black, subtree={A}]
+					[, black, subtree={B}]
+				]
+				[, black, subtree={C}]
+			]
+			[z, black
+				[, black, subtree={D}]
+				[, black, subtree={E}]
+			]
+		]
+	\end{forest}
+\end{page}
+\end{document}

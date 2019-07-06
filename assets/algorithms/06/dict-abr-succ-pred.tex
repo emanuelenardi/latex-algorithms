@@ -1,0 +1,82 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Implementazione \textsc{Dictionary} con \textsc{ABR}}
+\begin{multicols}{2}
+\fi
+
+\BlankLine
+\tcp{RICERCA DEL PREDECESSORE}
+\prototype{\Tree \succNode{\Tree \(t\)}}{
+
+	\BlankLine
+	\If{\(t \Equal \Nil\)}{
+		\Return \(t\)\;
+	}
+
+	\BlankLine
+	\eIf{\(t.\alert{\varLeft} \Neq \Nil\)}{
+	\lnlset{sx-does-exists}{1}%
+		\Return \(\alert{\maxNode{t.\varLeft}}\)\;
+	}{\lnlset{sx-not-exists}{2}%
+		\Tree \(p \Assign t.\varParent\)\;
+
+		\BlankLine
+		\While{\(p \Neq \Nil\) \And \(t \Equal p.\alert{\varLeft}\)}{
+			\(t \Assign p\) \Comment*[l]{padre}
+			\(p \Assign p.\varParent\) \Comment*[l]{nonno}
+		}
+	}
+
+	\BlankLine
+	\Return \(p\)\;
+}
+
+\vspace{-5pt}
+\vphantom{0pt}
+
+\BlankLine
+\tcp{RICERCA DEL SUCCESSORE}
+\prototype{\Tree \succNode{\Tree \(t\)}}{
+
+	\BlankLine
+	\If{\(t \Equal \Nil\)}{
+		\Return \(t\)\;
+	}
+
+	\BlankLine
+	\eIf{\(t.\alert{\varRight} \Neq \Nil\)}{
+	\lnlset{dx-dies-exists}{3}%
+		\Return \(\alert{\minNode{t.\alert{\varRight}}}\)\;
+	}{\lnlset{dx-not-exists}{4}%
+		\Tree \(p \Assign t.\varParent\)\;
+
+		\BlankLine
+		\While{\(p \Neq \Nil\) \And \(t \Equal p.\alert{\varRight}\)}{
+			\(t \Assign p\)\;
+			\(p \Assign p.\varParent\)\;
+		}
+	}
+
+	\BlankLine
+	\Return \(p\)\;
+}
+
+\ifstandalone
+\end{multicols}
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

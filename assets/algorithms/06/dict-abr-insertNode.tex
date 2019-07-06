@@ -1,0 +1,60 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+% \algorithmstyle{ruled}
+\begin{algorithm}[H]
+% \caption{Implementazione \textsc{Dictionary} con \textsc{ABR}}
+\fi
+
+\BlankLine
+\tcp{INSERIMENTO DI UN NODO}
+\prototype{\Tree \insertNode{\Tree \(T\), \Item \(k\), \Item \(v\)}}{
+	\Tree \(p \Assign \Nil\) \Comment*[l]{padre}
+	\Tree \(u \Assign T\) \Comment*[l]{parto dalla radice}
+
+	\BlankLine
+	\tcp{cerco posizione inserimento}
+	\While{\(u \Neq \Nil\) \And \(u.\varKey \Neq k\)}{
+		\(p \Assign u\)\;
+		\(u\) \Assign \iif{\(k < u.\varKey, u.\varLeft, u.\varRight\)}\;
+	}
+
+	\BlankLine
+	\eSea{\(u \Neq \Nil\) \And \(u.\varKey \Equal k\)}{
+		\tcp{la chiave è già presente, aggiorno il valore}
+
+		\BlankLine
+		\(u.\varValue \Assign v\)\;
+	}{
+		\tcp{la chiave non è presente}
+		\tcp{creo un nodo coppia chiave-valore}
+		\Tree \(new\) \Assign \treeConstructor{\(k, v\)}\;
+
+		\BlankLine
+		\tcp{collego il nodo creato}
+		\shortcut{\(p, new, k\)}\;
+
+		\BlankLine
+		\If{\(p \Equal \Nil\)}{
+			\(T \Assign new\) \Comment*[l]{primo nodo ad essere inserito}
+		}
+	}
+
+	\BlankLine
+	\tcp{restituisco l'albero non modificato o il nuovo nodo}
+	\Return \(T\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+% \algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

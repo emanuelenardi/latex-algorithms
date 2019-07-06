@@ -1,0 +1,54 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Stampa espressioni con operatori binari]{}
+\begin{multicols}{2}
+\fi
+
+\prototype{\Int \stampaEspressioni{\Tree \(t\)}}{
+	\eIf{\(t.\treeLeft \Equal \Nil\) \And \(t.\treeRight \Equal \Nil\)}{
+		\tcp{siamo in una foglia}
+		\Print \(t.\treeRead\)
+	}{
+		\tcp{sono su un nodo interno}
+		\Print \enquote{(}\;
+
+		\stampaEspressioni{\(t.\treeLeft\)}\;
+
+		\Print \(t.\treeRead\)\;
+
+		\stampaEspressioni{\(t.\treeRight\)}\;
+
+		\Print \enquote{)}\;
+	}
+}
+
+\ifstandalone
+\begin{minipage}[t][4.5cm]{.85\linewidth}
+	\vfill\centering
+	\begin{center}
+		\begin{forest} circled tree
+		[*[+[4][9]][+[3][4]]]
+		\end{forest}
+	\end{center}
+	Stampa: \texttt{( 4 + 9 ) * ( 3 + 4 )}
+	\vfill
+\end{minipage}
+\fi
+
+\ifstandalone
+\end{multicols}
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

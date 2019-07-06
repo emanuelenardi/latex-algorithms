@@ -1,0 +1,55 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Bilanciamento dell'albero tramite rotazione a sinistra]{}
+\fi
+
+\BlankLine
+\tcp{effettua una rotazione verso sinistra}
+\prototype{\leftRotation{\Tree p, \Tree u, \Item x}}{
+	\lnl{case:primo-step}%
+	\Tree \(y \Assign x.\varRight\)\;
+	\Tree \(p \Assign x.\varParent\)\;
+
+	\BlankLine
+	\lnl{case:secondo-step}%
+	\(x.\varRight \Assign y.\varLeft\) \Comment*[l]{il sottoalbero \(B\) diventa figlio destro di \(x\)}
+	\If{\(y.\varLeft \Neq \Nil\)}{
+		\(y.\varLeft.\varParent \Assign x\)\;
+	}
+
+	\BlankLine
+	\lnl{case:terzo-step}%
+	\(y.\varLeft \Assign x\) \Comment*[l]{\(x\) diventa figlio sinistro di \(y\)}
+	\(x.\varParent \Assign y\)\;
+
+	\BlankLine
+	\lnl{case:quarto-step}%
+	\(y.\varParent \Assign p\) \Comment*[l]{\(y\) diventa figlio di \(p\)}
+	\If{\(p \Neq \Nil\)}{
+		\If{\(p.\varLeft \Equal x\)}{
+			\(p.\varLeft \Assign y\)
+		}{
+			\(p.\varRight \Assign y\)
+		}
+	}
+
+	\BlankLine
+	\Return \(y\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

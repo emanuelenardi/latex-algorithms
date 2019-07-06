@@ -1,0 +1,124 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\begin{minipage}{\linewidth}
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Specifica \textsc{Sequence}}
+\begin{multicols}{2}
+
+Una struttura dati \emph{dinamica}, \emph{lineare} che rappresenta una sequenza \emph{ordinata} di valori, dove lo stesso valore può comparire più volte.
+
+\BlankLine
+\sequenceConstructor
+
+\BlankLine
+\tcp{INTERPRETARE}
+\Bool \listEmpty \Comment*[r]{\True se la sequenza è vuota}
+\Bool \listEnd \Comment*[r]{\True se \(p\) è uguale a \(pos_0\) o a \(pos_{n+1}\)}
+
+\BlankLine
+\tcp{LEGGERE}
+\Postype \listHead \Comment*[r]{posizione del primo elemento}
+\Postype \listTail \Comment*[r]{posizione dell'ultimo elemento}
+
+\BlankLine
+\tcp{ITERARE}
+\Postype \listSucc \Comment*[r]{posizione dell'elem.\ che segue \(p\)}
+\Postype \listPred \Comment*[r]{posizione dell'elem.\ che precede \(p\)}
+
+\vspace{20pt}
+
+\BlankLine
+\tcp{MODIFICA}
+
+\BlankLine
+\tcp{inserisce l'elemento di tipo \Item nella posizione \(p\),}
+\tcp{ritorna la nuova posizione,}
+\tcp{che diviene il predecessore di \(p\)}
+\Postype \listInsert{\Postype p, \Item v}
+
+\tcp{rimuove l'elemento contenuto nella pos.\ \(p\),}
+\tcp{ritorna il successore di \(p\),}
+\tcp{che diviene il predecessore di \(p\)}
+\Postype \listRemove{\Pos p}
+
+\BlankLine
+\tcp{legge l'elemento di tipo \Item}
+\tcp{contenuto nella posizione \(p\)}
+\listRead{\Postype p}
+
+\BlankLine
+\tcp{scrive l'elemento \(v\) di tipo \Item}
+\tcp{nella posizione \(p\)}
+\listWrite{\Postype p, \Item v}
+
+\vphantom{0pt}
+\end{multicols}
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\end{minipage}
+
+\end{document}
+
+\NoCaptionOfAlgo
+\begin{algorithm}
+\caption[Sequenza]{}
+\begin{multicols}{2}
+
+\BlankLine
+\tcp{restituisce true se è vuota}
+\Bool \listEmpty{}
+
+\BlankLine
+\tcp{restituisce true se \(p\) è uguale a \({pos}_0\) oppure a \({pos}_{n+1}\)}
+\Bool \listEnd{\Postype \(p\)}
+
+\BlankLine
+\tcp{restituisce la posizione del primo elemento}
+\Postype \listHead{}
+
+\BlankLine
+\tcp{restituisce la posizione dell'ultimo elemento}
+\Postype \listTail{}
+
+\BlankLine
+\tcp{restituisce la posizione dell'elemento che segue \(p\)}
+\Postype \listSucc{\Postype \(p\)}
+
+\BlankLine
+\tcp{restituisce la posizione dell'elemento che precede \(p\)}
+\Postype \listPred{\Postype \(p\)}
+
+\vspace{15pt}
+
+\BlankLine
+\tcp{inserisce l'elemento \(v\) di tipo \Item nella posizione \(p\)}
+\tcp{restituisce la posizione del nuovo elemento, che diviene il predecessore di \(p\)}
+\Pos \listInsert{\Postype \(p\), \Item \(v\)}
+
+\BlankLine
+\tcp{rimuove l'elemento contenuto nella posizione \(p\)}
+\tcp{restituisce la posizione del successore di \(p\), che diviene il successore del predecessore di \(p\)}
+\Pos \listRemove{\Postype \(p\)}
+
+\BlankLine
+\tcp{legge l'elemento di tipo \Item contenuto nella posizione \(p\)}
+\Item listRead{\Postype \(p\)}
+
+\BlankLine
+\tcp{scrive l'elemento \(v\) di tipo \Item nella posizione \(p\)}
+\listWrite{\Postype \(p\), \Item \(v\)}
+
+\vphantom{0pt}
+\end{multicols}
+\end{algorithm}
+\RestoreCaptionOfAlgo

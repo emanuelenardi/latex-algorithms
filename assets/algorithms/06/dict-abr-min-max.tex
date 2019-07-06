@@ -1,0 +1,56 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Implementazione \textsc{Dictionary} con \textsc{ABR}}
+\begin{multicols}{2}
+\fi
+
+\BlankLine
+\tcp{RICERCA DEL MINIMO}
+\prototype{\Tree \minNode{\Tree \(T\)}}{
+	\Tree \(u = T\) \Comment*[l]{parto dalla radice}
+
+	\BlankLine
+	\While{\(u.\varLeft \Neq \Nil\)}{
+		\(u \Assign u.\varLeft\)\;
+	}
+
+	\BlankLine
+	\Return \(u\)\;
+}
+
+\vspace{-5pt}
+\vphantom{0pt}
+
+\BlankLine
+\tcp{RICERCA DEL MASSIMO}
+\prototype{\Tree \maxNode{\Tree \(T\)}}{
+	\Tree \(u = T\) \Comment*[l]{parto dalla radice}
+
+	\BlankLine
+	\While{\(u.\varRight \Neq \Nil\)}{
+		\(u \Assign u.\varRight\)\;
+	}
+
+	\BlankLine
+	\Return \(u\)\;
+}
+
+\ifstandalone
+\end{multicols}
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

@@ -1,0 +1,50 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Struttura dati \textsc{Set}}
+\begin{multicols}{2}
+\fi
+
+Una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{collezione non ordinata di elementi} senza valori ripetuti.
+
+\BlankLine
+\setConstructor
+
+\BlankLine
+\tcp{INTERPRETARE}
+\Int \setSize \Comment*[r]{cardinalità dell'insieme}
+\Bool \setContains \Comment*[r]{\True se \(x\) è contenuto}
+
+\vspace{20pt}
+
+\BlankLine
+\tcp{OPERAZIONI DI BASE}
+\setInsert \Comment*[l]{inserisce \(x\) nell'insieme, se assente}
+\setRemove \Comment*[l]{rimuove \(x\) nell'insieme, se presente}
+
+\BlankLine
+\tcp{OPERAZIONI INSIEMISTICHE}
+\Set \setUnion{\Set \(A\), \Set \(B\)}\;
+\Set \setIntersection{\Set \(A\), \Set \(B\)}\;
+\Set \setDifference{\Set \(A\), \Set \(B\)}\;
+
+\vphantom{0pt}
+
+\ifstandalone
+\end{multicols}
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

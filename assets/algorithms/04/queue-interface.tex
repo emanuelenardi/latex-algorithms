@@ -1,0 +1,28 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Specifica \textsc{Queue}}
+\fi
+
+\Bool \queueEmpty{} \Comment*[l]{restituisce vero se la coda è vuota}
+\Item \queueInsert{\Item \(v\)} \Comment*[l]{inserisce \(v\) in fondo alla coda}
+\Item \queueRemove{} \Comment*[l]{estrae l'elemento in cima alla coda e lo restituisce al chiamante}
+\Item \queueTop{} \Comment*[l]{legge l'elemento in testa alla coda}
+
+\ifstandalone
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

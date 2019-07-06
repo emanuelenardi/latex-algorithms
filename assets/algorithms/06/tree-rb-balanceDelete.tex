@@ -1,0 +1,60 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+% \caption[]{}
+\fi
+
+\BlankLine
+\tcp{bilanciamento di un \textsc{Red-Black Tree} in seguito alla rimozione di un nodo \RED}
+\prototype{\treeFixDelete{\Tree t}}{
+
+	\BlankLine
+	\(t.\varColor \Assign \RED\) \Comment*[l]{coloro il nodo da inserire di rosso}
+
+	\BlankLine
+	\While{(\(t \Neq T\)) \And (\(t.\varColor \Equal \BLACK\))}{
+
+		\BlankLine
+		\Tree \(f \Assign p.\varRight\) \Comment*[l]{riferimento al fratello}
+		\Tree \(ns \Assign f.\varLeft\) \Comment*[l]{riferimento al nipote sinistro}
+		\Tree \(nd \Assign f.\varRight\) \Comment*[l]{riferimento al nipote destro}
+
+		\BlankLine
+		\eSea{\(f.\varColor \Equal \RED\)}{
+			\(p.\varColor \Assign \RED\)\;
+			\(f.\varColor \Assign \BLACK\)\;
+			\leftRotation{\(p\)}\;
+			\tcp{t viene lasciato inalterato, quindi si ricade nei casi 2, 3, 4}
+		}{
+			\uIf{\(ns.\varColor \Equal nd.\varColor \Equal \BLACK\)}{
+				\(f.\varColor \Equal \RED\)\;
+				\(t \Assign p\) \Comment*[l]{passo il problema al padre}
+			}%
+			\uElseIf{(\(ns.\varColor \Equal \RED\)) \And (\(nd.\varColor \BLACK\))}{
+				\(ns.\varColor \Assign \BLACK\)\;
+				\(f.\varColor \Assign  \RED\)\;
+				rightRotation{\(f\)}\;
+				\tcp{t viene lasciato inalterato, quindi si ricade nel caso 4}
+			}%
+			\ElseIf{\(nd.\varColor \Equal \RED\)}{
+				\(f.\varColor \Equal p.\varColor\)\;
+				\(p.\varColor \Assign \BLACK\)\;
+				\(nd.\varColor \Assign \BLACK\)\;
+				leftRotation{\(p\)}\;
+				\(t \Assign T\)\;
+			}
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

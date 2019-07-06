@@ -1,0 +1,87 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Struttura dati pila basata su vettore in pseudocodice}
+\caption{Struttura dati coda basata su vettore circolare in pseudocodice}
+\fi
+\begin{multicols}{2}
+
+\Item{} \(A\)	\Comment*[r]{elementi}
+\Int \(n\)		\Comment*[r]{dimensione attuale}
+\Int \(testa\)	\Comment*[r]{testa}
+\Int \(m\)		\Comment*[r]{dimesione massima}
+
+\BlankLine
+\tcp{crea una cosa vuota}
+\prototype{\Queue \queueConstructor{\Int dim}}{
+	\Queue \(t =\) \new \Queue\;
+	\(t.A =\) \new \Array{\Int}{0}{dim-1}\;
+	\(t.m = dim\)\;
+	\(t.testa = 0\)\;
+	\(t.n = 0\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\tcp{legge l'elemento in testa alla coda}
+\prototype{\Item \queueTop}{
+	\precondition{\(n > 0\)}
+
+	\BlankLine
+	\Return \ArrayCall{A}{testa}\;
+}
+
+\vspace{5pt}
+
+\BlankLine
+\tcp{restituisce \True de la coda è vuota}
+\prototype{\Item \queueEmpty}{
+	\Return \(n \Equal 0\)\;
+}
+
+\BlankLine
+\tcp{estrae l'elemento in testa alla coda e lo restituisce al chiamante}
+\prototype{\Item \queueRemove}{
+	\precondition{\(n > 0\)}
+
+	\BlankLine
+	\Item \(t = \ArrayCall{A}{testa}\)\;
+	\(testa = (testa+1) \bmod m\)\;
+	\Decrement{n}\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\tcp{inserisce \(v\) in fondo alla coda}
+\prototype{\Item \queueInsert}{
+	\precondition{\(n < m\)}
+
+	\BlankLine
+	\ArrayCall{A[(testa+n) \bmod m]}{v}\;
+	\Increment{n}\;
+}
+
+\vphantom{0pt}
+
+\end{multicols}
+\ifstandalone
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

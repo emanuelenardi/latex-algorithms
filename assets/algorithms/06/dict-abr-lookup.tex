@@ -1,0 +1,61 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Implementazione \textsc{Dictionary} con \textsc{ABR}}
+% \begin{multicols}{2}
+\fi
+
+\BlankLine
+\prototype{\Int \dictLookup{\Item \(k\)}}{
+	\Tree \(t =\) \lookupNode{\(tree, k\)}\;
+
+	\BlankLine
+	\eIf{\(t \Neq \Nil\)}{
+		\Return \(t\).\treeValue\;
+	}{
+		\Return \Nil\;
+	}
+}
+
+\BlankLine
+% \tcp{Restituisce il nodo dell'albero \(t\)}
+% \tcp{che contiene la chiave \(k\),}
+% \tcp{se presente, \Nil altrimenti}
+\tcp{RICERCA DI UN NODO, iterativa}
+\prototype{\Tree \lookupNode{\Tree \(T\), \Item \(k\)}}{
+	\Tree \(u = T\) \Comment*[l]{parto dalla radice}
+
+	\BlankLine
+	\While{\(u \Neq \Nil\) \And \(u.\varKey \Neq k\)}{
+		\(u\) \Assign \iif{\(k < u.\varKey, u.\varLeft, u.\varRight\)}\;
+	}
+}
+
+\BlankLine
+\tcp{RICERCA DI UN NODO, ricorsiva}
+\prototype{\Tree \lookupNode{\Tree \(T\), \Item \(k\)}}{
+	\eIf{\(T \Equal \Nil\) \Or \(T.\varKey \Equal k\)}{
+		\Return \(T\)\;
+	}{
+		\Return \lookupNode{\iif{\(k < u.\varKey, u.\varLeft, u.\varRight\)}, \(k\)}\;
+	}
+}
+
+\ifstandalone
+% \end{multicols}
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

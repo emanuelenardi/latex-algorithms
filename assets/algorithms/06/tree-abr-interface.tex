@@ -1,0 +1,76 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Specifica \textsc{ABR}}
+\begin{multicols}{2}
+\fi
+
+\BlankLine
+\tcp{CONTENUTO DI UN NODO}
+
+\BlankLine
+\Tree \varParent\;
+\Tree \varLeft\;
+\Tree \varRight\;
+\Tree \varKey\;
+\Tree \varValue\;
+
+\BlankLine
+\tcp{GETTERS}
+
+\BlankLine
+\Item \treeKey\;
+\Item \treeValue\;
+\Tree \treeLeft\;
+\Tree \treeRight\;
+\Tree \treeParent\;
+
+\ifstandalone
+% \columnbreak
+\vspace{15pt}
+\vphantom{0pt}
+\fi
+
+\BlankLine
+\tcp{ORDINAMENTO}
+
+\BlankLine
+\Tree \succNode{\Tree \(t\)}\;
+\Tree \predNode{\Tree \(t\)}\;
+\Tree \minNode\;
+\Tree \maxNode\;
+
+\BlankLine
+\tcp{FUNZIONI DIZIONARIO}
+
+\BlankLine
+\Item \dictLookup{\Item \(k\)}\;
+\dictInsert{\Item \(k\), \Item \(v\)}\;
+\dictRemove{\Item \(k\)}\;
+
+\BlankLine
+\tcp{FUNZIONI INTERNE}
+
+\BlankLine
+\Item \lookupNode\;
+\insertNode{\Tree \(T\), \Item \(k\), \Item \(v\)}\;
+\removeNode{\Tree \(T\), \Item \(k\)}\;
+
+\ifstandalone
+\end{multicols}
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

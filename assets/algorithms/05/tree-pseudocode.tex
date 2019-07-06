@@ -1,0 +1,70 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Implementazione \textsc{Binary Tree} in pseudocodice}
+\begin{multicols}{2}
+\fi
+
+% \tcp{crea un nuovo albero}
+% \tcp{restituisce la radice dell'albero creato}
+\prototype{\Tree \treeConstructor{\Item \(v\)}}{
+	\Tree \(t =\) \new \Tree\;
+	\(t.\varParent \Assign \Nil\)\;
+	\(t.\varLeft \Assign t.\varRight \Assign \Nil\)\;
+	\(t.\Value \Assign v\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\prototype{\insertLeft{\Tree \(t\)}}{
+	\If{\(\varLeft \Neq \Nil\)}{
+		\(t.\varParent \Assign \This\)\;
+		\(\varLeft \Assign t\)\;
+	}
+}
+
+\prototype{\insertRight{\Tree \(t\)}}{
+	\If{\(\varRight \Neq \Nil\)}{
+		\(t.\varParent \Assign \This\)\;
+		\(\varRight \Assign t\)\;
+	}
+}
+
+\prototype{\deleteLeft{\Tree \(t\)}}{
+	\If{\(\varLeft \Neq \Nil\)}{
+		\(\varLeft.\deleteLeft\)\;
+		\(\varLeft.\deleteRight\)\;
+		\(\varLeft \Assign \Nil\)\;
+	}
+}
+
+\prototype{\deleteRight{\Tree \(t\)}}{
+	\If{\(\varRight \Neq \Nil\)}{
+		\(\varRight.\deleteLeft\)\;
+		\(\varRight.\deleteRight\)\;
+		\(\varRight \Assign \Nil\)\;
+	}
+}
+
+\vspace{50pt}
+\vphantom{0pt}
+
+\ifstandalone
+\end{multicols}
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

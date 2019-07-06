@@ -1,0 +1,33 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Specifica \textsc{Dictionary}}
+\fi
+
+Un dizionario è una struttura dati che rappresenta il concetto matematico di \emph{relazione univoca} o associazione chiave-valore.
+
+\BlankLine
+\dictionaryConstructor
+
+\BlankLine
+\dictLookup{\Item \(k\)} \Comment*[r]{rest. il valore associato alla chiave \(k\), \Nil altrimenti}
+\Item \dictInsert{\Item \(k\), \Item \(v\)} \Comment*[r]{associa il valore \(v\) alla chiave \(k\)}
+\dictRemove{\Item \(k\)} \Comment*[r]{rimuove l'associazione della chiave \(k\)}
+
+\ifstandalone
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

@@ -1,0 +1,105 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Struttura dati lista bidirezionale con sentinella}
+\begin{multicols}{2}
+
+\BlankLine
+\List \Comment*[r]{bidirezionale con sentinella}
+
+\BlankLine
+\List \Pred		\Comment*[r]{predecessore}
+\List \Succ		\Comment*[r]{successore}
+\List \Value	\Comment*[r]{elemento}
+
+\BlankLine
+\prototype{\List \listConstructor}{
+	\tcp{la sentinella fa riferimento a sé stessa}
+	\(t.\Pred = t\)\;
+	\(t.\Succ = t\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\prototype{\Postype \listHead}{
+	\Return \Succ\;
+}
+
+\BlankLine
+\prototype{\Postype \listTail}{
+	\Return \Pred\;
+}
+
+\BlankLine
+\prototype{\Postype \listSucc}{
+	\Return \(p.\Succ\)\;
+}
+
+\BlankLine
+\prototype{\Postype \listPred}{
+	\Return \(p.\Pred\)\;
+}
+
+\BlankLine
+\prototype{\Bool \listEnd{\Postype p}}{
+	\Return \(p = \This\)\;
+}
+
+\BlankLine
+\prototype{\Item \listRead{\Postype p}}{
+	\Return \(p.\Value\)\;
+}
+
+\BlankLine
+\prototype{\listWrite{\Postype p}}{
+	\Return \(p.\Value\)\;
+}
+
+\BlankLine
+\tcp{posso fare queste operazioni essendo sicuro}
+\tcp{di avere sempre un predecessore}
+	\prototype{\Postype \listInsert{\Postype p, \Item v}}{
+	\List \(t = \listConstructor\)
+	\(t.\Value = v\)\;
+	\(t.\Pred = p.\Pred\)\;
+	\(p.\Pred.\Succ = t\)\;
+	\(t.\Succ = p\)\;
+	\(p.\Pred = t\)\;
+
+	\BlankLine
+	\Return \(p\)\;
+}
+
+\BlankLine
+\prototype{\Postype \listRemove{\Postype p}}{
+	\(p.\Pred.\Succ = p.\Succ\)\;
+	\(p.\Succ.\Pred = p.\Pred\)\;
+	\List \(t = p.\Succ\)\;
+
+	\BlankLine
+	\Delete \(p\)\;
+	\Return \(t\)\;
+}
+
+\vspace{15pt}
+\vphantom{0pt}
+
+\end{multicols}
+\ifstandalone
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

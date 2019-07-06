@@ -1,0 +1,74 @@
+\documentclass[00-main.tex]{subfiles}
+\standalonetrue
+\setcounter{section}{8}
+\pagestyle{footer}
+
+% arara: pdflatex: { draft: yes, synctex: no }
+% arara: pdflatex: { synctex: yes }
+% arara: latexmk: { clean: partial }
+\begin{document}
+% \maketitle
+
+\section{Grafi}
+
+\lipsum[1]
+
+\includestandalone{assets/algorithms/09/graph}
+
+\includestandalone{assets/algorithms/09/visitGraph}
+
+\lipsum[1]
+
+\includestandalone{assets/algorithms/09/bfsProc}
+
+\newpage
+\includestandalone{assets/algorithms/09/erdos}
+
+\includestandalone{assets/algorithms/09/printPath}
+
+\includestandalone{assets/algorithms/09/dfsProc}
+
+\paragraph{Analisi della complessità}
+Questo algoritmo ha complessità \(\Omicron(n+m)\) con il grafo implementato con liste di adiacenza, e di \(\Omicron(n^2)\) con matrice di adiacenza.
+
+\includestandalone{assets/algorithms/09/dfsStack}
+
+\includestandalone{assets/algorithms/09/ConnectedComponents}
+
+\subsection{Grafi non pesati}
+
+\subsubsection{Applicazioni dfs: grafo \emph{non} orientato aciclico}
+
+\includestandalone{assets/algorithms/09/hasCycle}
+
+\includestandalone{assets/algorithms/09/dfsSchema}
+
+% TODO inserire immagine grafo
+
+% TODO inserire immagine intervalli
+
+\newpage
+\begin{definition}[grafo diretti orientati aciclici]
+Un grafo è DAG quando
+\end{definition}
+
+\includestandalone{assets/algorithms/09/topSort}
+
+\includestandalone{assets/algorithms/09/hasCycleDAG}
+
+% \newpage
+\subsection{Componenti fortemente connesse}
+
+\begin{definition}[grafo fortemente connesso]
+Un grafo orientato \(G=(V,E)\) è \alert{fortemente connesso} sse ogni suo nodo è raggiungibile da ogni altro suo nodo.
+\end{definition}
+
+\begin{definition}[componente fortemente connessa]
+Un grafo \(G' = (V',E')\) è una \alert{componente fortemente connessa} di \(G\) sse \(G'\) è un sottografo connesso e massimale di \(G\).
+\end{definition}
+
+\subsection{Algoritmo di Korasaju}
+
+\includestandalone{assets/algorithms/09/korasaju}
+
+\end{document}

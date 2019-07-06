@@ -1,0 +1,88 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Implementazione \textsc{Tree} \enquote{primo figlio, prossimo fratello} in pseudocodice}
+\begin{multicols}{2}
+\fi
+
+\Tree \varParent \Comment*[r]{Riferimento al padre}
+\Tree \varChild \Comment*[r]{Riferimento al primo figlio}
+\Tree \varSibling \Comment*[r]{Riferimento al prossimo fratello}
+\Item \varValue \Comment*[r]{Valore memorizzato nel nodo}
+
+\BlankLine
+\prototype{\Tree \treeConstructor{\Item \(v\)}}{
+	\Tree \(t =\) \new \Tree\;
+	\(t.\varValue \Assign v\)\;
+	\(t.\varParent \Assign t.\varChild \Assign t.\varSibling \Assign \Nil\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\prototype{\insertChild{\Tree \(t\)}}{
+	\(t.\varParent \Assign \Self\)\;
+	\tcp{inserisci \(t\) prima dell'attuale primo figlio}
+	\(t.\varSibling \Assign \varChild\)\;
+	\(\varChild \Assign t\)\;
+}
+
+\BlankLine
+\prototype{\insertChild{\Tree \(t\)}}{
+	\(t.\varParent \Assign \varParent\)\;
+	\tcp{inserisci \(t\) prima dell'attuale prossimo fratello}
+	\(t.\varSibling \Assign \varSibling\)\;
+	\(\varSibling \Assign t\)\;
+}
+
+\ifstandalone
+\columnbreak
+\fi
+
+\BlankLine
+\prototype{\deleteChild}{
+	\(\Tree\ newChild\ \Assign \varChild.\treeSibling\)\;
+	\delete{\varChild}\;
+	\(\varChild \Assign newChild\)\;
+}
+
+\BlankLine
+\prototype{\deleteSibling}{
+	\(\Tree\ newBrother\ \Assign \varSibling.\treeSibling\)\;
+	\treeDelete{\varSibling}\;
+	\(\varSibling \Assign newBrother\)\;
+}
+
+\BlankLine
+\prototype{\treeDelete{\Tree \(t\)}}{
+	\Tree \(u\) \Assign \(t\).\treeChild\;
+
+	\BlankLine
+	\While{\(u \Neq \Nil\)}{
+		\Tree \(next\) \Assign \(u\).\treeSibling\;
+		\treeDelete{\(u\)}\;
+		\(u \Assign next\)\;
+	}
+}
+
+\vspace{85pt}\null
+
+\ifstandalone
+\end{multicols}
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

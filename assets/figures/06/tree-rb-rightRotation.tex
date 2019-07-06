@@ -1,0 +1,67 @@
+\documentclass[multi=page, varwidth=6in]{standalone}
+\usepackage{set-tikz}
+\usepackage{set-forest}
+
+% arara: pdflatex: { interaction: batchmode }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\begin{page}
+	\begin{forest} abr tree, circled
+		[p
+			[x
+				[y
+					[A, subtree]
+					[B, subtree]
+				]
+				[C, subtree]
+			][,phantom]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} abr tree, circled
+		[p
+			[x, name=source
+				[y, drop edge
+					[A, subtree]
+					[B, subtree, drop edge, name=target]
+				]
+				[C, subtree]
+			][,phantom]
+		]
+	\draw[green] (source) to (target);
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} abr tree, circled
+		[p, name=source
+			[y, edge={draw=none}
+				[A, subtree]
+				[x, added edge, name=target
+					[B, subtree]
+					[C, subtree]
+				]
+			][,phantom]
+		]
+		\draw (source) to (target);
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} abr tree, circled
+		[p, name=source
+			[y, added edge
+				[A, subtree]
+				[x, name=target
+					[B, subtree]
+					[C, subtree]
+				]
+			][,phantom]
+		]
+		\draw[densely dashed, red] (source) to (target);
+	\end{forest}
+\end{page}
+\end{document}

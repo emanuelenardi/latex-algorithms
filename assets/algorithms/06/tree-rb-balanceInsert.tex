@@ -1,0 +1,80 @@
+\documentclass[varwidth=6in, border={2 0 0 0}]{standalone}
+\usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Bilanciamento dell'albero tramite rotazione a sinistra]{}
+\fi
+
+\BlankLine
+\tcp{bilanciamento di un \textsc{Red-Black Tree} in seguito all'inserimento di un nodo \RED}
+\prototype{\treeFixInsert{\Tree t}}{
+
+	\BlankLine
+	\(t.\varColor \Assign \RED\) \Comment*[l]{coloro il nodo da inserire di rosso}
+
+	\BlankLine
+	\tcp{\(t \Equal \Nil\) è la condizione di fino ciclo}
+	\While{\(t \Neq \Nil\)}{
+
+		\BlankLine
+		\Tree \(p \Assign t.\varParent\) \Comment*[r]{riferimento al padre}
+		\Tree \(n \Assign\) \iif{\(p \Neq \Nil, p.\varParent, \Nil\)} \Comment*[r]{riferimento al nonno}
+		\Tree \(z \Assign\) \iif{\(n \Equal \Nil, \Nil\), \iif{\(n.\varLeft, n.\varRight, n.\varLeft\)}} \Comment*[r]{riferimento allo zio}
+
+		\BlankLine
+		\lnl{case:no-father}%
+		\uIf{\(p \Equal \Nil\)}{
+			\(t.\varColor \Assign \BLACK\)\;
+			\(t \Assign \Nil\) \Comment*[l]{fine}
+		}%
+		\lnl{case:black-father}
+		\uIf{\(p.\varColor \Equal \BLACK\)}{
+			\(t \Assign \Nil\) \Comment*[l]{fine}
+		}%
+		\lnl{case:red-aunt}
+		\uIf{\(z.\varColor \Equal \RED\)}{
+			\(p.\varColor \Assign z.\varColor \Assign \BLACK\)\;
+			\(n.\varColor \Assign \RED\)\;
+			\(t \Assign n\) \Comment*[l]{passo il problema al nonno}
+		}\Altrimenti{
+
+			\BlankLine
+			\lnlset{right-left}{4a}%
+			\uIf{(\(t \Equal p.\varRight\)) \And (\(p \Equal n.\varLeft\))}{
+				\leftRotation{\(p\)}\;
+				\(t \Assign p\) \Comment*[l]{passo il problema al padre}
+			}%
+			\lnlset{left-right}{4b}%%
+			\eSea{(\(t \Equal p.\varLeft\)) \And (\(p \Equal n.\varRight\))}{
+				\rightRotation{\(p\)}\;
+				\(t \Assign p\) \Comment*[l]{passo il problema al padre}
+			}{%
+				\BlankLine
+				\lnlset{left-left}{5a}%
+				\uIf{(\(t \Equal p.\varLeft\)) \And (\(p \Equal n.\varLeft\))}{
+					\rightRotation{\(n\)}\;
+				}%
+				\lnlset{right-right}{5b}%
+				\ElseIf{(\(t \Equal p.\varRight\)) \And (\(p \Equal n.\varRight\))}{
+					\leftRotation{\(n\)}\;
+				}
+
+				\BlankLine
+				\(p.\varColor \Assign \BLACK\)\;
+				\(n.\varColor \Assign \RED\)\;
+				\(t \Assign \Nil\) \Comment*[l]{fine}
+			}
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+\end{document}

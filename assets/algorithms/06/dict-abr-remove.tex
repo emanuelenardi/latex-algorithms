@@ -1,0 +1,31 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../preamble}
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Implementazione \textsc{Dictionary} con \textsc{ABR}}
+\fi
+
+\BlankLine
+\tcp{IMPLEMENTAZIONE DIZIONARIO}
+\prototype{\dictRemove{\Item \(k\)}}{
+	\Tree \(tree \Assign \removeNode{tree, k}\)\;
+}
+
+\ifstandalone
+% \end{multicols}
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

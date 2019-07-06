@@ -1,0 +1,84 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+% \ifstandalone
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Struttura dati pila basata su vettore in pseudocodice}
+% \fi
+\begin{multicols}{2}
+
+\BlankLine
+\Item{} \(A\)	\Comment*[r]{elementi}
+\Int \(n\)		\Comment*[r]{cursore}
+\Int \(m\)		\Comment*[r]{dimesione massima}
+
+\BlankLine
+\tcp{crea una pila vuota}
+\prototype{\Stack \stackConstructor{\Int dim}}{
+	\Stack \(t =\) \new \Stack\;
+	\(t.A =\) \new \Array{\Int}{0}{dim-1}\;
+	\(t.m = dim\)\;
+	\(t.n = 0\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\tcp{leggi l'elemento in cima alla pila}
+\prototype{\Item \stackTop}{
+	\precondition{\(n > 0\)}
+
+	\BlankLine
+	\Return \ArrayCall{A}{n}\;
+}
+
+\vspace{10pt}
+
+% \BlankLine
+\tcp{restituisce \True se la pila è vuota}
+\prototype{\Bool \stackEmpty}{
+	\Return \(n \Equal 0\)
+}
+
+\BlankLine
+\tcp{estrae l'elemento in cima alla pila e lo restituisce al chiamante}
+\prototype{\Item \stackPop}{
+	\precondition{\(n > 0\)}
+
+	\BlankLine
+	\Item \(t = \ArrayCall{A}{n}\)\;
+	\Decrement{n}\;
+
+	\BlankLine
+	\Return \(t\)
+}
+
+\BlankLine
+\tcp{inserisce \(v\) in cima alla pila}
+\prototype{\stackPush{\Item v}}{
+	\precondition{\(n < m\)}
+
+	\BlankLine
+	\Increment{n}\;
+	\(\ArrayCall{A}{n} = v\)
+}
+
+\vphantom{0pt}
+
+\end{multicols}
+\ifstandalone
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}

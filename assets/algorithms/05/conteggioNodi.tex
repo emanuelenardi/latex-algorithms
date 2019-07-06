@@ -1,0 +1,54 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\ifstandalone
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Conteggio nodi di un albero]{}
+\begin{multicols}{2}
+\fi
+
+
+\prototype{\conteggioNodi{\Tree \(t\)}}{
+	\eIf{\(t \Equal \Nil\)}{
+		\tcp{è un albero vuoto}
+		\Return \(0\)\;
+	}{
+		\tcp{conto ricorsivamente i nodi}
+		\(C_{\ell} = \conteggioNodi{\(t.\treeLeft\)}\)\;
+		\(C_{r} = \conteggioNodi{\(t.\treeRight\)}\)\;
+
+		\BlankLine
+		\Return \(C_{\ell} + C_{r} + 1\)\;
+	}
+}
+
+\ifstandalone
+\begin{minipage}[t][3.8cm]{.85\linewidth}
+	\centering
+	\vfill
+	\begin{forest} circled, wide,
+		for tree={
+		my edge label/.style 2 args={
+	      edge label={node[midway, font=\sffamily\scriptsize, #1]{#2}},
+	    },
+		}
+		[\textsc{a}, my edge label={above}{1}
+			[\textsc{b}[\textsc{c}][\textsc{d}]][\textsc{e}[\textsc{f}][\textsc{g}]]]
+	\end{forest}
+\end{minipage}
+\fi
+
+\ifstandalone
+\end{multicols}
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\fi
+
+\end{document}
