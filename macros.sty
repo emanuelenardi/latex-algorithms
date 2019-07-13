@@ -34,7 +34,7 @@
 % REVIEW Cap. 1 - Introduzione
 
 % \SetKwFunction{mangiaLaMinestra}{mangiaLaMinestra}
-% \SetKwFunction{lookup}{ricerca}
+\SetKwFunction{lookup}{ricerca}
 \SetKwFunction{binarySearch}{binarySearch}
 % \SetKwFunction{iterativeBinarySearch}{iterativeBinarySearch}
 % \SetKwData{Rettangolo}{rettangolo}
@@ -55,9 +55,11 @@
 
 % REVIEW Cap. 3 - Strutture dati
 
-\newcommand{\Pos}{\fontvar{pos}}
+% CHANGED Pos -> varPos
+\newcommand{\varPos}{\fontvar{pos}}
 
-\SetKwData{Postype}{Pos}
+% CHANGED Postype -> Pos
+\SetKwData{Pos}{Pos}
 \SetKwData{List}{List}
 \SetKwArray{List}{List}
 \SetKwData{Sequence}{Sequence}
@@ -80,7 +82,7 @@
 % WARNING already defined
 \SetKwData{Set}{Set}
 \SetKwFunction{setConstructor}{Set}
-\SetKwFunction{setSize}{n}
+\SetKwFunction{setSize}{size}
 
 \SetKwFunction{setInsert}{insert}
 \SetKwFunction{setRemove}{remove}
@@ -137,7 +139,7 @@
 \newcommand{\Pred}{\fontvar{pred}}
 \newcommand{\Succ}{\fontvar{succ}}
 \newcommand{\Value}{\fontvar{value}}
-\newcommand{\Size}{\fontvar{n}}
+% \newcommand{\Size}{\fontvar{n}}
 \newcommand{\Capacity}{\fontvar{m}}
 \newcommand{\Head}{\fontvar{testa}}
 
@@ -153,13 +155,13 @@
 % \SetKwData{FINE}{fine}
 % \SetKwData{STOP}{stop}
 
+% NOTE esercizi
 % \SetKwFunction{stampaDifferenze}{stampaDifferenze}
 % \SetKwFunction{Tangentopoli}{tangentopoli}
 % \SetKwFunction{Epurazione}{epurazione}
 % \SetKwFunction{primiN}{primiN}
 % \SetKwFunction{rangoproc}{rango}
 % \newcommand{\finedelmondo}{\fontvar{finedelmondo}\xspace}
-
 
 % Cap 5. - Tree
 
@@ -265,8 +267,8 @@
 
 % REVIEW Cap. 8 - Insiemi
 
-% \newcommand{\setsize}{\fontvar{size}}
-% \newcommand{\setcap}{\fontvar{dim}}
+\newcommand{\varSize}{\fontvar{size}}
+\newcommand{\varCapacity}{\fontvar{dim}}
 
 % REVIEW Cap. 9 - Grafi
 
@@ -289,6 +291,7 @@
 \SetKwFunction{edgeDelete}{deleteEdge}
 
 \SetKwFunction{visitaGrafo}{visita}
+\SetKwFunction{visitaAlbero}{BFSTraversal}
 \SetKwFunction{erdos}{erdos}
 \SetKwFunction{printPath}{stampaCammino}
 
@@ -304,32 +307,20 @@
 \SetKwFunction{dfsSchema}{dfs-schema}
 \SetKwFunction{bfsProc}{bfs}
 
-% \newcommand{\visited}{\fontvar{visitato}}
-% \newcommand{\erdosName}{\fontvar{erdős}}
-% \newcommand{\parent}{\fontvar{p}}
-
-% \newcommand{\orologio}{\fontvar{time}}
-% \newcommand{\ddt}{\fontvar{dt}} %% Discovery time
-% \newcommand{\dft}{\fontvar{ft}} %% Finish time
-
 \SetKwFunction{ConnectedComponents}{cc}
 \SetKwFunction{ccdfs}{ccdfs}
-% \newcommand{\components}{\fontvar{id}}
-% \newcommand{\ccn}{\mathit{conta}}
 
-\SetKwFunction{hasCycleRec}{ciclicoRec}
-\SetKwFunction{hasCycle}{ciclico}
+\SetKwFunction{hasCycleRec}{hasCycleRec}
+\SetKwFunction{hasCycle}{hasCycle}
 
-% \newcommand{\nodeorder}{\fontvar{ordine}}
-\SetKwFunction{scc}{scc}
-\SetKwFunction{dfsStack}{dfsStack}
-
+\SetKwFunction{StrongConnectedComponents}{scc}
+% \SetKwFunction{dfsStack}{dfsStack}
 
 \SetKwFunction{topSort}{topSort}
 \SetKwFunction{topSortdfs}{ts-dfs}
-% \newcommand{\toporder}{\fontvar{ordine}}
 \SetKwFunction{transpose}{transpose}
 
+% NOTE esercizi
 % \SetKwFunction{isBipartite}{bipartito}
 % \newcommand{\Currentcolor}{\fontvar{corrente}}
 % \newcommand{\changecolor}{\fontvar{cambiaColore}}

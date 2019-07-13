@@ -1,22 +1,16 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
+\SetKwFunction{larghezzaAR}{larghezzaAlberoRadicato}
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
 \caption[Visita in profondità iterativa]{}
-
-La procedura si ottiene semplicemente sostituendo una pila alla coda utilizzata nella visita \breadthFirstSearch.
 \fi
 
-\SetKwFunction{larghezzaAR}{larghezzaAlberoRadicato}
-
+La procedura si ottiene semplicemente sostituendo una pila alla coda utilizzata nella visita \breadthFirstSearch.
 \BlankLine
 \tcp{effettua una visita in profondità iterativa}
 \prototype{\larghezzaAR{\Graph G, \Node r}}{
@@ -57,10 +51,7 @@ La procedura si ottiene semplicemente sostituendo una pila alla coda utilizzata 
 		}
 	}
 }
-
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

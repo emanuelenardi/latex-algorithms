@@ -5,14 +5,14 @@
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
+\begin{document}
 \NoCaptionOfAlgo
 \begin{algorithm}[H]
 \caption[Stampa parentesizzazione]{}
 \fi
 
-\prototype{\printPar{\Matrix{\Int} last, \Int i, \Int j}}{
+\prototype{\printPar{\Matrix{\Int} \(last\), \Int \(i\), \Int \(j\)}}{
 
 	\eIf{\( i \Equal j \)}{
 		\Print \enquote{A[};\ \Print \(i\);\ \Print \enquote{]}\;
@@ -28,5 +28,5 @@
 \ifstandalone
 \end{algorithm}
 \RestoreCaptionOfAlgo
-\fi
 \end{document}
+\fi

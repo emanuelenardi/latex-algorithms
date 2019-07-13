@@ -5,8 +5,8 @@
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
+\begin{document}
 \NoCaptionOfAlgo
 \begin{algorithm}[H]
 \caption[String Matching]{}
@@ -48,7 +48,6 @@
 	}
 
 	\BlankLine
-
 	\tcp{cerco la posizione del minimo}
 	\Int \(\Min \Assign \MatrixCall{DP}{m}{0}\) \Comment*[h]{minimo}\;
 	\Int \(\Pos \Assign 0\) \Comment*[h]{posizione del minimo}\;
@@ -70,6 +69,5 @@
 \ifstandalone
 \end{algorithm}
 \NoCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

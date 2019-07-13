@@ -5,8 +5,8 @@
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
+\begin{document}
 \NoCaptionOfAlgo
 \begin{algorithm}[H]
 \caption[Approccio ingordo al problema del resto]{}
@@ -35,8 +35,8 @@
 \ifstandalone
 \end{algorithm}
 \RestoreCaptionOfAlgo
-\fi
 \end{document}
+\fi
 
 divido il resto per il taglio della moneta più grande trovando il numero di monete massimo di quel taglio, dopodiché
 tolgo il valore della somma quelle monete dal resto.

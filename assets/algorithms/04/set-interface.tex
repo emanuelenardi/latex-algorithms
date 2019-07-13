@@ -48,3 +48,25 @@ Una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{c
 \fi
 
 \end{document}
+
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Struttura dati insieme]{}
+
+\tcp{operazioni di interpretazione}
+\Int \setSize \Comment*[r]{la cardinalità dell'insieme}
+\Bool \setContains{\Item x} \Comment*[r]{\True se \(x\) è contenuto nell'insieme}
+
+\BlankLine
+\tcp{operazioni di modifica}
+\setInsert{\Item x} \Comment*[r]{inserisce \(x\) nell'insieme, se non già presente}
+\setRemove{\Item x} \Comment*[r]{rimuove \(x\) dall'insieme, se presente}
+
+\BlankLine
+\tcp{operazioni insiemistiche}
+\Set \setUnion{\Set A, \Set B} \Comment*[r]{un nuovo insieme che è l'unione di \(A\) e \(B\)}
+\Set \setIntersection{\Set A, \Set B} \Comment*[r]{un nuovo insieme che è l'intersezione di \(A\) e \(B\)}
+\Set \setDifference{\Set A, \Set B} \Comment*[r]{un nuovo insieme che è la differenza di \(A\) e \(B\)}
+
+\end{algorithm}
+\RestoreCaptionOfAlgo

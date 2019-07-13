@@ -3,21 +3,16 @@
 % \documentclass[varwidth=6in]{standalone}
 % \usepackage{../preamble}
 
-% arara: pdflatex: { synctex: no }
-% arara: latexmk: { clean: partial }
-\begin{document}
-
-\ifstandalone
-\NoCaptionOfAlgo
-\begin{minipage}{\linewidth}
-\begin{algorithm}[H]
-\caption[Calcola il quadrato di un grafo orientato]{}
-
 \SetKwFunction{quadrato}{quadrato}
 
-\tcp{calcola il quadrato di un grafo orientato}
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+% \caption[Calcola il quadrato di un grafo orientato]{}
 \fi
-
+\tcp{calcola il quadrato di un grafo orientato}
 \prototype{\quadrato{\Matrix{\Int} A}}{
 
 	\BlankLine
@@ -42,11 +37,7 @@
 		}
 	}
 }
-
 \ifstandalone
 \end{algorithm}
-\end{minipage}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

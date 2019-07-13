@@ -1,18 +1,14 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
 \caption[Algoritmo di Korasaju]{}
 \fi
 
+\BlankLine
 \tcp{effettua una visita in profondità del grafo, esaminando i nodi nell'ordine inverso di tempo di fine della prima visita.}
 \prototype{\Array{\Int} \scc{\Graph \(G\)}}{
 	\Stack \(S\) \Assign \topSort{G} \Comment*[l]{otteniamo i nodi in ordine decrescente di fine}
@@ -63,7 +59,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

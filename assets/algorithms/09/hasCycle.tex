@@ -1,32 +1,26 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption[Ricerca di un ciclo all'interno di un grafo]{}
 \fi
 
+\BlankLine
 \tcp{ricerca di un ciclo \textbf{per grafi disconnessi}}
 \prototype{\Bool \hasCycle{\Graph \(G\)}}{
 
 	\BlankLine
-	\tcp{inizializzazione}
-	\Array{\Bool} \(visited\) \Assign \new \Array{\Bool}{1}{G.\setSize}\;
-	\lForEach{\(u \in G.\VV\)}{
-		\ArrayCall{visited}{u} \Assign \False\;
+	\Array{\Bool} \(visited\) \Assign \new \Array{\Bool}{1}{G.\setSize} \Comment*[l]{creo il vettore}
+
+	\lForEach(\tcp*[h]{lo inizializzo}){\(u \in G.\VV\)}{
+		\(visited[u]\) \Assign \False
 	}
 
 	\BlankLine
-	\ForEach{\(u \in G.\VV\)}{
-		\If{\Not \ArrayCall{visited}{u}}{
-		\tcp{non ho ancora vivsitato il nodo}
+	\ForEach(\tcp*[h]{per ciascun nodo appartenente al grafo}){\(u \in G.\VV\)}{
+		\If(\tcp*[h]{il primo nodo non sarà stato visitato}){\Not \(visited[u]\)}{
 			\If{\hasCycleRec{G, v, \Null, visited}}{
 			\tcp{effettuo una visita ricorsiva sul nodo vicino \(v\)}
 				\Return \True\;
@@ -38,37 +32,7 @@
 	\Return \False
 }
 
-\BlankLine
-\tcp{ricerca di un ciclo all'interno di un grafo}
-\prototype{\Bool \hasCycleRec{\Graph \(G\), \Node \(v\), \Node \(p\), \Array{\Bool} \(visited\)}}{
-	\tcp{\(p\): nodo da cui provengo}
-
-	\BlankLine
-	\ArrayCall{visited}{u} \Assign \True \Comment*[l]{visitato per la prima volta}
-
-	\BlankLine
-	\ForEach{\(v \in G.\adj{u} - \{p\}\)}{
-		\tcp{\(G.\adj{u} - \{p\}\): non considero \((u,v)\) un ciclo nei grafi non orientati}
-		\tcp{per ogni nodo visito i suoi vicini}
-
-		\BlankLine
-		\uIf{\ArrayCall{visited}{v}}{
-			\tcp{se il nodo è già stato visitato allora ho trovato un ciclo}
-			\Return \True\;
-		}
-		\ElseIf{\hasCycleRec{G, v, u, visited}}{
-			\tcp{effettuo una visita ricorsiva sul nodo vicino \(v\)}
-			\Return \True\;
-		}
-	}
-
-	\BlankLine
-	\Return \False\;
-}
-
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

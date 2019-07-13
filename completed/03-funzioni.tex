@@ -154,13 +154,13 @@ Se \(f_1(n)\) viene ripetuto \(f_2(n)\) volte, allora \(f_1(n) \cdot f_2(n)\) è
 	f_1(n) = \Omicron(g_1(n)) \\
 	f_2(n) = \Omicron(g_2(n)) \\
 	\end{dcases}
-	\Rightarrow f_1(n) \cdot f_2(n) = \Omicron(\maxFunction(g_1(n) \cdot g_2(n)))\\
+	\Rightarrow f_1(n) \cdot f_2(n) = \Omicron(g_1(n) \cdot g_2(n))\\
 	&
 	\begin{dcases}
 	f_1(n) = \Omega(g_1(n)) \\
 	f_2(n) = \Omega(g_2(n)) \\
 	\end{dcases}
-	\Rightarrow f_1(n) \cdot f_2(n) = \Omega(\minFunction(g_1(n) \cdot g_2(n)))\\
+	\Rightarrow f_1(n) \cdot f_2(n) = \Omega(g_1(n) \cdot g_2(n))\\
 	\end{align*}
 \end{definition}
 La dimostrazione è molto semplice.
@@ -967,9 +967,9 @@ Nel secondo caso se \(f(n) = n^{\beta}\) ritorniamo esattamente al secondo caso 
 
 \subsubsection*{Esercizi}
 
-\begin{itemize}[label=\textbullet]
+\begin{itemize}
 	\item \(T(n) = 9T(\frac{n}{3}) + n\)
-	\item \(T(n) = T(\frac{2}{3} n) + n\)
+	\item \(T(n) = T(\frac{2}{3} n) + 1\)
 	\item \(T(n) = 3T(\frac{n}{4}) + n\log n\)
 	\item \(T(n) = 2T(\frac{n}{2}) + n\log n\)
 \end{itemize}

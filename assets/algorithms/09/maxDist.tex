@@ -1,21 +1,15 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
+\SetKwFunction{maxDist}{massimaDistanza}
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \begin{document}
 
 \ifstandalone
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[]{}
 \fi
 
-\SetKwFunction{maxDist}{massimaDistanza}
-
-\tcp{}
 \prototype{\bfsProc{\Graph G, \Node r}}{
 	\Queue \(S = \queueConstructor\)\;
 	\(S.\queueInsert{r}\) \Comment*[l]{inserisco la radice}
@@ -55,7 +49,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

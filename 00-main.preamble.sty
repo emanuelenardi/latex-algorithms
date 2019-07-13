@@ -56,13 +56,27 @@
 \usepackage{set-color}
 \colorlet{mathcolor}{blue}
 
+% NB è una copia, copia le modifiche su 'assets/algorithms/preamble'
+\colorlet{nodeRed}{red!30}
+\colorlet{nodeBlue}{blue!30}
+\colorlet{nodeYellow}{yellow!30}
+
+\colorlet{arcoAlbero}{red}
+\colorlet{arcoIndietro}{teal} % brown -> teal
+\colorlet{arcoAvanti}{purple}
+\colorlet{arcoAttraversamento}{blue}
+
 \usepackage{set-math}
 
 \usepackage{set-lists}
 \usepackage{set-tikz}
 \usepackage{set-forest}
 \usepackage{set-tables}
+
 \usepackage{set-graphics}
+\captionsetup[figure]{format=hang, justification=raggedright, singlelinecheck=off}
+\captionsetup[subfigure]{format=hang, justification=raggedright, singlelinecheck=off}
+
 \usepackage{set-automata}
 \usepackage{set-quote}
 \usepackage{set-citations}
@@ -187,6 +201,34 @@
 
 % NOTE riadattate dal documento di Montresor (grazie 😌)
 \usepackage{macros}
+
+% https://tex.stackexchange.com/questions/345737/
+\makeatletter
+\newcommand\fs@booktabsruled{%
+	\def\@fs@cfont{\bfseries\strut}\let\@fs@capt\floatc@ruled
+	\def\@fs@pre{\hrule height\heavyrulewidth depth0pt \kern\belowrulesep}%
+	\def\@fs@mid{\kern\aboverulesep\hrule height\lightrulewidth\kern\belowrulesep}%
+	\def\@fs@post{\kern\aboverulesep\hrule height\heavyrulewidth\relax}%
+	\let\@fs@iftopcapt\iftrue
+}
+\makeatother
+
+\usepackage{float}
+\newfloat{algorithm}{h}{alg}[section]
+\floatname{algorithm}{Algoritmo}
+
+\floatstyle{booktabsruled}
+\restylefloat{algorithm}
+
+% NOTE specifica la slide dove è presente l'algoritmo
+\newcommand\slide[2]{%
+	\fbox{#1/#2}%
+}
+
+% NOTE per avere i parametri allineati a destra con un box di dimensione pari alla stringa più lunga
+\usepackage{eqparbox}
+\NewDocumentCommand{\params}{ mo }
+	{ \tcp{\eqparbox{params}{\(#1\):} #2}\vspace{-3pt} }
 
 % NOTE per accertarmi di aver caricato il prambolo
 \def\preambleloaded{Precompiled preamble loaded.}

@@ -1,34 +1,30 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption[Ordinamento topologico di un grafo]{}
 \fi
 
+\BlankLine
+\tcp{ritorna una pila in cui il primo elemento è il primo el.\ dell'ordinamento}
 \prototype{\Stack \topSort{\Graph \(G\)}}{
 
 	\BlankLine
-	\tcp{inizializzazione}
-	\Array{\Bool} \(visited\) \Assign \new \Array{\Bool}{1}{G.\setSize}\;
+	\Stack \(S\) \Assign \stackConstructor\;
+
+	\BlankLine
+	\Array{\Bool} \(visited\) \Assign \new \Array{\Bool}{1}{G.\setSize}
+
 	\lForEach{\(u \in G.\VV\)}{
-		\ArrayCall{visited}{u} \Assign \False\;
+		\(visited[u]\) \Assign \False
 	}
 
 	\BlankLine
-	\ForEach{\(u \in G.\VV\)}{
-		\tcp{per ogni nodo del grafo}
+	\ForEach(\tcp*[h]{per ogni nodo del grafo}){\(u \in G.\VV\)}{
 
-		\BlankLine
-		\If{\Not \ArrayCall{visitato}{u}}{
-			\tcp{se non l'hai visitato}
+		\If(\tcp*[h]{se non l'ho visitato}){\Not \(visitato[u]\)}{
 
 			\BlankLine
 			\tcp{effettua una chiamata ricorsiva}
@@ -40,29 +36,7 @@
 	\Return \Stack\;
 }
 
-\BlankLine
-\tcp{restituisce l'ordinamento topologico dei nodi di un DAG}
-\tcp{questo algoritmo funziona partendo da qualsiasi nodo}
-\prototype{\Int \topSortdfs{\Graph \(G\), \Node \(u\), \Array{\Bool} \(visitato\), \Array{\Node} \Stack \(S\)}}{
-	\ArrayCall{visitato}{u} \Assign \True \Comment*[l]{imposta il nodo come visitato}
-
-	\BlankLine
-	\ForEach{\(v \in G.\adj{u}\)}{
-		\tcp{è una grafo diretto aciclico quindi non ho bisogno di ricordare da dove sono venuto}
-		\If{\Not \ArrayCall{visitato}{v}}{
-			\tcp{effettua una visita in profondità}
-			\(i\) \Assign \topSortdfs{G, u, visitato, S}\;
-		}
-	}
-
-	\BlankLine
-	\(S.\stackPush\) \Comment*[l]{aggiungi il nodo in testa alla pila}
-	\tcp{quando ho terminato tutte le chiamate ricorsive l'algoritmo mi restituirà l'ordine topologico dei nodi del grafo dato in input, il nodo viene messo in testa in modo tale che si trovi prima dei nodi che i suoi archi puntano, ossia i suoi discendenti}
-}
-
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi
