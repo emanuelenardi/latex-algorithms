@@ -1,0 +1,49 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../preamble}
+
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Struttura dati \textsc{Set} implementata come vettore ordinato}
+\fi
+
+\prototype{\Set \setIntersection{\List \(A\), \List \(B\)}}{
+
+	\BlankLine
+	\List \(C\) \Assign \setConstructor \Comment*[l]{non ha bisogno della dimensione}
+
+	\tcp{creo puntatori alle liste}
+	\Pos \(p\) \Assign \(A\).\listHead\;
+	\Pos \(q\) \Assign \(B\).\listHead\;
+
+	\BlankLine
+	\While{\Not \(A.\listEnd{p}\) \And \(B.\listEnd{q}\)}{
+
+		\BlankLine
+		\uIf(\tcp*[h]{se gli elementi coincidono}){\(A.\listRead{p} \Equal B.\listRead{q}\)}{
+			\(C\).\listInsert{\(C\).\listTail, \(A\).\listRead{\(p\)}} \Comment*[l]{inseriscilo nell'intersezione}
+			\tcp{scorri i puntatori}
+			\(p\) \Assign \(A\).\listSucc{\(p\)}\;
+			\(q\) \Assign \(B\).\listSucc{\(q\)}\;
+		}
+		\uElseIf{\(A.\listRead{p} < B.\listRead{q}\)}{
+			\(p\) \Assign \(A\).\listSucc{\(p\)} \Comment*[l]{scorro puntatore di \(A\)}
+		}
+		\Altrimenti{
+			\(q\) \Assign \(B\).\listSucc{\(q\)} \Comment*[l]{scorro puntatore di \(B\)}
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\end{document}
+\fi

@@ -1,0 +1,37 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{restituiscelatex il grafo transposto}
+\prototype{\Array{\Int} \transpose{\Graph \(G\)}}{
+
+	\BlankLine
+	\Graph \(G^T\) \Assign \graphConstructor \Comment*[l]{creo il grafo}
+
+	\BlankLine
+	\ForEach{\(u \in G.\VV\)}{
+		\(G^T\).\nodeInsert{\(u\)} \Comment*[l]{aggiungo gli stessi nodi}
+	}
+
+	\BlankLine
+	\ForEach{\(u \in G.\VV\)}{
+		\ForEach{\(u \in G.\adj{u}\)}{
+			\(G^T\).\edgeInsert{\(v,u\)} \Comment*[l]{li aggiungo in ordine inverso}
+		}
+	}
+
+	\BlankLine
+	\tcp{restituisco il grafo trasposto}
+	\Return \(G^T\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

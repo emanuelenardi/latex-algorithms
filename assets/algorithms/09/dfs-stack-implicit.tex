@@ -1,0 +1,40 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{genera un albero breadth-first}
+\prototype{\dfsProc{\Graph G, \Node u, \Array{\Bool} visitato}}{
+	\(visitato[u] = \True\) \Comment*[l]{ho visitato il nodo}
+
+	\BlankLine
+	\lnl{dfs:pre-visita}%
+	\{ \alert{esamina il nodo \(u\) (caso \emph{pre}-visita)} \}
+
+	\BlankLine
+	\ForEach{\(u \in G.\adj{u}\)}{
+
+		\BlankLine
+		\{ \alert{esamina l'arco \((u,v)\)} \}
+
+		\BlankLine
+		\If(\tcp*[h]{se non l'ho ancora visitato}){\Not \(visitato[u]\)}{
+			\tcp{chiamata ricorsiva}
+			\depthFirstSearch{G, v, visitato} \Comment*[l]{lo visito}
+		}
+	}
+
+	\BlankLine
+	\lnl{dfs:post-visita}%
+	\{ \alert{esamina il nodo \(u\) (caso \emph{post}-visita)} \}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

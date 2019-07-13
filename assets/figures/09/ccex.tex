@@ -1,0 +1,33 @@
+\documentclass[tikz, multi=page, border=.5cm]{standalone}
+\usepackage{../tikz-preamble}
+
+\begin{document}
+\begin{tikzpicture}
+
+	\node[mynode, label={1}] at (0,2) (a) {a};
+	\node[mynode, label={1}] at (2,2) (b) {b};
+	\node[mynode, label={1}] at (4,2) (c) {c};
+	\node[mynode, label={below:1}] at (2,0) (d) {d};
+	\node[mynode, label={2}] at (6,2) (e) {e};
+	\node[mynode, label={2}] at (8,2) (f) {f};
+	\node[mynode, label={below:2}] at (6,0) (g) {g};
+	\node[mynode, label={below:2}] at (8,0) (h) {h};
+	\node[mynode, label={2}] at (10,1) (i) {i};
+	\node[mynode, label={3}] at (3,-2) (j) {j};
+	\node[mynode, label={3}] at (5,-2) (k) {k};
+
+	\draw[myedge,-] (a) edge node {} (b);
+	\draw[myedge,-] (a) edge node {} (d);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (d);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedge,-] (e) edge node {} (f);
+	\draw[myedge,-] (e) edge node {} (g);
+	\draw[myedge,-] (h) edge node {} (g);
+	\draw[myedge,-] (h) edge node {} (f);
+	\draw[myedge,-] (f) edge node {} (i);
+	\draw[myedge,-] (h) edge node {} (i);
+	\draw[myedge,-] (j) edge node {} (k);
+
+\end{tikzpicture}
+\end{document}

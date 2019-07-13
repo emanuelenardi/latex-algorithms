@@ -1,0 +1,31 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\prototype{\visitaAlbero{\Graph \(G\), \Int \(r\)}}{
+
+	\BlankLine
+	\Queue \(Q =\) \queueConstructor\;
+
+	\(Q\).\queueInsert{\(r\)}\;
+
+	\BlankLine
+	\While{\Not \(Q\).\setEmpty}{
+		\Node \(u =\) \(Q\).\queueRemove\;
+
+		\{ visita il nodo \(u\) \}\;
+
+		\BlankLine
+		\ForEach{\(u \in G.\adj{u}\)}{
+			\(Q\).\queueInsert{\(v\)}\;
+		}
+	}
+}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

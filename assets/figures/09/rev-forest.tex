@@ -1,0 +1,61 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\begin{page}
+\begin{tikzpicture}
+
+    \node[state] (a) {a};
+	\node[state] (b) [right = of a] {b};
+	\node[state] (c) [right = of b] {c};
+	\node[state] (f) [below = of c] {f};
+	\node[state] (e) [below = of b] {e};
+	\node[state] (d) [left = of e] {d};
+
+	\path[undi] (a) edge node {} (b);
+	\path[undi] (b) edge node {} (c);
+	\path[undi] (c) edge node {} (f);
+	\path[undi] (b) edge node {} (e);
+    \path[undi] (e) edge node {} (d);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+    \node[state] (a) {a};
+	\node[state] (b) [right = of a] {b};
+	\node[state] (c) [right = of b] {c};
+	\node[state] (f) [below = of c] {f};
+	\node[state] (e) [below = of b] {e};
+	\node[state] (d) [left = of e] {d};
+
+	\node[label, above = of b] (root) {root};
+
+	\path[undi] (a) edge node {} (b);
+	\path[undi] (b) edge node {} (c);
+	\path[undi] (c) edge node {} (f);
+	\path[undi] (b) edge node {} (e);
+    \path[undi] (e) edge node {} (d);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+    \node[state] (h) {h};
+	\node[state] (i) [below right = of h] {i};
+	\node[state] (g) [below left = of h] {g};
+
+	\path[undi] (h) edge node {} (i);
+	\path[undi] (h) edge node {} (g);
+
+\end{tikzpicture}
+\end{page}
+
+\end{document}

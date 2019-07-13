@@ -1,0 +1,205 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+\tikzset{
+	every label/.style={
+		font=\footnotesize
+	}
+}
+
+\begin{document}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0.5,0) (a) {a};
+	\node[mynoder] at (2,1.5) (b) {b};
+	\node[mynodeb] at (4,1.5) (c) {c};
+	\node[mynodeb] at (2,-1.5) (d) {d};
+	\node[mynodeb] at (4,-1.5) (e) {e};
+	\node[mynodeb] at (5.5,0) (f) {f};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (d);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (e) edge node {} (d);
+	\draw[myedge] (f) edge node {} (c);
+	\draw[myedge] (e) edge node {} (f);
+	\draw[myedge] (d) edge node {} (c);
+
+	\node[cc, circle, minimum size=1cm] at (0.5,0) (C1) {};
+	\node[cc, circle, minimum size=1cm] at (2,1.5) (C2) {};
+	\node[cc, ellipse, anchor=center, rotate around={-50:(3.8,-0.1)}, minimum width=3.4cm, minimum height=5.6cm] at (2.4,-3) (C3) {};
+
+	\draw[myedge, teal] (C1.north) to[bend left=20] node {} (C2.west);
+	\draw[myedge, teal] (C1.south) to[bend right=20] node {} (C3);
+	\draw[myedge, teal] (C2.north) to[bend left=30] node {} (C3.north west);
+
+	\path[use as bounding box] (-0.5,-2.5) rectangle (6.5, 2.5);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0.5,0) (a) {a};
+	\node[mynoder] at (2,1.5) (b) {b};
+	\node[mynodeb] at (4,1.5) (c) {c};
+	\node[mynodeb] at (2,-1.5) (d) {d};
+	\node[mynodeb] at (4,-1.5) (e) {e};
+	\node[mynodeb] at (5.5,0) (f) {f};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (d);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (e) edge node {} (d);
+	\draw[myedge] (f) edge node {} (c);
+	\draw[myedge] (e) edge node {} (f);
+	\draw[myedge] (d) edge node {} (c);
+
+	\node[cc, circle, minimum size=1cm, label={above left:$[1,12]$}] at (0.5,0) (C1) {};
+	\node[cc, circle, minimum size=1cm, label={above left:$[2,11]$}] at (2,1.5) (C2) {};
+	\node[cc, ellipse, anchor=center, rotate around={-50:(3.8,-0.1)}, minimum width=3.4cm, minimum height=5.6cm, label={below right:$[3,10]$}] at (2.4,-3) (C3) {};
+
+	\draw[myedge, teal] (C2.west) to[bend right=20] node {} (C1.north) ;
+	\draw[myedge, teal] (C3) to[bend left=20] node {} (C1.south);
+	\draw[myedge, teal] (C3.north west) to[bend right=30] node {} (C2.north);
+
+	\path[use as bounding box] (-0.5,-2.5) rectangle (6.5, 2.5);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+
+\begin{tikzpicture}
+
+	\node[mynode] at (0.5,0) (a) {a};
+	\node[mynode] at (2,1.5) (b) {b};
+	\node[mynode, label={[teal]right:$[3,10]$}] at (4,1.5) (c) {c};
+	\node[mynode, label={below left:$[7,8]$}] at (2,-1.5) (d) {d};
+	\node[mynode, label={above left:$[4,9]$}] at (4,-1.5) (e) {e};
+	\node[mynode, label={above:$[5,6]$}] at (5.5,0) (f) {f};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (d);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (e) edge node {} (d);
+	\draw[myedge] (f) edge node {} (c);
+	\draw[myedge] (e) edge node {} (f);
+	\draw[myedge] (d) edge node {} (c);
+
+	\node[cc, minimum size=1cm,circle,label={[teal]above left:$[1,12]$}] at (0.5,0) (C1) {};
+	\node[cc, minimum size=1cm,circle,label={[teal]above left:$[2,11]$}] at (2,1.5) (C2) {};
+	\node[cc, rotate around={-50:(3.8,-0.1)}, minimum width=3.4cm, minimum height=5.6cm,ellipse,anchor=center] at (2.4,-3) (C3) {};
+
+	\draw[myedge, teal] (C1.north) to[bend left=20] node {} (C2.west) ;
+	\draw[myedge, teal] (C1.south) to[bend right=20] node {}  (C3);
+	\draw[myedge, teal] (C2.north) to[bend left=30] node {} (C3.north west);
+
+	\path[use as bounding box] (-0.5,-2.5) rectangle (6.5, 2.5);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0.5,0) (a) {a};
+	\node[mynode] at (2,1.5) (b) {b};
+	\node[mynode, label={right:$[2,7]$}] at (4,1.5) (c) {c};
+	\node[mynode, label={below left:$[4,5]$}] at (2,-1.5) (d) {d};
+	\node[mynode, label={above left:$[3,6]$}] at (4,-1.5) (e) {e};
+	\node[mynode, label={[teal]above:$[1,8]$}] at (5.5,0) (f) {f};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (d);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (e) edge node {} (d);
+	\draw[myedge] (f) edge node {} (c);
+	\draw[myedge] (e) edge node {} (f);
+	\draw[myedge] (d) edge node {} (c);
+
+	\node[cc, minimum size=1cm,circle,label={[teal]above left:$[9,12]$}] at (0.5,0) (C1) {};
+	\node[cc, minimum size=1cm,circle,label={[teal]above left:$[10,11]$}] at (2,1.5) (C2) {};
+	\node[cc, rotate around={-50:(3.8,-0.1)}, minimum width=3.4cm, minimum height=5.6cm,ellipse,anchor=center] at (2.4,-3) (C3) {};
+
+	\draw[myedge, teal] (C1.north) to[bend left=20] node {} (C2.west) ;
+	\draw[myedge, teal] (C1.south) to[bend right=20] node {}  (C3);
+	\draw[myedge, teal] (C2.north) to[bend left=30] node {} (C3.north west);
+
+	\path[use as bounding box] (-0.5,-2.5) rectangle (6.5, 2.5);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0.5,0) (a) {a};
+	\node[mynode] at (2,1.5) (b) {b};
+	\node[mynode, label={right:$[2,7]$}] at (4,1.5) (c) {c};
+	\node[mynode, label={below left:$[4,5]$}] at (2,-1.5) (d) {d};
+	\node[mynode, label={above left:$[3,6]$}] at (4,-1.5) (e) {e};
+	\node[mynode, label={[teal]above:$[1,8]$}] at (5.5,0) (f) {f};
+
+	\draw[myedge] (b) edge node {} (a);
+	\draw[myedge] (d) edge node {} (a);
+	\draw[myedge] (c) edge node {} (b);
+	\draw[myedge] (e) edge node {} (c);
+	\draw[myedge] (d) edge node {} (e);
+	\draw[myedge] (c) edge node {} (f);
+	\draw[myedge] (f) edge node {} (e);
+	\draw[myedge] (c) edge node {} (d);
+
+	\node[cc, minimum size=1cm,circle,label={[teal]above left:$[9,12]$}] at (0.5,0) (C1) {};
+	\node[cc, minimum size=1cm,circle,label={[teal]above left:$[10,11]$}] at (2,1.5) (C2) {};
+	\node[cc, rotate around={-50:(3.8,-0.1)}, minimum width=3.4cm, minimum height=5.6cm,ellipse,anchor=center] at (2.4,-3) (C3) {};
+
+	\draw[myedge, teal] (C1.north) to[bend left=20] node {} (C2.west);
+	\draw[myedge, teal] (C1.south) to[bend right=20] node {}  (C3);
+	\draw[myedge, teal] (C2.north) to[bend left=30] node {} (C3.north west);
+
+	\path[use as bounding box] (-0.5,-2.5) rectangle (6.5, 2.5);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0.5,0) (a) {a};
+	\node[mynoder] at (2,1.5) (b) {b};
+	\node[mynodeb] at (4,1.5) (c) {c};
+	\node[mynodeb] at (2,-1.5) (d) {d};
+	\node[mynodeb] at (4,-1.5) (e) {e};
+	\node[mynodeb] at (5.5,0) (f) {f};
+
+	\draw[myedge] (b) edge node {} (a);
+	\draw[myedge] (d) edge node {} (a);
+	\draw[myedge] (c) edge node {} (b);
+	\draw[myedge] (e) edge node {} (c);
+	\draw[myedge] (d) edge node {} (e);
+	\draw[myedge] (c) edge node {} (f);
+	\draw[myedge] (f) edge node {} (e);
+	\draw[myedge] (c) edge node {} (d);
+
+	\node[cc, minimum size=1cm,circle] at (0.5,0) (C1) {};
+	\node[cc, minimum size=1cm,circle] at (2,1.5) (C2) {};
+	\node[cc, rotate around={-50:(3.8,-0.1)}, minimum width=3.4cm, minimum height=5.6cm,ellipse,anchor=center] at (2.4,-3) (C3) {};
+
+	\draw[myedge, teal] (C2.west) to[bend right=20] node {} (C1.north);
+	\draw[myedge, teal] (C3) to[bend left=20] node {} (C1.south);
+	\draw[myedge, teal] (C3.north west) to[bend right=30] node {} (C2.north);
+
+	\path[use as bounding box] (-0.5,-2.5) rectangle (6.5, 2.5);
+
+\end{tikzpicture}
+\end{page}
+
+\end{document}

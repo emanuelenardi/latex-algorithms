@@ -1,0 +1,70 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{classifica i lati di un grafo}
+\prototype{\dfsSchema{\Graph \(G\), \Node \(u\), \Int \(\&time\), \Array{\Int} \(dt\), \Array{\Int} \(ft\)}}{
+
+	\params{time}[contatore]
+	\params{dt}[tempo di scoperta]
+	\params{ft}[tempo di fine]
+
+	\BlankLine
+	esamina il nodo \(u\) (caso \emph{pre}-visita)
+
+	\BlankLine
+	\Increment{time} \Comment*[l]{incremento il contatore}
+	\(dt[u]\) \Assign \(time\) \Comment*[l]{lo memorizzo nel vettore di scoperta}
+
+	\BlankLine
+	\tcp{effettuo una visita in profondità}
+	\ForEach{\(u \in G.\adj{u}\)}{
+
+		\BlankLine
+		\{ \textcolor{black}{esamina l'arco \((u,v)\) (qualsiasi)} \} \Comment*[l]{qui si sviluppa la logica dell'algoritmo}
+
+		\BlankLine
+		\uIf(\tcp*[h]{non ho ancora esaminato il nodo}){\(dt[v] \Equal 0\)}{
+			\{ \textcolor{arcoAlbero}{esamina l'arco \((u,v)\) (albero)} \}\;
+
+			\BlankLine
+			\dfsSchema{g,v} \Comment*[l]{effettuo la chiamata ricorsiva}
+			\BlankLine
+
+		}
+		\uElseIf{\(dt[u] < dt[v]\) \And \(ft[v] \Equal 0\)}{
+			\tcp{se raggiungo un mio discendente e non ho ancora terminato la mia visita, allora ho trovato un arco \emph{all'indietro}}
+			\{ \textcolor{arcoIndietro}{esamina l'arco \((u,v)\) (indietro)} \}
+			\BlankLine
+
+		}
+		\eSea{\(dt[u] < dt[v]\) \And \(ft[v] \Neq 0\)}{
+			\tcp{se raggiungo un mio discendente e ho terminato la mia visita, allora ho trovato un arco \emph{in avanti}}
+			\{ \textcolor{arcoAvanti}{esamina l'arco \((u,v)\) (avanti)} \}
+			\BlankLine
+
+		}{
+			\tcp{l'ultimo caso rimanente}
+			\{ \textcolor{arcoAttraversamento}{esamina l'arco \((u,v)\) (attraversamento)} \}
+		}
+	}
+
+
+	\BlankLine
+	\{ visita il nodo \(u\) (\emph{post}-visita) \}
+
+	\BlankLine
+	\Increment{time} \tcp{aggiorno il contatore}
+	\(ft[u]\) \Assign \(time\) \Comment*[l]{lo memorizzo nel vettore di fine}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

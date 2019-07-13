@@ -1,0 +1,36 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{restituisce l'ordinamento topologico dei nodi di un DAG}
+\prototype{\Int \topSortdfs{\Graph \(G\), \Node \(u\), \Array{\Bool} \(visitato\), \Stack \(S\)}}{
+
+	\BlankLine
+	\(visitato[u]\) \Assign \True \Comment*[l]{imposta il nodo come visitato}
+
+	\BlankLine
+	\ForEach{\(v \in G.\adj{u}\)}{
+		\tcp{è una grafo diretto aciclico quindi non ho bisogno di ricordarmi da dove sono venuto}
+		\If{\Not \(visitato[v]\)}{
+
+			\BlankLine
+			\tcp{effettua una visita in profondità}
+			\(i\) \Assign \topSortdfs{G, u, visitato, S}\;
+		}
+	}
+
+	\BlankLine
+	\(S.\stackPush\) \Comment*[l]{aggiungi il nodo in testa alla pila}
+}
+
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

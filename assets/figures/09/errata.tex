@@ -1,0 +1,138 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+\begin{document}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (4, 0) (a) {a};
+	\node[mynode] at (0,-3) (b) {b};
+	\node[mynode] at (2,-2) (c) {c};
+	\node[mynode] at (6,-2) (d) {d};
+	\node[mynode] at (8,-2) (e) {e};
+	\node[mynode] at (4,-4) (f) {f};
+	\node[mynode] at (6,-4) (g) {g};
+	\node[mynode] at (8,-4) (h) {h};
+	\node[mynode] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ a \}};
+
+	\draw[myedge,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedge,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynoder] at (4, 0) (a) {a};
+	\node[mynode] at (0,-3) (b) {b};
+	\node[mynode] at (2,-2) (c) {c};
+	\node[mynode] at (6,-2) (d) {d};
+	\node[mynode] at (8,-2) (e) {e};
+	\node[mynode] at (4,-4) (f) {f};
+	\node[mynode] at (6,-4) (g) {g};
+	\node[mynode] at (8,-4) (h) {h};
+	\node[mynode] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ c, f, e \}};
+
+	\draw[myedger,-] (a) edge node {} (c);
+	\draw[myedger,-] (a) edge node {} (e);
+	\draw[myedger,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (4, 0) (a) {a};
+	\node[mynode] at (0,-3) (b) {b};
+	\node[mynoder] at (2,-2) (c) {c};
+	\node[mynode] at (6,-2) (d) {d};
+	\node[mynode] at (8,-2) (e) {e};
+	\node[mynode] at (4,-4) (f) {f};
+	\node[mynode] at (6,-4) (g) {g};
+	\node[mynode] at (8,-4) (h) {h};
+	\node[mynode] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ f, e, b, a, d \}};
+
+	\draw[myedger,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedge,-] (a) edge node {} (f);
+	\draw[myedger,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedger,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (4, 0) (a) {a};
+	\node[mynode] at (0,-3) (b) {b};
+	\node[mynode] at (2,-2) (c) {c};
+	\node[mynode] at (6,-2) (d) {d};
+	\node[mynode] at (8,-2) (e) {e};
+	\node[mynoder] at (4,-4) (f) {f};
+	\node[mynode] at (6,-4) (g) {g};
+	\node[mynode] at (8,-4) (h) {h};
+	\node[mynode] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ e, b, a, d, a, b, d, g \}};
+
+	\draw[myedge,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedger,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedger,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedger,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedger,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\end{document}

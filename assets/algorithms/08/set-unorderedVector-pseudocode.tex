@@ -1,0 +1,33 @@
+\documentclass[varwidth=6in]{standalone}
+\usepackage{../preamble}
+
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\NoCaptionOfAlgo
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+\caption{Struttura dati \textsc{Set} implementata come vettore non ordinato}
+\fi
+
+\prototype{\Set \setDifference{\Set \(A\), \Set \(B\)}}{
+	\Set \(C \Assign\) \setConstructor \Comment*[l]{non ha bisogno della dimensione}
+
+	\BlankLine
+	\From{\(s \in A\)}{
+		\tcp{se non è contenuto in \(B\)}
+		\If{\Not \(B.\setContains{s}\)}{
+			\(C.\setInsert{s}\) \Comment*[l]{aggiungilo}
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\algorithmstyle{tworuled}
+\RestoreCaptionOfAlgo
+\end{document}
+\fi
