@@ -16,12 +16,6 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 
 > Gli elaborati presenti in questa repository sono basati sulle trasparenze e gli appunti del Prof.re Alberto Montresor, i quali sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
 
-> Quest'opera è rilasciata sotto licenza [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), il che vuol dire — in breve — che:
-> - puoi condividere questo lavoro
-> - devi attribuirne a me la creazione
-> - puoi creare lavori derivati (come io ho fatto dagli appunti del professore)
-> - non puoi venderli, né il tuo lavoro derivato può essere venduto per denaro
-
 ## Contenuto 📖
 
 - Tutti i capitoli
@@ -38,7 +32,7 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 	- &nbsp;&nbsp;__9__ ✔️ Grafi
 	- __10__ ❌ Strutture dati speciali
 	- __11__ ✔️ "Scelta"
-	- __12__ ❌ Dividi et Impera
+	- __12__ ✔️ Divide et Impera
 	- __13__ ✔️ Programmazione Dinamica
 	- __14__ ✔️ Algoritmi ingordi
 	- __15__ ✔️ Ricerca locale
