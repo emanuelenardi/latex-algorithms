@@ -1,17 +1,11 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
+\begin{document}
 \begin{algorithm}[H]
-\caption{Specifica \textsc{Dictionary}}
+% \caption{Specifica dizionario}
 \fi
 
 Un dizionario è una struttura dati che rappresenta il concetto matematico di \emph{relazione univoca} o associazione chiave-valore.
@@ -20,22 +14,17 @@ Un dizionario è una struttura dati che rappresenta il concetto matematico di \e
 \dictionaryConstructor
 
 \BlankLine
-\Item \dictLookup{\Item \(k\)} \Comment*[r]{rest. il valore associato alla chiave \(k\), \Nil altrimenti}
+\Item \dictLookup{\Item \(k\)} \Comment*[r]{restituisce il valore associato alla chiave \(k\), \Nil altrimenti}
 \Item \dictInsert{\Item \(k\), \Item \(v\)} \Comment*[r]{associa il valore \(v\) alla chiave \(k\)}
 \dictRemove{\Item \(k\)} \Comment*[r]{rimuove l'associazione della chiave \(k\)}
 
 \ifstandalone
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
+\end{document}
 \fi
 
-\end{document}
-
-\NoCaptionOfAlgo
-\begin{algorithm}[H]
-\caption[Struttura dati dizionario]{}
-
+\iffalse
+% NOTE definizione alternativa
 Struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una collezione non ordinata di elementi senza valori ripetuti.
 Rappresenta i concetto matematico di \emph{relazione univoca} \(R\colon D \to C\), o associazione chiave-valore. Dove \(D\) rappresenta il dominio di elementi detti \emph{chiave}, mentre \(C\) rappresenta il codominio degli elementi detti \emph{valori}.
 Ogni \emph{valore} può essere associato a più \emph{chiavi}, ma non il contrario.
@@ -46,6 +35,4 @@ Ogni \emph{valore} può essere associato a più \emph{chiavi}, ma non il contrar
 \dictInsert{\Item k, \Item v} \Comment*[r]{associa il valore \(v\) alla chiave \(k\), sovrascrive se già presente}
 
 \dictRemove{\Item k} \Comment*[r]{rimuove l'associazione della chiave \(k\)}
-
-\end{algorithm}
-\RestoreCaptionOfAlgo
+\fi

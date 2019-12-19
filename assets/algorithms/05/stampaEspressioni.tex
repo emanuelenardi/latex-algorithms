@@ -1,18 +1,12 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption[Stampa espressioni con operatori binari]{}
-\begin{multicols}{2}
 \fi
+\begin{minipage}{.5\textwidth}
 
 \prototype{\Int \stampaEspressioni{\Tree \(t\)}}{
 	\eIf{\(t.\treeLeft \Equal \Nil\) \And \(t.\treeRight \Equal \Nil\)}{
@@ -32,11 +26,13 @@
 	}
 }
 
-\ifstandalone
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+\ifFigureOfAlgo
 \begin{minipage}[t][4.5cm]{.85\linewidth}
 	\vfill\centering
 	\begin{center}
-		\begin{forest} circled tree
+		\begin{forest} circled math tree
 		[*[+[4][9]][+[3][4]]]
 		\end{forest}
 	\end{center}
@@ -45,10 +41,8 @@
 \end{minipage}
 \fi
 
+\end{minipage}
 \ifstandalone
-\end{multicols}
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

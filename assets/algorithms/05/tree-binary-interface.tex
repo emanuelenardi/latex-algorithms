@@ -1,17 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
+\begin{document}
 \begin{algorithm}[H]
-\caption{Specifica \textsc{Binary Tree}}
 \fi
 
 \BlankLine
@@ -46,8 +39,5 @@
 
 \ifstandalone
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

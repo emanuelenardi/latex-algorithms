@@ -20,7 +20,7 @@
 
 	\BlankLine
 	\ForEach(\tcp*[h]{visito tutti i suoi vicini}){\(v \in G.\adj{u} - \{p\}\)}{
-		\tcp{\(G.\adj{u} - \{p\}\): non considero il nodo da cui provengo}
+		\tcp{\(G.\adj{u} - \{p\}\): non considero il nodo da cui provengo (è un grafo orientato)}
 
 		\BlankLine
 		\uIf(\tcp*[h]{ho già visitato il nodo}){\(visited[v]\)}{

@@ -1,18 +1,13 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Algoritmo di Dijkstra]{}
 \fi
 
-\prototype{\Array{\Int}, \Array{\Int} \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
+(\Array{\Int}, \Array{\Int})\prototype{ \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
 
 	\BlankLine
 	\lnl{dijkstra:init}%
@@ -20,30 +15,32 @@
 	\alert{ \(S\).\heapInsert{\(s\), \(0\)} }\;
 
 	\BlankLine
-	\While(\Comment*[h]{\(\Omicron(n)\)}){\Not \(S.\setEmpty{}\)}{
+	\While(\Comment*[h]{\(\Omicron(n)\)}){\Not \(S.\setEmpty\)}{
 
 		\lnl{dijkstra:remove}%
 		\tcp{\(\Omicron(n)\) vettore ordinato / \(\Omicron(\log n)\) heap binario}
 		\alert{\Int \(u\) \Assign \(S\).\heapDeleteMin }\;
-		\ArrayCall{b}{u} \Assign \False\;
-	%
+		\(b[u]\) \Assign \False\;
+
 		\BlankLine
 		\ForEach{\( v \in G.\adj{u} \)}{
-			\If{\( \ArrayCall{d}{u} + G.\weight{u,v} < \ArrayCall{d}{v} \)}{
+			\If{\(d[u] + G.\weight{u,v} < d[v] \)}{
 
 				\BlankLine
-				\eSea{\(\Not \ArrayCall{b}{v}\)}{
-					\lnl{dijkstra:add}%
+				\eIf{\Not \(b[v]\)}{
 					\tcp{\(\Omicron(1) \cdot n\) vettore ordinato / \(\Omicron(\log n) \cdot n\) heap binario}
-					% \alert{ \(S.\heapInsert{\(v\), \(\ArrayCall{d}{u} + G.\weight{u,v}\)}\)} \;
-					\ArrayCall{b}{v} \Assign \True\;
+					\lnl{dijkstra:add}%
+					\alert{ \(S.\heapInsert{\(v\), \(d[u] + G.\weight{u,v}\)}\)} \;
+					\(b[v]\) \Assign \True\;
 				}{
-					\lnl{dijkstra:update}%
 					\tcp{\(\Omicron(1) \cdot m\) vettore ordinato / \(\Omicron(\log n) \cdot m\) heap binario}
-					% \alert{ \(S\).\heapDecrease{\(v\), \(\ArrayCall{d}{u} + G.\weight{u,v}\)} }\;
+					\lnl{dijkstra:update}%
+					\alert{ \(S\).\heapDecrease{\(v\), \(d[u] + G.\weight{u,v}\)} }\;
 				}
-				\ArrayCall{T}{v} \Assign \(u\)\;
-				\ArrayCall{d}{v} \Assign \(\ArrayCall{d}{u} + G.\weight{u,v}\)\;
+
+				\BlankLine
+				\(T[v]\) \Assign \(u\)\;
+				\(d[v]\) \Assign \(d[u] + G.\weight{u,v}\)\;
 			}
 		}
 	}
@@ -52,6 +49,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

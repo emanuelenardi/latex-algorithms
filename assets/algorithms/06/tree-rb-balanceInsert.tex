@@ -1,17 +1,17 @@
-\documentclass[varwidth=6in, border={2 0 0 0}]{standalone}
-\usepackage{../preamble}
+%&../preamble
+
+% \documentclass[varwidth=6in, border={2 0 0 0}]{standalone}
+% \usepackage{../preamble}
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption[Bilanciamento dell'albero tramite rotazione a sinistra]{}
 \fi
 
 \BlankLine
-\tcp{bilanciamento di un \textsc{Red-Black Tree} in seguito all'inserimento di un nodo \RED}
+% \tcp{bilanciamento di un \textsc{Red-Black Tree} in seguito all'inserimento di un nodo \RED}
 \prototype{\treeFixInsert{\Tree t}}{
 
 	\BlankLine
@@ -32,28 +32,38 @@
 		\uIf{\(p \Equal \Nil\)}{
 			\(t.\varColor \Assign \BLACK\)\;
 			\(t \Assign \Nil\) \Comment*[l]{fine}
+			\BlankLine
+
 		}%
 		\lnl{case:black-father}
 		\uElseIf{\(p.\varColor \Equal \BLACK\)}{
 			\(t \Assign \Nil\) \Comment*[l]{fine}
+			\BlankLine
+
 		}%
 		\lnl{case:red-aunt}
 		\uElseIf{\(z.\varColor \Equal \RED\)}{
 			\(p.\varColor \Assign z.\varColor \Assign \BLACK\)\;
 			\(n.\varColor \Assign \RED\)\;
 			\(t \Assign n\) \Comment*[l]{passo il problema al nonno}
-		}\Altrimenti{
+			\BlankLine
+
+		}\Else{
 
 			\BlankLine
 			\lnlset{right-left}{4a}%
 			\uIf{(\(t \Equal p.\varRight\)) \And (\(p \Equal n.\varLeft\))}{
 				\leftRotation{\(p\)}\;
 				\(t \Assign p\) \Comment*[l]{passo il problema al padre}
+				\BlankLine
+
 			}%
 			\lnlset{left-right}{4b}%%
-			\eSea{(\(t \Equal p.\varLeft\)) \And (\(p \Equal n.\varRight\))}{
+			\eIf{(\(t \Equal p.\varLeft\)) \And (\(p \Equal n.\varRight\))}{
 				\rightRotation{\(p\)}\;
 				\(t \Assign p\) \Comment*[l]{passo il problema al padre}
+				\BlankLine
+
 			}{%
 				\BlankLine
 				\lnlset{left-left}{5a}%
@@ -76,6 +86,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
 \end{document}
+\fi

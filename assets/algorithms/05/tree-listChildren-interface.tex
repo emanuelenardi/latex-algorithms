@@ -1,24 +1,18 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
+\begin{document}
 \begin{algorithm}[H]
-\caption{Implementazione \textsc{Tree} \enquote{primo figlio, prossimo fratello} in pseudocodice}
-\begin{multicols}{2}
 \fi
 
 \Tree \varParent \Comment*[r]{Riferimento al padre}
 \Tree \varChild \Comment*[r]{Riferimento al primo figlio}
 \Tree \varSibling \Comment*[r]{Riferimento al prossimo fratello}
 \Item \varValue \Comment*[r]{Valore memorizzato nel nodo}
+
+\begin{minipage}{.5\textwidth}
 
 \BlankLine
 \prototype{\Tree \treeConstructor{\Item \(v\)}}{
@@ -39,16 +33,15 @@
 }
 
 \BlankLine
-\prototype{\insertChild{\Tree \(t\)}}{
+\prototype{\insertSibling{\Tree \(t\)}}{
 	\(t.\varParent \Assign \varParent\)\;
 	\tcp{inserisci \(t\) prima dell'attuale prossimo fratello}
 	\(t.\varSibling \Assign \varSibling\)\;
 	\(\varSibling \Assign t\)\;
 }
 
-\ifstandalone
-\columnbreak
-\fi
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
 
 \BlankLine
 \prototype{\deleteChild}{
@@ -65,6 +58,7 @@
 }
 
 \BlankLine
+\tcp{metodo ausiliare}
 \prototype{\treeDelete{\Tree \(t\)}}{
 	\Tree \(u\) \Assign \(t\).\treeChild\;
 
@@ -76,13 +70,9 @@
 	}
 }
 
-\vspace{85pt}\null
+\end{minipage}
 
 \ifstandalone
-\end{multicols}
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

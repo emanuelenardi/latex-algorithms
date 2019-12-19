@@ -1,20 +1,13 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
-\setcounter{section}{1}
-% \setcounter{algocf}{5}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption{}
 \fi
 
+\tcp{ordina i sottovettori}
 \prototype{\mergeSort{\Item{} A, \Int primo, \Int ultimo}}{
 
 	\BlankLine
@@ -22,10 +15,12 @@
 		\Int \(mezzo \Assign \floor{\frac{primo + ultimo}{2}}\)\;
 		\mergeSort{A, primo, mezzo}\;
 		\mergeSort{A, mezzo+1, ultimo}\;
-		\merge{A, primo, ultimo, mezzo}\;
+		\merge{A, primo, ultimo, mezzo} \Comment*[l]{unisce le soluzioni}\;
 	}
 }
 
+\BlankLine
+\tcp{effettua l'ordinamento dei sotto-vettori}
 \prototype{\merge{\Item A, \Int primo, \Int ultimo, \Int mezzo}}{
 	\Int i, j, k, h\;
 
@@ -41,7 +36,7 @@
 	\While{\(i \leqslant mezzo\) \And \(j \leqslant ultimo\)}{
 
 		\BlankLine
-		\eSea{\(A[i] \leqslant A[j]\)}{
+		\eIf{\(A[i] \leqslant A[j]\)}{
 			\tcp{l'elemento è gia ordinato}
 			\(B[k] \Assign A[i]\)\;
 			\Increment{i}\;
@@ -110,5 +105,5 @@
 
 \ifstandalone
 \end{algorithm}
-\fi
 \end{document}
+\fi

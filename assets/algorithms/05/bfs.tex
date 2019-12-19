@@ -1,22 +1,16 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption[Stampa espressioni con operatori binari]{}
-\begin{multicols}{2}
 \fi
+\begin{minipage}{.5\textwidth}
 
 \prototype{\bfsProc{\Tree \(t\)}}{
 	\Queue \(Q \Assign\) \queueConstructor\;
-	\(Q.\queueInsert{t}\)\; \Comment*[l]{inserisci la radice}
+	\(Q.\queueInsert{t}\) \Comment*[l]{inserisci la radice}
 
 	\BlankLine
 	\While{\Not \(Q.\queueEmpty\)}{
@@ -35,15 +29,17 @@
 
 			\BlankLine
 			\tcp{metto in coda il figlio}
-			\(Q.\queueRemove{u}\)\;
+			\(Q.\queueInsert{u}\)\;
 			\tcp{passo al figlio destro}
-			\(u \Assign u.\treeChild\)\;
+			\(u \Assign u.\treeSibling\)\;
 		}
 	}
 }
 
-\ifstandalone
-% \fbox{
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+
+\ifFigureOfAlgo
 \begin{minipage}[t][7.5cm]{.85\linewidth}
 	\vfill\centering
 	\begin{center}
@@ -54,13 +50,10 @@
 	Sequenza: {\scshape a b e c d f g}
 	\vfill\null
 \end{minipage}
-% }
 \fi
 
+\end{minipage}
 \ifstandalone
-\end{multicols}
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

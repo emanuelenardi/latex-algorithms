@@ -1,20 +1,12 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-% \begin{minipage}{\linewidth}
+\begin{document}
 \begin{algorithm}[H]
-\caption[Schema per visita in profondità]{}
-\begin{multicols}{2}
-% \fbox{\begin{minipage}{.4\textwidth}
 \fi
+\begin{minipage}[t]{.5\linewidth}
 
 \BlankLine
 \prototype{\dfsSchema{\Tree \(t\)}}{
@@ -22,56 +14,54 @@
 
 		\BlankLine
 		\tcp{pre-order visit}
-		\Print \(t\)
+		\Print \(t\)\;
 
 		\BlankLine
 		\dfsProc{\(t.\treeLeft\)}\;
 
 		\BlankLine
 		\tcp{in-order visit}
-		\Print \(t\)
+		\Print \(t\)\;
 
 		\BlankLine
 		\dfsProc{\(t.\treeRight\)}\;
 
 		\BlankLine
 		\tcp{post-order visit}
-		\Print \(t\)
+		\Print \(t\)\;
 	}
 }
 
-\columnbreak
+\end{minipage}%
+\begin{minipage}[t]{.5\linewidth}
 
-% \fbox{
+\ifFigureOfAlgo
 \begin{minipage}[t][5cm]{.5\linewidth}
 	\centering
 	\vfill
-	\begin{forest} circled
-		[\textsc{a}
-			[\textsc{b}
-				[\textsc{c}]
-				[\textsc{d}]
+	\begin{forest} circled, for tree={font=\scshape}
+		[a
+			[b
+				[c]
+				[d]
 			]
-			[\textsc{e}
-				[\textsc{f}]
-				[\textsc{g}]
+			[e
+				[f]
+				[g]
 			]
 		]
 	\end{forest}
 	\vfill
-	\begin{tabular}{@{} l c @{} c @{} c @{} c @{} c @{} c @{} c @{}  @{}}\small
-		\emph{pre}-visita & \textsc{a} & \textsc{b} & \textsc{c} & \textsc{d} & \textsc{e} & \textsc{f} & \textsc{g}\\
-		\emph{in}-visita & \textsc{c} & \textsc{b} & \textsc{d} & \textsc{a} & \textsc{f} & \textsc{e} & \textsc{g}\\
-		\emph{post}-visita & \textsc{c} & \textsc{d} & \textsc{b} & \textsc{f} & \textsc{g} & \textsc{e} & \textsc{a}\\
+	\begin{tabular}{@{} l *{7}{ >{\scshape}c @{} } @{}}\small
+		\emph{pre}-visita  & a & b & c & d & e & f & g \\
+		\emph{in}-visita   & c & b & d & a & f & e & g \\
+		\emph{post}-visita & c & d & b & f & g & e & a \\
 	\end{tabular}
 \end{minipage}
-% }
-
-\ifstandalone
-\end{multicols}
-\end{algorithm}
-% \end{minipage}
-\RestoreCaptionOfAlgo
 \fi
 
+\end{minipage}
+\ifstandalone
+\end{algorithm}
 \end{document}
+\fi

@@ -1,17 +1,14 @@
-\documentclass[varwidth=6in]{standalone}
-\usepackage{../preamble}
+%&../preamble
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-% \caption[]{}
 \fi
 
 \BlankLine
-\tcp{bilanciamento di un \textsc{Red-Black Tree} in seguito alla rimozione di un nodo \RED}
+% \tcp{bilanciamento di un \textsc{Red-Black Tree} in seguito alla rimozione di un nodo \RED}
 \prototype{\treeFixDelete{\Tree t}}{
 
 	\BlankLine
@@ -24,7 +21,7 @@
 		\Tree \(p \Assign t.\varParent\) \Comment*[r]{riferimento al padre}
 
 		\BlankLine
-		\eSea{\(t \Equal p.\varLeft\)}{
+		\eIf{\(t \Equal p.\varLeft\)}{
 
 			\BlankLine
 			\Tree \(f \Assign p.\varRight\) \Comment*[r]{riferimento al fratello}
@@ -33,30 +30,37 @@
 
 			\BlankLine
 			\lnl{caso1}%
-			\eSea{\(f.\varColor \Equal \RED\)}{
+			\eIf{\(f.\varColor \Equal \RED\)}{
 				\(p.\varColor \Assign \RED\)\;
 				\(f.\varColor \Assign \BLACK\)\;
 				\leftRotation{\(p\)}\;
 				\tcp{t viene lasciato inalterato, quindi si ricade nei casi 2, 3, 4}
+				\BlankLine
+
 			}{
+
 				\lnl{caso2}%
 				\uIf{\(ns.\varColor \Equal nd.\varColor \Equal \BLACK\)}{
 					\(f.\varColor \Equal \RED\)\;
 					\(t \Assign p\) \Comment*[l]{passo il problema al padre}
+					\BlankLine
+
 				}%
 				\lnl{caso3}%
-				\uElseIf{(\(ns.\varColor \Equal \RED\)) \And (\(nd.\varColor \BLACK\))}{
+				\uElseIf{(\(ns.\varColor \Equal \RED\)) \And (\(nd.\varColor \Equal \BLACK\))}{
 					\(ns.\varColor \Assign \BLACK\)\;
 					\(f.\varColor \Assign  \RED\)\;
-					rightRotation{\(f\)}\;
+					\rightRotation{\(f\)}\;
 					\tcp{t viene lasciato inalterato, quindi si ricade nel caso 4}
+					\BlankLine
+
 				}%
 				\lnl{caso4}%
 				\ElseIf{\(nd.\varColor \Equal \RED\)}{
 					\(f.\varColor \Equal p.\varColor\)\;
 					\(p.\varColor \Assign \BLACK\)\;
 					\(nd.\varColor \Assign \BLACK\)\;
-					leftRotation{\(p\)}\;
+					\leftRotation{\(p\)}\;
 					\(t \Assign T\)\;
 				}
 			}
@@ -68,6 +72,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
 \end{document}
+\fi

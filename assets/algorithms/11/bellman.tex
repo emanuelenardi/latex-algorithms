@@ -1,15 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Bellman-Ford-Moore]{}
 \fi
 
 \prototype{\Array{\Int}, \Array{\Int} \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
@@ -24,22 +19,22 @@
 
 		\lnl{bellman:remove}%
 		\alert{ \Int \(u\) \Assign \(S\).\queueRemove } \Comment*[l]{\(\Omicron(1 \cdot n)\)}
-		\ArrayCall{b}{u} \Assign \False\;
+		\(b[u]\) \Assign \False\;
 
 		\BlankLine
 		\ForEach{\( v \in G.\adj{u} \)}{
-			\If{\( \ArrayCall{d}{u} + G.\weight{u,v} < \ArrayCall{d}{v} \)}{
+			\If{\( d[u] + G.\weight{u,v} < d[v] \)}{
 
 				\BlankLine
-				\If{\Not \ArrayCall{b}{v}}{
+				\If{\Not \(b[v]\)}{
 					\lnl{bellman:add}%
 					\tcp{lo metto in cosa quando c'è un miglioramento}
 					\alert{ \(S.\queueInsert{v}\) } \Comment*[h]{\(\Omicron(m \cdot n)\)}\;
-					\ArrayCall{b}{v} \Assign \True\;
+					\(b[v]\) \Assign \True\;
 				}
 
-				\ArrayCall{T}{v} \Assign \(u\)\;
-				\ArrayCall{d}{v} \Assign \(\ArrayCall{d}{u} + G.\weight{u,v}\)\;
+				\(T[v]\) \Assign \(u\)\;
+				\(d[v]\) \Assign \(d[u] + G.\weight{u,v}\)\;
 			}
 		}
 	}
@@ -48,6 +43,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

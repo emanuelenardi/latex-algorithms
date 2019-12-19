@@ -1,18 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
+\begin{document}
 \begin{algorithm}[H]
-\caption{Specifica \textsc{Red-Black Tree}}
-% \begin{multicols}{2}
 \fi
 
 \BlankLine
@@ -68,10 +60,6 @@
 % \removeNode{\Tree \(T\), \Item \(k\)}\;
 
 \ifstandalone
-% \end{multicols}
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

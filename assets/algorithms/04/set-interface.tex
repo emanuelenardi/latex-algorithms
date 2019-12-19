@@ -1,19 +1,14 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
+\begin{document}
 \begin{algorithm}[H]
-\caption{Struttura dati \textsc{Set}}
-\begin{multicols}{2}
+% \caption{Struttura dati \textsc{Set}}
 \fi
+% \begin{multicols}{2}
+\begin{minipage}{.45\textwidth}
 
 Una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{collezione non ordinata di elementi} senza valori ripetuti.
 
@@ -25,9 +20,11 @@ Una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{c
 \Int \setSize \Comment*[r]{cardinalità dell'insieme}
 \Bool \setContains \Comment*[r]{\True se \(x\) è contenuto}
 
-\vspace{20pt}
+% \vspace{20pt}
+\end{minipage}\hfill%
+\begin{minipage}{.48\textwidth}
 
-\BlankLine
+% \BlankLine
 \tcp{OPERAZIONI DI BASE}
 \setInsert \Comment*[l]{inserisce \(x\) nell'insieme, se assente}
 \setRemove \Comment*[l]{rimuove \(x\) nell'insieme, se presente}
@@ -38,21 +35,17 @@ Una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{c
 \Set \setIntersection{\Set \(A\), \Set \(B\)}\;
 \Set \setDifference{\Set \(A\), \Set \(B\)}\;
 
-\vphantom{0pt}
+% \vphantom{0pt}
 
+\end{minipage}
+% \end{multicols}
 \ifstandalone
-\end{multicols}
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
+\end{document}
 \fi
 
-\end{document}
-
-\NoCaptionOfAlgo
-\begin{algorithm}[H]
-\caption[Struttura dati insieme]{}
-
+\iffalse
+% NOTE definizione alternativa
 \tcp{operazioni di interpretazione}
 \Int \setSize \Comment*[r]{la cardinalità dell'insieme}
 \Bool \setContains{\Item x} \Comment*[r]{\True se \(x\) è contenuto nell'insieme}
@@ -67,6 +60,4 @@ Una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{c
 \Set \setUnion{\Set A, \Set B} \Comment*[r]{un nuovo insieme che è l'unione di \(A\) e \(B\)}
 \Set \setIntersection{\Set A, \Set B} \Comment*[r]{un nuovo insieme che è l'intersezione di \(A\) e \(B\)}
 \Set \setDifference{\Set A, \Set B} \Comment*[r]{un nuovo insieme che è la differenza di \(A\) e \(B\)}
-
-\end{algorithm}
-\RestoreCaptionOfAlgo
+\fi

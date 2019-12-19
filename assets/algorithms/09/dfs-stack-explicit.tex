@@ -13,25 +13,25 @@
 \BlankLine
 \tcp{effettua una visita in profondità iterativa}
 \prototype{\dfsProcIter{\Graph G, \Node r}}{
-	\Stack \(S = \stackConstructor\)\;
+	\Stack \(S \Assign \stackConstructor\)\;
 	\(S.\stackPush{r}\) \Comment*[l]{inserisco la radice nella pila}
 
 	\BlankLine
-	\Array{\Bool} \(visitato =\) \new \Array{\Bool}{1}{G.\graphSize}\;
+	\Array{\Bool} \(visitato \Assign\) \new \Array{\Bool}{1}{G.\graphSize}\;
 	\lForEach{\(u \in G.\VV - \{r\}\)}{
-		\(visitato[u] = \False\)
+		\(visitato[u] \Assign \False\)\;
 	}
-	\(visitato[r] = \True\) \Comment*[l]{marco la radice come visitata}
+	\(visitato[r] \Assign \True\) \Comment*[l]{marco la radice come visitata}
 
 	\BlankLine
 	\While{\Not \(S.\stackEmpty\)}{
 
 		\BlankLine
-		\Node \(u = S.\stackPop\) \Comment*[l]{estraggo un nodo}
+		\Node \(u \Assign S.\stackPop\) \Comment*[l]{estraggo un nodo}
 		\If(\tcp*[h]{se non l'ho ancora visitato}){\Not \(visitato[v]\)}{
 			\BlankLine
 			\{ \alert{esamina il nodo \(u\) in \emph{pre}-ordine} \}\;
-			\(visitato[v] = \True\) \Comment*[l]{lo segno come visitato}
+			\(visitato[v] \Assign \True\) \Comment*[l]{lo segno come visitato}
 
 			\BlankLine
 			\ForEach(\tcp*[h]{per ciascun nodo adiacente}){\(v \in G.\adj{u}\)}{

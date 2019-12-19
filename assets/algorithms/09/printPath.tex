@@ -15,12 +15,13 @@
 \BlankLine
 \tcp{stampa il cammino da \(r\) a \(s\) nell'ordine corretto}
 \prototype{\printPath{\Node \(r\), \Node \(s\), \Array{\Node} \(parent\)}}{
+	\params{parent}[vettore dei padri]
 
 	\BlankLine
 	\uIf(\tcp*[h]{se è la radice}){\(r \Equal s\)}{
 		\Print \(s\) \Comment*[l]{la stampo}
 	}
-	\eSea{\(parent[s] \Equal \Nil\)}{
+	\eIf{\(parent[s] \Equal \Nil\)}{
 		\Print \enquote{nessun cammino da \(r\) a \(s\)}
 	}{
 		\tcp{la chiamata ricorsiva prima della stampa per stampare in ordine}

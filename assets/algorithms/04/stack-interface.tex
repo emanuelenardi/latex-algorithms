@@ -1,28 +1,19 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
+\begin{document}
 \begin{algorithm}[H]
-\caption{Specifica \textsc{Stack}}
+% \caption{Specifica \textsc{Stack}}
 \fi
 
-\Bool \stackEmpty{} \Comment*[l]{restituisce vero se la pila è vuota}
-\stackPush{\Item \(v\)} \Comment*[l]{inserisce \(v\) in cima alla pila}
-\Item \stackPop{} \Comment*[l]{estrae l'elemento in cima alla pila e lo restituisce al chiamante}
-\Item \stackTop{} \Comment*[l]{legge l'elemento in cima alla pila}
+\Bool \stackEmpty \Comment*[r]{restituisce vero se la pila è vuota}
+\stackPush{\Item \(v\)} \Comment*[r]{inserisce \(v\) in cima alla pila}
+\Item \stackPop \Comment*[r]{estrae l'elemento in cima alla pila e lo restituisce al chiamante}
+\Item \stackTop \Comment*[r]{legge l'elemento in cima alla pila}
 
 \ifstandalone
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

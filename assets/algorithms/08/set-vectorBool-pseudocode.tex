@@ -1,23 +1,19 @@
-\documentclass[varwidth=6in]{standalone}
-\usepackage{../preamble}
-
 %&../preamble
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
 \begin{algorithm}[H]
-\caption{Struttura dati \textsc{Set} implementata come Vettore Booleano}
+% \caption{Struttura dati \textsc{Set} implementata come Vettore Booleano}
 % \the\columnsep
-\setlength{\columnsep}{-3.5cm}
+% \setlength{\columnsep}{-3.5cm}
 % \the\columnsep
-\begin{multicols}{2}
+% \begin{multicols}{2}
 \fi
 % Una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{collezione non ordinata di elementi} senza valori ripetuti.
 
+\begin{minipage}[t]{.4\textwidth}
 \BlankLine
 \Array{\Bool} \(V\)\;
 \Int \(size\)\;
@@ -70,7 +66,8 @@
 	}
 }
 
-% \columnbreak
+\end{minipage}%
+\begin{minipage}[t]{.5\textwidth}
 
 \BlankLine
 \prototype{\Set \setUnion{\Set \(A\), \Set \(B\)}}{
@@ -121,16 +118,15 @@
 	}
 }
 
-\vspace{35pt}
-\vphantom{0pt}
+% \vspace{35pt}
+% \vphantom{0pt}
 
+\end{minipage}
 \ifstandalone
-\end{multicols}
+% \end{multicols}
 % \the\columnsep
-\setlength{\columnsep}{10pt}
+% \setlength{\columnsep}{10pt}
 % \the\columnsep
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

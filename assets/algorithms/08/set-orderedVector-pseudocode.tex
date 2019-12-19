@@ -1,16 +1,11 @@
-\documentclass[varwidth=6in]{standalone}
-\usepackage{../preamble}
-
 %&../preamble
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
 \begin{algorithm}[H]
-\caption{Struttura dati \textsc{Set} implementata come vettore ordinato}
+% \caption{Struttura dati \textsc{Set} implementata come vettore ordinato}
 \fi
 
 \prototype{\Set \setIntersection{\List \(A\), \List \(B\)}}{
@@ -35,7 +30,7 @@
 		\uElseIf{\(A.\listRead{p} < B.\listRead{q}\)}{
 			\(p\) \Assign \(A\).\listSucc{\(p\)} \Comment*[l]{scorro puntatore di \(A\)}
 		}
-		\Altrimenti{
+		\Else{
 			\(q\) \Assign \(B\).\listSucc{\(q\)} \Comment*[l]{scorro puntatore di \(B\)}
 		}
 	}
@@ -43,7 +38,5 @@
 
 \ifstandalone
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

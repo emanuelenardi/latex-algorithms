@@ -27,7 +27,7 @@
 \begin{page}
 \begin{tikzpicture}
 
-	\node[mynoder,label={\([1,\ ]\)}] at (0,2) (a) {a};
+	\node[mynoder,label={\([1,-]\)}] at (0,2) (a) {a};
 	\node[mynode] at (2,4) (b) {b};
 	\node[mynode] at (2,2) (c) {c};
 	\node[mynode] at (4,2) (d) {d};
@@ -48,9 +48,9 @@
 \begin{page}
 \begin{tikzpicture}
 
-	\node[mynoder,label={\([1,\ ]\)}] at (0,2) (a) {a};
+	\node[mynoder,label={\([1,-]\)}] at (0,2) (a) {a};
 	\node[mynode] at (2,4) (b) {b};
-	\node[mynoder,label={\([2,\ ]\)}] at (2,2) (c) {c};
+	\node[mynoder,label={\([2,-]\)}] at (2,2) (c) {c};
 	\node[mynode] at (4,2) (d) {d};
 	\node[mynode] at (2,0) (e) {e};
 
@@ -69,11 +69,11 @@
 \begin{page}
 \begin{tikzpicture}
 
-	\node[mynoder,label={\([1,\ ]\)}] at (0,2) (a) {a};
+	\node[mynoder,label={\([1,-]\)}] at (0,2) (a) {a};
 	\node[mynode] at (2,4) (b) {b};
-	\node[mynoder,label={\([2,\ ]\)}] at (2,2) (c) {c};
+	\node[mynoder,label={\([2,-]\)}] at (2,2) (c) {c};
 	\node[mynode] at (4,2) (d) {d};
-	\node[mynoder,label={below:\([3,\ ]\)}] at (2,0) (e) {e};
+	\node[mynoder,label={below:\([3,-]\)}] at (2,0) (e) {e};
 
 	\draw[myedge] (a) edge node {} (b);
 	\draw[myedger] (a) edge node {} (c);
@@ -90,9 +90,9 @@
 \begin{page}
 \begin{tikzpicture}
 
-	\node[mynoder,label={\([1,\ ]\)}] at (0,2) (a) {a};
+	\node[mynoder,label={\([1,-]\)}] at (0,2) (a) {a};
 	\node[mynode] at (2,4) (b) {b};
-	\node[mynoder,label={\([2,\ ]\)}] at (2,2) (c) {c};
+	\node[mynoder,label={\([2,-]\)}] at (2,2) (c) {c};
 	\node[mynode] at (4,2) (d) {d};
 	\node[mynodeb,label={below:\([3, 4]\)}] at (2,0) (e) {e};
 
@@ -108,9 +108,10 @@
 \end{tikzpicture}
 \end{page}
 
-\begin{page}\begin{tikzpicture}
+\begin{page}
+\begin{tikzpicture}
 
-	\node[mynoder,label={\([1,\ ]\)}] at (0,2) (a) {a};
+	\node[mynoder,label={\([1,-]\)}] at (0,2) (a) {a};
 	\node[mynode] at (2,4) (b) {b};
 	\node[mynodeb,label={\([2, 5]\)}] at (2,2) (c) {c};
 	\node[mynode] at (4,2) (d) {d};
@@ -128,9 +129,10 @@
 \end{tikzpicture}
 \end{page}
 
-\begin{page}\begin{tikzpicture}
+\begin{page}
+\begin{tikzpicture}
 
-	\node[mynoder,label={\([1,\ ]\)}] at (0,2) (a) {a};
+	\node[mynoder,label={\([1,-]\)}] at (0,2) (a) {a};
 	\node[mynode] at (2,4) (b) {b};
 	\node[mynodeb,label={\([2, 5]\)}] at (2,2) (c) {c};
 	\node[mynode] at (4,2) (d) {d};
@@ -148,10 +150,11 @@
 \end{tikzpicture}
 \end{page}
 
-\begin{page}\begin{tikzpicture}
+\begin{page}
+\begin{tikzpicture}
 
-	\node[mynoder,label={\([1,\ ]\)}] at (0,2) (a) {a};
-	\node[mynoder,label={\([6,\ ]\)}] at (2,4) (b) {b};
+	\node[mynoder,label={\([1,-]\)}] at (0,2) (a) {a};
+	\node[mynoder,label={\([6,-]\)}] at (2,4) (b) {b};
 	\node[mynodeb,label={\([2, 5]\)}] at (2,2) (c) {c};
 	\node[mynode] at (4,2) (d) {d};
 	\node[mynodeb,label={below:\([3, 4]\)}] at (2,0) (e) {e};
@@ -168,12 +171,13 @@
 \end{tikzpicture}
 \end{page}
 
-\begin{page}\begin{tikzpicture}
+\begin{page}
+\begin{tikzpicture}
 
-	\node[mynoder,label={\([1,\ ]\)}] at (0,2) (a) {a};
-	\node[mynoder,label={\([6,\ ]\)}] at (2,4) (b) {b};
+	\node[mynoder,label={\([1,-]\)}] at (0,2) (a) {a};
+	\node[mynoder,label={\([6,-]\)}] at (2,4) (b) {b};
 	\node[mynodeb,label={\([2, 5]\)}] at (2,2) (c) {c};
-	\node[mynoder,label={\([7,\ ]\)}] at (4,2) (d) {d};
+	\node[mynoder,label={\([7,-]\)}] at (4,2) (d) {d};
 	\node[mynodeb,label={below:\([3, 4]\)}] at (2,0) (e) {e};
 
 	\draw[myedger] (a) edge node {} (b);
@@ -188,10 +192,11 @@
 \end{tikzpicture}
 \end{page}
 
-\begin{page}\begin{tikzpicture}
+\begin{page}
+\begin{tikzpicture}
 
-	\node[mynoder,label={\([1,\ ]\)}] at (0,2) (a) {a};
-	\node[mynoder,label={\([6,\ ]\)}] at (2,4) (b) {b};
+	\node[mynoder,label={\([1,-]\)}] at (0,2) (a) {a};
+	\node[mynoder,label={\([6,-]\)}] at (2,4) (b) {b};
 	\node[mynodeb,label={\([2, 5]\)}] at (2,2) (c) {c};
 	\node[mynodeb,label={\([7, 8]\)}] at (4,2) (d) {d};
 	\node[mynodeb,label={below:\([3, 4]\)}] at (2,0) (e) {e};
@@ -208,9 +213,10 @@
 \end{tikzpicture}
 \end{page}
 
-\begin{page}\begin{tikzpicture}
+\begin{page}
+\begin{tikzpicture}
 
-	\node[mynoder,label={\([1,\ ]\)}] at (0,2) (a) {a};
+	\node[mynoder,label={\([1,-]\)}] at (0,2) (a) {a};
 	\node[mynodeb,label={\([6, 9]\)}] at (2,4) (b) {b};
 	\node[mynodeb,label={\([2, 5]\)}] at (2,2) (c) {c};
 	\node[mynodeb,label={\([7, 8]\)}] at (4,2) (d) {d};
@@ -228,9 +234,10 @@
 \end{tikzpicture}
 \end{page}
 
-\begin{page}\begin{tikzpicture}
+\begin{page}
+\begin{tikzpicture}
 
-	\node[mynodeb,label={\([1, 10\)}] at (0,2) (a) {a};
+	\node[mynodeb,label={\([1, 10]\)}] at (0,2) (a) {a};
 	\node[mynodeb,label={\([6, 9]\)}] at (2,4) (b) {b};
 	\node[mynodeb,label={\([2, 5]\)}] at (2,2) (c) {c};
 	\node[mynodeb,label={\([7, 8]\)}] at (4,2) (d) {d};

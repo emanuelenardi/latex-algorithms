@@ -1,6 +1,8 @@
-pdflatex -ini -jobname="00-main.preamble" "&pdflatex 00-main.preamble.sty\dump"
-del 00-main.preamble.log
+REM compilo preambolo principale
+pdflatex -ini -jobname="preamble.main" "&pdflatex preamble.main.sty\dump"
+del preamble.main.log
 
+REM compilo prambolo algoritmi
 cd assets/algorithms
 pdflatex -ini -jobname="preamble" "&pdflatex preamble.sty\dump"
 del preamble.log

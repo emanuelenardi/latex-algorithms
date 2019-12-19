@@ -14,7 +14,7 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 
 ## Licenza 📃
 
-> Gli elaborati presenti in questa repository è basato sulle trasparenze e gli appunti del Prof.re Alberto Montresor, i quali sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+> Gli elaborati presenti in questa repository sono basati sulle trasparenze e gli appunti del Prof.re Alberto Montresor, i quali sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
 
 > Quest'opera è rilasciata sotto licenza [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), il che vuol dire — in breve — che:
 > - puoi condividere questo lavoro
@@ -34,8 +34,8 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 	- &nbsp;&nbsp;__5__ ✔️ Alberi
 	- &nbsp;&nbsp;__6__ ✔️ Alberi Binari di Ricerca
 	- &nbsp;&nbsp;__7__ ❌ Hashing
-	- &nbsp;&nbsp;__8__ ⚪ Insiemi e dizionari
-	- &nbsp;&nbsp;__9__ ⚪ Grafi
+	- &nbsp;&nbsp;__8__ ✔️ Insiemi e dizionari
+	- &nbsp;&nbsp;__9__ ✔️ Grafi
 	- __10__ ❌ Strutture dati speciali
 	- __11__ ✔️ "Scelta"
 	- __12__ ❌ Dividi et Impera

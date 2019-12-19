@@ -1,18 +1,10 @@
-\documentclass[varwidth=6in]{standalone}
-\usepackage{../preamble}
-
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
+%&../preamble
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
+\begin{document}
 \begin{algorithm}[H]
-\caption{Implementazione \textsc{Dictionary} con \textsc{ABR}}
 \fi
 
 \BlankLine
@@ -45,7 +37,7 @@
 		% \uIf(\tcp*[h]{due figli}){\(u.\varLeft \neq \Nil\) \And \(u.\varRight \neq \Nil\)}{
 
 			\BlankLine
-			\Tree \(s =\) \succNode \Comment*[l]{individuo il successore}
+			\Tree \(s\) \Assign \succNode \Comment*[l]{individuo il successore}
 
 			\BlankLine
 			\shortcut{\(s.\varParent, s.\varRight, s.\varKey\)} \Comment*[l]{collego il sottoalbero destro}
@@ -73,7 +65,7 @@
 			}
 		}
 		\tcp{\dots ed ha un solo figlio (sinistro)}
-		\Altrimenti{
+		\Else{
 		% \Altrimenti(\tcp*[h]{solo un figlio (destro)}){
 
 			\BlankLine
@@ -92,10 +84,6 @@
 }
 
 \ifstandalone
-% \end{multicols}
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

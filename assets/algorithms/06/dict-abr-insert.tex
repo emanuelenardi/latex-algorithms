@@ -1,27 +1,19 @@
-\documentclass[varwidth=6in]{standalone}
-\usepackage{../preamble}
+%&../preamble
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-% \algorithmstyle{ruled}
+\begin{document}
 \begin{algorithm}[H]
-% \caption{Implementazione \textsc{Dictionary} con \textsc{ABR}}
 \fi
 
 \BlankLine
 \tcp{IMPLEMENTAZIONE DIZIONARIO}
 \prototype{\dictInsert{\Item \(k\), \Item \(v\)}}{
-	\(tree = \insertNode{tree, k, v}\)\;
+	\(tree\) \Assign \insertNode{\(tree, k, v\)}\;
 }
 
 \ifstandalone
 \end{algorithm}
-% \algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

@@ -1,19 +1,12 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption[Conteggio nodi di un albero]{}
-\begin{multicols}{2}
 \fi
-
+\begin{minipage}[c]{.4\textwidth}
 
 \prototype{\conteggioNodi{\Tree \(t\)}}{
 	\eIf{\(t \Equal \Nil\)}{
@@ -29,26 +22,34 @@
 	}
 }
 
-\ifstandalone
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}%
+\ifFigureOfAlgo%
+\hfill% centramento orizzontale
 \begin{minipage}[t][3.8cm]{.85\linewidth}
 	\centering
-	\vfill
 	\begin{forest} circled, wide,
 		for tree={
-		my edge label/.style 2 args={
-	      edge label={node[midway, font=\sffamily\scriptsize, #1]{#2}},
-	    },
+			font=\scshape,
+			count/.style 2 args={
+				edge label={node[near end, font=\sffamily\scriptsize, #1]{#2}},
+		    },
 		}
-		[\textsc{a}, my edge label={above}{1}
-			[\textsc{b}[\textsc{c}][\textsc{d}]][\textsc{e}[\textsc{f}][\textsc{g}]]]
+		[a
+			[b, count={above left}{3}
+				[c, count={above left}{1}]
+				[d, count={above right}{1}]
+			]
+			[e, count={above right}{3}
+				[f, count={above left}{1}]
+				[g, count={above right}{1}]
+			]
+		]
 	\end{forest}
 \end{minipage}
 \fi
-
+\end{minipage}
 \ifstandalone
-\end{multicols}
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

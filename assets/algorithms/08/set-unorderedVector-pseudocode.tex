@@ -1,16 +1,11 @@
-\documentclass[varwidth=6in]{standalone}
-\usepackage{../preamble}
-
 %&../preamble
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
 \begin{algorithm}[H]
-\caption{Struttura dati \textsc{Set} implementata come vettore non ordinato}
+% \caption{Struttura dati \textsc{Set} implementata come vettore non ordinato}
 \fi
 
 \prototype{\Set \setDifference{\Set \(A\), \Set \(B\)}}{
@@ -27,7 +22,5 @@
 
 \ifstandalone
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

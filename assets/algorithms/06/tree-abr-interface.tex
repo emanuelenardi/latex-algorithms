@@ -1,20 +1,13 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
+\begin{document}
 \begin{algorithm}[H]
-\caption{Specifica \textsc{ABR}}
-\begin{multicols}{2}
 \fi
 
+\begin{minipage}[t]{.45\textwidth}
 \BlankLine
 \tcp{CONTENUTO DI UN NODO}
 
@@ -35,11 +28,11 @@
 \Tree \treeRight\;
 \Tree \treeParent\;
 
-\ifstandalone
 % \columnbreak
-\vspace{15pt}
-\vphantom{0pt}
-\fi
+% \vspace{15pt}
+% \vphantom{0pt}
+\end{minipage}\hfill%
+\begin{minipage}[t]{.45\textwidth}
 
 \BlankLine
 \tcp{ORDINAMENTO}
@@ -65,12 +58,10 @@
 \Item \lookupNode\;
 \insertNode{\Tree \(T\), \Item \(k\), \Item \(v\)}\;
 \removeNode{\Tree \(T\), \Item \(k\)}\;
+\end{minipage}
+\BlankLine
 
 \ifstandalone
-\end{multicols}
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

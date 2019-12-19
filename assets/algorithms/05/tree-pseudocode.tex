@@ -1,22 +1,15 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
+\begin{document}
 \begin{algorithm}[H]
-\caption{Implementazione \textsc{Binary Tree} in pseudocodice}
-\begin{multicols}{2}
 \fi
+\begin{minipage}[t]{.5\textwidth}
 
-% \tcp{crea un nuovo albero}
-% \tcp{restituisce la radice dell'albero creato}
+\tcp{crea un nuovo albero}
+\tcp{restituisce la radice dell'albero creato}
 \prototype{\Tree \treeConstructor{\Item \(v\)}}{
 	\Tree \(t =\) \new \Tree\;
 	\(t.\varParent \Assign \Nil\)\;
@@ -41,6 +34,10 @@
 	}
 }
 
+\end{minipage}% <- importante, non toccare!
+\begin{minipage}[t]{.5\textwidth}
+
+\tcp{elimina ricorsivamente il sottoalbero sinistro}
 \prototype{\deleteLeft{\Tree \(t\)}}{
 	\If{\(\varLeft \Neq \Nil\)}{
 		\(\varLeft.\deleteLeft\)\;
@@ -49,6 +46,7 @@
 	}
 }
 
+\tcp{elimina ricorsivamente il sottoalbero destro}
 \prototype{\deleteRight{\Tree \(t\)}}{
 	\If{\(\varRight \Neq \Nil\)}{
 		\(\varRight.\deleteLeft\)\;
@@ -57,14 +55,8 @@
 	}
 }
 
-\vspace{50pt}
-\vphantom{0pt}
-
+\end{minipage}
 \ifstandalone
-\end{multicols}
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

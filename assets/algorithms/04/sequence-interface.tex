@@ -5,14 +5,13 @@
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
+\ifstandalone
 \begin{document}
-
-\begin{minipage}{\linewidth}
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
 \begin{algorithm}[H]
-\caption{Specifica \textsc{Sequence}}
-\begin{multicols}{2}
+% \caption{Specifica \textsc{Sequence}}
+\fi
+% \begin{multicols}{2}
+\begin{minipage}[t]{.48\textwidth}
 
 Una struttura dati \emph{dinamica}, \emph{lineare} che rappresenta una sequenza \emph{ordinata} di valori, dove lo stesso valore può comparire più volte.
 
@@ -26,99 +25,95 @@ Una struttura dati \emph{dinamica}, \emph{lineare} che rappresenta una sequenza 
 
 \BlankLine
 \tcp{LEGGERE}
-\Postype \listHead \Comment*[r]{posizione del primo elemento}
-\Postype \listTail \Comment*[r]{posizione dell'ultimo elemento}
+\Pos \listHead \Comment*[r]{posizione del primo elemento}
+\Pos \listTail \Comment*[r]{posizione dell'ultimo elemento}
 
 \BlankLine
 \tcp{ITERARE}
-\Postype \listSucc \Comment*[r]{posizione dell'elem.\ che segue \(p\)}
-\Postype \listPred \Comment*[r]{posizione dell'elem.\ che precede \(p\)}
+\Pos \listSucc \Comment*[r]{posizione dell'elem.\ che segue \(p\)}
+\Pos \listPred \Comment*[r]{posizione dell'elem.\ che precede \(p\)}
 
-\vspace{20pt}
+% \vspace{20pt}
+\end{minipage}\hfill%
+\begin{minipage}[t]{.45\textwidth}
 
-\BlankLine
+% \BlankLine
 \tcp{MODIFICA}
 
 \BlankLine
 \tcp{inserisce l'elemento di tipo \Item nella posizione \(p\),}
 \tcp{ritorna la nuova posizione,}
 \tcp{che diviene il predecessore di \(p\)}
-\Postype \listInsert{\Postype p, \Item v}
+\Pos \listInsert{\Pos p, \Item v}
 
 \tcp{rimuove l'elemento contenuto nella pos.\ \(p\),}
 \tcp{ritorna il successore di \(p\),}
 \tcp{che diviene il predecessore di \(p\)}
-\Postype \listRemove{\Pos p}
+\Pos \listRemove{\Pos p}
 
 \BlankLine
 \tcp{legge l'elemento di tipo \Item}
 \tcp{contenuto nella posizione \(p\)}
-\listRead{\Postype p}
+\listRead{\Pos p}
 
 \BlankLine
 \tcp{scrive l'elemento \(v\) di tipo \Item}
 \tcp{nella posizione \(p\)}
-\listWrite{\Postype p, \Item v}
+\listWrite{\Pos p, \Item v}
 
 \vphantom{0pt}
-\end{multicols}
-\end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
 \end{minipage}
-
+% \end{multicols}
+\ifstandalone
+\end{algorithm}
 \end{document}
+\fi
 
-\NoCaptionOfAlgo
-\begin{algorithm}
-\caption[Sequenza]{}
-\begin{multicols}{2}
-
+\iffalse
+% NOTE definizione alternativa
 \BlankLine
 \tcp{restituisce true se è vuota}
 \Bool \listEmpty{}
 
 \BlankLine
 \tcp{restituisce true se \(p\) è uguale a \({pos}_0\) oppure a \({pos}_{n+1}\)}
-\Bool \listEnd{\Postype \(p\)}
+\Bool \listEnd{\Pos \(p\)}
 
 \BlankLine
 \tcp{restituisce la posizione del primo elemento}
-\Postype \listHead{}
+\Pos \listHead{}
 
 \BlankLine
 \tcp{restituisce la posizione dell'ultimo elemento}
-\Postype \listTail{}
+\Pos \listTail{}
 
 \BlankLine
 \tcp{restituisce la posizione dell'elemento che segue \(p\)}
-\Postype \listSucc{\Postype \(p\)}
+\Pos \listSucc{\Pos \(p\)}
 
 \BlankLine
 \tcp{restituisce la posizione dell'elemento che precede \(p\)}
-\Postype \listPred{\Postype \(p\)}
+\Pos \listPred{\Pos \(p\)}
 
 \vspace{15pt}
 
 \BlankLine
 \tcp{inserisce l'elemento \(v\) di tipo \Item nella posizione \(p\)}
 \tcp{restituisce la posizione del nuovo elemento, che diviene il predecessore di \(p\)}
-\Pos \listInsert{\Postype \(p\), \Item \(v\)}
+\Pos \listInsert{\Pos \(p\), \Item \(v\)}
 
 \BlankLine
 \tcp{rimuove l'elemento contenuto nella posizione \(p\)}
 \tcp{restituisce la posizione del successore di \(p\), che diviene il successore del predecessore di \(p\)}
-\Pos \listRemove{\Postype \(p\)}
+\Pos \listRemove{\Pos \(p\)}
 
 \BlankLine
 \tcp{legge l'elemento di tipo \Item contenuto nella posizione \(p\)}
-\Item listRead{\Postype \(p\)}
+\Item listRead{\Pos \(p\)}
 
 \BlankLine
 \tcp{scrive l'elemento \(v\) di tipo \Item nella posizione \(p\)}
-\listWrite{\Postype \(p\), \Item \(v\)}
+\listWrite{\Pos \(p\), \Item \(v\)}
 
 \vphantom{0pt}
-\end{multicols}
-\end{algorithm}
-\RestoreCaptionOfAlgo
+\fi

@@ -1,21 +1,16 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
+\ifstandalone
 \begin{document}
-
-% \ifstandalone
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
 \begin{algorithm}[H]
-\caption{Struttura dati pila basata su vettore in pseudocodice}
-% \fi
-\begin{multicols}{2}
+% \caption{Struttura dati pila basata su vettore in pseudocodice}
+\fi
+% \begin{multicols}{2}
+\begin{minipage}[t]{.45\textwidth}
 
-\BlankLine
+% \BlankLine
 \Item{} \(A\)	\Comment*[r]{elementi}
 \Int \(n\)		\Comment*[r]{cursore}
 \Int \(m\)		\Comment*[r]{dimesione massima}
@@ -24,7 +19,7 @@
 \tcp{crea una pila vuota}
 \prototype{\Stack \stackConstructor{\Int dim}}{
 	\Stack \(t =\) \new \Stack\;
-	\(t.A =\) \new \Array{\Int}{0}{dim-1}\;
+	\(t.A =\) \new \Array{\Int}[0][dim-1]\;
 	\(t.m = dim\)\;
 	\(t.n = 0\)\;
 
@@ -38,11 +33,12 @@
 	\precondition{\(n > 0\)}
 
 	\BlankLine
-	\Return \ArrayCall{A}{n}\;
+	\Return A[n]\;
 }
 
-\vspace{10pt}
-
+% \vspace{10pt}
+\end{minipage}\hfill%
+\begin{minipage}[t]{.45\textwidth}
 % \BlankLine
 \tcp{restituisce \True se la pila è vuota}
 \prototype{\Bool \stackEmpty}{
@@ -55,7 +51,7 @@
 	\precondition{\(n > 0\)}
 
 	\BlankLine
-	\Item \(t = \ArrayCall{A}{n}\)\;
+	\Item \(t = A[n]\)\;
 	\Decrement{n}\;
 
 	\BlankLine
@@ -69,16 +65,14 @@
 
 	\BlankLine
 	\Increment{n}\;
-	\(\ArrayCall{A}{n} = v\)
+	\(A[n] = v\)
 }
 
 \vphantom{0pt}
 
-\end{multicols}
+\end{minipage}
+% \end{multicols}
 \ifstandalone
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

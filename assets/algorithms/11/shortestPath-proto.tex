@@ -1,19 +1,14 @@
 %&../preamble
 
-% \documentclass{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Algoritmo prototipo]{}
 \fi
 
 \tcp{Algoritmo prototipo dei cammini minimi}
-\prototype{\Int, \Int \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
+(\Int, \Int)\prototype{ \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
 
 	\BlankLine
 	\tcp{Inizializza \(T\) ad una foresta di copertura composta da nodi isolati}
@@ -32,6 +27,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

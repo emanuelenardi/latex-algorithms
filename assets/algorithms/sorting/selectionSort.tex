@@ -1,25 +1,20 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 \setcounter{section}{1}
 % \setcounter{algocf}{5}
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption[selectionSort]{}
 \fi
 
 \tcp{effettua l'ordinamento di un vettore}
 \prototype{\selectionSort{\Array{\Item} A, \Int n}}{
-	\From{\Int \(i \Assign 1\) \DownTo \(n\)}{
+	\From{\Int \(i \Assign 1\) \DownTo \(n-1\)}{
 		\Int \(j \Assign \minFunction{A, i, n}\)\Comment*[l]{ricerca il nuovo minimo}
-		\Swap{\ArrayCall{A}{i}, \ArrayCall{A}{j}}\Comment*[l]{lo metto nella posizione corretta}
+		\Swap{\(A[i]\), \(A[j]\)}\Comment*[l]{lo metto nella posizione corretta}
 	}
 }
 
@@ -28,9 +23,9 @@
 \prototype{\Int \minFunction{\Array{\Item} A, \Int i, \Int j}}{
 
 	\BlankLine
-	\Int \(min \Assign k\) \Comment*[h]{posizione del minimo parziale}\;
-	\From{\Int \(h \Assign k+1\) \DownTo \(n\)}{
-		\If(\tcp*[h]{ho trovato un nuovo minimo}){\( \ArrayCall{A}{h} < \ArrayCall{A}{min} \)}{
+	\Int \(min \Assign i\) \Comment*[h]{posizione del minimo parziale}\;
+	\From{\Int \(j \Assign i+1\) \DownTo \(n\)}{
+		\If(\Comment*[h]{ho trovato un nuovo minimo}){\( A[h] < A[min] \)}{
 			\(min \Assign h\) \Comment*[h]{nuovo minimo parziale}\;
 		}
 	}
@@ -43,6 +38,5 @@
 % \end{algomathdisplay}
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
 \end{document}
+\fi

@@ -9,7 +9,7 @@
 
 \BlankLine
 \tcp{classifica i lati di un grafo}
-\prototype{\dfsSchema{\Graph \(G\), \Node \(u\), \Int \(\&time\), \Array{\Int} \(dt\), \Array{\Int} \(ft\)}}{
+\prototype{\dfsSchema{\Graph \(G\), \Node \(u\), \Int {\sffamily\&}\(time\), \Array{\Int} \(dt\), \Array{\Int} \(ft\)}}{
 
 	\params{time}[contatore]
 	\params{dt}[tempo di scoperta]
@@ -24,7 +24,7 @@
 
 	\BlankLine
 	\tcp{effettuo una visita in profondità}
-	\ForEach{\(u \in G.\adj{u}\)}{
+	\ForEach{\(v \in G.\adj{u}\)}{
 
 		\BlankLine
 		\{ \textcolor{black}{esamina l'arco \((u,v)\) (qualsiasi)} \} \Comment*[l]{qui si sviluppa la logica dell'algoritmo}
@@ -44,7 +44,7 @@
 			\BlankLine
 
 		}
-		\eSea{\(dt[u] < dt[v]\) \And \(ft[v] \Neq 0\)}{
+		\eIf{\(dt[u] < dt[v]\) \And \(ft[v] \Neq 0\)}{
 			\tcp{se raggiungo un mio discendente e ho terminato la mia visita, allora ho trovato un arco \emph{in avanti}}
 			\{ \textcolor{arcoAvanti}{esamina l'arco \((u,v)\) (avanti)} \}
 			\BlankLine

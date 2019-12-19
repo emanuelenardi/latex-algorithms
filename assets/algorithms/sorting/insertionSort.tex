@@ -1,18 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
-\setcounter{section}{1}
-% \setcounter{algocf}{5}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption{}
 \fi
 
 % \tcp{efficiente per ordinare piccoli insiemi di elementi}
@@ -39,5 +31,5 @@
 % \tcp{in media \(\Omicron(n^2)\)}
 \ifstandalone
 \end{algorithm}
-\fi
 \end{document}
+\fi

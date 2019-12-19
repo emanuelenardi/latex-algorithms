@@ -1,15 +1,12 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
+\ifstandalone
 \begin{document}
-
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Versione ricorsiva di \textsf{insertNode}]{}
+% \caption{Versione ricorsiva di \textsf{insertNode}}
+\fi
 
 \BlankLine
 \tcp{verifica se un albero binario è un albero di ricerca,}
@@ -58,11 +55,10 @@
 	\Return \(answer\)
 }
 
+\ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-
 \end{document}
+\fi
 
-
-\paragraph{Analisi della complessità}
-L'algoritmo ha complessità \(\Omicron(n)\), in quanto è il costo di una visita.
+% \paragraph{Analisi della complessità}
+% L'algoritmo ha complessità \(\Omicron(n)\), in quanto è il costo di una visita.

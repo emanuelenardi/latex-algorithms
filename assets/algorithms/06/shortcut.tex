@@ -1,14 +1,10 @@
-\documentclass[varwidth=6in]{standalone}
-\usepackage{../preamble}
+%&../preamble
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption{}
 \fi
 
 \BlankLine
@@ -16,7 +12,7 @@
 \prototype{\shortcut{\Tree p, \Tree u, \Item x}}{
 	\If{\(u \Neq \Nil\)}{
 		\tcp{il nodo è stato cancellato}
-		\(u.\varParent = p\) \Comment*[l]{registro il padre}
+		\(u\).\varParent \Assign \(p\) \Comment*[l]{registro il padre}
 	}
 
 	\BlankLine
@@ -28,7 +24,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

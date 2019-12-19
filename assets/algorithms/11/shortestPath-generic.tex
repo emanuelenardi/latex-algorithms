@@ -1,28 +1,24 @@
 %&../preamble
 
-% \documentclass{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
 \begin{algorithm}[H]
-\caption{Algoritmo generico}
 \fi
 
-\prototype{\Int, \Int \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
+(\Int, \Int)\prototype{ \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
 
 	\BlankLine
 	\tcp{Inizializzazione dei vettori}
-	\Array{\Int} \(d\) \Assign \new \Array{\Int}{1}{G.n}
+	\Array{\Int} \(d\) \Assign \new \Array{\Int}[1][G.n]
 	\Comment*[r]{distanze dalla sorgente}
 
-	\Array{\Int} \(T\) \Assign \new \Array{\Int}{1}{G.n}
+	\Array{\Int} \(T\) \Assign \new \Array{\Int}[1][G.n]
 	\Comment*[r]{vettore dei padri}
 
-	\Array{\Bool} \(b\) \Assign \new \Array{\Bool}{1}{G.n}
-	\Comment*[r]{per sapere in tempo costante se un nodo appartiene alla struttura dati}
+	\Array{\Bool} \(b\) \Assign \new \Array{\Bool}[1][G.n]
+	\Comment*[r]{per sapere in tempo costante se \(u \in S\)}
 
 	\BlankLine
 	\tcp{Inizializzo tutti i nodi tranne la sorgente}
@@ -41,7 +37,7 @@
 	\BlankLine
 	\lnl{shortestPath:init}%
 	\alert{\DataStructure \(S \Assign \dsConstructor\)}\;
-	\alert{\(S\).\dsAdd(s)}\;
+	\alert{\(S\).\dsAdd{s}}\;
 
 	\BlankLine
 	\While{\Not \(S.\setEmpty\)}{
@@ -55,9 +51,9 @@
 
 			\BlankLine
 			\If(\Comment*[h]{se migliora la stima}){\(d[u] + G.\weight{u,v} < d[v]\)}{
-				% TODO eIf incompatibile con l'opzione 'onelanguage'
-				% NOTE: in realtà è la traduzione sbagliata di "Else" in "allora"
-				\eSea(\Comment*[h]{se non fa già parte dell'insieme}){\Not \(b[v]\)}{
+				% NOTE eIf incompatibile con l'opzione 'onelanguage'
+				% NOTE in realtà è la traduzione sbagliata di "Else" in "allora"
+				\eIf(\Comment*[h]{se non fa già parte dell'insieme}){\Not \(b[v]\)}{
 					\lnl{shortestPath:add}%
 					\alert{\(S.\dsAdd(v)\)} \Comment*[h]{aggiungilo}\;
 					\(b[v] \Assign \True\) \Comment*[h]{fa parte dell'insieme}\;

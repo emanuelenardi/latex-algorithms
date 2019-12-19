@@ -1,19 +1,16 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
+\ifstandalone
 \begin{document}
-
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
 \begin{algorithm}[H]
-\caption{Struttura dati lista bidirezionale con sentinella}
-\begin{multicols}{2}
+% \caption{Struttura dati lista bidirezionale con sentinella in pseudocodice}
+\fi
+% \begin{multicols}{2}
+\begin{minipage}[t]{.48\textwidth}
 
-\BlankLine
+% \BlankLine
 \List \Comment*[r]{bidirezionale con sentinella}
 
 \BlankLine
@@ -32,44 +29,47 @@
 }
 
 \BlankLine
-\prototype{\Postype \listHead}{
+\prototype{\Pos \listHead}{
 	\Return \Succ\;
 }
 
 \BlankLine
-\prototype{\Postype \listTail}{
+\prototype{\Pos \listTail}{
 	\Return \Pred\;
 }
 
 \BlankLine
-\prototype{\Postype \listSucc}{
+\prototype{\Pos \listSucc}{
 	\Return \(p.\Succ\)\;
 }
 
 \BlankLine
-\prototype{\Postype \listPred}{
+\prototype{\Pos \listPred}{
 	\Return \(p.\Pred\)\;
 }
 
 \BlankLine
-\prototype{\Bool \listEnd{\Postype p}}{
+\prototype{\Bool \listEnd{\Pos p}}{
 	\Return \(p = \This\)\;
 }
 
-\BlankLine
-\prototype{\Item \listRead{\Postype p}}{
+\end{minipage}\hfill%
+\begin{minipage}[t]{.45\textwidth}
+
+% \BlankLine
+\prototype{\Item \listRead{\Pos p}}{
 	\Return \(p.\Value\)\;
 }
 
 \BlankLine
-\prototype{\listWrite{\Postype p}}{
+\prototype{\listWrite{\Pos p}}{
 	\Return \(p.\Value\)\;
 }
 
 \BlankLine
 \tcp{posso fare queste operazioni essendo sicuro}
 \tcp{di avere sempre un predecessore}
-	\prototype{\Postype \listInsert{\Postype p, \Item v}}{
+	\prototype{\Pos \listInsert{\Pos p, \Item v}}{
 	\List \(t = \listConstructor\)
 	\(t.\Value = v\)\;
 	\(t.\Pred = p.\Pred\)\;
@@ -82,7 +82,7 @@
 }
 
 \BlankLine
-\prototype{\Postype \listRemove{\Postype p}}{
+\prototype{\Pos \listRemove{\Pos p}}{
 	\(p.\Pred.\Succ = p.\Succ\)\;
 	\(p.\Succ.\Pred = p.\Pred\)\;
 	\List \(t = p.\Succ\)\;
@@ -95,11 +95,9 @@
 \vspace{15pt}
 \vphantom{0pt}
 
-\end{multicols}
+\end{minipage}
+% \end{multicols}
 \ifstandalone
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

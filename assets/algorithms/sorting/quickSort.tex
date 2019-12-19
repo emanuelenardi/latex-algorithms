@@ -1,51 +1,55 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
-\setcounter{section}{1}
-% \setcounter{algocf}{5}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
+\begin{document}
 \begin{algorithm}[H]
-% \caption{Algoritmo di ordinamento}
 \fi
 
 \prototype{\quickSort{\Item{} A, \Int primo, \Int ultimo}}{
+
+	\BlankLine
+	\tcp{su almeno due elementi}
 	\If{\(primo < ultimo\)}{
-		\Int \(j \Assign \pivot{A, primo, ultimo}\)\;
+		\Int \(j \Assign \pivot{A, primo, ultimo}\) \Comment*[l]{logica dell'algoritmo}
 
 		\BlankLine
+		\tcp{richiamo l'algoritmo su entrambi i sottovettori}
 		\quickSort{A, primo, \(j-1\)}\;
 		\quickSort{A, \(j+1\), ultimo}\;
 	}
 }
 
 \BlankLine
+\tcp{sposta gli elementi più piccoli a sinistra del perno, i più grandi a destra}
 \prototype{\Int \pivot{\Item{} A, \Int primo, \Int ultimo}}{
-	\Item \(x \Assign A[primo]\)\;
-	\Int \(j \Assign primo\)\;
+	\Item \(x \Assign A[primo]\) \Comment*[l]{il perno è il primo elemento}
+	\Int \(j \Assign primo\) \Comment*[l]{il cursore parte dal primo elemento}
 
 	\BlankLine
+	\tcp{spostamenti "in-place"}
 	\From{\(i \Assign primo\) \DownTo \(ultimo\)}{
-		\If{\(A[i] < x\)}{
-			\Increment{j}\;
-			\Swap{\(A[i]\), \(A[j]\)}\;
+		\If(\tcp*[h]{l'elemento è più piccolo del perno}){\(A[i] < x\)}{
+			\Increment{j} \Comment*[l]{sposta il cursore \(j\)}
+			\Swap{\(A[i]\), \(A[j]\)} \Comment*[l]{scambia gli elementi: \(i \leftrightarrow j\)}
 		}
 	}
 
 	\BlankLine
+	\tcc{a questo punto tutti gli elementi posizionati prima della posizione \(j\) sono più piccoli del perno, rimane solo da riposizionare il perno nella sua posizione finale (è ordinato)}
+
+	\BlankLine
+	\tcp{riposiziono il perno}
 	\(A[primo] \Assign A[j]\)\;
 	\(A[j] \Assign x\)\;
 
 	\BlankLine
+	\tcp{restituisco la posizione del perno}
 	\Return \(j\)\;
 }
 
 \ifstandalone
 \end{algorithm}
-\fi
 \end{document}
+\fi

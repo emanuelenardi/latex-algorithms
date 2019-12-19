@@ -8,7 +8,7 @@
 \fi
 
 \BlankLine
-\tcp{restituiscelatex il grafo transposto}
+\tcp{restituisce il grafo transposto}
 \prototype{\Array{\Int} \transpose{\Graph \(G\)}}{
 
 	\BlankLine
@@ -21,7 +21,7 @@
 
 	\BlankLine
 	\ForEach{\(u \in G.\VV\)}{
-		\ForEach{\(u \in G.\adj{u}\)}{
+		\ForEach{\(v \in G.\adj{u}\)}{
 			\(G^T\).\edgeInsert{\(v,u\)} \Comment*[l]{li aggiungo in ordine inverso}
 		}
 	}

@@ -1,25 +1,20 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
-\ifstandalone
-\NoCaptionOfAlgo
-\begin{algorithm}[H]
-\caption[Calcola il quadrato di un grafo orientato]{}
 
 \SetKwFunction{diameter}{diametro}
+
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\caption[Calcola il quadrato di un grafo orientato]{}
+\fi
 
 Si effettuano \(n\) visite in ampiezza, una a partie da ogni nodo, e si memorizza il massimo valore di distanza trovato in una visita.
 
 \BlankLine
 \tcp{calcola il \enquote{più lungo cammino breve}}
-\fi
-
 \prototype{\diameter{\Graph G}}{
 	\Int \(max \Assign 0\)\;
 	\Queue \(S\) \Assign \new \queueConstructor\;
@@ -59,7 +54,5 @@ Si effettuano \(n\) visite in ampiezza, una a partie da ogni nodo, e si memorizz
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

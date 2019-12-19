@@ -1,20 +1,14 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
-\algorithmstyle{ruled}
+\begin{document}
 \begin{algorithm}[H]
-\caption{Implementazione \textsc{Dictionary} con \textsc{ABR}}
-\begin{multicols}{2}
 \fi
 
+% \begin{multicols}{2}
+\begin{minipage}{.5\textwidth}
 \BlankLine
 \tcp{RICERCA DEL MINIMO}
 \prototype{\Tree \minNode{\Tree \(T\)}}{
@@ -29,8 +23,10 @@
 	\Return \(u\)\;
 }
 
-\vspace{-5pt}
-\vphantom{0pt}
+% \vspace{-5pt}
+% \vphantom{0pt}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
 
 \BlankLine
 \tcp{RICERCA DEL MASSIMO}
@@ -45,12 +41,11 @@
 	\BlankLine
 	\Return \(u\)\;
 }
+\end{minipage}
+\BlankLine
+% \end{multicols}
 
 \ifstandalone
-\end{multicols}
 \end{algorithm}
-\algorithmstyle{tworuled}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi
