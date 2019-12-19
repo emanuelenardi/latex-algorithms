@@ -1,0 +1,15 @@
+% overleaf.com/learn/latex/Multiple_columns
+% tex.stackexchange.com/questions/234651/
+\usepackage{multicol}
+
+\iffalse
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{1pt}
+\renewcommand\columnseprulecolor{\color{red!25}}
+
+% tex.stackexchange.com/questions/120693/
+\makeatletter
+\def\columnseprulecolor\vrule\@width\columnseprule{%
+\vbox to \ht\mult@rightbox{\leaders\vbox{\kern2pt\hbox{.}\kern2pt}\vfill}}
+\makeatother
+\fi

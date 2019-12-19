@@ -1,0 +1,36 @@
+\newif\ifprintmath
+\printmathtrue
+
+\newif\ifgrayscale
+% \grayscaletrue
+
+\ifgrayscale
+\PassOptionsToPackage{
+	gray
+}{xcolor}
+\fi
+
+% WARNING: evita option clash
+\PassOptionsToPackage{
+	english,
+	italian
+}{babel}
+
+
+\documentclass[a4paper, english, italian]{scrartcl}
+\usepackage{babel}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{./preamble/mycolors}
+\usepackage{./preamble/myvariables}
+\usepackage{./preamble/common}
+\usepackage{./preamble/multicol}
+% \usepackage{./preamble/debug}
+\usepackage{./preamble/margin}
+\usepackage{./preamble/background}
+\usepackage{./preamble/graphics}
+\usepackage{./preamble/lists}
+\usepackage{./preamble/license}
+% \usepackage{./preamble/links}

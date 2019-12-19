@@ -1,0 +1,351 @@
+%&preamble.main
+
+\setcounter{section}{10}
+
+% NOTE impostazione percorsi di default
+% https://tex.stackexchange.com/questions/79058/
+\makeatletter
+\providecommand*{\input@path}{}
+\g@addto@macro\input@path{%
+	{assets/algorithms/11/}%
+}% append
+\makeatother
+
+\graphicspath{
+	{assets/figures/11/}%
+}
+
+\title{Scelta degli algoritmi}
+
+% arara: pdflatex: { draft: yes, synctex: no }
+% arara: pdflatex: { synctex: yes }
+% arara: latexmk: { clean: partial }
+\begin{document}
+% \maketitle
+
+\section{Cammini minimi, sorgente singola}
+
+\begin{note}
+La prima cosa da fare quando si progetta un algoritmo è capire quale sia la struttura dati adatta a risolvere quel particolare problema.
+\end{note}
+
+\subsection{Introduzione}
+
+\begin{definition}[costo del cammino]
+Dato un cammino \(p = \langle v_1, v_2, \ldots, v_k \rangle\) con \(k > 1\), il \emph{costo del cammino} è dato da
+\begin{equation*}
+w(p) = \sum_{i=2}^k w(v_{i-1}, v_i)
+\end{equation*}
+\end{definition}
+
+\paragraph{Definizione del problema}
+Dati in input un grafo orientato \(G = (V, E)\), un nodo sorgente \(s\) ed una funzione di peso \(w\colon E \to R\) (che associa ad ogni arco un numero reale che rappresenta il peso).
+
+Trovare un cammino da \(s\) ad \(u\), per ogni nodo \(u \in V\), il cui costo sia minimo, ovvero più piccolo o uguale del costo di qualunque altro cammino da \(s\) a \(u\).
+
+\begin{note}
+Non ci limitiamo a trovare un solo percorso, ma tutti i cammini da un nodo a tutti gli altri nodi.
+\end{note}
+
+\paragraph{Panoramica sul problema}
+
+Per risolvere il problema del cammino minimo fra una coppia di vertici, si risolve il problema di cammini minimi da sorgente unica (si trovano tutti i cammini che partono da un nodo) e si estrae il cammino richiesto.
+Per quanto riguarda il \emph{caso pessimo} non si conoscono algoritmi che abbiamo tempo di esecuzione migliore.
+
+In alcuni casi gli archi possono avere peso negativo. Questo influisce sul problema (se è ben definito oppure no) e sulla soluzione (in assenza di archi negativi si devono utilizzare tecniche diverse).
+
+Nell'algoritmo di Dijkstra si suppone che tutti gli archi abbiano peso positivo, mentre nell'algoritmo di Bellman-Ford gli archi possono avere peso negativo, ma non possono esistere cicli di peso negativo.
+
+\begin{note}
+In generale possiamo ammettere pesi negativi, ma non cicli negativi.
+\end{note}
+
+\paragraph{Considerazioni sui cicli}
+Se esiste un ciclo di peso negativo raggiungibile dalla sorgente, non esistono cammini finiti di peso minimo;
+per qualunque cammino, bastera passare per un ciclo negativo più volte per ottenere un ciclo di costo inferiore.
+
+Ovviamente, in un cammino minimo \emph{non è possibile la presenza di un ciclo di peso positivo}. I cicli di peso nullo possono essere banalmente eliminati dal cammino minimo, in quanto inutili e ridondanti.
+
+\subsubsection{Sottostruttura ottima}
+
+\begin{definition}[albero dei cammini minimi]
+L'albero dei cammini minimi è un albero di copertura radicato in \(s\) avente un cammino da \(s\) a tutti i nodi raggiungibili da \(s\).
+\end{definition}
+
+\begin{note}
+Non bisogna far confusione con gli alberi di copertura di peso minimo.
+\end{note}
+
+\paragraph{Soluzione ammissibile}
+Una soluzione \emph{ammissibile} può essere descritta da un \emph{albero di copertura \(T\)} radicato in \(s\) e da un \emph{vettore delle distanze \(d\)}, i cui valori \(d[u]\) rappresentano il costo del cammino da \(s\) a \(u\) in \(T\).
+
+\tikzset{
+	,thick
+	,font = \ttfamily\bfseries\small
+	,mynode/.style  = {circle, draw=black, align=center, fill=none}
+	,mynoder/.style = {circle, draw=black, align=center, fill=red!40}
+	,edgen/.style = {-}
+	,edger/.style = {->, thick, blue}
+}
+\begin{figure}[H]
+\begin{subfigure}[t]{.5\linewidth}\centering
+	\begin{tikzpicture}
+		\node[mynoder, label={above: \(d[A]=0\) }] at (0.0, 2.0) (a) {A};
+		\node[mynode,  label={above: \(d[B]=3\) }] at (2.0, 2.0) (b) {B};
+		\node[mynode,  label={below: \(d[C]=4\) }] at (2.0, 0.0) (c) {C};
+		\node[mynode,  label={below: \(d[D]=6\) }] at (0.0, 0.0) (d) {D};
+		\draw[edger] (a) edge node[above] {3} (b);
+		\draw[edger] (b) edge node[right] {1} (c);
+		\draw[edger] (c) edge node[below] {2} (d);
+		\draw[edgen] (a) edge node[left]  {3} (d);
+	\end{tikzpicture}
+	\caption{Soluzione ammissibile (albero di peso minimo)}%
+	\label{fig:etichetta}
+\end{subfigure}
+\begin{subfigure}[t]{.5\linewidth}\centering
+	\begin{tikzpicture}
+		\node[mynoder, label={above: \(d[A]=0\) }] at (0.0, 2.0) (a) {A};
+		\node[mynode,  label={above: \(d[B]=3\) }] at (2.0, 2.0) (b) {B};
+		\node[mynode,  label={below: \(d[C]=4\) }] at (2.0, 0.0) (c) {C};
+		\node[mynode,  label={below: \(d[D]=3\) }] at (0.0, 0.0) (d) {D};
+		\draw[edger] (a) edge node[above] {3} (b);
+		\draw[edger] (b) edge node[right] {1} (c);
+		\draw[edgen] (c) edge node[below] {2} (d);
+		\draw[edger] (a) edge node[left] {3} (d);
+	\end{tikzpicture}
+	\caption{Soluzione ottima (albero dei cammini minimi)}%
+	\label{fig:etichetta}
+\end{subfigure}
+\caption{Nota la differenza fra i due alberi: a sinistra l'albero dei \emph{cammini minimi} che rappresenta una soluzione ammissibile, ma non ottima, mentre a destra l'albero dei cammini minimi, ossia l'insieme dei percorsi che minimizzano il peso fra il nodo sorgente e tutti gli altri nodi e rappresenta la soluzione ottima}
+\end{figure}
+% \includestandalone[mode=image]{shortestPath_ammissibile}
+
+\begin{note}
+In questo problema devo trovare i percorsi che minimizzano il peso fra un nodo e tutti gli altri nodi, e \textbf{non}, come sembra spontaneo fare, l'albero che ha complessivamente peso minimo.
+\end{note}
+
+\paragraph{Rappresentazione dell'albero}
+Per rappresentare l'albero, utilizziamo la rappresentazione basata su vettore dei padri, così come abbiamo fatto con le visite in ampiezza/profondità.
+
+\subsubsection{Teorema di Bellman}
+
+\begin{theorem}[Teorema di Bellman]
+Una soluzione ammissibile \(T\) è (anche) ottima se e solo se:
+\begin{align*}
+d[v] \bs{=} d[u] + w (u,v)			&& \textrm{per ogni arco \((u,v) \bs{\in T}\)} \\
+d[v] \bs{\leqslant} d[u] + w (u,v)	&& \textrm{per ogni arco \((u,v) \bs{\in E}\)}
+\end{align*}
+\end{theorem}
+
+\begin{proof}[Dimostrazione per assurdo (parte 1)]
+Sia \(T\) una soluzione ottima.
+Consideriamo un qualunque arco \((u,v) \in E\) e sia \(w (u, w)\) la sua lunghezza.
+
+Ovviamente se \((u,v) \in T\), allora \(d[v] = d[u] + w(u,v)\).
+Invece se \((u,v) \notin T\), allora poiché \(T\) è ottimo, deve risultare \(d[v] \leqslant d[u] + w(u,v)\), altrimenti esisterebbe nel grafo \(G\) un cammino da \(s\) a \(v\) più corto di quello in \(T\), che è \emph{assurdo} perché abbiamo ipotizzato che \(T\) fosse ottima.
+\end{proof}
+
+\begin{proof}[Dimostrazione per assurdo (parte 2)]
+Supponiamo per assurdo che il cammino da \(s\) a \(u\) in \(T\) non sia ottimo.
+Allora esiste un cammino da \(s\) a \(u\) con distanza \(d'[u]<d[u]\).
+Sia \(d'[v]\) la distanza da \(s\) ad un generico nodo \(v\) che appare in tale cammino.
+Poichè \(d'[s] = d[s] = 0\), ma \(d'[u]<d[u]\), esiste un arco \((h,k)\) per cui \(d'[h] \geqslant d'[h]\) e \(d'[k]< d[k]\).
+Per costruzione \(d_h' + w(h,k) = d_k'\).
+Per ipotesi \(d_h + w(h,k) \ge d_k\).
+Combinando queste due relazioni, si ottiene:
+\begin{equation*}
+d_k' = d_h' + w(h,k) \geqslant d_h + w(h,k) \geqslant d_k
+\end{equation*}
+che contraddice l'ipotesi.
+\end{proof}
+
+\subsubsection{Verso un algoritmo}
+
+\paragraph{Algoritmo prototipo}
+L'algoritmo prende in input un grafo e il nodo sorgente.
+I pesi vengono estratti dalla struttura dati \Graph.
+Inizializziamo \(d\) con una sovrastima della distanza; \(d[s] = 0\) sta a significare che la sorgente ha distanza da sè stessa pari a 0 (caso base) e con \(d[x] = +\infty\) indico che la distanza di tutti gli altri nodi, fintanto che non è nota, è pari a \(+\infty\).
+
+\begin{algorithm}[H]
+	\caption*{Algoritmo generico}
+	\input{shortestPath-proto}
+\end{algorithm}
+
+\begin{note}
+Se al termine dell'esecuzione qualche nodo mantiene una distanza infinita, allora esso non è raggiungibile.
+\end{note}
+
+\paragraph{Algoritmo generico}
+\Array{\Bool} ci permette di sapere in tempo costante se un certo nodo appartiene ad una struttura dati oppure no, non è necessario quando si implementerà realmente il codice.
+
+\begin{algorithm}[H]
+	\caption*{Algoritmo prototipo}
+	\input{shortestPath-generic}
+\end{algorithm}
+
+% TODO riprendi correzione da qui
+\subsection{Dijkstra}
+
+Il seguente algoritmo è stato sviluppato da Edsger W. Dijkstra nel 1956, pubblicato nel 1959.
+Nella versione originale veniva utilizzato per trovare la distanza minima fra due nodi sfruttando il concetto di coda con priorità.
+Tieni conto però che le code di priorità basate sugli heap binari sono state proposte nel '64, infatti l'algoritmo che di solito viene considerato di Dijkstra in realtà è la versione modificata di Johnson.
+
+\paragraph{Implementazione}
+L'algoritmo utilizza una coda con priorità basata su vettore.
+
+\begin{algorithm}[H]
+	\caption{Algoritmo di Dijkstra}
+	\setcounter{AlgoLine}{0}
+	\input{dijkstra}
+\end{algorithm}
+
+\paragraph{Commento sulla complessità}
+
+\begin{itemize}
+	\item[\circled{\ref{dijkstra:init}}]
+	Viene creato un vettore di dimensione \(n\).
+	Ogni elemento \(u\)-esimo rappresenta il nodo \(u\).
+	Le priorità (distanze) vengono inizializzate ad \(+\infty\).
+	La priorità di \(s\) è posta uguale a \(0\).
+	Per un costo computazionale di \(O(n)\);
+
+	\item[\circled{\ref{dijkstra:remove}}]
+	Si ricerca il minimo all'interno del vettore, una volta trovato si \enquote{cancella} la sua priorità.
+	Per un costo computazionale di \(O(n)\);
+
+	\item[\circled{\ref{dijkstra:add}}]
+	Si registra la priorità nella posizione corrispondente all'indice \(v\).
+	Per un costo computazionale di \(O(1)\);
+
+	\item[\circled{\ref{dijkstra:update}}]
+	Si aggiorna la priorità nella posizione corrispondente all'indice \(v\).
+	Per un costo computazionale di \(O(1)\).
+\end{itemize}
+
+\paragraph{Commento}
+Tutte le volte che estraiamo un nodo, quel nodo ha una distanza (priorità) positiva ed estraiamo nodi a distanza progressivamente crescenti.
+Se estraggo un nodo dalla coda tutti gli altri nodi hanno distanze più grandi.
+Tutte le volte che estraggo un nodo la sua distanza non può più essere modificata.
+Ed è questo il motivo per cui l'algoritmo di Dijkstra funziona bene solo con pesi positivi.
+
+\begin{note}
+L'algoritmo di Dijkstra funziona bene solo con pesi positivi.
+\end{note}
+
+\subsubsection{Correttezza per pesi positivi}
+
+Ogni nodo viene estratto una e una sola volta.
+Al momento dell’estrazione la sua distanza è minima.
+
+\begin{proof}[Dimostrazione per induzione sul numero \(k\) di nodi estratti]
+Per \(k=0\) (caso base) è vero poiché \mbox{\(d[s]=0\)} e non ci sono lunghezze negative.
+Supponiamo che sia vero per i primi \(k-1\) nodi (ipotesi induttiva).
+Quando viene estratto il \(k\)-esimo nodo \(u\), la sua distanza \(d[u]\) dipende dai \(k-1\) nodi già estratti (passo induttivo).
+Non può quindi dipendere dai nodi ancora da estrarre, che hanno distanza \(\geqslant d[u]\).
+Di conseguenza \(d[u]\) è minimo e \(u\) non verrà più re-inserito, perché non ci sono distanze negative.
+\end{proof}
+
+\subsection{Johnson}
+
+\paragraph{Analisi della complessità}
+\(\Omicron(n^2 + m)\) ma siccome \(m = \Omicron(n^2)\), allora il costo è \(\Omicron(n^2)\), con l'introduzione dell'heap binario nel '64 le operazioni che prima venivano svolte con complessità \(\Omicron(n)\) sul vettore ordinato passano ad avere una complessità di \(\Omicron(\log n)\).
+Di conseguenza la complessità dell'algoritmo diventa \(\Omicron(m \log n)\).
+
+\smallskip
+Per \emph{grafi densi} non conviene utilizzare uno heap binario in quanto \(m = \Theta(n^2)\) e di conseguenza l'algoritmo avrebbe una complessità di \(\Omicron(n^2 \log n)\), mentre per \emph{grafi sparsi} \(m = \Theta(n)\) e l'algoritmo \(\Omicron(n \log n)\).
+
+\subsection{Fredman-Tarjan}
+
+\paragraph{Analisi della complessità}
+Sfruttando un heap di fibonacci l'operazione di \heapDecrease ha costo ammortizzato costante; così facendo hanno abbassato la complessità a \(\Omicron(m + n \log n)\).
+Per \emph{grafi sparsi} produce un miglioramento nella complessità.
+
+\subsection{Bellman-Ford-Moore}
+
+\begin{note}
+\'E computazionalmente più pesante dell'algoritmo di Dijkstra ma può lavorare anche con archi di peso negativo.
+\end{note}
+
+\paragraph{Implementazione}
+Coda senza priorità.
+
+\begin{algorithm}[H]
+	\caption{Algoritmo di Bellman-Ford-Moore}
+	\input{bellman}
+\end{algorithm}
+
+\begin{itemize}
+	\item [\circled{\ref{bellman:init}}]
+	Viene creata una coda di dimensione \(n\).
+	Per un costo computazionale di \(O(n)\);
+	\item [\circled{\ref{bellman:remove}}]
+	Viene estratto il prossimo elemento della coda.
+	Per un costo computazionale di \(O(1)\);
+	\item [\circled{\ref{bellman:add}}]
+	Si inserisce l'indice \(v\) in coda.
+	Per un costo computazionale di \(O(1)\).
+\end{itemize}
+
+L'inserimento in coda può essere fatto più di una volta durante il ciclo di esecuzione dell'algoritmo, al contrario di quel che accade nell'algoritmo di Dijkstra.
+Il passo \circled{4} non è necessario in quanto non c'è una priorità da aggiornare.
+
+Il vettore delle distanze è rappresentato dalle colonne, su fondo potete vedere lo stato della coda.
+
+\paragraph{Dimostrazione di correttezza}
+
+\paragraph{Analisi di complessità}
+
+\paragraph{Cammini minimi su DAG}
+
+I cammini minimi su DAG sono sempre ben definiti;
+anche in presenza di pesi negativi, in quanto non esistono cicli (nè tantomeno quelli negativi).
+\'E possibile rilassare gli archi \emph{in ordine topologico}, \emph{una volta sola}.
+Non essendoci cicli, non c'è modo di tornare su un nodo già visitato ed abbassare il valore della sua distanza (il suo campo \(d\)).
+
+Si utilizza quindi l'ordine topologico.
+
+% TODO scrivere algoritmo
+% \includestandalone{bellman-dag}
+
+\subsubsection{Riassumendo}
+
+\begin{table}[H]\centering
+	\caption{Quale complessità preferire?}%
+	\label{tab:complexity-compared}
+	\begin{tabular}{@{} *{3}{l} @{}}\toprule
+		\textbf{Algoritmo}		& \textbf{Complessità}				& \textbf{Input}  \\\midrule
+		Dijkstra		& \(\Omicron(n^2)\)				& Pesi positivi, grafi denso  \\\lightrule
+		Johnson			& \(\Omicron(m \log n)\)		& Pesi positivi, grafi sparso \\\lightrule
+		Fredman-Tarjan	& \(\Omicron(m + n \log n)\)	& Pesi positivi, grafi denso, dimensioni molto grandi \\\lightrule
+		Bellman-Ford	& \(\Omicron(m \cdot n)\)		& Pesi negativi \\
+						& \(\Omicron(m + n)\)			& DAG			\\\lightrule
+		BFS				& \(\Omicron(m + n)\)			& Senza pesi	\\\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsubsection{Cammini minimi, sorgente multipla}
+
+Vogliamo cercare i cammini minimi fra tutti i nodi.
+
+\begin{table}[H]\centering
+	\caption{Quale complessità preferire?}%
+	\label{tab:complexity-compared}
+	\begin{tabular}{@{} *{3}{l} @{}}\toprule
+		\textbf{Algoritmo}		& \textbf{Complessità}				& \textbf{Input}  \\\midrule
+		\multirow{2}*{\parbox{2cm}{Pesi positivi, grafo denso}}		& \(\Omicron(n \cdot n^2)\)				& Applicazione ripetuta (\(n\)) dell'algoritmo di Dijkstra \\
+		&&\\\lightrule
+		Pesi positivi, grafo sparso & \(O(n \cdot (m \log n))\) & Applicazione ripetuta dell'algoritmo di Johnson \\\lightrule
+		Pesi negativi & \(O(n \cdot nm)\) & Applicazione ripetuta di Bellman-Ford, \emph{sconsigliata} \\\lightrule
+		Pesi negativi, grafo denso & \(O(n^3)\) & Algoritmo di \emph{Floyd e Warshall} \\\lightrule
+		Pesi negativi, grafo sparso & \(O(nm \log n)\) & Algoritmo di \emph{Johnson per sorgente multipla}\\\bottomrule
+	\end{tabular}
+\end{table}
+
+L'algoritmo di Bellman-Ford è sconsigliato per grafi densi perché può arrivare ad avere una complessità di \(\Omicron(n^4)\), mentre l'algoritmo di Floyd e Warshall ha una complessità di \(\Omicron(n^3)\) indipendentemente dalla forma del grafo.
+
+\subsection{Floyd-Warshall}
+
+Utilizza la programmazione dinamica.
+Ci riesce ridefinendo la definione del costo di cammino in modo tale che possa essere calcolato in modo ricorsivo.
+
+\end{document}

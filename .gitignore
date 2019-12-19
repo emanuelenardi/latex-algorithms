@@ -15,10 +15,6 @@
 # file di cache
 _minted*
 
-# file sorgenti
-*.tex
-*.sty
-
 # file sorgenti ausiliari
 assets/exercises/
 assets/figures/mwe/

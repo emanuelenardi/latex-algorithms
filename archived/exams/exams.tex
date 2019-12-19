@@ -1,0 +1,517 @@
+\documentclass[fleqn]{article}
+\usepackage{../preamble.main}
+\usepackage{../assets/algorithms/functions}
+% \standalonetrue
+
+\usepackage[useregional]{datetime2}
+
+% NOTE per gli esami
+% TODO da spostare
+\reversemarginpar
+\NewDocumentCommand{\esercizio}{ o m }{
+	\marginnote{\tiny \fbox{\em\DTMdate{#2}} \IfValueT{#1}{\circled{#1}}}%
+}
+
+\newcommand\intervalNumber{1}
+\NewDocumentEnvironment{ricorrenza}{ s o g }{
+	% \begin{equation*}
+	\[
+		\IfBooleanF{#1}
+		{T(n) =}
+		\IfValueT{#3}{\esercizio[#2]{#3}}
+		% NOTE mi permette di evitare errori se non specifico la data dell'esercizio
+		% TODO de-commetare per avere le equazioni complete
+		% TODO versione con star permette di avere l'equazione pulita
+		\IfBooleanF{#1}
+			{\begin{dcases}}
+}{
+		\IfBooleanF{#1}
+			{
+			& n > \intervalNumber \\
+			1 & n \leqslant \intervalNumber \\
+		\end{dcases}
+			}
+	\]
+	% \end{equation*}
+}
+
+\title{Eserciziario di algoritmi}
+\renewcommand\docversion{v1.0.0}
+
+% NOTE: ciclo di compilazione
+% arara: pdflatex: { shell: yes, draft: yes }
+% arara: pdflatex: { shell: yes, synctex: yes }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\maketitle
+
+\part{Esercizi d'esame}
+
+\section*{Premessa}
+Ho raccolto \emph{tutti} gli esercizi d'esame dal \(2011\) al \(2019\) riportando fedelmente la consegna.
+A margine è riporta la data dell'esame dalla quale l'esercizio è stato estratto, come il numero dello stesso.
+Enjoy!
+
+% NOTE tex.stackexchange.com/questions/296070/
+\everymath{\textstyle}
+\let\displaystyle\textstyle
+% \DTMlangsetup{showdayofmonth=false}
+\section{Analisi della complessità}
+
+% \begin{minipage}{.7\linewidth}
+
+\esercizio[1]{2014-10-31}
+Si considerino le seguenti equazioni di ricorrenza, per le quali i casi base sono tutti pari a \(\T{n} = 1\) per \(n \leqslant 1\).
+\begin{itemize}
+	\item \(\T{n} = \T{2 \frac{n}{3}} + 2n - 4\)
+	\item \(\T{n} = 4 \T{\frac{n}{2}} + n^2 \sqrt{n}\)
+	\item \(\T{n} = 2 \T{\frac{n}{4}} + \sqrt{n} + 10 \log n\)
+	\item \(\T{n} = 3 \T{\frac{n}{2}} + 2n \log n + 10n\)
+	\item \(\T{n} = \T{n-6} + n^{\frac{5}{6}}\)
+\end{itemize}
+Identificare limiti superiori e inferiori per ognuna delle equazioni di ricorrenza (eventualmente stretti, utilizzando la notazione \(\Theta(f(n))\)), utilizzando un metodo a vostro piacimento.
+Assumendo che esse provengano dall’analisi di altrettanti algoritmi, quale algoritmo
+scegliereste?
+
+\medskip
+\esercizio[1]{2013-01-28}
+Supponendo che il caso base sia \(\Omicron(1)\) si calcoli l’andamento asintotico delle seguenti equazioni di ricorrenza:
+\begin{itemize}
+	\item \(A(n) = 4A\big(\frac{n}{2}\big) + n^2 \log n\)
+	\item \(B(n) = 4B\big(\frac{n}{2}\big) + n^2\)
+	\item \(C(n) = nC(n-1)\)
+\end{itemize}
+
+\medskip
+Trovare un limite superiore e inferiore per la seguente ricorrenza:
+%
+\[
+T(n) =
+\esercizio[3]{2011-04-11}
+\begin{dcases*}
+	1 & se \(n = 1\) \\
+	\T{\frac{n}{2}} + 1	& se \(n > 1\) è pari \\
+	\T{n-2} + 1			& se \(n > 1\) è dispari \\
+\end{dcases*}
+\]
+\begin{hint}
+utilizzare i teoremi per avere un'idea della soluzione, ma poi sarà necessario utilizzare il metodo di sostituzione per una dimostrazione formale.
+\end{hint}
+
+Trovare un limite superiore e inferiore per la seguente ricorrenza, utilizzando il metodo di sostituzione:
+%
+\[
+T(n) =
+\esercizio[4]{2013-01-07}
+\begin{dcases*}
+	1 & se \(n = 1\) \\
+	\T{\frac{n}{4}} + 1	& se \(n > 1\) è pari \\
+	\T{n-4} + 1			& se \(n > 1\) è dispari \\
+\end{dcases*}
+\]
+
+Trovare \emph{limiti superiori e inferiori} per la seguente equazione di ricorrenza, utilizzando il metodo di sostituzione (detto anche per tentativi).
+%
+\begin{ricorrenza}*[2]{2011-05-02}
+	3\T{\frac{n}{4}} + \T{\frac{n}{5}} + n
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2014-02-03}
+	\big( \sum_{i=1}^{\floor{\log n}} \T{\frac{n}{2^i}} \big) + 1
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2011-05-02}
+	3\T{\frac{n}{4}} + \T{\frac{n}{5}} + n
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2011-06-06}
+	\frac{11}{5}n + \T*{\frac{n}{5}} + \T*{\frac{7}{10} n}
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2015-01-12}
+	\T*{\frac{n}{2}} + 2^n
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2015-02-02}
+	\T*{\frac{n}{\sqrt{2}}} + \T*{\frac{n}{\sqrt{4}}} + \T*{\frac{n}{\sqrt{8}}} + \T*{\frac{n}{\sqrt{16}}} + n^2
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2015-06-08}
+	\T*{\frac{n}{\sqrt[3]{2}}} + \T*{\frac{n}{\sqrt[3]{5}}} + \T*{\frac{n}{\sqrt[3]{7}}} + n^3
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[2a]{2015-11-05}
+	\T*{\frac{1}{2} n} + \T*{\frac{4}{5} n} + \T*{\frac{3}{10} n} + n^2
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[2b]{2015-11-05}
+	\T*{\frac{1}{2} n} + \T*{\frac{2}{5} n} + \T*{\frac{7}{10} n} + n^2
+\end{ricorrenza}
+
+Utilizzando un \emph{qualunque metodo}, trovare i limiti inferiori e superiori per le seguenti ricorrenze (assumendo che \(0 < \beta < 1\))
+%
+\begin{ricorrenza}*[1a]{2015-11-05}
+	\T{\beta n} + n^{\beta}
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1b]{2015-11-05}
+	\floor{\frac{1}{\beta}} \T{\floor{\beta n}} + n^{\beta}
+\end{ricorrenza}
+
+Trovare \emph{limiti superiori e inferiori} per le seguenti equazioni di ricorrenza:
+%
+\begin{ricorrenza}*[1]{2011-09-07}
+	4 \T{\sqrt{n}} + \log^2 n
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2011-01-12}
+	\T*{\frac{n}{c}} + \Theta(1)
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2016-01-26}
+	\frac{1}{2} \left(\T{n-1} + \T{\frac{3}{4}n}\right) + n
+\end{ricorrenza}
+\begin{ricorrenza}*
+	\T{\frac{1}{2} n} + \T{\frac{1}{4} n} + \T{\frac{1}{6} n} + \T{\frac{1}{12} n} + 1
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2016-06-06}
+	\T{\frac{1}{10} n} + \T{\frac{5}{6} n} + \T{\frac{1}{16} n} + n
+\end{ricorrenza}
+
+Trovate il \emph{limite inferiore} per la sequente equazione di ricorrenza:
+%
+\begin{ricorrenza}*[1]{2016-07-06}
+	2T\big(\frac{n}{\sqrt{2}} - 5\big) + n^{\frac{\pi}{2}}
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2016-08-29}
+	\T*{\frac{n}{15}} + \T*{\frac{n}{10}} + 2\T*{\frac{n}{6}} + \sqrt{n}
+\end{ricorrenza}
+
+Trovate il \emph{limite superiore} per la sequente equazione di ricorrenza:, utilizzando il metodo di sostituzione (detto anche per tentativi), facendo particolare attenzione ai casi base.
+%
+\begin{ricorrenza}*[1]{2011-07-18}
+	\sqrt{n} \T{\sqrt{n}} + \sqrt{n}
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1a]{2016-11-03}
+	27\T*{\frac{n}{9}} + n\sqrt{n}
+\end{ricorrenza}
+
+Trovate il \emph{limite inferiore} per la sequente equazione di ricorrenza:, utilizzando il metodo di sostituzione (detto anche per tentativi), facendo particolare attenzione ai casi base.
+%
+\begin{ricorrenza}*[1b]{2016-11-03}
+	64\T*{\frac{n}{16}} + n\sqrt{n}
+\end{ricorrenza}
+
+Trovare \emph{un limite superiore ed un limite inferiore}, i più stretti possibili, per la seguente equazione di ricorrenza, utilizzando il metodo di sostituzione.
+%
+\begin{ricorrenza}*[1]{2013-07-22}
+	2\T{2 \frac{n}{3}} + n^2
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2012-05-03}
+	2\T*{\frac{n}{4}} + \sqrt{n}
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2017-02-07}
+	2\T{\frac{n}{8}} + \sqrt[3]{n}
+\end{ricorrenza}
+
+Trovare i \emph{limiti superiori e inferiori} più stretti possibili per la seguente equazione di ricorrenza:
+%
+\renewcommand\intervalNumber{12}
+\begin{ricorrenza}[1]{2017-09-04}
+	3\T{\frac{n}{3}} + 6\T{\frac{n}{6}} + 54\T{\frac{n}{12}} + n^2
+\end{ricorrenza}
+\renewcommand\intervalNumber{1}
+
+Trovare i \emph{limiti superiori e inferiori} più stretti possibili per la seguente equazione di ricorrenza, utilizzando il metodo di sostituzione:
+%
+\begin{ricorrenza}*[1]{2018-01-31}
+	\T*{\frac{n}{2}} + \T{\frac{n}{3}} + n \log n
+\end{ricorrenza}
+
+Si consideri la seguente equazione di ricorrenza, parametrizzata rispetto al valore \(k\):
+%
+\begin{ricorrenza}*[1]{2018-07-25}
+	k^2 \T[k]{\frac{n}{k}} + n^{\frac{k}{2}}
+\end{ricorrenza}%
+%
+Si supponga che esistano tre algoritmi, con complessità \(T_2(n)\), \(T_3(n)\), \(T_4(n)\).
+Quale algoritmo scartereste?
+Giustificate la risposta.
+
+Trovare i limiti \emph{superiori e inferiori} il più stretti possibili per la seguente equazione di ricorrenza:
+%
+\renewcommand\intervalNumber{6}
+\begin{ricorrenza}[1]{2018-08-21}
+	3\T*{\frac{n}{3}} + 4\T*{\frac{n}{4}} + 12\T*{\frac{n}{6}} + n^2
+\end{ricorrenza}
+\renewcommand\intervalNumber{1}
+%
+\renewcommand\intervalNumber{9}
+\begin{ricorrenza}[1]{2019-01-21}
+	4\T*{\frac{n}{4}} + 9\T*{\frac{n}{9}} + n \sqrt{n}
+\end{ricorrenza}
+\renewcommand\intervalNumber{1}
+
+Si trovino, tramite il \emph{metodo della sostituzione}, un limite superiore ed un limite inferiore per la seguente ricorrenza (\(m\) costante intera positiva):
+%
+\begin{ricorrenza}*[1]{2000-00-00}
+	\T{m} + \T{n - m} + 1
+\end{ricorrenza}%
+%
+Fare particolare attenzione ai casi base.
+
+Trovare un \emph{limite superiore}, il più stretto possibile, per la seguente equazione di ricorrenza, utilizzando il metodo di sostituzione.
+%
+\begin{ricorrenza}*[1]{2014-06-16}
+	2\T*{\frac{n}{8}} + \sqrt[3]{n}
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2014-07-21}
+	\underset{1 \leqslant k \leqslant n-1}{min} \{ T[k] + \T{n-k} \} + 1
+\end{ricorrenza}
+%
+\begin{ricorrenza}*[1]{2014-09-01}
+	6\T{\frac{n}{8}} + \T{\frac{n}{4}} + 1
+\end{ricorrenza}
+
+\subsection{Trovare la complessità di una procedura}
+
+\esercizio[1]{2013-06-17}
+Trovare un limite superiore e un limite inferiore alla complessita della seguente procedura:
+
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[]{}
+
+\tcp{chiamata iniziale}
+\fun{\(V, 1, n\)}\;
+
+\BlankLine
+\prototype{\fun{\Array{\Int} V, \Int i, \Int j}}{
+
+	\BlankLine
+	\If{\(i = j\)}{
+		\Return \(1\)\;
+	}
+
+
+	\BlankLine
+	\Int \(T = 0\)\;
+	\From{\(k=i\) \DownTo \(j\)}{
+		\AddTo{T}{\ArrayCall{V}{k}}
+	}
+
+	\BlankLine
+	\Return \(T + \fun{\(V\), \(i\), \(j-1\)} + \fun{\(V\), \(i\), \(i + \floor{\sqrt{j-i+1}}\)}\)\;
+}
+
+\end{algorithm}
+\RestoreCaptionOfAlgo
+
+\esercizio[1]{2014-01-07}
+Calcolare la complessità della procedura \mistery descritto di seguito:
+
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[]{}
+
+\prototype{\mistery{\Int n}}{
+	\Int i, j, s, k\;
+	\(s \Assign 0\)\;
+
+	\BlankLine
+	\From{\(i \Assign 1\) \DownTo \(n\)}{
+		\(j \Assign 1\)\;
+
+		\BlankLine
+		\While{\(j < n\)}{
+			\(k \Assign 1\)\;
+			\While{\(k \leqslant n\)}{
+				\(\Increment{s}\)\;
+				\(\Multiply{k}{3}\)\;
+			}
+
+			\BlankLine
+			\(\Multiply{j}{2}\)\;
+		}
+	}
+}
+
+\end{algorithm}
+\RestoreCaptionOfAlgo
+
+\esercizio[1]{2014-04-24}
+Trovare un \emph{limite superiore} alla complessita della seguente procedura.
+La procedura \random{\(n\)} ha complessità \(\Omicron(1)\) e ritorna un intero casuale compreso fra \(0\) e \(n-1\).
+
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[]{}
+
+\prototype{\mistery{\Array{\Int} A, \Int i, \Int j}}{
+	\lIf{\(j < i\)}{\Return \(0\)}
+	\lIf{\(i=j\)}{\Return \(2 \cdot \ArrayCall{A}{i}\)}
+
+	\BlankLine
+	\Int \(n \Assign j-i+1\)\;
+	\Int \(sum \Assign 0\)\;
+	\Int \(k \Assign \random{\(n+1\)}\)\;
+	\From{\(r \Assign 1\) \DownTo \(2^k\)}{
+		\AddTo{sum}{\ArrayCall{A}{i + \random{n}}}\;
+	}
+
+	\BlankLine
+	\Return \(sum + \mistery{\(A\), \(i\), \(\floor{\frac{i+j}{2}}\)} + \mistery{\(A\), \(\floor{\frac{i+j}{2}} + 1\), \(j\)}\)\;
+}
+
+\end{algorithm}
+\RestoreCaptionOfAlgo
+
+% \end{minipage}
+
+\begin{comment}
+
+\subsection*{giugno 2016}
+
+\begin{itemize}
+	\item minColoring;
+	\item canItalyWin;
+	\item minPalindrome;
+	\item printAll;
+	\item albero di copertura \(k\)-minimale;
+\end{itemize}
+
+\section{Problemi relativi ai grafi}
+
+\begin{minipage}[t]{.5\linewidth}
+
+Problemi relativi ai grafi \emph{non pesati}:
+\begin{itemize}
+	\item cammino più breve (bfs);
+	\item componenti (fortemente) connesse (dfs);
+	\item verifica ciclicità (dfs);
+	\item ordinamento topologico (dfs).
+\end{itemize}
+
+\end{minipage}
+\begin{minipage}[t]{.5\linewidth}
+
+Problemi relativi ai grafi \emph{pesati}:
+\begin{itemize}
+	\item cammini peso minimo;
+	\item alberi di copertura di peso minimo;
+	\item flusso massimo.
+\end{itemize}
+
+\end{minipage}
+
+% TODO creare foglio esercizi
+\begin{comment}
+\includestandalone{../algorithms/06/minDistance}
+
+\begin{algorithm}[H]
+\input{../algorithms/06/minDistance}
+\end{algorithm}
+
+\includestandalone{../algorithms/09/minColoring}
+
+\includestandalone{../algorithms/09/canItalyWin}
+
+\begin{algorithm}[H]
+\input{../algorithms/09/canItalyWin}
+\end{algorithm}
+\paragraph{Analisi della complessità}
+Il costo computazionale è \(\Omicron(m+n)\), corrisponde ad una visita del grafo.
+
+\includestandalone{../algorithms/14/minPalindrome}
+\paragraph{Analisi della complessità}
+La complessit è pari a \(\Omicron(n^2)\), il tempo necessario per inizializzare e riempire una matrice \(n \times n\).
+
+\section{Algoritmi di ordinamento}
+
+\includestandalone{../algorithms/sorting/countingSort}
+\includestandalone{../algorithms/sorting/insertionSort}
+\includestandalone{../algorithms/sorting/mergeSort}
+
+\esercizio[1]{2012-02-01}
+Si supponga di scrivere una variante di \mergeSort, chiamata \mergeSortFour che, invece di suddividere l’array da ordinare in 2 parti (e ordinarle separatamente), lo suddivide in 4 parti, le ordina ognuna riapplicando \mergeSortFour, e le riunifica usando un’opportuna variante \mergeFour di \merge (la quale, naturalmente, fa la fusione su 4 sottoarray invece di 2).
+Come cambia, se cambia, la complessità temporale di \mergeSortFour rispetto a quella di \mergeSort?
+Come cambia, se cambia, la complessità temporale di una variante \mergeSortK di \mergeSort che spezza l’array in \(k\) sottoarray?
+Giustificare brevemente le risposte.
+Non si richiede di scrivere gli algoritmi.
+
+\esercizio[2]{2012-06-18}
+Si consideri una versione di MergeSort in cui il vettore viene suddiviso in \(\sqrt{n}\) sottovettori di \(\sqrt{n}\) elementi, ad ognuno dei quali viene applicato \mergeSort in modo ricorsivo, come mostrato nello pseudocodice seguente.
+
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[]{}
+
+\prototype{\mergeSort{\Array{\Int} A, \Int i, \Int j}}{
+
+	\BlankLine
+	\If{\(j-i+1\)}{
+		\insertionSort{A, i, j}\;
+		\Return\;
+	}
+
+	\BlankLine
+	\Int \(step = \floor{\sqrt{j-i+1}}\)\;
+	\Int \(start = i\)\;
+
+	\BlankLine
+	\While{\(start \leqslant j\)}{
+		\mergeSort{\(A\), \(start\), \minFunction{\(start+step-1\), j}}\;
+		\(start = start + step\)\;
+	}
+}
+
+\end{algorithm}
+\RestoreCaptionOfAlgo
+
+La procedura \merge, non mostrata qui per brevità, effettua un’operazione di unione fra i \(\sqrt{n}\) sottovettori, selezionando ad ogni passo il valore minore e avanzando l’indice sul corrispondente sottovettore.
+\begin{enumerate}
+	\item discutete della complessità della \merge;
+	\item scrivete l’equazione di ricorrenza associata a questa versione di \mergeSort;
+	\item risolvete l’equazione di ricorrenza ottenuta al punto precedente.
+\end{enumerate}
+
+\esercizio[1]{2012-09-10}
+Il professor Sortino ha inventato un nuovo algoritmo di ordinamento, che funziona nel modo seguente.
+Il vettore di input viene diviso in tre parti, di dimensioni approssimativamente uguali ad un terzo di \(n\).
+Dopo di che, vengono ordinati ricorsivamente le prime due parti del vettore (ovvero i primi due terzi), i secondi due terzi, e di nuovo i primi due terzi.
+
+
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[]{}
+
+\prototype{\sortinoSort{\Array{\Int} A, \Int i, \Int j}}{
+	\eSea{\(j - i + 1 \leqslant 6\)}{
+		\insertionSort{A, i, j}\;
+	}{
+		\Int \(s = \ceil{\frac{j-i+1}{3}}\)\;
+
+		\BlankLine
+		\sortinoSort{\(A, i, i + 2s - 1\)}\;
+		\sortinoSort{\(A, i + s, j\)}\;
+		\sortinoSort{\(A, i, i + 2s - 1\)}\;
+	}
+}
+
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\begin{enumerate}
+	\item qual è la complessità di questo algoritmo?
+	\item (difficile, opzionale) dimostrare per induzione che questo algoritmo è corretto.
+	Per comodità, assumete pure che tutti i valori siano distinti.
+\end{enumerate}
+
+\end{comment}
+
+\end{document}

@@ -1,0 +1,730 @@
+%&preamble.main
+
+% NOTE impostazione contatore per compilazione in standalone
+\setcounter{section}{4}
+
+% NOTE sopprimere i warnings localmente
+\hbadness=10000
+\hfuzz=\maxdimen\newdimen\hfuzz
+% \usepackage[saveall]{silence}
+\usepackage{silence}
+\WarningsOff[caption]
+
+% NOTE impostazione percorsi di default
+% https://tex.stackexchange.com/questions/79058/
+\makeatletter
+\providecommand*{\input@path}{}
+\g@addto@macro\input@path{%
+	{assets/algorithms/05/}%
+}% append
+\makeatother
+
+\graphicspath{
+	{assets/figures/05/}%
+}
+
+% TODO da spostare nel preambolo
+\usepackage{tabularx}
+\usepackage[datesep=/]{datetime2}
+
+\NewDocumentCommand{\ExamDate}{ m m }{%
+	\DTMdate{#1} & #2%
+}
+
+\setlength{\lightrulewidth}{0.1pt}
+\newcommand{\lightrule}{%
+	\arrayrulecolor{black!30}%
+	\midrule[\lightrulewidth]%
+	\arrayrulecolor{black}}
+
+% arara: pdflatex: { shell: yes, draft: yes, synctex: no }
+% arara: pdflatex: { shell: yes, synctex: yes }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\begin{comment}
+\section*{Esercizi sugli alberi}
+
+% TODO spostare definizioni nel file approppriato
+\SetKwFunction{larghezzaAlbero}{larghezza}
+\SetKwFunction{invertiAlbero}{inverti}
+\SetKwFunction{aggiungiFiglio}{aggiungiFiglio}
+\SetKwFunction{altezzaMinimale}{altezzaMinimale}
+\SetKwFunction{lunghezzaCammino}{lunghezzaCammino}
+\SetKwFunction{larghezzaLivello}{larghezzaLivello}
+\SetKwFunction{countK}{countK}\SetKwFunction{visita}{visita}
+\SetKwFunction{alberiPieni}{alberiPieni}
+\SetKwFunction{espressione}{espressione}
+
+\subsection*{Larghezza}
+
+La larghezza di un albero ordinato è il numero massimo di nodi che stanno tutti al medesimo livello.
+Si fornisca una funzione che calcoli in tempo ottimo la larghezza di un albero ordinato \(T\) di \(n\) nodi.
+
+\subsubsection*{Soluzione}
+
+Notiamo che, nella visita per livelli, quando tutti i nodi di un livello vengono estratti dalla coda, la coda contiene solo e unicamente i nodi del livello successivo.
+Basta quindi utilizzare la dimensione della coda con misuratore della larghezza del livello, e confrontarla con larghezza massima trovata fino ad ora.
+Non solo, il valore della larghezza può essere copiato nella variabile \(count\), è utilizzato per scoprire quando sarà terminato il prossimo livello.
+Il costo di questa funzione è \(\Omicron(n)\), la memoria aggiuntiva richiesta è \(\Omicron(\ell)\), dove \(\ell\) è la massima larghezza.
+
+\begin{algorithm}[H]
+\caption{Calcolo della larghezza di un albero}
+
+\BlankLine
+\prototype{\larghezzaAlbero{\Graph G}}{
+
+	\BlankLine
+	\lIf(\tcp*[h]{controllo albero vuoto}){\(t \Equal \Nil\)}{
+		\Return \(0\)
+	}
+
+	\BlankLine
+	\Int \(count\) \Assign \(1\) \Comment*[r]{no.\ nodi da visitare del livello corrente, inizialmente la radice}
+	\Int \(larghezza\) \Assign \(1\) \Comment*[r]{max larghezza trovata fin'ora, inizialmente la radice}
+
+	\BlankLine
+	\Queue \(Q\) \Assign \new \queueConstructor\;
+	\(S.\queueInsert{r}\)\;
+
+	\BlankLine
+	\While{\Not \(Q.\setEmpty\)}{
+
+		\BlankLine
+		\Tree \(u\) \Assign \(Q\).\queueRemove\;
+		\Tree \(v\) \Assign \(Q\).\treeChild\;
+
+		\BlankLine
+		\tcp{inserisco in coda tutti i nodi nel sottoalbero di \(v\)}
+		\While(\tcp*[h]{fintanto che non ho più fratelli}){\(v \Neq \Nil\)}{
+			\(Q\).\queueInsert{\(v\)}\;
+			\(v\) \Assign \(v\).\treeSibling\;
+		}
+		\Decrement{count} \Comment*[l]{non considero più l'attuale padre}
+
+		\BlankLine
+		\tcp{quando ho inserito tutti i nodi del livello}
+		\If{\(count \Equal 0\)}{
+			\(count\) \Assign \(Q\).\queueSize \Comment*[l]{larghezza del livello attuale}
+			\(larghezza\) \Assign \maxFunction{\(larghezza, count\)} \Comment*[l]{aggiorno la larghezza}
+		}
+	}
+
+	\BlankLine
+	\Return \(larghezza\)\;
+}
+
+\end{algorithm}
+
+\subsection*{Albero inverso}
+
+Dato un albero binario, i cui nodi contengono elementi interi, si scriva una funzione di complessità ottima per ottenere l'albero inverso , ovvero un albero in cui il figlio destro (con relativo sottoalbero) è scambiato con il figlio sinistro (con relativo sottoalbero).
+
+\subsubsection*{Soluzione}
+
+L'algoritmo è molto semplice: scambia sottoalbero destro e sinistro ricorsivamente.
+La complessità è \(\Omicron(n)\).
+
+\begin{algorithm}[H]
+\caption{Inversione dei sottoalberi}
+
+\BlankLine
+\prototype{\invertiAlbero{\Tree t}}{
+
+	\BlankLine
+	\lIf(\tcp*[h]{controllo albero vuoto}){\(t \Equal \Nil\)}{
+		\Return
+	}
+
+	\BlankLine
+	\Swap{t.\treeLeft, t.\treeRight}\;
+	\invertiAlbero{t.\treeLeft}\;
+	\invertiAlbero{t.\treeRight}\;
+}
+
+\end{algorithm}
+
+\subsection*{Aggiungere un figlio}
+
+Dato un albero binario, in cui nodi contengono elementi interi, si vuole aggiungere ad ogni foglia un figlio contenente la somma dei valori che appaiono nel cammino dalla radice a tale foglia.
+Si scriva una procedura ricorsiva di complicità ottima.
+
+\subsubsection*{Soluzione}
+
+\begin{algorithm}[H]
+\caption{Aggiungere un figlio ad ogni foglia di un albero binario}
+
+\BlankLine
+\aggiungiFiglio{\(t, 0\)} \Comment*[l]{chiamata iniziale}
+
+\BlankLine
+\prototype{\aggiungiFiglio{\Tree \(t\), \Int \(v\)}}{
+
+	\BlankLine
+	\lIf(\tcp*[h]{controllo albero vuoto}){\(t \Equal \Nil\)}{
+		\Return
+	}
+
+	\BlankLine
+	\AddTo{v}{t.\treeValue} \Comment*[l]{aggiungo il valore}
+
+	\BlankLine
+	\eIf(\tcp*[h]{ho trovato una foglia}){\(t.\treeLeft \Equal t.\treeRight \Equal \Nil\)}{
+		\(t\).\insertLeft\;
+	}{
+		\aggiungiFiglio{\(t.\treeLeft, v\)}\;
+		\aggiungiFiglio{\(t.\treeRight, v\)}\;
+	}
+}
+
+\end{algorithm}
+
+\subsection*{Altezza minimale}
+
+Dato un albero binario \(T\), definiamo \emph{altezza minimale} di un nodo \(v\) la minima distanza di \(v\) da una delle foglie del suo sottoalbero.
+Descrivere un algoritmo che riceve in input un nodo \(v\) e restituisce la sua altezza minimale.
+Calcolare la complessità in tempo dell'algoritmo proposto.
+
+\subsubsection*{Soluzione}
+
+L'altezza minimale del nodo radice di un albero è pari al minimo delle altezze minimali dei due sottoalberi, aumentata di \(1\).
+L'algoritmo deve necessariamente visitare tutti i nodi, quindi la complessità è pari a \(\Omicron(n)\).
+
+\begin{algorithm}[H]
+\caption{Calcolo altezza minimale}
+
+\BlankLine
+\prototype{\altezzaMinimale{\Tree \(T\)}}{
+
+	\BlankLine
+	\lIf(\tcp*[h]{controllo albero vuoto}){\(T \Equal \Nil\)}{
+		\Return \(\infty\)
+	}
+
+	\BlankLine
+	\If(\tcp*[h]{ho trovato una foglia}){\(t.\treeLeft \Equal t.\treeRight \Equal \Nil\)}{
+		\Return \(0\)\;
+	}
+
+	\altezzaMinimale{\(T.\treeLeft\)}\;
+	\altezzaMinimale{\(T.\treeRight\)}\;
+
+	\BlankLine
+	\Return \minFunction{\(h_l, h_r\)}\;
+}
+
+\end{algorithm}
+
+\subsection*{Lunghezza di un cammino}
+
+In un albero binario, definiamo \emph{lunghezza di un cammino} come la somma delle distanze dei nodi dalla radice.
+Scrivere un algoritmo per calcolare la lunghezza di cammino in un albero binario \(t\).
+Discutere la complessità in tempo dell'algoritmo proposto in funzione del numero di nodi dell'albero.
+
+\subsubsection*{Soluzione}
+
+La soluzione è una semplice procedura ricorsiva di costo \(\Omicron(n)\).
+
+\begin{algorithm}[H]
+\caption{Calcolo lunghezza di un cammino}
+
+\BlankLine
+\lunghezzaCammino{\(t, 0\)} \Comment*[l]{chiamata iniziale}
+
+\BlankLine
+\prototype{\lunghezzaCammino{\Tree \(t\), \Int \(\ell\)}}{
+
+	\BlankLine
+	\lIf(\tcp*[h]{controllo albero vuoto}){\(T \Equal \Nil\)}{
+		\Return \(0\)
+	}
+
+	\BlankLine
+	\Return \(\ell\) + \lunghezzaCammino{\(t.\treeLeft, \ell+1\)} + \lunghezzaCammino{\(t.\treeRight, \ell+1\)}\;
+}
+
+\end{algorithm}
+
+\subsection*{Larghezza di un livello}
+
+Dato un albero binario \(T\) e un intero \(k\), scrivere un algoritmo che restituisca il numero di nodi presenti nel livello \(k\).
+
+\subsubsection*{Soluzione}
+
+Dato un nodo \(T\), il numero di nodi a livello \(k\) è pari alla somma del numero di nodi a livello \(k-1\) nel sottoalbero radicato nei figli sinistro e destro di \(T\).
+L'algoritmo risultante è una visita (in post-ordine) il cui costo computazionale è \(\Omicron(n)\).
+
+\begin{algorithm}[H]
+\caption{Calcolo larghezza di un livello}
+
+\BlankLine
+\prototype{\larghezzaLivello{\Tree \(v\), \Int \(k\)}}{
+
+	\BlankLine
+	\lIf(\tcp*[h]{controllo albero vuoto}){\(T \Equal \Nil\)}{
+		\Return \(0\)
+	}
+
+	\BlankLine
+	\lIf(\tcp*[h]{la radice}){\(k \Equal 0\)}{
+		\Return \(1\)
+	}
+
+	\BlankLine
+	\tcp{calcolo ricorsivamente}
+	\Return \larghezzaLivello{\(T.\treeLeft, k-1\)} + \larghezzaLivello{\(T.\treeRight, k-1\)}\;
+}
+
+\end{algorithm}
+
+\subsection*{Altezza specificata}
+
+Dato un albero binario con radice \(T\) e un intero \(k\), scrivere un algoritmo che restituisca il numero di nodi di \(T\) che hanno altezza \(k\).
+Calcolare la complessità in tempo e in spazio dell'algoritmo proposto.
+
+\subsubsection*{Soluzione}
+
+\begin{algorithm}[H]
+\caption{Calcolo del no.\ di nodi ad una determinata altezza}
+
+\BlankLine
+\prototype{\countK{\Tree \(t\), \Int \(k\)}}{
+	\(s\) \Assign \(0\)\;
+
+	\BlankLine
+	\visita{\(t,k\)}\;
+
+	\BlankLine
+	\Return \(s\)\;
+}
+
+\BlankLine
+\tcp{restituisce l'altezza del nodo, se questa coincide con \(k\) aumenta il contatore globale}
+\prototype{\visita{\Tree \(t\), \Int \(k\)}}{
+
+	\BlankLine
+	\Int \(L\) \Assign \iif{\(t.\treeLeft \Equal \Nil, -1, \visita{t.\treeLeft}\)}\;
+	\Int \(R\) \Assign \iif{\(t.\treeRight \Equal \Nil, -1, \visita{t.\treeRight}\)}\;
+	\Int \(h\) \Assign \maxFunction{\(L, R\)} \(+ 1\)\;
+
+	\BlankLine
+	\If{\(h \Equal k\)}{
+		\Increment{s}\;
+	}
+
+	\BlankLine
+	\Return \(h\)\;
+}
+
+\end{algorithm}
+
+\subsection*{Alberi pieni}
+
+\begin{center}
+\fbox{\fbox{
+Affrontare questo esercizio solamente \emph{dopo} aver studiato la programmazione dinamica.
+}}
+\end{center}
+
+Un albero \emph{pieno} è un albero binario in cui tutti i nodi hanno esattamente uno o due figli, e nessun nodo ha un figlio.
+Scrivere una funzione ricorsiva che valuti \(P_n\), ovvero il numero di alberi binari strutturalmente diversi che si possono ottenere con \(n\) nodi.
+Si valuti la complessità dell'algoritmo risultante.
+
+\subsubsection*{Soluzione}
+
+Il numero di alberi pieni strutturalmente diversi è calcolato nel seguente modo.
+Innanzitutto, è impossibile costruire un albero pieno se \(n\) è pari.
+Questo perchè gli alberi pieni si ottengono partendo dalla radice e aggiungendo via via coppie di figli.
+Per i valori dispari, il numero di nodi pieni è ottenuto ricorsivamente partendo dal caso base \(n = 1\) (che corrisponde ad un albero solo).
+Per \(n > 1\), si crea una radice e poi si dividono i rimanenti \(n - 1\) figli fra il sottoalbero destro e il sottoalbero sinistro.
+Se \(i\) nodi vanno a destra, \(1 \leqslant i \leqslant n-2\), \((n-1) - i\) nodi vanno a sinistra.
+\begin{equation*}
+	T(n) =
+	\begin{dcases*}
+		0 & se \(n\) è pari\\
+		1 & se \(n = 1\)\\
+		\sum_{i=1}^{n-2} T(i) \cdot T((n-1) - i) & se \(n > 1\)\\
+	\end{dcases*}
+\end{equation*}
+\`{E} possibile calcolare il valore con un semplice programma ricorsivo, ma questo avrebbe complessità superpolinomiale.
+Per velocizzare l'algoritmo, è opportuno utilizzare la programmazione dinamica.
+
+\begin{algorithm}[H]
+\caption{Calcolo del no.\ di nodi ad una determinata altezza}
+
+\BlankLine
+\prototype{\alberiPieni{\Tree \(t\)}}{
+
+	\BlankLine
+	\eIf(\tcp*[h]{non è possibile costruire un albero pieno}){\(n\) è pari}{
+		\Return \(0\)\;
+	}{
+		\Array{\Int} \(D\) \Assign new \Array{\Int}[1][n]\;
+		\(D[n]\) \Assign \(1\)\;
+
+		\BlankLine
+		\From{\(i \Assign 3\) \DownTo \(n\) \Step \(2\)}{
+			\(D[i]\) \Assign \(0\)\;
+
+			\BlankLine
+			\From{\(j \Assign 1\) \DownTo \(i-2\) \Step \(2\)}{
+				\(D[i]\) \Assign \(D[i] + D[j] \cdot D[(n-1)-j]\)\;
+			}
+		}
+	}
+
+	\BlankLine
+	\Return \(D[n]\)\;
+}
+
+\end{algorithm}
+\end{comment}
+
+\subsection{Esercizi estratti dagli esami}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2011-05-02}{1} & Costruire un albero binario di ricerca di altezza minima\\
+			\ExamDate{2011-05-27}{1} & Lunghezza del più lungo cammino monotono crescente radice-discendente\\
+			\ExamDate{2011-09-07}{2} & Grado di sbilanciamento\\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi sui vettori}
+
+\subsection{Esercizi estratti dagli esami}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2011-04-11}{1} & \\
+			\ExamDate{2011-05-27}{3} & \\
+			\ExamDate{2011-06-06}{2} & \\
+			\ExamDate{2011-07-18}{2} & \\
+			\ExamDate{2011-07-18}{3} & \\
+			\ExamDate{2011-09-07}{4} & \\
+		\lightrule
+			\ExamDate{2012-01-11}{3} & \\
+			\ExamDate{2012-05-31}{4} & (\texttt{*} \DTMdate{2012-01-11})\\
+			\ExamDate{2012-05-31}{2} & \\
+			\ExamDate{2012-07-09}{2} & \(k\) numeri vicini alla mediana\\
+			\ExamDate{2012-09-10}{2} & \\
+		\lightrule
+			\ExamDate{2013-01-07}{1} & \\
+			\ExamDate{2013-01-07}{2} & \\
+			\ExamDate{2013-06-17}{2} & \\
+			\ExamDate{2013-07-13}{2} & \\
+		\lightrule
+			\ExamDate{2014-04-24}{3} & \\
+			\ExamDate{2014-06-05}{4} & \\
+			\ExamDate{2014-09-14}{4} & \\
+			\ExamDate{2014-10-31}{4} & \\
+			\ExamDate{2014-12-19}{1} & \\
+		\lightrule
+			\ExamDate{2015-09-01}{3} & \\
+			\ExamDate{2015-11-05}{4} & \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi sugli alberi binari (di ricerca)}
+
+\subsection{Esercizi estratti dagli esami}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2011-04-11}{2} & \\
+			\ExamDate{2011-05-02}{1} & \\
+			\ExamDate{2011-05-27}{1} & \\
+			\ExamDate{2011-09-07}{2} & \\
+		\lightrule
+			\ExamDate{2012-01-11}{4} & \\
+			\ExamDate{2012-06-18}{1} & \\
+			\ExamDate{2012-09-10}{4} & \\
+		\lightrule
+			\ExamDate{2013-01-28}{2} & \\
+			\ExamDate{2013-05-03}{2} & \\
+		\lightrule
+			\ExamDate{2014-04-24}{2} & \\
+			\ExamDate{2014-06-05}{2} & \\
+			\ExamDate{2014-09-01}{3} & \\
+		\lightrule
+			\ExamDate{2015-01-12}{2} & \\
+			\ExamDate{2015-11-05}{2} & \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi sugli alberi red-black}
+
+\subsection{Esercizi estratti dagli esami}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2013-09-02}{2} & Controlla se è un albero RB\\
+		\lightrule
+			\ExamDate{2014-01-07}{2} & \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi sui grafi}
+
+\subsection{Esercizi estratti dagli esami}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2011-05-02}{3} & \\
+			\ExamDate{2011-06-06}{3} & \\
+		\lightrule
+			\ExamDate{2012-05-03}{2} & \\
+			\ExamDate{2012-06-18}{3} & \\
+		\lightrule
+			\ExamDate{2013-01-28}{3} & \\
+		\lightrule
+			\ExamDate{2014-07-21}{2} & (\texttt{*} \DTMdate{2012-05-03})\\
+			\ExamDate{2014-10-31}{3} & \\
+		\lightrule
+			\ExamDate{2015-02-02}{2} & (\texttt{*} \DTMdate{2014-07-21})\\
+			\ExamDate{2015-01-12}{3} & \\
+			\ExamDate{2015-06-08}{2} & \topSort\\
+			\ExamDate{2015-07-14}{2} & \\
+			\ExamDate{2015-11-05}{3} & \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi sui grafi orientati}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2013-05-31}{1} & \\
+			\ExamDate{2013-05-31}{2} & \\
+		\lightrule
+			\ExamDate{2014-02-03}{3} & \\
+			\ExamDate{2014-04-24}{4} & \\
+			\ExamDate{2014-06-05}{3} & \\
+			\ExamDate{2014-06-16}{2} & algoritmo \ConnectedComponents\\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi con applicazione delle matrici}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2013-05-03}{3} & \\
+			\ExamDate{2014-01-07}{3} & erdos \& Dijkstra\\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi sugli algoritmi ingordi}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2011-05-27}{4} & \\
+		\lightrule
+			\ExamDate{2012-02-01}{3} & \\
+			\ExamDate{2012-05-03}{3} & (\texttt{*} \DTMdate{2012-02-01})\\
+		\lightrule
+			\ExamDate{2013-05-31}{3} & \\
+		\lightrule
+			\ExamDate{2014-01-07}{4} & \\
+			\ExamDate{2014-06-16}{3} & \\
+			\ExamDate{2014-09-01}{2} & \\
+		\lightrule
+			\ExamDate{2015-06-08}{4} & \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi sugli alberi di copertura}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2012-07-09}{?} & Teoria \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi sulle reti di flusso}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2011-07-18}{4} & \\
+		\lightrule
+			\ExamDate{2012-05-31}{1} & Applicazione algoritmo flusso massimo\\
+		\lightrule
+			\ExamDate{2013-06-17}{4} & \\
+			\ExamDate{2013-07-22}{3} & \\
+		\lightrule
+			\ExamDate{2014-07-21}{3} & \\
+			\ExamDate{2014-12-19}{2} & \\
+		\lightrule
+			\ExamDate{2015-02-02}{3} & \\
+			\ExamDate{2015-09-01}{2} & \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi sugli algoritmi di backtrack}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2012-02-01}{2} & \\
+		\lightrule
+			\ExamDate{2014-02-03}{4} & \enquote{scacchiera}\\
+		\lightrule
+			\ExamDate{2015-07-14}{3} & \enquote{grafo non orientato}\\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi sulla programmazione dinamica}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2011-05-02}{4} & \\
+			\ExamDate{2011-05-27}{2} & \\
+			\ExamDate{2011-06-06}{4} & \\
+		\midrule
+			\ExamDate{2012-05-31}{3} & \\
+			\ExamDate{2012-06-18}{4} & \\
+			\ExamDate{2012-07-09}{4} & \\
+		\midrule
+			\ExamDate{2013-01-07}{3} & \\
+			\ExamDate{2013-01-28}{4} & \\
+			\ExamDate{2013-05-03}{4} & \\
+			\ExamDate{2013-05-31}{4} & \\
+			\ExamDate{2013-06-17}{3} & \\
+			\ExamDate{2013-07-22}{4} & soluzione anche in memoization\\
+			\ExamDate{2013-09-02}{4} & \\
+		\midrule
+			\ExamDate{2014-06-16}{4} & \\
+			\ExamDate{2014-07-21}{4} & \\
+			\ExamDate{2014-12-19}{3} & LCS, soluzione anche in memoization\\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi con utilizzo di memoization}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2012-02-01}{4} & \\
+			\ExamDate{2012-05-03}{4} & \\
+		\midrule
+			\ExamDate{2015-01-12}{4} & \\
+			\ExamDate{2015-02-02}{4} & \\
+			\ExamDate{2015-06-08}{3} & \\
+			\ExamDate{2015-07-14}{4} & \\
+			\ExamDate{2015-09-01}{4} & (\texttt{*} \DTMdate{2011-05-02})\\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi con algoritmi ad-hoc}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2011-09-07}{3} & utilizzo di hash \\
+		\midrule
+			\ExamDate{2012-01-11}{2} & \\
+			\ExamDate{2012-09-10}{3} & \\
+			\ExamDate{2013-09-02}{1} & \enquote{segreti} (\texttt{*} \DTMdate{2014-02-03} es.no.\ 2 alberi binari)\\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section*{Esercizi con algoritmi di ordinamento o varianti}
+
+\begin{table}[H]
+	\centering
+	\caption{Esercizi d'esame (in ordine cronologico) e breve descrizione della traccia}
+	\begin{tabularx}{\textwidth}{@{} c c X @{}}
+		\toprule
+			Esame & no. & Breve descrizione della traccia\\
+		\midrule
+			\ExamDate{2012-02-01}{3} & variante di \mergeSort \\
+			\ExamDate{2012-06-18}{2} & variante di \mergeSort \\
+			\ExamDate{2012-09-10}{?} & \enquote{sortino sort}\\
+		\midrule
+			\ExamDate{2015-09-01}{2} & \\
+			\ExamDate{2014-10-31}{2} & \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\DTMdate{2014-06-05} es.no.\ 1 insieme indipendente di intervalli pesati
+
+\end{document}

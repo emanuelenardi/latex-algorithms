@@ -1,0 +1,331 @@
+\documentclass{article}
+
+% WARNING da caricare presto
+\usepackage[
+	,subpreambles	= false
+	,mode			= buildnew
+]{standalone}
+
+% NOTE non più utilizzato -> preambolo precompilato, tenuto per riferimento
+% \usepackage{subfiles}
+
+% IDEA pacchetti di utilità
+% NOTE 'comment' - fornisce l'ambiente dei commenti
+% NOTE 'xargs' - use more than one optional parameter in a new commands
+\usepackage{comment, xargs}
+
+% NOTE sperimentazioni con il cambio del carattere
+\begin{comment}
+% NOTE tex.stackexchange.com/questions/39700/
+% save defaults
+\edef\keptrmdefault{\rmdefault}
+\edef\keptsfdefault{\sfdefault}
+\edef\keptttdefault{\ttdefault}
+
+% WARNING creano conflitti con i pacchetti matematici
+% TODO bisogna caricarli dopo?
+% \usepackage[garamond]{mathdesign}
+% \usepackage[charter]{mathdesign}
+
+% NOTE non mi piace, troppo pesante
+% \usepackage{fouriernc}
+
+% NOTE mi piace il font del testo, ma non quello matematico
+% \usepackage{ccfonts}
+\usepackage[euler-digits,euler-hat-accent]{eulervm}
+\usepackage[T1]{fontenc}
+
+% restore defaults
+\edef\rmdefault{\keptrmdefault}
+\edef\sfdefault{\keptsfdefault}
+\edef\ttdefault{\keptttdefault}
+\end{comment}
+
+% NOTE language, input and output options
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, italian]{babel}
+\usepackage[
+	% ,activate	= {true, nocompatibility}
+	,activate	= {true}
+	,final
+	% ,draft
+	,tracking	= true
+	,kerning	= true
+	% ,spacing	= true
+	,factor		= 1100
+	,stretch	= 10
+	,shrink		= 10
+]{microtype}
+
+% NOTE 'xcolor' - permette di definire colori personalizzati
+\usepackage[
+	,dvipsnames
+	,svgnames
+	,x11names
+	,table
+	% ,gray
+]{xcolor}
+
+% NOTE 'enumitem' - permette di personalizzare gli elenchi puntati
+% NOTE lista in linea
+\usepackage[inline]{enumitem}
+
+% NOTE setup tikz, bookmarks, colors
+\usepackage{tikz}
+% NOTE avevo bisogno della dichiarazione di 'cell'
+\usepackage{assets/figures/tikz-preamble}
+
+% NOTE dichiarazione nuovi colori
+\colorlet{rose}{red!50!white}
+\colorlet{darker}{blue!50!black}
+\colorlet{mathcolor}{blue}
+
+% NB è una copia, copia le modifiche su 'assets/algorithms/preamble'
+% \colorlet{nodeRed}{red!30}
+% \colorlet{nodeBlue}{blue!30}
+% \colorlet{nodeYellow}{yellow!30}
+%
+% \colorlet{arcoAlbero}{red}
+% \colorlet{arcoIndietro}{teal} % brown -> teal
+% \colorlet{arcoAvanti}{purple}
+% \colorlet{arcoAttraversamento}{blue}
+\usepackage{preamble.forest}
+
+% TODO rimuovere dipendenza
+% \usepackage{set-tables}
+
+% IDEA tabelle
+% NOTE 'array' - permette di creare delle colonne personalizzate
+% NOTE 'booktabs' - genera filetti professionali per le tabelle
+% NOTE 'makecell' -
+% NOTE 'multirow' - tabelle con righe multilinea
+\usepackage{
+	array,
+	booktabs,
+	makecell,
+	multirow
+	% tabularx
+}
+
+\setlength{\lightrulewidth}{0.1pt}
+\newcommand{\lightrule}{%
+\arrayrulecolor{black!30}%
+\midrule[\lightrulewidth]%
+\arrayrulecolor{black}}
+
+% NOTE graphics and float packages
+% IDEA figure
+% NOTE 'graphicx' - inserimento figure nel docuemento
+% NOTE 'float' - definisce l'opzione "H" per gli oggetti fluttuanti
+\usepackage{
+	graphicx,
+	float,
+	caption,
+	subcaption
+}
+\captionsetup{
+	figureposition = bottom,
+	tableposition = top,
+	font = small,
+	labelfont = {sf, bf},
+	justification = centering
+}
+\captionsetup[figure]{
+	format=hang,
+	justification=raggedright,
+	singlelinecheck=off
+}
+\captionsetup[subfigure]{
+	format=hang,
+	justification=raggedright,
+	singlelinecheck=off
+}
+% TODO didascalia non allineata a destra
+% \captionsetup[table]{
+% 	format=hang,
+% 	justification=raggedright,
+% 	singlelinecheck=off
+% }
+
+% NOTE 'csquotes' - permette di personalizzare le citazioni
+\usepackage{csquotes}
+
+% NOTE Ridefinisce le virgolette
+\DeclareQuoteStyle{italian}%
+	{\textquotedblleft}
+	[\textquotedblleft]
+	{\textquotedblright}
+		[0.05em]
+	{\textquoteleft}
+	[\textquoteleft]
+	{\textquoteright}
+
+% NOTE Imposta il tipo di virgolette
+\setquotestyle{italian}
+
+% TODO spostare nel solo capitolo utilizzato
+% \usepackage{chronology}
+% \usepackage{pgfgantt}
+
+\usepackage{siunitx}
+
+% NOTE change lengths
+% NOTE toglie l'intentazione a tutto il documento
+\setlength\parindent{0pt}
+% \usepackage[normalem]{ulem}
+
+\usepackage{enumitem}
+\newlist{compactlist}{itemize}{2}
+\setlist[compactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 0pt, partopsep = 0pt}
+
+% TODO rimuovere dipendenza
+\usepackage{set-citations}
+% TODO eliminare dipendenza
+\usepackage{set-math}
+% TODO rimuovere dipendenza
+\usepackage{set-algorithm2e}
+% NOTE riadattate dal documento di Montresor (grazie 😌)
+\usepackage{assets/algorithms/functions}
+
+% NOTE setup titles and sectioning
+\usepackage{titling}
+\newcommand\subtitle[1]{%
+	\posttitle{%
+		\par\end{center}
+		\begin{center}\large#1\end{center}
+		\vskip0.5em}%
+}
+
+\title{Appunti \emph{ordinati} sull'analisi degli algoritmi\\\underline{in preparazione all'orale}}
+\subtitle{(Si può fare meglio di così?)}%\textsuperscript{\texttrademark}
+\author{Emanuele Nardi}
+\newcommand\docversion{}
+\date{Aggiornato il \today\\\texttt{\docversion}}
+
+\newcommand\Title{UNITN -- Algoritmi e Struttre Dati}
+\newcommand\Author{Emanuele Nardi}
+\newcommand\Subject{Algoritmi e Strutture Dati}
+\newcommand\Creator{pdflatex}
+\newcommand\Producer{LaTeX}
+\newcommand\Keywords{Algoritmi, Strutture Dati}
+
+\usepackage[
+	,top	= 0.8in
+	,bottom	= 1.25in
+	,left	= 1.25in
+	,right	= 1.25in
+	% NOTE tex.stackexchange.com/questions/29125/
+	,marginparwidth=4.6cm
+	,heightrounded
+]{geometry}
+
+% NOTE toglie l'intentazione a tutto il documento
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{1ex}
+
+% NOTE 'fancyhdr' - permette la personalizzazione di testatina e piè di pagina
+\usepackage{fancyhdr, lastpage}
+\fancypagestyle{footer}{
+	\fancyhf{}
+	% \lfoot{\authorName}
+	\cfoot{\footnotesize Pagina~\thepage\ di~\pageref{LastPage}}
+	% \rfoot{\today}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{footer}
+
+% NOTE 'bookmark' - crea e gestisce i segnalibri
+% NB i segnalibri vengono aperti fino al 1° livello
+\usepackage[
+	,open
+	,openlevel = 1
+]{bookmark}
+
+\hypersetup{
+	pdfinfo = {
+		Title = {\Title},
+		Author = {\Author},
+		Subject = {\Subject},
+		Creator = {\Creator},
+		Producer = {\Producer},
+		Keywords = {\Keywords},
+		colorlinks = true,
+		backref = true,
+	}
+}
+
+% NOTE modifica il colore dei collegamenti ipertestuali
+% NB bisogna caricarlo per ultimo
+\usepackage{hyperref}
+\hypersetup{
+	,colorlinks	= true
+	% ,allcolors = <color>
+	,linkcolor 	= red
+	,anchorcolor = black
+	,citecolor 	= green
+	,filecolor 	= cyan
+	,menucolor 	= red
+	,runcolor 	= cyan
+	,urlcolor 	= magenta
+	,backref
+	% ,pdfpagemode=FullScreen
+}
+
+% NOTE comandi personalizzati
+% NOTE creare un file a parte con le macro del testo
+\NewDocumentCommand\exercise{m}{%
+	\begin{center}
+		\fbox{#1}%
+	\end{center}
+}
+
+% IDEA annotazioni - note a margine
+\usepackage{
+	marginnote,
+	mparhack,
+	marginfix,
+}
+% NOTE il lato per le note a margine del testo è il sinistro
+\reversemarginpar
+
+% NOTE indicazione che quel particolare argomento potrebbe essere richiesto all'orale
+\usepackage{fontawesome}
+\NewDocumentCommand{\SimboloOrale}{}{%
+	\faExclamationTriangle%
+}
+\NewDocumentCommand{\Orale}{}{%
+	\normalfont\small\marginnote{%
+		\SimboloOrale%
+	}%
+}
+
+% NOTE parole in lingue diverse dall'italiano (inglese)
+\NewDocumentCommand{\foreign}{m}{%
+	\selectlanguage{english}{%
+		\emph{#1}%
+	}%
+}
+
+% NOTE simbolo di ricorrenza
+\NewDocumentCommand{\T}{ s o m }{
+	\ensuremath{%
+		\IfValueTF{#2}
+			{T_{#2}}
+			{T}
+		\left(%
+		\IfBooleanTF{#1}
+			{\left\lfloor#3\right\rfloor}
+			{#3}
+		\right)
+	}
+}
+
+% NOTE per avere i parametri allineati a sx con un box di dimensione pari alla stringa più lunga
+\usepackage{eqparbox}
+\NewDocumentCommand{\params}{ mo }
+	{ \tcp{\eqparbox{params}{\(#1\):} #2}\vspace{-3pt} }
+
+% NOTE funzione di utilità per accertarmi di aver caricato il prambolo correttamente
+\def\preambleloaded{Precompiled preamble loaded.}

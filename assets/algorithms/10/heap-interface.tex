@@ -1,0 +1,38 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+% \heapConstructor\;
+\minHeapConstructor \Comment*[l]{crea una coda con priorità, vuota}
+% \maxHeapConstructor\;
+
+
+\BlankLine
+\Bool \heapEmpty \Comment*[l]{restituisce \True se la coda è vuota}
+
+\BlankLine
+\Item \heapMin \Comment*[l]{restituisce l'el.\ minimo}
+\Item \heapDeleteMin \Comment*[l]{rimuove e restituisce il minimo}
+\Item \heapMax \Comment*[l]{restituisce l'el.\ massimo}
+\Item \heapDeleteMax \Comment*[l]{rimuove e restituisce il massimo}
+
+\BlankLine
+\tcp{Inserisce l'elemento \(x\) con priorità \(p\) nella coda con priorità.}
+\tcp{restituisce un oggetto \PriorityItem che identifica \(x\) all'interno della coda}
+\PriorityItem \heapInsert{\Item \(x\), \Int \(p\)}
+
+\BlankLine
+\tcp{diminuisce la priorità dell'oggetto identificato da \(y\) portandola al valore \(p\)}
+\heapDecrease{\PriorityItem \(y\), \Int \(p\)}\;
+% \heapIncrease{\PriorityItem \(y\), \Int \(p\)}\;
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

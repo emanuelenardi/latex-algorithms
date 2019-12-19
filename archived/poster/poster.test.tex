@@ -1,0 +1,30 @@
+\documentclass[
+	% ,draft
+	,a4paper
+	% ,landscape
+]{article}
+% \standalonetrue
+\usepackage{poster.preamble}
+\usepackage{standalone}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+% NOTE test di corretto funzionamento
+\standalonefalse % default
+% \standalonetrue
+
+\algorithmstyle{ruled}
+\begin{algorithm}[H]
+	\caption{Parentesizzazione}
+	% \BlankLine
+	\input{../assets/algorithms/13/par-recursive}
+	\input{../assets/algorithms/13/par-multiply}
+\end{algorithm}
+\algorithmstyle{tworuled}
+
+\paragraph{Moltiplicazione fra matrici}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\end{document}

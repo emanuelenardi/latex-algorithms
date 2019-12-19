@@ -1,0 +1,158 @@
+\usepackage{forest}
+
+\forestset{
+	% NOTE nodi più pronuciati
+	,circled/.style={
+		,for tree={
+			,draw = black
+			,thick
+			,circle
+		}
+	}
+	% NOTE nodi gialli
+	,yellow/.style={
+		,for tree={
+			,fill=yellow!40
+		}
+	}
+	% NOTE backtrack e approx
+	,compact tree/.style={
+		,circled
+	}
+	% NOTE usato dove?
+	,circled math tree/.style={
+		,circled
+		,wide
+		,math tree
+	}
+	% NOTE usato nel capitolo del backtrack
+	,pruned/.style={
+		,delay={
+			,for descendants={phantom}
+		}
+	}
+	% NOTE usato nel capitolo del backtrack
+	,pruned red/.style={
+		,pruned
+		,fill=red
+	}
+	% NOTE albero che contiene nodi in cui sono presenti numeri e/o formule matematiche
+	,math tree/.style= {
+		,for tree = {
+			% NB da testare
+			,fit = band
+			,draw
+			,math content
+		}
+	}
+	% NOTE nodi più spaziati
+	,wide/.style={
+		,for tree={
+			,align = center
+			% ,fit = band
+			,minimum width = 0.65cm
+			,s sep+=10pt % siblings separation
+			% ,l sep+=10pt % levels separation
+			,l sep+=5pt % levels separation
+		}
+	}
+	% NOTE colorazione delle etichette
+	,binary numbering/.style = {
+		,for tree = {
+			,if = { isodd(n) }
+				{ edge label = { node[midway, fill=white, font=\ttfamily, text=red] {0} } }
+				{ edge label = { node[midway, fill=white, font=\ttfamily, text=blue] {1} } }
+		}
+	}
+	% NOTE Albero Binario di Ricerca
+	,abr tree/.style = {
+		% ,math tree
+	}
+	% NOTE albero Red-Black
+	,rb tree/.style= {
+		math content,
+		for tree={%
+			circled,
+			font=\sffamily,
+			delay={%
+				if n children=0{%
+					% text = white,
+					% fill = black!80,
+					% color=black,
+					rectangle,
+					content={\textsf{\footnotesize Nil}},
+				}{}
+			}
+		}
+	}
+	% ,drop edge/.append style={
+	% 	edge={densely dashed, red}
+	% }
+	,add edge/.style={
+		edge={thick, ForestGreen}
+	}
+	% NOTE albero binario con le etichette colorate
+	,binary tree/.style = {
+		,circled
+		,wide
+	}
+}
+
+\tikzset{
+	red/.style={
+		fill=red!80,
+		text=white
+	},
+	black/.style={
+		fill=black!80,
+		text=white
+	},
+	triangle/.style = {
+		regular polygon,
+		regular polygon sides=3},
+	stile/.style = {
+		draw=black!80,
+		densely dashed,
+		triangle}
+}
+
+\forestset{
+	subtree/.style = {
+		edge label = {
+			node[below, % equiv. anchor = north,
+				 text width = 2ex,
+				 align      = center,
+				 inner sep  = 4pt,
+				 % outer sep  = 5pt,
+				 stile
+			] {#1}
+		}
+	},
+	little subtree/.style = {
+		edge label = {
+			node[below, % equiv. anchor = north,
+				 text width = 1ex,
+				 align      = center,
+				 inner sep  = 4pt,
+				 % outer sep  = 5pt,
+				 stile
+			] {#1}
+		}
+	}
+}
+
+% NOTE codice duplicato nel capitolo dei grafi
+\forestset{
+	job/.style = {
+		rectangle,
+		draw = black,
+		align = center,
+		anchor = west,
+		fill = white,
+		minimum height = 0.5cm},
+	cell/.style = {
+		job,
+		thick,
+		font = \ttfamily\bfseries,
+		minimum size = 0.5cm}
+}
