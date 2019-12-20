@@ -1,0 +1,8 @@
+arara dict-interface
+arara list-pseudocode
+arara queue-interface
+arara queue-pseudocode
+arara sequence-interface
+arara set-interface
+arara stack-interface
+arara stack-pseudocode

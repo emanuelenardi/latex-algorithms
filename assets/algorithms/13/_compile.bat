@@ -1,0 +1,13 @@
+arara fibonacci-iterative 
+arara fibonacci-recursive 
+arara fibonacci-space-optimize 
+arara hateville-solution 
+arara hateville 
+arara intervals-dp 
+arara intervals-pred 
+arara knapsack-dp 
+arara par-compute 
+arara par-multiply 
+arara par-print 
+arara par-recursive 
+arara stringMatching 

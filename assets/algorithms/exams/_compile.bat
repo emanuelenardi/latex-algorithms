@@ -1,0 +1,2 @@
+arara canItalyWin 
+arara minPalindrome 

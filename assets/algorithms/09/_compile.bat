@@ -1,0 +1,17 @@
+arara bfsProc
+arara ConnectedComponents
+arara dfsIterative
+arara dfsProc
+arara dfsSchema
+arara dfsStack
+arara erdos
+arara graph
+arara hasCycle
+arara hasCycleDAG
+arara korasaju
+arara larghezzaAlberoRadicato
+arara maxDist
+arara printPath
+arara quadrato
+arara topSort
+arara visitGraph

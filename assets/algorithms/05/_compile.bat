@@ -1,0 +1,10 @@
+arara bfs
+arara conteggioNodi
+arara dfs
+arara dfsSchema
+arara stampaEspressioni
+arara tree-binary-interface
+arara tree-generic-interface
+arara tree-listChildren-interface
+arara tree-pseudocode
+latexmk -c

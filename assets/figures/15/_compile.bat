@@ -1,0 +1,10 @@
+arara esempioFlusso-maxFlow
+arara esempioFlusso
+arara flussoMassimo
+arara prop1
+arara prop2
+arara prop3
+arara prop4
+arara prop5
+arara reteResidua
+arara template
