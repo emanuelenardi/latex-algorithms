@@ -1,8 +1,5 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 \setcounter{section}{1}
 % \setcounter{algocf}{5}
 
@@ -10,10 +7,9 @@
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
+\begin{document}
 \begin{algorithm}[H]
-% \caption{Algoritmo di ordinamento}
 \fi
 
 Estensione del \countingSort che permette di ordinare in tempo lineare coppie (chiave, valore), invece che singoli interi.
@@ -40,7 +36,7 @@ Le chiavi devono essere comprese fra \(1\) e \(k\).
 	\BlankLine
 	\tcp{scansione vettore \(B\)}
 	\From{\(j \Assign 0\) \DownTo \(size-1\)}{
-		\Postype \(p \Assign L[j].\listHead\)\;
+		\Pos \(p \Assign L[j].\listHead\)\;
 
 		\BlankLine
 		\While{\Not \(L[j].\listEnd{p}\)}{
@@ -53,5 +49,5 @@ Le chiavi devono essere comprese fra \(1\) e \(k\).
 
 \ifstandalone
 \end{algorithm}
-\fi
 \end{document}
+\fi

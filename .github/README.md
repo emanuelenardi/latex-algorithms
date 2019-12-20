@@ -22,8 +22,8 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 
 - Tutti i capitoli
 - Capitoli:
-	- &nbsp;&nbsp;__1__ ❌ Introduzione
-	- &nbsp;&nbsp;__2__ ✔️ Analisi di funzioni
+	- &nbsp;&nbsp;__0__ ❌ Introduzione
+	- &nbsp;&nbsp;__1__ ✔️ Analisi di algoritmi
 	- &nbsp;&nbsp;__2__ ❌ Analisi ammortizzata
 	- &nbsp;&nbsp;__3__ ✔️ Analisi di algoritmi
 	- &nbsp;&nbsp;__4__ ✔️ Strutture Dati

@@ -10,10 +10,14 @@
 *.toc
 
 # file di scripting
-*.bat
+# *.bat
 
 # file di cache
 _minted*
+
+# file sorgenti
+# *.tex
+# *.sty
 
 # file sorgenti ausiliari
 assets/exercises/
@@ -26,6 +30,7 @@ assets/notes/
 exams/compiti/
 exams/soluzioni/
 
-formulario/preamble/
+# preamboli
+# formulario/preamble/
 
 questions/

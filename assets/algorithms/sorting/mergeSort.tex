@@ -26,16 +26,17 @@
 
 	\BlankLine
 	\tcp{inizializzo i puntatori}
-	\(i \Assign primo\)
-	\(j \Assign mezzo\)
+	\(i \Assign primo\)\;
+	\(j \Assign mezzo\)\;
 	\(k \Assign primo\)\;
 	\tcp{k: indica la prossima posizione di scrittura}
 
 	\BlankLine
-	\tcp{fintanto che entravi}
+	% \tcp{}
 	\While{\(i \leqslant mezzo\) \And \(j \leqslant ultimo\)}{
 
 		\BlankLine
+		\tcp{B è il vettore di appoggio in cui memorizzo la porzione di vettore già ordinata}
 		\eIf{\(A[i] \leqslant A[j]\)}{
 			\tcp{l'elemento è gia ordinato}
 			\(B[k] \Assign A[i]\)\;

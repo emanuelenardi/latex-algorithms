@@ -12,12 +12,12 @@
 \prototype{\insertionSort{\Item{} A, \Int n}}{
 
 	\BlankLine
-	\From(\Comment*[h]{il 1\textsuperscript{o} elemento è ordinato}){\Int \(i=2\) \DownTo \(n\)}{
+	\From(\Comment*[h]{il 1\textsuperscript{o} elemento verrà ordinato in seguito}){\Int \(i=2\) \DownTo \(n\)}{
 		\Item \(temp \Assign A[i]\) \Comment*[h]{elemento da ordinare}\;
 		\Int \(j \Assign i\)\;
 
 		\BlankLine
-		\While{\(j > i\) \And \(A[j-1]\)}{
+		\While{\(j > 1\) \And \(A[j-1] > temp\)}{
 			\(A[j] \Assign A[j-1]\) \Comment*[h]{copio l'elemento}\;
 			\Decrement{j} \Comment*[h]{mi sposto}\;
 		}

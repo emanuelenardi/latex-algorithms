@@ -9,6 +9,8 @@
 % NOTE non più utilizzato -> preambolo precompilato, tenuto per riferimento
 % \usepackage{subfiles}
 
+\usepackage{set-minted}
+
 % IDEA pacchetti di utilità
 % NOTE 'comment' - fornisce l'ambiente dei commenti
 % NOTE 'xargs' - use more than one optional parameter in a new commands
@@ -149,20 +151,7 @@
 % }
 
 % NOTE 'csquotes' - permette di personalizzare le citazioni
-\usepackage{csquotes}
-
-% NOTE Ridefinisce le virgolette
-\DeclareQuoteStyle{italian}%
-	{\textquotedblleft}
-	[\textquotedblleft]
-	{\textquotedblright}
-		[0.05em]
-	{\textquoteleft}
-	[\textquoteleft]
-	{\textquoteright}
-
-% NOTE Imposta il tipo di virgolette
-\setquotestyle{italian}
+\usepackage[autostyle, italian=quotes]{csquotes}
 
 % TODO spostare nel solo capitolo utilizzato
 % \usepackage{chronology}
@@ -188,6 +177,39 @@
 % NOTE riadattate dal documento di Montresor (grazie 😌)
 \usepackage{assets/algorithms/functions}
 
+\usepackage[
+	,top	= 0.8in
+	,bottom	= 1in % 1in
+	,left	= 1in % 1in
+	,right	= 1in % 1in
+	% NOTE tex.stackexchange.com/questions/29125/
+	,marginparwidth=4.6cm
+	,heightrounded
+]{geometry}
+
+% NOTE toglie l'intentazione a tutto il documento e aumenta lo spazio fra i paragrafi
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{1ex}
+
+% NOTE 'fancyhdr' - permette la personalizzazione di testatina e piè di pagina
+\usepackage{fancyhdr, lastpage}
+\fancypagestyle{footer}{
+	\fancyhf{}
+	% \lfoot{\authorName}
+	\cfoot{\footnotesize\em ---~\thepage\ di~\pageref{LastPage}~---}
+	% \rfoot{\today}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{footer}
+
+% NOTE 'bookmark' - crea e gestisce i segnalibri
+% NB i segnalibri vengono aperti fino al 1° livello
+\usepackage[
+	,open
+	,openlevel = 1
+]{bookmark}
+
 % NOTE setup titles and sectioning
 \usepackage{titling}
 \newcommand\subtitle[1]{%
@@ -203,45 +225,12 @@
 \newcommand\docversion{}
 \date{Aggiornato il \today\\\texttt{\docversion}}
 
-\newcommand\Title{UNITN -- Algoritmi e Struttre Dati}
+\newcommand\Title{Appunti di ASD \texttt{\docversion}}
 \newcommand\Author{Emanuele Nardi}
 \newcommand\Subject{Algoritmi e Strutture Dati}
 \newcommand\Creator{pdflatex}
 \newcommand\Producer{LaTeX}
 \newcommand\Keywords{Algoritmi, Strutture Dati}
-
-\usepackage[
-	,top	= 0.8in
-	,bottom	= 1.25in
-	,left	= 1.25in
-	,right	= 1.25in
-	% NOTE tex.stackexchange.com/questions/29125/
-	,marginparwidth=4.6cm
-	,heightrounded
-]{geometry}
-
-% NOTE toglie l'intentazione a tutto il documento
-\setlength{\parindent}{0ex}
-\setlength{\parskip}{1ex}
-
-% NOTE 'fancyhdr' - permette la personalizzazione di testatina e piè di pagina
-\usepackage{fancyhdr, lastpage}
-\fancypagestyle{footer}{
-	\fancyhf{}
-	% \lfoot{\authorName}
-	\cfoot{\footnotesize Pagina~\thepage\ di~\pageref{LastPage}}
-	% \rfoot{\today}
-	\renewcommand{\headrulewidth}{0pt}
-	\renewcommand{\footrulewidth}{0pt}
-}
-\pagestyle{footer}
-
-% NOTE 'bookmark' - crea e gestisce i segnalibri
-% NB i segnalibri vengono aperti fino al 1° livello
-\usepackage[
-	,open
-	,openlevel = 1
-]{bookmark}
 
 \hypersetup{
 	pdfinfo = {
@@ -251,8 +240,9 @@
 		Creator = {\Creator},
 		Producer = {\Producer},
 		Keywords = {\Keywords},
-		colorlinks = true,
-		backref = true,
+		% NOTE rompono la compilazione
+		% colorlinks = true,
+		% backref = true,
 	}
 }
 
@@ -261,6 +251,7 @@
 \usepackage{hyperref}
 \hypersetup{
 	,colorlinks	= true
+	,backref
 	% ,allcolors = <color>
 	,linkcolor 	= red
 	,anchorcolor = black
@@ -269,7 +260,6 @@
 	,menucolor 	= red
 	,runcolor 	= cyan
 	,urlcolor 	= magenta
-	,backref
 	% ,pdfpagemode=FullScreen
 }
 
@@ -327,5 +317,5 @@
 \NewDocumentCommand{\params}{ mo }
 	{ \tcp{\eqparbox{params}{\(#1\):} #2}\vspace{-3pt} }
 
-% NOTE funzione di utilità per accertarmi di aver caricato il prambolo correttamente
+% NOTE funzione di utilità per accertarmi di aver caricato il preambolo correttamente
 \def\preambleloaded{Precompiled preamble loaded.}

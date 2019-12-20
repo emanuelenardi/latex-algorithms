@@ -1,17 +1,13 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 \setcounter{section}{1}
 % \setcounter{algocf}{5}
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
+\begin{document}
 \begin{algorithm}[H]
-% \caption[Shell Sort]{}
 \fi
 
 \prototype{\shellSort{\Item{} A, \Int n}}{
@@ -46,5 +42,5 @@
 
 \ifstandalone
 \end{algorithm}
-\fi
 \end{document}
+\fi

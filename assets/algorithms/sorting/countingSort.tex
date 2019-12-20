@@ -8,37 +8,35 @@
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
 \caption[countingSort]{}
 \fi
-
+test
 \prototype{\countingSort{\Item{} A, \Int n, \Int k}}{
 	\Int i, j, k\;
 	\Array{\Int} \(B\) \Assign \new \Array{\Int}{1}{k}\;
 
 	\BlankLine
 	\tcp{Inizializza i vettori}
-	\lFor{\(i \Assign 1\) \DownTo \(k\)}{\(\ArrayCall{B}{i} = 0\)}
-	\lFor{\(j \Assign 1\) \DownTo \(n\)}{\(\ArrayCall{B}{A[j]} = \ArrayCall{B}{A[j]} + 1\)}
+	\lFor{\(i \Assign 1\) \DownTo \(k\)}{\(B[i] = 0\)}
+	\lFor{\(j \Assign 1\) \DownTo \(n\)}{\(B[A[j]] = B[A[j]] + 1\)}
 
 	\BlankLine
 	\(j = 1\)\;
 	\From{\(i=1\) \DownTo \(k\)}{
-		\While{\(\ArrayCall{B}{i} > 0\)}{
+		\While{\(B[i] > 0\)}{
 			\(A[j] \Assign i\)\;
 			\(\Increment{j}\)\;
-			\(\ArrayCall{B}{i} \Assign \ArrayCall{B}{i} - 1\)\;
+			\(B[i] \Assign B[i] - 1\)\;
 		}
 	}
 }
-\[
-	\Omicron(n+k)
-\]
+% \[
+% 	\Omicron(n+k)
+% \]
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
 \end{document}
+\fi
