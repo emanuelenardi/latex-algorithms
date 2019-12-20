@@ -1,7 +1,7 @@
 class Pos {
-	Pos succ;	/** Next element of the list */
-	Pos pred;	/** Previous element of the list */
-	Object v;	/** Value */
+	Pos succ;	/** Prossimo elemento della lista */
+	Pos pred;	/** Precedente elemento della lista */
+	Object v;	/** Valore */
 
 	Pos(Object v) {
 		succ = pred = null;
@@ -10,8 +10,8 @@ class Pos {
 }
 
 public class List {
-	private Pos head;		/** First element of the list */
-	private Pos tail;		/** Last element of the list */
+	private Pos head;		/** Primo elemento della lista */
+	private Pos tail;		/** Ultimo elemento della lista */
 
 	public List() {
 		head = tail = null;
@@ -48,13 +48,13 @@ public class List {
 		Pos t = new Pos(v);
 
 		if (head == null) {
-			head = tail = t; // Insert in a emtpy list
+			head = tail = t; // Inserisci in una lista vuota
 		} else if (pos == null) {
-			t.pred = tail; // Insert at the end
+			t.pred = tail; // Inserisci alla fine
 			tail.succ = t;
 			tail = t;
 		} else {
-			t.pred = pos.pred; // Insert in front of an existing position
+			t.pred = pos.pred; // Iserimento davanti ad una posizione esistente
 			if (t.pred != null)
 				t.pred.succ = t;
 			else

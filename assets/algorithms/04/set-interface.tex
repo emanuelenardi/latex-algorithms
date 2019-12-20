@@ -26,14 +26,17 @@ Una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{c
 
 % \BlankLine
 \tcp{OPERAZIONI DI BASE}
-\setInsert \Comment*[l]{inserisce \(x\) nell'insieme, se assente}
-\setRemove \Comment*[l]{rimuove \(x\) nell'insieme, se presente}
+\tcp{inserisce \(x\) nell'insieme, se assente}
+\setInsert{\Item \(k\)}
+
+\tcp{rimuove \(x\) nell'insieme, se presente}
+\setRemove{\Item \(k\)}
 
 \BlankLine
 \tcp{OPERAZIONI INSIEMISTICHE}
-\Set \setUnion{\Set \(A\), \Set \(B\)}\;
-\Set \setIntersection{\Set \(A\), \Set \(B\)}\;
-\Set \setDifference{\Set \(A\), \Set \(B\)}\;
+\static \Set \setUnion{\Set \(A\), \Set \(B\)}\;
+\static \Set \setIntersection{\Set \(A\), \Set \(B\)}\;
+\static \Set \setDifference{\Set \(A\), \Set \(B\)}\;
 
 % \vphantom{0pt}
 
