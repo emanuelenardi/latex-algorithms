@@ -1,3 +1,4 @@
+latexmk -C
 arara bfs
 arara conteggioNodi
 arara dfs
