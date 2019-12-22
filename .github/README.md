@@ -20,8 +20,7 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 
 ## Contenuto 📖
 
--   Tutti i capitoli
--   Capitoli:
+-   1° Semetre
 
 	| no. | Presente | Titolo                          |
 	| --- | -------- | ------------------------------- |
@@ -38,6 +37,11 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 	| 10  | ❌       | Strutture dati speciali         |
 	| 11  | ✔️       | "Scelta"                        |
 	| 12  | ✔️       | Divide et Impera                |
+
+-   2° Semetre
+
+	| no. | Presente | Titolo                          |
+	| --- | -------- | ------------------------------- |
 	| 13  | ✔️       | Programmazione Dinamica         |
 	| 14  | ✔️       | Algoritmi ingordi               |
 	| 15  | ✔️       | Ricerca locale                  |
