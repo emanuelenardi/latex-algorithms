@@ -14,50 +14,20 @@
 \Tree \varParent\;
 \Tree \varLeft\;
 \Tree \varRight\;
-\alert{\Int \varColor} \Comment*[l]{\RED o \BLACK}
-\Tree \varKey\;
-\Tree \varValue\;
+\Int \alert{\varColor} \Comment*[l]{\RED o \BLACK}
+\Item \varKey\;
+\Item \varValue\;
 
-% \BlankLine
-% \tcp{GETTERS}
-%
-% \BlankLine
-% \Item \treeKey\;
-% \Item \treeValue\;
-% \Tree \treeLeft\;
-% \Tree \treeRight\;
-% \Tree \treeParent\;
-%
-% \ifstandalone
-% % \columnbreak
-% \vspace{15pt}
-% \vphantom{0pt}
-% \fi
-%
-% \BlankLine
-% \tcp{ORDINAMENTO}
-%
-% \BlankLine
-% \Tree \succNode{\Tree \(t\)}\;
-% \Tree \predNode{\Tree \(t\)}\;
-% \Tree \minNode\;
-% \Tree \maxNode\;
-%
-% \BlankLine
-% \tcp{FUNZIONI DIZIONARIO}
-%
-% \BlankLine
-% \Item \dictLookup{\Item \(k\)}\;
-% \dictInsert{\Item \(k\), \Item \(v\)}\;
-% \dictRemove{\Item \(k\)}\;
-%
-% \BlankLine
-% \tcp{FUNZIONI INTERNE}
-%
-% \BlankLine
-% \Item \lookupNode\;
-% \insertNode{\Tree \(T\), \Item \(k\), \Item \(v\)}\;
-% \removeNode{\Tree \(T\), \Item \(k\)}\;
+\BlankLine
+\tcp{GETTERS}
+
+\BlankLine
+\Tree \treeParent\;
+\Tree \treeLeft\;
+\Tree \treeRight\;
+\Int \treeColor\;
+\Item \treeKey\;
+\Item \treeValue\;
 
 \ifstandalone
 \end{algorithm}

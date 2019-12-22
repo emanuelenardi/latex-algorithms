@@ -28,18 +28,18 @@
 	\Tree \(u \Assign T\) \Comment*[l]{parto dalla radice}
 
 	\BlankLine
-	\While{\(u \Neq \Nil\) \And \(u.\varKey \Neq k\)}{
-		\(u\) \Assign \iif{\(k < u.\varKey, u.\varLeft, u.\varRight\)}\;
+	\While{\(u \Neq \Nil\) \And \(u.\treeKey \Neq k\)}{
+		\(u\) \Assign \iif{\(k < u.\treeKey, u.\treeLeft, u.\treeRight\)}\;
 	}
 }
 
 \BlankLine
 \tcp{RICERCA DI UN NODO, ricorsiva}
 \prototype{\Tree \lookupNode{\Tree \(T\), \Item \(k\)}}{
-	\eIf{\(T \Equal \Nil\) \Or \(T.\varKey \Equal k\)}{
+	\eIf{\(T \Equal \Nil\) \Or \(T.\treeKey \Equal k\)}{
 		\Return \(T\)\;
 	}{
-		\Return \lookupNode{\iif{\(k < u.\varKey, u.\varLeft, u.\varRight\)}, \(k\)}\;
+		\Return \lookupNode{\iif{\(k < u.\treeKey, u.\treeLeft, u.\treeRight\)}, \(k\)}\;
 	}
 }
 \BlankLine

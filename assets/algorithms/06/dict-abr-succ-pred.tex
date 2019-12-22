@@ -18,16 +18,16 @@
 	}
 
 	\BlankLine
-	\eIf{\(t.\alert{\varLeft} \Neq \Nil\)}{
+	\eIf{\(t.\alert{\treeLeft} \Neq \Nil\)}{
 	\lnlset{sx-does-exists}{1}%
-		\Return \(\alert{\maxNode{t.\varLeft}}\)\;
+		\Return \(\alert{\maxNode{t.\treeLeft}}\)\;
 	}{\lnlset{sx-not-exists}{2}%
-		\Tree \(p \Assign t.\varParent\)\;
+		\Tree \(p \Assign t.\treeParent\)\;
 
 		\BlankLine
-		\While{\(p \Neq \Nil\) \And \(t \Equal p.\alert{\varLeft}\)}{
+		\While{\(p \Neq \Nil\) \And \(t \Equal p.\alert{\treeLeft}\)}{
 			\(t \Assign p\) \Comment*[l]{padre}
-			\(p \Assign p.\varParent\) \Comment*[l]{nonno}
+			\(p \Assign p.\treeParent\) \Comment*[l]{nonno}
 		}
 	}
 
@@ -50,16 +50,16 @@
 	}
 
 	\BlankLine
-	\eIf{\(t.\alert{\varRight} \Neq \Nil\)}{
+	\eIf{\(t.\alert{\treeRight} \Neq \Nil\)}{
 	\lnlset{dx-dies-exists}{3}%
-		\Return \(\alert{\minNode{t.\alert{\varRight}}}\)\;
+		\Return \(\alert{\minNode{t.\alert{\treeRight}}}\)\;
 	}{\lnlset{dx-not-exists}{4}%
-		\Tree \(p \Assign t.\varParent\)\;
+		\Tree \(p \Assign t.\treeParent\)\;
 
 		\BlankLine
-		\While{\(p \Neq \Nil\) \And \(t \Equal p.\alert{\varRight}\)}{
+		\While{\(p \Neq \Nil\) \And \(t \Equal p.\alert{\treeRight}\)}{
 			\(t \Assign p\)\;
-			\(p \Assign p.\varParent\)\;
+			\(p \Assign p.\treeParent\)\;
 		}
 	}
 

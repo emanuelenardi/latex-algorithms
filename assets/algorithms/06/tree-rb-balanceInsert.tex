@@ -1,6 +1,6 @@
 %&../preamble
 
-% \documentclass[varwidth=6in, border={2 0 0 0}]{standalone}
+% \documentclass[treewidth=6in, border={2 0 0 0}]{standalone}
 % \usepackage{../preamble}
 
 % arara: pdflatex: { synctex: no }
@@ -15,7 +15,7 @@
 \prototype{\treeFixInsert{\Tree t}}{
 
 	\BlankLine
-	\(t.\varColor \Assign \RED\) \Comment*[l]{coloro il nodo da inserire di rosso}
+	\(t.\treeColor \Assign \RED\) \Comment*[l]{coloro il nodo da inserire di rosso}
 
 	\BlankLine
 	\tcp{\(t \Equal \Nil\) è la condizione di fino ciclo}
@@ -23,28 +23,28 @@
 
 		\BlankLine
 		\lnlset{case:refences}{0}%
-		\Tree \(p \Assign t.\varParent\) \Comment*[r]{riferimento al padre}
-		\Tree \(n \Assign\) \iif{\(p \Neq \Nil, p.\varParent, \Nil\)} \Comment*[r]{riferimento al nonno}
-		\Tree \(z \Assign\) \iif{\(n \Equal \Nil, \Nil\), \iif{\(n.\varLeft, n.\varRight, n.\varLeft\)}} \Comment*[r]{riferimento allo zio}
+		\Tree \(p \Assign t.\treeParent\) \Comment*[r]{riferimento al padre}
+		\Tree \(n \Assign\) \iif{\(p \Neq \Nil, p.\treeParent, \Nil\)} \Comment*[r]{riferimento al nonno}
+		\Tree \(z \Assign\) \iif{\(n \Equal \Nil, \Nil\), \iif{\(n.\treeLeft \Equal p, n.\treeRight, n.\treeLeft\)}} \Comment*[r]{riferimento allo zio}
 
 		\BlankLine
 		\lnl{case:no-father}%
 		\uIf{\(p \Equal \Nil\)}{
-			\(t.\varColor \Assign \BLACK\)\;
+			\(t.\treeColor \Assign \BLACK\)\;
 			\(t \Assign \Nil\) \Comment*[l]{fine}
 			\BlankLine
 
 		}%
 		\lnl{case:black-father}
-		\uElseIf{\(p.\varColor \Equal \BLACK\)}{
+		\uElseIf{\(p.\treeColor \Equal \BLACK\)}{
 			\(t \Assign \Nil\) \Comment*[l]{fine}
 			\BlankLine
 
 		}%
 		\lnl{case:red-aunt}
-		\uElseIf{\(z.\varColor \Equal \RED\)}{
-			\(p.\varColor \Assign z.\varColor \Assign \BLACK\)\;
-			\(n.\varColor \Assign \RED\)\;
+		\uElseIf{\(z.\treeColor \Equal \RED\)}{
+			\(p.\treeColor \Assign z.\treeColor \Assign \BLACK\)\;
+			\(n.\treeColor \Assign \RED\)\;
 			\(t \Assign n\) \Comment*[l]{passo il problema al nonno}
 			\BlankLine
 
@@ -52,14 +52,14 @@
 
 			\BlankLine
 			\lnlset{right-left}{4a}%
-			\uIf{(\(t \Equal p.\varRight\)) \And (\(p \Equal n.\varLeft\))}{
+			\uIf{(\(t \Equal p.\treeRight\)) \And (\(p \Equal n.\treeLeft\))}{
 				\leftRotation{\(p\)}\;
 				\(t \Assign p\) \Comment*[l]{passo il problema al padre}
 				\BlankLine
 
 			}%
 			\lnlset{left-right}{4b}%%
-			\eIf{(\(t \Equal p.\varLeft\)) \And (\(p \Equal n.\varRight\))}{
+			\eIf{(\(t \Equal p.\treeLeft\)) \And (\(p \Equal n.\treeRight\))}{
 				\rightRotation{\(p\)}\;
 				\(t \Assign p\) \Comment*[l]{passo il problema al padre}
 				\BlankLine
@@ -67,17 +67,17 @@
 			}{%
 				\BlankLine
 				\lnlset{left-left}{5a}%
-				\uIf{(\(t \Equal p.\varLeft\)) \And (\(p \Equal n.\varLeft\))}{
+				\uIf{(\(t \Equal p.\treeLeft\)) \And (\(p \Equal n.\treeLeft\))}{
 					\rightRotation{\(n\)}\;
 				}%
 				\lnlset{right-right}{5b}%
-				\ElseIf{(\(t \Equal p.\varRight\)) \And (\(p \Equal n.\varRight\))}{
+				\ElseIf{(\(t \Equal p.\treeRight\)) \And (\(p \Equal n.\treeRight\))}{
 					\leftRotation{\(n\)}\;
 				}
 
 				\BlankLine
-				\(p.\varColor \Assign \BLACK\)\;
-				\(n.\varColor \Assign \RED\)\;
+				\(p.\treeColor \Assign \BLACK\)\;
+				\(n.\treeColor \Assign \RED\)\;
 				\(t \Assign \Nil\) \Comment*[l]{fine}
 			}
 		}

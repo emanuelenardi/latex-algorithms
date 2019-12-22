@@ -15,17 +15,17 @@
 
 	\BlankLine
 	\tcp{cerco posizione inserimento}
-	\While{\(u \Neq \Nil\) \And \(u.\varKey \Neq k\)}{
+	\While{\(u \Neq \Nil\) \And \(u.\treeKey \Neq k\)}{
 		\(p \Assign u\)\;
-		\(u\) \Assign \iif{\(k < u.\varKey, u.\varLeft, u.\varRight\)}\;
+		\(u\) \Assign \iif{\(k < u.\treeKey, u.\treeLeft, u.\treeRight\)}\;
 	}
 
 	\BlankLine
-	\eIf{\(u \Neq \Nil\) \And \(u.\varKey \Equal k\)}{
+	\eIf{\(u \Neq \Nil\) \And \(u.\treeKey \Equal k\)}{
 		\tcp{la chiave è già presente, aggiorno il valore}
 
 		\BlankLine
-		\(u.\varValue \Assign v\)\;
+		\(u.\treeValue \Assign v\)\;
 	}{
 		\tcp{la chiave non è presente}
 		\tcp{creo un nodo coppia chiave-valore}

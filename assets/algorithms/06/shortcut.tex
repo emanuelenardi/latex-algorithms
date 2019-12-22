@@ -12,13 +12,13 @@
 \prototype{\shortcut{\Tree p, \Tree u, \Item x}}{
 	\If{\(u \Neq \Nil\)}{
 		\tcp{il nodo è stato cancellato}
-		\(u\).\varParent \Assign \(p\) \Comment*[l]{registro il padre}
+		\(u\).\treeParent \Assign \(p\) \Comment*[l]{registro il padre}
 	}
 
 	\BlankLine
 	\If{\(p \Neq \Nil\)}{
 		\tcp{collego il nodo sul figlio corretto}
-		\(u\) \Assign \iif{\(x < p.\varKey, p.\varLeft, p.\varRight\)}\;
+		\(u\) \Assign \iif{\(x < p.\treeKey, p.\treeLeft, p.\treeRight\)}\;
 	}
 }
 

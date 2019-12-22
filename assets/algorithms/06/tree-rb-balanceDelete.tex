@@ -9,30 +9,30 @@
 
 \BlankLine
 % \tcp{bilanciamento di un \textsc{Red-Black Tree} in seguito alla rimozione di un nodo \RED}
-\prototype{\treeFixDelete{\Tree t}}{
+\prototype{\treeFixDelete{\Tree T, \Tree t}}{
 
 	\BlankLine
-	\(t.\varColor \Assign \RED\) \Comment*[l]{coloro il nodo da inserire di rosso}
+	\(t.\treeColor \Assign \RED\) \Comment*[l]{coloro il nodo da inserire di rosso}
 
 	\BlankLine
-	\While{(\(t \Neq T\)) \And (\(t.\varColor \Equal \BLACK\))}{
+	\While{(\(t \Neq T\)) \And (\(t.\treeColor \Equal \BLACK\))}{
 
 		\BlankLine
-		\Tree \(p \Assign t.\varParent\) \Comment*[r]{riferimento al padre}
+		\Tree \(p \Assign t.\treeParent\) \Comment*[r]{riferimento al padre}
 
 		\BlankLine
-		\eIf{\(t \Equal p.\varLeft\)}{
+		\eIf{\(t \Equal p.\treeLeft\)}{
 
 			\BlankLine
-			\Tree \(f \Assign p.\varRight\) \Comment*[r]{riferimento al fratello}
-			\Tree \(ns \Assign f.\varLeft\) \Comment*[r]{riferimento al nipote sinistro}
-			\Tree \(nd \Assign f.\varRight\) \Comment*[r]{riferimento al nipote destro}
+			\Tree \(f \Assign p.\treeRight\) \Comment*[r]{riferimento al fratello}
+			\Tree \(ns \Assign f.\treeLeft\) \Comment*[r]{riferimento al nipote sinistro}
+			\Tree \(nd \Assign f.\treeRight\) \Comment*[r]{riferimento al nipote destro}
 
 			\BlankLine
 			\lnl{caso1}%
-			\eIf{\(f.\varColor \Equal \RED\)}{
-				\(p.\varColor \Assign \RED\)\;
-				\(f.\varColor \Assign \BLACK\)\;
+			\eIf{\(f.\treeColor \Equal \RED\)}{
+				\(p.\treeColor \Assign \RED\)\;
+				\(f.\treeColor \Assign \BLACK\)\;
 				\leftRotation{\(p\)}\;
 				\tcp{t viene lasciato inalterato, quindi si ricade nei casi 2, 3, 4}
 				\BlankLine
@@ -40,26 +40,26 @@
 			}{
 
 				\lnl{caso2}%
-				\uIf{\(ns.\varColor \Equal nd.\varColor \Equal \BLACK\)}{
-					\(f.\varColor \Equal \RED\)\;
+				\uIf{\(ns.\treeColor \Equal nd.\treeColor \Equal \BLACK\)}{
+					\(f.\treeColor \Equal \RED\)\;
 					\(t \Assign p\) \Comment*[l]{passo il problema al padre}
 					\BlankLine
 
 				}%
 				\lnl{caso3}%
-				\uElseIf{(\(ns.\varColor \Equal \RED\)) \And (\(nd.\varColor \Equal \BLACK\))}{
-					\(ns.\varColor \Assign \BLACK\)\;
-					\(f.\varColor \Assign  \RED\)\;
+				\uElseIf{(\(ns.\treeColor \Equal \RED\)) \And (\(nd.\treeColor \Equal \BLACK\))}{
+					\(ns.\treeColor \Assign \BLACK\)\;
+					\(f.\treeColor \Assign  \RED\)\;
 					\rightRotation{\(f\)}\;
 					\tcp{t viene lasciato inalterato, quindi si ricade nel caso 4}
 					\BlankLine
 
 				}%
 				\lnl{caso4}%
-				\ElseIf{\(nd.\varColor \Equal \RED\)}{
-					\(f.\varColor \Equal p.\varColor\)\;
-					\(p.\varColor \Assign \BLACK\)\;
-					\(nd.\varColor \Assign \BLACK\)\;
+				\ElseIf{\(nd.\treeColor \Equal \RED\)}{
+					\(f.\treeColor \Equal p.\treeColor\)\;
+					\(p.\treeColor \Assign \BLACK\)\;
+					\(nd.\treeColor \Assign \BLACK\)\;
 					\leftRotation{\(p\)}\;
 					\(t \Assign T\)\;
 				}

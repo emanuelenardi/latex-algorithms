@@ -11,4 +11,4 @@ del preamble.fmt
 cd ..
 cd ..
 
-latexmk -C 03-funzioni
+latexmk -C
