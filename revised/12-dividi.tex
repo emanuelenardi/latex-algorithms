@@ -30,19 +30,19 @@
 \begin{document}
 % \maketitle
 
-\section{Dividi et Impera}
+\section{Divide et Impera}
 
 \subsection{Risoluzione di problemi}
 
 Dato un problema non esistono \enquote{ricette originali} per risolverlo in modo efficiente;
 tuttavia è possibile evidenziare quattro fasi:
 \begin{enumerate}
-	\item \textbf{classificazione del problema}: è il primo passo verso la risoluzione del problema;
-	\item \textbf{caratterizzazione della soluzione}: bisogna caratterizzare matematicamente la soluzione, evitando di evitare soluzioni banali;
-	\item \textbf{tecnica di progetto}: quando è possibile dividere il problema in più sottoproblemi di complessità minore allora la tecnica \enquote{dividi et impera} potrebbe essere quella più appropprata (più avanti vedremo delle tecniche più interessanti quali: programmazione dinamica (Capitolo 13), algoritmi ingordi (Capitolo 14) e backtrack (Capitolo 16));
+	\item \textbf{classificazione del problema}: è il primo passo verso la risoluzione;
+	\item \textbf{caratterizzazione della soluzione}: bisogna caratterizzare matematicamente la soluzione, evitando di escludere soluzioni banali;
+	\item \textbf{tecnica di progetto}: quando è possibile dividere il problema in più sottoproblemi di complessità minore allora la tecnica \enquote{divide et impera} potrebbe essere quella più appropriata (più avanti vedremo delle tecniche più interessanti quali: programmazione dinamica (Capitolo 13), algoritmi ingordi (Capitolo 14) e backtrack (Capitolo 16));
 	\item \textbf{utilizzo di strutture dati}: bisogna scegliere la struttura dati più adatta alla risoluzione del nostro particolare problema (spesso sarà una tabella hash o un albero binario di ricerca, più avanti vedremo delle strutture dati specializzate per risolvere problemi specifici, a differenza di quelle che abbiamo visto fin'ora che sono generiche).
 \end{enumerate}
-Queste fasi non sono necessariamente sequenziali, dipende da come stiamo affrontando il problema.
+Queste fasi non sono necessariamente sequenziali, l'ordine dipende da come stiamo affrontando il problema.
 
 \subsubsection{Classificazione dei problemi}
 
@@ -52,7 +52,7 @@ Le classi di problemi che affronteremo possono essere raggruppate in quattro mac
 	\item \textbf{problemi decisionali}: consistono nel determinare se il dato in ingresso soddisfa o meno una certa proprietà ed hanno una risposta binaria (si/no, true/false); come ad esempio stabilire se un grafo risulta connesso o meno.
 	Su questo genere di problemi spesso non esistono delle tecniche standard e bisogna creare algoritmi ad-hoc;
 	\item \textbf{problemi di ricerca}: consistono nel trovare nello spazio di soluzioni possibili una soluzione ammissibile che rispetti certi vincoli, come ad esempio la ricerca della posizione di una sottostringa in una stringa.
-	In questi problemi la tecnica \enquote{dividi et impera} può ricorrere in nostro aiuto;
+	In questi problemi la tecnica \enquote{divide et impera} può rincorrere in nostro aiuto;
 	\item \textbf{problemi di ottimizzazione}: ad ogni soluzione è associata una funzione di costo e vogliamo trovare quella di costo minimo, come ad esempio il cammino (pesato) più breve fra due nodi.
 	Questa classe di problemi può essere risolta tramite la programmazione dinamica o algoritmi ingordi;
 	\item \textbf{problemi di approssimazione}: a volte, trovare la soluzione ottima è computazionalmente impossibile e ci si accontenta di una soluzione approssimata, in questo caso il costo rimane basso ma non sappiamo se è ottimale; un esempio di questo genere di problemi è quello del commesso viaggiatore.
@@ -61,44 +61,44 @@ Le classi di problemi che affronteremo possono essere raggruppate in quattro mac
 \subsubsection{Caratterizzazione della soluzione}
 
 \`{E} fondamentale definire bene il problema dal punto di vista matematico.
-La formulazione del problema può suggerire una prima idea, seppur banale, alla risoluzione del problema.
-Lo si può osservazione nella formulazione del seguente problema: data una sequenza di \(n\) elementi, una permutazione ordinata è data dal minimo seguito da una permutazione ordinata dei restanti \(n-1\) elementi.
-Il quale scaturisce l'algoritmo \selectionSort.
+La formulazione del problema può suggerire una prima idea, seppur banale, alla risoluzione dello stesso.
+Lo si può osservare nella formulazione del seguente problema: data una sequenza di \(n\) elementi, una permutazione ordinata è data dal minimo seguito da una permutazione ordinata dei restanti \(n-1\) elementi.
+Questa formulazione produce l'algoritmo \selectionSort.
 La definizione matematica può suggerire una possibile tecnica, ad esempio:
 \begin{itemize}
-	\item se troveremo una \emph{sottostruttura ottima} allora potremmo applicare la tecnica di programmazione dinamica (Capitolo 13);
-	\item se troveremo la \emph{proprietà greedy} allora potremmo applicare la tecnica di programmazione dinamica (Capitolo 14).
+	\item se troveremo una \emph{sottostruttura ottima} allora potremmo applicare la programmazione dinamica (Capitolo 13);
+	\item se troveremo la \emph{proprietà greedy} allora potremmo applicare un algoritmo ingordo (Capitolo 14).
 \end{itemize}
 
 \subsection*{Tecniche di soluzione dei problemi}
 
 Come vengono affrontati i problemi dalle varie tecniche?
 \begin{itemize}
-	\item Nella tecnica dividi-et-impera un problema viene suddiviso in sotto-problemi indipendenti, i quali vengono risolti ricorsivamente (avendo quindi un approccio dall'alto verso il basso, detto \foreign{top-down}); Abbiamo già visto diversi esempi dell'applicazione di questa tecnica, provate a pensare all'algoritmo \mergeSort: ordinare due sottovettori sono due problemi indipendenti (ordinare il sottovettore di sinistra non richiede conoscere il contenuto del vettore di destra e viceversa);
-	\item Nella programmazione dinamica la soluzione viene costruita (dal basso verso l'altro, \foreign{bottom-up}) a partire da un insieme di sotto-problemi potenzialmente ripetuti.
-	\item La tecnica della \foreign{memoization} (annotazione) è la versione \foreign{top-down} della programmazione dinamica.
-	\item La tecnica \foreign{greedy} effettua sempre la scelta localmente ottima (necessita di una dimostrazione).
-	\item Il backtrack procede per \enquote{tentativi}, tornando ogni tanto sui nostri passi;
-	\item Nella ricerca locale la soluzione ottima viene trovata \enquote{migliorando} via via soluzioni esistenti; Negli algoritmi probabilistici si dimostra che talvolta è meglio scegliere casualmente, ma in modo \enquote{gratuito}, che con giudizio, ma in maniera costosa.
+	\item nella tecnica divide-et-impera un problema viene suddiviso in sotto-problemi indipendenti, i quali vengono risolti ricorsivamente (avendo quindi un approccio dall'alto verso il basso, detto \foreign{top-down}); Abbiamo già visto diversi esempi dell'applicazione di questa tecnica, provate a pensare all'algoritmo \mergeSort: ordinare due sottovettori sono due problemi indipendenti (ordinare il sottovettore di sinistra non richiede conoscere il contenuto del vettore di destra e viceversa);
+	\item nella programmazione dinamica la soluzione viene costruita (dal basso verso l'altro, \foreign{bottom-up}) a partire da un insieme di sotto-problemi potenzialmente ripetuti.
+	\item la tecnica della \foreign{memoization} (annotazione) è la versione \foreign{top-down} della programmazione dinamica.
+	\item la tecnica \foreign{greedy} effettua sempre la scelta localmente ottima (necessita di una dimostrazione).
+	\item il backtrack procede per \enquote{tentativi}, tornando ogni tanto sui suoi passi;
+	\item nella ricerca locale la soluzione ottima viene trovata \enquote{migliorando} via via soluzioni esistenti; Negli algoritmi probabilistici si dimostra che talvolta è meglio scegliere casualmente, ma in modo \enquote{gratuito}, che con giudizio, ma in maniera costosa.
 \end{itemize}
 
 \subsection{La tecnica del Dividi-et-Impera}
 
-La tecnica del Dividi-et-Impera si suddivide in tre fasi principali:
+La tecnica del Divide-et-Impera si suddivide in tre fasi principali:
 \begin{itemize}
 	\item \textbf{Divide}: divide il problema in sotto-problemi più piccoli è indipendenti;
 	\item \textbf{Impera}: risove i sottoproblemi ricorsivamente;
-	\item \textbf{Combina}: \enquote{unisce} le soluzioni dei sottoproblemi.
+	\item (\textbf{Combina}): \enquote{unisce} le soluzioni dei sottoproblemi.
 \end{itemize}
-Sfortunatamente non esiste una ricetta unica per applicare questa tecnica: ad esempio l'algoritmo \mergeSort ha una fase \enquote{divide} banale (bastava calcolare il valore mediano) mentre una fase di unione delle soluzioni complessa, diversamente nel \quickSort la fase \enquote{divide} è complessa ma non esiste una fase \enquote{combina}.
+Sfortunatamente non esiste una ricetta unica per applicare questa tecnica: ad esempio l'algoritmo \mergeSort ha una fase \enquote{divide} banale (basta calcolare il valore mediano) ma, allo stesso tempo una fase di unione delle soluzioni complessa, diversamente nel \quickSort la fase \enquote{divide} è complessa ma non esiste una fase \enquote{combina}.
 \`{E} quindi necessario fare uno sforzo creativo, in quanto la tecnica ci dà una modalità con cui ad arrivare alla soluzione, ma bisogna applicarla caso per caso.
 
 \subsubsection{Minimo divide-et-impera}
 
-La tecnica \enquote{dividi et impera} non è un proiettile d'argento, a volte utilizzarla crea più danni di quanti ne risolva.
-Ad esempio osserva questo esempio nella quale è presentato un algoritmo di ricerca del minimo con questa tecnica.
+La tecnica \enquote{divide-et-impera} non è un proiettile d'argento, a volte utilizzarla crea più danni di quanti ne risolva.
+Osserva questo esempio nella quale è presentato un algoritmo di ricerca del minimo con questa tecnica.
 \begin{algorithm}[H]
-\caption{Algoritmo di ricerca del minimo con tecnica dividi-et-impera}
+\caption{Algoritmo di ricerca del minimo con tecnica divide-et-impera}
 \prototype{\minRec{\Array{\Int} \(A\), \Int \(i\), \Int \(j\)}}{
 	\eIf{\(i \Equal j\)}{
 		\Return \(A[i]\)\;
@@ -118,14 +118,14 @@ L'algoritmo divide il vettore a metà, cerca il minimo nella metà di sinistra e
 		1 & n = 1 \\
 	\end{dcases}\\
 \end{align*}
-La complessità ammonta a \(\alpha=1, \beta=0, T(n) = \Theta(n)\), non ne vale la pena, tanto vale fare la ricerca del minimo come abbiamo spiegato nelle lezioni.
+La complessità ammonta a \(\alpha=1, \beta=0, T(n) = \Theta(n)\), non ne vale la pena, tanto vale fare la ricerca del minimo come abbiamo spiegato a lezione.
 
 \subsection{La torre di Hanoi}
 
-La torre di Hanoi è un gioco matematico che consiste di tre pioli e di \(n\) dischi di dimensioni diverse.
+La torre di Hanoi è un gioco matematico che prevede tre pioli e \(n\) dischi di dimensioni diverse.
 Inizialmente i dischi sono impilati in ordine decrescente nel piolo di sinistra.
 Lo scopo del gioco è quello di impilare i dischi sul piolo di destra, senza mai impilare un disco più grande su uno più piccolo, muovendo al massimo un disco alla volta ed utilizzando il piolo centrale come appoggio.
-Questo problema può essere risolto tramite la tecnica \enquote{dividi-et-impera}.
+Questo problema può essere risolto tramite la tecnica \enquote{divide-et-impera}.
 
 \begin{algorithm}[H]
 	\caption{Versione ricorsiva della soluzione al problema della torre di Hanoi}
@@ -142,7 +142,7 @@ Si può dimostrare che questa soluzione è ottima (non si può fare meglio di co
 
 \subsection{Algoritmo di ordinamento}
 
-L'algoritmo di ordinamento \quickSort è basato sulla tecnica \enquote{dividi et impera}, nel caso medio ha una complessità di \(\Omicron(n \log n)\), mentre nel caso pesssimo è di \(\Omicron(n^2)\).
+L'algoritmo di ordinamento \quickSort è basato sulla tecnica \enquote{divide et impera}, nel caso medio ha una complessità di \(\Omicron(n \log n)\), mentre nel caso pessimo è di \(\Omicron(n^2)\).
 Fino a qualche anno fa era l'algoritmo di eccellenza per l'ordinamento.
 Infatti presenta molti aspetti a suo favore:
 \begin{itemize}
@@ -151,7 +151,7 @@ Infatti presenta molti aspetti a suo favore:
 	\item esistono delle tecniche \enquote{euristiche} per evitare il caso pessimo.
 \end{itemize}
 Quindi spesso è preferito ad altri algoritmi.
-All'interno dell'ultimo capitolo (Capitolo 21) riassumeremo tutti gli algoritmi di ordinamento visti fin'ora e ne vedremo di nuovi, tra questi anche gli algoritmi attualmente utilizzati negli attuali linguaggi di programmazione (c, java, python).
+All'interno dell'ultimo capitolo riassumeremo tutti gli algoritmi di ordinamento visti fin'ora e ne vedremo di nuovi, tra questi anche gli algoritmi attualmente utilizzati negli attuali linguaggi di programmazione (c, java, python).
 
 \paragraph{Spiegazione}
 Sono dati in input un vettore \(A[1 \dots n]\), gli indici \(start\), \(end\) tali che \(1 \leqslant start \leqslant end \leqslant n\), tali indici indicano quale parte del vettore stiamo ordinando, come avviene in \mergeSort.
@@ -205,11 +205,11 @@ Il costo di \quickSort dipende dal partizionamento:
 
 \subsection{Moltiplicazione di catena di matrici}
 
-Viene fatto un accetto ad un argomento che verrà affrontato in modo più approfondito nel capitolo successivo.
+Viene fatto un accenno ad un argomento che verrà affrontato in modo più approfondito nel capitolo successivo.
 
 \subsection{Conclusioni}
 
-La tecnica dividi-et-impera viene applicata quando i passi \enquote{divide} e \enquote{combina} sono semplici e i costi risultano migliori del corrispondente algoritmo iterativo (quindi, ad esempio, va bene per effettuare l'ordinamento, ma non per effettuare la ricerca del minimo).
+La tecnica divide-et-impera viene applicata quando i passi \enquote{divide} e \enquote{combina} sono semplici e i costi risultano migliori del corrispondente algoritmo iterativo (quindi, ad esempio, va bene per effettuare l'ordinamento, ma non per effettuare la ricerca del minimo).
 Ulteriori vantaggi dell'applicazione di questa tecnica sono:
 \begin{itemize}
 	\item la facile parallelizzazione: la possibilità di dividere il problema in più sottoproblemi porta ad una naturale divisione dei compiti fra più processori;
@@ -288,8 +288,9 @@ Voglia provare per induzione sulla dimensione \(n\) del sottovettore che il sott
 }
 \end{algorithm}
 
-\paragraph{Complessità}
-L'algoritmo ha complessità
+% TODO scrivere la complessità dell'algoritmo
+% \paragraph{Complessità}
+% L'algoritmo ha complessità
 
 \begin{table}[htbp]\centering
 	\caption{Valutazione delle prestazioni degli algoritmi scritti in python}
