@@ -20,8 +20,8 @@ La procedura si ottiene semplicemente sostituendo una pila alla coda utilizzata 
 
 	\BlankLine
 	\tcp{inizializzazione}
-	\Array{\Bool} \(dist =\) \new \Array{\Bool}{1}{G.\graphSize}\;
-	\Array{\Bool} \(count =\) \new \Array{\Bool}{1}{G.\graphSize}\;
+	\Array{\Bool} \(dist =\) \new \Array{\Bool}[1][G.\graphSize]\;
+	\Array{\Bool} \(count =\) \new \Array{\Bool}[1][G.\graphSize]\;
 	\ForEach{\(u \in G.\VV - \{r\}\)}{
 		\(dist[u] = -1\)\;
 		\(count[u] = 0\)\;
@@ -40,10 +40,8 @@ La procedura si ottiene semplicemente sostituendo una pila alla coda utilizzata 
 				\tcp{non ho ancora scoperto il nodo}
 
 				\BlankLine
-				{\color{lineAccentColor}
-				\(dist[v] = dist[u] + 1\) \Comment*[l]{imposta la distanza}
-				\(\Increment{count[dist[v]]}\) \Comment*[l]{ho scoperto un nuovo nodo}
-				}
+				\alert{\(dist[v] = dist[u] + 1\)} \Comment*[l]{imposta la distanza}
+				\alert{\(\Increment{count[dist[v]]}\)} \Comment*[l]{ho scoperto un nuovo nodo}
 
 				\BlankLine
 				\(S.\queueInsert{v}\) \Comment*[l]{inserisci il nodo}

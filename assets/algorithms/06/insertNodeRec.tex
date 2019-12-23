@@ -1,23 +1,18 @@
 %&../preamble
 
+\SetKwFunction{nodeInsertRec}{nodeInsertRecursive}
+
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \begin{document}
-
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[]{}
-
-\SetKwFunction{nodeInsertRec}{nodeInsertRecursive}
-
-\nodeInsertRec{T, \Nil, x, v}
 
 \BlankLine
 \tcp{inserisce un nodo in un albero ricorsivamente}
 \prototype{\Tree \nodeInsertRec{\Tree T, \Tree p, \Item x, \Item v}}{
 
 	\BlankLine
-	\eSea{\(T = \Nil\)}{
+	\eIf{\(T = \Nil\)}{
 		\tcp{non esiste l'albero}
 
 		\BlankLine
@@ -34,7 +29,7 @@
 			\tcp{inserisci il nodo \emph{a sinistra}}
 			\nodeInsertRec{T.\varLeft, T, x, v}\;
 		}
-		\eSea{\(x > T.\varKey\)}{
+		\eIf{\(x > T.\varKey\)}{
 			\tcp{inserisci il nodo \emph{a destra}}
 			\nodeInsertRec{T.\varRight, T, x, v}\;
 		}{
@@ -48,10 +43,8 @@
 }
 
 \end{algorithm}
-\RestoreCaptionOfAlgo
-
 \end{document}
 
-
+% TODO inglobare nel corpo del testo
 \paragraph{Analisi della complessità}
 L'algoritmo ha complessità \(\Omicron(h)\) dove \(h\) è l'altezza dell'albero.

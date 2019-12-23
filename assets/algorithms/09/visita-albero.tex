@@ -9,13 +9,13 @@
 \prototype{\visitaAlbero{\Graph \(G\), \Int \(r\)}}{
 
 	\BlankLine
-	\Queue \(Q =\) \queueConstructor\;
+	\Queue \(Q\) \Assign \queueConstructor\;
 
 	\(Q\).\queueInsert{\(r\)}\;
 
 	\BlankLine
 	\While{\Not \(Q\).\setEmpty}{
-		\Node \(u =\) \(Q\).\queueRemove\;
+		\Node \(u\) \Assign \(Q\).\queueRemove\;
 
 		\{ visita il nodo \(u\) \}\;
 

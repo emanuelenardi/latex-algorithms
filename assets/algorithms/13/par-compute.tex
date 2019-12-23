@@ -18,13 +18,13 @@
 \prototype{\computePar{\Int stuff}}{
 
 	\BlankLine
-	\MatrixCall{DP}{}{}   \Assign \new \Matrix{\Int}{1\dots n}{1\dots n}\;
-	\MatrixCall{last}{}{} \Assign \new \Matrix{\Int}{1\dots n}{1\dots n}\;
+	\(DP[][]\) \Assign \new \Matrix{\Int}{1\dots n}{1\dots n}\;
+	\(last[][]\) \Assign \new \Matrix{\Int}{1\dots n}{1\dots n}\;
 
 	\BlankLine
 	\tcp{riempi diagonale principale}
 	\From{\(i \Assign 1\) \DownTo \(n\)}{
-		\(\MatrixCall{DP}{i}{i} \Assign 0\)\;
+		\(DP[i][i] \Assign 0\)\;
 	}
 
 	\BlankLine
@@ -35,18 +35,18 @@
 			\BlankLine
 
 			\Int \(j \Assign i + h - 1\) \tcp*[r]{j: colonna}
-			\(\MatrixCall{DP}{i}{j} \Assign +\infty\)\;
+			\(DP[i][j] \Assign +\infty\)\;
 
 			\From{\(k \Assign i\) \DownTo \(j - 1\)}{
 
 				\BlankLine
-				\Int \(temp \Assign \MatrixCall{DP}{i}{k} + \MatrixCall{DP}{k + 1}{j} + c_{i-1} \cdot c_k \cdot c_j\)\;
+				\Int \(temp \Assign DP[i][k] + DP[k + 1][j] + c_{i-1} \cdot c_k \cdot c_j\)\;
 				\If{\(temp < DP[i][j]\)}{
 
 					\BlankLine
 					\tcp{aggiorna l'ultimo prodotto}
-					\(\MatrixCall{DP}{i}{j} \Assign temp\)\;
-					\(\MatrixCall{last}{i}{j} \Assign k\)\;
+					\(DP[i][j] \Assign temp\)\;
+					\(last[i][j] \Assign k\)\;
 				}
 			}
 		}

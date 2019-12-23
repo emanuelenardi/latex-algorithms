@@ -1,24 +1,22 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Approccio programmazione dinamica al problema del resto]{}
 \fi
 
 \prototype{\restoDP{\Array{\Int} t, \Int n, \Int R}}{
-	\tcp{\(t\): tagli disponibili,\(n\): numero di monete, \(R\) il resto da dare}
+	\params{t}[tagli disponibili]
+	\params{n}[numero di monete]
+	\params{R}[il resto da dare]
 
 	\BlankLine
-	\(DP\) \Assign \new \Array{\Int}{0}{R}\;
-	\(S\) \Assign \new \Array{\Int}{0}{R}\;
-	\(\ArrayCall{DP}{0} \Assign 0\) \Comment*[h]{caso base}\;
+	\BlankLine
+	\(DP\) \Assign \new \Array{\Int}[0][R]\;
+	\(S\) \Assign \new \Array{\Int}[0][R]\;
+	\(DP[0] \Assign 0\) \Comment*[h]{caso base}\;
 
 	\BlankLine
 	\tcp{Riempire la tabella \(DP\)}
@@ -47,6 +45,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

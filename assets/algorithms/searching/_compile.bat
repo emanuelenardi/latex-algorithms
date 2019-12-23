@@ -1,1 +1,2 @@
-arara binarySearch 
+latexmk -C
+arara binarySearch

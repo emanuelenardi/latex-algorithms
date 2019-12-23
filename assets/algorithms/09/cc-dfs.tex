@@ -14,12 +14,7 @@
 	\vspace{2pt}
 	\params{counter}[identificatore di quante cc ho trovato fin'ora]
 	\params{u}[il nodo che sto visitando]
-	\params{id}[memorizza il no.\ di componenti]
-	% \tcp{\makebox[34pt][r]{\(counter\):} identificatore di quante cc ho trovato fin'ora}
-	% \vspace{-3pt}
-	% \tcp{\makebox[34pt][r]{\(u\):} il nodo che sto visitando}
-	% \vspace{-3pt}
-	% \tcp{\makebox[34pt][r]{\(id\):} memorizza il no.\ di componenti}
+	\params{id}[l'identificativo della componente]
 
 	\BlankLine
 	\tcp{memorizzo l'identificativo della cc}
@@ -30,7 +25,7 @@
 
 		\BlankLine
 		\If(\tcp*[h]{non è ancora stato visitato}){\(id[v] \Equal 0\)}{
-			\params{v}[il nodo su cui vado ad operare]
+			\tcp{\(v\): il nodo su cui vado ad operare}
 
 			\BlankLine
 			\ccdfs{G, counter, v, id} \Comment*[l]{lo visito ricorsivamente}

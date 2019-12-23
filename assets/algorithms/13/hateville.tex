@@ -1,15 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[hateville iterativo]{}
 \fi
 
 \SetKwFunction{hateville}{hateville}
@@ -18,16 +13,16 @@
 
 	\BlankLine
 	\Array{\Int} \(DP\) \Assign \new \Array{\Int}{0}{n}\;
-	\ArrayCall{DP}{0} \Assign 0\;
-	\ArrayCall{DP}{1} \Assign \ArrayCall{DP}{1}\;
+	\(DP[0] \Assign 0\)\;
+	\(DP[1] \Assign DP[1]\)\;
 
 	\BlankLine
 	\From{\(i \Assign 2\) \DownTo \(n\)}{
-		\ArrayCall{DP}{i} \Assign \maxFunction{\(DP[i-1]\), \(DP[i-2] + D[i]\)}
+		\(DP[i]\) \Assign \maxFunction{\(DP[i-1]\), \(DP[i-2] + D[i]\)}
 	}
 
 	\BlankLine
-	\Return \ArrayCall{DP}{n}\;
+	\Return \(DP[n]\)\;
 }
 
 \ifstandalone

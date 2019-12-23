@@ -1,6 +1,10 @@
 % NOTE per quando precompili il preambolo
 \documentclass[varwidth=6in]{standalone}
 
+% OPTIMIZE lo usano
+% 06: minDistance
+\usepackage{multicol}
+
 \usepackage{xcolor}
 
 % NOTE utilizzato nel comando 'alert', presenti in tutti gli schemi di algoritmi
@@ -19,11 +23,13 @@
 
 \usepackage{set-math}
 \usepackage{set-quote}
-% TODO includere altro preambolo
-% \usepackage{../figures/tikz-preamble}
 \usepackage{../../preamble.forest}
+% TODO integrare con l'altro preambolo
+% \usepackage{../figures/tikz-preamble}
 
-% \usepackage{xparse} % serve a 'set-algorithm2e'
+\usepackage[italian]{babel}
+\usepackage{csquotes}
+\usepackage{xparse} % serve a 'set-algorithm2e'
 \usepackage{set-algorithm2e}
 \NoCaptionOfAlgo% elimina la scritta 'Algoritmo no.'
 \algorithmstyle{tworuled}% l'opzione globale è 'ruled'
@@ -31,6 +37,8 @@
 \FigureOfAlgotrue% stampa l'immagine
 
 \usepackage{functions}
+
+\newcommand{\slide}[1]{\footnotesize\fbox{#1}}
 
 % NOTE per avere i parametri allineati a destra con un box di dimensione pari alla stringa più lunga
 \usepackage{eqparbox}

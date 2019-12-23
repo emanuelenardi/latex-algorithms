@@ -1,3 +1,4 @@
+latexmk -C
 arara concatenateABRTrees
 arara dict-abr-constructor
 arara dict-abr-insert

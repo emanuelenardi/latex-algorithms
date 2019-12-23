@@ -1,15 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Stampare un cammino in un grafo]{}
 \fi
 
 \BlankLine
@@ -21,9 +16,10 @@
 	\uIf(\tcp*[h]{se è la radice}){\(r \Equal s\)}{
 		\Print \(s\) \Comment*[l]{la stampo}
 	}
-	\eIf{\(parent[s] \Equal \Nil\)}{
+	\uElseIf{\(parent[s] \Equal \Nil\)}{
 		\Print \enquote{nessun cammino da \(r\) a \(s\)}
-	}{
+	}
+	\Else{
 		\tcp{la chiamata ricorsiva prima della stampa per stampare in ordine}
 		\printPath{\(r\), \(parent[s]\), \(p\)}\;
 		\Print \(s\)\;
@@ -32,6 +28,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

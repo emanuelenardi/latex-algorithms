@@ -2,10 +2,8 @@
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 % \begin{minipage}{\textwidth}
 \begin{algorithm}[H]
 \caption[]{}
@@ -56,6 +54,5 @@ per ogni numero incontrato, si calcola la distanza con il valore precedente e la
 \ifstandalone
 \end{algorithm}
 % \end{minipage}
-\RestoreCaptionOfAlgo
-\fi
 \end{document}
+\fi

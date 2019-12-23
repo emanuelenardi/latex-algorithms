@@ -1,15 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption[Problema del commesso viaggiatore]{}
 \fi
 
 \prototype{\bbTsp{\Array{\Item} \(S\), \Array{\Int} \(C\), \Set \(R\), \Int \(n\), \Int \(i\)}}{
@@ -33,7 +28,7 @@
 
 		\BlankLine
 		\If{\(lb < minCost\)}{
-			\eSea{\(i < n\)}{
+			\eIf{\(i < n\)}{
 				\bbTsp{S, C, R, n, \(i+1\)}\;
 			}{
 				\(C[n] \Assign lb\)\;
@@ -49,7 +44,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

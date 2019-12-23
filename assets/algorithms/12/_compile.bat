@@ -1,0 +1,2 @@
+latexmk -C
+arara hanoiRecursive

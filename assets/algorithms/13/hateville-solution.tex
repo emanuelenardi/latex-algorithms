@@ -1,54 +1,48 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
+\SetKwFunction{hateville}{hateville}
+\SetKwFunction{solution}{solution}
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[scrivere la soluzione di hateville]{}
 \fi
 
-\SetKwFunction{hateville}{hateville}
-\SetKwFunction{solution}{solution}
-
-\prototype{\Int \hateville{\Array{\Int} D, \Int n}}{
-
-	\BlankLine
-	\Array{\Int} \(DP\) \Assign \new \Array{\Int}{0}{n}\;
-	\ArrayCall{DP}{0} \Assign 0\;
-	\ArrayCall{DP}{1} \Assign \ArrayCall{DP}{1}\;
-
-	\BlankLine
-	\From{\(i \Assign 2\) \DownTo \(n\)}{
-		\ArrayCall{DP}{i} \Assign \maxFunction{\(DP[i-1]\), \(DP[i-2] + D[i]\)}
-	}
-
-	\BlankLine
-	\Return \solution{DP, D, n}\;
-}
-
-\prototype{\Int \solution{\Array{\Int} DP, \Array{\Int} D, \Int i}}{
-	\tcp{\(i\): indice di scorrimento}
-
-	\BlankLine
-	\tcp{casi base}
-	%
-	%
-
-	\BlankLine
-	\eSea{}{
-
-	}{
-		\Set
-	}
-}
+% \prototype{\Int \hateville{\Array{\Int} D, \Int n}}{
+%
+% 	\BlankLine
+% 	\Array{\Int} \(DP\) \Assign \new \Array{\Int}{0}{n}\;
+% 	\(DP[0] \Assign 0\)\;
+% 	\(DP[1] \Assign DP[1]\)\;
+%
+% 	\BlankLine
+% 	\From{\(i \Assign 2\) \DownTo \(n\)}{
+% 		\(DP[i]\) \Assign \maxFunction{\(DP[i-1]\), \(DP[i-2] + D[i]\)}
+% 	}
+%
+% 	\BlankLine
+% 	\Return \solution{DP, D, n}\;
+% }
+%
+% \prototype{\Int \solution{\Array{\Int} DP, \Array{\Int} D, \Int i}}{
+% 	\tcp{\(i\): indice di scorrimento}
+%
+% 	\BlankLine
+% 	\tcp{casi base}
+% 	%
+% 	%
+%
+% 	% \BlankLine
+% 	% \eIf{}{
+% 	%
+% 	% }{
+% 	% 	\Set
+% 	% }
+% }
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

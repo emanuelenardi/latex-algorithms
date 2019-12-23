@@ -15,7 +15,7 @@
 
 	\BlankLine
 	\tcp{inizializzazione}
-	\Array{\Bool} \(visitato\) \Assign \Array{\Bool}{1}{G.n} \Comment*[l]{della dimensione del no.\ di nodi}
+	\Array{\Bool} \(visitato\) \Assign \Array{\Bool}[1][G.n] \Comment*[l]{della dimensione del no.\ di nodi}
 	\lForEach(\tcp*[h]{devo ancora visitarli}){\(u \in G.\VV - \{r\}\)}{
 		\(visitato[u]\) \Assign \False
 	}

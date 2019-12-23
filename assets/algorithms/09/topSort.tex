@@ -15,10 +15,10 @@
 	\Stack \(S\) \Assign \stackConstructor\;
 
 	\BlankLine
-	\Array{\Bool} \(visited\) \Assign \new \Array{\Bool}{1}{G.\setSize}
+	\Array{\Bool} \(visited\) \Assign \new \Array{\Bool}[1][G.\setSize]
 
-	\lForEach{\(u \in G.\VV\)}{
-		\(visited[u]\) \Assign \False
+	\ForEach{\(u \in G.\VV\)}{
+		\(visited[u]\) \Assign \False\;
 	}
 
 	\BlankLine
@@ -33,7 +33,7 @@
 	}
 
 	\BlankLine
-	\Return \Stack\;
+	\Return \(S\)\;
 }
 
 \ifstandalone

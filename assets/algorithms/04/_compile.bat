@@ -1,3 +1,4 @@
+latexmk -C
 arara dict-interface
 arara list-pseudocode
 arara queue-interface

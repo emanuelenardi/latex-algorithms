@@ -17,14 +17,14 @@
 	\(dt[u]\) \Assign \(time\) \Comment*[l]{memorizzo il tempo di scoperta}
 
 	\BlankLine
-	\ForEach{\(u \in G.\adj{u}\)}{
+	\ForEach{\(v \in G.\adj{u}\)}{
 
 		\BlankLine
 		\uIf(\tcp*[h]{non ho ancora scoperto questo nodo}){\(dt[v] \Equal 0\)}{
 
 			\BlankLine
 			\tcp{effettuo una visita ricorsiva}
-			\If{\hasCycle{G,v}}{
+			\If{\hasCycle{G, v, time, dt, ft}}{
 				\Return \True\;
 			}
 		}

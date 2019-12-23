@@ -4,9 +4,8 @@
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
-
 \ifstandalone
+\begin{document}
 \begin{algorithm}[H]
 \fi
 
@@ -18,9 +17,9 @@
 	\tcp{inizializzazione}
 	\Array{\Bool} \(visitato = \Array{\Bool}{1}{G.n}\)\;
 	\lForEach{\(u \in G.\VV - \{r\}\)}{
-		\(\ArrayCall{visitato}{u} = \False\)
+		\(visitato[u] = \False\)
 	}
-	\(\ArrayCall{visitato}{r} = \True\) \Comment*[l]{radice visitata}
+	\(visitato[r] = \True\) \Comment*[l]{radice visitata}
 
 	\BlankLine
 	\tcp{visita del grafo}
@@ -37,10 +36,10 @@
 			\{ esamina l'arco \((u,v)\) \}
 
 			\BlankLine
-			\If{\Not \ArrayCall{visitato}{v}}{
+			\If{\(\Not visitato[v]\)}{
 
 				\BlankLine
-				\(\ArrayCall{visitato}{v} = \True\)\;
+				\(visitato[v] = \True\)\;
 				\(S.\queueInsert\)
 			}
 		}

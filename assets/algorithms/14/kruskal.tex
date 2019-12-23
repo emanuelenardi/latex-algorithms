@@ -1,15 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Algoritmo di Kruskal]{}
 \fi
 
 \prototype{\Set \kruskal{\Edge{} \(A\), \Int \(n\), \Int \(m\)}}{
@@ -23,7 +18,7 @@
 	\BlankLine
 	\tcp{ordino per peso crescente}
 	\lnl{kruskal:order}%
-	\{ ordina \ArrayCall{A}{1}{m} in modo che \(\ArrayCall{A}{1}.\peso \leqslant \cdots \leqslant \ArrayCall{A}{m}.\peso\) \}\;
+	\{ ordina \(A[1][m]\) in modo che \(A[1].\peso \leqslant \cdots \leqslant A[m].\peso\) \}\;
 %
 	\BlankLine
 	\Int \(c \Assign 0\) \Comment*[h]{quanti archi ho aggiunto}\;
@@ -51,6 +46,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

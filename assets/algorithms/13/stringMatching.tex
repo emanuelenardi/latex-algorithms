@@ -1,18 +1,13 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[String Matching]{}
 \fi
 
-\prototype{\Int \stringMatching{\Array{\Item} P, \Array{\Item} T, \Int m, \Int n}}{
+\prototype{\Int \stringMatching{\Array{\Item} \(P\), \Array{\Item} \(T\), \Int \(m\), \Int \(n\)}}{
 
 	\BlankLine
 	\tcp{inizializzo i casi base}
@@ -20,11 +15,11 @@
 
 	\From(\Comment*[f]{Caso base: \( j \Assign 0 \)}){
 		\(j \Assign 0\) \DownTo \(n\)}{
-			\MatrixCall{DP}{0}{j}\(\Assign 0\)}
+			\(DP[0][j] \Assign 0\)}\;
 
 	\From(\Comment*[f]{Caso base: \( i \Assign 0 \)}){
 		\(i \Assign 1\) \DownTo \(m\)}{
-			\MatrixCall{DP}{i}{0}\(\Assign i\)
+			\(DP[i][0] \Assign i\)\;
 	}
 
 	\BlankLine
@@ -33,14 +28,14 @@
 		\From{\(j \Assign 1\) \DownTo \(n\)}{
 
 			\BlankLine
-			\Int \(\Temp \Assign \MatrixCall{DP}{i-1}{j-1} + \iif(\MatrixCall{P}{i} \Assign \MatrixCall{T}{j}, 0, 1)\)
+			\Int \(\Temp \Assign DP[i-1][j-1] + \iif(P[i] \Assign T[j], 0, 1)\)
 			\Comment*[r]{0: uguali, 1: sostituzione}
 
-			\(\Temp \Assign \MathMin(\Temp, \MatrixCall{DP}{i-1}{j} + 1)\)
-			\Comment*[r]{\MatrixCall{DP}{i-1}{j} inserimento}
+			\(\Temp \Assign \MathMin(\Temp, DP[i-1][j] + 1)\)
+			\Comment*[r]{\(DP[i-1][j]\) inserimento}
 
 			\(\Temp \Assign \MathMin(\Temp, DP[i][j-1]+1)\)
-			\Comment*[r]{\MatrixCall{DP}{i}{j-1} rimozione}
+			\Comment*[r]{\(DP[i][j-1]\) rimozione}
 
 			\BlankLine
 			\(DP[i][j] \Assign \Temp\)\;
@@ -49,25 +44,24 @@
 
 	\BlankLine
 	\tcp{cerco la posizione del minimo}
-	\Int \(\Min \Assign \MatrixCall{DP}{m}{0}\) \Comment*[h]{minimo}\;
+	\Int \(\Min \Assign DP[m][0]\) \Comment*[h]{minimo}\;
 	\Int \(\Pos \Assign 0\) \Comment*[h]{posizione del minimo}\;
 
 	\BlankLine
 
 	\From(\Comment*[h]{trova il minimo sull'ultima riga}){\(j \Assign 1\) \DownTo \(n\)}{
-		\If{\( \MatrixCall{DP}{m}{j} < \Min\)}{
-			\(\Min \Assign \MatrixCall{DP}{m}{j}\)\;
+		\If{\(DP[m][j] < \Min\)}{
+			\(\Min \Assign DP[m][j]\)\;
 			\(\Pos \Assign j\)\;
 		}
 	}
 
 	\BlankLine
 	\Return \Pos
-	\Comment*[h]{potrei anche restituire \MatrixCall{DP}{m}{\Pos} che è il valore min associato}\;
+	\Comment*[h]{potrei anche restituire \(DP[m][\Pos]\) che è il valore min associato}\;
 }
 
 \ifstandalone
 \end{algorithm}
-\NoCaptionOfAlgo
 \end{document}
 \fi

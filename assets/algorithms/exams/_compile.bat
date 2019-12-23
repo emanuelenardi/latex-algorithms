@@ -1,2 +1,3 @@
-arara canItalyWin 
-arara minPalindrome 
+latexmk -C
+arara canItalyWin
+arara minPalindrome

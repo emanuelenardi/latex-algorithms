@@ -14,12 +14,12 @@
 
 	\BlankLine
 	\tcp{creo un vettore della dimensione dei nodi del grafo}
-	\Array{\Int} \(id\) \Assign \new \Array{\Int}{1}{G.\setSize}\;
+	\Array{\Int} \(id\) \Assign \new \Array{\Int}[1][G.\setSize]\;
 	\tcp{inizializzo il vettore}
 	\lForEach{\(u \in G.\VV\)}{
 		\(id[u] \Assign 0\)
 	}
-	
+
 	\Int \(counter = 0\) \Comment*[l]{contatore delle componenti connesse}
 
 	\BlankLine

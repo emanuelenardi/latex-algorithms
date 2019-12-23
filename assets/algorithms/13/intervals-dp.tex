@@ -1,13 +1,9 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
 \caption[Insieme indipendente di intervalli disgiunti]{}
 \fi
@@ -22,9 +18,9 @@
 
 	\BlankLine
 	\tcp{riempio la tabella}
-	\(\ArrayCall{DP}{0} \Assign 0\)\;
+	\(DP[0] \Assign 0\)\;
 	\From{\(i \Assign 1\) \DownTo \(n\)}{
-		\ArrayCall{DP}{i} \Assign \MathMax{\(\ArrayCall{DP}{i-1}\), \(w[i] + \ArrayCall{DP}{pred[i]}\)}\;
+		\(DP[i]\) \Assign \MathMax{\(DP[i-1]\), \(w[i] + DP[pred[i]]\)}\;
 	}
 
 	\tcp{costruisco l'insieme dei predecessori}
@@ -35,18 +31,19 @@
 	\While(\Comment*[h]{fintanto che ci sono intervalli disponibili}){\( i > 0 \)}{
 
 		\BlankLine
-		\eIf(\Comment*[h]{commento}){\(\ArrayCall{DP}{i-1} > \weight{i} + \ArrayCall{DP}{\ArrayCall{pred}{i}}\)}{
+		\eIf(\Comment*[h]{commento}){\(DP[i-1] > \weight{i} + DP[pred[i]]\)}{
 			\(\Decrement{i}\) \Comment*[h]{non considerarlo}\;
 		}{
 			\(S.\setInsert(i)\) \Comment*[h]{inseriscilo nell'insieme}\;
-			\(i \Assign\ArrayCall{pred}{i}\) \Comment*[h]{scorri gli interalli}\;
+			\(i \Assign pred[i]\) \Comment*[h]{scorri gli interalli}\;
 		}
 	}
+
+	\BlankLine
 	\Return \(S\) \Comment*[h]{ritorna l'insieme di intervalli ordinati}\;
 }
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

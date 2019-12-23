@@ -1,15 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Computazione dei predecessori i predecessori]{}
 \fi
 
 \tcp{Pre-computa i predecessori}
@@ -17,7 +12,7 @@
 
 	\BlankLine
 	\Matrix{\Int} \(pred\) \(\Assign\) \new \Array{\Int}{0}{n}\;
-	\(\ArrayCall{pred}{0} \Assign 0\)\;
+	\(pred[0] \Assign 0\)\;
 
 	\BlankLine
 	\From{\(i \Assign 1\) \DownTo \(n\)}{
@@ -27,7 +22,7 @@
 		\While{\(j > 0\) \And \(b[j] > a[i]\)}{
 			\(j \Assign j - 1\)\;
 		}
-		\(\ArrayCall{pred}{i} \Assign j\)\;
+		\(pred[i] \Assign j\)\;
 	}
 
 	\BlankLine
@@ -36,6 +31,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

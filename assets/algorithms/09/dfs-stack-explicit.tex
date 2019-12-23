@@ -17,7 +17,7 @@
 	\(S.\stackPush{r}\) \Comment*[l]{inserisco la radice nella pila}
 
 	\BlankLine
-	\Array{\Bool} \(visitato \Assign\) \new \Array{\Bool}{1}{G.\graphSize}\;
+	\Array{\Bool} \(visitato \Assign\) \new \Array{\Bool}[1][G.\graphSize]\;
 	\lForEach{\(u \in G.\VV - \{r\}\)}{
 		\(visitato[u] \Assign \False\)\;
 	}

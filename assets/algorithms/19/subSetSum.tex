@@ -1,15 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption[Problema della somma di un sottoinsiee]{}
 \fi
 
 \prototype{\Bool \subSetSum{\Array{\Int} \(A\), \Int \(n\), \Int \(k\)}}{
@@ -21,11 +16,11 @@
 	\tcp{casi base}
 
 	\tcp{dati nessun oggetto posso ottenere il valore 0}
-	\(\MatrixCall{DP}{0}{0} \Assign \True\)\;
+	\(DP[0][0] \Assign \True\)\;
 
 	\For{\(r \Assign 1\) \DownTo \(k\)}{
 		\tcp{dati 0 oggetti posso ottenere un valore di \(k > 0\)}
-		\(\MatrixCall{DP}{0}{r} \Assign \False\)\;
+		\(DP[0][r] \Assign \False\)\;
 	}
 
 	\BlankLine
@@ -36,17 +31,15 @@
 
 			\BlankLine
 			\tcp{logica dell'algoritmo}
-			\(\MatrixCall{DP}{i}{r} \Assign \MatrixCall{DP}{i-1}{k}\) \Or \(\MatrixCall{DP}{i-1}{r - A[i]}\)\;
+			\(DP[i][r] \Assign DP[i-1][k]\) \Or \(DP[i-1][r - A[i]]\)\;
 		}
 	}
 
 	\BlankLine
-	\Return \MatrixCall{DP}{n}{k}\;
+	\Return DP[n][k]\;
 }
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
-
 \end{document}
+\fi

@@ -9,7 +9,7 @@
 
 \BlankLine
 \tcp{il camminimo più breve fra due vertici viene memorizzato tramite il vettore dei padri \(p\)}
-\prototype{\erdos{\Graph \(G\), \Node \(r\), \Array{\Int} \(erdos\), \Node{} \(parent\)}}{
+\prototype{\erdos{\Graph \(G\), \Node \(r\), \Array{\Int} \(erdos\), \Node \(parent\)}}{
 
 	\BlankLine
 	\tcp{struttura di supporto}
@@ -18,7 +18,6 @@
 
 	\BlankLine
 	\tcp{inizializzazione}
-	\Array{\Bool} \(visitato\) \Assign \Array{\Bool}{1}{G.n}\;
 
 	\lForEach(\tcp*[h]{nodi non ancora raggiunti}){\(u \in G.\VV - \{r\}\)}{
 		\(erdos[u]\) \Assign \(\infty\)
@@ -38,7 +37,7 @@
 			\{ \alert{esamina l'arco \((u,v)\)} \}
 
 			\BlankLine
-			\If{\(erdos[v] \Assign \infty\)}{
+			\If{\(erdos[v] \Equal \infty\)}{
 				\tcp{il nodo non è stato ancora stato scoperto}
 
 				\BlankLine

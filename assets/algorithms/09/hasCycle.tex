@@ -14,8 +14,8 @@
 	\BlankLine
 	\Array{\Bool} \(visited\) \Assign \new \Array{\Bool}{1}{G.\setSize} \Comment*[l]{creo il vettore}
 
-	\lForEach(\tcp*[h]{lo inizializzo}){\(u \in G.\VV\)}{
-		\(visited[u]\) \Assign \False
+	\ForEach(\tcp*[h]{lo inizializzo}){\(u \in G.\VV\)}{
+		\(visited[u]\) \Assign \False\;
 	}
 
 	\BlankLine

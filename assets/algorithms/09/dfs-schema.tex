@@ -34,22 +34,23 @@
 			\{ \textcolor{arcoAlbero}{esamina l'arco \((u,v)\) (albero)} \}\;
 
 			\BlankLine
-			\dfsSchema{g,v} \Comment*[l]{effettuo la chiamata ricorsiva}
+			\dfsSchema{G, v, time, dt, ft} \Comment*[l]{effettuo la chiamata ricorsiva}
 			\BlankLine
 
 		}
-		\uElseIf{\(dt[u] < dt[v]\) \And \(ft[v] \Equal 0\)}{
+		\uElseIf{\(dt[u] > dt[v]\) \And \(ft[v] \Equal 0\)}{
 			\tcp{se raggiungo un mio discendente e non ho ancora terminato la mia visita, allora ho trovato un arco \emph{all'indietro}}
 			\{ \textcolor{arcoIndietro}{esamina l'arco \((u,v)\) (indietro)} \}
 			\BlankLine
 
 		}
-		\eIf{\(dt[u] < dt[v]\) \And \(ft[v] \Neq 0\)}{
+		\uElseIf{\(dt[u] < dt[v]\) \And \(ft[v] \Neq 0\)}{
 			\tcp{se raggiungo un mio discendente e ho terminato la mia visita, allora ho trovato un arco \emph{in avanti}}
 			\{ \textcolor{arcoAvanti}{esamina l'arco \((u,v)\) (avanti)} \}
 			\BlankLine
 
-		}{
+		}
+		\Else{
 			\tcp{l'ultimo caso rimanente}
 			\{ \textcolor{arcoAttraversamento}{esamina l'arco \((u,v)\) (attraversamento)} \}
 		}

@@ -1,8 +1,5 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 \SetKwFunction{quadrato}{quadrato}
 
 % arara: pdflatex: { synctex: no }
@@ -10,7 +7,6 @@
 \ifstandalone
 \begin{document}
 \begin{algorithm}[H]
-% \caption[Calcola il quadrato di un grafo orientato]{}
 \fi
 \tcp{calcola il quadrato di un grafo orientato}
 \prototype{\quadrato{\Matrix{\Int} A}}{
@@ -29,7 +25,7 @@
 
 			\BlankLine
 			\tcp{comment}
-			\eSea{\(found\)}{
+			\eIf{\(found\)}{
 				\(A^2[i,j] = 1\)\;
 			}{
 				\(A^2[i,j] = 0\)\;

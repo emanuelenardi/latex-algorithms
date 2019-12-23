@@ -1,1 +1,2 @@
-arara fordFulkerson 
+latexmk -C
+arara fordFulkerson

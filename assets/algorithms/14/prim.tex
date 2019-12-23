@@ -26,13 +26,13 @@
 	\lnl{prim:init}%
 	\ForEach{\(u \in G.\VV() - \{ r \}\)}{
 		% \tcp{li inserisco, memorizzando la loro posizione, nella coda indicando che devono ancora essere raggiunti (\(+\infty\))}
-		\(\ArrayCall{\Pos}{u} \Assign Q.\heapInsert(u, +\infty)\)\;
+		\(\Pos[u] \Assign Q.\heapInsert(u, +\infty)\)\;
 	}
 
 	\BlankLine
 	\tcp{Inserisco il "nodo di partenza"}
-	\(\ArrayCall{\Pos}{r} \Assign Q.\heapInsert{r, 0}\)\;
-	\(\ArrayCall{p}{r} \Assign 0\) \Comment*[l]{convenzione per indicare che non ha padre}
+	\(\Pos[r] \Assign Q.\heapInsert{r, 0}\)\;
+	\(p[r] \Assign 0\) \Comment*[l]{convenzione per indicare che non ha padre}
 
 	\BlankLine
 	\lnl{prim:ciclo-esterno}%
@@ -40,7 +40,7 @@
 
 	\BlankLine
 		\Node \(u\) \Assign \(Q\).\heapDeleteMin \Comment*[l]{cancello e restituisco il nodo}
-		\(\ArrayCall{\Pos}{u} \Assign \Nil\) \Comment*[h]{non considero più quel nodo}\;
+		\(\Pos[u] \Assign \Nil\) \Comment*[h]{non considero più quel nodo}\;
 
 		\BlankLine
 		\tcp{per ciascun nodo adiacente a quello considerato}
@@ -48,12 +48,12 @@
 		\ForEach{\(v \in G.\adj(u)\)}{
 
 			\BlankLine
-			\If{\(\ArrayCall{\Pos}{v} \Neq \Nil\) \And \(\weight{u,v} < \ArrayCall{\Pos}{v}.\priority\)}{
-				\tcp{\(\ArrayCall{\Pos}{v} \Neq \Nil\): è già stato visitato}
-				\tcp{\(\weight{u,v} < \ArrayCall{\Pos}{v}.\priority\): }
+			\If{\(\Pos[v] \Neq \Nil\) \And \(\weight{u,v} < \Pos[v].\priority\)}{
+				\tcp{\(\Pos[v] \Neq \Nil\): è già stato visitato}
+				\tcp{\(\weight{u,v} < \Pos[v].\priority\): }
 
 				\BlankLine
-				\(Q.\heapDecrease{\ArrayCall{Pos}{v}, \weight{u,v}}\) \Comment*[l]{commento}
+				\(Q.\heapDecrease{\Pos[v], \weight{u,v}}\) \Comment*[l]{commento}
 				\(p[v] \Assign u\) \Comment*[l]{commento}
 			}
 		}

@@ -14,16 +14,16 @@
 
 	\BlankLine
 	\tcp{creo un vettore della dimensione dei nodi del grafo}
-	\Array{\Int} \(id\) \Assign \new \Array{\Int}{1}{G.\setSize}\;
+	\Array{\Int} \(id\) \Assign \new \Array{\Int}[1][G.\setSize]\;
 	\tcp{inizializzo il vettore}
-	\lForEach{\(u \in G.\VV\)}{
-		\(id[u] \Assign 0\)
+	\ForEach{\(u \in G.\VV\)}{
+		\(id[u] \Assign 0\)\;
 	}
 	\tcp{contatore delle componenti connesse}
 	\Int \(counter \Assign 0\)\;
 
 	\BlankLine
-	\While(\tcp*[h]{fintante che la pila è piena}){\alert{\Not \(S.\stackEmpty\)}}{
+	\While(\tcp*[h]{fintanto che la pila non è vuota}){\alert{\Not \(S.\stackEmpty\)}}{
 
 		\alert{\(u\) \Assign \(S\).\stackPop}\;
 
