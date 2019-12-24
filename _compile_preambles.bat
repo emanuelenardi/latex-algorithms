@@ -1,8 +1,8 @@
 REM compilo preambolo principale
-pdflatex -ini -jobname="preamble.main" "&pdflatex ./preamble.main.sty\dump"
+REM pdflatex -ini -jobname="preamble.main" "&pdflatex ./preamble.main.sty\dump"
 
 REM nel caso utilizzassi 'minted'
-REM pdflatex --shell-escape -ini -jobname="preamble.main" "&pdflatex ./preamble.main.sty\dump"
+pdflatex --shell-escape -ini -jobname="preamble.main" "&pdflatex ./preamble.main.sty\dump"
 
 del preamble.main.log
 

@@ -1,6 +1,7 @@
 latexmk -C
 arara countingSort
 arara insertionSort
+arara merge
 arara mergeSort
 arara pigeonHoleSort
 arara quickSort

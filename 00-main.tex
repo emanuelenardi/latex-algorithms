@@ -1,0 +1,97 @@
+%&preamble.main
+
+% TODO cambiare classe: article -> book
+% \usepackage{etoolbox}
+% \pretocmd\section{\cleardoublepage}{}%
+% 	{\errmessage{Patching \noexpand\section failed}}
+
+% NOTE ciclo di compilazione
+% arara: pdflatex: { shell: yes, draft: yes }
+% arara: pdflatex: { shell: yes, synctex: yes }
+%! arara: latexmk:  { clean: partial }
+\begin{document}
+\afterpage{\blankpage}
+\maketitle
+\pagenumbering{gobble}
+
+% NOTE disabilita la protrusion localmente
+\microtypesetup{protrusion = false}
+
+% NOTE % sections + subsections
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+% \clearpage
+\listoffigures
+
+% \clearpage
+\listoftables
+
+% TODO risolvere questo problema
+% \listoftheorems[ignoreall, show={theorem, definition}] % NOTE si sovrascrivono
+% \listoftheorems[ignoreall, show={theorem}]
+% \listoftheorems[ignoreall, show={definition}]
+% \listoftheorems[ignoreall, show={note}]
+
+% TODO risolvere questo problema
+% \listofalgorithms % NOTE non stampa nulla
+
+% NOTE (ri)abilita la protrusion
+\microtypesetup{protrusion = true}
+\blankpage
+
+% TODO scrivere il prologo
+% \afterpage{\blankpage}
+% \section*{Prologo}
+% \blankpage
+
+\part{Primo semestre}
+\pagenumbering{arabic}% \setcounter{page}{1}
+\pagestyle{mystyle}
+
+\begin{fquote}
+	[Lewis Carroll]
+	[Alice in Wonderland]
+	[1899]
+Begin at the beginning,'' the King said, gravely, ``and go on till you come to an end; then stop.
+\end{fquote}
+
+\input{02-analisi}
+\clearpage\blankpage
+\input{03-funzioni}
+\clearpage\blankpage
+\input{04-strutture}
+% \clearpage\blankpage
+% \include{05-alberi}
+% \clearpage\blankpage
+% \include{06-abr}
+% \clearpage\blankpage
+% \include{08-insiemi-dizionari}
+% \clearpage\blankpage
+% \include{09-grafi}
+% \clearpage\blankpage
+% \include{12-dividi}
+
+% \part{Secondo semestre}
+
+% \begin{fquote}
+% 	[Steven S. Skiena]
+% 	[The Algorithm Design Manual]
+% 	[]
+% In algorithms, as in life, persistence usually pays off.
+% \end{fquote}
+
+% \include{11-scelta}
+% \include{13-dp}
+% \include{14-greedy}
+% \include{15-local}
+% \include{16-backtrack}
+% \include{17-prob}
+% \include{19-approx}
+
+\end{document}
+
+% \part{Laboratorio}
+% \part{Esercizi}
+% \part{Orale}
+% \part{Esami}

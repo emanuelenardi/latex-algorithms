@@ -1,4 +1,5 @@
-\documentclass{article}
+\documentclass[titlepage, twoside, 10pt]{article}
+% \documentclass[titlepage, openright, 10pt]{book}
 
 % WARNING da caricare presto
 \usepackage[
@@ -6,11 +7,14 @@
 	,mode			= buildnew
 ]{standalone}
 
+% NOTE non più utilizzato -> preambolo precompilato, tenuto per riferimento
+\usepackage{subfiles}
+
+% WARNING do not replace, for any reason
+\usepackage{set-minted}
+
 % NOTE in alcune parti del documento è ancora utilizzato
 \usepackage{multicol}
-
-% NOTE non più utilizzato -> preambolo precompilato, tenuto per riferimento
-% \usepackage{subfiles}
 
 % IDEA pacchetti di utilità
 % NOTE 'comment' - fornisce l'ambiente dei commenti
@@ -70,6 +74,11 @@
 	% ,gray
 ]{xcolor}
 
+% NOTE
+\colorlet{faded}{lightgray}
+% NOTE
+\setlength{\intextsep}{6.0pt plus 2.0pt minus 2.0pt}
+
 % NOTE 'enumitem' - permette di personalizzare gli elenchi puntati
 % NOTE lista in linea
 \usepackage[inline]{enumitem}
@@ -84,15 +93,6 @@
 \colorlet{darker}{blue!50!black}
 \colorlet{mathcolor}{blue}
 
-% NB è una copia, copia le modifiche su 'assets/algorithms/preamble'
-% \colorlet{nodeRed}{red!30}
-% \colorlet{nodeBlue}{blue!30}
-% \colorlet{nodeYellow}{yellow!30}
-%
-% \colorlet{arcoAlbero}{red}
-% \colorlet{arcoIndietro}{teal} % brown -> teal
-% \colorlet{arcoAvanti}{purple}
-% \colorlet{arcoAttraversamento}{blue}
 \usepackage{preamble.forest}
 
 % TODO rimuovere dipendenza
@@ -144,6 +144,11 @@
 	justification=raggedright,
 	singlelinecheck=off
 }
+\captionsetup[listing]{
+	position = above,
+	justification=centering,
+	skip = -5pt
+}
 % TODO didascalia non allineata a destra
 % \captionsetup[table]{
 % 	format=hang,
@@ -153,8 +158,8 @@
 
 % NOTE 'csquotes' - permette di personalizzare le citazioni
 \usepackage[autostyle, italian=quotes]{csquotes}
+\usepackage{set-citations}
 
-% TODO spostare nel solo capitolo utilizzato
 % \usepackage{chronology}
 % \usepackage{pgfgantt}
 
@@ -170,8 +175,10 @@
 \setlist[compactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 0pt, partopsep = 0pt}
 
 % TODO rimuovere dipendenza
+\usepackage{set-pages}
+% TODO rimuovere dipendenza
 \usepackage{set-citations}
-% TODO eliminare dipendenza
+% TODO rimuovere dipendenza
 \usepackage{set-math}
 % TODO rimuovere dipendenza
 \usepackage{set-algorithm2e}
@@ -192,25 +199,6 @@
 \setlength{\parindent}{0ex}
 \setlength{\parskip}{1ex}
 
-% NOTE 'fancyhdr' - permette la personalizzazione di testatina e piè di pagina
-\usepackage{fancyhdr, lastpage}
-\fancypagestyle{footer}{
-	\fancyhf{}
-	% \lfoot{\authorName}
-	\cfoot{\footnotesize\em ---~\thepage\ di~\pageref{LastPage}~---}
-	% \rfoot{\today}
-	\renewcommand{\headrulewidth}{0pt}
-	\renewcommand{\footrulewidth}{0pt}
-}
-\pagestyle{footer}
-
-% NOTE 'bookmark' - crea e gestisce i segnalibri
-% NB i segnalibri vengono aperti fino al 1° livello
-\usepackage[
-	,open
-	,openlevel = 1
-]{bookmark}
-
 % NOTE setup titles and sectioning
 \usepackage{titling}
 \newcommand\subtitle[1]{%
@@ -223,16 +211,41 @@
 \title{Appunti \emph{ordinati} sull'analisi degli algoritmi\\\underline{in preparazione all'orale}}
 \subtitle{(Si può fare meglio di così?)}%\textsuperscript{\texttrademark}
 \author{Emanuele Nardi}
-\newcommand\docversion{}
-\date{Aggiornato il \today\\\texttt{\docversion}}
 
-\newcommand\Title{Appunti di ASD \texttt{\docversion}}
+\newcommand\docversion{v.\ 1.0.0}
+\def\Buyer{Emanuele Nardi}
+% \def\Buyer{Martina Girardi}
+% \def\Buyer{Sofia Zanrosso}
+
+\date{\today\\{\small\texttt{\docversion}}}
+
+
+% NOTE 'fancyhdr' - permette la personalizzazione di testatina e piè di pagina
+\usepackage{fancyhdr, lastpage}
+\fancypagestyle{mystyle}{
+	\fancyhead[RE, LO]{\color{darker} \fbox{\texttt{\small \Buyer, {\docversion}}}}
+	\fancyfoot[C]{\footnotesize\em ---~\thepage\ di~\pageref{LastPage}~---}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}
+
+\newcommand\Title{Appunti di ASD [\texttt{\docversion}]}
 \newcommand\Author{Emanuele Nardi}
 \newcommand\Subject{Algoritmi e Strutture Dati}
 \newcommand\Creator{pdflatex}
 \newcommand\Producer{LaTeX}
 \newcommand\Keywords{Algoritmi, Strutture Dati}
 
+% NOTE 'bookmark' - crea e gestisce i segnalibri
+% NB i segnalibri vengono aperti fino al 1° livello
+\usepackage[
+	,open
+	,openlevel = 1
+]{bookmark}
+
+% NOTE modifica il colore dei collegamenti ipertestuali
+% NB bisogna caricarlo per ultimo
+\usepackage{hyperref}
 \hypersetup{
 	pdfinfo = {
 		Title = {\Title},
@@ -245,12 +258,7 @@
 		% colorlinks = true,
 		% backref = true,
 	}
-}
-
-% NOTE modifica il colore dei collegamenti ipertestuali
-% NB bisogna caricarlo per ultimo
-\usepackage{hyperref}
-\hypersetup{
+	,hidelinks
 	,colorlinks	= false
 	,backref
 	% ,allcolors = <color>
@@ -317,6 +325,31 @@
 \usepackage{eqparbox}
 \NewDocumentCommand{\params}{ mo }
 	{ \tcp{\eqparbox{params}{\(#1\):} #2}\vspace{-3pt} }
+
+% NOTE impostazione percorsi di default
+% https://tex.stackexchange.com/questions/79058/
+\makeatletter
+\providecommand*{\input@path}{}
+\g@addto@macro\input@path{%
+	{assets/algorithms/sorting/}% 02
+	{assets/algorithms/04/}%
+	{assets/algorithms/05/}%
+	{assets/algorithms/06/}%
+	{assets/algorithms/08/}%
+	{assets/algorithms/09/}%
+	{assets/algorithms/12/}%
+}% append
+\makeatother
+
+\graphicspath{
+	{assets/figures/02/}%
+	{assets/figures/03/}%
+	{assets/figures/04/}%
+	{assets/figures/05/}%
+	{assets/figures/06/}%
+	{assets/figures/09/}%
+	{assets/figures/12/}%
+}
 
 % NOTE funzione di utilità per accertarmi di aver caricato il preambolo correttamente
 \def\preambleloaded{Precompiled preamble loaded.}

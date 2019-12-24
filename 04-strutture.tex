@@ -1,0 +1,421 @@
+%&preamble.main
+% \documentclass[00-main.tex]{subfiles}
+
+\setcounter{section}{3}
+
+% NOTE impostazione percorsi di default
+% https://tex.stackexchange.com/questions/79058/
+\makeatletter
+\providecommand*{\input@path}{}
+\g@addto@macro\input@path{%
+	{assets/algorithms/04/}%
+}% append
+\makeatother
+
+\graphicspath{
+	{assets/figures/04/}%
+}
+
+\title{Strutture dati}
+
+% arara: pdflatex: { shell: yes, draft: yes }
+% arara: pdflatex: { shell: yes, synctex: yes }
+\begin{document}
+% \maketitle
+
+\section{Strutture dati}
+
+\subsection{Strutture dati astratte}
+
+\begin{fquote}
+	[Steven S. Skiena]
+	[The Algorithm Design Manual]%
+	Picking the wrong data structure for the job can be disastrous in terms of performance.
+	Identifying the very best data structure is usually not as critical, because there can be several choices that perform similarly.
+\end{fquote}
+
+\subsection*{Alcune definizioni}
+
+\begin{definition}[Tipo di dato]
+In un linguaggio di programmazione, un dato è un valore che una variabile può assumere.
+\end{definition}
+
+\begin{definition}[Tipo di dato astratto]
+Un modello matematico, dato da una collezione di valori e un insieme di operazioni ammesse su questi valori.
+\end{definition}
+
+\begin{definition}[Tipi di dato primitivi]
+Sono dei tipi di dati che vengono forniti direttamente dal linguaggio.
+Come ad esempio: int (\texttt{+,-,*,/, \%}), boolean (\texttt{!, \&\&, ||}).
+\end{definition}
+
+Ogni tipo di dato deve distinguere \emph{specifica} ed \emph{implementazione} di un tipo di dato astratto.
+La \emph{specifica} è astratta, il \enquote{manuale d'uso} che nasconde i dettagli implementativi all'utente, mentre l'\emph{implementazione} è la realizzazione vera e propria del tipo di dato.
+
+\begin{table}[H]
+	\centering
+	\caption{Differenza fra specifica ed implementazione}
+	\label{tab:differenza-specifica-implementazione}
+	\begin{tabular}{@{} *{2}{l} @{}}
+		\toprule
+			Specifica & Implementazione \\
+		\midrule
+			Numeri reali & IEEE-754\\
+		\addlinespace
+			\multirow{2}{*}{Pile} & Pile basate su vettori\\
+								  & Pile basate su puntatori\\
+	    \addlinespace
+			\multirow{2}{*}{Code} & Code basate su vettori circolari\\
+								  & Code basate su puntatori\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{definition}[Strutture di dati]
+Le strutture di dati sono collezioni di dati, caratterizzate più dall'organizzazione della collezione piuttosto che dal tipo dei dati in esse contenute.
+\end{definition}
+
+Le strutture dati sono un modo sistematico per organizzare i dati e su di esse sono definite un insieme di operatori che permettono di manipolare la struttura stessa.
+Le strutture dati possono essere caratterizzate in vari modi:
+\begin{itemize}
+	\item \emph{lineari}/\emph{non lineari}: presentano (o meno) una sequenza al loro interno;
+	\item \emph{statiche}/\emph{dinamiche}: possono variare (o meno) di dimensione o di contenuto;
+	\item \emph{omogenee}/\emph{disomogenee}: si riferisce ai dati contenuti al loro interno.
+\end{itemize}
+
+\begin{table}[H]
+	\centering
+	\caption[Implementazione delle strutture dati nei vari linguaggi]{Implementazione delle strutture dati nei vari linguaggi.\\Nota che Java distingue chiaramente la specifica dall'implementazione}
+	\label{tab:strutture-dati}
+	\begin{tabular}{@{} l >{\ttfamily}l >{\ttfamily}l >{\ttfamily}l @{}}
+	\toprule
+		Tipo & \normalfont{Java} & \normalfont{\texttt{C++}} & \normalfont{Python} \\
+	\midrule
+		Sequenze & \makecell[l]{\alert{List, Queue, Deque},\\LinkedList, ArrayList,\\Stack, ArrayDeque} & \makecell[l]{list, forward\_list,\\vector, stack,\\queue, dequeue} & \makecell[l]{list,\\tuple}\\
+	\midrule
+		Insiemi & \makecell[l]{\alert{Set},\\TreeSet, HashSet,\\LinkedHashSet} & \makecell[l]{set,\\unordered\_set} & \makecell[l]{set,\\fronzenset}\\
+	\midrule
+		Dizionari & \makecell[l]{\alert{Map},\\HashTree, HashMap,\\LinkedHashMap} & \makecell[l]{map,\\unordered\_map} & \makecell[l]{dict}\\
+	\midrule
+		Alberi & \makecell[cc]{-} & \makecell[cc]{-} & \makecell[cc]{-}\\
+	\midrule
+		Grafi  & \makecell[cc]{-} & \makecell[cc]{-} & \makecell[cc]{-}\\
+	\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{Sequenza}
+
+Una sequenza è una struttura dati \emph{dinamica}, \emph{lineare} che rappresenta una sequenza \emph{ordinata} di valori, dove un valore può comparire più di una volta.
+L'ordine all'interno della sequenza è importante.
+
+Le operazioni ammesse su una sequenza sono:
+\begin{itemize}
+	\item L'aggiunta e la rimozione elementi, specificando la posizione (tipicamente un intero), l'elemento \(s_1\) si trova in posizione \({pos}_i\) ed esistono posizioni fittizie \({pos}_0\) e \({pos}_{n+1}\);
+	\item Accesso diretto alla testa e coda;
+	\item Accesso sequenziale a tutti gli altri elementi.
+\end{itemize}
+
+\begin{algorithm}[H]
+	\caption*{Specifica \textsc{Sequence}}
+	\input{sequence-interface}
+\end{algorithm}
+
+\clearpage
+\subsubsection{Implementazione delle sequenze}
+
+Di seguito vengono presentati alcuni esempi d'utilizzo dell'implementazione delle sequenze nei diversi linguaggi di programmazione utilizzati oggigiorno.
+
+\begin{code}
+\captionof{listing}{Implementazione delle liste in Java}
+% \label{code:java-sequence}
+\begin{minted}{java}
+List<String> lista = new LinkedList<String>();
+lista.add("two");
+lista.addFirst("one");
+lista.addLast("three");
+
+Result: [ "one", "two", "three" ]
+\end{minted}
+\end{code}
+
+\begin{comment}
+\begin{code}
+\captionof{listing}{Implementazione delle liste in \texttt{C++}}
+% \label{code:cpp-sequence}
+\begin{minted}{cpp}
+std::list<int> lista;
+lista.push_front(2);
+lista.push_front(1);
+lista.push_back(3);
+
+Result: [1,2,3]
+\end{minted}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Implementazione delle liste in Python}
+% \label{code:python-sequence}
+\begin{minted}{python}
+lista = ["one", "three"]
+lista.insert(1, "two")
+
+Result: [ 'one', 'two', 'three' ]
+\end{minted}
+\end{code}
+
+\subsection{Insiemi}
+
+Un insieme è una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{collezione non ordinata di elementi} senza valori ripetuti.
+L'ordinamento fra elementi è dato dall'eventuale relazione d'ordine definita sul tipo degli elementi stessi.
+
+Le operazioni ammesse su un'insieme sono:
+\begin{itemize}
+	\item operazioni di base: come inserimento, cancellazione e verifica di contenimento;
+	\item operazione di ordinamento: massimo, minimo;
+	\item operazioni insiemistiche: unione, intersezione, differenza;
+	\item iteratori: effettuare operazione per ogni elemento contenuto nell'insieme.
+\end{itemize}
+
+\begin{algorithm}[H]
+	\caption*{Struttura dati \textsc{Set}}
+	\input{set-interface}
+\end{algorithm}
+
+\begin{code}
+\captionof{listing}{Implementazione degli insiemi in Java}
+% \label{code:java-set}
+\begin{minted}{java}
+List<String> lista = new LinkedList<String>();
+Set<String> docenti = new TreeSet<>();
+docenti.add("Alberto");
+docenti.add("Cristian");
+docenti.add("Alessio");
+
+Result: { "Alberto", "Alessio", "Cristian" }
+\end{minted}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Implementazione degli insiemi in \texttt{C++}}
+% \label{code:cpp-set}
+\begin{minted}{cpp}
+std::set<std::string> frutta;
+frutta.insert("mele");
+frutta.insert("pere");
+frutta.insert("banane");
+frutta.insert("mele");
+frutta.remove("mele")
+
+Result: { "banane", "pere" }
+\end{minted}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Implementazione degli insiemi in Python}
+% \label{code:python-set}
+\begin{minted}{python}
+items = { "rock", "paper", "scissors", "rock" }
+print(items)
+print("Spock" in items)
+print("lizard" not in items)
+
+Result: { "rock", "paper", "scissors" }
+False
+True
+\end{minted}
+\end{code}
+
+\subsection{Dizionari}
+
+Un dizionario è una struttura dati che rappresenta il concetto matematico di \emph{relazione univoca} \(R : D \to C\), o associazione chiave-valore, dove:
+\begin{itemize}
+	\item l'insieme \(D\) è il dominio (gli elementi sono detti \emph{chiavi});
+	\item l'insieme \(C\) è il codominio (gli elementi sono detti \emph{valori}).
+\end{itemize}
+
+Le operazioni ammesse sui dizionari sono:
+\begin{itemize}
+	\item ottenere il valore associato ad una particolare chiave (se presente) o \Nil se assente;
+	\item inserire una nuova associazione chiave-valore, cancellando eventuali associazioni precedenti per la stessa chiave;
+	\item rimuovere un'associazione chiave-valore esistente.
+\end{itemize}
+
+\begin{algorithm}[H]
+\caption*{Specifica dizionario}
+\input{dict-interface}
+\end{algorithm}
+
+\begin{code}
+\captionof{listing}{Implementazione dei dizionari in Java}
+% \label{code:java-liste}
+\begin{minted}{java}
+Map<String, String> capoluoghi = new HashMap<>();
+capoluoghi.put("Toscana", "Firenze");
+capoluoghi.put("Lombardia", "Milano");
+capoluoghi.put("Sardegna", "Cagliari");
+\end{minted}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Implementazione dei dizionari in \texttt{C++}}
+% \label{code:cpp-liste}
+\begin{minted}{cpp}
+std::map<std::string, int> wordcounts;
+std::string s;
+
+while (std::cin >> s && s != "end")
+  ++wordcounts[s];
+\end{minted}
+\end{code}
+
+\begin{code}
+\captionof{listing}{Implementazione dei dizionari in Python}
+% \label{code:python-liste}
+\begin{minted}{python}
+v = {}
+v[10] = 5
+v["alberto"] = 42
+v[10]+v["alberto"]
+
+Result: 47
+\end{minted}
+\end{code}
+
+\subsection{Alberi}
+
+Un albero ordinato è dato da un insieme finito di elementi detti nodi.
+Uno di questi nodi è designato come radice.
+I rimanenti nodi, se esistono sono partizionati in insiemi \emph{ordinati} e \emph{disgiunti}, anch'essi alberi ordinati.
+
+\begin{figure}[H]
+	\centering
+	\begin{forest} circled, wide
+	[A
+		[B[C]]
+		[C[F][G]]
+		[D[H][I]]
+	]
+	\end{forest}
+	\caption[]{Un albero}
+\end{figure}
+
+Non vedremo implementazioni nei vari linguaggi in quanto non esiste una struttura dati definita riconosciuta universalmente.
+
+\subsection{Grafi}
+
+La struttura dati grafo è composta da:
+\begin{itemize}
+	\item un insieme di elementi detti nodi o vertici;
+	\item un insieme di coppie (ordinate oppure no) di nodi detti archi.
+\end{itemize}
+
+% TODO inserire l'immagine di un grafo semplice
+
+Tutte le operazioni su alberi e grafi ruotano attorno alla possibilità di effettuare visite su di essi, vedremo la specifica completa più avanti.
+
+\begin{note}
+La scelta della struttura dati si riflette sull'efficienza e sulle operazioni ammesse.
+\end{note}
+
+\subsection{Implementazione strutture dati elementari}
+
+\subsubsection{Lista}
+
+Una lista è una sequenza di nodi, contenenti dati arbitrari e 1-2 puntatori all'elemento successivo e/o precedente.
+
+La contiguità nella lista non implica che ci sia continuità nella memoria.
+Tutte le operazioni effettuate sulla lista hanno complessità \(\Omicron(1)\), ma per fare una ricerca dobbiamo spendere \(\Omicron(n)\).
+
+Esistono diverse implmentazioni della lista, le quali possono essere:
+\begin{itemize}
+	\item bidirezionale o monodirezionale;
+	\item con sentinella o senza;
+	\item circolare o non circolare.
+\end{itemize}
+
+% TODO inserire immagine delle liste (da fare)
+
+\begin{algorithm}[H]
+\caption*{Struttura dati lista bidirezionale con sentinella in pseudocodice}
+\input{list-pseudocode}
+\end{algorithm}
+Il costo delle operazioni di lettura, scrittura, inserimento e rimozione per questa struttura è \(\Omicron(1)\).
+
+\begin{figure}[p]
+\begin{code}
+	\captionof{listing}{Lista bidirezionale \emph{senza} sentinella in Java}
+	\label{code:java-lista-bidirezionale-sentinella}
+	\javafile{assets/codes/04/List.java}
+\end{code}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{forgetting}
+	\caption[]{\texttt{xkcd no.\ 379}}
+	\label{fig:forgetting}
+\end{figure}
+
+\subsubsection{Pila}
+
+La pila è una struttura dati \emph{dinamica}, \emph{lineare} in cui l'elemento rimosso dall'operazione di cancellazione è predeterminato, ed è quello che \enquote{è rimasto per meno tempo nell'insieme} (con strategia \textsc{LIFO}, \foreign{Last-In-First-Out}).
+
+\begin{algorithm}[H]
+\caption*{Specifica \textsc{Stack}}
+\input{stack-interface}
+\end{algorithm}
+
+Ogni volta che viene effettuata una chiamata a funzione si usa implicitamente una pila, che memorizza tutti i record di attivazione delle chiamate effettuate.
+Sfrutteremo questo meccanismo implicito per visitare gli alberi, attraverso una visita in profondità.
+
+Le pile possono essere implementate come:
+\begin{itemize}
+	\item liste bidirezionali, dove il puntatore punta all'elemento \textsf{top} (non utilizzate);
+	\item tramite vettore, dove la dimesione è limitata quindi si crea un \foreign{overhead} più basso.
+\end{itemize}
+
+\begin{algorithm}[H]
+	\caption*{Struttura dati pila basata su vettore in pseudocodice}
+	\input{stack-pseudocode}
+\end{algorithm}
+
+\begin{figure}[p]
+\begin{code}
+	\captionof{listing}{Pila basata su vettore circolare in Java}
+	\label{code:vector-stack}
+	\javafile{assets/codes/04/VectorStack.java}
+\end{code}
+\end{figure}
+
+\subsubsection{Coda}
+
+La coda è una struttura dati \emph{dinamica} \emph{lineare} in cui l'elemento rimosso dall'operazione di cancellazione è predeterminato, ed è quello che \enquote{è rimasto per più tempo nell'insieme} (con strategia, \textsc{FIFO}, \foreign{First-In-First-Out}).
+
+\begin{algorithm}[H]
+\caption*{Specifica \textsc{Queue}}
+\input{queue-interface}
+\end{algorithm}
+
+Nei sistemi operativi, i processi in attesa di utilizzare una risorsa vengono gestiti tramite una coda.
+La politica \textsc{FIFO} è onesta (\foreign{fair}) rispetto l'ordine in cui i processi sono stati inseriti.
+
+Le code possono essere implementate come:
+\begin{itemize}
+	\item liste monodirezionali, dove sono presenti due puntatori: uno alla testa (\foreign{head}) per l'estrazione, ed uno alla coda per l'inserimento;
+	\item vettori circolari, il quale ha una dimensione limitata e crea un \foreign{overhead} più basso.
+\end{itemize}
+
+\begin{algorithm}[H]
+\caption*{Struttura dati coda basata su vettore circolare in pseudocodice}
+\input{queue-pseudocode}
+\end{algorithm}
+
+\begin{code}
+	\captionof{listing}{Pila basata su vettore in Java}
+	\label{code:vector-queue}
+	\javafile{assets/codes/04/VectorQueue.java}
+\end{code}
+\end{comment}
+
+\end{document}
