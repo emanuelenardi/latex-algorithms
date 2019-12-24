@@ -2,40 +2,40 @@
 %&preamble.main
 
 % NOTE impostazione contatore per compilazione in standalone
-\setcounter{section}{4}
+% \setcounter{section}{4}
 
 % NOTE sopprimere i warnings localmente
-\hbadness=10000
-\hfuzz=\maxdimen\newdimen\hfuzz
-% \usepackage[saveall]{silence}
-\usepackage{silence}
-\WarningsOff[caption]
+% \hbadness=10000
+% \hfuzz=\maxdimen\newdimen\hfuzz
+% % \usepackage[saveall]{silence}
+% \usepackage{silence}
+% \WarningsOff[caption]
 
-% NOTE impostazione percorsi di default
-% https://tex.stackexchange.com/questions/79058/
-\makeatletter
-\providecommand*{\input@path}{}
-\g@addto@macro\input@path{%
-	{assets/algorithms/05/}%
-}% append
-\makeatother
-
-\graphicspath{
-	{assets/figures/05/}%
-}
+% % NOTE impostazione percorsi di default
+% % https://tex.stackexchange.com/questions/79058/
+% \makeatletter
+% \providecommand*{\input@path}{}
+% \g@addto@macro\input@path{%
+% 	{assets/algorithms/05/}%
+% }% append
+% \makeatother
+%
+% \graphicspath{
+% 	{assets/figures/05/}%
+% }
 
 % arara: pdflatex: { shell: yes, draft: yes, synctex: no }
 % arara: pdflatex: { shell: yes, synctex: yes }
 \begin{document}
 % \maketitle
 
-\section{Alberi}
+\chapter{Alberi}
 
 % TODO scrivere introduzione
 
-\subsection{Definizioni}
+\section{Definizioni}
 
-\begin{definition}[Albero radicato -- \foreign{rooted tree}]
+\begin{definition}[Albero radicato, \foreign{rooted tree}]
 Un albero consiste di un insieme di nodi e un insieme di archi orientati che connettono coppie di nodi, con le seguenti proprietà:
 \begin{itemize}
 	\item un nodo dell'albero è designato come nodo radice;
@@ -65,7 +65,7 @@ L'insieme dei nodi alla stessa profondità.
 La profondità massima delle sue foglie.
 \end{definition}
 
-\subsection{Terminologia}
+\section{Terminologia}
 
 \begin{minipage}[c]{.45\textwidth}
 	\centering
@@ -91,7 +91,8 @@ La profondità massima delle sue foglie.
 	}
 \end{minipage}
 
-\subsection{Alberi binari}
+\clearpage
+\section{Alberi binari}
 
 \begin{definition}[Albero binario]
 Un albero binario è un albero radicato in cui ogni nodo ha al massimo due figli, che vengono identificati come figlio sinistro e figlio destro.
@@ -111,11 +112,11 @@ In altre parole, anche se due alberi hanno lo stesso numero di nodi ed ognuno di
 Le funzioni \emph{senza parametri} sono indicate con un carattere senza grazie e privi di parentesi tonde vuote al fine di alleggerire la lettura del codice.
 \end{note}
 
-\subsubsection{Memorizzazione di un albero binario}
+\subsection{Memorizzazione di un albero binario}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics{binary-tree}
+	\includegraphics{tree-binary}
 \end{figure}
 
 Vengono memorizzati i seguenti campi:
@@ -126,14 +127,14 @@ Vengono memorizzati i seguenti campi:
 \end{itemize}
 Uno qualunque di questi oggetti potrebbe essere pari a \Nil, stando ad indicare che non esiste nessun sottoalbero.
 
-\subsubsection{Implementazione}
+\subsection{Implementazione}
 
 \begin{algorithm}[H]
 	\caption{Implementazione albero binario in pseudocodice}
 	\input{tree-pseudocode}
 \end{algorithm}
 
-\subsubsection{Visite}
+\subsection{Visite}
 
 La visita di un albero (o la ricerca) è una strategia per passare attraverso (visitare) tutti i nodi di un albero.
 Si possono distinguere due tipi di visite:
@@ -149,12 +150,11 @@ Si possono distinguere due tipi di visite:
 
 A seconda di dove scrivo il codice in questo schema ottengo una visita diversa.
 
-\newpage
-\subsubsection{Applicazioni}
+\subsection{Applicazioni}
 
 In genere post-visita e in-visita sono quelle più applicate, la pre-visita meno.
 
-\subsubsection*{Visita in post-ordine}
+\subsection*{Visita in post-ordine}
 
 Una possibile applicazione della visita post-ordine è quella di effettuare un conteggio dei nodi presenti nell'albero.
 
@@ -163,7 +163,7 @@ Una possibile applicazione della visita post-ordine è quella di effettuare un c
 	\input{conteggioNodi}
 \end{algorithm}
 
-\subsubsection*{Visita in ordine (in-visita)}
+\subsection*{Visita in ordine (in-visita)}
 
 Una possibile applicazione della visita post-ordine è quella di stampare espressioni con operatori binari.
 
@@ -175,18 +175,19 @@ Una possibile applicazione della visita post-ordine è quella di stampare espres
 % TODO
 % Questa particolare funzione è stata utilizzata nell'esame del
 
-\subsubsection*{Complessità di una visita}
+\subsection*{Complessità di una visita}
 
 Il costo di una visita di un albero contenente \(n\) nodi è \(\Theta(n)\), in quanto ogni nodo viene visitato al massimo una volta.
 
-\subsection{Alberi generici}
+\clearpage
+\section{Alberi generici}
 
 \begin{algorithm}[H]
 	\caption{Specifica albero generico}
 	\input{tree-generic-interface}
 \end{algorithm}
 
-\subsubsection{Visita in profondità}
+\subsection{Visita in profondità}
 
 Un albero binario è anche un albero generale e lo visitiamo esattamente come lo visitavamo prima.
 
@@ -195,7 +196,7 @@ Un albero binario è anche un albero generale e lo visitiamo esattamente come lo
 	\input{dfs}
 \end{algorithm}
 
-\subsubsection{Visita in ampiezza}
+\subsection{Visita in ampiezza}
 
 Mentre nella visita in profondità il meccanismo della pila (\foreign{stack}) era implicito nelle chiamate ricorsive, in questo caso è necessario utilizzare \emph{esplicitamente} una coda (\foreign{queue}).
 Un'altra differenza fra i due algoritmi è che quello in profondità è un algoritmo ricorsivo, l'altro è iterativo.
@@ -211,7 +212,7 @@ Mettiamo in coda tutti i nodi che vogliamo visitare passo passo.
 Qui la stampa è in pre-visita ma qui -- a differenza dei grafi -- non ha molta importanza se la visita la facciamo prima o dopo.
 Visito tutti i figli prima di passare al livello successivo.
 
-\subsection{Memorizzazione}
+\section{Memorizzazione}
 
 Esistono diversi modi per memorizzare un albero, più o meno indicati a seconda del numero massimo e medio di figli presenti.
 Le realizzazioni possibili sono:
@@ -221,7 +222,7 @@ Le realizzazioni possibili sono:
 	\item con vettore dei padri
 \end{enumerate}
 
-\subsubsection{Realizzazione con vettore dei figli}
+\subsection{Realizzazione con vettore dei figli}
 
 \begin{figure}[H]
 	\centering
@@ -236,7 +237,7 @@ Vengono memorizzati i seguenti campi:
 	\item vettore dei figli il quale a seconda del numero dei figli può comportare una discreta quantità di spazio sprecato.
 \end{itemize}
 
-\subsubsection{Realizzazione basata su primo figlio, prossimo fratello}
+\subsection{Realizzazione basata su primo figlio, prossimo fratello}
 
 Viene implementato come una lista di fratelli.
 
@@ -255,7 +256,7 @@ La memorizzazione che viene utilizzata nel \foreign{file system} è esattamente 
 \end{algorithm}
 
 \newpage
-\subsubsection{Realizzazione con vettore dei padri}
+\subsection{Realizzazione con vettore dei padri}
 
 Nella realizzazione con vettore dei padri, l'albero è rappresentato da un vettore i cui elementi contengono il valore associato al nodo e l'indice della posizione del padre del vettore.
 

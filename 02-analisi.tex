@@ -1,38 +1,44 @@
 \documentclass[00-main.tex]{subfiles}
 %&preamble.main
 
-\setcounter{section}{1}
-
-% NOTE impostazione percorsi di default
-% https://tex.stackexchange.com/questions/79058/
-\makeatletter
-\providecommand*{\input@path}{}
-\g@addto@macro\input@path{%
-	{assets/algorithms/sorting/}%
-}% append
-\makeatother
-
-\graphicspath{
-	{assets/figures/02/}%
-}
-
-\title{Analisi di algoritmi}
+% \setcounter{section}{1}
+%
+% % NOTE impostazione percorsi di default
+% % https://tex.stackexchange.com/questions/79058/
+% \makeatletter
+% \providecommand*{\input@path}{}
+% \g@addto@macro\input@path{%
+% {assets/algorithms/sorting/}%
+% }% append
+% \makeatother
+%
+% \graphicspath{
+% {assets/figures/02/}%
+% }
+%
+% \title{Analisi di algoritmi}
 
 % arara: pdflatex: { draft: yes }
 % arara: pdflatex: { synctex: yes }
 \begin{document}
 % \maketitle
 
-\section{Analisi di algoritmi}
+\chapter{Analisi di algoritmi}
+\begin{fquote}
+	[Lewis Carroll]
+	[Alice in Wonderland]
+	[1899]
+Begin at the beginning,'' the King said, gravely, ``and go on till you come to an end; then stop.
+\end{fquote}
 
-\subsection{Introduzione}
+\section{Introduzione}
 
 Il nostro obiettivo è stimare la complessità \emph{in tempo} degli algoritmi.
 Dovremmo stimare anche quella in spazio, ma la complessità in spazio dipende da quella in tempo.
 Daremo delle definizioni, parleremo di modelli di calcolo, faremo qualche esempio di valutazione precisa e introdurremo una notazione.
 Faremo tutto questo per stimare il tempo per un dato input, per stimare il più grande input gestibile in tempi ragionevoli, per avere un metodo di misura per confrontare algoritmi diversi ed in particolare per ottimizzare le parti più importanti dell'algoritmo.
 
-\subsection{Definizione di complessità}
+\section{Definizione di complessità}
 
 La complessità viene definita come una funzione che, data la dimensione dell'input, restituisce il tempo, considerato come un valore intero.
 
@@ -41,7 +47,7 @@ Come definiamo quindi la dimensione dell'input?
 Come misuriamo il tempo?
 \end{quote}
 
-\subsection{Valutare la dimensione dell'input}
+\section{Valutare la dimensione dell'input}
 
 Esistono due criteri per valutare la dimensione dell'input:
 \begin{enumerate}
@@ -56,7 +62,7 @@ In molti casi, infatti, possiamo assumere che gli \enquote{elementi} siano rappr
 
 Il criterio che abbiamo utilizzano fin'ora --- e che useremo d'ora in poi --- è il criterio del costo uniforme (in casi particolari utilizzeremo il criterio di costo logaritmico).
 
-\subsection{Misurare il tempo}
+\section{Misurare il tempo}
 
 Consideriamo un'istruzione come elementare se può essere eseguita in tempo \enquote{costante} dal processore.
 Facciamo qualche esempio:
@@ -88,7 +94,7 @@ Nel corso di laurea magistrale è possibile approfondire questo aspetto, per i n
 
 Noi utilizzeremo il modello di calcolo RAM, che sta per Random Access Machine, ossia una macchina che ha una quantità infinita di celle (di dimensione finita) e accesso in tempo costante indipendentemente dalla posizione (diversamente da ciò che avviene nei nastri); un singolo processore con un set di istruzioni simile a quelli reali i cui costi di esecuzione sono uniformi e ininfluenti ai fini della valutazione (faremo un esempio più avanti).
 
-\subsubsection{Calcolo della complessità}
+\subsection{Calcolo della complessità}
 
 Proviamo a calcolare la complessità dell'algoritmo che ricerca il minimo.
 
@@ -237,14 +243,14 @@ Risolviamo quindi l'equazione di ricorrenza \emph{tramite espansione}:
 T(n) 	&= T(\nicefrac{n}{2}) + d \Arrow{\(\left(T\left(\frac{n}{2} \cdot \frac{1}{2}\right) + d\right) + d\)} \\
 		&= T(\nicefrac{n}{4}) + 2d \Arrow{\(\left(T\left(\frac{n}{4} \cdot \frac{1}{2}\right) + 2d\right) + d\)} \\
 		&= T(\nicefrac{n}{8}) + 3d \\
-		& \ldots \Arrow{\(n = 2^k \Rightarrow k = \log n\)} \\
+		&\phantom{= T(1)}\vdots \Arrow{\(n = 2^k \Rightarrow k = \log n\)} \\
 		&= T(1) + kd \Arrow{T(0) = c}\\
 		&= T(0) + (k+1)\,d \\
 		&= kd+(c+d) \Arrow{\(k = \log n\)}\\
 		&= d \log n + e.
 \end{WithArrows}\]
 
-\subsection{Ordini di complessità}
+\section{Ordini di complessità}
 
 Per ora, abbiamo analizzato precisamente due algoritmi e abbiamo ottenuto due \emph{funzioni di complessità}:
 \begin{itemize}
@@ -256,7 +262,7 @@ Abbiamo visto anche una terza funzione che deriva dall'algoritmo banale (\emph{n
 	\item Minimo: \(T(n) = fn^2 + gn + h\). Chiamiamo questa funzione \textbf{quadratica}, utilizzando la notazione \(\Omicron(n^2)\).
 \end{itemize}
 
-\subsection{Classi di complessità}
+% \section{Classi di complessità}
 
 \begin{table}[hb]
 	\centering
@@ -283,7 +289,6 @@ Abbiamo visto anche una terza funzione che deriva dall'algoritmo banale (\emph{n
 	\end{tabular}
 \end{table}
 
-\newpage
 \section{Funzioni di costo, notazione asintotica}
 
 Ora andremo a formalizzare le nozioni sui limiti superiori ed inferiori che abbiamo accennato in maniera informale nelle lezioni precedenti.
@@ -328,7 +333,7 @@ Nota che \(f(n) = \Theta[g(n)]\) avviene se e solo se \(f(n) = \Omicron(g(n))\) 
 	\caption{Notazione asintotica \(\Theta\)}
 \end{figure}
 
-\subsection{Complessità di un algoritmo e di un problema}
+\section{Complessità di un algoritmo e di un problema}
 
 \begin{definition*}[Complessità in tempo di un \alert{algoritmo}]
 La più grande quantità di tempo richiesta per un input di dimensione \(n\).
@@ -348,7 +353,8 @@ La complessità in tempo relativa a tutte le possibili soluzioni.
 	\item \(\Theta[f(n)]\): abbiamo trovato l'algoritmo ottimo.
 \end{itemize}
 
-\subsection{Esercizi}
+\clearpage
+\section{Esercizi}
 
 Iniziamo con gli esercizi banali che ci permettono di introdurre delle tecniche	che utilizzeremo con le ricorrenze.
 In particolare ci servono a renderci conto che non stiamo dimostrando equazioni, ma disequazioni.
@@ -465,7 +471,7 @@ Abbiamo dimostrato quindi che \(f(n) = \Theta(n^2)\)
 	\caption[]{Risoluzione grafica dell'esercizio}
 \end{figure}
 
-\subsection*{Errori comuni durante la risoluzione degli esercizi}
+\section*{Errori comuni durante la risoluzione degli esercizi}
 
 \exercise{\( f(n) = n^2 \overset{?}{=} \Omicron(n) \)}
 
@@ -486,7 +492,7 @@ Otteniamo che \(n^2 \leqslant cn \Leftrightarrow c \geqslant n\), questo signifi
 
 Otteniamo che \(n^2 \geqslant cn^3 \Leftrightarrow c \leqslant \frac{1}{n}\), questo significa che \(c\) diminuisce al crescere di \(n\), ovvero che non possiamo scegliere una costante \(c\) che verifichi la proprietà.
 
-\subsection{Complessità degli algoritmi e dei problemi a confronto}
+\section{Complessità degli algoritmi e dei problemi a confronto}
 
 In questa sezione ragioneremo su alcuni algoritmi risolutivi che ci sono stati insegnati, in alcuni casi si può migliorare la complessità, in altri è impossibile fare di meglio.
 
@@ -494,7 +500,7 @@ In questa sezione ragioneremo su alcuni algoritmi risolutivi che ci sono stati i
 Qual è il rapporto fra un problema computazionale e l'algoritmo?
 \end{quote}
 
-\subsubsection{Moltiplicare numeri complessi}
+\subsection{Moltiplicare numeri complessi}
 
 % \Orale{}
 La moltiplicazione fra numeri complessi avviene nel seguente modo: \((a + bi)(c + di) = [ac - db] + [ad + bc]i\).
@@ -540,7 +546,7 @@ Si può fare ancora meglio di così?
 Oppure, è possibile dimostrare che non si può fare di meglio?
 \end{quote}
 
-\subsubsection{Sommare numeri binari}
+\subsection{Sommare numeri binari}
 
 \begin{note}
 In questo caso usiamo il criterio del costo logaritmico.
@@ -554,7 +560,7 @@ Esiste un metodo più efficiente?
 
 \`{E} dimostrabile per assurdo che \emph{non è possibile fare di meglio} di una soluzione lineare, poiché non è possibile sommare due numeri binari senza esaminare tutti gli \(n\) bit.
 
-\subsubsection*{Limiti alla complessità di un problema}
+\subsection*{Limiti alla complessità di un problema}
 
 \begin{definition*}[Limite superiore, \(\mathcal{O}(f(n))\)]
 Un problema ha complessità \(\mathcal{O}(f(n))\) \emph{se esiste almeno un algoritmo} che ha complessità \(\mathcal{O}(f(n))\).
@@ -572,7 +578,7 @@ Un problema ha complessità \(\Omega(f(n))\) \emph{se tutti i possibili algoritm
 Il problema della somma dei numeri binari ha complessità \(\Omega(n)\).
 \end{note}
 
-\subsubsection{Moltiplicare numeri binari}
+\subsection{Moltiplicare numeri binari}
 
 L'algoritmo elementare del prodotto richiede di moltiplicare ogni bit con ogni altro bit, per un costo totale di \(c n^2\).
 
@@ -596,7 +602,7 @@ Sappiamo solo che l'algoritmo della somma che ci hanno insegnato è più efficie
 Nel 1960, Kolmogorov enunciò che la moltiplicazione avesse limite inferiore pari a \(\Omega(n^2)\), una settimana dopo un suo studente Karatsuba riuscì a provare il contrario.
 Osserviamo la sua soluzione.
 
-\subsubsection*{Moltiplicazione di Karatsuba}
+\subsection*{Moltiplicazione di Karatsuba}
 
 % \Orale{}
 Karatsuba adottò un approccio divide-et-impera.
@@ -724,14 +730,15 @@ Una congettura è un'affermazione o un giudizio fondato sull'intuito, ritenuto p
 
 Nella GNU Multiple Precision Arithmetic Library vengono utilizzati diversi algoritmi al crescere di \(n\), il valore soglia per cui si predilige un algoritmo rispetto ad un altro dipende dal tipo di architettura.
 
-\subsection{Algoritmi di ordinamento}
+\clearpage
+\section{Algoritmi di ordinamento}
 
 In questa lezione impareremo a capire quando è meglio utilizzare un algoritmo di ordinamento rispetto ad un altro.
 
 In alcuni casi, gli algoritmi si comportano diversamente a seconda delle caratteristiche dell'input.
 Conoscere in anticipo tali caratteristiche permette di scegliere l'algoritmo migliore in quella determinata situazione.
 
-\subsection*{Tipologia di analisi}
+\section*{Tipologia di analisi}
 
 Esistono tre tipi di analisi:
 \begin{enumerate}
@@ -740,13 +747,13 @@ Esistono tre tipi di analisi:
 	\item Analisi del \emph{caso ottimo}: può avere senso se si conoscono informazioni particolari sull'input.
 \end{enumerate}
 
-\subsection*{Problema dell'ordinamento}
+\section*{Problema dell'ordinamento}
 
 Data una sequenza \(A = a_1, a_2, \dots, a_n\) di \(n\) valori in input, il problema dell'ordinamento consiste nel restituire in output una sequenza \(B = b_1, b_2, \dots, b_n\) che sia una permutazione di \(A\), tale per cui \(b_1 \leqslant b_2 \leqslant \dots \leqslant b_n\) (ovvero che ci sia un ordinamento \emph{totale}).
 
 Un approccio \enquote{demente} è quello di generare tutte le possibili permutazioni (complessità \(n!\)) fino a quando non se ne trova una ordinata.
 
-\subsubsection{Selection sort}
+\subsection{Selection sort}
 
 Un approccio banale (\foreign{na\"if}) è quello di cercare il minimo e metterlo nella posizione corretta, riducendo il problema agli \(n-1\) valori rimanenti.
 
@@ -777,8 +784,7 @@ Ad ogni iterazione il vettore su cui viene calcolato il minimo risulta più picc
 Posso dire che è \(\Theta(n^2)\), e non solo che \(\Omega(n^2)\), perché indipendentemente dall'ordine dei numeri ci metterà sempre lo stesso tempo.
 In altre parole, il caso migliore, peggiore e medio coincidono.
 
-\clearpage
-\subsubsection{Insertion sort}
+\subsection{Insertion sort}
 
 Un algoritmo che si basa sul principio di ordinamento di una \enquote{mano} di carte da gioco è il seguente:
 
@@ -802,7 +808,7 @@ In media (informalmente) possiamo assumere che metà dei valori sia ordinata ris
 Infine quando sappiamo che i valori sono quasi ordinati o che \(n\) è molto piccolo (nell'ordine di 16 o 32 elementi) allora questo algoritmo risulta efficiente.
 
 \clearpage
-\subsubsection{Merge sort}
+\subsection{Merge sort}
 
 MergeSort è basato sulla tecnica divide-et-impera vista in precendenza.
 Ma come la utilizza?
@@ -870,7 +876,7 @@ L'analisi per livelli è la seguente:
 Questo algoritmo è preferibile --- per grandi dimensioni di \(n\) --- al \selectionSort e all'\insertionSort.
 
 % NOTE fra dice che è abbastanza inutile 😞
-% \subsection{Conclusioni}
+% \section{Conclusioni}
 %
 % Abbiamo visto tre algoritmi di ordinamento:
 % \begin{itemize}

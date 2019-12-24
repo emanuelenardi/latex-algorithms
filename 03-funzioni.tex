@@ -1,28 +1,28 @@
 \documentclass[00-main.tex]{subfiles}
 %&preamble.main
 
-% NOTE mi permette di mantenere la numerazione corretta anche se compilo solo un capitolo
-\setcounter{section}{2}
-
-\graphicspath{
-	{assets/figures/03/}%
-}
-
-\title{Analisi delle funzioni di costo}
+% % NOTE mi permette di mantenere la numerazione corretta anche se compilo solo un capitolo
+% \setcounter{section}{2}
+%
+% \graphicspath{
+% 	{assets/figures/03/}%
+% }
+%
+% \title{Analisi delle funzioni di costo}
 
 % arara: pdflatex: { draft: yes }
 % arara: pdflatex: { synctex: yes }
 \begin{document}
 % \maketitle
 
-\section{Analisi delle funzioni di costo}
+\chapter{Analisi delle funzioni di costo}
 
 Abbiamo concluso la prima parte delle lezioni che ci introduceva alle equazioni di ricorrenza: ora andremo a capire i fondamenti matematici che ci permetteranno di analizzarne una famiglia più grande.
 
 % NOTE Ripasso della notazione asintotica e della complessità degli algoritmi e dei problemi.
-\subsection{Proprietà della notazione asintotica}
+\section{Proprietà della notazione asintotica}
 
-\subsubsection{Regola generale}
+\subsection{Regola generale}
 
 \begin{theorem}[Regola generale]
 \(f(n) = a_k n^k + a_{k-1} n^{k-1} + \ldots a_1 n + a_0, a_k >0 \Rightarrow f(n) = \Theta(n^k)\)
@@ -63,7 +63,7 @@ Abbiamo dimostrato sia il limite superiore che quello inferiore, possiamo afferm
 Ad esempio \(17n^3 - 47n^2 + 123n + 17 = \Theta(n^3)\).
 Oppure \(2n^3 + 7 = \Theta(n^2)\).
 
-\subsubsection{Funzioni di costo particolari}
+\subsection{Funzioni di costo particolari}
 
 \bigskip
 La complessità di \(f(n) = 5\) è pari a \(\Theta(1)\), questa classe di complessità rappresenta quegli algoritmi che sono così ben congegnati che indipendentemente dalla dimensione dell'input impiegano un tempo costante a risolvere il problema.
@@ -80,7 +80,7 @@ f(n) &= \Theta(n^0) = \Theta(1) \\
 \bigskip
 La complessità di \(f(n) = 5 + \sin(n)\) è pari a \(\Theta(1)\), in quanto \(\sin(n)\) oscilla fra \(1\) e \(-1\).
 
-\subsubsection{Proprietà delle notazioni}
+\subsection{Proprietà delle notazioni}
 
 \begin{theorem}[Dualità]
 % \Orale{}
@@ -136,7 +136,6 @@ Ad esempio \(2 \log n = \Theta(\log n)\), ignoriamo quindi le costanti numeriche
 	\Rightarrow f_1(n) + f_2(n) = \Omega(\maxFunction(g_1(n),g_2(n)))\\
 	\end{align*}
 \end{theorem}
-La dimostrazione.
 \begin{proof}
 \[\begin{WithArrows}
 f_1 (n) = \Omicron(g_1 (n)) \land f_2 n = \Omicron(g_2(n)) &\Rightarrow \Arrow{per definizione}\\
@@ -216,7 +215,7 @@ La dimostrazione è banale:
 \end{WithArrows}\]
 \end{proof}
 
-\subsubsection*{Altre funzioni di costo}
+\subsection*{Altre funzioni di costo}
 
 Vogliamo provare che \fbox{\(\log n = \Omicron(n)\)}
 
@@ -245,7 +244,7 @@ Dimostriamo per induzione che \(\exists c > 0, \exists m \geqslant 0\,\colon \lo
 	\end{WithArrows}\]
 \end{itemize}
 
-\subsubsection*{Classificazione delle funzioni}
+\subsection*{Classificazione delle funzioni}
 
 \`{E} possibile trarre un ordinamento dalle principali espressioni, estendendo le relazioni che abbiamo dimostrato fino ad ora.
 Per ogni \(r < s, h < k, a < b\):
@@ -274,13 +273,14 @@ Non è detto che gli esponenti siano interi.
 \(\sqrt[1000]{n}\) cresce più velocemente di \(\log^2 n\).
 \(n\) cresce meno velocemente di \(n \log n\), il quale a sua volta cresce meno velocemente di \(n \log^2 n\).
 
-\subsection{Analisi per livelli}
+\clearpage
+\section{Analisi per livelli}
 
 Nell'analisi per livelli (o dell'albero di ricorsione) andiamo sostanzialmente a \enquote{srotolare} la ricorrenza in un albero, i cui nodi rappresentano i costi dei vari livelli della ricorsione.
 
-\subsubsection{Esempi di analisi per livelli}
+\subsection{Esempi di analisi per livelli}
 
-\subsubsection*{Analisi per livelli dell'algoritmo della ricerca binaria}
+\subsection*{Analisi per livelli dell'algoritmo della ricerca binaria}
 
 Equazione di ricorrenza della ricerca binaria:
 \[
@@ -303,7 +303,7 @@ T(n) &= b + T(\frac{n}{2}) \Arrow{\(T\left(\frac{n}{2} \cdot \frac{1}{2} \right)
 	 &= \Theta(\log n)
 \end{WithArrows}\]
 
-\subsubsection*{Analisi per livelli del primo tentativo della moltiplicazione di Karatsuba}
+\subsection*{Analisi per livelli del primo tentativo della moltiplicazione di Karatsuba}
 
 Equazione di ricorrenza:
 \[
@@ -339,7 +339,8 @@ T(n) &= n \sum_{j=0}^{\log n-1} 2^j + 4^{\log n} \Arrow{Applico \(\forall x \neq
 
 Possiamo concludere che \(T(n) = n + 4T(\nicefrac{n}{2}) = \Theta(n^2)\).
 
-\subsubsection*{Modifichiamo l'esempio precendente}
+\clearpage
+\subsection*{Modifichiamo l'esempio precendente}
 
 Esaminiamo la seguente equazione di ricorrenza:
 \[
@@ -376,6 +377,7 @@ Per semplicità consideriamo \(n = 2^{\ell}\).
 	\bottomrule
 \end{tabular}
 \end{center}
+
 Sommando il costo di tutti i \(\ell-1\) livelli ed il livello \(\ell\)-esimo otteniamo:
 \[\begin{WithArrows}[displaystyle]
 T(n) &= \sum_{i=0}^{\log n-1} 4^i \cdot \frac{n^3}{2^{3i}} + 4^{\log n} \Arrow{semplifico: \(4^i = 2^{2i}\),\\porto fuori: \(n^3\)}\\
@@ -394,7 +396,8 @@ Tutte le volte che notiamo in un'equazione di riccorrenza una parte polinomiale,
 
 Ora possiamo affermare che \(T(n) = \Theta(n^3)\).
 
-\subsubsection*{Modifichiamo l'esempio precendente ulteriormente}
+\clearpage
+\subsection*{Modifichiamo l'esempio precendente ulteriormente}
 
 Esaminiamo la seguente equazione di ricorrenza:
 \[
@@ -441,18 +444,18 @@ T(n) &= \sum_{i=0}^{\log n-1} \frac{n^2}{2^{2i}} \cdot 4i + 4^{\log_2 n} \Arrow{
 	 &= \Theta(n^2 log n)
 \end{WithArrows}\]
 
-\subsection*{Conclusioni}
+\section*{Conclusioni}
 
 Per riassumere, se consideriamo i termini non ricorrenti, \(n\) ha prodotto \(n^2\), \(n^2\) ha prodotto \(n^2 \log n\) ed \(n^3\) ha prodotto \(n^3\).
 Quando avremo a disposizione lo strumento \enquote{master theorem} riusciremo semplicemente guardando l'equazione di ricorrenza a capire quale complessità essa produce.
 
 \clearpage
-\subsection{Metodo di sostituzione}
+\section{Metodo di sostituzione}
 
 Vediamo ora un ulteriore meccanismo per risolvere le equazioni di ricorrenza in quanto il metodo precendente in alcuni casi può non esserci di aiuto.
 Il metodo di sostituzione è un metodo in cui si cerca di \enquote{indovinare} (\foreign{guess}) una soluzione in base alla propria esperienza ed in seguito si dimostra che questa intuizione è corretta tramite dimostrazione per induzione.
 
-\subsubsection*{Primo esercizio}
+\subsection*{Primo esercizio}
 
 \[
 	T(n) =
@@ -535,7 +538,7 @@ Nota che avremmo potuto evitare la dimostrazione del limite inferiore osservando
 l'ultima disequazione risulta vera per \(d \leqslant 1\), la quale è una condizione identica a quella del caso base.
 Nota che non abbiamo fatto nemmeno ricordo all'ipotesi induttiva.
 
-\subsubsection*{Cosa succede se si sbaglia l'intuizione}
+\subsection*{Cosa succede se si sbaglia l'intuizione}
 
 \[
 T(n) =
@@ -581,7 +584,7 @@ Effettuiamo un tentativo e proviamo a dimostrare che \fbox{\(T(n) = \Omicron(n)\
 	Dunque quando proviamo a dimostrare qualcosa di sbagliato non riusciremo a dimostrarlo.
 \end{itemize}
 
-\subsubsection*{Difficoltà matematica}
+\subsection*{Difficoltà matematica}
 
 \[
 T(n) =
@@ -672,7 +675,7 @@ Dobbiamo dimostrare che \(\exists d > 0, \exists m \geqslant 0 \,\colon T(n) \ge
 	Abbiamo quindi provato che \(T(n) = \Omega(n)\)
 \end{itemize}
 
-\subsubsection*{Problemi con i casi base}
+\subsection*{Problemi con i casi base}
 
 \[
 	T(n) =
@@ -727,16 +730,16 @@ Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \le
 Riassumendo:
 \begin{itemize}
 	\item[] Abbiamo provato che \(T(n) \leqslant cn \log n\)
-	\begin{itemize}
-		\item Nel passo induttivo: \(\forall c \geqslant 1\)
-		\item Nel caso base: \(\forall c \geqslant 2, c \geqslant \frac{5}{3\log 3}\)
+	\begin{itemize}[label=\textbullet]
+		\item nel passo induttivo: \(\forall c \geqslant 1\)
+		\item nel caso base: \(\forall c \geqslant 2, c \geqslant \frac{5}{3\log 3}\)
 	\end{itemize}
 	Visto che sono tutte disequazioni con il segno \(\geqslant\), è sufficiente utilizzare \(c \geqslant \maxFunction\left\{ 1,2,\frac{5}{3 \log 3} \right\}\)
 
 	Questo vale per \(n=2\), \(n=3\), e per tutti i valori di \(n\) successivi, quindi \(m = 2\).
 \end{itemize}
 
-\subsubsection*{Ultimo esercizio}
+\subsection*{Ultimo esercizio}
 
 \[
 	T(n) =
@@ -794,7 +797,7 @@ Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \le
 	Abbiamo quindi dimostrato che \(T(n) \leqslant c(n^2 - n) \leqslant cn^2, \forall n \geqslant 1, \forall c \geqslant \frac{14}{20}\), ossia che \(T(n) = \Omicron(n)\)
 \end{itemize}
 
-\subsubsection*{Riassumendo}
+\subsection*{Riassumendo}
 
 Il metodo di sostituzione è composto da tre parti:
 \begin{enumerate}
@@ -811,11 +814,12 @@ Bisogna fare attenzione:
 	\item ai casi base in cui compare il logaritmo in quanto potrebbe complicare le cose
 \end{itemize}
 
-\subsection{Metodo dell'esperto (o delle ricorrenze comuni)}
+\clearpage
+\section{Metodo dell'esperto (o delle ricorrenze comuni)}
 
 Esiste un'ampia classe di ricorrenze che possono essere risolte facilmente facendo ricorso ad alcuni teoremi, ognuno dei quali si occupa di una classe particolare di equazioni di ricorrenza.
 
-\begin{theorem*}[Ricorrenze lineari con partizione bilanciata]
+\begin{theorem}[Ricorrenze lineari con partizione bilanciata]
 Siano \(a\) e \(b\) costanti intere tale che \(a \geqslant 1\) e \(b \geqslant 2\), e \(c\), \(\beta\) costanti reali tali che \(c > 0\) e \(\beta \geqslant 0\).
 Sia \(T(n)\) data dalla relazione di ricorrenza:
 \[
@@ -834,7 +838,7 @@ Posto \(\alpha = \frac{\log a}{\log b} = \log_{b} a\), allora:
 		\Theta(n^{\beta}) & \alpha < \beta \\
 	\end{dcases}
 \]
-\end{theorem*}
+\end{theorem}
 
 \paragraph{Commento}
 Affrontiamo le equazioni di ricorrenza in cui la dimensione viene divisa in \(b\) parti, dove \(b\) dev'essere almeno pari a 2; l'algoritmo ricorsivo dev'essere richiamato \(a\) volte, dove \(a\) è almeno 1.
@@ -848,7 +852,6 @@ Prendiamo ad esempio il primo esercizio \(T(n) = 4T(\frac{n}{2})\) e vediamo che
 Assumiamo che \(n\) sia una potenza intera di \(b\), ossia che \(n = b^k\), \(k = \log_b n\) poiché ci permetterà di semplificare i calcoli successivi ed è ininfluente sul risultato.
 Ad esempio supponiamo che l'input abbia dimensione \(b^k + 1\) (\(2^8 + 1 = 257\) bit), se estendiamo l'input fino ad una dimensione \(b^{k+1}\) (\(2^8+1 = 512\) bit, facendo del \foreign{padding}, l'input sarebbe stato esteso al massimo di un fattore costante \(b\) (\(2\) nel nostro caso), il che è ininfluente al fine della complessità computazionale.
 
-\medskip
 Calcoliamo l'albero delle ricorrenze per la seguente equazione di ricorrenza:
 \[
 	T(n) =
@@ -858,6 +861,7 @@ Calcoliamo l'albero delle ricorrenze per la seguente equazione di ricorrenza:
 	\end{dcases}
 \]
 
+\clearpage
 \begin{center}
 	\begin{tabular}{@{} *{5}{c} @{}}
 		\toprule
@@ -952,7 +956,7 @@ Studiamole una per una.
 Fine dimostrazione.
 \end{proof}
 
-\begin{theorem*}[Ricorrenze lineari con partizione bilanciata estesa]
+\begin{theorem}[Ricorrenze lineari con partizione bilanciata estesa]
 Sia \(a \geqslant 1\), \(b > 1\), \(f(n)\) asintoticamente positiva, e sia
 \[
 	T(n) =
@@ -967,7 +971,7 @@ Sono dati tre casi:
 	\item \(f(n) = \Theta(n^\alpha)\) allora \(T(n) = \Theta(f(n)\log n)\);
 	\item \(\exists \varepsilon > 0 \,\colon f(n) = \Omicron(n^{\alpha + \varepsilon}) \land\\\exists c \,\colon 0 < c < 1, \exists m > 0 \,\colon\\a f(\frac{n}{b}) \leqslant c f(n), \forall n \geqslant m\) allora \(T(n) = \Theta(f(n))\).
 \end{enumerate}
-\end{theorem*}
+\end{theorem}
 
 Non vedremo la dimostrazione poiché è troppo complessa.
 
@@ -975,7 +979,7 @@ Non vedremo la dimostrazione poiché è troppo complessa.
 Il teorema precendente funzionava con \(n^{\beta}\), aveva una serie di condizioni semplificative, ora non ci sono più.
 Nel secondo caso se \(f(n) = n^{\beta}\) ritorniamo esattamente al secondo caso del teorema precendente, ma qui possiamo prendere in considerazione funzioni più complesse.
 
-\subsubsection*{Esercizi}
+\subsection*{Esercizi}
 
 Le soluzioni sono indicate fra parentesi.
 \begin{itemize}
@@ -1004,7 +1008,7 @@ Posto \(a = \sum_{1 \leqslant i \leqslant h} a_i\), allora:
 \paragraph{Commento}
 Questo teorema tratta ricorrenze lineari \emph{di ordine costante} perché tutte le volte rimuoviamo dalla dimensione di input \(n\) una quantità costante.
 
-\subsubsection*{Esercizi}
+\subsection*{Esercizi}
 
 Le soluzioni sono indicate fra parentesi.
 \begin{itemize}[label=\textbullet]

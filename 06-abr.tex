@@ -1,22 +1,22 @@
 \documentclass[00-main.tex]{subfiles}
 %&preamble.main
 
-\setcounter{section}{5}
-
-% NOTE impostazione percorsi di default
-% https://tex.stackexchange.com/questions/79058/
-\makeatletter
-\providecommand*{\input@path}{}
-\g@addto@macro\input@path{%
-	{assets/algorithms/06/}%
-}% append
-\makeatother
-
-\graphicspath{
-	{assets/figures/06/}%
-}
-
-\title{Alberi Binari di Ricerca}
+% \setcounter{section}{5}
+%
+% % NOTE impostazione percorsi di default
+% % https://tex.stackexchange.com/questions/79058/
+% \makeatletter
+% \providecommand*{\input@path}{}
+% \g@addto@macro\input@path{%
+% 	{assets/algorithms/06/}%
+% }% append
+% \makeatother
+%
+% \graphicspath{
+% 	{assets/figures/06/}%
+% }
+%
+% \title{Alberi Binari di Ricerca}
 
 % arara: pdflatex: { draft: yes, synctex: no }
 % arara: pdflatex: { synctex: yes }
@@ -24,7 +24,9 @@
 \begin{document}
 % \maketitle
 
-\section{Alberi Binari di Ricerca}
+\chapter{Alberi Binari di Ricerca}
+
+\section{Introduzione}
 
 Facciamo un breve ripasso della struttura dati dizionario.
 La struttura dati dizionario è un insieme dinamico che implementa le seguenti funzionalità:
@@ -50,8 +52,7 @@ La struttura dati dizionario è un insieme dinamico che implementa le seguenti f
 	\end{tabular}
 
 	\smallskip
-	\small
-	* assumendo che l'elemento sia già stato trovato, \(\Omicron(n)\) altrimenti.
+	{\small	* assumendo che l'elemento sia già stato trovato, \(\Omicron(n)\) altrimenti.}
 \end{table}
 
 Ora vedremo la struttura dati dizionario implementata come un albero binario di ricerca.
@@ -76,29 +77,28 @@ Queste proprietà valgono per ogni nodo e riguardano l'intero sottoalbero.
 
 Vedremo un algoritmo per verificare se un albero binario è un albero binario di ricerca più avanti (\verifyABR), il quale controllerà se queste proprietà sono soddisfatte.
 
-% \input{verifyABR}
-
+\clearpage
 \begin{algorithm}[H]
 	\caption*{Specifica Alberi Binari di Ricerca (\textsc{ABR})}
 	\input{tree-abr-interface}
 \end{algorithm}
 
-\subsubsection*{Ricerca di un nodo}
+\subsection*{Ricerca di un nodo}
 
 \begin{algorithm}[H]
 	\caption{Ricerca di un nodo in un dizionario realizzato tramite \textsc{ABR}}
 	\input{dict-abr-lookup}
 \end{algorithm}
 
-\subsubsection*{Ricerca del minimo e del massimo}
+\clearpage
+\subsection*{Ricerca del minimo e del massimo}
 
 \begin{algorithm}[H]
 	\caption{Ricerca del minimo e del massimo in un dizionario realizzato tramite \textsc{ABR}}
 	\input{dict-abr-min-max}
 \end{algorithm}
 
-
-\subsubsection*{Ricerca del predecessore, successore}
+\subsection*{Ricerca del predecessore, successore}
 
 \begin{algorithm}[H]
 	\caption{Ricerca del predecessore e del successore di un nodo in un dizionario realizzato tramite \textsc{ABR}}
@@ -117,7 +117,7 @@ Posso trovare \Nil se passo alla funzione \succNode il nodo massimo o alla funzi
 \end{note}
 
 \clearpage
-\subsubsection*{Inserimento di un nodo}
+\subsection*{Inserimento di un nodo}
 
 La funzione \insertNode inserisce un'associazione chiave-valore \((k,v)\) nell'albero \(T\).
 Se la chiave è già presente, sostituisce il valore associato;
@@ -134,7 +134,7 @@ La funzione ausiliaria \shortcut si occupa di inserire il nodo collegandolo al c
 \end{algorithm}
 
 \clearpage
-\subsubsection*{Rimozione di un nodo}
+\subsection*{Rimozione di un nodo}
 
 Rimuove il nodo contenente la chiave \(k\) dall'albero \(T\), restituisce la radice dell'albero (potenzialmente cambiata).
 
@@ -237,7 +237,7 @@ Rimuove il nodo contenente la chiave \(k\) dall'albero \(T\), restituisce la rad
 \end{enumerate}
 
 \clearpage
-\subsubsection*{Costo computazionale delle operazioni}
+\subsection*{Costo computazionale delle operazioni}
 
 Tutte le operazioni sono confinate ai nodi posizionati lungo un cammino semplice dalla radice ad una foglia.
 Quindi se l'altezza dell'albero è definita come \(h\), il tempo di ricerca ha complessità \(\Omicron(h)\).
@@ -246,12 +246,10 @@ Il caso pessimo è rappresentanto da un albero sbilanciato completamente a destr
 Questo caso può accadere quando si inseriscono ordinatamente i dati nell'albero.
 Questo caso, dove l'altezza \(h = n\) porta ad una complessità \(\Omicron(n)\).
 
-\smallskip
 Mentre il caso ottimo è rappresentanto da un albero perfettamente bilanciato.
 Nell'esempio è mostrato un albero perfetto con \(2^h - 1\) nodi, dove \(h\) è l'altezza.
 In questo caso la complessità è pari a \(\Omicron(\log n)\), ad esempio con \(h = 2^3 - 1\) la complessità è \(\Omicron(\log h) = \Omicron(\log 7) < 3\).
 
-\smallskip
 Ci domandiamo quindi quale sia l'altezza media di un albero binario di ricerca.
 Il caso \enquote{semplice} è quello di considerare che gli inserimenti avvengano in maniera statisticamente uniforme, è possibile dimostrare che l'altezza media è \(\Omicron(\log n)\), mentre il caso generale, ossia quello in cui avvengono sia inserimenti che cancellazioni è di difficile trattazione. Per evitare questa casistica si utilizzano varie tecniche per mantenere l'albero bilanciato.
 Per capire queste tecniche abbiamo prima bisogno di fissare un concetto.
@@ -271,7 +269,7 @@ Il meccanismo di rotazione ci permette di abbassare il fattore di sbilanciamento
 \end{note}
 
 \clearpage
-\subsection{Alberi Binari di Ricerca bilanciati}
+\section{Alberi Binari di Ricerca bilanciati}
 
 \begin{definition}[Albero Red-Black]
 Un albero red-black è un albero binario di ricerca in cui:
@@ -311,7 +309,7 @@ L'altezza nera di un albero Red-Black è pari all'altezza nera della sua radice.
 Entrambe le proprietà sono ben definite perché tutti i percorsi hanno lo stesso numero di nodi neri (per via della regola no.\ 4).
 
 \clearpage
-\subsubsection*{Esempi}
+\subsection*{Esempi}
 
 Nelle suguenti figure i nodi neri sono segnati in bianco, mentre quelli rossi sono segnati.
 
@@ -356,7 +354,7 @@ Nelle suguenti figure i nodi neri sono segnati in bianco, mentre quelli rossi so
 \end{figure}
 
 % \clearpage
-% \subsubsection*{Esercizio}
+% \subsection*{Esercizio}
 %
 % \begin{figure}[ht]
 % 	\caption*{Quasto albero può essere un albero Red-Black?}
@@ -367,7 +365,7 @@ Nelle suguenti figure i nodi neri sono segnati in bianco, mentre quelli rossi so
 % \clearpage
 
 \clearpage
-\subsubsection{Inserimento di un nodo}
+\subsection{Inserimento di un nodo}
 
 Durante la modifica di un albero Red-Black è possibile che le condizioni di bilanciamento risultino violate.
 Quando i vincoli Red-Black vengono violati si può agire in due modi:
@@ -376,9 +374,9 @@ Quando i vincoli Red-Black vengono violati si può agire in due modi:
 	\item operando dei bilanciamenti dell'albero tramite rotazioni (a destra o a sinistra)
 \end{itemize}
 
-\subsubsection{Bilanciamento dell'albero}
+\subsection{Bilanciamento dell'albero}
 
-\subsubsection*{Rotazione a sinistra}
+\subsection*{Rotazione a sinistra}
 
 \begin{algorithm}[H]
 	% \caption{Rotazione di un \textsc{Red-Black Tree} a sinistra}
@@ -411,7 +409,7 @@ Il disegno differisce minimamente da quello che si trova sulle slide per motivi 
 	\caption{Esempio di rotazione a sinistra}
 \end{figure}
 \clearpage
-\subsubsection*{Rotazione a destra}
+\subsection*{Rotazione a destra}
 
 La rotazione a destra è simmetrica e viene spiegata ed illustrata per completezza.
 
@@ -444,7 +442,7 @@ La rotazione a destra è simmetrica e viene spiegata ed illustrata per completez
 \end{figure}
 
 \clearpage
-\subsubsection*{Inserimento di un nodo in un albero binario bilanciato}
+\subsection*{Inserimento di un nodo in un albero binario bilanciato}
 
 Per inserire un nodo in un albero Red-Black si usa la stessa procedura usata per gli alberi binari di ricerca e si colora il nuovo nodo di \RED.
 Il vincolo che potremmo violare è il terzo, quello che prevede che entrambi i figli di un nodo rosso siano neri.
@@ -463,6 +461,7 @@ al termine, coloreremo la radice di nero (onorando il primo vincolo).
 Le operazioni di ripristino sono necessarie solo quando due nodi consecutivi sono rossi, altrimenti non sono necessarie.
 \end{note}
 
+\clearpage
 \begin{algorithm}[H]
 	\caption{Bilanciamento dell'albero in seguito all'inserimento di un nodo rosso}
 	\setcounter{AlgoLine}{0}
@@ -568,7 +567,7 @@ Più precisamente:
 \end{itemize}
 
 \clearpage
-\subsubsection*{Esempi di inserimento}
+\subsection*{Esempi di inserimento}
 
 Proviamo ad inserire il nodo \(16\) nell'albero red-black sottostante.
 
@@ -577,46 +576,42 @@ Proviamo ad inserire il nodo \(16\) nell'albero red-black sottostante.
 	% \renewcommand\thesubfigure{\arabic{subfigure}}
 	% \captionsetup[subfigure]{labelformat=simple, labelsep=space}
 	\begin{subfigure}[t]{.48\linewidth}\centering
-		\includegraphics[width=\linewidth-10pt, page=1]{tree-rb-insertNode-example-1}
+		\includegraphics[width=\linewidth, page=1]{tree-rb-insertNode-example-1}
 		\caption{Stato attuale}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{.48\linewidth}\centering
-		\includegraphics[width=\linewidth-10pt, page=2]{tree-rb-insertNode-example-1}
+		\includegraphics[width=\linewidth, page=2]{tree-rb-insertNode-example-1}
 		\caption{Inserimento del nodo \(16\) andato a buon fine}
 	\end{subfigure}
 \end{figure}
 
 \vspace{-5pt}
-Non violiamo alcun vincolo:
-\begin{compactlist}
-	\item il padre di \(16\) è nero;
-	\item non abbiamo modificato l'altezza nera.
-\end{compactlist}
+Non violiamo alcun vincolo in quanto il padre di \(16\) è nero e non abbiamo modificato l'altezza nera.
 Questo caso rappresenta il caso {\footnotesize\ttfamily 2}, l'inserimento del nodo \(16\) è quindi andato a buon fine.
 Alternativamente proviamo ad inserire il nodo \(42\) sempre nello stesso albero.
 
-\vspace{-5pt}
+% \vspace{-5pt}
 \begin{figure}[H]\centering
 	\begin{subfigure}[t]{.48\linewidth}\centering
-		\includegraphics[width=\linewidth-10pt, page=2]{tree-rb-insertNode-example-2}
+		\includegraphics[width=\linewidth, page=2]{tree-rb-insertNode-example-2}
 		\caption{Inserimento del nodo \(42\), violiamo il secondo vincolo, ci troviamo nel caso {\footnotesize\ttfamily 3} (\(z\) rosso), quindi coloriamo di nero \(p\) e \(z\) e di rosso \(n\), il problema si sposta ad \(n\)}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{.48\linewidth}\centering
-		\includegraphics[width=\linewidth-10pt, page=3]{tree-rb-insertNode-example-2}
+		\includegraphics[width=\linewidth, page=3]{tree-rb-insertNode-example-2}
 		\caption{Violiamo il terzo vincolo, entrambi i nodi rossi sono figli \emph{sinistri} quindi ci troviamo nel caso {\footnotesize\ttfamily 5a}, quindi coloriamo di nero \(p\), di rosso \(n\) \dots}
 	\end{subfigure}
 
 	\vspace{5pt}
 
 	\begin{subfigure}[t]{.48\linewidth}\centering
-		\includegraphics[width=\linewidth-10pt, page=4]{tree-rb-insertNode-example-2}
+		\includegraphics[width=\linewidth, page=4]{tree-rb-insertNode-example-2}
 		\caption{\dots ed effettuiamo una rotazione a destra con perno \(n\)}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{.48\linewidth}\centering
-		\includegraphics[width=\linewidth-10pt, page=5]{tree-rb-insertNode-example-2}
+		\includegraphics[width=\linewidth, page=5]{tree-rb-insertNode-example-2}
 		\caption{Abbiamo ripristinato il terzo vincolo, gli altri vincoli non sono mai stati violati, quindi abbiamo finito}
 	\end{subfigure}
 \end{figure}
@@ -626,7 +621,7 @@ Questo esempio ci mostra chiaramente come gli alberi Red-Black, attraverso il ri
 Esiste una versione \emph{top-down} dell'algoritmo di inserimento che scende fino interessato \enquote{aggiustando} l'albero man mano.
 
 \clearpage
-\subsubsection{Rimozione di un nodo}
+\subsection{Rimozione di un nodo}
 
 Se il nodo rimosso è rosso l'altezza nera rimane invariata, non sono stati creati nodi rossi consecutivi e la radice resta nera.
 Il problema sorge quando si rimuovono nodi neri in quanto è possibile che siano stati violati il primo ed il terzo vincolo e sicuramente è stato violato il quarto vincolo in quanto cambia l'altezza nera.

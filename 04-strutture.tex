@@ -1,32 +1,29 @@
+\documentclass[00-main.tex]{subfiles}
 %&preamble.main
-% \documentclass[00-main.tex]{subfiles}
 
-\setcounter{section}{3}
-
-% NOTE impostazione percorsi di default
-% https://tex.stackexchange.com/questions/79058/
-\makeatletter
-\providecommand*{\input@path}{}
-\g@addto@macro\input@path{%
-	{assets/algorithms/04/}%
-}% append
-\makeatother
-
-\graphicspath{
-	{assets/figures/04/}%
-}
-
-\title{Strutture dati}
+% \setcounter{section}{3}
+%
+% % NOTE impostazione percorsi di default
+% % https://tex.stackexchange.com/questions/79058/
+% \makeatletter
+% \providecommand*{\input@path}{}
+% \g@addto@macro\input@path{%
+% 	{assets/algorithms/04/}%
+% }% append
+% \makeatother
+%
+% \graphicspath{
+% 	{assets/figures/04/}%
+% }
+%
+% \title{Strutture dati}
 
 % arara: pdflatex: { shell: yes, draft: yes }
 % arara: pdflatex: { shell: yes, synctex: yes }
 \begin{document}
 % \maketitle
 
-\section{Strutture dati}
-
-\subsection{Strutture dati astratte}
-
+\chapter{Strutture dati}
 \begin{fquote}
 	[Steven S. Skiena]
 	[The Algorithm Design Manual]%
@@ -34,7 +31,9 @@
 	Identifying the very best data structure is usually not as critical, because there can be several choices that perform similarly.
 \end{fquote}
 
-\subsection*{Alcune definizioni}
+\section{Strutture dati astratte}
+
+\section*{Alcune definizioni}
 
 \begin{definition}[Tipo di dato]
 In un linguaggio di programmazione, un dato è un valore che una variabile può assumere.
@@ -104,7 +103,7 @@ Le strutture dati possono essere caratterizzate in vari modi:
 	\end{tabular}
 \end{table}
 
-\subsection{Sequenza}
+\section{Sequenza}
 
 Una sequenza è una struttura dati \emph{dinamica}, \emph{lineare} che rappresenta una sequenza \emph{ordinata} di valori, dove un valore può comparire più di una volta.
 L'ordine all'interno della sequenza è importante.
@@ -122,7 +121,7 @@ Le operazioni ammesse su una sequenza sono:
 \end{algorithm}
 
 \clearpage
-\subsubsection{Implementazione delle sequenze}
+\subsection{Implementazione delle sequenze}
 
 Di seguito vengono presentati alcuni esempi d'utilizzo dell'implementazione delle sequenze nei diversi linguaggi di programmazione utilizzati oggigiorno.
 
@@ -139,7 +138,6 @@ Result: [ "one", "two", "three" ]
 \end{minted}
 \end{code}
 
-\begin{comment}
 \begin{code}
 \captionof{listing}{Implementazione delle liste in \texttt{C++}}
 % \label{code:cpp-sequence}
@@ -164,7 +162,7 @@ Result: [ 'one', 'two', 'three' ]
 \end{minted}
 \end{code}
 
-\subsection{Insiemi}
+\section{Insiemi}
 
 Un insieme è una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{collezione non ordinata di elementi} senza valori ripetuti.
 L'ordinamento fra elementi è dato dall'eventuale relazione d'ordine definita sul tipo degli elementi stessi.
@@ -226,7 +224,7 @@ True
 \end{minted}
 \end{code}
 
-\subsection{Dizionari}
+\section{Dizionari}
 
 Un dizionario è una struttura dati che rappresenta il concetto matematico di \emph{relazione univoca} \(R : D \to C\), o associazione chiave-valore, dove:
 \begin{itemize}
@@ -282,7 +280,7 @@ Result: 47
 \end{minted}
 \end{code}
 
-\subsection{Alberi}
+\section{Alberi}
 
 Un albero ordinato è dato da un insieme finito di elementi detti nodi.
 Uno di questi nodi è designato come radice.
@@ -302,7 +300,7 @@ I rimanenti nodi, se esistono sono partizionati in insiemi \emph{ordinati} e \em
 
 Non vedremo implementazioni nei vari linguaggi in quanto non esiste una struttura dati definita riconosciuta universalmente.
 
-\subsection{Grafi}
+\section{Grafi}
 
 La struttura dati grafo è composta da:
 \begin{itemize}
@@ -318,9 +316,10 @@ Tutte le operazioni su alberi e grafi ruotano attorno alla possibilità di effet
 La scelta della struttura dati si riflette sull'efficienza e sulle operazioni ammesse.
 \end{note}
 
-\subsection{Implementazione strutture dati elementari}
+\clearpage
+\section{Implementazione strutture dati elementari}
 
-\subsubsection{Lista}
+\subsection{Lista}
 
 Una lista è una sequenza di nodi, contenenti dati arbitrari e 1-2 puntatori all'elemento successivo e/o precedente.
 
@@ -357,7 +356,7 @@ Il costo delle operazioni di lettura, scrittura, inserimento e rimozione per que
 	\label{fig:forgetting}
 \end{figure}
 
-\subsubsection{Pila}
+\subsection{Pila}
 
 La pila è una struttura dati \emph{dinamica}, \emph{lineare} in cui l'elemento rimosso dall'operazione di cancellazione è predeterminato, ed è quello che \enquote{è rimasto per meno tempo nell'insieme} (con strategia \textsc{LIFO}, \foreign{Last-In-First-Out}).
 
@@ -380,7 +379,7 @@ Le pile possono essere implementate come:
 	\input{stack-pseudocode}
 \end{algorithm}
 
-\begin{figure}[p]
+\begin{figure}[hp]
 \begin{code}
 	\captionof{listing}{Pila basata su vettore circolare in Java}
 	\label{code:vector-stack}
@@ -388,13 +387,14 @@ Le pile possono essere implementate come:
 \end{code}
 \end{figure}
 
-\subsubsection{Coda}
+\clearpage
+\subsection{Coda}
 
 La coda è una struttura dati \emph{dinamica} \emph{lineare} in cui l'elemento rimosso dall'operazione di cancellazione è predeterminato, ed è quello che \enquote{è rimasto per più tempo nell'insieme} (con strategia, \textsc{FIFO}, \foreign{First-In-First-Out}).
 
 \begin{algorithm}[H]
-\caption*{Specifica \textsc{Queue}}
-\input{queue-interface}
+	\caption*{Specifica \textsc{Queue}}
+	\input{queue-interface}
 \end{algorithm}
 
 Nei sistemi operativi, i processi in attesa di utilizzare una risorsa vengono gestiti tramite una coda.
@@ -406,16 +406,17 @@ Le code possono essere implementate come:
 	\item vettori circolari, il quale ha una dimensione limitata e crea un \foreign{overhead} più basso.
 \end{itemize}
 
-\begin{algorithm}[H]
-\caption*{Struttura dati coda basata su vettore circolare in pseudocodice}
-\input{queue-pseudocode}
+\begin{algorithm}[ht]
+	\caption*{Struttura dati coda basata su vettore circolare in pseudocodice}
+	\input{queue-pseudocode}
 \end{algorithm}
 
+\begin{figure}[hp]
 \begin{code}
-	\captionof{listing}{Pila basata su vettore in Java}
+	\captionof{listing}{Coda basata su vettore in Java}
 	\label{code:vector-queue}
 	\javafile{assets/codes/04/VectorQueue.java}
 \end{code}
-\end{comment}
+\end{figure}
 
 \end{document}

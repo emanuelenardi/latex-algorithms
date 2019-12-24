@@ -4,6 +4,7 @@ arara insertionSort
 arara merge
 arara mergeSort
 arara pigeonHoleSort
+arara quickSort-perno
 arara quickSort
 arara selectionSort
 arara shellSort

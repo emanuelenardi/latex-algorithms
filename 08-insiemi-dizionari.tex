@@ -1,30 +1,30 @@
 \documentclass[00-main.tex]{subfiles}
 %&preamble.main
 
-\setcounter{section}{6}
-
-% NOTE impostazione percorsi di default
-% https://tex.stackexchange.com/questions/79058/
-\makeatletter
-\providecommand*{\input@path}{}
-\g@addto@macro\input@path{%
-	{assets/algorithms/08/}%
-}% append
-\makeatother
-
-\title{Insiemi e dizionari}
+% \setcounter{section}{6}
+%
+% % NOTE impostazione percorsi di default
+% % https://tex.stackexchange.com/questions/79058/
+% \makeatletter
+% \providecommand*{\input@path}{}
+% \g@addto@macro\input@path{%
+% 	{assets/algorithms/08/}%
+% }% append
+% \makeatother
+%
+% \title{Insiemi e dizionari}
 
 % arara: pdflatex: { draft: yes, synctex: no }
 % arara: pdflatex: { synctex: yes }
 
 \begin{document}
 
-\section{Insiemi}
+\chapter{Insiemi}
 
 Possono essere implementati con molte delle strutture dati viste fin'ora.
 Ognuna delle quali rappresenta valntaggi e svantaggi.
 
-\subsection{Realizzazione con vettori booleani}
+\section{Realizzazione con vettori booleani}
 
 L'insieme viene rappresentato attraverso un vettore booleano di \(m\) elementi.
 Il quale è notevolmente semplice da implementare ed estremamente efficiente verificare se un elemento appartiene all'insieme.
@@ -35,7 +35,8 @@ Sfortunatamente la memoria occupata è \(\Omicron(m)\), indipendentemente dalle 
 	\input{set-vectorBool-pseudocode}
 \end{algorithm}
 
-\subsubsection{Implementazioni nei linguaggi di programmazione}
+\clearpage
+\subsection{Implementazioni nei linguaggi di programmazione}
 
 Esistono alcune implementazioni nei linguaggi attualmente utilizzati.
 In Java esiste la struttura dati \texttt{BitSet} i cui meotodi sono illustrati nella tabella~\ref{tab:java-set-implementation}.
@@ -64,7 +65,8 @@ Mentre in \texttt{C++ STL} esistono due implementazioni \texttt{std::bitset} e \
 	\end{tabular}
 \end{table}
 
-\subsection{Realizzazione con vettore non ordinato}
+\vspace{-10pt}
+\section{Realizzazione con vettore non ordinato}
 
 \begin{algorithm}[H]
 	\caption*{Struttura dati \textsc{Set} implementata come vettore non ordinato}
@@ -74,7 +76,8 @@ Mentre in \texttt{C++ STL} esistono due implementazioni \texttt{std::bitset} e \
 \paragraph{Costo delle operazioni}
 Le operazioni di ricerca, inserimento e cancellazione costano \(\Omicron(n)\), le operazioni di inserimento (assumendo che non esista l'elemento) costano \(\Omicron(1)\), le operazioni di unione, intersezione e differenza \(\Omicron(nm)\).
 
-\subsection{Realizzazione vettore ordinato}
+\clearpage
+\section{Realizzazione vettore ordinato}
 
 \begin{algorithm}[H]
 	\caption*{Struttura dati \textsc{Set} implementata come vettore ordinato}
@@ -84,7 +87,7 @@ Le operazioni di ricerca, inserimento e cancellazione costano \(\Omicron(n)\), l
 \paragraph{Costo delle operazioni}
 Le operazioni di ricerca costano \(\Omicron(n)\) con le liste e \(\Omicron(\log n)\) con i vettori, le operazioni di inserimento e cancellazione costano \(\Omicron(n)\), le operazioni di unione, intersezione e differenza \(\Omicron(n)\).
 
-\subsection{Reality Check}
+\section{Reality Check}
 
 In realtà si utilizzano strutture dati complesse che permettono di ottimizzare le performance.
 Se abbiamo bisogno dell'ordinamento si utilizzano alberi bilanciati, mentre se abbiamo bisogno di sapere smeplicemente se un elemento è contenuto o meno si utilizzano le tabelle hash.

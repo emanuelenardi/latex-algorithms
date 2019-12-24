@@ -2,28 +2,28 @@
 %&preamble.main
 
 % NOTE impostazione contatore per compilazione in standalone
-\setcounter{section}{11}
-
-% NOTE sopprimere i warnings localmente
-\hbadness=10000
-\hfuzz=\maxdimen\newdimen\hfuzz
-% \usepackage[saveall]{silence}
-\usepackage{silence}
-\WarningsOff[caption]
-
-% NOTE impostazione percorsi di default
-% https://tex.stackexchange.com/questions/79058/
-\makeatletter
-\providecommand*{\input@path}{}
-\g@addto@macro\input@path{%
-	{assets/algorithms/sorting/}%
-	{assets/algorithms/12/}%
-}% append
-\makeatother
-
-\graphicspath{
-	{assets/figures/12/}%
-}
+% \setcounter{section}{11}
+%
+% % NOTE sopprimere i warnings localmente
+% \hbadness=10000
+% \hfuzz=\maxdimen\newdimen\hfuzz
+% % \usepackage[saveall]{silence}
+% \usepackage{silence}
+% \WarningsOff[caption]
+%
+% % NOTE impostazione percorsi di default
+% % https://tex.stackexchange.com/questions/79058/
+% \makeatletter
+% \providecommand*{\input@path}{}
+% \g@addto@macro\input@path{%
+% 	{assets/algorithms/sorting/}%
+% 	{assets/algorithms/12/}%
+% }% append
+% \makeatother
+%
+% \graphicspath{
+% 	{assets/figures/12/}%
+% }
 
 % arara: pdflatex: { shell: yes, draft: yes, synctex: no }
 % arara: pdflatex: { shell: yes, synctex: yes }
@@ -31,9 +31,9 @@
 \begin{document}
 % \maketitle
 
-\section{Divide et Impera}
+\chapter{Divide et Impera}
 
-\subsection{Risoluzione di problemi}
+\section{Risoluzione di problemi}
 
 Dato un problema non esistono \enquote{ricette originali} per risolverlo in modo efficiente;
 tuttavia è possibile evidenziare quattro fasi:
@@ -45,7 +45,7 @@ tuttavia è possibile evidenziare quattro fasi:
 \end{enumerate}
 Queste fasi non sono necessariamente sequenziali, l'ordine dipende da come stiamo affrontando il problema.
 
-\subsubsection{Classificazione dei problemi}
+\subsection{Classificazione dei problemi}
 
 Ma come possiamo classificare un problema?
 Le classi di problemi che affronteremo possono essere raggruppate in quattro macro-categorie:
@@ -59,7 +59,7 @@ Le classi di problemi che affronteremo possono essere raggruppate in quattro mac
 	\item \textbf{problemi di approssimazione}: a volte, trovare la soluzione ottima è computazionalmente impossibile e ci si accontenta di una soluzione approssimata, in questo caso il costo rimane basso ma non sappiamo se è ottimale; un esempio di questo genere di problemi è quello del commesso viaggiatore.
 \end{itemize}
 
-\subsubsection{Caratterizzazione della soluzione}
+\subsection{Caratterizzazione della soluzione}
 
 \`{E} fondamentale definire bene il problema dal punto di vista matematico.
 La formulazione del problema può suggerire una prima idea, seppur banale, alla risoluzione dello stesso.
@@ -71,7 +71,7 @@ La definizione matematica può suggerire una possibile tecnica, ad esempio:
 	\item se troveremo la \emph{proprietà greedy} allora potremmo applicare un algoritmo ingordo (Capitolo 14).
 \end{itemize}
 
-\subsection*{Tecniche di soluzione dei problemi}
+\section*{Tecniche di soluzione dei problemi}
 
 Come vengono affrontati i problemi dalle varie tecniche?
 \begin{itemize}
@@ -83,7 +83,7 @@ Come vengono affrontati i problemi dalle varie tecniche?
 	\item nella ricerca locale la soluzione ottima viene trovata \enquote{migliorando} via via soluzioni esistenti; Negli algoritmi probabilistici si dimostra che talvolta è meglio scegliere casualmente, ma in modo \enquote{gratuito}, che con giudizio, ma in maniera costosa.
 \end{itemize}
 
-\subsection{La tecnica del Dividi-et-Impera}
+\section{La tecnica del Dividi-et-Impera}
 
 La tecnica del Divide-et-Impera si suddivide in tre fasi principali:
 \begin{itemize}
@@ -94,7 +94,7 @@ La tecnica del Divide-et-Impera si suddivide in tre fasi principali:
 Sfortunatamente non esiste una ricetta unica per applicare questa tecnica: ad esempio l'algoritmo \mergeSort ha una fase \enquote{divide} banale (basta calcolare il valore mediano) ma, allo stesso tempo una fase di unione delle soluzioni complessa, diversamente nel \quickSort la fase \enquote{divide} è complessa ma non esiste una fase \enquote{combina}.
 \`{E} quindi necessario fare uno sforzo creativo, in quanto la tecnica ci dà una modalità con cui ad arrivare alla soluzione, ma bisogna applicarla caso per caso.
 
-\subsubsection*{Minimo divide-et-impera}
+\subsection*{Minimo divide-et-impera}
 
 La tecnica \enquote{divide-et-impera} non è un proiettile d'argento, a volte utilizzarla crea più danni di quanti ne risolva.
 Osserva questo esempio nella quale è presentato un algoritmo di ricerca del minimo con questa tecnica.
@@ -121,7 +121,7 @@ L'algoritmo divide il vettore a metà, cerca il minimo nella metà di sinistra e
 \end{align*}
 La complessità ammonta a \(\alpha=1, \beta=0, T(n) = \Theta(n)\), non ne vale la pena, tanto vale fare la ricerca del minimo come abbiamo spiegato a lezione.
 
-\subsection{La torre di Hanoi}
+\section{La torre di Hanoi}
 
 La torre di Hanoi è un gioco matematico che prevede tre pioli e \(n\) dischi di dimensioni diverse.
 Inizialmente i dischi sono impilati in ordine decrescente nel piolo di sinistra.
@@ -141,7 +141,7 @@ Infine sposta \(n-1\) dischi da \(src\) a \(dest\) utilizzando \(src\) come punt
 L'equazione di ricorrenza prodotta da questo algoritmo è \(T = 2T(n-1) + 1 = \Theta(2^n)\).
 Si può dimostrare che questa soluzione è ottima (non si può fare meglio di così).
 
-\subsection{Algoritmo di ordinamento}
+\section{Algoritmo di ordinamento}
 
 L'algoritmo di ordinamento \quickSort è basato sulla tecnica \enquote{divide et impera}, nel caso medio ha una complessità di \(\Omicron(n \log n)\), mentre nel caso pessimo è di \(\Omicron(n^2)\).
 Fino a qualche anno fa era l'algoritmo di eccellenza per l'ordinamento.
@@ -173,9 +173,16 @@ Sono dati in input un vettore \(A[1 \dots n]\), gli indici \(start\), \(end\) ta
 	\item la parte \enquote{impera} ordina i due sottovettori \(A[start \dots j-1]\) e \(A[j+1 \dots end]\) richiamando ricorsivamente \quickSort;
 	\item la parte \enquote{combina} non fa nulla.
 \end{enumerate}
+
 \begin{algorithm}[H]
-\caption{Algoritmo di ordinamento}
+\caption{quickSort}
 \input{quickSort}
+\end{algorithm}
+
+\clearpage
+\begin{algorithm}[H]
+\caption{perno}
+\input{quickSort-perno}
 \end{algorithm}
 
 % TODO importare immagini di quickSort che spiegano l'ordinamento e la ricorsione
@@ -204,11 +211,11 @@ Il costo di \quickSort dipende dal partizionamento:
 	Alcuni partizionamenti saranno parzialmente bilanciati, altri pessimi; in media questi si alterneranno nella sequenza di partizionamenti, ma quelli parzialmente bilanciati \enquote{dominano} quelli pessimi.
 \end{itemize}
 
-\subsection*{Moltiplicazione di catena di matrici}
+\section*{Moltiplicazione di catena di matrici}
 
 Viene fatto un accenno ad un argomento che verrà affrontato in modo più approfondito nel capitolo successivo.
 
-\subsection{Conclusioni}
+\section{Conclusioni}
 
 La tecnica divide-et-impera viene applicata quando i passi \enquote{divide} e \enquote{combina} sono semplici e i costi risultano migliori del corrispondente algoritmo iterativo (quindi, ad esempio, va bene per effettuare l'ordinamento, ma non per effettuare la ricerca del minimo).
 Ulteriori vantaggi dell'applicazione di questa tecnica sono:
@@ -218,11 +225,11 @@ Ulteriori vantaggi dell'applicazione di questa tecnica sono:
 \end{itemize}
 
 % TODO finire di scrivere il capitolo
-\subsection{Applicazione della tecnica}
+\section{Applicazione della tecnica}
 
 Infine vediamo una prima applicazione della tecnica e ne valutiamo le prestazioni.
 
-\subsubsection{Gap}
+\subsection{Gap}
 
 In un vettore \(V\) contenente \(n \geqslant 2\) interi, un gap è un indice \(i\), \(1 < i \leqslant n\), tale che \(V[i-1] < V[i]\).
 \begin{itemize}
