@@ -188,7 +188,7 @@
 \setlist[compactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 0pt, partopsep = 0pt}
 
 % NOTE vertical spacing in floats
-\setlength{\intextsep}{6.0pt plus 2.0pt minus 2.0pt}
+% \setlength{\intextsep}{6.0pt plus 2.0pt minus 2.0pt}
 
 % TODO rimuovere dipendenza
 \usepackage{set-math}
@@ -200,7 +200,8 @@
 \usepackage{set-minted}
 
 % NOTE toglie l'intentazione e inserisce spaziatura tra paragrafi
-\usepackage[parfill]{parskip}
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{1ex}
 
 % IDEA annotazioni - note a margine
 \usepackage{
