@@ -21,14 +21,11 @@ _minted*
 
 # file sorgenti ausiliari
 assets/exercises/
-assets/figures/mwe/
 assets/handouts/
 assets/lab/
-assets/lab-codes/
 assets/notes/
-
-exams/compiti/
-exams/soluzioni/
+assets/exams/compiti/
+assets/exams/soluzioni/
 
 # preamboli
 # formulario/preamble/

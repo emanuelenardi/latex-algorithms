@@ -1,0 +1,9 @@
+% NOTE ridurre gli spazi sopra e sotto il capitolo
+% NOTE https://latex.org/forum/viewtopic.php?t=31465
+\usepackage{etoolbox}
+\makeatletter
+	\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter head
+	\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter* head
+	\patchcmd{\@makechapterhead}{\vskip 40\p@}{\bigbreak}{}{}% Removes space below \chapter head
+	\patchcmd{\@makeschapterhead}{\vskip 40\p@}{\bigbreak}{}{}% Removes space below \chapter* head
+\makeatother

@@ -1,0 +1,28 @@
+% TODO da modificare ad ogni modifica del documento
+\newcommand\docversion{v.\ 1.0.0}
+
+% NOTE gestione del copyright
+% \def\Buyer{Emanuele Nardi}
+\def\Buyer{Francesco Bozzo}
+% \def\Buyer{Samuele Conti}
+% \def\Buyer{Martina De Cet}
+% \def\Buyer{Sofia Zanrosso}
+% \def\Buyer{Alberto Montresor}
+
+\date{\today\\{\small\texttt{\docversion}}}
+
+% NOTE 'fancyhdr' - permette la personalizzazione di testatina e piè di pagina
+\usepackage{fancyhdr, lastpage}
+% NOTE redefine the plain page style ISSUED BY CHAPTER
+\fancypagestyle{plain}{%
+	\fancyhead[]{}
+	\fancyfoot[]{}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{mystyle}{
+	\fancyhead[RE, LO]{\color{darker} \fbox{\texttt{\small \Buyer}}}
+	\fancyfoot[C]{\footnotesize\em ---~\thepage\ di~\pageref{LastPage}~---}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}

@@ -1,17 +1,13 @@
-\documentclass[titlepage, openright, 10pt]{book}
+\documentclass[
+    ,a4paper
+    ,10pt
+    % ,titlepage  % default for report and book
+    % ,twoside    % default for books
+    % ,openright  % default for book
+]{book}
 
-% NOTE ridurre gli spazi sopra e sotto il capitolo
-% NOTE https://latex.org/forum/viewtopic.php?t=31465
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter head
-\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter* head
-\patchcmd{\@makechapterhead}{\vskip 40\p@}{\bigbreak}{}{}% Removes space below \chapter head
-\patchcmd{\@makeschapterhead}{\vskip 40\p@}{\bigbreak}{}{}% Removes space below \chapter* head
-\makeatother
-
-% NOTE toglie i numeri a piè pagina dalle pagine bianche
-\usepackage{emptypage}
+% NOTE ridefinizioni delle classi di base
+\input{assets/settings/redefinitions}
 
 % WARNING da caricare presto
 \usepackage[
@@ -22,8 +18,31 @@
 % NOTE non più utilizzato -> preambolo precompilato, tenuto per riferimento
 \usepackage{subfiles}
 
-% WARNING do not replace, for any reason
-\usepackage{set-minted}
+% NOTE toglie i numeri a piè pagina dalle pagine bianche
+\usepackage{emptypage}
+
+% NOTE gestione dei margini
+\usepackage[
+	,top	= 1in
+	,bottom	= 1in % 1in
+	,left	= 1in % 1in
+	,right	= 1in % 1in
+	% NOTE tex.stackexchange.com/questions/29125/
+	,marginparwidth=4.6cm
+	,heightrounded
+]{geometry}
+
+% NOTE 'xcolor' - permette di definire colori personalizzati
+\usepackage[
+	,dvipsnames
+	,svgnames
+	,x11names
+	,table
+	% ,gray
+]{xcolor}
+
+% NOTE gestione delle pagine
+\usepackage{set-pages}
 
 % NOTE in alcune parti del documento è ancora utilizzato
 \usepackage{multicol}
@@ -31,7 +50,8 @@
 % IDEA pacchetti di utilità
 % NOTE 'comment' - fornisce l'ambiente dei commenti
 % NOTE 'xargs' - use more than one optional parameter in a new commands
-\usepackage{comment, xargs}
+% NOTE 'xparse' - TODO
+\usepackage{comment, xargs, xparse}
 
 % NOTE sperimentazioni con il cambio del carattere
 \begin{comment}
@@ -77,20 +97,6 @@
 	,shrink		= 10
 ]{microtype}
 
-% NOTE 'xcolor' - permette di definire colori personalizzati
-\usepackage[
-	,dvipsnames
-	,svgnames
-	,x11names
-	,table
-	% ,gray
-]{xcolor}
-
-% NOTE
-\colorlet{faded}{lightgray}
-% NOTE
-\setlength{\intextsep}{6.0pt plus 2.0pt minus 2.0pt}
-
 % NOTE 'enumitem' - permette di personalizzare gli elenchi puntati
 % NOTE lista in linea
 \usepackage[inline]{enumitem}
@@ -101,10 +107,12 @@
 \usepackage{assets/figures/tikz-preamble}
 
 % NOTE dichiarazione nuovi colori
-\colorlet{rose}{red!50!white}
 \colorlet{darker}{blue!50!black}
+\colorlet{faded}{lightgray}
 \colorlet{mathcolor}{blue}
+\colorlet{rose}{red!50!white}
 
+% NOTE personlizzazione degli alberi
 \usepackage{preamble.forest}
 
 % TODO rimuovere dipendenza
@@ -119,17 +127,17 @@
 	array,
 	booktabs,
 	makecell,
-	multirow
-	% tabularx
+	multirow,
+	tabularx
 }
 
+% NOTE linea sottile fra le righe di una tabella
 \setlength{\lightrulewidth}{0.1pt}
 \newcommand{\lightrule}{%
-\arrayrulecolor{black!30}%
-\midrule[\lightrulewidth]%
-\arrayrulecolor{black}}
+	\arrayrulecolor{black!30}%
+	\midrule[\lightrulewidth]%
+	\arrayrulecolor{black}}
 
-% NOTE graphics and float packages
 % IDEA figure
 % NOTE 'graphicx' - inserimento figure nel docuemento
 % NOTE 'float' - definisce l'opzione "H" per gli oggetti fluttuanti
@@ -161,146 +169,38 @@
 	justification=centering,
 	skip = -5pt
 }
-% TODO didascalia non allineata a destra
-% \captionsetup[table]{
-% 	format=hang,
-% 	justification=raggedright,
-% 	singlelinecheck=off
-% }
 
 % NOTE 'csquotes' - permette di personalizzare le citazioni
 \usepackage[autostyle, italian=quotes]{csquotes}
+% TODO rimuovere dipendenza
 \usepackage{set-citations}
 
+% NOTE utilizzati nei capitoli della programmazione dinamica/algoritmi ingordi
 % \usepackage{chronology}
 % \usepackage{pgfgantt}
 
+% NOTE utilizzato per arrotondare i numeri nelle tabelle
 \usepackage{siunitx}
 
-% NOTE change lengths
-% NOTE toglie l'intentazione a tutto il documento
-\setlength\parindent{0pt}
-% \usepackage[normalem]{ulem}
-
+% NOTE gestione elenchi puntati
 \usepackage{enumitem}
 \newlist{compactlist}{itemize}{2}
 \setlist[compactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 0pt, partopsep = 0pt}
 
-% TODO rimuovere dipendenza
-\usepackage{set-pages}
-% TODO rimuovere dipendenza
-\usepackage{set-citations}
+% NOTE vertical spacing in floats
+\setlength{\intextsep}{6.0pt plus 2.0pt minus 2.0pt}
+
 % TODO rimuovere dipendenza
 \usepackage{set-math}
 % TODO rimuovere dipendenza
 \usepackage{set-algorithm2e}
 % NOTE riadattate dal documento di Montresor (grazie 😌)
 \usepackage{assets/algorithms/functions}
+% WARNING do not replace, for any reason
+\usepackage{set-minted}
 
-\usepackage[
-	,top	= 1in
-	,bottom	= 1in % 1in
-	,left	= 1in % 1in
-	,right	= 1in % 1in
-	% NOTE tex.stackexchange.com/questions/29125/
-	,marginparwidth=4.6cm
-	,heightrounded
-]{geometry}
-
-% NOTE toglie l'intentazione a tutto il documento e aumenta lo spazio fra i paragrafi
-\setlength{\parindent}{0ex}
-\setlength{\parskip}{1ex}
-
-% NOTE setup titles and sectioning
-\usepackage{titling}
-\newcommand\subtitle[1]{%
-	\posttitle{%
-		\par\end{center}
-		\begin{center}\large#1\end{center}
-		\vskip0.5em}%
-}
-
-\title{Appunti \emph{ordinati} sull'analisi degli algoritmi\\\underline{in preparazione all'orale}}
-\subtitle{(Si può fare meglio di così?)}%\textsuperscript{\texttrademark}
-\author{Emanuele Nardi}
-
-\newcommand\docversion{v.\ 1.0.0}
-% \def\Buyer{Emanuele Nardi}
-\def\Buyer{Francesco Bozzo}
-% \def\Buyer{Samuele Conti}
-% \def\Buyer{Martina De Cet}
-% \def\Buyer{Sofia Zanrosso}
-% \def\Buyer{Alberto Montresor}
-
-\date{\today\\{\small\texttt{\docversion}}}
-
-
-% NOTE 'fancyhdr' - permette la personalizzazione di testatina e piè di pagina
-\usepackage{fancyhdr, lastpage}
-\fancypagestyle{mystyle}{
-	\fancyhead[RE, LO]{\color{darker} \fbox{\texttt{\small \Buyer}}}
-	\fancyfoot[C]{\footnotesize\em ---~\thepage\ di~\pageref{LastPage}~---}
-	\renewcommand{\headrulewidth}{0pt}
-	\renewcommand{\footrulewidth}{0pt}
-}
-% NOTE redefine the plain page style ISSUED BY CHAPTER
-\fancypagestyle{plain}{%
-	\fancyhead[]{}
-	\fancyfoot[]{}
-	\renewcommand{\headrulewidth}{0pt}
-	\renewcommand{\footrulewidth}{0pt}
-}
-
-\newcommand\Title{Appunti di ASD [\texttt{\docversion}]}
-\newcommand\Author{Emanuele Nardi}
-\newcommand\Subject{Algoritmi e Strutture Dati}
-\newcommand\Creator{pdflatex}
-\newcommand\Producer{LaTeX}
-\newcommand\Keywords{Algoritmi, Strutture Dati}
-
-% NOTE 'bookmark' - crea e gestisce i segnalibri
-% NB i segnalibri vengono aperti fino al 1° livello
-\usepackage[
-	,open
-	,openlevel = 1
-]{bookmark}
-
-% NOTE modifica il colore dei collegamenti ipertestuali
-% NB bisogna caricarlo per ultimo
-\usepackage{hyperref}
-\hypersetup{
-	pdfinfo = {
-		Title = {\Title},
-		Author = {\Author},
-		Subject = {\Subject},
-		Creator = {\Creator},
-		Producer = {\Producer},
-		Keywords = {\Keywords},
-		% NOTE rompono la compilazione
-		% colorlinks = true,
-		% backref = true,
-	}
-	,hidelinks
-	,colorlinks	= false
-	,backref
-	% ,allcolors = <color>
-	,linkcolor 	= red
-	,anchorcolor = black
-	,citecolor 	= green
-	,filecolor 	= cyan
-	,menucolor 	= red
-	,runcolor 	= cyan
-	,urlcolor 	= magenta
-	% ,pdfpagemode=FullScreen
-}
-
-% NOTE comandi personalizzati
-% NOTE creare un file a parte con le macro del testo
-\NewDocumentCommand\exercise{m}{%
-	\begin{center}
-		\fbox{#1}%
-	\end{center}
-}
+% NOTE toglie l'intentazione e inserisce spaziatura tra paragrafi
+\usepackage[parfill]{parskip}
 
 % IDEA annotazioni - note a margine
 \usepackage{
@@ -311,67 +211,15 @@
 % NOTE il lato per le note a margine del testo è il sinistro
 \reversemarginpar
 
-% NOTE indicazione che quel particolare argomento potrebbe essere richiesto all'orale
-\usepackage{fontawesome}
-\NewDocumentCommand{\SimboloOrale}{}{%
-	\faExclamationTriangle%
-}
-\NewDocumentCommand{\Orale}{}{%
-	\normalfont\small\marginnote{%
-		\SimboloOrale%
-	}%
-}
+% NOTE comandi personalizzati
+\input{assets/settings/macros}
 
-% NOTE parole in lingue diverse dall'italiano (inglese)
-\NewDocumentCommand{\foreign}{m}{%
-	\selectlanguage{english}{%
-		\emph{#1}%
-	}%
-}
+% NOTE gestione delle versioni del documento
+\input{assets/settings/versions}
 
-% NOTE simbolo di ricorrenza
-\NewDocumentCommand{\T}{ s o m }{
-	\ensuremath{%
-		\IfValueTF{#2}
-			{T_{#2}}
-			{T}
-		\left(%
-		\IfBooleanTF{#1}
-			{\left\lfloor#3\right\rfloor}
-			{#3}
-		\right)
-	}
-}
-
-% NOTE per avere i parametri allineati a sx con un box di dimensione pari alla stringa più lunga
-\usepackage{eqparbox}
-\NewDocumentCommand{\params}{ mo }
-	{ \tcp{\eqparbox{params}{\(#1\):} #2}\vspace{-3pt} }
-
-% NOTE impostazione percorsi di default
-% https://tex.stackexchange.com/questions/79058/
-\makeatletter
-\providecommand*{\input@path}{}
-\g@addto@macro\input@path{%
-	{assets/algorithms/sorting/}% 02
-	{assets/algorithms/04/}%
-	{assets/algorithms/05/}%
-	{assets/algorithms/06/}%
-	{assets/algorithms/08/}%
-	{assets/algorithms/09/}%
-	{assets/algorithms/12/}%
-}% append
-\makeatother
-
-\graphicspath{
-	{assets/figures/02/}%
-	{assets/figures/03/}%
-	{assets/figures/04/}%
-	{assets/figures/05/}%
-	{assets/figures/06/}%
-	{assets/figures/09/}%
-	{assets/figures/12/}%
-}
+% NOTE impostazioni della pagina iniziale
+\input{assets/settings/pdf-props}
+\input{assets/settings/set-pdf-props}
 
 % NOTE funzione di utilità per accertarmi di aver caricato il preambolo correttamente
 \def\preambleloaded{Precompiled preamble loaded.}

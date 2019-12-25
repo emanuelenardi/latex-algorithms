@@ -1,0 +1,67 @@
+%&00-main.preamble
+% \usepackage{compile}
+
+% NOTE ora uso il preambolo precompilato
+% NOTE questo è il "vecchio" preambolo
+% \documentclass[draft]{article}
+% \usepackage{00-main.preamble}
+
+% NOTE scrive nel file '.log' se il preambolo è stato caricato
+\def\ifundefined#1{\expandafter\ifx\csname#1\endcsname\relax}
+\ifundefined{preambleloaded}
+	\typeout{PRECOMILED PREAMBLE NOT LOADED}\input{preamble}
+\else
+	\typeout{\preambleloaded}
+\fi
+
+% NOTE ciclo di compilazione
+% arara: pdflatex: { shell: yes, draft: yes }
+% arara: pdflatex: { shell: yes, synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+% \maketitle
+
+% NOTE disabilita la protrusion localmente
+\microtypesetup{protrusion = false}
+% NOTE % sections + subsections
+\setcounter{tocdepth}{2}
+% \tableofcontents
+% \listoffigures
+% NOTE abilita la protrusion
+\microtypesetup{protrusion = true}
+% \blankpage
+
+\pagestyle{footer}
+
+% TODO scrivere il prologo
+% \section*{Prologo}
+
+\part{Lezioni}
+
+\Epigraph{In algorithms, as in life, persistence usually pays off.}
+	{Steven S. Skiena}
+	{The Algorithm Design Manual}
+
+% \input{01-introduzione}
+% \blankpage\input{02-analisi}
+% \blankpage\input{03-strutture}
+% \blankpage\input{05-alberi}
+% \blankpage\input{06-abr}
+% \blankpage\input{07-}
+% \blankpage\input{08-insiemi-dizionari}
+% \blankpage\input{09-grafi}
+% \blankpage\input{10-strutture-speciali}
+% \blankpage\input{11-scelta}
+% \blankpage\input{12-dividi-et-impera}
+% \blankpage\input{13-dp}
+% \blankpage\input{14-greedy}
+% \blankpage\input{15-local}
+% \blankpage\input{16-backtrack}
+% \blankpage\input{17-prob}
+% \blankpage\input{19-approx}
+
+% \part{Laboratorio}
+% \part{Esercizi}
+% \part{Esami}
+
+\end{document}

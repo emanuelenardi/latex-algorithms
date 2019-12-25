@@ -1,0 +1,77 @@
+%&preamble.main
+
+% NOTE ciclo di compilazione
+% arara: pdflatex: { shell: yes, draft: yes }
+% arara: pdflatex: { shell: yes, synctex: yes }
+%! arara: latexmk:  { clean: partial }
+\begin{document}
+
+\frontmatter
+
+    % NOTE nessun contatore delle pagine
+	\pagenumbering{gobble}
+
+    % NOTE frontespizio
+    \input{assets/chapters/00-pagina-iniziale}
+
+\mainmatter
+
+	% NOTE disabilita la protrusion localmente
+	\microtypesetup{protrusion = false}
+
+	% NOTE % sections + subsections
+	\setcounter{tocdepth}{2}
+	\tableofcontents
+
+	\listoffigures
+
+	% \listoftables
+
+	% TODO risolvere questo problema
+	% \listoftheorems[ignoreall, show={theorem, definition}] % NOTE si sovrascrivono
+	% \renewcommand{\thmtformatoptarg}[1]{ -- #1}
+	% \renewcommand{\listtheoremname}{Elenco dei teoremi}
+	% \listoftheorems[ignoreall, show={theorem}]
+	% \listoftheorems[ignoreall, show={definition}]
+	% \listoftheorems[ignoreall, show={note}]
+
+	% TODO risolvere questo problema
+	% \listofalgorithms % NOTE non stampa nulla
+
+	% NOTE (ri)abilita la protrusion
+	\microtypesetup{protrusion = true}
+	\cleardoublepage
+
+	% TODO scrivere il prologo
+	\subfile{assets/chapters/00-prologo}
+
+	\part{Primo semestre}
+
+	\pagenumbering{arabic}
+	\pagestyle{mystyle}
+
+	\subfile{assets/chapters/02-analisi}
+	\subfile{assets/chapters/03-funzioni}
+	\subfile{assets/chapters/04-strutture}
+	\subfile{assets/chapters/05-alberi}
+	\subfile{assets/chapters/06-abr}
+	\subfile{assets/chapters/08-insiemi-dizionari}
+	\subfile{assets/chapters/09-grafi}
+	\subfile{assets/chapters/12-dividi}
+%
+% 	% \part{Secondo semestre}
+%
+% 	% \subfile{assets/chapters/11-scelta}
+% 	% \subfile{assets/chapters/13-dp}
+% 	% \subfile{assets/chapters/14-greedy}
+% 	% \subfile{assets/chapters/15-local}
+% 	% \subfile{assets/chapters/16-backtrack}
+% 	% \subfile{assets/chapters/17-prob}
+% 	% \subfile{assets/chapters/19-approx}
+
+\end{document}
+
+	% \part{Laboratorio}
+	% \part{Esercizi}
+	% \part{Orale}
+	% \part{Esami}
