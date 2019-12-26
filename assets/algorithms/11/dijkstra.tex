@@ -10,14 +10,14 @@
 (\Array{\Int}, \Array{\Int})\prototype{ \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
 
 	\BlankLine
-	\lnl{dijkstra:init}%
+	\lnlset{dijkstra:init}{1}%
 	\alert{ \Heap \(S\) \Assign \heapConstructor } \Comment*[l]{\(\Omicron(n) \cdot 1\)}
 	\alert{ \(S\).\heapInsert{\(s\), \(0\)} }\;
 
 	\BlankLine
 	\While(\Comment*[h]{\(\Omicron(n)\)}){\Not \(S.\setEmpty\)}{
 
-		\lnl{dijkstra:remove}%
+		\lnlset{dijkstra:remove}{2}%
 		\tcp{\(\Omicron(n)\) vettore ordinato / \(\Omicron(\log n)\) heap binario}
 		\alert{\Int \(u\) \Assign \(S\).\heapDeleteMin }\;
 		\(b[u]\) \Assign \False\;
@@ -29,16 +29,17 @@
 				\BlankLine
 				\eIf{\Not \(b[v]\)}{
 					\tcp{\(\Omicron(1) \cdot n\) vettore ordinato / \(\Omicron(\log n) \cdot n\) heap binario}
-					\lnl{dijkstra:add}%
+					\lnlset{dijkstra:add}{3}%
 					\alert{ \(S.\heapInsert{\(v\), \(d[u] + G.\weight{u,v}\)}\)} \;
 					\(b[v]\) \Assign \True\;
 				}{
 					\tcp{\(\Omicron(1) \cdot m\) vettore ordinato / \(\Omicron(\log n) \cdot m\) heap binario}
-					\lnl{dijkstra:update}%
+					\lnlset{dijkstra:update}{4}%
 					\alert{ \(S\).\heapDecrease{\(v\), \(d[u] + G.\weight{u,v}\)} }\;
 				}
 
 				\BlankLine
+				\tcp{aggiorno i vettori}
 				\(T[v]\) \Assign \(u\)\;
 				\(d[v]\) \Assign \(d[u] + G.\weight{u,v}\)\;
 			}

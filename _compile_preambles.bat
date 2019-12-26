@@ -10,5 +10,4 @@ REM compilo prambolo algoritmi
 cd assets/algorithms
 pdflatex -ini -jobname="preamble" "&pdflatex preamble.sty\dump"
 del preamble.log
-cd ..
-cd ..
+cd ../..

@@ -7,17 +7,17 @@
 \begin{algorithm}[H]
 \fi
 
-\prototype{\Array{\Int}, \Array{\Int} \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
+(\Array{\Int}, \Array{\Int})\prototype{\ \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
 
 	\BlankLine
-	\lnl{bellman:init}%
+	\lnlset{bellman:init}{1}%
 	\alert{ \Queue \(S\) \Assign \queueConstructor }\;
 	\alert{ \(S.\queueInsert{s}\) } \Comment*[h]{metto in coda la sorgente}\;
 
 	\BlankLine
 	\While(\Comment*[h]{\(\Omicron(n)\)}){\Not \(S\).\setEmpty}{
 
-		\lnl{bellman:remove}%
+		\lnlset{bellman:remove}{2}%
 		\alert{ \Int \(u\) \Assign \(S\).\queueRemove } \Comment*[l]{\(\Omicron(1 \cdot n)\)}
 		\(b[u]\) \Assign \False\;
 
@@ -27,7 +27,7 @@
 
 				\BlankLine
 				\If{\Not \(b[v]\)}{
-					\lnl{bellman:add}%
+					\lnlset{bellman:add}{3}%
 					\tcp{lo metto in cosa quando c'è un miglioramento}
 					\alert{ \(S.\queueInsert{v}\) } \Comment*[h]{\(\Omicron(m \cdot n)\)}\;
 					\(b[v]\) \Assign \True\;

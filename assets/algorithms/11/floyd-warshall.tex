@@ -1,0 +1,53 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+(\Array{\Int}, \Array{\Int})\prototype{\ \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
+
+	\BlankLine
+	\tcp{Credo le matrici}
+	\Matrix{\Int} \(d =\) \new \Matrix{\Int}[1\dots n][1\dots n] \Comment*[r]{matriche delle distanze}
+	\Matrix{\Int} \(T =\) \new \Matrix{\Int}[1\dots n][1\dots n] \Comment*[r]{matriche dei padri (predecessori)}
+
+	\BlankLine
+	\tcp{Inizializzo i vettori}
+	\ForEach{\(u, v \in G.\VV\)}{
+		\(d[u][v] = +\infty\)\;
+		\(T[u][v] = \Nil\)\;
+	}
+
+	\BlankLine
+	\tcp{Inserisco i valori iniziali}
+	\ForEach{\(u \in G.\VV\)}{
+		\ForEach{\(v \in G.\adj{u}\)}{
+			\(d[u][v] = G.\weight(u, v)\)\;
+			\(T[u][v] = u\)\;
+		}
+	}
+
+	\BlankLine
+	\tcp{Aggiorno le distanze}
+	\From{\(k \Assign 1\) \DownTo \(G.n\)}{
+		\ForEach{\(u \in G.\VV\)}{
+			\ForEach{\(v \in G.\adj{u}\)}{
+				\If{\( d[u][k] + d[k][v] < d[u][v] \)}{
+					\(d[u][v] = d[u][k] + d[k][v]\)\;
+					\(T[u][v] =T[k][v]\)\;
+				}
+			}
+		}
+	}
+
+	\BlankLine
+	\Return \(d\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

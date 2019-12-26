@@ -3,7 +3,7 @@
 % NOTE ciclo di compilazione
 % arara: pdflatex: { shell: yes, draft: yes }
 % arara: pdflatex: { shell: yes, synctex: yes }
-%! arara: latexmk:  { clean: partial }
+% arara: latexmk:  { clean: partial }
 \begin{document}
 
 \frontmatter
@@ -25,7 +25,7 @@
 
 	\listoffigures
 
-	% \listoftables
+	\listoftables
 
 	% TODO risolvere questo problema
 	% \listoftheorems[ignoreall, show={theorem, definition}] % NOTE si sovrascrivono
@@ -58,16 +58,16 @@
 	\subfile{assets/chapters/08-insiemi-dizionari}
 	\subfile{assets/chapters/09-grafi}
 	\subfile{assets/chapters/12-dividi}
-%
-% 	% \part{Secondo semestre}
-%
-% 	% \subfile{assets/chapters/11-scelta}
-% 	% \subfile{assets/chapters/13-dp}
-% 	% \subfile{assets/chapters/14-greedy}
-% 	% \subfile{assets/chapters/15-local}
-% 	% \subfile{assets/chapters/16-backtrack}
-% 	% \subfile{assets/chapters/17-prob}
-% 	% \subfile{assets/chapters/19-approx}
+
+	\part{Secondo semestre}
+
+	\subfile{assets/chapters/to-complete/11-scelta}
+% 	% \subfile{assets/chapters/to-complete/13-dp}
+% 	% \subfile{assets/chapters/to-complete/14-greedy}
+% 	% \subfile{assets/chapters/to-complete/15-local}
+% 	% \subfile{assets/chapters/to-complete/16-backtrack}
+% 	% \subfile{assets/chapters/to-complete/17-prob}
+% 	% \subfile{assets/chapters/to-complete/19-approx}
 
 \end{document}
 

@@ -5,7 +5,7 @@
 % 06: minDistance
 \usepackage{multicol}
 
-\usepackage{xcolor}
+\usepackage[usenames,dvipsnames]{xcolor}
 
 % NOTE utilizzato nel comando 'alert', presenti in tutti gli schemi di algoritmi
 \colorlet{rose}{red!50!white}
@@ -26,6 +26,7 @@
 \usepackage{../../preamble.forest}
 % TODO integrare con l'altro preambolo
 % \usepackage{../figures/tikz-preamble}
+\usepackage{../settings/macros}
 
 \usepackage[italian]{babel}
 \usepackage{csquotes}
@@ -37,13 +38,6 @@
 \FigureOfAlgotrue% stampa l'immagine
 
 \usepackage{functions}
-
-\newcommand{\slide}[1]{\footnotesize\fbox{#1}}
-
-% NOTE per avere i parametri allineati a destra con un box di dimensione pari alla stringa più lunga
-\usepackage{eqparbox}
-\NewDocumentCommand{\params}{ mo }
-	{ \tcp{\eqparbox{params}{\(#1\):} #2}\vspace{-3pt} }
 
 % NOTE funzione di utilità per accertarmi di aver caricato il prambolo
 \def\preambleloaded{Precompiled preamble loaded.}

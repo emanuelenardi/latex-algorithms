@@ -1,0 +1,39 @@
+% NOTE definizione della licenza
+% NOTE https://creativecommons.org/share-your-work/licensing-considerations/compatible-licenses
+\usepackage[
+	type       = CC,
+	modifier   = by-sa,
+	version    = 4.0,
+	imagewidth = 4em,
+]{doclicense}
+
+% TODO da modificare ad ogni modifica del documento
+\newcommand\docversion{v.\ 1.0.0}
+
+% NOTE gestione del copyright
+% \def\Buyer{Emanuele Nardi}
+\def\Buyer{Francesco Bozzo}
+% \def\Buyer{Samuele Conti}
+% \def\Buyer{Martina De Cet}
+% \def\Buyer{Sofia Zanrosso}
+% \def\Buyer{Alberto Montresor}
+
+\date{\today\\{\small\texttt{\docversion}}}
+
+% NOTE 'fancyhdr' - permette la personalizzazione di testatina e piè di pagina
+\usepackage{fancyhdr, lastpage}
+% NOTE redefine the plain page style ISSUED BY CHAPTER
+\fancypagestyle{plain}{%
+	\fancyhead[]{}
+	\fancyfoot[]{}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{mystyle}{
+	\fancyhead[]{}
+	% \fancyhead[RE, LO]{\color{darker} \fbox{\texttt{\small Emanuele Nardi, {\docversion} del {\today}, Copia rilasciata a \Buyer}}}
+	\fancyhead[C]{\color{darker} \fbox{\texttt{\small \doclicenseIcon Emanuele Nardi, {\docversion} del {\today}, Copia rilasciata a \Buyer}}}
+	\fancyfoot[C]{\footnotesize\em ---~\thepage\ di~\pageref{LastPage}~---}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}

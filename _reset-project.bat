@@ -8,7 +8,6 @@ REM compilo prambolo algoritmi
 cd assets/algorithms
 del preamble.log
 del preamble.fmt
-cd ..
-cd ..
+cd ../..
 
 latexmk -C

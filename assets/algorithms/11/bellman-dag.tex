@@ -1,0 +1,55 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+(\Array{\Int}, \Array{\Int})\prototype{\ \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
+
+	\BlankLine
+	\Array{\Int} \(d =\) \new \Array{\Int}[1][G.n] \Comment*[r]{\(d[u]\) è la distanza da \(s\) a \(u\)}
+	\Array{\Int} \(T =\) \new \Array{\Int}[1][G.n] \Comment*[r]{\(T[u]\) è il padre da \(u\) nell'albero \(T\)}
+
+	\BlankLine
+	\tcp{Inizializzo i vettori}
+	\ForEach{\(u \in G.\VV - \{s\}\)}{
+		\(T[u] = \Nil\)\;
+		\(d[u] = +\infty\)\;
+	}
+
+	\BlankLine
+	\tcp{Inizializzo la sorgente}
+	\(T[s] = \Nil\)\;
+	\(d[u] = 0\)\;
+
+	\BlankLine
+	\tcp{Effettuo l'ordinamento topologico dei nodi nel DAG}
+	\Stack \(S = \topSort\)\;
+
+	\BlankLine
+	\tcp{fintanto che la pila non è vuota}
+	\While{\Not \(S.\setEmpty\)}{
+		\(u = S.\stackPop\) \tcp{estraggo un nodo}
+		\ForEach(\tcp*[h]{per ogni nodo adiacente}){\(v \in G.\adj{v}\)}{
+			\If(\tcp*[h]{se il peso è migliore di quello presente}){\(d[u] + G.\weight{u,v} < d[v]\)}{
+
+				\BlankLine
+				\tcp{aggiorno il peso}
+				\(T[v] = u\)\;
+				\(d[v] = d[u] + G.\weight{u,v}\)\;
+			}
+		}
+	}
+
+	\BlankLine
+	\tcp{restituisco il vettore dei padri e il vettore delle distanze}
+	\Return (\(T\), \(d\))\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

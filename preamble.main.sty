@@ -5,9 +5,10 @@
     % ,twoside    % default for books
     % ,openright  % default for book
 ]{book}
+\raggedbottom
 
 % NOTE ridefinizioni delle classi di base
-\input{assets/settings/redefinitions}
+\usepackage{assets/settings/redefinitions}
 
 % WARNING da caricare presto
 \usepackage[
@@ -40,6 +41,8 @@
 	,table
 	% ,gray
 ]{xcolor}
+% TODO rimuovere per la stampa
+% \usepackage{debug}
 
 % NOTE gestione delle pagine
 \usepackage{set-pages}
@@ -128,7 +131,8 @@
 	booktabs,
 	makecell,
 	multirow,
-	tabularx
+	tabularx,
+	tabu
 }
 
 % NOTE linea sottile fra le righe di una tabella
@@ -137,6 +141,10 @@
 	\arrayrulecolor{black!30}%
 	\midrule[\lightrulewidth]%
 	\arrayrulecolor{black}}
+% NOTE linea verticale più spessa
+\newcolumntype{?}{!{\vrule width 1pt}}
+% NOTE linea orizzontale pesante
+\newcommand{\thickrule}{\Xhline{1pt}}
 
 % IDEA figure
 % NOTE 'graphicx' - inserimento figure nel docuemento
@@ -213,14 +221,14 @@
 \reversemarginpar
 
 % NOTE comandi personalizzati
-\input{assets/settings/macros}
+\usepackage{assets/settings/macros}
 
 % NOTE gestione delle versioni del documento
-\input{assets/settings/versions}
+\usepackage{assets/settings/versions}
 
 % NOTE impostazioni della pagina iniziale
-\input{assets/settings/pdf-props}
-\input{assets/settings/set-pdf-props}
+\usepackage{assets/settings/pdf-props}
+\usepackage{assets/settings/set-pdf-props}
 
 % NOTE funzione di utilità per accertarmi di aver caricato il preambolo correttamente
 \def\preambleloaded{Precompiled preamble loaded.}
