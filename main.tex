@@ -1,8 +1,12 @@
 %&preamble.main
 
-% NOTE aggiunge tipi di sottolineatura (\uwave{} e \sout{})
-% WARNING caricata dal pacchetto 'changes'
-% \usepackage[normalem]{ulem}
+\makeatletter
+\providecommand*{\input@path}{}
+\g@addto@macro\input@path{%
+	{assets/chapters/}%	capitoli
+	{assets/chapters/to-complete/}% capitoli da completare
+}% append
+\makeatother
 
 % NOTE ciclo di compilazione
 % arara: pdflatex: { shell: yes, draft: yes }
@@ -16,11 +20,11 @@
 	\pagenumbering{gobble}
 
     % NOTE frontespizio
-    % \input{assets/chapters/00-pagina-iniziale}
+    % \input{00-pagina-iniziale}
 	% \cleardoublepage
 
     % NOTE pagina con la dedica (non numerata)
-	% \input{assets/chapters/00-dedica}
+	% \input{00-dedica}
 	% \cleardoublepage
 	% \pagestyle{plain}
 
@@ -54,21 +58,21 @@
 	\cleardoublepage
 
 	% TODO scrivere il prologo
-	% \subfile{assets/chapters/00-prologo}
+	% \subfile{00-prologo}
 
 	% \part{Primo semestre}
 	%
 	% \pagenumbering{arabic}
 	% \pagestyle{copyrighted}
 	%
-	% \subfile{assets/chapters/02-analisi}
-	% \subfile{assets/chapters/03-funzioni}
-	% \subfile{assets/chapters/04-strutture}
-	% \subfile{assets/chapters/05-alberi}
-	% \subfile{assets/chapters/06-abr}
-	% \subfile{assets/chapters/08-insiemi-dizionari}
-	% \subfile{assets/chapters/09-grafi}
-	% \subfile{assets/chapters/12-dividi}
+	% \subfile{02-analisi}
+	% \subfile{03-funzioni}
+	% \subfile{04-strutture}
+	% \subfile{05-alberi}
+	% \subfile{06-abr}
+	% \subfile{08-insiemi-dizionari}
+	% \subfile{09-grafi}
+	% \subfile{12-dividi}
 	%
 	% \part{Secondo semestre}
 	%
@@ -77,13 +81,13 @@
 	% TODO da commentare alla revisione finale
 	\listofchanges[style=list, title={Modifiche richieste}]
 
-	% \subfile{assets/chapters/to-complete/11-scelta}
-	\subfile{assets/chapters/to-complete/13-dp}
-	% \subfile{assets/chapters/to-complete/14-greedy}
-	% \subfile{assets/chapters/to-complete/15-local}
-	% \subfile{assets/chapters/to-complete/16-backtrack}
-	% \subfile{assets/chapters/to-complete/17-prob}
-	% \subfile{assets/chapters/to-complete/19-approx}
+	% \subfile{11-scelta}
+	\subfile{13-dp}
+	% \subfile{14-greedy}
+	% \subfile{15-local}
+	% \subfile{16-backtrack}
+	% \subfile{17-prob}
+	% \subfile{19-approx}
 
 \end{document}
 
