@@ -50,6 +50,9 @@
 % NOTE in alcune parti del documento è ancora utilizzato
 \usepackage{multicol}
 
+% WARNING definisce il comando 'comment'
+\usepackage{assets/settings/revision}
+
 % IDEA pacchetti di utilità
 % NOTE 'comment' - fornisce l'ambiente dei commenti
 % NOTE 'xargs' - use more than one optional parameter in a new commands
@@ -87,6 +90,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, italian]{babel}
+\usepackage[datesep=/, style=ddmmyyyy]{datetime2}
 \usepackage[
 	% ,activate	= {true, nocompatibility}
 	,activate	= {true}
@@ -106,6 +110,7 @@
 
 % NOTE setup tikz, bookmarks, colors
 \usepackage{tikz}
+\usepackage{pgfplots}
 % NOTE avevo bisogno della dichiarazione di 'cell'
 \usepackage{assets/figures/tikz-preamble}
 
@@ -183,15 +188,26 @@
 % TODO rimuovere dipendenza
 \usepackage{set-citations}
 
-% NOTE utilizzati nei capitoli della programmazione dinamica/algoritmi ingordi
-% \usepackage{chronology}
-% \usepackage{pgfgantt}
+% NOTE utilizzati nei capitoli 13/14
+\usepackage{chronology}
+\usepackage{pgfgantt}
 
 % NOTE utilizzato per arrotondare i numeri nelle tabelle
 \usepackage{siunitx}
 
+% NOTE impostazioni pacchetto siunitx
+\sisetup{
+	group-digits = true,
+	group-separator = {\,},
+	output-decimal-marker = {,}
+}
+
 % NOTE gestione elenchi puntati
 \usepackage{enumitem}
+
+\newlist{semicompactlist}{itemize}{2}
+\setlist[semicompactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 5pt, partopsep = 0pt}
+
 \newlist{compactlist}{itemize}{2}
 \setlist[compactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 0pt, partopsep = 0pt}
 

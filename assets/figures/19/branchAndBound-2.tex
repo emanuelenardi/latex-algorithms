@@ -1,13 +1,11 @@
 \documentclass{standalone}
-\usepackage{xcolor}
-\usepackage{set-math}
-\usepackage{set-forest}
+\usepackage{../../../preamble.forest}
 
 % arara: pdflatex: { draft: yes }
 % arara: pdflatex: { synctex: no }
 % arara: latexmk:  { clean: partial }
 \begin{document}
-\begin{forest} circled tree
+\begin{forest} circled math tree
 	[
 		[18	[21] [22] [18 [21] [21] ] ]
 		[18 [19 [25] [19 [19] ] ] [21] [21] ]

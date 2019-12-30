@@ -1,11 +1,12 @@
-%&preamble.main
+\documentclass[main.tex]{subfiles}
+%&../../preamble.main
+
+\setcounter{chapter}{10}
 
 % arara: pdflatex: { draft: yes, synctex: no }
 % arara: pdflatex: { synctex: yes }
 % arara: latexmk: { clean: partial }
 \begin{document}
-% \maketitle
-
 \chapter{Scelta della struttura dati}
 
 \begin{note}
@@ -288,9 +289,9 @@ Di conseguenza \(d[u]\) è minimo e \(u\) non verrà più re-inserito, perché n
 \paragraph{Analisi della complessità}
 % \(\Omicron(n^2 + m)\) ma siccome \(m = \Omicron(n^2)\), allora il costo è \(\Omicron(n^2)\).
 Con l'introduzione dell'heap binario nel '64 le operazioni che prima venivano svolte con complessità \(\Omicron(n)\) sul vettore ordinato ora hanno complessità \(\Omicron(\log n)\).
-Di conseguenza la complessità totale dell'algoritmo diventa \(\Omicron(m \log n)\).
+Di conseguenza la complessità totale dell'algoritmo scende da \(\Omicron(n^2)\) a \(\Omicron(m \log n)\).
 
-Per \emph{grafi densi} non conviene utilizzare uno heap binario in quanto \(m = \Theta(n^2)\) e di conseguenza l'algoritmo avrebbe una complessità di \(\Omicron(n^2 \log n)\), mentre per \emph{grafi sparsi} \(m = \Theta(n)\) e l'algoritmo \(\Omicron(n \log n)\).
+Per \emph{grafi densi} non conviene utilizzare uno heap binario in quanto \(m = \Theta(n^2)\) e di conseguenza l'algoritmo avrebbe una complessità di \(\Omicron(n^2 \log n)\) si preferisce quindi la versione con vettore ordinato per una complessità di \(\Omicron(n^2)\), mentre per \emph{grafi sparsi} \(m = \Theta(n)\) e l'algoritmo \(\Omicron(n \log n)\) che è migliore di \(\Omicron(m \log n)\).
 
 \section{Algoritmo di Fredman-Tarjan}
 
@@ -414,8 +415,8 @@ Si utilizza quindi l'ordine topologico.
 \begin{table}[H]\centering
 	\caption{Quale complessità preferire?}%
 	\label{tab:complexity-compared}
-	\begin{tabular}{@{} *{3}{l} @{}}\toprule
-			\textbf{Algoritmo} & \textbf{Complessità} & \textbf{Input}  \\
+	\begin{tabular}{@{} *{4}{l} @{}}\toprule
+			\textbf{Algoritmo} & \textbf{Complessità} & \textbf{Input}\\
 		\midrule
 			Dijkstra		& \(\Omicron(n^2)\)				& Pesi positivi, grafi denso  \\
 		\lightrule
@@ -440,7 +441,7 @@ Vogliamo cercare i cammini minimi fra tutti i nodi.
 	\label{tab:complexity-compared}
 	\begin{tabular}{@{} *{3}{l} @{}}
 		\toprule
-			\textbf{Algoritmo} & \textbf{Complessità} & \textbf{Input} \\
+			\textbf{Algoritmo} & \textbf{Complessità} & \textbf{Input}\\
 		\midrule
 			Pesi positivi, grafo denso & \(\Omicron(n \cdot n^2)\) & Applicazione ripetuta (\(n\)) dell'algoritmo di Dijkstra \\
 		\lightrule

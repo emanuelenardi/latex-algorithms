@@ -1,0 +1,29 @@
+%&../preamble
+
+% \documentclass[varwidth=6in]{standalone}
+% \usepackage{../preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[]{}
+\fi
+
+\SetKwFunction{nomeFunzione}{nomeFunzione}
+
+\prototype{\Int \nomeFunzione{parameters}}{
+	\BlankLine
+
+
+	\BlankLine
+	\Return \(0\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\end{document}
+\fi

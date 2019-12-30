@@ -12,7 +12,7 @@
 	\BlankLine
 	\lnlset{bellman:init}{1}%
 	\alert{ \Queue \(S\) \Assign \queueConstructor }\;
-	\alert{ \(S.\queueInsert{s}\) } \Comment*[h]{metto in coda la sorgente}\;
+	\alert{ \(S.\queueInsert{s}\) } \Comment*[h]{metto in coda il nodo sorgente}\;
 
 	\BlankLine
 	\While(\Comment*[h]{\(\Omicron(n)\)}){\Not \(S\).\setEmpty}{
@@ -32,9 +32,6 @@
 					\alert{ \(S.\queueInsert{v}\) } \Comment*[h]{\(\Omicron(m \cdot n)\)}\;
 					\(b[v]\) \Assign \True\;
 				}
-
-				\(T[v]\) \Assign \(u\)\;
-				\(d[v]\) \Assign \(d[u] + G.\weight{u,v}\)\;
 			}
 		}
 	}

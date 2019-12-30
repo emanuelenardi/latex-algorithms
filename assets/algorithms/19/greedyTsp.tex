@@ -1,18 +1,16 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption[Approccio ingordo al problema del commesso viaggiatore]{}
 \fi
 
 \prototype{\greedyTsp{\Graph \(G\)}}{
+
+	\BlankLine
+	\tcp{creazione strutture dati}
 	\Set \(S \Assign  \setConstructor\)\;
 	\mfSet \(M \Assign  \mfConstructor{G.\setSize}\)\;
 	\tcp{archi in ingresso ad un nodo}
@@ -33,15 +31,22 @@
 			\tcp{non si è formato un ciclo}
 
 			\BlankLine
+			\tcp{prendo nota dell'arco inserito}
 			\(S.\setInsert{\(\angleled{u,v}\)}\)\;
+
+			\BlankLine
+			\tcp{aggiorno il no.\ di lati entranti nei due nodi}
 			\(\Increment{in[u]}\)\;
 			\(\Increment{in[v]}\)\;
+
+			\BlankLine
+			\tcp{li considero come un unico nodo}
 			\(M.\mfMerge{u,v}\)\;
 		}
 	}
 
 	\BlankLine
-	\tcp{comment}
+	\tcp{chiudo il circuito}
 	\Int \(u \Assign  1\)\;
 	\lWhile{\(in[1] \Neq 1\)}{
 		\(\Increment{u}\)
@@ -58,11 +63,11 @@
 	\(S.\setInsert{\(\angleled{u,v}\)}\)
 
 	\BlankLine
+	\tcp{restituisco l'insieme che archi che costituisce il percorso}
 	\Return \(S\)\;
 }
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
 \end{document}
+\fi

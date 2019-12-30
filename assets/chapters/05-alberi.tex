@@ -1,8 +1,7 @@
 \documentclass[main.tex]{subfiles}
-%&preamble.main
+%&../../preamble.main
 
-% NOTE impostazione contatore per compilazione in standalone
-% \setcounter{section}{4}
+\setcounter{chapter}{4}
 
 % NOTE sopprimere i warnings localmente
 % \hbadness=10000
@@ -11,24 +10,9 @@
 % \usepackage{silence}
 % \WarningsOff[caption]
 
-% % NOTE impostazione percorsi di default
-% % https://tex.stackexchange.com/questions/79058/
-% \makeatletter
-% \providecommand*{\input@path}{}
-% \g@addto@macro\input@path{%
-% 	{assets/algorithms/05/}%
-% }% append
-% \makeatother
-%
-% \graphicspath{
-% 	{assets/figures/05/}%
-% }
-
 % arara: pdflatex: { shell: yes, draft: yes, synctex: no }
 % arara: pdflatex: { shell: yes, synctex: yes }
 \begin{document}
-% \maketitle
-
 \chapter{Alberi}
 
 % TODO scrivere introduzione

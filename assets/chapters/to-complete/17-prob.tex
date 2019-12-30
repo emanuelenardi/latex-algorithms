@@ -1,68 +1,72 @@
-\documentclass[00-main.tex]{subfiles}
-\standalonetrue
-\setcounter{section}{16}
-\pagestyle{footer}
+\documentclass[main.tex]{subfiles}
+%&../../preamble.main
 
-\graphicspath{{assets/figures/17/}}
+\setcounter{chapter}{16}
 
 % arara: pdflatex: { draft: yes, synctex: no }
 % arara: pdflatex: { synctex: yes }
-% arara: latexmk: { clean: partial }
 \begin{document}
-
 \section{Algoritmi probabilistici}
 
-
 \begin{idea}
-Se non sapete cosa fare fare una scelta casuale.
+Se non sapete cosa fare fate una scelta casuale.
 \end{idea}
 
 \begin{note}
 Il calcolo delle probabilità è applicato ai dati di output, non ai dati di input.
 \end{note}
 
-\subsection{Algoritmi Montecarlo}
+\section{Algoritmi Montecarlo}
 
 \begin{idea}
 Sono algoritmi in cui la correttezza è probabilistica.
 \end{idea}
 
-\begin{comment}
-\subsubsection{Test di primalità}
+\texttt{MATERIALE MANCANTE}
 
-\begin{theorem*}[piccolo teorema di fermat]
-Per ogni numero primo \(n\) e ogni \(b \in [2, \dots, n-1] \colon b^{n-1} \bmod n = 1\)
+\subsection{Test di primalità}
+
+\begin{theorem*}[Piccolo teorema di fermat]
+Per ogni numero primo \(n\) e ogni \(b \in [2, \dots, n-1] \colon b^{n-1} \bmod n = 1\).
 \end{theorem*}
 
 \begin{algorithm}[H]
-% \caption[]{}
+\caption{Test di primalità}
 
 \prototype{\isPrime{\Int \(n\)}}{
-	\(b = \random{2, \(n-1\)}\)\;
+
+	\BlankLine
+	\(b \Assign \random{2, \(n-1\)}\)\;
 
 	\BlankLine
 	\If{\(b^{n-1} \bmod n \Neq 1\)}{
+
+		\BlankLine
 		\tcp{non può essere un numero primo}
 		\Return \False
 	}
 
+	\BlankLine
+	\tcp{è un numero primo}
 	\Return \True
 }
 
 \end{algorithm}
-\end{comment}
 
-\subsection{Algoritmi Las Vegas}
+\section{Algoritmi Las Vegas}
 
 \begin{idea}
 Sono algoritmi corretti, in cui il funzionamento è probabilistico.
 \end{idea}
 
-\subsubsection{Statistiche d'ordine}
+\texttt{MATERIALE MANCANTE}
 
+\subsection{Statistiche d'ordine}
+
+\texttt{MATERIALE MANCANTE}
 
 \begin{algorithm}[H]
-% \caption[]{}
+\caption{inserisci didascalia}
 
 \prototype{\heapSelect{\Item{} A, \Int n, \Int k}}{
 
@@ -88,14 +92,14 @@ Utilizziamo una tecnica dividi-et-impera simile al \quickSort.
 Ma, a differenza di quest'ultimo, non è necessario cercare in entrambe le partizioni.
 
 \begin{algorithm}[H]
-% \caption[]{}
+\caption{inserisci didascalia}
 
 \prototype{\selection{\Item{} A, \Int start, \Int end, \Int k}}{
 
 	\BlankLine
-	\eSea{\(start \Equal end\)}{
+	\eIf{\(start \Equal end\)}{
 		\tcp{caso base: ho un solo elemento}
-		\Return \ArrayCall{A}{start}
+		\Return \(A[start]\)
 	}{
 
 		\BlankLine
@@ -106,8 +110,8 @@ Ma, a differenza di quest'ultimo, non è necessario cercare in entrambe le parti
 		\BlankLine
 		\uIf{\(k \Equal q\)}{
 			\tcp{ho trovato il mio elemento}
-			\Return \ArrayCall{A}{j}
-		}\ElseIf{\(k < q\)}{
+			\Return \(A[j]\)
+		}\uElseIf{\(k < q\)}{
 			\tcp{cerco a sinistra}
 			\Return \selection{A, start, \(j-1\), k}
 		}
@@ -124,7 +128,7 @@ Ma, a differenza di quest'ultimo, non è necessario cercare in entrambe le parti
 
 \paragraph{Analisi della complessità}
 
-Effettuiamo un'analisi simile a quella fatta per il \quickSort
+Effettuiamo un'analisi simile a quella fatta per il \quickSort.
 
 \subparagraph{Caso pessimo}
 
@@ -134,12 +138,12 @@ In quanto dividiamo il vettore con 0 elementi a sinistra ed \(n\) elementi a des
 T(n) &=
 	\begin{dcases}
 	1			& n \leqslant 1 \\
-	T(n-1) + n	& n>1 \\
+	T(n-1) + n	& n > 1 \\
 	\end{dcases} \\
 T(n) &= \Omicron(n^2)
 \end{align*}
 
-Quindi nel caso pessimo questo algoritmo risulta peggiore di ordinare il vettore, per una complessità di \(\Omicron(n \log n)\) e di andare a fare la ricerca.
+Quindi nel caso pessimo questo algoritmo risulta peggiore di ordinare il vettore (\(\Omicron(n \log n)\)) e di andare a fare la ricerca.
 
 \subparagraph{Caso ottimo}
 
@@ -148,28 +152,25 @@ Nel caso ottimo ogni volta divido esattamente a metà
 	T(n) &=
 	\begin{cases}
 		1						& n \leqslant 1 \\
-		T(\nicefrac{n}{2}) + n	& n>1 \\
+		T(\nicefrac{n}{2}) + n	& n > 1 \\
 	\end{cases} \\
 	T(n) &= O(n)
 \end{align*}
 
 \subparagraph{Caso medio}
 
-Assumiamo che \pivot restituisca con la stessa probabilità una qualsiasi posizione \(j\) del vettore \(A\)
-\[
-\begin{WithArrows}[displaystyle]
+Assumiamo che \pivot restituisca con la stessa probabilità una qualsiasi posizione \(j\) del vettore \(A\):
+\[\begin{WithArrows}[displaystyle]
 T(n) &= n-1 + \frac{1}{n}\sum_{q=1}^{n} T \left( \max\{q-1, n-q\} \right) \Arrow{per \(n > 1\)} \\
-     &\leqslant n-1 + \frac{2}{n} \sum_{ q =  \floor{\nicefrac{n}{2}} }^{n-1} T(q) \\
-\end{WithArrows}
-\]
+     &\leqslant n-1 + \frac{2}{n} \sum_{ q =  \floor{\nicefrac{n}{2}} }^{n-1} T(q)
+\end{WithArrows}\]
 
 \(\frac{1}{n}\) la media su tutti i possibili valori di \(q\)
-\(\sum_{q=1}^{n}\) rappresenta la dimensionalità di \(j\), \(q-1\) gli elementi a sinistra, \(n-q\) a destra rispettivamente
+\(\sum_{q=1}^{n}\) rappresenta la dimensionalità di \(j\), \(q-1\) gli elementi a sinistra, \(n-q\) a destra rispettivamente.
 
-\(\exists c > 0, \exists m \geqslant 0: T(n) \leqslant cn \forall n \geqslant m\)
+\(\exists c > 0, \exists m \geqslant 0: T(n) \leqslant cn, \forall n \geqslant m\)
 
-\[
-\begin{WithArrows}[displaystyle]
+\[\begin{WithArrows}[displaystyle]
 T\left(n\right) &\leqslant n - 1 + \frac{2c}{n} \sum_{ q=\floor{n/2} }^{n-1} q \Arrow{divido la sommatoria a metà} \\
 &\leqslant n + \frac{2c}{n} \left( \sum_{q=1}^{n-1} q - \sum_{q=1}^{\floor{n/2}-1} q \right)  \Arrow{algebra} \\
 &= n + \frac{2c}{n}\left(\frac{n\left(n- 1\right)}{2} - \frac{ \floor{n/2} (\floor{n/2} - 1)}{2} \right) \Arrow{semplifico} \\
@@ -177,85 +178,87 @@ T\left(n\right) &\leqslant n - 1 + \frac{2c}{n} \sum_{ q=\floor{n/2} }^{n-1} q \
 &= n + c\left(n - 1\right) - \left(c/2\right)\left(n/2+ 1\right) \Arrow{eseguo i calcoli} \\
 &= n + cn - c - cn/4 - c/2 \Arrow{la mia disequazione risulta vera} \\
 &= cn \left( \frac{1}{c}+ \frac{3}{4} - \frac{3}{2n} \right) \leqslant cn \left( \frac{1}{c}+ \frac{3}{4} \right) \leqslant cn
-\end{WithArrows}
-\]
+\end{WithArrows}\]
 
-Siamo partiti dall'assunzione che \(j\) assume equiprobabilisticamente tutti i valori compresi fra 1 ed \(n\).
-Se questa assunzione non fosse vera allora i nostri calcoli non avrebbe alcun fondamento.
-Allora forziamo l'assunzione iniziale scegliendo un valore casuale come perno (\ArrayCall{A}{\random{start, end}}) a differenza di prima dove prendevamo il primo valore (\ArrayCall{A}{start}).
+Siamo partiti dall'assunzione che \(j\) assuma equiprobabilisticamente tutti i valori compresi fra 1 ed \(n\).
+Se questa assunzione non fosse vera allora i nostri calcoli non avrebbero alcun fondamento.
+Forziamo quindi l'assunzione iniziale scegliendo un valore casuale come perno (\(A[\random{start, end}]\)) a differenza di prima dove prendevamo il primo valore (\(A[start]\)).
 Questo accorgimento vale anche per \quickSort.
 La complessità nel caso medio diventa quindi \(\Omicron(n)\).
 
-\paragraph{Selezione deterministica}
+\subsection{Selezione deterministica}
 
 Supponiamo di avere un algoritmo \enquote{black box} che mi ritorni un
 valore che dista al più \(\frac{3}{10} n\) dal mediano nell'ordinamento.
 
 \paragraph{Implementazione}
+L'implementazione dell'algoritmo consiste nei seguenti passaggi:
 
 \begin{itemize}
-	\item Suddividi i valori in gruppi di 5. Chiameremo l'\(i\)-esimo gruppo \(S_i\), con \(i \in [1, \ceil{\nicefrac{n}{5}} ]\)
-	\item Trova il mediano \(M_i\) di ogni gruppo \(S_i\)
-	\item Tramite una chiamata ricorsiva, trova il mediano \(m\) dei mediani
+	\item suddividi i valori in gruppi di 5. Chiameremo l'\(i\)-esimo gruppo \(S_i\), con \(i \in [1, \ceil{\nicefrac{n}{5}} ]\)
+	\item trova il mediano \(M_i\) di ogni gruppo \(S_i\)
+	\item tramite una chiamata ricorsiva, trova il mediano \(m\) dei mediani
 	\([M_1, M_2, \ldots, M_{ \ceil{\nicefrac{n}{5}} }]\)
-	\item Usa \(m\) come pivot e richiama l'algoritmo ricorsivamente sull'array opportuno, come nella \selection randomizzata
-	\item Quando la dimensione scende sotto una certa dimensione, possiamo utilizzare un algoritmo di ordinamento per trovare il mediano
+	\item usa \(m\) come pivot e richiama l'algoritmo ricorsivamente sul vettore opportuno, come nella \selection randomizzata
+	\item quando la dimensione scende sotto una certa dimensione, possiamo utilizzare un algoritmo di ordinamento per trovare il mediano
 \end{itemize}
 
 \NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[]{}
+\caption{inserisci didascalia}
 
 \prototype{\Item{} \select{\Item{} \(A\), \Int \(\First\), \Int \(\Last\), \Int \(k\)}}{
-	\tcp{Se la dimensione è inferiore ad una soglia (10), ordina il vettore e}
-	\tcp{restituisci il \(k\)-esimo  elemento di \ArrayCall{A}{\First}{\Last}}
+	\tcp{se la dimensione è inferiore ad una soglia (10), ordina il vettore e}
+	\tcp{restituisci il \(k\)-esimo  elemento di \(A[\First][\Last]\)}
 	\If{\(\Last - \First + 1 \leqslant 10\)}{
-		\insertionSort{A, \First, \Last} \Comment*[r]{Versione con indici inizio/fine}
+		\insertionSort{\(A\), \(\First\), \(\Last\)} \tcp{Versione con indici inizio/fine}
+
+		\BlankLine
 		\Return \(A[\First+k-1]\)\;
 	}
 
 	\BlankLine
-	\tcp{Divide \(A\) in \(\ceil{n/5}\) sottovettori di dim. \(5\) e ne calcola la mediana}
-	\(M\) = \new \Array{\Int}{1}{\ceil{n/5}}\;
+	\tcp{divide \(A\) in \(\ceil{n/5}\) sottovettori di dim. \(5\) e ne calcola la mediana}
+	\(M\) \Assign \new \Array{\Int}[1][\ceil{\nicefrac{n}{5}}]\;
 	\lnl{select:calcolo-mediana}%
-	\From{\(i = 1\) \DownTo \(\ceil{n/5}\)}{
-		\(M[i] = \medianFive(A, \First+(i-1) \cdot 5, \Last)\)
+	\From{\(i \Assign 1\) \DownTo \(\ceil{\nicefrac{n}{5}}\)}{
+		\(M[i] \Assign \medianFive(A, \First + (i-1) \cdot 5, \Last)\)
 	}
 
 	\BlankLine
 	\tcp{individua la mediana delle mediane e usala come perno}
 	\lnl{select:ricorsiva-prima}%
-	\Item \(m = \select \left(M, 1, \ceil{n/5}, \Ceil{ \frac{ \ceil{\nicefrac{n}{5}} }{2} } \right)\)\;
+	\Item \(m \Assign \select \left(M, 1, \ceil{\nicefrac{n}{5}}, \Ceil{ \frac{ \ceil{\nicefrac{n}{5}} }{2} } \right)\)\;
 
 	\BlankLine
-	\Int \(j = \pivot{A, \First, \Last, m}\) \Comment*[f]{Versione con \(m\) in input}
+	\Int \(j \Assign \pivot{A, \First, \Last, m}\) \tcp{Versione con \(m\) in input}
 
 	\BlankLine
-	\tcp{Calcola l'indice \(q\) di \(m\) in \([\First \ldots \Last]\)}
-	\Int \(q = j-\First+1\)\;
+	\tcp{calcola l'indice \(q\) di \(m\) in \([\First \ldots \Last]\)}
+	\Int \(q \Assign j - \First + 1\)\;
 
 	\BlankLine
-	\tcp{Confronta \(q\) con l'indice cercato e ritorna il valore conseguente}
+	\tcp{confronta \(q\) con l'indice cercato e ritorna il valore conseguente}
 	\uIf{\(q \Equal k\)}{
 		\Return \(m\)\;
 	}
 	\uElseIf{\(q < k\)}{
 		\lnl{select:ricorsiva-seconda}%
-		\Return \select{A, \First, \(q-1\), k}\;
+		\Return \select{\(A\), \(\First\), \(q-1\), k}\;
 	}
 	\Else{
 		\lnlset{select:ricorsiva-terza}{3}%
-		\Return \select{A, q+1, \Last, \(k-q\)}\;
+		\Return \select{\(A\), \(q+1\), \(\Last\), \(k-q\)}\;
 	}
 }
 
 \BlankLine
 \tcp{calcola la mediana fra 5 elementi}
-\prototype{\Int n\medianFive{}}{
-
+\prototype{\Int \medianFive}{
 
 	\BlankLine
-	\Return m
+	\tcp{Restituisco la mediana}
+	\Return \(m\)
 }
 
 \end{algorithm}
@@ -266,19 +269,18 @@ valore che dista al più \(\frac{3}{10} n\) dal mediano nell'ordinamento.
 
 \begin{itemize}
 	\item[\circled{\ref{select:calcolo-mediana}}]
-	il calcolo dei mediani \(M[]\) richiede al più \(6 \ceil{n/5}\)  confronti;
+	il calcolo dei mediani \(M[]\) richiede al più \(6\, \ceil{n/5}\)  confronti;
 
 	\item[\circled{\ref{select:ricorsiva-prima}}]
 	la prima chiamata ricorsiva dell'algoritmo \select viene effettuata su \(\lceil n/5 \rceil\) elementi;
 
 	\item[\circled{\ref{select:ricorsiva-seconda}}]
-	la seconda chiamata ricorsiva dell'algoritmo \select viene effettuata al massimo  su \(7 \frac{n}{10}\) elementi (esattamente \(n - 3\, \Ceil{ \frac{ \ceil{\nicefrac{n}{5}} }{2} }\));
-
+	la seconda chiamata ricorsiva dell'algoritmo \select viene effettuata al massimo  su \(7 \frac{n}{10}\) elementi (esattamente \(n - 3\, \Ceil{ \frac{ \ceil{\nicefrac{n}{5}} }{2} }\)).
 \end{itemize}
 
-L'algoritmo \select esegue nel caso pessimo \(O(n)\) confronti
+L'algoritmo \select esegue nel caso pessimo \(O(n)\) confronti:
 \begin{equation*}\textstyle
-T(n) = T( \frac{n}{5} ) + T(7 \frac{n}{10}) + \frac{11}{5} n = \Omicron(n)
+T(n) = T\left( \frac{n}{5} \right) + T\left( 7 \frac{n}{10} \right) + \frac{11}{5} n = \Omicron(n)
 \end{equation*}
 
 \end{document}

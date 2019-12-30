@@ -13,21 +13,26 @@
 	\Array{\Bool} \(DP\) \Assign \new \Array{\Bool}{0}{k}\;
 
 	\BlankLine
-	\tcp{casi base}
+	\tcp{implementazione dei casi base}
 
+	\BlankLine
 	\tcp{dati nessun oggetto posso ottenere il valore 0}
 	\(DP[0][0] \Assign \True\)\;
 
+	\BlankLine
+	\tcp{dati 0 oggetti posso ottenere un valore di \(k > 0\)}
 	\For{\(r \Assign 1\) \DownTo \(k\)}{
-		\tcp{dati 0 oggetti posso ottenere un valore di \(k > 0\)}
+
+		\BlankLine
+		\tcp{riempio la prima riga}
 		\(DP[0][r] \Assign \False\)\;
 	}
 
 	\BlankLine
 	\tcp{riempi la tabella}
 	\From{\(i \Assign 1\) \DownTo \(n\)}{
-		\From(\Comment*[h]{\(A[i]\) perché}){\(r \Assign A[i]\) \DownTo \(k\)}{
-		\tcp{\(A[i]\): semplifico}
+		\From(\Comment*[h]{inserisci commento}){\(r \Assign A[i]\) \DownTo \(k\)}{
+		\tcp{\(A[i]\): semplifico, inserisci commento}
 
 			\BlankLine
 			\tcp{logica dell'algoritmo}

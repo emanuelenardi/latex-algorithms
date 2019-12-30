@@ -1,9 +1,13 @@
 %&preamble.main
 
+% NOTE aggiunge tipi di sottolineatura (\uwave{} e \sout{})
+% WARNING caricata dal pacchetto 'changes'
+% \usepackage[normalem]{ulem}
+
 % NOTE ciclo di compilazione
 % arara: pdflatex: { shell: yes, draft: yes }
 % arara: pdflatex: { shell: yes, synctex: yes }
-% arara: latexmk:  { clean: partial }
+%! arara: latexmk:  { clean: partial }
 \begin{document}
 
 \frontmatter
@@ -12,22 +16,29 @@
 	\pagenumbering{gobble}
 
     % NOTE frontespizio
-    \input{assets/chapters/00-pagina-iniziale}
+    % \input{assets/chapters/00-pagina-iniziale}
+	% \cleardoublepage
+
+    % NOTE pagina con la dedica (non numerata)
+	% \input{assets/chapters/00-dedica}
+	% \cleardoublepage
+	% \pagestyle{plain}
 
 \mainmatter
 
 	% NOTE disabilita la protrusion localmente
 	\microtypesetup{protrusion = false}
 
-	% NOTE % sections + subsections
+	% TODO controlla la profondità della TOC
+	% NOTE % chapthers + sections + subsections
 	\setcounter{tocdepth}{2}
-	\tableofcontents
+	% \tableofcontents
 
-	\listoffigures
+	% \listoffigures
 
-	\listoftables
+	% \listoftables
 
-	% TODO risolvere questo problema
+	% TODO il pacchetto crea problemi con il preambolo, non carica i pacchetti successivi
 	% \listoftheorems[ignoreall, show={theorem, definition}] % NOTE si sovrascrivono
 	% \renewcommand{\thmtformatoptarg}[1]{ -- #1}
 	% \renewcommand{\listtheoremname}{Elenco dei teoremi}
@@ -43,31 +54,36 @@
 	\cleardoublepage
 
 	% TODO scrivere il prologo
-	\subfile{assets/chapters/00-prologo}
+	% \subfile{assets/chapters/00-prologo}
 
-	\part{Primo semestre}
+	% \part{Primo semestre}
+	%
+	% \pagenumbering{arabic}
+	% \pagestyle{copyrighted}
+	%
+	% \subfile{assets/chapters/02-analisi}
+	% \subfile{assets/chapters/03-funzioni}
+	% \subfile{assets/chapters/04-strutture}
+	% \subfile{assets/chapters/05-alberi}
+	% \subfile{assets/chapters/06-abr}
+	% \subfile{assets/chapters/08-insiemi-dizionari}
+	% \subfile{assets/chapters/09-grafi}
+	% \subfile{assets/chapters/12-dividi}
+	%
+	% \part{Secondo semestre}
+	%
+	% \pagestyle{revising}
 
-	\pagenumbering{arabic}
-	\pagestyle{mystyle}
+	% TODO da commentare alla revisione finale
+	\listofchanges[style=list, title={Modifiche richieste}]
 
-	\subfile{assets/chapters/02-analisi}
-	\subfile{assets/chapters/03-funzioni}
-	\subfile{assets/chapters/04-strutture}
-	\subfile{assets/chapters/05-alberi}
-	\subfile{assets/chapters/06-abr}
-	\subfile{assets/chapters/08-insiemi-dizionari}
-	\subfile{assets/chapters/09-grafi}
-	\subfile{assets/chapters/12-dividi}
-
-	\part{Secondo semestre}
-
-	\subfile{assets/chapters/to-complete/11-scelta}
-% 	% \subfile{assets/chapters/to-complete/13-dp}
-% 	% \subfile{assets/chapters/to-complete/14-greedy}
-% 	% \subfile{assets/chapters/to-complete/15-local}
-% 	% \subfile{assets/chapters/to-complete/16-backtrack}
-% 	% \subfile{assets/chapters/to-complete/17-prob}
-% 	% \subfile{assets/chapters/to-complete/19-approx}
+	% \subfile{assets/chapters/to-complete/11-scelta}
+	\subfile{assets/chapters/to-complete/13-dp}
+	% \subfile{assets/chapters/to-complete/14-greedy}
+	% \subfile{assets/chapters/to-complete/15-local}
+	% \subfile{assets/chapters/to-complete/16-backtrack}
+	% \subfile{assets/chapters/to-complete/17-prob}
+	% \subfile{assets/chapters/to-complete/19-approx}
 
 \end{document}
 

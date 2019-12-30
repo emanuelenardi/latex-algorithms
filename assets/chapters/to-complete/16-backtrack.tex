@@ -1,28 +1,24 @@
-\documentclass[00-main.tex]{subfiles}
-\standalonetrue
-\setcounter{section}{15}
-\pagestyle{footer}
+\documentclass[main.tex]{subfiles}
+%&../../preamble.main
 
-\graphicspath{{assets/figures/16/}}
+\setcounter{chapter}{15}
 
 % arara: pdflatex: { draft: yes, synctex: no }
 % arara: pdflatex: { synctex: yes }
-% arara: latexmk: { clean: partial }
 \begin{document}
-
-\section{Backtrack}
+\chapter{Backtrack}
 
 \paragraph{Problemi tipici}
 Problemi tipici sono:
 \begin{itemize*}
-	\item \emph{elencare tutte le possibili soluzioni} (enumerazione), ad esempio elencare tutte le possibili permutazioni di un insieme;
+	\item \emph{elencare tutte le possibili soluzioni} (enumerazione), come ad esempio elencare tutte le possibili permutazioni di un insieme;
 	\item \emph{costruire almeno una soluzione del problema}, in questo caso si utilizza l'algoritmo di enumerazione fermandosi alla prima soluzione dispoonibile;
 	\item \emph{contare le soluzioni}, in alcuni casi è possibile contare in modo analitico, in altri casi si costruiscoo le soluzioni e si contano;
 	\item \emph{trovare le soluzioni ottimali}, si enumerano tutte le soluzioni che vengono valutate tramite una funzione di costo.
 	 	In questo caso si utilizzano anche altre tecniche di programmazione (come la programmazione dinamica, o la tecnica greedy).
 \end{itemize*}
 
-\subsection{Eumerazione}
+\section{Eumerazione}
 
 Per costruire tutte le soluzioni, si utilizza un approccio di \enquote{forza bruta} (\emph{brute force}).
 In alcuni casi è l'unica strada percorribile.
@@ -30,56 +26,56 @@ Fortunatamente i processori moderni rendono affrontabili problemi considerati di
 Inoltre, a volte lo spazio delle soluzioni non deve essere analizzato interamente.
 
 \begin{idea}[backtracking]
-\enquote{Prova a fare qualcosa, e se non va bene, disfalo e prova qualcos’altro}
+\enquote{Prova a fare qualcosa, e se non va bene, disfalo e prova qualcos'altro}
 \end{idea}
 
 Il backtracking è una tecnica algoritmica che, come altre, deve essere personalizzata per ogni applicazione individuale.
 Dobbiamo quindi trovare un metodo sistematico per iterare su tutte le possibili istanze di uno spazio di ricerca.
 
 \paragraph{Organizzazione del problema}
-Una soluzione viene rappresentata come il vettore \ArrayCall{S}{1}{n};
-il contenuto degli elementi \ArrayCall{S}{i} è una \emph{sequenza di scelte} (possibili) \(C\) dipendenti dal problema.
+Una soluzione viene rappresentata come il vettore \(S[1][n]\);
+il contenuto degli elementi \(S[i]\) è una \emph{sequenza di scelte} (possibili) \(C\) dipendenti dal problema.
 
 Ad esempio preso un insieme \(C\) che rappresenta un insieme generico possiamo avere possibili \emph{permutazioni} o \emph{sottoinsiemi}.
 Se \(C\) è un insieme di mosse ottenerremo una \emph{sequenza di mosse};
-se nell'insieme \(C\) sono contenuti archidi un grafo, allora otterremo possibili percorsi del grafo; e così via.
+se nell'insieme \(C\) sono contenuti archi di un grafo, allora otterremo possibili percorsi del grafo; e così via.
 
 \paragraph{Scherma di risoluzione generale}
-Ad ogni passo, partiamo da una soluzione generale \ArrayCall{S}{1}{k} in cui \(k \geqslant 0\) scelte sono state prese (ovvero abbiamo effettuato \(k\) scelte, dove \(k\) può essere anche nullo).
+Ad ogni passo, partiamo da una soluzione generale \(S[1][k]\) in cui \(k \geqslant 0\) scelte sono state prese (ovvero abbiamo effettuato \(k\) scelte, dove \(k\) può essere anche nullo).
 
-Se la sequenza di scelte che abbiamo effettuato (\ArrayCall{S}{1}{k}) costituiscono una soluzione ammissibile allora la \enquote{processiamo}.
+Se la sequenza di scelte che abbiamo effettuato (\(S[1][k]\)) costituiscono una soluzione ammissibile allora la \enquote{processiamo}.
 Può essere quindi stampata, contata, valutata, oppure si può decidere di terminare elencando tutte le possibili soluzioni.
 
-Indipendentemente dalla precedente se \ArrayCall{S}{1}{k} non rappresenta una soluzione completa, allora proviamo, se è possibile, ad \emph{estendere} \ArrayCall{S}{1}{k} con una delle possibili scelte in una soluzione \ArrayCall{S}{1}{k+1};
-altrimenti \enquote{cancelliamo} l'ultima scelta effettuata \ArrayCall{S}{k} tornando sui nostri passi (facendo quindi \emph{backtracking}) e ripartendo dalla soluzione precedente \ArrayCall{S}{1}{k-1}.
+Indipendentemente dalla precedente se \(S[1][k]\) non rappresenta una soluzione completa, allora proviamo, se è possibile, ad \emph{estendere} \(S[1][k]\) con una delle possibili scelte in una soluzione \(S[1][k+1]\);
+altrimenti \enquote{cancelliamo} l'ultima scelta effettuata \(S[k]\) tornando sui nostri passi (facendo quindi \emph{backtracking}) e ripartendo dalla soluzione precedente \(S[1][k-1]\).
 
 \paragraph{Rappresentazione del problema}
 Il nostro problema viene rappresentato da un \emph{albero di decisione} nel quale:
-\begin{itemize*}
+\begin{itemize}
 	\item lo \emph{spazio di ricerca} viene rappresentato dall'albero stesso;
 	\item la \emph{soluzione parziale vuota} (ossia quella dove non abbiamo preso nessuna decisione) è la radice;
 	\item le \emph{soluzioni parziali} sono rappresentate dai nodi interni;
 	\item le \emph{soluzioni ammissibili} vengono rappresentate dalle foglie.
-\end{itemize*}
+\end{itemize}
 
 \subparagraph{Pruning}
-I \enquote{rami} dell’albero che sicuramente non portano a soluzioni ammissibili possono essere \enquote{potati} (\emph{pruned}).
+I \enquote{rami} dell'albero che sicuramente non portano a soluzioni ammissibili possono essere \enquote{potati} (\emph{pruned}).
 La valutazione della \enquote{potatura} viene effettuata nelle soluzioni parziali radici del sottoalbero da potare.
 
 \begin{note}
-Il pruning riduce drasticmaente lo spazio delle soluzioni del problema
+Il pruning riduce drasticamente lo spazio delle soluzioni del problema.
 \end{note}
 
 % TODO subfigure
 \begin{figure}
-\begin{subfigure}[t]{.5\textwidth}
+\begin{subfigure}[t]{.6\textwidth}
 	\begin{forest} compact tree
 	[[[[[][]][[][]]][[[][]][[][]]]][[[[][]][[][]]][[[][]][[][]]]]]
 	\end{forest}
 	\caption{Lo spazio di ricerca di un determinato problema è rappresentato da un albero delle decisioni}%
 	\label{fig:tree-backtrack}
 \end{subfigure}
-\begin{subfigure}[t]{.5\textwidth}\flushright
+\begin{subfigure}[t]{.4\textwidth}\flushright
 	\begin{forest} compact tree
 	[[,pruned red
 		[[[][]][[][]]][[[][]][[][]]]
@@ -96,43 +92,42 @@ Il pruning riduce drasticmaente lo spazio delle soluzioni del problema
 	\caption{\emph{pruning} dei rami}%
 	\label{fig:tree-backtrack-pruned}
 \end{subfigure}
-\caption{didascalia}
+\caption{Un albero di decisione ed il suo corrispondente albero potato dei rami che non portano a soluzioni ammissibili.}
 \end{figure}
 
 \paragraph{Approcci}
 Ci sono due possibili approcci alla tecnica del backtracking:
-\begin{itemize}[label=]
-	\item la prima consiste nello sviluppo di un algoritmo \emph{ricorsivo} lavorando tramite una visita in profondità nell’albero delle scelte;
-	\item la seconda consiste nello sviluppo di un algoritmo \emph{iterativo} ed utilizza un approccio greedy, eventualmente tornando sui propri passi.
-\end{itemize}
+\begin{enumerate}
+	\item la prima consiste nello sviluppo di un algoritmo \emph{ricorsivo} che lavora tramite una visita in profondità nell'albero delle scelte;
+	\item la seconda consiste nello sviluppo di un algoritmo \emph{iterativo} ed utilizza un approccio ingordo (\foreign{greedy}), eventualmente tornando sui propri passi (effetuando quindi \foreign{backtracking}).
+\end{enumerate}
 
 Sia il problema dell'inviluppo convesso, che quello della corrispondenza fra stringhe (\emph{string matching}) utilizzano questo approccio.
 
-In base alle \(i\) scelte già effettuate deciso quali sono le mie future scelte.
+In base alle \(i\) scelte già effettuate decido quali sono le mie future scelte.
 
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Schema generale per il problema dell'enumerazione]{}
+\caption{Schema generale per il problema dell'enumerazione}
 
 \prototype{\Bool \enumeration{\Item{} S, \Int n, \Int i, \dots}}{
-	\tcp{\(S\): vettore contenente le soluzioni parziali \ArrayCall{S}{1}{i}}
-	\tcp{\(n\): il numero massimo di scelte possibili}
-	\tcp{\(i\): indice corrente}
-	\tcp{\dots: parametri addizionali dipendenti dal problema}
+	\params{S}[vettore contenente le soluzioni parziali \(S[1][i]\)]
+	\params{n}[il numero massimo di scelte possibili]
+	\params{i}[indice corrente]
+	\params{\dots}[parametri addizionali dipendenti dal problema]
 
 	\BlankLine
 	\BlankLine
-	\Set \(C = \getChoices{S, n, i, \dots}\) \Comment*[r]{Determina \(C\) in funzione di \ArrayCall{S}{1}{i-1}}
-	\tcp{\(C\): l’insieme dei possibili candidati per estendere la soluzione}
+	\Set \(C = \getChoices{S, n, i, \dots}\) \Comment*[h]{Determina \(C\) in funzione di \(S[1][i-1]\)}
+
+	\params{C}[l'insieme dei possibili candidati per estendere la soluzione]
 
 	\BlankLine
-	\tcp{per ogni possibile scelta fra quelle possibili}
-	\ForEach{\(c \in C\)}{
-		\(S[i] = c\) \Comment*[l]{registro la scelta}
+	\ForEach(\tcp*[h]{per ogni possibile scelta fra quelle possibili}){\(c \in C\)}{
+		\(S[i] \Assign c\) \Comment*[l]{registro la scelta}
 
 		\BlankLine
 		\If{\(\isAdmissible{S, n, i}\)}{
-			\tcp{\ArrayCall{S}{1}{i} è una soluzione ammissibile}
+			\tcp{\(S[1][i]\) è una soluzione ammissibile}
 			\If{\(\processSolution{S, n, i, \dots}\)}{
 				\tcp{vogliamo bloccare l'esecuzione alla prima soluzione possibile}
 				\Return \True
@@ -151,30 +146,29 @@ In base alle \(i\) scelte già effettuate deciso quali sono le mie future scelte
 }
 
 \end{algorithm}
-\RestoreCaptionOfAlgo
 
 \newpage
-\subsubsection{Sottoinsiemi}
+\subsection{Problemi che trattano di sottoinsiemi}
 
 \paragraph{Definizione del problema}
-Elencare tutti i sottoinsiemi dell’insieme \(\{1, \dots, n\}\)
+Elencare tutti i sottoinsiemi dell'insieme \(\{1, \dots, n\}\)
 
 \begin{minipage}[t]{.5\linewidth}
 	\begin{algorithm}[H]
-	% \caption{Primo tentativo}
+	\caption{Primo tentativo}
 
 	\prototype{\subSets{\Array{\Int} S, \Int n, \Int i}}{
-		\Set \(C = \iif{\(i \leqslant n, \{ 0,1 \}, \emptyset\)}\)
+		\Set \(C \Assign \iif{\(i \leqslant n, \{ 0,1 \}, \emptyset\)}\)
 
 		\BlankLine
 		\ForEach{\(c \in C\)}{
-			\(S[i] = c\)\;
+			\(S[i] \Assign c\)\;
 
 			\BlankLine
-			\If{\(i = n\)}{
+			\If{\(i \Equal n\)}{
 				\processSolution{S, n}\;
 			}
-			\subSets{S, n, i+1}\;
+			\subSets{\(S\), \(n\), \(i+1\)}\;
 		}
 	}
 
@@ -182,19 +176,19 @@ Elencare tutti i sottoinsiemi dell’insieme \(\{1, \dots, n\}\)
 \end{minipage}
 \begin{minipage}[t]{.5\linewidth}
 	\begin{algorithm}[H]
-	% \caption{Versione \enquote{più pulita}}
+	\caption{Versione \enquote{più pulita}}
 
 	\prototype{\subSets{\Array{\Int} S, \Int n, \Int i}}{
 
 		\BlankLine
 		\ForEach{\(c \in \{0,1\}\)}{
-			\(S[i] = c\)\;
+			\(S[i] \Assign c\)\;
 
 			\BlankLine
-			\eSea{\(i = n\)}{
+			\eIf{\(i \Equal n\)}{
 				\processSolution{S, n}\;
 			}{
-				\subSets{S, n, i+1}\;
+				\subSets{\(S\), \(n\), \(i+1\)}\;
 			}
 		}
 	}
@@ -202,17 +196,17 @@ Elencare tutti i sottoinsiemi dell’insieme \(\{1, \dots, n\}\)
 	\end{algorithm}
 \end{minipage}
 
-Fare riferimento alla \href{https://youtu.be/00hO1skHCls?t=1420}{spiegazione grafica}.
+Fare riferimento alla \href{https://youtu.be/00hO1skHCls?t=1420}{spiegazione grafica} qui non riportata.
 
 \paragraph{Considerazioni}
-Non c’è pruning.
+Non c'è pruning.
 Tutto lo spazio possibile viene esplorato.
 Ma questo avviene per definizione.
 Questo porta ad una complessità di \(\Omicron(n \cdot 2^n)\).
-\'E possbile pensare ad una soluzione iterativa, ad-hoc? (che non utilizza la tecnica del backtracking)
+\`{E} possbile pensare ad una soluzione iterativa, ad-hoc? (che non utilizza la tecnica del backtracking)
 
 \begin{algorithm}[H]
-% \caption{Versione \enquote{più pulita}}
+\caption{Versione \enquote{più pulita}}
 
 \prototype{\subSets{\Array{\Int} S, \Int n, \Int i}}{
 
@@ -232,42 +226,34 @@ Questo porta ad una complessità di \(\Omicron(n \cdot 2^n)\).
 
 \end{algorithm}
 
-\newcommand\appunti{%
-\begin{center}\footnotesize
-(questo spazio è stato lasciato appositamente per prendere appunti)
-\end{center}
-}
-
-\appunti
-
 \newpage
 \paragraph{Definizione del problema}
 Elencare tutti i sottoinsiemi di dimensione \(k\) di un insieme \(\{1, \dots, n\}\)
 
 \begin{minipage}[t]{.5\linewidth}
 	\begin{algorithm}[H]
-	% \caption{Tentativo 1}
+	\caption{Tentativo 1}
 
 	\prototype{\subSets{\Array{\Int} S, \Int n, \Int k, \Int i}}{
 
 		\BlankLine
-		\Set \(C = \iif{\(i \leqslant n, \{ 0,1 \}, \emptyset\)}\)
+		\Set \(C \Assign \iif{\(i \leqslant n, \{ 0,1 \}, \emptyset\)}\)
 
 		\BlankLine
 		\ForEach{\(c \in C\)}{
-			\(S[i] = c\)\;
+			\(S[i] \Assign c\)\;
 
 			\BlankLine
-			\If{\(i = n\)}{
-				\Int count = 0\;
+			\If{\(i \Equal n\)}{
+				\Int \(count\) \Assign 0\;
 
 				\BlankLine
-				\From{\(j=1\) \DownTo \(n\)}{
-					\Addto{count}{S[j]}\;
+				\From{\(j \Assign 1\) \DownTo \(n\)}{
+					\AddTo{count}{S[j]}\;
 				}
 
 				\BlankLine
-				\If{\(count = k\)}{
+				\If{\(count \Equal k\)}{
 					\tcp{ho finito}
 					\processSolution{S, n}\;
 				}
@@ -280,20 +266,21 @@ Elencare tutti i sottoinsiemi di dimensione \(k\) di un insieme \(\{1, \dots, n\
 \end{minipage}
 \begin{minipage}[t]{.5\linewidth}
 	\begin{algorithm}[H]
-	% \caption{Tentativo 2}
+	\caption{Tentativo 2}
 
 	\prototype{\subSets{\omitted, \Int count}}{
 
 		\BlankLine
-		\Set \(C = \iif{\(i \leqslant n, \{ 0,1 \}, \emptyset\)}\)
+		\Set \(C \Assign \iif{\(i \leqslant n, \{ 0,1 \}, \emptyset\)}\)
 
 		\BlankLine
 		\ForEach{\(c \in C\)}{
-			\(S[i] = c\)\;
-			\Addto{count}{S[i]}\;
+			\(S[i] \Assign c\)\;
+			\AddTo{count}{S[i]}\;
 
 			\BlankLine
-			\If{\(i = n\) \And \(count = k\)}{
+			\tcp{logica dell'algoritmo}
+			\If{\(i \Equal n\) \And \(count \Equal k\)}{
 				\processSolution{S, n}\;
 			}
 
@@ -303,32 +290,32 @@ Elencare tutti i sottoinsiemi di dimensione \(k\) di un insieme \(\{1, \dots, n\
 	}
 
 	\end{algorithm}
+	\vspace{-10pt}
 	Tengo conto del contatore nelle chiamate successive e gli sottraggo i valori aggiunti nelle chiamate di \emph{backtracking}.
 \end{minipage}
 
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Elencare tutti i sottoinsiemi di dimensione \(k\) di un insieme \(\{1, \dots, n\}\)]{}
+\caption{Elencare tutti i sottoinsiemi di dimensione \(k\) di un insieme \(\{1, \dots, n\}\)}
 
 \prototype{\subSets{\Array{\Int} S, \Int n, \Int k, \Int i, \Int count}}{
-	\tcp{\(n\): numeri di elementi}
-	\tcp{\(k\): numeri di elementi considerati}
-	\tcp{\(i\): la scelta che ho già fatto}
+	\params{n}[numeri di elementi]
+	\params{k}[numeri di elementi considerati]
+	\params{i}[la scelta che ho già fatto]
 
 	\BlankLine
 	\tcp{se ho già raggiunto \(k\) o non ci sono abbastanza bit per arrivare a \(k\) non ho più bisogno di visitare il sotto-albero delle scelte relativo)}
-	\Set \(C = \iif{\(count < k\) \And \(count + (n-i+1) \geqslant k\), \(\{0,1\}\), \(\emptyset\)}\)\;
+	\Set \(C \Assign \iif{\(count < k\) \And \(count + (n-i+1) \geqslant k\), \(\{0,1\}\), \(\emptyset\)}\)\;
 	\tcp{\(count < k\): ho ancora la possibilità di accendere un bit}
 	\tcp{\(count + (n-i+1) \geqslant k\): ho ancora abbastanza bit da accendere per raggiungere \(k\)}
 
 	\BlankLine
 	\ForEach{\(c \in C\)}{
-		\(S[i] = c\)\;
+		\(S[i] \Assign c\)\;
 		\tcp{i bit scelti non cambiano nelle chiamate successive}
-		\Addto{count}{S[i]} \Comment*[l]{sommo i bit a \(1\)}
+		\AddTo{count}{S[i]} \Comment*[l]{sommo i bit a \(1\)}
 
 		\BlankLine
-		\eSea{\(count = k\)}{
+		\eIf{\(count \Equal k\)}{
 			\processSolution{S, i}\;
 		}{
 			\subSets{S, n, k, i+1, count}\;
@@ -341,20 +328,17 @@ Elencare tutti i sottoinsiemi di dimensione \(k\) di un insieme \(\{1, \dots, n\
 }
 
 \end{algorithm}
-\RestoreCaptionOfAlgo
 
 \paragraph{Considerazioni}
 Abbiamo imparato che \enquote{specializzando} l'algoritmo generico, possiamo ottenere una versione più efficiente.
 Tuttavia abbiamo ottenuto solo un miglioramento parziale (verso \(\nicefrac{n}{2}\)).
 
 \begin{note}
-\'E difficile ottenere la stessa efficienza con un algoritmo iterativo.
+\`{E} difficile ottenere la stessa efficienza con un algoritmo iterativo.
 \end{note}
 
-\appunti
-
 \newpage
-\subsection{Permutazioni}
+\section{Permutazioni}
 
 \paragraph{Definizione del problema}
 Stampa tutte le permutazioni di un insieme \(A\).
@@ -364,21 +348,21 @@ L'insieme dei candidati dipende dalla soluzione parziale \emph{corrente}.
 \begin{algorithm}[H]
 \caption[Stampa tutte le permutazioni di un insieme \(A\)]{}
 
-\prototype{\permutations{\Set A, \Int n, \Item{} S, \Int i}}{
-	\tcp{\(A\): insieme dalla quale prendo gli oggetti}
-	\tcp{\(n\): numero di permutazioni}
+\prototype{\permutations{\Set \(A\), \Int \(n\), \Item[] \(S\), \Int \(i\)}}{
+	\params{A}[insieme dalla quale prendo gli oggetti]
+	\params{n}[numero di permutazioni]
 
 	\BlankLine
 	\ForEach{\(c \in A\)}{
-		\(S[i] = c\) \Comment*[l]{scelgo l'oggetto}
+		\(S[i] \Assign c\) \Comment*[l]{scelgo l'oggetto}
 		\(A.\setRemove{c}\) \Comment*[l]{lo tolgo dall'insieme}
 
 		\BlankLine
-		\eSea{\(A.\setEmpty\)}{
+		\eIf{\(A.\setEmpty\)}{
 			\processSolution{S, n}\;
 		}{
 			\tcp{l'insieme \(A\) ha un elemento in meno}
-			\permutations{A, n, S, i+1}\;
+			\permutations{\(A\), \(n\), \(S\), \(i+1\)}\;
 		}
 
 		\BlankLine
@@ -387,12 +371,9 @@ L'insieme dei candidati dipende dalla soluzione parziale \emph{corrente}.
 }
 
 \end{algorithm}
-\RestoreCaptionOfAlgo
-
-% \appunti
 
 % \newpage
-\subsection{Problema delle otto regine}
+\section{Problema delle otto regine}
 
 \begin{minipage}[c]{.675\textwidth}
 \paragraph{Definizione del problema}
@@ -402,9 +383,9 @@ Il problema consiste nello posizionare \(n\) regine in una scacchiera \(n \times
 Ogni riga ed ogni colonna deve contenere esattamente una regina.
 \end{idea}
 
-Rappresentiamo la scacchiera con un vettore \Array{S}{1}{n}, effettuiamo \emph{pruning} eliminando le diagonali.
+Rappresentiamo la scacchiera con un vettore \(S[1][n]\), effettuiamo \emph{pruning} eliminando le diagonali.
 
-Il numero di soluzioni ammonta a \(n! = 8! = 40320\) della quale solo \(15720\) vengono esplorate.
+Il numero di soluzioni ammonta a \(n! = 8! = \num{40320}\) della quale solo \num{15720} vengono esplorate.
 \end{minipage}\hfill
 \begin{minipage}[c]{.3\textwidth}
 	\centering
@@ -418,52 +399,53 @@ Il numero di soluzioni ammonta a \(n! = 8! = 40320\) della quale solo \(15720\) 
 
 Esiste un algoritmo \emph{probabilistico} che risolve il problema in tempo lineare, tuttavia non garantisce che la terminazione sia sempre corretta.
 Quindi viene fatto eseguire più volte fintanto che restituisce una soluzione corretta.
-Il meccanismo consiste nel partire da una soluzione \enquote{ragionevolmente buona} e di muovere il pezzo con il più grande numero di conflitti nella nella posizione, all'interno della stessa colonna, in cui ne genera il numero minore.
+Il meccanismo consiste nel partire da una soluzione \enquote{ragionevolmente buona} e di muovere il pezzo con il più grande numero di conflitti nella posizione, all'interno della stessa colonna, in cui ne genera il numero minore.
 La soluzione iniziale è scelta in modo \enquote{casuale} (ne parleremo più approfonditamente nel prossimo capitolo).
 L'algoritmo si ferma quando non ci sono più pezzi da muovere.
 
-\appunti
-
 \newpage
-\subsection{Giro di cavallo}
+\section{Giro di cavallo}
 
 \begin{minipage}{.675\textwidth}
 \paragraph{Definizione del problema}
 Lo scopo è trovare un \enquote{giro di cavallo}, ovvero un percorso di mosse valide del cavallo in modo che ogni casella venga visitata al più una volta.
-
 \end{minipage}
 \begin{minipage}{.3\textwidth}
-\centering
-\includestandalone{assets/figures/16/chessboard-knight}
+	\centering
+	\includestandalone{assets/figures/16/chessboard-knight}
 \end{minipage}
 
-\subsubsection{Algoritmo}
+\subsection{Algoritmo risolutivo}
 
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Problema del giro di cavallo]{}
+\caption{Problema del giro di cavallo}
 
-\prototype{\horse{\Matrix{\Int} S, \Int i, \Int x, \Int y}}{
+\prototype{\horse{\Matrix{\Int} \(S\), \Int \(i\), \Int \(x\), \Int \(y\)}}{
 
 	\BlankLine
-	\Set \(C = \moves{S,x,y}\)\;
+	\Set \(C \Assign \moves{S,x,y}\)\;
 
 	\BlankLine
 	\ForEach{\(c \in C\)}{
-		\(S[x,y] = i\) \Comment*[l]{ho raggiunto la posizione \((x,y)\) all'\(i\)-esimo passo}
+		\(S[x,y] \Assign i\) \Comment*[l]{ho raggiunto la posizione \((x,y)\) all'\(i\)-esimo passo}
 
 		\BlankLine
-		\uIf{\(i = 64\)}{
+		\uIf{\(i \Equal 64\)}{
 			\processSolution{S}\;
-			\Return \True
+
+			\BlankLine
+			\Return \True\;
 		}
 		\ElseIf{\horse{\(S\), \(i+1\), \(x + m_{x}[c]\), \(y + m_{y}[c]\)}}{
 			\tcp{effettuo l'\(i\)-esima mossa}
-			\Return \True
-		}
-		\(S[x,y] = 0\)
-	}
 
+			\BlankLine
+			\Return \True\;
+		}
+
+		\BlankLine
+		\(S[x,y] \Assign 0\)
+	}
 
 	\BlankLine
 	\Return \False
@@ -471,20 +453,22 @@ Lo scopo è trovare un \enquote{giro di cavallo}, ovvero un percorso di mosse va
 
 \BlankLine
 \tcp{trova le possibili mosse}
-\prototype{\moves{\Matrix{\Int} S, \Int x, \Int y}}{
+\prototype{\moves{\Matrix{\Int} \(S\), \Int \(x\), \Int \(y\)}}{
 
 	\BlankLine
-	\Set \(C = \setConstructor\)\;
+	\Set \(C \Assign \setConstructor\)\;
 
 	\BlankLine
 	\tcp{fra tutte le possibili mosse}
-	\From{\Int \(i=1\) \DownTo \(8\)}{
+	\From{\(i \Assign 1\) \DownTo \(8\)}{
 		\tcp{calcola la nuova posizione}
-		\(n_x = x + m_x[i]\)\;
-		\(n_y = y + m_y[i]\)\;
+		\(n_x \Assign x + m_x[i]\)\;
+		\(n_y \Assign y + m_y[i]\)\;
 
 		\BlankLine
-		\If{\(1 \leqslant n_x \leqslant 8\) \And \(1 \leqslant n_y \leqslant 8\) \And \(S[n_x,n_y] = 0\)}{
+		\If{\(1 \leqslant n_x \leqslant 8\) \And \(1 \leqslant n_y \leqslant 8\) \And \(S[n_x, n_y] \Assign 0\)}{
+
+			\BlankLine
 			\tcp{la posizione è libera}
 			\(C\).\setInsert{i}\;
 		}
@@ -495,12 +479,13 @@ Lo scopo è trovare un \enquote{giro di cavallo}, ovvero un percorso di mosse va
 }
 
 \end{algorithm}
-\RestoreCaptionOfAlgo
+
+Le prime due condizioni (\(1 \leqslant n_x \leqslant 8\) \And \(1 \leqslant n_y \leqslant 8\) controllano se rientro nei limiti della scacchiera, mentre la terza (\(S[n_x, n_y] \Assign 0\)) controlla se la posizione non è stata toccata.
 
 % \paragraph{Complessità}
 
 \newpage
-\subsection{Sudoku}
+\section{Sudoku}
 
 \begin{figure}[H]
 	\centering
@@ -509,41 +494,40 @@ Lo scopo è trovare un \enquote{giro di cavallo}, ovvero un percorso di mosse va
 	\label{fig:sudoku}
 \end{figure}
 
-\subsubsection{Algoritmo}
+\subsection{Algoritmo risolutivo}
 
-\NoCaptionOfAlgo
 \begin{minipage}[t]{.5\textwidth}
 	\begin{algorithm}[H]
-	\caption[Sudoku]{}
+	\caption{Sudoku}
 
 	\prototype{\Bool \sudoku{\Matrix{\Int} S, \Int i}}{
 
 		\BlankLine
-		\Int \(x = i \bmod 9\)\;
-		\Int \(y = \lfloor i / 9 \rfloor\)\;
-		\Set \(C = \setConstructor\)\;
+		\Int \(x \Assign i \bmod 9\)\;
+		\Int \(y \Assign \lfloor i / 9 \rfloor\)\;
+		\Set \(C \Assign \setConstructor\)\;
 
 		\BlankLine
 		\tcp{il numero è già stato scelto}
-		\eSea{\(S[x,y] \neq 0\)}{
-			\(S\).setInsert{\(S[x,y]\)}\;
+		\eIf{\(S[x,y] \neq 0\)}{
+			\(S\).\setInsert{\(S[x,y]\)}\;
 		}{
 			\tcp{inseriamo un numero}
-			\From{\(c=1\) \DownTo \(9\)}{
-				\If{\check{S,x,y,c}}{
+			\From{\(c \Assign 1\) \DownTo \(9\)}{
+				\If{\check{\(S\), \(x\), \(y\), \(c\)}}{
 					\(C\).\setInsert{c}\;
 				}
 			}
 		}
 
 		\BlankLine
-		\Int \(old = S[x,y]\)\;
+		\Int \(old \Assign S[x,y]\)\;
 		\ForEach{\(c \in C\)}{
-			\(S[x,y] = c\)\;
+			\(S[x,y] \Assign c\)\;
 
 			\BlankLine
 			\tcp{arriviamo all'ultima casella}
-			\If{\(i=80\)}{
+			\If{\(i \Equal 80\)}{
 				\processSolution{S,n}\;
 				\Return \True
 			}
@@ -555,86 +539,53 @@ Lo scopo è trovare un \enquote{giro di cavallo}, ovvero un percorso di mosse va
 		}
 
 		\BlankLine
-		\(S[x,y] = old\)\;
+		\(S[x,y] \Assign old\)\;
 		\Return \False
 	}
-
-	\begin{comment}
-	\BlankLine
-	\prototype{\check{\Matrix{\Int} S, \Int x, \Int y, \Int c}}{
-
-		\BlankLine
-		\From{\(j=0\) \DownTo \(8\)}{
-			\tcp{controllo sulla colonna}
-			\From{\(S[x,j] = c\)}{
-				\Return \False
-			}
-
-			\BlankLine
-			\tcp{controllo sulla riga}
-			\From{\(S[j,y] = c\)}{
-				\Return \False
-			}
-		}
-
-		\BlankLine
-		\tcp{}
-		\Int \(b_x = \floor{x/3}\)\;
-		\Int \(b_y = \floor{y/3}\)\;
-		\From{\(i_x = 0\) \DownTo \(2\)}{
-			\From{\(i_y = 0\) \DownTo \(2\)}{
-				\tcp{controllo sulla sottotabella}
-				\If{\Int \(S[b_x \cdot 3 + i_x, b_y \cdot 3 + i_y] = c\)}{
-					\Return \False
-				}
-			}
-		}
-	}
-	\end{comment}
-
 \end{algorithm}
-\end{minipage}
-% WARNING
+\end{minipage}%
 \begin{minipage}[t]{.55\textwidth}
 \begin{algorithm}[H]
-\caption[]{}
+\caption*{}
 
 \tcp{se posso inserire un numero in quella cella}
-\prototype{\check{\Matrix{\Int} S, \Int x, \Int y, \Int c}}{
+\prototype{\check{\Matrix{\Int} \(S\), \Int \(x\), \Int \(y\), \Int \(c\)}}{
 
 	\BlankLine
-	\From{\(j=0\) \DownTo \(8\)}{
+	\From{\(j \Assign 0\) \DownTo \(8\)}{
 		\tcp{controllo sulla colonna}
-		\If{\(S[x,j] = c\)}{
+		\If{\(S[x,j] \Equal c\)}{
 			\Return \False
 		}
 
 		\BlankLine
 		\tcp{controllo sulla riga}
-		\If{\(S[j,y] = c\)}{
+		\If{\(S[j,y] \Equal c\)}{
 			\Return \False
 		}
 	}
 
 	\BlankLine
-	\Int \(b_x = \floor{x/3}\)\;
-	\Int \(b_y = \floor{y/3}\)\;
-	\From{\(i_x = 0\) \DownTo \(2\)}{
-		\From{\(i_y = 0\) \DownTo \(2\)}{
+	\Int \(b_x \Assign \floor{x/3}\)\;
+	\Int \(b_y \Assign \floor{y/3}\)\;
+	\From{\(i_x \Assign 0\) \DownTo \(2\)}{
+		\From{\(i_y \Assign 0\) \DownTo \(2\)}{
 			\tcp{controllo sottotabella}
-			\If{\Int \(S[b_x \cdot 3 + i_x, b_y \cdot 3 + i_y] = c\)}{
+			\If{\(S[b_x \cdot 3 + i_x, b_y \cdot 3 + i_y] = c\)}{
 				\Return \False
 			}
 		}
 	}
 }
 
+% TODO mette le minipage all'interno
+% NOTE lunghezza totalmente arbitraria
+\vspace{104.6pt}
 \end{algorithm}
 \end{minipage}
-\RestoreCaptionOfAlgo
 
 \newpage
-\subsection{Inviluppo convesso}
+\section{Inviluppo convesso}
 
 \begin{definition}[poligono convesso]
 Un poligono nel piano è \alert{convesso} se ogni segmento di retta che congiunge due punti del poligono sta interamente nel poligono stesso, incluso il bordo.
@@ -643,7 +594,7 @@ Un poligono nel piano è \alert{convesso} se ogni segmento di retta che congiung
 \paragraph{Definizione del problema}
 Dati \(n\) punti \(p_1, \dots, p_n\) nel piano, con \(n \geqslant 3\), l'\alert{inviluppo convesso} (\emph{convex null}) è il più piccolo poligono convesso che li contiene tutti.
 
-\subsubsection{Algoritmo inefficiente}
+\subsection{Algoritmo inefficiente}
 
 Un poligono può essere rappresentato per mezzo dei suoi spigoli.
 Si consideri la retta che passa per una coppia di punti \((p_i, p_j)\), che divide il piano in due semipiani chiusi.
@@ -651,24 +602,22 @@ Se tutti i rimanenti \(n-2\) punti stanno dalla \emph{stessa parte}, allora lo s
 
 \NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[]{}
+\caption[]{inserire didascalia}
 
 Data una retta definita dai punti \(p_1\) e \(p_2\), determinare se due punti \(p\) e \(q\) stanno nello stesso semipiano definito dalla retta.
 
 \begin{figure}[H]
 	\centering
 	\includestandalone[scale=.5]{assets/figures/16/16-back-geometry2}
-	% \caption{}
-	% \label{fig:}
 \end{figure}
 
 \prototype{\Bool \stessaparte{\Point \(p_1\), \Point \(p_2\), \Point \(p\), \Point \(q\)}}{
-	\Real \(dx = p_2.x - p_1.x\)\;
-	\Real \(dy = p_2.y - p_1.y\)\;
-	\Real \(dx_1 = p.x - p_1.x\)\;
-	\Real \(dy_1 = p.y - p_1.y\)\;
-	\Real \(dx_2 = q.x - p_2.x\)\;
-	\Real \(dy_2 = q.y - p_2.y\)\;
+	\Real \(dx \Assign p_2.x - p_1.x\)\;
+	\Real \(dy \Assign p_2.y - p_1.y\)\;
+	\Real \(dx_1 \Assign p.x - p_1.x\)\;
+	\Real \(dy_1 \Assign p.y - p_1.y\)\;
+	\Real \(dx_2 \Assign q.x - p_2.x\)\;
+	\Real \(dy_2 \Assign q.y - p_2.y\)\;
 
 	\BlankLine
 	\tcp{se \(\geqslant 0\) allora sono dalla stessa parte}
@@ -676,7 +625,6 @@ Data una retta definita dai punti \(p_1\) e \(p_2\), determinare se due punti \(
 }
 
 \end{algorithm}
-\RestoreCaptionOfAlgo
 
 % \begin{figure}[H]
 % 	\centering
@@ -686,20 +634,20 @@ Data una retta definita dai punti \(p_1\) e \(p_2\), determinare se due punti \(
 % \end{figure}
 
 \paragraph{Complessità}
-Prendiamo tutte le coppie di punti (\(n^2\)) e controlliamo se tutti gli altri punti (\(n-2\)) stanna \enquote{dall'altra parte}.
-\(\Omicron(n^2 \cdot (n-2) = \Omicron(n^3)\)
+Prendiamo tutte le coppie di punti (\(n^2\)) e controlliamo se tutti gli altri punti (\(n-2\)) stanno \enquote{dall'altra parte}.
+La complessità ammonta a \(\Omicron(n^2 \cdot (n-2) = \Omicron(n^3)\)
 
 \newpage
-\subsubsection{Algoritmo di Graham}
+\subsection{Algoritmo di Graham}
 
 \begin{minipage}[c]{.5\linewidth}
 	\paragraph{Prima fase}
 	\begin{itemize}
-		\item Il punto con ordinata minima fa parte dell’inviluppo convesso;
-		\item Si ordinano i punti in base all’angolo formato dalla retta passante per il punto con ordinata minima e la retta orizzontale.
+		\item il punto con ordinata minima fa parte dell'inviluppo convesso;
+		\item si ordinano i punti in base all'angolo formato dalla retta passante per il punto con ordinata minima e la retta orizzontale.
 	\end{itemize}
-\end{minipage}
-\begin{minipage}[c]{.5\linewidth}
+\end{minipage}\hfill
+\begin{minipage}[c]{.4\linewidth}
 	\centering
 	\includestandalone[scale=.5]{assets/figures/16/16-back-geometry3}
 \end{minipage}
@@ -711,19 +659,19 @@ Prendiamo tutte le coppie di punti (\(n^2\)) e controlliamo se tutti gli altri p
 		\item per tutti i punti \(p_i = 3, \dots, n\):
 		\begin{enumerate}
 			\item siano \(p_h\) e \(p_j\), con \(h < j = i - 1\), gli ultimi due vertici dell'inviluppo corrente;
-			\item scandisci a \enquote{ritroso} i punti nell'inviluppo \enquote{corrente} ed elimina \(p_j\) se \stessaparte{\(p_j\),\(p_h\),\(p_1\),\(p_i\)} = \False;
+			\item scandisci a \enquote{ritroso} i punti nell'inviluppo \enquote{corrente} ed elimina \(p_j\) se \stessaparte{\(p_j\),\(p_h\),\(p_1\),\(p_i\)} \(\Equal\) \False;
 			\item termina tale scansione se \(p_j\) non deve essere eliminato;
 			\item aggiungi \(p_i\) all'inviluppo \enquote{corrente}.
 		\end{enumerate}
-	\end{itemize}\end{minipage}
+	\end{itemize}
+\end{minipage}\hfill
 \begin{minipage}[c]{.4\linewidth}
 	\centering
 	\includestandalone[scale=.5]{assets/figures/16/16-back-geometry4}
 \end{minipage}
 
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Algoritmo di Graham]{}
+\caption{Algoritmo di Graham}
 
 \prototype{\Stack \graham{\Point p, \Int n}}{
 
@@ -732,9 +680,9 @@ Prendiamo tutte le coppie di punti (\(n^2\)) e controlliamo se tutti gli altri p
 
 	\BlankLine
 	\tcp{trovo il minimo}
-	\From{\(i=2\) \DownTo \(n\)}{
+	\From{\(i \Assign 2\) \DownTo \(n\)}{
 		\If{\(p[i].y < p[min].y\)}{
-			\(min = i\)\;
+			\(min \Assign i\)\;
 		}
 	}
 
@@ -748,18 +696,18 @@ Prendiamo tutte le coppie di punti (\(n^2\)) e controlliamo se tutti gli altri p
 	\{ elimina eventuali punti \enquote{allineati} tranne i più lontani da \(p_1\), aggiornando \(n\) \}
 
 	\BlankLine
-	\Stack \(S = \stackConstructor\)\;
+	\Stack \(S \Assign \stackConstructor\)\;
 	\tcp{inserisci \(p_1\), \(p_2\) nell'inviluppo corrente}
 	\(S\).\stackPush{\(p_1\)}\;
 	\(S\).\stackPush{\(p_2\)}\;
 
 	\BlankLine
 	\tcp{per tutti gli altri punti}
-	\From{\(i=3\) \DownTo \(n\)}{
+	\From{\(i \Assign 3\) \DownTo \(n\)}{
 
 		\BlankLine
 		\tcp{escludo tutti i punti all'interno dell'inviluppo}
-		\While{\Not \stessaparte{S.\stackTop, S.\stackTopDue, \(p_1\), \(p_i\)}}{
+		\While(\tcp*[h]{\stackTopDue restituisce il secondo elemento}){\Not \stessaparte{S.\stackTop, S.\stackTopDue, \(p_1\), \(p_i\)}}{
 			\(S\).\stackPop\;
 		}
 
@@ -783,7 +731,6 @@ Prendiamo tutte le coppie di punti (\(n^2\)) e controlliamo se tutti gli altri p
 \end{comment}
 
 \end{algorithm}
-\RestoreCaptionOfAlgo
 
 \vspace{-.5cm}
 \paragraph{Complessità}

@@ -26,7 +26,7 @@
 		\BlankLine
 		\BlankLine
 		\From(\Comment*[h]{Riempio la tabella}){\(j \Assign 1\) \DownTo \(n\)} {
-			\If{\(i > t[j]\) \And \(DP[i-t[j]] + 1 < DP[i]\)}{
+			\If{\(t[j] \leqslant i\) \And \(DP[i-t[j]] + 1 < DP[i]\)}{
 				\tcp{aggiorno il valore}
 
 				\BlankLine

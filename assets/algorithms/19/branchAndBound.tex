@@ -1,15 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
-\begin{document}
 \ifstandalone
-\NoCaptionOfAlgo
+\begin{document}
 \begin{algorithm}[H]
-\caption[Schema degli algoritmi branch\&bound]{}
 \fi
 
 \prototype{\branchAndBound{\Array{Item} \(S\), \Int \(n\), \Int \(i\), \Int \(minCost\), \Int \(minSol\)}}{
@@ -52,6 +47,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\fi
 \end{document}
+\fi

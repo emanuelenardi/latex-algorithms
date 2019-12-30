@@ -1,8 +1,5 @@
 %&../preamble
 
-\SetKwFunction{hateville}{hateville}
-\SetKwFunction{solution}{solution}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
@@ -10,37 +7,47 @@
 \begin{algorithm}[H]
 \fi
 
-% \prototype{\Int \hateville{\Array{\Int} D, \Int n}}{
-%
-% 	\BlankLine
-% 	\Array{\Int} \(DP\) \Assign \new \Array{\Int}{0}{n}\;
-% 	\(DP[0] \Assign 0\)\;
-% 	\(DP[1] \Assign DP[1]\)\;
-%
-% 	\BlankLine
-% 	\From{\(i \Assign 2\) \DownTo \(n\)}{
-% 		\(DP[i]\) \Assign \maxFunction{\(DP[i-1]\), \(DP[i-2] + D[i]\)}
-% 	}
-%
-% 	\BlankLine
-% 	\Return \solution{DP, D, n}\;
-% }
-%
-% \prototype{\Int \solution{\Array{\Int} DP, \Array{\Int} D, \Int i}}{
-% 	\tcp{\(i\): indice di scorrimento}
-%
-% 	\BlankLine
-% 	\tcp{casi base}
-% 	%
-% 	%
-%
-% 	% \BlankLine
-% 	% \eIf{}{
-% 	%
-% 	% }{
-% 	% 	\Set
-% 	% }
-% }
+\prototype{\Int \hateville{\Array{\Int} D, \Int n}}{
+
+	\BlankLine
+	\tcp{creo la tabella}
+	\Array{\Int} \(DP\) \Assign \new \Array{\Int}{0}{n}\;
+
+	\BlankLine
+	\tcp{inserisco i casi base}
+	\(DP[0] \Assign 0\)\;
+	\(DP[1] \Assign DP[1]\)\;
+
+	\BlankLine
+	\tcp{calcolo il valore \(i\)-esimo}
+	\From{\(i \Assign 2\) \DownTo \(n\)}{
+		\(DP[i]\) \Assign \maxFunction{\(DP[i-1]\), \(DP[i-2] + D[i]\)}
+	}
+
+	\BlankLine
+	\tcp{Restituisco il valore \(n\)-esimo}
+	\Return \hatevilleSolution{\(DP\), \(D\), \(n\)}\;
+}
+
+\prototype{\Int \hatevilleSolution{\Array{\Int} \(DP\), \Array{\Int} \(D\), \Int \(i\)}}{
+	\params{i}[indice di scorrimento]
+
+	\BlankLine
+	\uIf(\tcp*[h]{caso base}){\(i \Equal 0\)}{
+		\Return \(\emptyset\)\;
+	}
+	\uElseIf(\tcp*[h]{caso base}){\(i \Equal 1\)}{
+		\Return \(\{1\}\)\;
+	}
+	\uElseIf(\tcp*[h]{non seleziono la casa}){\(DP[i] \Equal DP[i-1]\)}{
+		\Return \hatevilleSolution{\(DP\), \(D\), \(i-1\)}\;
+	}
+	\Else(\tcp*[h]{seleziono la casa}){
+		\Set \(sol =\) \hatevilleSolution{\(DP\), \(D\), \(i-2\)}\;
+		\(sol\).\setInsert{i}\;
+		\Return \(sol\)\;
+	}
+}
 
 \ifstandalone
 \end{algorithm}

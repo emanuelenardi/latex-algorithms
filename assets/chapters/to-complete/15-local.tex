@@ -1,21 +1,18 @@
-\documentclass[00-main.tex]{subfiles}
-\standalonetrue
-\setcounter{section}{14}
-\pagestyle{footer}
+\documentclass[main.tex]{subfiles}
+%&../../preamble.main
 
-% \graphicspath{{assets/figures/15/}}
+\setcounter{chapter}{14}
 
 % arara: pdflatex: { draft: yes, synctex: no }
 % arara: pdflatex: { synctex: yes }
-% arara: latexmk: { clean: partial }
 \begin{document}
-\section{Ricerca locale}
+\chapter{Ricerca locale}
 
 E' una tecnica di programmazione. L'idea generale è la seguente: se si conosce una soluzione ammissibile (non necessariamente ottima) ad un problema di ottimizzazione, si può cercare di trovare una soluzione migliore nelle \enquote{vicinanze} di quella precedente.
 Si continua in questo modo fino a quando non si è più in grado di migliorare
 
 \begin{minipage}{.6\linewidth}
-	\begin{algorithm}[H]
+	\begin{algorithm*}[H]
 	\caption{Logica della ricerca locale}
 	\SetKwFunction{ricercaLocale}{ricercaLocale}
 
@@ -28,7 +25,7 @@ Si continua in questo modo fino a quando non si è più in grado di migliorare
 		}
 	}
 
-	\end{algorithm}
+\end{algorithm*}
 \end{minipage}
 \begin{minipage}{.4\linewidth}
 \centering
@@ -53,7 +50,7 @@ Si continua in questo modo fino a quando non si è più in grado di migliorare
 	\end{tikzpicture}
 \end{minipage}
 
-\subsection{Problema di flusso massimo}
+\section{Problema di flusso massimo}
 
 Prima di definire il problema abbiamo bisogno di definire alcune entità e le corrispondenti proprietà.
 
@@ -137,7 +134,7 @@ Il valore di un flusso \(f\) è definito come la quantità di flusso uscente da 
 \end{equation*}
 \end{definition}
 
-\subsubsection{Problema del flusso massimo}
+\subsection{Problema del flusso massimo}
 
 \begin{definition}[Flusso massimo]
 Data una rete \(G = (V, E, s, t, c)\), trovare un flusso che abbia valore massimo fra tutti i flussi associabili alla rete.
@@ -184,11 +181,11 @@ Data una rete \(G = (V, E, s, t, c)\), trovare un flusso che abbia valore massim
 Il nostro obiettivo è quindi quello di trovare il flusso massimo.
 \end{note}
 
-\subsection{Metodo delle reti residue}
+\section{Metodo delle reti residue}
 
 Utilizziamo quindi il \emph{metodo delle reti residue}.
 Il metodo consiste nel partire da un flusso \enquote{corrente} \(f\), inizialmente nullo e
-\begin{enumerate*}[1)]
+\begin{enumerate*}[label=\arabic*)]
 	\item si \enquote{sottrae} il flusso attuale dalla rete iniziale, ottenendo così una rete residua;
 	\item si cerca un flusso \(g\) all'interno della rete residua;
 	\item si somma \(g\) ad \(f\).
@@ -197,7 +194,7 @@ Il metodo consiste nel partire da un flusso \enquote{corrente} \(f\), inizialmen
 Se il procedimento viene svolto correttamente, è possibile dimostrare che questo approccio restituisce un flusso massimo.
 
 \begin{note}
-\'E un algoritmo di ricerca locale, senza una dimostrazione non è possibile dire che la soluzione sia ottima.
+\`{E} un algoritmo di ricerca locale, senza una dimostrazione non è possibile dire che la soluzione sia ottima.
 \end{note}
 
 \begin{definition}[Flusso nullo]
@@ -208,36 +205,35 @@ Definiamo \alert{flusso nullo} la funzione \(f_0 \colon V \times V \to R^{\leqsl
 Per ogni coppia di flussi \(f_1\) e \(f_2\) in \(G\), definiamo il \alert{flusso somma} \(g = f_1 + f_2\) come un flusso tale per cui \(g(u,v) = f_1(u,v) + f_2(u,v)\)
 \end{definition}
 \begin{note}
-\'E possibile invalidare il vincolo sulla capacità.
+\`{E} possibile invalidare il vincolo sulla capacità.
 \end{note}
 
 \begin{minipage}{.5\linewidth}
 \begin{definition}[Capacità residua]
-Definiamo \alert{capacità residua} di un flusso \(f\) una funzione \mbox{\(c_{f}\colon V \times V \to R^{\geqslant 0}\)} tale che \(c_{f}(u,v) = c(u,v) - f(u,v)\)
-\end{definition}
-Per la definizione di capacità residua, si creano degli archi all'indietro: \(c_{f}(b,a) = c(b,a) - f(b,a) = 0 - (-5) = 5\)
+	Definiamo \alert{capacità residua} di un flusso \(f\) una funzione \mbox{\(c_{f}\colon V \times V \to R^{\geqslant 0}\)} tale che \(c_{f}(u,v) = c(u,v) - f(u,v)\)
+	\end{definition}
+	Per la definizione di capacità residua, si creano degli archi all'indietro: \(c_{f}(b,a) = c(b,a) - f(b,a) = 0 - (-5) = 5\)
 \end{minipage}
-\begin{minipage}{.5\linewidth}
-\centering
-\includestandalone[mode=image]{assets/figures/15/prop4}
+\begin{minipage}{.5\linewidth}\centering
+	\includestandalone[mode=image]{assets/figures/15/prop4}
 \end{minipage}
 
 \begin{minipage}{.5\linewidth}
-\begin{definition}[Reti residue]
+	\begin{definition}[Reti residue]
 	Data una rete di flusso \(G = (V, E, s, t, c)\) e un flusso \(f\) su \(G\), possiamo costruire una \alert{rete residua} \(G_f = (V, \alert{E_f}, s, t, \alert{c_f})\), tale per cui \((u,v) \in E_f\) se e solo se \(c_f(u,v) > 0\).
-\end{definition}
+	\end{definition}
 \end{minipage}
 \begin{minipage}{.5\linewidth}
-\centering
-% \begin{figure}[H]
-% \centering
-\includestandalone[mode=image]{assets/figures/15/reteResidua}
-% \caption{Rete residua}%
-% \label{gif:valore-flusso}
-% \end{figure}
+	\centering
+	% \begin{figure}[H]
+	% \centering
+	\includestandalone[mode=image]{assets/figures/15/reteResidua}
+	% \caption{Rete residua}%
+	% \label{gif:valore-flusso}
+	% \end{figure}
 \end{minipage}
 
-\subsubsection{Algoritmo}
+\subsection{Algoritmo}
 
 \begin{algorithm}[H]
 \caption{Schema generale}
@@ -246,15 +242,16 @@ Per la definizione di capacità residua, si creano degli archi all'indietro: \(c
 
 \prototype{\Matrix{\Int} \maxFlow{\Graph G, \Node s, \Node t, \Matrix{\Int} c}}{
 
-	\(f = f_0\) \Comment*[r]{Inizializza un flusso nullo}
-	\(r = c\) \Comment*[r]{Capacità iniziale}
+	\BlankLine
+	\(f \Assign f_0\) \Comment*[h]{inizializza un flusso nullo}
+	\(r \Assign c\) \Comment*[h]{capacità iniziale}
 
 	\BlankLine
 	\tcp{Fintanto che non rimane un flusso nullo}
-	\Repeat{\(g = f_0\)}{
-		\(g =\) trova un flusso \(r\) tale che \(\abs{g} > 0\), altrimenti \(f_0\)\;
+	\Repeat{\(g \Equal f_0\)}{
+		\(g \Assign\) trova un flusso \(r\) tale che \(\abs{g} > 0\), altrimenti \(f_0\)\;
 		\AddTo{f}{g} \Comment*[h]{necessita di una dimostrazione}\;
-		\(r =\) rete di flusso residua del flusso \(f\) in \(G\)\;
+		\(r \Assign\) rete di flusso residua del flusso \(f\) in \(G\)\;
 
 	}
 
@@ -271,32 +268,41 @@ Se \(f\) è un flusso in \(G\) e \(g\) è un flusso in \(G_f\), allora \(f + g\)
 
 \subparagraph{Vincolo sulla capacità}
 
-\[
-\begin{WithArrows}
+\begin{proof}
+\[\begin{WithArrows}
 g(u,v) &\leqslant c_f(u,v) \Arrow[tikz=mathcolor]{sostituisco \(c_f\)} \\
 %
 g(u,v) &\leqslant c(u,v) - f(u,v) \Arrow{aggiungo termine uguale} \\
 %
 \mathcolor{mathcolor}{f(u,v)} + g(u,v) &\leqslant c(u,v) - \Ccancel{f(u,v)} + \Ccancel{\mathcolor{mathcolor}{f(u,v)}} \Arrow{raccolgo e semplifico} \\
 %
-(\mathcolor{mathcolor}{f} + g)(u,v) &\leqslant c_f(u,v) \\
-\end{WithArrows}
-\]
+(\mathcolor{mathcolor}{f} + g)(u,v) &\leqslant c_f(u,v)
+\end{WithArrows}\]
+\end{proof}
 
-% \subparagraph{Vincolo sulla capacità}
+% TODO vincolo sulla capacità
+\subparagraph{Vincolo sulla capacità}
 
-% \subparagraph{Esempio}
-% Fare riferimento alla spiegazione grafica (\href{https://youtu.be/rxH0SEakE2Y?t=2127}{minuto 35:27}) \slide{} - \slide{} slide.
+\texttt{MATERIALE MANCANTE}
 
-% TODO maxFlow Ford-Fulkerson
-% \includestandalone{assets/algorithms/15/fordFulkerson}
+% TODO indicare il numero delle slide
+\subparagraph{Esempio}
+Fare riferimento alla spiegazione grafica (\href{https://youtu.be/rxH0SEakE2Y?t=2127}{minuto 35:27}) qui non riportata (riferimento trasparenze \slide{00} - \slide{00}.
+
+% TODO scrivere algoritmo
+\begin{algorithm}[H]
+	\caption{Algoritmo di Ford-Fulkerson}
+	\input{ford-fulkerson}
+\end{algorithm}
 
 \subparagraph{Ricerca del cammino}
 Manca del testo.
 Notare che le due cose non si escludono a vicenda.
 Il costo della visita è \(\Omicron(V+E)\).
 
-\begin{minted}[frame=lines]{java}
+\begin{code}
+\captionof{listing}{inserire didascalia}
+\begin{minted}{java}
 /**
  * Compute the max-flow using the Ford-Fulkerson algorithm
  * @param C the capacity matrix
@@ -318,8 +324,11 @@ private static int[][] flow(int[][] C, int s, int t) {
 	return F;
 }
 \end{minted}
+\end{code}
 
-\begin{minted}[frame=lines]{java}
+\begin{code}
+\captionof{listing}{inserire didascalia}
+\begin{minted}{java}
 /**
  * Performs a DFS starting from node i and trying to reach node t.
  * @param C the capacity matrix; if capacity[x][y]>0, there is a edge from x to y
@@ -355,9 +364,10 @@ private static int dfs(int[][] C, int[][] F, int i, int t, boolean[] visited, in
 	return 0;
 }
 \end{minted}
+\end{code}
 
 \paragraph{Complessità}
-Se le capacità della rete sono intere, l'algoritmo di Ford e Fulkerson ha complessità \(\Omicron((V+E) \abs{f^{*}} )\) (il costo della visita in ampiezza) o complessità \(\Omicron(V^2 \abs{f^{*}}) \) nel caso pessimo (se fatto su una matrice).
+Se le capacità della rete sono intere, l'algoritmo di Ford e Fulkerson ha complessità \(\Omicron((V+E)\, \abs{f^{*}} )\) (il costo della visita in ampiezza) o complessità \(\Omicron(V^2\, \abs{f^{*}}) \) nel caso pessimo (se fatto su una matrice).
 
 L'algoritmo di Edmonds e Karp ha complessità \(\Omega(V \cdot E^{2})\) nel caso pessimo.
 
@@ -371,26 +381,27 @@ Il cambio di notazione (ovvero segnalare i nodi con \(V\) (\emph{vertex}) anzich
 Il numero totale di aumenti di flusso eseguiti dall'algoritmo di Edmonds e Karp è \(\Omicron(V \cdot E) \).
 \end{lemma}
 
-\subsubsection{Dimostrazione complessità}
+\subsection{Dimostrazione complessità}
 
-Omessa.
+\texttt{MATERIALE MANCANTE}
+% Omessa.
+%
+% Tabella delle complessità.
+%
+% Dinic è il più utilizzato.
+% In Ordin i fattori moltiplicativi sono importanti.
 
-Tabella delle complessità.
+\subsection{Dimostrazione correttezza}
 
-Dinic è il più utilizzato.
-In Ordin i fattori moltiplicativi sono importanti.
+Per fare la dimostrazione di correttezza dobbiamo (re)introdurre delle definizioni.
 
-\subsubsection{Dimostrazione correttezza}
-
-Per fare la dimostrazione di correttezza dobbiamo re-introdurre delle definizioni.
-
-\begin{definition}[taglio]
+\begin{definition}[Taglio]
 Un \alert{taglio} (S,T) della rete di flusso \(G = (V,E,s,t,c)\) è una partizione \(V\) in \(S\) e \(T = V-S\) tale che \(s \in S\), \(t \in T\).
 \end{definition}
 
 Mettere schema a destra.
 
-\begin{definition}[capacità di un taglio]
+\begin{definition}[Capacità di un taglio]
 La \alert{capacità} \(c(S,T)\) attraverso il taglio \(S,T\) è pari a
 \begin{equation*}
 c(S,T) = \sum_{\mathclap{u \in S, v \in T}}\; c(u,v)
@@ -399,7 +410,7 @@ c(S,T) = \sum_{\mathclap{u \in S, v \in T}}\; c(u,v)
 
 Mettere schema a destra.
 
-\begin{definition}[flusso di un taglio]
+\begin{definition}[Flusso di un taglio]
 Se \(f\) è un \alert{flusso} in \(G\), il flusso netto \(F(S,T)\) attraverso \((S,T)\) è  pari a
 \begin{equation*}
 F(S,T)= \sum_{\mathclap{u \in S, v \in T}}\; f(u,v)
@@ -412,19 +423,16 @@ Mettere schema a destra.
 Dato un flusso \(f\) e un taglio \((S,T)\), la quantità di flusso \(F(S,T)\) che attraversa il taglio è uguale a \(\abs{f}\).
 \end{lemma}
 
-\[
-\begin{WithArrows}[displaystyle]
-F(S,T) &= \sum_{\mathrlap{u \in S, v \in T}}\; f(u,v) \Arrow{\(V = T - S\)} \\
-       &= \sum_{\mathrlap{u \in S, v \in \mhl{V}}}\; f(u,v) - \sum_{\mathrlap{u \in S, v \in \mhl{S}}}\; f(u,v) \Arrow{conservazione del flusso\\ e antisimmetria} \\
-	   &= \underbracket[1pt]{\sum_{\mathrlap{u \in S \mhl{-\{s\}},\\ v \in V}}\; f(u,v)}_{0}%
-	      + \sum_{\mathrlap{v \in V}}\; f(\mhl{s},v)%
-		  + \underbracket[1pt]{\sum_{\mathrlap{u \in S,\\ v \in S}}\; f(u,v)}_{0}
-\end{WithArrows}
-\]
-
-dove \(\displaystyle \sum_{\mathrlap{u \in S \mhl{-\{s\}}, v \in V}}\; f(u,v) = 0\) per la conservazione del flusso, e \(\displaystyle \sum_{\mathrlap{u \in S , v \in S}}\; f(u,v) = 0\) per antisimmetria.
-
-\(\displaystyle \sum_{\mathrlap{v \in V}}\; f(s,v) = f\) per definizone.
+% TODO trovare l'errore
+\[\begin{WithArrows}[displaystyle]
+F(S,T) &= \sum_{\mathclap{u \in S, v \in T}}\; f(u,v) \Arrow{\(V = T - S\)} \\
+       &= \sum_{\mathclap{u \in S, v \in \mhl{V}}}\; f(u,v) - \sum_{\mathclap{u, v \in \mhl{S}}}\; f(u,v) \Arrow{conservazione del flusso\\ e antisimmetria} \\
+	   &= \underbracket[1pt]{\sum_{\mathclap{u \in S \mhl{-\{s\}}, v \in V}}\; f(u,v)}_{0}%
+	      + \sum_{\mathclap{v \in V}}\; f(\mhl{s},v)%
+		  + \underbracket[1pt]{\sum_{\mathclap{u, v \in S}}\; f(u,v)}_{0} \Arrow{per definizione} \\
+	   &= \sum_{\mathrlap{v \in V}}\; f(s,v) = f
+\end{WithArrows}\]
+% dove \(\displaystyle \sum_{\mathclap{u \in S \mhl{-\{s\}}, v \in V}}\; f(u,v) = 0\) per la conservazione del flusso, e \(\displaystyle \sum_{\mathclap{u \in S , v \in S}}\; f(u,v) = 0\) per antisimmetria.
 
 Un taglio definisce un limite superiorie al flusso massimo che può essere presente nella rete.
 
@@ -432,11 +440,13 @@ Un taglio definisce un limite superiorie al flusso massimo che può essere prese
 Il flusso massimo è limitato superiormente dalla capacità del taglio minimo (ovvero il taglio la cui capacità è minotr fra tutti i taglio).
 \end{lemma}
 
-Mettere schema a destra.
+\texttt{MATERIALE MANCANTE}
+% Mettere schema a destra.
 
 La somma dei flussi dev'essere necessariamente minore della somma delle capacità.
 
-Riporta equazione.
+\texttt{MATERIALE MANCANTE}
+% Riporta equazione.
 
 Quindi, il valore del flisso è limitato superiormente dalla capacità di tutti i possibili tagli.
 
@@ -448,5 +458,7 @@ Le seguenti affermazioni sono equivalenti:
 	\item c
 \end{itemize}
 \end{theorem}
+
+\texttt{DA FINIRE}
 
 \end{document}

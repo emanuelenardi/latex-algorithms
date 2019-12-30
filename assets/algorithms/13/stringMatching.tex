@@ -28,7 +28,7 @@
 		\From{\(j \Assign 1\) \DownTo \(n\)}{
 
 			\BlankLine
-			\Int \(\Temp \Assign DP[i-1][j-1] + \iif(P[i] \Assign T[j], 0, 1)\)
+			\Int \(\Temp \Assign DP[i-1][j-1] + \iif(P[i] \Equal T[j], 0, 1)\)
 			\Comment*[r]{0: uguali, 1: sostituzione}
 
 			\(\Temp \Assign \MathMin(\Temp, DP[i-1][j] + 1)\)

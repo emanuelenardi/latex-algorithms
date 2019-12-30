@@ -1,0 +1,19 @@
+% NOTE permette di segnare le correzioni
+\usepackage[
+    markup = default,
+    addedmarkup = colored, % default
+	deletedmarkup = sout,
+	highlightmarkup = background, % default
+    commentmarkup = uwave, % default: todo
+    authormarkup = superscript, % default
+    authormarkupposition = right, % default
+    authormarkuptext = id,
+    % ulem={normalem},
+    % final % se accetti tutte le modifiche
+]{changes}
+
+% NOTE definisco autori e colori associati
+\definechangesauthor[name={Emanuele Nardi}, color=red]{EN}
+
+% NOTE salva la definizione di comment in help, poichè il pacchetto 'comment' lo ridefinisce
+\let\help\comment

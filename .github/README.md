@@ -22,8 +22,8 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 
 -   1° Semetre
 
-	| no. | Presente | Titolo                          |
-	| --- | -------- | ------------------------------- |
+	| no. | Presente | Titolo                          | no. pagine |
+	| --- | -------- | ------------------------------- | --- |
 	| 1   | ❌       | Introduzione                    |
 	| 2   | ✔️       | Analisi di algoritmi            |
 	| 2   | ✔️       | Analisi delle funzioni di costo |
@@ -40,8 +40,8 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 
 -   2° Semetre
 
-	| no. | Presente | Titolo                          |
-	| --- | -------- | ------------------------------- |
+	| no. | Presente | Titolo                          | no. pagine |
+	| --- | -------- | ------------------------------- | --- |
 	| 13  | ✔️       | Programmazione Dinamica         |
 	| 14  | ✔️       | Algoritmi ingordi               |
 	| 15  | ✔️       | Ricerca locale                  |
@@ -50,8 +50,8 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 
 -   Appendici:
 
-	| no. | Presente | Titolo                          |
-	| --- | -------- | ------------------------------- |
+	| no. | Presente | Titolo                          | no. pagine |
+	| --- | -------- | ------------------------------- | --- |
 	| A1  | ❌       | Problema dell'ordinamento       |
 
 <!-- - Esercizi di laboratorio -->

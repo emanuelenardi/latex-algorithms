@@ -7,11 +7,14 @@ REM TODO ancora da scrivere
 REM arara hateville-solution
 
 arara hateville
+arara hateville-solution
 arara intervals-dp
 arara intervals-pred
 
 REM TODO ancora da scrivere
 REM arara knapsack-dp
+REM arara knapsack-limitless-memo
+REM arara knapsack-memo
 
 arara par-compute
 arara par-multiply

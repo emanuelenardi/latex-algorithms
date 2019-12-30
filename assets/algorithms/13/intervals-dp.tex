@@ -17,13 +17,16 @@
 	\Matrix{\Int} \(DP\) \Assign \new \Array{\Int}{0}{n}\;
 
 	\BlankLine
-	\tcp{riempio la tabella}
+	\tcp{Riempio la tabella}
 	\(DP[0] \Assign 0\)\;
+
+	\BlankLine
+	\tcp{Calcolo delle soluzioni}
 	\From{\(i \Assign 1\) \DownTo \(n\)}{
 		\(DP[i]\) \Assign \MathMax{\(DP[i-1]\), \(w[i] + DP[pred[i]]\)}\;
 	}
 
-	\tcp{costruisco l'insieme dei predecessori}
+	\tcp{Costruisco l'insieme dei predecessori}
 	\(i \Assign n\)\;
 	\Set \(S \Assign \setConstructor\)\;
 
@@ -31,8 +34,8 @@
 	\While(\Comment*[h]{fintanto che ci sono intervalli disponibili}){\( i > 0 \)}{
 
 		\BlankLine
-		\eIf(\Comment*[h]{commento}){\(DP[i-1] > \weight{i} + DP[pred[i]]\)}{
-			\(\Decrement{i}\) \Comment*[h]{non considerarlo}\;
+		\eIf(\Comment*[h]{logica dell'algoritmo}){\(DP[i-1] > \weight{i} + DP[pred[i]]\)}{
+			\(\Decrement{i}\) \Comment*[h]{non considerare l'intervallo}\;
 		}{
 			\(S.\setInsert(i)\) \Comment*[h]{inseriscilo nell'insieme}\;
 			\(i \Assign pred[i]\) \Comment*[h]{scorri gli interalli}\;

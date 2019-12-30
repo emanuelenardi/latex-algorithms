@@ -13,15 +13,15 @@
 \fi
 
 \prototype{\Int \fibonacci{\Int n}}{
-	\Int \(DP_0 = 1\)\;
-	\Int \(DP_1 = 1\)\;
-	\Int \(DP_2 = 1\)\;
+	\Int \(DP_0 \Assign 1\)\;
+	\Int \(DP_1 \Assign 1\)\;
+	\Int \(DP_2 \Assign 1\)\;
 
 	\BlankLine
-	\From{\(i = 2\) \DownTo \(n\)}{
-		\(DP_0 = DP_1\)\;
-		\(DP_1 = DP_2\)\;
-		\(DP_2 = DP_0 + DP_1\)\;
+	\From{\(i \Assign 2\) \DownTo \(n\)}{
+		\(DP_0 \Assign DP_1\)\;
+		\(DP_1 \Assign DP_2\)\;
+		\(DP_2 \Assign DP_0 + DP_1\)\;
 	}
 
 	\Return \(DP_2\)\;

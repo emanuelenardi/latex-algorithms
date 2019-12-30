@@ -11,9 +11,12 @@
 % NOTE riduce lo spazio sopra un 'paragraph'
 % NOTE https://tex.stackexchange.com/questions/4891/how-do-i-control-the-spacing-above-a-new-paragraph
 \makeatletter
-\renewcommand{\paragraph}{%
-	\@startsection{paragraph}{4}%
-	{\z@}{1ex \@plus 1ex \@minus .2ex}{-1em}% 3.25ex -> 1ex
-	{\normalfont\normalsize\bfseries}%
-}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                    {1ex \@plus1ex \@minus.2ex}% 3.25ex -> 1ex
+                                    {-1em}%
+                                    {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                                       {1ex \@plus1ex \@minus .2ex}% 3.25ex -> 1ex
+                                       {-1em}%
+                                      {\normalfont\normalsize\bfseries}}
 \makeatother

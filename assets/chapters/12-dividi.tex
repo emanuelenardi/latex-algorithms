@@ -1,36 +1,19 @@
 \documentclass[main.tex]{subfiles}
-%&preamble.main
+%&../../preamble.main
 
-% NOTE impostazione contatore per compilazione in standalone
-% \setcounter{section}{11}
-%
+\setcounter{chapter}{11}
+
 % % NOTE sopprimere i warnings localmente
 % \hbadness=10000
 % \hfuzz=\maxdimen\newdimen\hfuzz
 % % \usepackage[saveall]{silence}
 % \usepackage{silence}
 % \WarningsOff[caption]
-%
-% % NOTE impostazione percorsi di default
-% % https://tex.stackexchange.com/questions/79058/
-% \makeatletter
-% \providecommand*{\input@path}{}
-% \g@addto@macro\input@path{%
-% 	{assets/algorithms/sorting/}%
-% 	{assets/algorithms/12/}%
-% }% append
-% \makeatother
-%
-% \graphicspath{
-% 	{assets/figures/12/}%
-% }
 
 % arara: pdflatex: { shell: yes, draft: yes, synctex: no }
 % arara: pdflatex: { shell: yes, synctex: yes }
 
 \begin{document}
-% \maketitle
-
 \chapter{Divide et Impera}
 
 \section{Risoluzione di problemi}

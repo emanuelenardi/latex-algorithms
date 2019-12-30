@@ -1,70 +1,74 @@
-\documentclass[00-main.tex]{subfiles}
-\standalonetrue
-\setcounter{section}{13}
-\pagestyle{footer}
+%&../../preamble.main
+\documentclass[main.tex]{subfiles}
+
+\setcounter{chapter}{13}
 
 % arara: pdflatex: { draft: yes, synctex: no }
 % arara: pdflatex: { synctex: yes }
-% arara: latexmk: { clean: partial }
 \begin{document}
 \section{Greedy}
-\begin{fquote}[Gordon Gekko][Wall Street]%
-	The point is, ladies and gentleman, that greed, for lack of a better
-	word, is good. Greed is right, greed works. Greed clarifies, cuts through, and
-	captures the essence of the evolutionary spirit. Greed, in all of its forms;
-	greed for life, for money, for love, for knowledge has marked the upward surge of mankind. And greed, you mark my words, will not only save Teldar Paper, but
-	that other malfunctioning corporation called the USA. Thank you very
-	much.
+\begin{fquote}
+	[Gordon Gekko]
+	[Wall Street]
+The point is, ladies and gentleman, that greed, for lack of a better word, is good. Greed is right, greed works.
+Greed clarifies, cuts through, and captures the essence of the evolutionary spirit.
+Greed, in all of its forms;
+greed for life, for money, for love, for knowledge has marked the upward surge of mankind.
+% And greed, you mark my words, will not only save Teldar Paper, but that other malfunctioning corporation called the USA.
+% Thank you very much.
 \end{fquote}
 
 \begin{note}
-Non è difficile scrivere gli algoritmi, la parte difficile è dimostrare che restituiscano la soluzione ottimale.
+Non è difficile scrivere algoritmi ingordi, la parte difficile sta nel dimostrare che restituiscano la soluzione ottimale.
 \end{note}
 
-Molti dei problemi che vedremo li abbiamo già visti ma sono casi particolari.
+Molti dei problemi che vedremo li abbiamo già visti, ma in questo capitolo tratteremo dei loro casi particolari.
 Capita spesso che per risolvere casi generali ci si debba avvalere della programmazione dinamica, mentre per casi particolari sia meglio usare algoritmi ingordi.
 
-\paragraph{Introduzione}
+\section{Introduzione}
+
 Sia la programmazione dinamica che gli algoritmi greedy cercano di risolvere problemi di ottimizzazione.
 Gli algoritmi che li risolvono devono prendere una serie di decisioni e differiscono fra di loro da \emph{come} queste decisioni vengono prese.
 Nella programmazione dinamica valutiamo tutte le possibili decisioni evitando di rivalutare decisioni (percorsi) già intraprese.
 Negli algoritmi ingordi, invece, selezioniamo \emph{una sola} fra le possibili decisioni. Quale? Quella che sembra ottima (ovvero \emph{localmente ottima}).
-\'E però necessario dimostrare che si ottiene un ottimo globale (ossia una soluzione \emph{globalmente ottima}).
+\`{E} però necessario dimostrare che si ottiene un ottimo globale (ossia una soluzione \emph{globalmente ottima}).
 
 \begin{note}
 Questo approccio riduce la complessità di dover valutare tutte le possibilità, ma necessita di essere dimostrato.
 \end{note}
 
 \paragraph{Quando applicarla}
-\'E consigliato applicare la tecnica greedy quando fra tutte le scelte possibili ne può essere individuata una che porta sicuramente alla soluzione ottima.
+\`{E} consigliato applicare la tecnica greedy quando fra tutte le scelte possibili ne può essere individuata una che porta sicuramente alla soluzione ottima.
 Deve comunque rimanere valida (come nella programmazione dinamica) la proprietà di \emph{sottostruttura ottima} ovvero che quando viene effettuata una scelta resti un sottoproblema con la stessa struttura del problema principale.
 
 \begin{note}
 Non tutti i problemi hanno una soluzione greedy.
 \end{note}
 
-\subsection{Insieme indipendente di intervalli}
-
-% TODO: link a insieme indipendente di intervalli pesati
-Abbiamo già risolto con la programmazione dinamica questo problema ma il fatto che tutti i pesi siano pari a 1 porta ad una semplificazione del problema.
+\section{Insieme indipendente di intervalli non pesati}
 
 \paragraph{Definizione del problema}
 Dati in input un insieme di intervalli della retta reale \(S = \{1, 2, \dots n\}\).
 Trovare un \emph{insieme indipendente massimale}, ovvero un sottoinsieme di cardinalità massima formato da intervalli disgiunti tra loro.
 
-\begin{note}[proprietà degli intervalli]
+\begin{note}[Proprietà degli intervalli]
 Gli intervalli sono chiusi a sinistra e aperti a destra.
 \end{note}
+
+% TODO link a insieme indipendente di intervalli pesati
+Abbiamo già risolto questo problema (con la programmazione dinamica), ma il fatto che tutti i pesi siano pari a 1 porta ad una semplificazione del problema.
 
 \begin{figure}[bt]
 	\centering
 	\includestandalone{assets/figures/14/gantt_greedy}
-	\caption[Una possibile soluzione ]{Una delle possibili soluzioni ingorde al problema dell'insieme indipendente di intervalli. Quali altre possibili soluzioni di cardinalità massima sono presenti? Nota come tutti gli intervalli hanno lo stesso peso.}%
+	\caption[]{Una delle possibili soluzioni ingorde al problema dell'insieme indipendente di intervalli.
+			   Quali altre possibili soluzioni di cardinalità massima sono presenti?
+			   Nota che tutti gli intervalli hanno lo stesso peso.}%
 	\label{fig:gantt-solution-greedy}
 \end{figure}
 
 \begin{note}
-Per questo particolare problema non esiste un insieme di cardinalità 5.
+Per questo particolare problema non esiste un insieme di cardinalità 5 (ossia un insieme contenente cinque elementi).
 \end{note}
 
 \paragraph{Come affrontare il problema}
@@ -72,11 +76,11 @@ Per questo particolare problema non esiste un insieme di cardinalità 5.
 	\item \emph{individuare} la sottostruttura ottima;
 	\item \emph{scrivere} una definizione ricorsiva per la dimensione della soluzione ottima;
 	\item \emph{cercare} una possibile scelta ingorda;
-	\item \emph{dimostrare} che la scelta presa porta alla soluzione ottima;
-	\item \emph{scrivere} un algoritmo ricorsivo (spesso sono iterativi) che effettua sempre la scelta ingorda.
+	\item \emph{dimostrare} che la scelta presa porti alla soluzione ottima;
+	\item \emph{scrivere} un algoritmo ricorsivo (spesso sono iterativi) che effettui sempre la scelta ingorda.
 \end{enumerate}
 
-\subsubsection{Individuazione sottostruttura ottima}
+\subsection{Individuazione sottostruttura ottima}
 
 Assumiamo che gli intervalli siano ordinati per tempo di fine (\(b_1 \leqslant b_2 \leqslant \dots b_n\)).
 
@@ -107,10 +111,10 @@ Supponiamo che \(A[i,j]\) sia una (poiché non è unica) soluzione ottimale di \
 \end{theorem*}
 
 \begin{proof}[Dimostrazione per assurdo]
-Se esistesse una soluzione migliore al problema \(S[i,j]\), diciamo \(A'[i,k]\) e la sostituissi ad \(A[i,k]\) ottenerrei una soluzione migliore anche al mio problema originale, ma questo non è possibile poiché se ottenessi una soluzione migliore allora \(A[i,k]\) non sarebbe una dimostrazione ottima, il che è assurdo.
+Se esistesse una soluzione migliore al problema \(S[i,j]\), diciamo \(A'[i,k]\) e la sostituissi ad \(A[i,k]\) ottenerrei una soluzione migliore anche al mio problema originale, ma questo non è possibile poiché se ottenessi una soluzione migliore allora \(A[i,k]\) non sarebbe una soluzione ottima, il che è assurdo.
 \end{proof}
 
-\subsubsection{Definizione ricorsiva del costo della soluzione}
+\subsection{Definizione ricorsiva del costo della soluzione}
 
 Partendo dalla definizione ricorsiva della soluzione
 
@@ -127,23 +131,23 @@ L'equazione di ricorrenza che si ottiene è la seguente
 	DP[i,j] =
 	\begin{dcases}
 		0 & S[i,j] = \emptyset \\
-		\max_{k \in S[i,j]} \{ \underbracket[1pt]{DP[i,k]}_{\text{prima di}\ k} + \underbracket[1pt]{DP[k,j]}_{\text{dopo di}\ k} + 1 \} & \textrm{altrimenti} \\
+		\max_{k \in S[i,j]} \{ \underbracket[1pt]{DP[i,k]}_{\text{prima di }k} + \underbracket[1pt]{DP[k,j]}_{\text{dopo }k} + 1 \} & \textrm{altrimenti} \\
 	\end{dcases}
 \end{equation*}
-
-\noindent
 dove \(DP[i, j]\) è la dimensione del più grande sottoinsieme \(A[i,j] \subseteq S[i,j]\) di intervalli indipendenti.
 
-Se l'insieme di intervalli dati in input è vuoto (\(S[i,j] = \emptyset\)), allora la dimensione dell'insieme è pari a \(0\) (caso base).
-Altrimenti, se l'insieme di intervalli di partenza non è vuoto, consideriamo l'insieme di cardinalità massima.
-L'insieme viene calcolato scegliendo l'intervallo \(k\)-esimo fra tutti gli intervalli \(k\) appartenenti all'insieme di partenza (\(k \in S[i,j]\)), sommando quindi \(1\) alla soluzione finale, e chiamando ricorsivamente il problema sugli intervalli rimanenti.
+\begin{enumerate}
+	\item se l'insieme di intervalli dati in input è vuoto (\(S[i,j] = \emptyset\)), allora la dimensione dell'insieme è pari a \(0\) (caso base);
+	\item altrimenti, se l'insieme di intervalli di partenza non è vuoto, consideriamo l'insieme di cardinalità massima.
+	L'insieme viene calcolato scegliendo l'intervallo \(k\)-esimo fra tutti gli intervalli \(k\) appartenenti all'insieme di partenza (\(k \in S[i,j]\)), sommando quindi \(1\) alla soluzione finale, e chiamando ricorsivamente il problema sugli intervalli rimanenti.
+\end{enumerate}
 
-\subsubsection{Verso una soluzione ingorda}
+\subsection{Verso una soluzione ingorda}
 
-La definizione precedente ci permette di scrivere un algoritmo basato su programmazione dinamica o su memoization di complessità \(\Omicron(n^3)\): bisogna necessariamente risolvere tutti i problemi con \(i<j\), con costo \(\Omicron(n)\) nel casso pessimo.
+La definizione precedente ci permette di scrivere un algoritmo basato su programmazione dinamica o su memoization di complessità \(\Omicron(n^3)\): bisogna necessariamente risolvere tutti i problemi con \(i<j\), con costo \(\Omicron(n)\) nel caso pessimo.
 
 Nella risoluzione del problema di intervalli \emph{pesati} abbiamo visto un algoritmo di complessità \(\Omicron(n \log n)\), il quale è applicabile anche nella risoluzione di questo problema.
-Questa complessità era data dall'ordinamento del vettore che avveniva prima che i dati venissero processati indipendentemente se i dati all'interno del vettore fossero già ordinati o meno.
+Questa complessità era data dall'ordinamento del vettore che avveniva prima che i dati venissero processati indipendentemente dall'ordinamento iniziale.
 Tuttavia è possibile migliorare il nostro algoritmo cercando una soluzione ingorda al nostro problema evitando di valutare tutte le possibili soluzioni.
 Infatti non è necessario analizzare tutti i possibili valori di \(k\).
 
@@ -158,19 +162,25 @@ Sia \(S[i,j]\) un sottoproblema non vuoto, ed indentifichiamo \(m\) l'intervallo
 
 \end{theorem*}
 
-\subsubsection{Dimostrazione che è una soluzione ottima}
+\subsection{Dimostrazione che è una soluzione ottima}
 
 \begin{proof}
-Fai riferimento \href{https://youtu.be/pt53LdiwN7s?t=1381}{alla spiegazione} (importante).
+Fai riferimento \href{https://youtu.be/pt53LdiwN7s?t=1381}{alla spiegazione su youtube} qui non riportata (importante).
 \end{proof}
 
 \paragraph{Conseguenze}
 Non è più necessario analizzare tutti i possibili valori di \(k\) in quanto faccio una una scelta \enquote{ingorda}, ma sicura: seleziono l'attività \(m\) con il minor tempo di fine.
 A questo punto non è più necessario analizzare due sottoproblemi; eliminando tutte le attività che non sono compatibili con la scelta ingorda mi resta solo il sottoproblema \(S[m,j]\) da risolvere.
 
-\subsubsection{Scrittura dell'algoritmo}
+\subsection{Scrittura dell'algoritmo}
 
-\includestandalone{assets/algorithms/14/intervals-greedy}
+\begin{algorithm}[H]
+	\caption{Insieme indipendente di intervalli disgiunti}
+	\input{intervals-greedy}
+\end{algorithm}
+
+\paragraph{Commento}
+Divido il resto per il taglio della moneta più grande trovando il numero di monete massimo di quel taglio, dopodiché tolgo il valore della somma quelle monete dal resto.
 
 \begin{note}
 Questo algoritmo non è applicabile al problema dell'insieme indipendente di intervalli \emph{pesati}.
@@ -182,7 +192,7 @@ Abbiamo cercato di risolvere il problema della selezione delle attività tramite
 Abbiamo poi dimostrato la proprietà della scelta greedy: dimostrando che per ogni sottoproblema, esiste almeno una soluzione ottima che contiene la scelta greedy.
 Infine abbiamo scritto un algoritmo iterativo che effettua sempre la scelta ingorda.
 
-\subsection{Resto}
+\section{Resto}
 
 \paragraph{Definizione del problema}
 Dati in input un insieme di \enquote{tagli} di monete, memorizzati in un vettore di interi positivi \(t[1 \ldots n]\) ed un intero \(R\) rappresentante il resto che dobbiamo restituire.
@@ -193,15 +203,15 @@ Più formalmente bisogna trovare un vettore \(x\) di interi non negativi tale ch
 R &= \sum_{i=1}^n x[i] \cdot t[i] & m &= \sum_{i=1}^n x[i] \quad \textrm{è minimo} \\
 \end{align*}
 
-\subsubsection{Individuazione sottostruttura ottima}
+\subsection{Individuazione sottostruttura ottima}
 
 Sia \(S(i)\) il problema di dare il resto pari ad \(i\).
-Sia \(A(i)\) una soluzione ottima del problema S(i), rappresentata da un multi-insieme (un insieme nel quale lo stesso indice può comparire più di una volta); sia \(j \in A(i)\) (\(j\) un possibile taglio).
+Sia \(A(i)\) una soluzione ottima del problema \(S(i)\), rappresentata da un multi-insieme (un insieme nel quale lo stesso indice può comparire più di una volta); sia \(j \in A(i)\) (\(j\) un possibile taglio).
 Allora, \(S(i-t[j])\) è un sottoproblema di \(S(i)\), la cui soluzione ottima è data da \(A(i) - \{j\}\).
 
 Quest'idea si traduce nella seguente definizione ricorsiva.
 
-\subsubsection{Definizione ricorsiva del costo della soluzione}
+\subsection{Definizione ricorsiva del costo della soluzione}
 
 Utilizziamo la tabella \(DP[0 \ldots R]\) per memorizzare le soluzioni e in \(DP[i]\) memorizziamo il minimo numero di monete per risolvere il problema \(S[i]\).
 
@@ -209,38 +219,45 @@ Utilizziamo la tabella \(DP[0 \ldots R]\) per memorizzare le soluzioni e in \(DP
 	DP[i] =
 	\begin{dcases}
 		0 & i = 0 \\
-		\min_{1 \leqslant j \leqslant n} \{ DP[i-t[j]] \mid t[j] \leqslant i \} + 1 & i > 0
+		\min_{1 \leqslant j \leqslant n} \{ DP[i-t[j]] \text{ t.c.\ } t[j] \leqslant i \} + 1 & i > 0
 	\end{dcases}
 \end{equation*}
 
 Il numero minimo di monete è \(0\) se non dobbiamo dare nessun resto (caso base), altrimenti cerchiamo fra tutti i possibili tagli quello che minimizza il numero di monete restituite.
 
+\subsection{Algoritmo basato su programmazione dinamica}
+
+\begin{algorithm}[H]
+	\caption{Programmazione dinamica applicata al problema del resto}
+	\input{resto-dp}
+\end{algorithm}
+
+\paragraph{Commento}
 \(t[j] \leqslant i\) sta a significare che il taglio delle monete che possiamo scegliere dev'essere più piccolo del resto che dobbiamo dare.
-
-\subsubsection{Algoritmo basato su programmazione dinamica}
-
-\includestandalone{assets/algorithms/14/resto-dp}
 
 \paragraph{Complessità}
 \(\Omicron(nR)\) dato dai cicli innestati.
-Una soluzione dipendente dal resto da dare (\(R\)) non è ottimale, si può fare meglio di così.
+Una soluzione dipendente dal resto \(R\) da dare non è ottimale, si può fare meglio di così.
 
 \begin{note}
 Quest'algoritmo rappresenta la soluzione generale al problema e, a differenza dell'algoritmo ingordo (che vedremo più avanti), funziona per qualsiasi insieme di tagli di monete.
 \end{note}
 
-\subsubsection{Scelta ingorda}
+\subsection{Scelta ingorda}
 
-Seleziona la moneta \(j\) \textcolor{darker}{più grande} tale per cui \(t[j] \leqslant R\), e poi risolvere il problema \(S(R - t[j])\).
+Seleziona la moneta \(j\) \textcolor{darker}{più grande} tale per cui \(t[j] \leqslant R\), per poi risolvere il problema \(S(R - t[j])\).
 
-\subsubsection{Scrittura dell'algoritmo}
+\subsection{Scrittura dell'algoritmo}
 
-\includestandalone{assets/algorithms/14/resto-greedy}
+\begin{algorithm}[H]
+	\caption{Approccio ingordo al problema del resto}
+	\input{resto-greedy}
+\end{algorithm}
 
 \paragraph{Complessità}
 Questo algoritmo ha complessità lineare, ossia \(\Omicron(n)\).
 
-\subsubsection{Dimostrazione che è una soluzione ottima}
+\subsection{Dimostrazione che è una soluzione ottima}
 
 \begin{note}
 La seguente dimostrazione si riferiscere ai tagli \({\myCircle}_1 = 50\), \({\myCircle}_2 = 10\), \({\myCircle}_3 = 5\), \({\myCircle}_4 = 1\).
@@ -258,7 +275,7 @@ m_k = \sum_{i=k+1}^{4} x[i] \cdot t[i]
 \end{equation*}
 
 \noindent
-Se dimostriamo che la somma delle monete di taglio inferiore a \(k\) è minore del valore che taglio \(k\)-esimo (\(\forall k: m_k < t[k]\)), allora la soluzione (ottima) è proprio quella calcolata dall'algoritmo.
+Se dimostriamo che la somma delle monete di taglio inferiore a \(k\) è minore del valore del taglio \(k\)-esimo (\(\forall k: m_k < t[k]\)), allora la soluzione (ottima) è proprio quella calcolata dall'algoritmo.
 
 \(m_{*}\) denota l'insieme di monete con tagli inferiore a \({\myCircle}_{*}\) centesimi, ad esempio \(m_{2}\) denota l'insieme di monete con tagli inferiore a (\({\myCircle}_{2} =\)) 10 centesimi.
 Mentre \(x[*]\) simboleggia il \emph{numero} di monete di quel taglio presenti nel resto della soluzione ottima, ad esempio \(x[3]\) simboleggia il \emph{numero} di monete di \({\myCircle}_3 = 5\) centesimi.
@@ -270,10 +287,10 @@ m_1 &= 10 \cdot x[2] + m_2	&& \leqslant 40 + m_2 < 40 + 10 = 50 = t[1] \\
 \end{align*}
 
 \begin{note}
-Fare riferimento \href{https://youtu.be/pt53LdiwN7s?t=2779}{alla spiegazione}.
+Fare riferimento \href{https://youtu.be/pt53LdiwN7s?t=2779}{alla spiegazione su youtube} qui non riportata.
 \end{note}
 
-\subsection*{Approccio ingordo}
+\section{Approccio ingordo}
 
 Cercheremo di risolvere i successivi problemi avendo direttamente un approccio ingordo, senza passare prima per la programmazione dinamica.
 Come fare? bisogna:
@@ -284,7 +301,7 @@ Come fare? bisogna:
 	\item \emph{scrivendo} un algoritmo top-down (anche iterativo), in alcuni casi sarà necessario pre-processare l'input.
 \end{itemize}
 
-\subsection{Scheduling}
+\section{Scheduling}
 
 \paragraph{Definizione del problema}
 Supponiamo di avere un processore e \(n\) job da eseguire su di esso,
@@ -345,49 +362,52 @@ Sia \(A\) una soluzione ottima di un problema con \(n\) job, in cui il job con m
 La permutazione dei seguenti \(n-1\) job in \(A\) è una soluzione ottima al sottoproblema in cui il job \(m\) non viene considerato.
 \end{theorem*}
 
-\subsubsection{Dimostrazione}
+\subsection{Dimostrazione}
 
-Fai riferimento \href{https://youtu.be/pt53LdiwN7s?t=3626}{alla spiegazione grafica}.
+Fai riferimento \href{https://youtu.be/pt53LdiwN7s?t=3626}{alla spiegazione grafica su youtube} qui non riportata.
 
-\subsection{Zaino frazionario}
+\section{Zaino frazionario}
 
-Riproponiamo un problema visto in precedenza --- lo zaino --- ma stavolta anzichè avere la limitazione di poter prenderere o non prenderlo un oggetto (zaino \texttt{0/1}), possiamo prenderne anche frazioni di esso (zaino \emph{reale}).
+Riproponiamo un problema visto in precedenza, ma stavolta anzichè avere la limitazione di poter prenderere o non prendere un oggetto (chiamato problema dello zaino \texttt{0/1}), possiamo prenderne anche frazioni di esso (zaino \emph{reale}).
 
 Un approccio ingordo è quello di ordinare gli oggetti in ordine di \emph{profitto specifico decrescente} (profitto su volume) e prendere quante più frazioni possibili degli elementi fino a riempire l'intera capacità dello zaino.
 
-\includestandalone{assets/algorithms/14/knapsack-greedy}
+\begin{algorithm}[H]
+	\caption{Approccio ingordo al problema del resto}
+	\input{knapsack-greedy}
+\end{algorithm}
 
 \(x[i]\) rappresenta la frazione dell'oggetto \(i\)-esimo che deve essere presa.
 
-\subsubsection{Correttezza dell'algoritmo}
+\subsection{Correttezza dell'algoritmo}
 
-Dimostrazione informale
+Dimostrazione informale:
 \begin{enumerate}
-	\item Assumiamo che gli oggetti siano ordinati per profitto specifico decrescente;
-	\item Sia \(x\) una soluzione ottima;
-	\item Supponiamo che \(x[1] < \min\left( \frac{C}{w[i]}, 1 \right) < 1\);
-	\item Allora possiamo costruire una nuova soluzione in cui \(x'[1] = \min\left( \frac{C}{w[i]}, 1 \right)\) e la proporzione di uno o più oggetti è ridotta di conseguenza;
-	\item Otteniamo così una soluzione \(x'\) di profitto uguale o superiore, visto che il profitto specifico dell'oggetto \(1\) è massimo.
+	\item assumiamo che gli oggetti siano ordinati per profitto specifico decrescente;
+	\item sia \(x\) una soluzione ottima;
+	\item supponiamo che \(x[1] < \min\left( \frac{C}{w[i]}, 1 \right) < 1\);
+	\item allora possiamo costruire una nuova soluzione in cui \(x'[1] = \min\left( \frac{C}{w[i]}, 1 \right)\) e la proporzione di uno o più oggetti è ridotta di conseguenza;
+	\item otteniamo così una soluzione \(x'\) di profitto uguale o superiore, visto che il profitto specifico del primo oggetto è massimo.
 \end{enumerate}
 
-\subsection{Compressione di Huffman}
+\section{Compressione di Huffman}
 
-Per rappresentare in modo efficiente i dati (minimizzare lo spazio su disco occupato, minimizzare il tempo di trasferimento su disco\dots ) abbiamo bisogno di adottare una qualche tecnica compressione.
+Per rappresentare in modo efficiente i dati (minimizzare lo spazio su disco occupato, minimizzare il tempo di trasferimento su disco\dots ) abbiamo bisogno di adottare una qualche tecnica di compressione.
 Una fra le tante possibili è la \emph{codifica dei caratteri}.
 
 \begin{note}
-La compressione dei caratteri ha una complessità dipendente in percentuale dalle dimensioni del file di origine.
+La codifica dei caratteri ha una complessità dipendente in percentuale dalle dimensioni del file di origine.
 \end{note}
 
 \begin{note}
-In un codice non deve essere mai \underline{prefisso} di un altro codice, in quanto è una condizione necessaria per distinguerli.
+Un codice non deve essere mai \underline{prefisso} di un altro codice, in quanto è una condizione necessaria per distinguerli.
 \end{note}
 
-\subsubsection{Rappresentazione ad albero per la decodifica}
+\subsection{Rappresentazione ad albero per la decodifica}
 
 Rappresenteremo il nostro risultato tramite un albero.
 La rappresentazione sulla sinistra non è la migliore possibile.
-E' possibile ottimizzare l'albero comprimendo i cammini per i caratteri \texttt{d} e \texttt{e} (come puoi vedere nella figura a destra).
+Ed è possibile ottimizzare l'albero comprimendo i cammini per i caratteri \texttt{d} e \texttt{e} (come puoi vedere nella figura a destra).
 Modificando di conseguenza anche la codifica dei caratteri ed ottenendo una codifica ottimizzata.
 
 \begin{minipage}[t]{.5\linewidth}
@@ -432,64 +452,71 @@ C[F,T] = \sum_{c \in \Sigma} f[c] \cdot d_{T}(c)
 \end{itemize}
 Quindi una codifica \(C\) è data da un particolare albero \(T\) dove viene rappresentata e da un particolare file \(F\).
 
-\subsubsection{Principio dell'algoritmo di Huffman}
-Vogliamo minimizzare la lunghezza dei caratteri che compaiono più frequentemente, assegnando quindi ai caratteri con la frequenza minore i codici corrispondenti ai percorsi più lunghi all'interno dell'albero.
+\subsection{Principio dell'algoritmo di Huffman}
+Vogliamo minimizzare la lunghezza della codifica per caratteri che compaiono più frequentemente: assegnando ai caratteri con frequenza minore codici corrispondenti a percorsi più lunghi all'interno dell'albero e a quelli di frequenza maggiore un percorso più corto.
 
 \begin{note}
 Una certa codifica è progettata per un file specifico.
 \end{note}
 
-\subsubsection{Algoritmo}
+\subsection{Algoritmo}
 
-\includestandalone{assets/algorithms/14/huffman}
+\begin{algorithm}[H]
+	\caption{Approccio ingordo al problema del resto}
+	\input{huffman}
+\end{algorithm}
 
-Siccome ogni volta devo estrarre i due elementi più piccoli faccio affidamento a un {\minHeapConstructor}.
-All'inizio inserisco tutte le lettere con la priorità data dalla loro frequenza e con un nodo contenente sia la frequenza che la lettera associata.
+Siccome ogni volta devo estrarre i due elementi più piccoli faccio affidamento ad una {\minHeapConstructor}.
+
+1. inserisco tutte le lettere con la priorità data dalla loro frequenza e con un nodo contenente sia la frequenza che la lettera associata.
+Dopodiché estraggo i due elementi più piccoli, credo un nuovo nodo contenente i due elementi appena estratti e restituisco il nodo così fatto al chiamante.
 
 \paragraph{Funzionamento dell'algoritmo}
-\begin{itemize}
-	\item Rimuovo i due nodi con frequenza minore;
-	\item Creo un nodo un'etichetta nulla e con frequenza pari alla somma delle frequenze dei nodi eliminati;
-	\item Collego i due nodi con il nodo creato;
-	\item Aggiungo il nodo così creato alla lista, mantenendo l'ordine;
-	\item si termina quando reasta un solo nodo nella lista.
+\begin{enumerate}
+	\item rimuovo i due nodi con frequenza minore;
+	\item creo un nodo un'etichetta nulla e con frequenza pari alla somma delle frequenze dei nodi eliminati;
+	\item collego i due nodi con il nodo creato;
+	\item aggiungo il nodo così creato alla lista, mantenendo l'ordine;
+	\item si termina quando reasta un solo nodo nella lista;
 	\item al termine, si etichettano gli archi dell'albero con bit \texttt{0}, \texttt{1}.
-\end{itemize}
+\end{enumerate}
 
 \paragraph{Complessità}
-Effettuo \(n\) volte operazioni che costano \(\log n\) come le operazioni di {\heapInsert} o di {\heapDeleteMin} per una complessità totale di \(\Omicron(n \log n)\).
+Effettuo \(n\) volte operazioni che costano \(\log n\), come le operazioni di {\heapInsert} o di {\heapDeleteMin} per una complessità totale di \(\Omicron(n \log n)\).
 
-\subsubsection{Dimostrazione di correttezza}
+\subsection{Dimostrazione di correttezza}
 
 \begin{theorem*}
-L'output dell'algoritmo Huffman per un dato file è un codice a prefisso ottimo
+L'output dell'algoritmo Huffman per un dato file è un codice a prefisso ottimo.
 \end{theorem*}
 
 Scegliere i due elementi con la frequenza più bassa conduce sempre ad una soluzione ottimale.
-Dato un problema sull'alfabeto \(\Sigma\), è possibile costruire un sottoproblema con un alfabeto più piccolo in cui togliamo due caratteri e ne aggiungiamo uno fittizio.
+Dato un problema sull'alfabeto \(\Sigma\).
+\`{E} possibile costruire un sottoproblema con un alfabeto più piccolo in cui togliamo due caratteri e ne aggiungiamo uno fittizio.
 
-\subsubsection{Scelta ingorda}
+\subsection{Scelta ingorda}
 
-\subsection{Albero di copertura minimi}
+\texttt{MATERIALE MANCANTE}
+
+\section{Albero di copertura minimi}
 
 \paragraph{Problema}
 Dato un grafo pesato, determinare come interconnettere tutti i suoi nodi minimizzando il costo del peso associato ai suoi archi (agli archi che andiamo a scegliere).
-Questo problema prende vari nomi, come albero di copertura minimo o albero di connessione minimo.
-In inglese questo problema prende il nome di \emph{Minimum Spanning Tree}.
+Questo problema prende vari nomi, come albero di copertura minimo o albero di connessione minimo, in inglese \emph{Minimum Spanning Tree}.
 
 \paragraph*{Risorse}
 
 \begin{otherlanguage}{english}
-If you are curious about what the cookie monster thing is, then watch the \href{https://www.youtube.com/watch?v=tKwnms5iRBU}{MIT lecture on Minimum Spanning Tree} of Professor Erik Demaine.
+If you are curious about who is the cookie monster, then watch the \href{https://www.youtube.com/watch?v=tKwnms5iRBU}{MIT lecture on Minimum Spanning Tree} of Professor Erik Demaine.
 \end{otherlanguage}
-Questo materiale è basato sulla lezione \enquote{\href{https://www.youtube.com/watch?v=VocW2D-Z0hk}{Alberi di copertura di peso minimo}} di \href{http://cricca.disi.unitn.it/montresor/}{Alberto Montresor}.
+% Questo materiale è basato sulla lezione \enquote{\href{https://www.youtube.com/watch?v=VocW2D-Z0hk}{Alberi di copertura di peso minimo}} di \href{http://cricca.disi.unitn.it/montresor/}{Alberto Montresor}.
 
 % \colon -> tex.stackexchange.com/questions/37789
 \paragraph{Definizione del problema}
-Dati in input un grafo non orientato e connesso \(G = (V, E)\) ed una funzione di peso (che determina il costo di connessione) \(w\colon V \times V \to \mathbb{R}\) (data una coppia di nodi restituisce un numero reale che rappresenta il peso).
+Dati in input un grafo non orientato e connesso \(G = (V, E)\) ed una funzione di peso (che determina il costo di connessione) \(w\colon V \times V \to\! \mathbb{R}\) (data una coppia di nodi restituisce un numero reale che rappresenta il peso).
 
 \begin{note}
-Poiché \(G\) non è orientato, \(w(u,v) = w(v,u)\).
+Poiché \(G\) non è orientato possiamo dire che \(w(u,v) = w(v,u)\).
 \end{note}
 
 Un albero di copertura di \(G\) è un sottografo \(T = (V, E_{T})\) tale che \(T\) è un albero non radicato, i lati dell'albero siano un sottoinsieme di quelli del grafo (\(E_{T} \subseteq E\)) e che contenga tutti i vertici di \(G\).
@@ -502,111 +529,127 @@ w(T) = \sum_{\mathclap{e \in T}}\; w(e) = \sum_{\mathclap{[u,v] \in E_T}}\; w(u,
 Non è detto che l'albero di copertura minimo sia univoco.
 \end{note}
 
-\subsubsection{Algoritmo generico}
+\subsection{Algoritmo generico}
 
 L'idea è di accrescere un sottoinsieme \(A\) di archi in modo tale che venga sempre
 rispettata la seguente invariante: \(A\) è un sottoinsieme di qualche albero di connessione minimo.
 
 \begin{theorem}
-Un arco \([u,v]\) è detto \emph{sicuro per \(A\)} se \(A \cup \{[u,v]\}\) è ancora un sottoinsieme di qualche albero di connessione minimo.
+Un arco \([u,v]\) è detto sicuro per \(A\) se \(A \cup \{[u,v]\}\) è ancora un sottoinsieme di qualche albero di connessione minimo.
 \end{theorem}
 
 \begin{algorithm}[H]
-\caption{Inserisci didascalia}
+\caption{Algoritmo generico per generare un albero di copertura minimo}
 
 \prototype{\Set \mstGenerico{\Graph G, \Array{\Int} w}}{
 
-	\Set \(A = \emptyset\) \Comment*[h]{parto da un insieme vuoto}\;
+	\Set \(A \Assign \emptyset\) \Comment*[h]{parto da un insieme vuoto}\;
 	\BlankLine
 	\While{\(A\) non forma un albero di copertura}{
-		trova un arco sicuro \([u,v]\)\;
-		\(A = A \cup \{[u,v]\}\) \Comment*[h]{lo aggiungo all'albero}\;
+
+		\BlankLine
+		Trova un arco sicuro \([u,v]\)\;
+		\(A \Assign A \cup \{[u,v]\}\) \Comment*[h]{lo aggiungo all'albero}\;
 	}
 	\Return \(A\)\;
 }
 
 \end{algorithm}
 
-\subsubsection{Dimostrazione}
+\subsection{Dimostrazione}
 La dimostrazione banale è lasciata come esercizio al lettore.
 Scherzo, scherzo!
+(ma non la riporto comunque)
 
-\subsubsection{Algoritmo di Kruskal}
+\subsection{Algoritmo di Kruskal}
 
 \paragraph{Idea}
 L'idea è quella di ingrandire sottoinsieme disgiunti (qualche idea sulla struttura dati da utilizzare?) di un albero di copertura minimo connettendoli fra di loro fino ad avere l'albero complessivo.
-Si individua quindi un arco sicuro scegliendo un arco \emph{di peso minimo} fra tutti gli archi che connettono due distinti alberi (distinti da componenti connesse) della foresta.
+Si individua quindi un arco sicuro scegliendo un arco \emph{di peso minimo} fra tutti gli archi che connettono due alberi distinti (distinti da componenti connesse) della foresta.
 
 L'algoritmo è ingordo perchè ad ogni passo si aggiunge alla foresta un arco con il peso minore.
 
 \paragraph{Implementazione}
 Per l'implementazione si usa una struttura Merge-Find Set ({\mfConstructor}).
 
-L'input non è un grafo \(G\), ma un vettore di archi (\(\textsc{edge}[\,]\)) perché ho bisogno di ordinare gli archi in base la peso.
+L'input non è un grafo \(G\), ma un vettore di archi (\(\textsc{edge}[\,]\)) perché abbiamo bisogno di ordinare gli archi in base la peso.
 La rappresentazione dei grafi (per liste di adiacenza) non permette di ordinare gli archi in base al peso.
-La trasformazione non viene rappresentata nel seguente algortmo.
+La trasformazione non viene rappresentata nel seguente algoritmo.
 
-\includestandalone{assets/algorithms/14/kruskal}
+\begin{algorithm}[H]
+	\caption{Algoritmo di Kruskal per la generazione di un MST}
+	\input{kruskal}
+\end{algorithm}
 
-\paragraph{Esempio}
-% TODO
-Fai riferimento alla \href{}{spiegazione grafica}.
+% TODO aggiungere link al video di youtube
+% \paragraph{Esempio}
+% Fai riferimento alla \href{}{spiegazione grafica} qui non riportata.
 
 \paragraph{Complessità}
-Il tempo di esecuzione per l’algoritmo di Kruskal dipende dalla realizzazione della struttura dati per Merge-Find Set.
+Il tempo di esecuzione per l'algoritmo di Kruskal dipende dalla realizzazione della struttura dati Merge-Find Set.
 Utilizziamo la versione con \emph{euristica sul rango più compressione dei cammini} che rende tutte le operazioni con costo ammortizzato costante pari a \(\Omicron(1)\).
+\begin{itemize}[topsep=0pt, itemsep=0pt]
+	\item[\circled{\ref{kruskal:init}}]
+	l'inizializzazione richiede \(\Omicron(n)\) in quanto devono essere creati tutti gli alberi separati;
 
-\circled{\ref{kruskal:init}}
-L’inizializzazione richiede \(\Omicron(n)\) in quanto devo creare tutti gli alberi separati.
-\circled{\ref{kruskal:order}}
-L'ordinamento degli archi (\(m\)) richiede \(\Omicron(m \log n)\), siccome il numero degli archi è limitato superiormente da \(n^2\) posso scrivere \(\Omicron(m \log n^2)\), per le proprietà dei logaritmi \(\Omicron(m \log n)\).
-\circled{\ref{kruskal:op}}
-Nel caso peggiore vengono eseguite \(\Omicron(m)\) operazioni sulla foresta di insiemi disgiunti (due {\mfFind} ed una {\mfMerge}), con tempo ammortizzato \(\Omicron(1)\).
-Per un totale di \(\Omicron(n + m \log n + m) = O(m \log n)\).
+	\item[\circled{\ref{kruskal:order}}]
+	l'ordinamento degli archi (\(m\)) richiede \(\Omicron(m \log n)\), siccome il numero degli archi è limitato superiormente da \(n^2\) posso scrivere \(\Omicron(m \log n^2)\), per le proprietà dei logaritmi \(\Omicron(m \log n)\);
 
-\subsection{Algoritmo di Prim}
+	\item[\circled{\ref{kruskal:op}}]
+	nel caso peggiore vengono eseguite \(\Omicron(m)\) operazioni sulla foresta di insiemi disgiunti (due {\mfFind} ed una {\mfMerge}), con tempo ammortizzato \(\Omicron(1)\).
+	Per un totale di \(\Omicron(n + m \log n + m) = O(m \log n)\).
+\end{itemize}
+
+\section{Algoritmo di Prim}
 
 \paragraph{Idea}
-A differenza dell'algortmo di Kruskal che formava molti alberi (rappresentati da insiemi disgiunti) e successivamente li univa l'algoritmo di Prim procede mantenendo in \(A\) un singolo albero.
+A differenza dell'algoritmo di Kruskal che formava molti alberi (rappresentati da insiemi disgiunti) che uniti successivamente, l'algoritmo di Prim procede mantenendo in \(A\) un singolo albero.
 
 \begin{note}
-Durante l'esecuzione dell'algoritmo esiste un solo albero che rappresenta un sottoinsieme di un albero di copertura minimo del grafo totale.
+Durante l'esecuzione dell'algoritmo esiste un solo albero che rappresenta il quale rappresenta un sottoinsieme di un albero di copertura minimo del grafo totale.
 \end{note}
 
-L’albero parte da un vertice arbitrario \(r\) (la radice) e cresce fino a quando non ricopre tutti i vertici.
+L'albero parte da un vertice arbitrario \(r\) (la radice) e cresce fino a quando non ricopre tutti i vertici.
 Ad ogni passo viene aggiunto un arco leggero che collega un vertice in \(V_A\) con un vertice in \(V - V_{A}\), dove \(V_{A}\) è l'insieme di nodi raggiunti da archi in \(A\).
 
-\subsubsection{Algoritmo}
-
 \paragraph{Implementazione}
-Abbiamo bisogno di una struttura dati per i nodi non ancora nell'albero.
-Durante l'esecuzione, i vertici non ancora nell'albero si trovano in una coda con min-priorità \(Q\) ordinata in base alla seguente definizione di priorità: \enquote{La priorità del nodo \(v\) è il peso minimo di un arco che collega \(v\) ad un vertice nell'albero, o \(+\infty\) se tale arco non esiste}.
+Abbiamo bisogno di una struttura dati per i nodi non ancora presenti nell'albero.
+Durante l'esecuzione, i vertici che devono essere inseriti si trovano in una coda con min-priorità \(Q\) ordinata in base alla seguente definizione di priorità: \enquote{la priorità del nodo \(v\) è il peso minimo di un arco che collega \(v\) ad un vertice nell'albero, o \(+\infty\) se tale arco non esiste}.
 
 L'albero è memorizzato tramite un \emph{vettore dei padri}, in cui \(A\) è mantenuto implicitamente, infatti è definito \(A = \{ [v, p[v]] \mid v \in V - Q - \{ r \} \}\) (\(Q\) archi non ancora raggiunti, \(\{r\}\) radice).
 
-\includestandalone{assets/algorithms/14/prim}
+\begin{algorithm}[H]
+	\caption{Algoritmo di Prim per la generazione di un MST}
+	\input{prim}
+\end{algorithm}
 
+\vspace{-15pt}
 \paragraph{Esempio}
-Fai riferimento alla \href{https://www.youtube.com/watch?v=VocW2D-Z0hk&feature=youtu.be&t=3247}{spiegazione grafica}.
+Fai riferimento alla \href{https://www.youtube.com/watch?v=VocW2D-Z0hk&feature=youtu.be&t=3247}{spiegazione grafica}, qui viene riportato solo lo schema sulla quale si basa.
 
 \begin{figure}[H]\centering
 	\includestandalone{assets/figures/14/mst}
 \end{figure}
 
+\vspace{-15pt}
 \paragraph{Analisi della complessità} \(\Omicron(m \log n)\)
 
-\smallskip
-L’efficienza dell’algoritmo di Prim dipende dalla coda con priorità.
+L'efficienza dell'algoritmo di Prim dipende dalla coda con priorità.
 Può essere implementato tramite heap binario oppure con un vettore non ordinato.
 
 \subparagraph{heap binario}
-Nel caso si utilizzi un heap binario allora
-\circled{\ref{prim:init}}
-l'inizializzazione costerebbe \(\Omicron(m \log n)\).
-\circled{\ref{prim:ciclo-esterno}}
-Il ciclo principale viene eseguito \(n-1\) per una complessità di \(\Omicron(n)\) volte dove ogni operazione di {\heapDeleteMin} costa \(\Omicron(\log n)\).
-\circled{\ref{prim:ciclo-interno}}
-Il ciclo interno viene eseguito \(\Omicron(m)\) volte dove ogni operazione di {\heapDecrease} costa \(\Omicron(\log n)\).
+Nel caso si utilizzi un heap binario allora:
+
+\begin{itemize}[topsep=0pt, itemsep=0pt]
+	\item[\circled{\ref{prim:init}}]
+	l'inizializzazione costa \(\Omicron(m \log n)\);
+
+	\item[\circled{\ref{prim:ciclo-esterno}}]
+	il ciclo principale viene eseguito \(n-1\) per una complessità di \(\Omicron(n)\) volte dove ogni operazione di {\heapDeleteMin} costa \(\Omicron(\log n)\);
+
+	\item[\circled{\ref{prim:ciclo-interno}}]
+	il ciclo interno viene eseguito \(\Omicron(m)\) volte dove ogni operazione di {\heapDecrease} costa \(\Omicron(\log n)\).
+\end{itemize}
 Per un totale di \(\Omicron(n + m \log n + n \log n) = \Omicron(m \log n)\).
 
 \begin{note}
@@ -614,22 +657,26 @@ L'algoritmo risulta asintoticamente uguale a quello di Kruskal.
 \end{note}
 
 \subparagraph{vettore non ordinato}
-Nel caso si utilizzi vettore un non ordinato
-\circled{\ref{prim:init}}
-l'inizializzazione costerebbe \(\Omicron(n)\).
-\circled{\ref{prim:ciclo-esterno}}
-Il ciclo principale viene eseguito \(n-1\) per una complessità di \(\Omicron(n)\) volte dove ogni operazione di {\heapDeleteMin} costa \(\Omicron(n)\).
-\circled{\ref{prim:ciclo-interno}}
-Il ciclo interno viene eseguito \(\Omicron(m)\) volte dove ogni operazione di {\heapDecrease} costa \(\Omicron(1)\).
+Nel caso si utilizzi vettore un non ordinato:
+\begin{itemize}[topsep=0pt, itemsep=0pt]
+	\item[\circled{\ref{prim:init}}]
+	l'inizializzazione costa \(\Omicron(n)\);
+
+	\item[\circled{\ref{prim:ciclo-esterno}}]
+	il ciclo principale viene eseguito \(n-1\) per una complessità di \(\Omicron(n)\) volte dove ogni operazione di {\heapDeleteMin} costa \(\Omicron(n)\);
+
+	\item[\circled{\ref{prim:ciclo-interno}}]
+	il ciclo interno viene eseguito \(\Omicron(m)\) volte dove ogni operazione di {\heapDecrease} costa \(\Omicron(1)\).
+\end{itemize}
 Per un totale di \(\Omicron(n + n^2 + m \cdot 1) = \Omicron(n^2)\).
 
 \begin{note}
 Cambiando la struttura dati cambia la complessità dell'algoritmo.
 \end{note}
 
-Quindi se il grafo è \emph{sparso} conviene utilizzare l'heap binario (\(\Omicron(m \log n)\)), mentre se il grafo è \emph{denso} (o addirittura completo) conviene utilizzare il vettore non ordinato.
+In definitiva se il grafo è \emph{sparso} conviene utilizzare l'heap binario (\(\Omicron(m \log n)\)), mentre se il grafo è \emph{denso} (o addirittura completo) conviene utilizzare il vettore non ordinato (\(\Omicron(n^2)\)).
 
-\subsubsection{Cenni storici}
+\subsection{Cenni storici}
 
 \begin{figure}[H]
 	\centering\footnotesize
@@ -655,7 +702,7 @@ Nel '95 Karger, Klein e Tarjan hanno ideato un algoritmo probabilistico che riso
 
 Se questo problema si possa risolvere in tempo lineare in modo deterministico è una questione ancora aperta.
 
-\subsubsection{Conclusioni}
+\subsection{Conclusioni}
 Gli algoritmi ingordi sono semplici da programmare e molto efficienti.
 Inoltre quando è possibile dimostrare la proprietà di scelta ingorda, danno la soluzione ottima.
 Una soluzione sub-ottima è comunque accettabile.
