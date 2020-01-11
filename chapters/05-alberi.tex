@@ -1,0 +1,262 @@
+\documentclass[main.tex]{subfiles}
+%&../../preamble.main
+
+\setcounter{chapter}{4}
+
+% NOTE sopprimere i warnings localmente
+% \hbadness=10000
+% \hfuzz=\maxdimen\newdimen\hfuzz
+% % \usepackage[saveall]{silence}
+% \usepackage{silence}
+% \WarningsOff[caption]
+
+% arara: pdflatex: { shell: yes, draft: yes, synctex: no }
+% arara: pdflatex: { shell: yes, synctex: yes }
+\begin{document}
+\chapter{Alberi}
+
+% TODO scrivere introduzione
+
+\section{Definizioni}
+
+\begin{definition}[Albero radicato, \foreign{rooted tree}]
+Un albero consiste di un insieme di nodi e un insieme di archi orientati che connettono coppie di nodi, con le seguenti proprietà:
+\begin{itemize}
+	\item un nodo dell'albero è designato come nodo radice;
+	\item ogni nodo \(n\), a parte la radice, ha esattamente un arco entrante;
+	\item esiste un cammino unico dalla radice ad ogni nodo;
+	\item l'albero è connesso.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Albero radicato, definizione ricorsiva]
+Un albero è dato da:
+\begin{itemize}
+	\item un insieme vuoto, oppure
+	\item una radice e zero o più sottoalberi, ognuno dei quali è albero; la radice è connessa alla radice di ogni sottoalbero con un arco orientato.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Profondità -- \foreign{depth}]
+La lunghezza del cammino semplice dalla radice al nodo (misurato in archi).
+\end{definition}
+
+\begin{definition}[Livello -- \foreign{level}]
+L'insieme dei nodi alla stessa profondità.
+\end{definition}
+
+\begin{definition}[Altezza dell'albero -- \foreign{height}]
+La profondità massima delle sue foglie.
+\end{definition}
+
+\section{Terminologia}
+
+\begin{minipage}[c]{.45\textwidth}
+	\centering
+	\begin{itemize}
+		\item \(A\) è la radice (\foreign{root});
+		\item \(B\), \(C\) sono radici dei sottoalberi (\foreign{roots of their subtrees});
+		\item \(D\), \(E\) sono fratelli (\foreign{siblings});
+		\item \(D\), \(E\) sono figli (\foreign{children}) di \(B\);
+		\item \(B\) è il padre (\foreign{parent}) di \(D\), \(E\);
+		\item \(H\), \(I\), \(J\), \(K\), \(L\), \(M\), \(G\) sono foglie (\foreign{leafs});
+		\item gli altri nodi sono nodi interni (\foreign{internal nodes});
+		\item \(E\) è lo zio (il fratello del padre) di \(I\);
+		\item \(B\) è il nonno di \(I\), \(I\) è il nipote di \(B\).
+		% \item \(A\) è il bis-nonno di \(I\).
+	\end{itemize}
+\end{minipage}%
+\begin{minipage}[c]{.45\textwidth}
+	\centering
+	\scalebox{.9}{
+		\begin{forest} circled, wide
+			[A [B [D [H][I]] [E [J][K]] ] [C [F [L][M]] [G] ]]
+		\end{forest}
+	}
+\end{minipage}
+
+\clearpage
+\section{Alberi binari}
+
+\begin{definition}[Albero binario]
+Un albero binario è un albero radicato in cui ogni nodo ha al massimo due figli, che vengono identificati come figlio sinistro e figlio destro.
+\end{definition}
+
+\begin{note}
+Due alberi \(T\) e \(U\) che hanno gli stessi nodi, gli stessi figli per ogni nodo e la stessa radice, sono distinti qualora un nodo \(u\) sia designato come figlio sinistro di un nodo \(v\) in \(T\) come figlio destro del medesimo nodo in \(U\).
+In altre parole, anche se due alberi hanno lo stesso numero di nodi ed ognuno di questi nodi ha lo stesso numero di figli non è che detto che l'albero risultante sia identico.
+\end{note}
+
+\begin{algorithm}[H]
+\caption*{Specifica albero binario}
+\input{tree-binary-interface}
+\end{algorithm}
+
+\begin{note}
+Le funzioni \emph{senza parametri} sono indicate con un carattere senza grazie e privi di parentesi tonde vuote al fine di alleggerire la lettura del codice.
+\end{note}
+
+\subsection{Memorizzazione di un albero binario}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{tree-binary}
+\end{figure}
+
+Vengono memorizzati i seguenti campi:
+\begin{itemize}
+	\item \emph{parent}: riferimento al nodo padre;
+	\item \emph{left}: riferimento al figlio sinistro;
+	\item \emph{right}: riferimento al figlio destro.
+\end{itemize}
+Uno qualunque di questi oggetti potrebbe essere pari a \Nil, stando ad indicare che non esiste nessun sottoalbero.
+
+\subsection{Implementazione}
+
+\begin{algorithm}[H]
+	\caption{Implementazione albero binario in pseudocodice}
+	\input{tree-pseudocode}
+\end{algorithm}
+
+\subsection{Visite}
+
+La visita di un albero (o la ricerca) è una strategia per passare attraverso (visitare) tutti i nodi di un albero.
+Si possono distinguere due tipi di visite:
+\begin{enumerate}
+	\item visita in profondità: chiamata anche \foreign{Depth-First Search} (DFS), per visitare un albero visita ricorsivamente ognuno dei suoi sottoalberi; esistono tre varianti in base a quando il nodo viene visitato (pre, in o post-ordine); questa particolare visita sfrutta implicitamente il meccanismo di una pila (\foreign{stack}) tramite le chiamate ricorsive effettuate;
+	\item visita in ampiezza: chiamata anche \foreign{Breadth First Search} (BFS), per visitare un albero visita ogni livello, uno dopo l'altro partendo dalla radice; richiede esplicitamente l'utilizzo di una coda (\foreign{queue}).
+\end{enumerate}
+
+\begin{algorithm}[H]
+	\caption{Schema per visita in profondità}
+	\input{dfsSchema}
+\end{algorithm}
+
+A seconda di dove scrivo il codice in questo schema ottengo una visita diversa.
+
+\subsection{Applicazioni}
+
+In genere post-visita e in-visita sono quelle più applicate, la pre-visita meno.
+
+\subsection*{Visita in post-ordine}
+
+Una possibile applicazione della visita post-ordine è quella di effettuare un conteggio dei nodi presenti nell'albero.
+
+\begin{algorithm}[H]
+	\caption{Conteggio dei nodi in un albero}
+	\input{conteggioNodi}
+\end{algorithm}
+
+\subsection*{Visita in ordine (in-visita)}
+
+Una possibile applicazione della visita post-ordine è quella di stampare espressioni con operatori binari.
+
+\begin{algorithm}[H]
+	\caption{Stampa espressioni con operatori binari}
+	\input{stampaEspressioni}
+\end{algorithm}
+
+% TODO
+% Questa particolare funzione è stata utilizzata nell'esame del
+
+\subsection*{Complessità di una visita}
+
+Il costo di una visita di un albero contenente \(n\) nodi è \(\Theta(n)\), in quanto ogni nodo viene visitato al massimo una volta.
+
+\clearpage
+\section{Alberi generici}
+
+\begin{algorithm}[H]
+	\caption{Specifica albero generico}
+	\input{tree-generic-interface}
+\end{algorithm}
+
+\subsection{Visita in profondità}
+
+Un albero binario è anche un albero generale e lo visitiamo esattamente come lo visitavamo prima.
+
+\begin{algorithm}[H]
+	\caption{Schema per visita in profondità}
+	\input{dfs}
+\end{algorithm}
+
+\subsection{Visita in ampiezza}
+
+Mentre nella visita in profondità il meccanismo della pila (\foreign{stack}) era implicito nelle chiamate ricorsive, in questo caso è necessario utilizzare \emph{esplicitamente} una coda (\foreign{queue}).
+Un'altra differenza fra i due algoritmi è che quello in profondità è un algoritmo ricorsivo, l'altro è iterativo.
+Quando tutti i nodi di un livello vengono estratti dalla coda, la coda contiene solo ed unicamente i nodi del livello successivo.
+
+\begin{algorithm}[H]
+	\caption{Schema per visita in ampiezza}
+	\input{bfs}
+\end{algorithm}
+
+\paragraph{Commento}
+Mettiamo in coda tutti i nodi che vogliamo visitare passo passo.
+Qui la stampa è in pre-visita ma qui -- a differenza dei grafi -- non ha molta importanza se la visita la facciamo prima o dopo.
+Visito tutti i figli prima di passare al livello successivo.
+
+\section{Memorizzazione}
+
+Esistono diversi modi per memorizzare un albero, più o meno indicati a seconda del numero massimo e medio di figli presenti.
+Le realizzazioni possibili sono:
+\begin{enumerate}
+	\item con vettore dei figli;
+	\item primo figlio, prossimo fratello;
+	\item con vettore dei padri
+\end{enumerate}
+
+\subsection{Realizzazione con vettore dei figli}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{tree-vectorChildren}
+	\caption[Realizzazione di un albero tramite vettore dei figli]{Realizzazione con vettore dei figli}
+	\label{fig:tree-vector-children}
+\end{figure}
+
+Vengono memorizzati i seguenti campi:
+\begin{itemize}
+	\item \emph{parent} che è il riferimento al nodo padre;
+	\item vettore dei figli il quale a seconda del numero dei figli può comportare una discreta quantità di spazio sprecato.
+\end{itemize}
+
+\subsection{Realizzazione basata su primo figlio, prossimo fratello}
+
+Viene implementato come una lista di fratelli.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{tree-listChildren}
+	\caption[Realizzazione di un albero tramite primo figlio, prossimo fratello]{Realizzazione basata su primo figlio, prossimo fratello}
+	\label{fig:tree-list-children}
+\end{figure}
+
+La memorizzazione che viene utilizzata nel \foreign{file system} è esattamente questa.
+
+\begin{algorithm}[H]
+	\caption{Implementazione albero \enquote{primo figlio, prossimo fratello} in pseudocodice}
+	\input{tree-listChildren-interface}
+\end{algorithm}
+
+\newpage
+\subsection{Realizzazione con vettore dei padri}
+
+Nella realizzazione con vettore dei padri, l'albero è rappresentato da un vettore i cui elementi contengono il valore associato al nodo e l'indice della posizione del padre del vettore.
+
+\bigskip
+\begin{minipage}[c]{.5\textwidth}
+	\centering
+	\includegraphics{tree-vectorParents}
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}
+	\centering
+	\begin{forest} circled, wide, for tree={font=\scshape}
+	[a[b[c][d]][e[f][g]]]
+	\end{forest}
+\end{minipage}
+
+\bigskip
+Questa realizzazione può sembrare particolarmente assurda poiché dato un nodo non permette di stabilire direttamente quali sono i suoi figli, ma ci sono molti algoritmi che sono interessati solo ai padri.
+Questa è la rappresentazione più compatta che possiamo creare, vedremo la sua utilità quando andremo a studiare le visite sui grafi.
+\end{document}

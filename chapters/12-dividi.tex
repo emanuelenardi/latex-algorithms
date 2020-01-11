@@ -1,0 +1,302 @@
+\documentclass[main.tex]{subfiles}
+%&../../preamble.main
+
+\setcounter{chapter}{11}
+
+% % NOTE sopprimere i warnings localmente
+% \hbadness=10000
+% \hfuzz=\maxdimen\newdimen\hfuzz
+% % \usepackage[saveall]{silence}
+% \usepackage{silence}
+% \WarningsOff[caption]
+
+% arara: pdflatex: { shell: yes, draft: yes, synctex: no }
+% arara: pdflatex: { shell: yes, synctex: yes }
+
+\begin{document}
+\chapter{Divide et Impera}
+
+\section{Risoluzione di problemi}
+
+Dato un problema non esistono \enquote{ricette originali} per risolverlo in modo efficiente;
+tuttavia è possibile evidenziare quattro fasi:
+\begin{enumerate}
+	\item \textbf{classificazione del problema}: è il primo passo verso la risoluzione;
+	\item \textbf{caratterizzazione della soluzione}: bisogna caratterizzare matematicamente la soluzione, evitando di escludere soluzioni banali;
+	\item \textbf{tecnica di progetto}: quando è possibile dividere il problema in più sottoproblemi di complessità minore allora la tecnica \enquote{divide et impera} potrebbe essere quella più appropriata (più avanti vedremo delle tecniche più interessanti quali: programmazione dinamica (Capitolo 13), algoritmi ingordi (Capitolo 14) e backtrack (Capitolo 16));
+	\item \textbf{utilizzo di strutture dati}: bisogna scegliere la struttura dati più adatta alla risoluzione del nostro particolare problema (spesso sarà una tabella hash o un albero binario di ricerca, più avanti vedremo delle strutture dati specializzate per risolvere problemi specifici, a differenza di quelle che abbiamo visto fin'ora che sono generiche).
+\end{enumerate}
+Queste fasi non sono necessariamente sequenziali, l'ordine dipende da come stiamo affrontando il problema.
+
+\subsection{Classificazione dei problemi}
+
+Ma come possiamo classificare un problema?
+Le classi di problemi che affronteremo possono essere raggruppate in quattro macro-categorie:
+\begin{itemize}
+	\item \textbf{problemi decisionali}: consistono nel determinare se il dato in ingresso soddisfa o meno una certa proprietà ed hanno una risposta binaria (si/no, true/false); come ad esempio stabilire se un grafo risulta connesso o meno.
+	Su questo genere di problemi spesso non esistono delle tecniche standard e bisogna creare algoritmi ad-hoc;
+	\item \textbf{problemi di ricerca}: consistono nel trovare nello spazio di soluzioni possibili una soluzione ammissibile che rispetti certi vincoli, come ad esempio la ricerca della posizione di una sottostringa in una stringa.
+	In questi problemi la tecnica \enquote{divide et impera} può rincorrere in nostro aiuto;
+	\item \textbf{problemi di ottimizzazione}: ad ogni soluzione è associata una funzione di costo e vogliamo trovare quella di costo minimo, come ad esempio il cammino (pesato) più breve fra due nodi.
+	Questa classe di problemi può essere risolta tramite la programmazione dinamica o algoritmi ingordi;
+	\item \textbf{problemi di approssimazione}: a volte, trovare la soluzione ottima è computazionalmente impossibile e ci si accontenta di una soluzione approssimata, in questo caso il costo rimane basso ma non sappiamo se è ottimale; un esempio di questo genere di problemi è quello del commesso viaggiatore.
+\end{itemize}
+
+\subsection{Caratterizzazione della soluzione}
+
+\`{E} fondamentale definire bene il problema dal punto di vista matematico.
+La formulazione del problema può suggerire una prima idea, seppur banale, alla risoluzione dello stesso.
+Lo si può osservare nella formulazione del seguente problema: data una sequenza di \(n\) elementi, una permutazione ordinata è data dal minimo seguito da una permutazione ordinata dei restanti \(n-1\) elementi.
+Questa formulazione produce l'algoritmo \selectionSort.
+La definizione matematica può suggerire una possibile tecnica, ad esempio:
+\begin{itemize}
+	\item se troveremo una \emph{sottostruttura ottima} allora potremmo applicare la programmazione dinamica (Capitolo 13);
+	\item se troveremo la \emph{proprietà greedy} allora potremmo applicare un algoritmo ingordo (Capitolo 14).
+\end{itemize}
+
+\section*{Tecniche di soluzione dei problemi}
+
+Come vengono affrontati i problemi dalle varie tecniche?
+\begin{itemize}
+	\item nella tecnica divide-et-impera un problema viene suddiviso in sotto-problemi indipendenti, i quali vengono risolti ricorsivamente (avendo quindi un approccio dall'alto verso il basso, detto \foreign{top-down}); Abbiamo già visto diversi esempi dell'applicazione di questa tecnica, provate a pensare all'algoritmo \mergeSort: ordinare due sottovettori sono due problemi indipendenti (ordinare il sottovettore di sinistra non richiede conoscere il contenuto del vettore di destra e viceversa);
+	\item nella programmazione dinamica la soluzione viene costruita (dal basso verso l'altro, \foreign{bottom-up}) a partire da un insieme di sotto-problemi potenzialmente ripetuti.
+	\item la tecnica della \foreign{memoization} (annotazione) è la versione \foreign{top-down} della programmazione dinamica.
+	\item la tecnica \foreign{greedy} effettua sempre la scelta localmente ottima (necessita di una dimostrazione).
+	\item il backtrack procede per \enquote{tentativi}, tornando ogni tanto sui suoi passi;
+	\item nella ricerca locale la soluzione ottima viene trovata \enquote{migliorando} via via soluzioni esistenti; Negli algoritmi probabilistici si dimostra che talvolta è meglio scegliere casualmente, ma in modo \enquote{gratuito}, che con giudizio, ma in maniera costosa.
+\end{itemize}
+
+\section{La tecnica del Dividi-et-Impera}
+
+La tecnica del Divide-et-Impera si suddivide in tre fasi principali:
+\begin{itemize}
+	\item \textbf{Divide}: divide il problema in sotto-problemi più piccoli è indipendenti;
+	\item \textbf{Impera}: risove i sottoproblemi ricorsivamente;
+	\item (\textbf{Combina}): \enquote{unisce} le soluzioni dei sottoproblemi.
+\end{itemize}
+Sfortunatamente non esiste una ricetta unica per applicare questa tecnica: ad esempio l'algoritmo \mergeSort ha una fase \enquote{divide} banale (basta calcolare il valore mediano) ma, allo stesso tempo una fase di unione delle soluzioni complessa, diversamente nel \quickSort la fase \enquote{divide} è complessa ma non esiste una fase \enquote{combina}.
+\`{E} quindi necessario fare uno sforzo creativo, in quanto la tecnica ci dà una modalità con cui ad arrivare alla soluzione, ma bisogna applicarla caso per caso.
+
+\subsection*{Minimo divide-et-impera}
+
+La tecnica \enquote{divide-et-impera} non è un proiettile d'argento, a volte utilizzarla crea più danni di quanti ne risolva.
+Osserva questo esempio nella quale è presentato un algoritmo di ricerca del minimo con questa tecnica.
+\begin{algorithm}[H]
+\caption{Algoritmo di ricerca del minimo con tecnica divide-et-impera}
+\prototype{\minRec{\Array{\Int} \(A\), \Int \(i\), \Int \(j\)}}{
+	\eIf{\(i \Equal j\)}{
+		\Return \(A[i]\)\;
+	}{
+		\(m \Assign \floor{\frac{i+j}{2}}\)\;
+		\Return \minFunction{\minRec{\(A, i, m\)}, \minRec{\(A, m+1, j\)}}\;
+	}
+}
+\end{algorithm}
+
+\paragraph{Complessità}
+L'algoritmo divide il vettore a metà, cerca il minimo nella metà di sinistra e nella metà di destra, il risultato è il minimo dei due minimi.
+\begin{align*}
+	T &=
+	\begin{dcases}
+		2T(\nicefrac{n}{2}) + 1 & n > 1\\
+		1 & n = 1 \\
+	\end{dcases}\\
+\end{align*}
+La complessità ammonta a \(\alpha=1, \beta=0, T(n) = \Theta(n)\), non ne vale la pena, tanto vale fare la ricerca del minimo come abbiamo spiegato a lezione.
+
+\section{La torre di Hanoi}
+
+La torre di Hanoi è un gioco matematico che prevede tre pioli e \(n\) dischi di dimensioni diverse.
+Inizialmente i dischi sono impilati in ordine decrescente nel piolo di sinistra.
+Lo scopo del gioco è quello di impilare i dischi sul piolo di destra, senza mai impilare un disco più grande su uno più piccolo, muovendo al massimo un disco alla volta ed utilizzando il piolo centrale come appoggio.
+Questo problema può essere risolto tramite la tecnica \enquote{divide-et-impera}.
+
+\begin{algorithm}[H]
+	\caption{Versione ricorsiva della soluzione al problema della torre di Hanoi}
+	\input{hanoiRecursive}
+\end{algorithm}
+
+Nella prima parte l'algoritmo sposta \(n-1\) dischi da \(src\) a \(middle\) utilizzando \(dest\) come punto d'appoggio.
+Dopodiché sposta l'ultimo disco rimanente dalla \(src\) alla \(dest\).
+Infine sposta \(n-1\) dischi da \(src\) a \(dest\) utilizzando \(src\) come punto d'appoggio.
+
+\paragraph{Complessità}
+L'equazione di ricorrenza prodotta da questo algoritmo è \(T = 2T(n-1) + 1 = \Theta(2^n)\).
+Si può dimostrare che questa soluzione è ottima (non si può fare meglio di così).
+
+\section{Algoritmo di ordinamento}
+
+L'algoritmo di ordinamento \quickSort è basato sulla tecnica \enquote{divide et impera}, nel caso medio ha una complessità di \(\Omicron(n \log n)\), mentre nel caso pessimo è di \(\Omicron(n^2)\).
+Fino a qualche anno fa era l'algoritmo di eccellenza per l'ordinamento.
+Infatti presenta molti aspetti a suo favore:
+\begin{itemize}
+	\item il fattore costante del \quickSort è migliore di quello del \mergeSort;
+	\item non utilizza memoria addizionale in quanto svolge i calcoli \enquote{in-memory} (a differenza di \mergeSort che ha bisogno di un vettore di appoggio);
+	\item esistono delle tecniche \enquote{euristiche} per evitare il caso pessimo.
+\end{itemize}
+Quindi spesso è preferito ad altri algoritmi.
+All'interno dell'ultimo capitolo riassumeremo tutti gli algoritmi di ordinamento visti fin'ora e ne vedremo di nuovi, tra questi anche gli algoritmi attualmente utilizzati negli attuali linguaggi di programmazione (c, java, python).
+
+\paragraph{Spiegazione}
+Sono dati in input un vettore \(A[1 \dots n]\), gli indici \(start\), \(end\) tali che \(1 \leqslant start \leqslant end \leqslant n\), tali indici indicano quale parte del vettore stiamo ordinando, come avviene in \mergeSort.
+
+\medskip
+\begin{enumerate}
+	\item la parte del \enquote{divide} avviene nel seguente modo:
+	\begin{itemize}
+		\item scegliamo un valore \(p \in A[start \dots end]\) detto perno (\foreign{pivot});
+		\item spostiamo gli elementi del vettore \(A[start \dots end]\) in modo tale che:
+		\begin{itemize}
+			\item \(\forall i \in [start \dots j-1]\,:A[i] \leqslant p\);
+			\item \(\forall i \in [j+1 \dots end]\,:A[i] \geqslant p\)
+		\end{itemize}
+		l'indice \(j\) viene calcolato per rispettare tale condizione;
+		\item il perno viene messo in posizione \(A[j]\).
+	\end{itemize}
+	\item la parte \enquote{impera} ordina i due sottovettori \(A[start \dots j-1]\) e \(A[j+1 \dots end]\) richiamando ricorsivamente \quickSort;
+	\item la parte \enquote{combina} non fa nulla.
+\end{enumerate}
+
+\begin{algorithm}[H]
+\caption{quickSort}
+\input{quickSort}
+\end{algorithm}
+
+\clearpage
+\begin{algorithm}[H]
+\caption{perno}
+\input{quickSort-perno}
+\end{algorithm}
+
+% TODO importare immagini di quickSort che spiegano l'ordinamento e la ricorsione
+
+\paragraph{Complessità computazionale}
+Il costo della funzione \pivot è \(\Theta(n)\) (deve guardare \(n-1\) valori ed effettuare i confronti).
+Il costo di \quickSort dipende dal partizionamento:
+\begin{itemize}
+	\item il partizionamento \emph{peggiore} si verifica quando il perno è l'elemento minimo (o massimo), questo particolare caso accade quando il vettore è ordinato in ordine crescente (decrescente).
+	La complessità risultante è \(T(n) = T(n-1) + T(0) + \Theta(n) = T(n-1) + \Theta(n) = \Theta(n^2)\).
+	\item il partizionamento \emph{migliore} avviene quando il vettore di dimensione \(n\) viene diviso in due sottoproblemi di dimensione \(\nicefrac{n}{2}\).
+	La complessità risultante è \(T(n) = 2T(\nicefrac{n}{2}) + \Theta(n) = \Theta(n \log n)\);
+	\item il partizionamento nel \emph{caso medio} è molto più vicino al caso ottimo che al caso peggiore, prendiamo ad esempio il partizionamento 9-a-1:
+	\begin{equation*}
+		T(n) = T\left(\frac{n}{10}\right) + T\left(\frac{9n}{10}\right) + cn = \Theta(n \log n)
+	\end{equation*}
+	Prendiamo un altro esempio, il partizionamento 99-a-1:
+	\begin{equation*}
+		T(n) = T\left(\frac{n}{10}\right) + T\left(\frac{99n}{10}\right) + cn = \Theta(n \log n)
+	\end{equation*}
+	\begin{note}
+	In questi esempi, il partizionamento ha proporzionalità limitata e i fattori moltiplicativi possono essere importanti.
+	\end{note}
+	Il costo computazionale dipende dall'ordine degli elementi e non dai loro valori.
+	Dobbiamo quindi considerare tutte le possibili permutazioni, il che è difficile dal punto di vista analitico.
+	Alcuni partizionamenti saranno parzialmente bilanciati, altri pessimi; in media questi si alterneranno nella sequenza di partizionamenti, ma quelli parzialmente bilanciati \enquote{dominano} quelli pessimi.
+\end{itemize}
+
+\section*{Moltiplicazione di catena di matrici}
+
+Viene fatto un accenno ad un argomento che verrà affrontato in modo più approfondito nel capitolo successivo.
+
+\section{Conclusioni}
+
+La tecnica divide-et-impera viene applicata quando i passi \enquote{divide} e \enquote{combina} sono semplici e i costi risultano migliori del corrispondente algoritmo iterativo (quindi, ad esempio, va bene per effettuare l'ordinamento, ma non per effettuare la ricerca del minimo).
+Ulteriori vantaggi dell'applicazione di questa tecnica sono:
+\begin{itemize}
+	\item la facile parallelizzazione: la possibilità di dividere il problema in più sottoproblemi porta ad una naturale divisione dei compiti fra più processori;
+	\item l'utilizzo ottimale della memoria \foreign{cache} (\foreign{cache oblivious}): tutti i dati con la quale stiamo lavorando sono colocalizzati nella memoria principale.
+\end{itemize}
+
+% TODO finire di scrivere il capitolo
+\section{Applicazione della tecnica}
+
+Infine vediamo una prima applicazione della tecnica e ne valutiamo le prestazioni.
+
+\subsection{Gap}
+
+In un vettore \(V\) contenente \(n \geqslant 2\) interi, un gap è un indice \(i\), \(1 < i \leqslant n\), tale che \(V[i-1] < V[i]\).
+\begin{itemize}
+	\item Dimostrare che se \(n \geqslant 2\) e \(V[1] < V[n]\), allora \(V\) contiene almeno un gap;
+	\item Progetta un algoritmo che, dato un vettore \(V\) contentente \(n \geqslant 2\) interi e tale che \(V[1] < V[n]\) (la condizione sopra), restituisca la posizione di un gap nel vettore (questo algoritmo assume che il gap esista).
+\end{itemize}
+
+\begin{proof}[Dimostrazione per assurdo]
+Suppponiamo che non ci sia un gap nel vettore.
+Allora \(V[1] \geqslant V[2] \geqslant V[3] \geqslant \dotsm \geqslant V[n]\), che contraddice il fatto che \(V[1] < V[n]\).
+\end{proof}
+
+Proviamo a riformulare la proprietà tenendo conto di due indici:
+\begin{itemize}
+	\item sia \(V\) un vettore di dimensione \(n\);
+	\item siano \(i\), \(j\) due indici tali che \(1 \leqslant i < j \leqslant n\) e \(V[i] < V[j]\).
+\end{itemize}
+In altre parole, ci sono più di due elementi nel sottovettore \(V[i \dots j]\) e il primo elemento \(V[i]\) è più piccolo dell'ultimo elemento \(V[j]\).
+
+\begin{proof}[Dimostrazione per induzione]
+Voglia provare per induzione sulla dimensione \(n\) del sottovettore che il sottovettore contiene un gap.
+\begin{itemize}
+	\item \textbf{caso base}: \(n = j - i + 1 = 2\), ad esempio \(j = i + 1\): \(V[i] < V[j]\) implica che \(V[i] < V[j]\) implica che \(V[i] < V[i + 1]\), che è un gap;
+
+	\item \textbf{ipotesi induttiva}: dato un qualunque (sotto)vettore \(V[h \dots k]\) di dimensione \(n' < n\), tale che \(V[h] < V[k]\), allora \(V[h \dots k]\) contiene un gap;
+
+	\item \textbf{passo induttivo}: consideriamo un qualunque elemento \(m\) tale che \(i < m < j\).
+	Almeno uno dei due casi seguenti è vero:
+	\begin{itemize}
+		\item se \(V[m] < V[j]\), allora esiste un gap in \(V[m \dots j]\), per ipotesi induttiva;
+		\item se \(V[i] < V[m]\), allora esiste un gap in \(V[i \dots m]\), per ipotesi induttiva.
+	\end{itemize}
+\end{itemize}
+\end{proof}
+
+\begin{algorithm}[H]
+\caption{Algoritmo che ricerca un intervallo all'interno del vettore}
+
+\tcp{funzione wrapper}
+\prototype{\gap{\Array{\Int} \(V\), \Int \(n\)}}{
+	\params{n}[dimensione del vettore]
+
+	\BlankLine
+	\Return \gapRec{\(V, 1, n\)}\;
+}
+
+\BlankLine
+\prototype{\gapRec{\Array{\Int} V, \Int \(i\), \Int \(j\)}}{
+
+	\BlankLine
+	\If(\tcp*[h]{ho due elementi}){\(j \Equal i + 1\)}{
+		\Return \(j\) \Comment*[l]{ritorno il secondo elemento}
+	}
+
+	\BlankLine
+	\(m = \Floor{\frac{i + j}{2}}\) \Comment*[l]{calcolo il mediano}
+
+	\BlankLine
+	\eIf{\(V[m] < V[j]\)}{
+		\Return \gapRec{\(V, m, j\)} \Comment*[l]{a destra}
+	}{
+		\Return \gapRec{\(V, i, m\)} \Comment*[l]{a sinistra}
+	}
+}
+\end{algorithm}
+
+% TODO scrivere la complessità dell'algoritmo
+% \paragraph{Complessità}
+% L'algoritmo ha complessità
+
+\begin{table}[htbp]\centering
+	\caption{Valutazione delle prestazioni degli algoritmi scritti in python}
+	\begin{tabular}{@{} S S[table-format=4.2] S[table-format=1.2] @{}}
+		\toprule
+			\(n\) & \normalfont{Iterativa (ms)} & \normalfont{Ricorsiva (\(\mu\)s)} \\
+		\midrule
+			\(10^3\) & 0.06 & 2.05 \\
+			\(10^4\) & 0.61 & 2.78 \\
+			\(10^5\) & 6.11 & 3.36 \\
+			\(10^6\) & 62.44 & 4.01 \\
+			\(10^7\) & 621.69 & 4.87 \\
+			\(10^8\) & 6205.72 & 5.47 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\end{document}

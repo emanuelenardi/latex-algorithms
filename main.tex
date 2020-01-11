@@ -1,18 +1,30 @@
-%&preamble.main
+%&settings/preamble.main
+
+% NOTE ha una sua cache
+\usepackage{set-minted}
 
 \makeatletter
 \providecommand*{\input@path}{}
 \g@addto@macro\input@path{%
-	{assets/chapters/}%	capitoli
-	{assets/chapters/to-be-revised/}% capitoli da revisionare
-	{assets/chapters/to-complete/}% capitoli da completare
+	{chapters/}%	capitoli
+	{chapters/to-be-revised/}% capitoli da revisionare
+	{chapters/to-complete/}% capitoli da completare
 }% append
 \makeatother
 
-% NOTE ciclo di compilazione
+% NOTE compilazione del documento principale
 % arara: pdflatex: { shell: yes, draft: yes }
 % arara: pdflatex: { shell: yes, synctex: yes }
-%! arara: latexmk:  { clean: partial }
+% arara: latexmk:  { clean: partial }
+
+% NOTE creazione della versione di stampa
+% \usepackage{print}
+% % arara: pdflatex: { files: [main-bw.tex]}
+% % arara: clean: { files: [main-bw.tex, main-bw.aux, main-bw.log]}
+%
+% % arara: pdflatex: { files: [main-cl.tex]}
+% % arara: clean: { files: [main-cl.tex, main-cl.aux, main-cl.log]}
+
 \begin{document}
 
 \frontmatter
@@ -21,69 +33,68 @@
 	\pagenumbering{gobble}
 
     % NOTE frontespizio
-    % \input{00-pagina-iniziale}
-	% \cleardoublepage
-
-    % NOTE pagina con la dedica (non numerata)
-	% \input{00-dedica}
-	% \cleardoublepage
-	% \pagestyle{plain}
-
-\mainmatter
-
-	% NOTE disabilita la protrusion localmente
-	\microtypesetup{protrusion = false}
-
-	% TODO controlla la profondità della TOC
-	% NOTE % chapthers + sections + subsections
-	\setcounter{tocdepth}{2}
-	% \tableofcontents
-
-	% \listoffigures
-
-	% \listoftables
-
-	% TODO il pacchetto crea problemi con il preambolo, non carica i pacchetti successivi
-	% \listoftheorems[ignoreall, show={theorem, definition}] % NOTE si sovrascrivono
-	% \renewcommand{\thmtformatoptarg}[1]{ -- #1}
-	% \renewcommand{\listtheoremname}{Elenco dei teoremi}
-	% \listoftheorems[ignoreall, show={theorem}]
-	% \listoftheorems[ignoreall, show={definition}]
-	% \listoftheorems[ignoreall, show={note}]
-
-	% TODO risolvere questo problema
-	% \listofalgorithms % NOTE non stampa nulla
-
-	% NOTE (ri)abilita la protrusion
-	\microtypesetup{protrusion = true}
-	\cleardoublepage
-
-	% TODO scrivere il prologo
-	% \subfile{00-prologo}
-
-	% \part{Primo semestre}
-	%
-	% \pagenumbering{arabic}
-	% \pagestyle{copyrighted}
-	%
+    \input{00-pagina-iniziale}
+% 	\cleardoublepage
+%
+%     % NOTE pagina con la dedica (non numerata)
+% 	\input{00-dedica}
+% 	\cleardoublepage
+% 	\pagestyle{plain}
+%
+% 	% TODO scrivere il prologo
+% 	% \subfile{00-prologo}
+% \mainmatter
+%
+% 	% NOTE disabilita la protrusion localmente
+% 	\microtypesetup{protrusion = false}
+%
+% 	% TODO controlla la profondità della TOC
+% 	% NOTE % chapthers + sections + subsections
+% 	\setcounter{tocdepth}{2}
+% 	\tableofcontents
+%
+% 	\listoffigures
+%
+% 	\listoftables
+%
+% 	% TODO il pacchetto crea problemi con il preambolo, non carica i pacchetti successivi
+% 	% \listoftheorems[ignoreall, show={theorem, definition}] % NOTE si sovrascrivono
+% 	% \renewcommand{\thmtformatoptarg}[1]{ -- #1}
+% 	% \renewcommand{\listtheoremname}{Elenco dei teoremi}
+% 	% \listoftheorems[ignoreall, show={theorem}]
+% 	% \listoftheorems[ignoreall, show={definition}]
+% 	% \listoftheorems[ignoreall, show={note}]
+%
+% 	% TODO risolvere questo problema
+% 	% \listofalgorithms % NOTE non stampa nulla
+%
+% 	% NOTE (ri)abilita la protrusion
+% 	\microtypesetup{protrusion = true}
+% 	\cleardoublepage
+%
+% 	\part{Primo semestre}
+%
+% 	\pagenumbering{arabic}
+% 	\pagestyle{copyrighted}
+%
 	% \subfile{02-analisi}
 	% \subfile{03-funzioni}
-	% \subfile{04-strutture}
-	% \subfile{05-alberi}
-	% \subfile{06-abr}
-	% \subfile{08-insiemi-dizionari}
-	% \subfile{09-grafi}
-	% \subfile{12-dividi}
-	%
+	\subfile{04-strutture}
+% 	\subfile{05-alberi}
+% 	\subfile{06-abr}
+% 	\subfile{08-insiemi-dizionari}
+% 	\subfile{09-grafi}
+% 	\subfile{12-dividi}
+
 	% \part{Secondo semestre}
 	%
 	% \pagestyle{revising}
-
-	% TODO da commentare alla revisione finale
-	\listofchanges[style=list, title={Modifiche richieste}]
-
+	%
+	% % TODO da commentare alla revisione finale
+	% \listofchanges[style=list, title={Modifiche richieste}]
+	%
 	% \subfile{11-scelta}
-	\subfile{13-dp}
+	% \subfile{13-dp}
 	% \subfile{14-greedy}
 	% \subfile{15-local}
 	% \subfile{16-backtrack}

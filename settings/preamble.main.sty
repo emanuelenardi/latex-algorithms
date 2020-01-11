@@ -1,0 +1,247 @@
+\documentclass[
+    ,a4paper
+    ,10pt
+    % ,titlepage  % default for report and book
+    % ,twoside    % default for books
+    % ,openright  % default for book
+]{book}
+\raggedbottom
+
+% NOTE ridefinizioni delle classi di base
+\usepackage{./redefinitions}
+
+% WARNING da caricare presto
+\usepackage[
+	,subpreambles	= false
+	,mode			= buildnew
+]{standalone}
+
+% NOTE non più utilizzato -> preambolo precompilato, tenuto per riferimento
+\usepackage{subfiles}
+
+% NOTE toglie i numeri a piè pagina dalle pagine bianche
+\usepackage{emptypage}
+
+% NOTE gestione dei margini
+\usepackage[
+	,top	= 1in
+	,bottom	= 1in % 1in
+	,left	= 1in % 1in
+	,right	= 1in % 1in
+	% NOTE tex.stackexchange.com/questions/29125/
+	% NOTE allargo i margini di stampa
+	,marginparwidth=4.6cm
+	,heightrounded
+]{geometry}
+
+% NOTE 'xcolor' - permette di definire colori personalizzati
+\usepackage[
+	,dvipsnames
+	,svgnames
+	,x11names
+	,table
+	% ,gray
+]{xcolor}
+% TODO rimuovere per la stampa
+% \usepackage{debug}
+
+% NOTE gestione delle pagine
+\usepackage{set-pages}
+
+% NOTE in alcune parti del documento è ancora utilizzato
+\usepackage{multicol}
+
+% WARNING definisce il comando 'comment'
+\usepackage{./revision}
+
+% IDEA pacchetti di utilità
+% NOTE 'comment' - fornisce l'ambiente dei commenti
+% NOTE 'xargs' - use more than one optional parameter in a new commands
+% NOTE 'xparse' - TODO
+\usepackage{comment, xargs, xparse}
+
+% NOTE sperimentazioni con il cambio del carattere
+\begin{comment}
+% NOTE tex.stackexchange.com/questions/39700/
+% save defaults
+\edef\keptrmdefault{\rmdefault}
+\edef\keptsfdefault{\sfdefault}
+\edef\keptttdefault{\ttdefault}
+
+% WARNING creano conflitti con i pacchetti matematici
+% TODO bisogna caricarli dopo?
+% \usepackage[garamond]{mathdesign}
+% \usepackage[charter]{mathdesign}
+
+% NOTE non mi piace, troppo pesante
+% \usepackage{fouriernc}
+
+% NOTE mi piace il font del testo, ma non quello matematico
+% \usepackage{ccfonts}
+\usepackage[euler-digits,euler-hat-accent]{eulervm}
+\usepackage[T1]{fontenc}
+
+% restore defaults
+\edef\rmdefault{\keptrmdefault}
+\edef\sfdefault{\keptsfdefault}
+\edef\ttdefault{\keptttdefault}
+\end{comment}
+
+% NOTE language, input and output options
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, italian]{babel}
+\usepackage[datesep=/, style=ddmmyyyy]{datetime2}
+\usepackage[
+	% ,activate	= {true, nocompatibility}
+	,activate	= {true}
+	,final
+	% ,draft
+	,tracking	= true
+	,kerning	= true
+	% ,spacing	= true
+	,factor		= 1100
+	,stretch	= 10
+	,shrink		= 10
+]{microtype}
+
+% NOTE 'enumitem' - permette di personalizzare gli elenchi puntati
+% NOTE lista in linea
+\usepackage[inline]{enumitem}
+
+% NOTE setup tikz, bookmarks, colors
+\usepackage{tikz}
+\usepackage{pgfplots}
+% NOTE avevo bisogno della dichiarazione di 'cell'
+\usepackage{../assets/figures/tikz-preamble}
+
+% NOTE dichiarazione nuovi colori
+\colorlet{darker}{blue!50!black}
+\colorlet{faded}{lightgray}
+\colorlet{mathcolor}{blue}
+\colorlet{rose}{red!50!white}
+
+% NOTE personalizzazione degli alberi
+\usepackage{preamble.forest}
+
+% TODO rimuovere dipendenza
+% \usepackage{set-tables}
+
+% IDEA tabelle
+% NOTE 'array' - permette di creare delle colonne personalizzate
+% NOTE 'booktabs' - genera filetti professionali per le tabelle
+% NOTE 'makecell' -
+% NOTE 'multirow' - tabelle con righe multilinea
+\usepackage{
+	array,
+	booktabs,
+	makecell,
+	multirow,
+	tabularx,
+	tabu
+}
+
+% NOTE linea sottile fra le righe di una tabella
+\setlength{\lightrulewidth}{0.1pt}
+\newcommand{\lightrule}{%
+	\arrayrulecolor{black!30}%
+	\midrule[\lightrulewidth]%
+	\arrayrulecolor{black}}
+% NOTE linea verticale più spessa
+\newcolumntype{?}{!{\vrule width 1pt}}
+% NOTE linea orizzontale pesante
+\newcommand{\thickrule}{\Xhline{1pt}}
+
+% IDEA figure
+% NOTE 'graphicx' - inserimento figure nel docuemento
+% NOTE 'float' - definisce l'opzione "H" per gli oggetti fluttuanti
+\usepackage{
+	graphicx,
+	float,
+	caption,
+	subcaption
+}
+\captionsetup{
+	figureposition = bottom,
+	tableposition = top,
+	font = small,
+	labelfont = {sf, bf},
+	justification = centering
+}
+\captionsetup[figure]{
+	format=hang,
+	justification=raggedright,
+	singlelinecheck=off
+}
+\captionsetup[subfigure]{
+	format=hang,
+	justification=raggedright,
+	singlelinecheck=off
+}
+\captionsetup[listing]{
+	position = above,
+	justification=centering,
+	skip = -5pt
+}
+
+% NOTE 'csquotes' - permette di personalizzare le citazioni
+\usepackage[autostyle, italian=quotes]{csquotes}
+\usepackage{set-citations}
+
+% NOTE utilizzati nei capitoli 13/14
+\usepackage{chronology}
+\usepackage{pgfgantt}
+
+% NOTE utilizzato per arrotondare i numeri nelle tabelle
+\usepackage{siunitx}
+
+% NOTE impostazioni pacchetto siunitx
+\sisetup{
+	group-digits = true,
+	group-separator = {\,},
+	output-decimal-marker = {,}
+}
+
+% NOTE gestione elenchi puntati
+\usepackage{enumitem}
+
+\newlist{compactlist}{itemize}{2}
+\setlist[compactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 0pt, partopsep = 0pt}
+
+\newlist{semicompactlist}{itemize}{2}
+\setlist[semicompactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 5pt, partopsep = 0pt}
+
+% NOTE vertical spacing in floats
+% OPTIMIZE evita di farlo a mano
+% \setlength{\intextsep}{6.0pt plus 2.0pt minus 2.0pt}
+
+\usepackage{set-math}
+\usepackage{set-algorithm2e}
+% NOTE riadattate dal documento di Montresor (grazie 😌)
+\usepackage{../assets/algorithms/functions}
+
+% NOTE toglie l'intentazione e inserisce spaziatura tra paragrafi
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{1ex}
+
+% IDEA annotazioni - note a margine
+\usepackage{
+	marginnote,
+	mparhack,
+	marginfix,
+}
+% NOTE il lato per le note a margine del testo è il sinistro
+\reversemarginpar
+
+% NOTE comandi personalizzati
+\usepackage{./macros}
+
+% NOTE gestione delle versioni del documento
+\usepackage{./versions}
+
+% NOTE impostazioni della pagina iniziale
+\usepackage{./pdf-props}
+\usepackage{./set-pdf-props}
+
+% NOTE funzione di utilità per accertarmi di aver caricato il preambolo correttamente
+\def\preambleloaded{Precompiled preamble loaded.}

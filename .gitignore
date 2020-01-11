@@ -20,14 +20,14 @@ _minted*
 # *.sty
 
 # file sorgenti ausiliari
-assets/exercises/
+archived/
+
+archived/exercises/
 assets/handouts/
-assets/lab/
-assets/notes/
-assets/exams/compiti/
-assets/exams/soluzioni/
+archived/lab/
+archived/notes/
+archived/exams/compiti/
+archived/exams/soluzioni/
 
 # preamboli
 # formulario/preamble/
-
-questions/

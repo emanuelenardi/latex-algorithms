@@ -1,0 +1,35 @@
+% NOTE create the file for 16x24 version
+% https://tex.stackexchange.com/questions/144268/
+\usepackage{filecontents}
+
+% NOTE pagine in bianco e nero
+\begin{filecontents}{main-bw.tex}
+\documentclass{article}
+
+% NOTE rimpicciolisco il foglio di stampa
+\usepackage[paperwidth  = 17cm, paperheight = 24cm]{geometry}
+
+% NOTE aggiungo i bordi di taglio su un a4
+\usepackage[a4, frame]{crop}
+
+% NOTE per includere le pagine del file originale
+\usepackage{pdfpages}
+
+\begin{document}
+% NOTE includo solo le pagine in bianco e nero
+\includepdf[pages=1]{main}
+\end{document}
+\end{filecontents}
+
+% NOTE pagine a colori
+\begin{filecontents}{main-cl.tex}
+\documentclass{article}
+\usepackage[paperwidth  = 17cm, paperheight = 24cm]{geometry}
+\usepackage[a4, frame]{crop}
+\usepackage{pdfpages}
+
+\begin{document}
+% NOTE includo solo le pagine a colori
+\includepdf[pages=2]{main}
+\end{document}
+\end{filecontents}
