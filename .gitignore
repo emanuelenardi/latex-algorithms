@@ -25,6 +25,9 @@ archived
 # capitoli da revisionare
 chapters/revise
 
+# bozza del prologo
+chapters/00-prologo.tex
+
 # versionamento
 settings/versions.sty
 
