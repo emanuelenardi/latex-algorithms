@@ -5,6 +5,7 @@
     % ,twoside    % default for books
     % ,openright  % default for book
 ]{book}
+% NOTE evita di spaziare equamente il contenuto su tutta la pagina
 \raggedbottom
 
 % NOTE ridefinizioni delle classi di base
@@ -16,7 +17,7 @@
 	,mode			= buildnew
 ]{standalone}
 
-% NOTE non più utilizzato -> preambolo precompilato, tenuto per riferimento
+% NOTE capitoli compilati a parte
 \usepackage{subfiles}
 
 % NOTE toglie i numeri a piè pagina dalle pagine bianche
@@ -24,10 +25,10 @@
 
 % NOTE gestione dei margini
 \usepackage[
-	,top	= 1in
-	,bottom	= 1in % 1in
-	,left	= 1in % 1in
-	,right	= 1in % 1in
+	,top	= 1in % default: 1in
+	,bottom	= 1in % default: 1in
+	,left	= 1in % default: 1in
+	,right	= 1in % default: 1in
 	% NOTE tex.stackexchange.com/questions/29125/
 	% NOTE allargo i margini di stampa
 	,marginparwidth=4.6cm
@@ -42,22 +43,22 @@
 	,table
 	% ,gray
 ]{xcolor}
-% TODO rimuovere per la stampa
+% TODO mi permette di vedere i margini del testo, le etichette, i riferimenti non utilizzati...
 % \usepackage{debug}
 
 % NOTE gestione delle pagine
 \usepackage{set-pages}
 
-% NOTE in alcune parti del documento è ancora utilizzato
+% NOTE in alcune parti del documento è ancora utilizzato, da rimuovere
 \usepackage{multicol}
 
-% WARNING definisce il comando 'comment'
+% WARNING un pacchetto all'interno definisce il comando 'comment'
 \usepackage{./revision}
 
-% IDEA pacchetti di utilità
+% IDEA pacchetti utili
 % NOTE 'comment' - fornisce l'ambiente dei commenti
-% NOTE 'xargs' - use more than one optional parameter in a new commands
-% NOTE 'xparse' - TODO
+% NOTE 'xargs' - permette di usare più di un parametro opzionale in un nuovo comando
+% NOTE 'xparse' - it offers a replacement for LATEX2ε’s \newcommand macro
 \usepackage{comment, xargs, xparse}
 
 % NOTE sperimentazioni con il cambio del carattere
@@ -69,7 +70,7 @@
 \edef\keptttdefault{\ttdefault}
 
 % WARNING creano conflitti con i pacchetti matematici
-% TODO bisogna caricarli dopo?
+% NOTE bisogna caricarli dopo?
 % \usepackage[garamond]{mathdesign}
 % \usepackage[charter]{mathdesign}
 
@@ -78,7 +79,7 @@
 
 % NOTE mi piace il font del testo, ma non quello matematico
 % \usepackage{ccfonts}
-\usepackage[euler-digits,euler-hat-accent]{eulervm}
+\usepackage[euler-digits, euler-hat-accent]{eulervm}
 \usepackage[T1]{fontenc}
 
 % restore defaults
@@ -87,7 +88,7 @@
 \edef\ttdefault{\keptttdefault}
 \end{comment}
 
-% NOTE language, input and output options
+% NOTE input and output options and language/date support
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, italian]{babel}
@@ -105,9 +106,14 @@
 	,shrink		= 10
 ]{microtype}
 
-% NOTE 'enumitem' - permette di personalizzare gli elenchi puntati
-% NOTE lista in linea
+% NOTE 'enumitem' - permette di personalizzare gli elenchi puntati e in linea
 \usepackage[inline]{enumitem}
+
+\newlist{compactlist}{itemize}{2}
+\setlist[compactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 0pt, partopsep = 0pt}
+
+\newlist{semicompactlist}{itemize}{2}
+\setlist[semicompactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 5pt, partopsep = 0pt}
 
 % NOTE setup tikz, bookmarks, colors
 \usepackage{tikz}
@@ -123,9 +129,6 @@
 
 % NOTE personalizzazione degli alberi
 \usepackage{preamble.forest}
-
-% TODO rimuovere dipendenza
-% \usepackage{set-tables}
 
 % IDEA tabelle
 % NOTE 'array' - permette di creare delle colonne personalizzate
@@ -186,6 +189,7 @@
 
 % NOTE 'csquotes' - permette di personalizzare le citazioni
 \usepackage[autostyle, italian=quotes]{csquotes}
+% NOTE pacchetto personale per citazioni ad inizio capitolo
 \usepackage{set-citations}
 
 % NOTE utilizzati nei capitoli 13/14
@@ -194,26 +198,11 @@
 
 % NOTE utilizzato per arrotondare i numeri nelle tabelle
 \usepackage{siunitx}
-
-% NOTE impostazioni pacchetto siunitx
 \sisetup{
 	group-digits = true,
 	group-separator = {\,},
 	output-decimal-marker = {,}
 }
-
-% NOTE gestione elenchi puntati
-\usepackage{enumitem}
-
-\newlist{compactlist}{itemize}{2}
-\setlist[compactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 0pt, partopsep = 0pt}
-
-\newlist{semicompactlist}{itemize}{2}
-\setlist[semicompactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 5pt, partopsep = 0pt}
-
-% NOTE vertical spacing in floats
-% OPTIMIZE evita di farlo a mano
-% \setlength{\intextsep}{6.0pt plus 2.0pt minus 2.0pt}
 
 \usepackage{set-math}
 \usepackage{set-algorithm2e}
@@ -236,12 +225,12 @@
 % NOTE comandi personalizzati
 \usepackage{./macros}
 
-% NOTE gestione delle versioni del documento
-\usepackage{./versions}
-
-% NOTE impostazioni della pagina iniziale
+% NOTE impostazioni della pagina iniziale e dei metadati del PDF
 \usepackage{./pdf-props}
 \usepackage{./set-pdf-props}
+
+% NOTE gestione delle versioni del documento
+\usepackage{./versions}
 
 % NOTE funzione di utilità per accertarmi di aver caricato il preambolo correttamente
 \def\preambleloaded{Precompiled preamble loaded.}

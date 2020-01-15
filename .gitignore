@@ -19,15 +19,15 @@ _minted*
 # *.tex
 # *.sty
 
-# file sorgenti ausiliari
-archived/
+# file archiviati
+archived
 
-archived/exercises/
-assets/handouts/
-archived/lab/
-archived/notes/
-archived/exams/compiti/
-archived/exams/soluzioni/
+# capitoli da revisionare
+chapters/revise
 
-# preamboli
-# formulario/preamble/
+# versionamento
+settings/versions.sty
+
+# versioni di stampa
+main-bw.pdf
+main-cl.pdf
