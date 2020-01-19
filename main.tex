@@ -3,14 +3,8 @@
 % NOTE ha una sua cache, non precompilare
 \usepackage{set-minted}
 
-\makeatletter
-\providecommand*{\input@path}{}
-\g@addto@macro\input@path{%
-	{chapters/}% capitoli
-	{chapters/to-be-revised/}% capitoli da revisionare
-	{chapters/to-complete/}% capitoli da completare
-}% append
-\makeatother
+% NOTE gestione delle versioni del documento
+\usepackage{./versions}
 
 % NOTE compilazione del documento principale
 % arara: pdflatex: { shell: yes, draft: yes }

@@ -10,7 +10,7 @@
 *.toc
 
 # file di scripting
-# *.bat
+# scripts
 
 # file di cache
 _minted*
@@ -20,7 +20,7 @@ _minted*
 # *.sty
 
 # file archiviati
-archived
+archive
 
 # capitoli da revisionare
 chapters/revise

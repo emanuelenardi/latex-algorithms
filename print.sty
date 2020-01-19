@@ -7,10 +7,11 @@
 \documentclass{article}
 
 % NOTE rimpicciolisco il foglio di stampa
-\usepackage[paperwidth  = 17cm, paperheight = 24cm]{geometry}
+% \usepackage[papersize={17cm, 24cm}]{geometry}
 
-% NOTE aggiungo i bordi di taglio su un a4
-\usepackage[a4, frame]{crop}
+% NOTE specifico che il foglio di stampa è un a4
+% NOTE aggiungo i bordi di taglio
+% \usepackage[a4, frame, odd]{crop}
 
 % NOTE per includere le pagine del file originale
 \usepackage{pdfpages}
@@ -34,8 +35,8 @@
 % NOTE pagine a colori
 \begin{filecontents}{main-cl.tex}
 \documentclass{article}
-\usepackage[paperwidth  = 17cm, paperheight = 24cm]{geometry}
-\usepackage[a4, frame]{crop}
+% \usepackage[papersize={17cm, 24cm}]{geometry}
+% \usepackage[a4, frame]{crop}
 \usepackage{pdfpages}
 
 \begin{document}

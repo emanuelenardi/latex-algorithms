@@ -15,5 +15,9 @@ cd ../..
 REM pulizia dei file generali
 latexmk -C
 
+REM cancello versioni di stampa
+del main-bw.pdf
+del main-cl.pdf
+
 REM rientro nella cartella degli scripts
 cd scripts

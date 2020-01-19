@@ -65,5 +65,13 @@
 	{assets/figures/19/}% 19-approx
 }
 
+\makeatletter
+\providecommand*{\input@path}{}
+\g@addto@macro\input@path{%
+	{chapters/}% capitoli
+	{chapters/revise/}% capitoli da revisionare
+}% append
+\makeatother
+
 % NOTE impostazione del logo dell'università
 \newcommand\Logo{\includegraphics[width=0.85\textwidth, keepaspectratio]{logo-unitn}}
