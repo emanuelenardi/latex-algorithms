@@ -1,0 +1,25 @@
+% NOTE disabilita la protrusion localmente
+\microtypesetup{protrusion = false}
+
+% TODO controlla la profondità della TOC
+% NOTE % chapthers + sections + subsections
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+% TODO il pacchetto crea problemi con il preambolo, non carica i pacchetti successivi
+% \listoftheorems[ignoreall, show={theorem, definition}] % NOTE si sovrascrivono
+% \renewcommand{\thmtformatoptarg}[1]{ -- #1}
+% \renewcommand{\listtheoremname}{Elenco dei teoremi}
+% \listoftheorems[ignoreall, show={theorem}]
+% \listoftheorems[ignoreall, show={definition}]
+% \listoftheorems[ignoreall, show={note}]
+
+% TODO risolvere questo problema
+% \listofalgorithms % NOTE non stampa nulla
+
+% NOTE (ri)abilita la protrusion
+\microtypesetup{protrusion = true}
