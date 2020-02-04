@@ -44,7 +44,7 @@ L'ultima equazione è vera se:
 \[
 d \leqslant a_k - \frac{\abs{a_{k-1}}}{n} - \frac{\abs{a_{k-2}}}{n} -\ldots - \frac{\abs{a_1}}{n} - \frac{\abs{a_0}}{n} > 0
 \iff
-n > \frac{\abs{a_{k-1}} + \ldots + \abs{a_0}}{a_k} = m
+n > \frac{\abs{a_{k-1}} + \ldots + \abs{a_0}}{a_k} = m\qedhere
 \]
 % Costituito da una componente positiva (\(a_k\)) e da una componente negativa che per valori crescenti di \(n\) tende a \(0\).
 \end{proof}
@@ -289,7 +289,7 @@ T(n) &= b + T(\frac{n}{2}) \Arrow{\(T\left(\frac{n}{2} \cdot \frac{1}{2} \right)
 	 &= b + b + T(\frac{n}{4}) \Arrow{\(T\left(\frac{n}{4} \cdot \frac{1}{2} \right) + b\)}\\
 	 &= b + b + b + T(\frac{n}{8}) \Arrow[jump=2]{svolgo \(\log n\) operazioni}\\
 	 &= \cdots \\
-	 &= \underbrace{b + b + \ldots + b }_{\log n}+ T(1) \Arrow{semplifico}\\
+	 &= \underbracket[0.01mm]{b + b + \ldots + b }_{\log n}+ T(1) \Arrow{semplifico}\\
 	 &= b\log n + T(1) \Arrow{eliminazione delle costanti}\\
 	 &= \Theta(\log n)
 \end{WithArrows}\]
@@ -712,8 +712,8 @@ Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \le
 	\item \textbf{caso base}: dimostriamo la disequazione per \(T(2)\), \(T(3)\)
 	\begin{align*}
 		T(2) &= 2T(\floor{\frac{2}{2}}) + 2 = 4 \leqslant 1 \cdot c \cdot 2 \log 2 \Leftrightarrow c \geqslant 2\\
-		T(3) &= 2T(\floor{\frac{3}{2}}) + 2 = 5 \leqslant 1 \cdot c \cdot 3 \log 3 \Leftrightarrow c \geqslant \frac{5}{3 \log 3}\\
-		T(4) &= 2T(\floor{\frac{4}{2}}) + 2 = 2T(\floor{2}) + 4
+		T(3) &= 2T(\floor{\frac{3}{2}}) + 3 = 5 \leqslant 1 \cdot c \cdot 3 \log 3 \Leftrightarrow c \geqslant \frac{5}{3 \log 3}\\
+		T(4) &= 2T(\floor{\frac{4}{2}}) + 4 = 2T(\floor{2}) + 4
 	\end{align*}
 	Non è necessario provare la terza disequazione, in quanto viene espressa in base ai casi base diversi da \(T(1)\) che sono già stati dimostrati e quindi possono costituire la base per la nostra induzione.
 \end{itemize}

@@ -11,7 +11,7 @@
 % TODO tenere un changelog pubblico delle modifiche apportate
 \newcommand\docversion{v.\ 1.0.0}
 
-% NOTE gestione del copyright
+% NOTE acquirenti
 % \def\Buyer{Emanuele Nardi}
 % \def\Buyer{Francesco Bozzo}
 \def\Buyer{Samuele Conti}
@@ -34,8 +34,8 @@
 % NOTE style con copyright
 \fancypagestyle{copyrighted}{
 	\fancyhead[]{}
-	% \fancyhead[RE, LO]{\color{darker} \fbox{\texttt{\small \doclicenseIcon Emanuele Nardi, {\docversion}, copia rilasciata a {\Buyer} il {\today}}}}
-	\fancyhead[C]{\color{darker} \fbox{\texttt{\small \doclicenseIcon {\Author}, {\docversion}, copia rilasciata a {\Buyer} il {\today}}}}
+	% \fancyhead[RE, LO]{\color{darker} \fbox{\texttt{\small {\doclicenseIcon} Emanuele Nardi, {\docversion}, copia rilasciata a {\Buyer} il {\today}}}}
+	\fancyhead[C]{\color{darker} \fbox{\texttt{\small {\doclicenseIcon} {\Author}, {\docversion}, copia rilasciata a {\Buyer} il {\today}}}}
 	\fancyfoot[C]{\footnotesize\em ---~\thepage\ di~\pageref{LastPage}~---}
 	\renewcommand{\headrulewidth}{0pt}
 	\renewcommand{\footrulewidth}{0pt}
@@ -44,7 +44,7 @@
 % NOTE formato testatina per quando effeettuano la revisione
 \fancypagestyle{revising}{
 	\fancyhead[]{}
-	\fancyhead[C]{\color{darker} \fbox{\texttt{\small \doclicenseIcon {\Author} {\today}, COPIA DI REVISIONE per \firstReviserName e \secondReviserName}}}
+	\fancyhead[C]{\color{darker} \fbox{\texttt{\small {\doclicenseIcon} {\Author} {\today}, COPIA DI REVISIONE per \firstReviserName e \secondReviserName}}}
 	\fancyfoot[C]{\footnotesize\em ---~\thepage\ di~\pageref{LastPage}~---}
 	\renewcommand{\headrulewidth}{0pt}
 	\renewcommand{\footrulewidth}{0pt}
@@ -53,7 +53,7 @@
 % NOTE formato testatina per quando effeettuano la revisione
 \fancypagestyle{freemium}{
 	\fancyhead[]{}
-	\fancyhead[C]{\color{darker} \fbox{\texttt{\small \doclicenseIcon {\Author} {\today}, COPIA GRATUITA}}}
+	\fancyhead[C]{\color{darker} \fbox{\texttt{\small {\doclicenseIcon} {\Author} {\today}, COPIA GRATUITA}}}
 	\fancyfoot[C]{\footnotesize\em ---~\thepage\ di~\pageref{LastPage}~---}
 	\renewcommand{\headrulewidth}{0pt}
 	\renewcommand{\footrulewidth}{0pt}

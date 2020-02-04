@@ -92,7 +92,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, italian]{babel}
-\usepackage[datesep=/, style=ddmmyyyy]{datetime2}
+\usepackage[useregional, datesep=/, style=ddmmyyyy]{datetime2}
 \usepackage[
 	% ,activate	= {true, nocompatibility}
 	,activate	= {true}
@@ -210,6 +210,8 @@
 \usepackage{../assets/algorithms/functions}
 
 % NOTE toglie l'intentazione e inserisce spaziatura tra paragrafi
+% OPTIMIZE rimpiazzare con pacchetto 'parkskip'
+% \usepackage[parfill]{parskip}
 \setlength{\parindent}{0ex}
 \setlength{\parskip}{1ex}
 

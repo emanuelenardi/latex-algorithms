@@ -48,7 +48,7 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 	| 16  | ✔️       | Backtrack                       |
 	| 19  | ✔️       | Algoritmi probabilistici        |
 
--   Appendici:
+-   Appendici
 
 	| no. | Presente | Titolo                          | no. pagine |
 	| --- | -------- | ------------------------------- | --- |

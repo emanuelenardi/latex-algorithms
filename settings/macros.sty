@@ -6,19 +6,19 @@
 }
 
 % NOTE indicazione che quel particolare argomento potrebbe essere richiesto all'orale
-\usepackage{fontawesome}
-\NewDocumentCommand{\SimboloOrale}{}{%
-	\faExclamationTriangle%
-}
-\NewDocumentCommand{\Orale}{}{%
-	\normalfont\small\marginnote{%
-		\SimboloOrale%
-	}%
-}
+% \usepackage{fontawesome}
+% \NewDocumentCommand{\SimboloOrale}{}{%
+% 	\faExclamationTriangle%
+% }
+% \NewDocumentCommand{\Orale}{}{%
+% 	\normalfont\small\marginnote{%
+% 		\SimboloOrale%
+% 	}%
+% }
 
 % NOTE parole in lingue diverse dall'italiano (inglese)
 \NewDocumentCommand{\foreign}{m}{%
-	\selectlanguage{english}{%
+	\foreignlanguage{english}{%
 		\emph{#1}%
 	}%
 }

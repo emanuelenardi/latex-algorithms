@@ -25,8 +25,8 @@
 	\BlankLine
 	\Int \(min \Assign i\) \Comment*[h]{posizione del minimo parziale}\;
 	\From{\Int \(j \Assign i+1\) \DownTo \(n\)}{
-		\If(\Comment*[h]{ho trovato un nuovo minimo}){\( A[h] < A[min] \)}{
-			\(min \Assign h\) \Comment*[h]{nuovo minimo parziale}\;
+		\If(\Comment*[h]{ho trovato un nuovo minimo}){\( A[j] < A[min] \)}{
+			\(min \Assign j\) \Comment*[h]{nuovo minimo parziale}\;
 		}
 	}
 

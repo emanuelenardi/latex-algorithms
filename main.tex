@@ -7,6 +7,7 @@
 \usepackage{./settings/versions}
 
 % NOTE compilazione del documento principale
+% arara: latexmk: { clean: all }
 % arara: pdflatex: { shell: yes, draft: yes }
 % arara: pdflatex: { shell: yes, synctex: yes }
 % arara: latexmk:  { clean: partial }
@@ -15,7 +16,6 @@
 \usepackage{print}
 % arara: pdflatex: { files: [main-bw.tex]}
 % arara: clean: { files: [main-bw.tex, main-bw.aux, main-bw.log]}
-%
 % arara: pdflatex: { files: [main-cl.tex]}
 % arara: clean: { files: [main-cl.tex, main-cl.aux, main-cl.log]}
 
@@ -37,39 +37,18 @@
 
 	% TODO scrivere il prologo
 	% \subfile{00-prologo}
+
 \mainmatter
 
-	% NOTE disabilita la protrusion localmente
-	\microtypesetup{protrusion = false}
-
-	% TODO controlla la profondità della TOC
-	% NOTE % chapthers + sections + subsections
-	\setcounter{tocdepth}{2}
-	\tableofcontents
-
-	\listoffigures
-
-	\listoftables
-
-	% TODO il pacchetto crea problemi con il preambolo, non carica i pacchetti successivi
-	% \listoftheorems[ignoreall, show={theorem, definition}] % NOTE si sovrascrivono
-	% \renewcommand{\thmtformatoptarg}[1]{ -- #1}
-	% \renewcommand{\listtheoremname}{Elenco dei teoremi}
-	% \listoftheorems[ignoreall, show={theorem}]
-	% \listoftheorems[ignoreall, show={definition}]
-	% \listoftheorems[ignoreall, show={note}]
-
-	% TODO risolvere questo problema
-	% \listofalgorithms % NOTE non stampa nulla
-
-	% NOTE (ri)abilita la protrusion
-	\microtypesetup{protrusion = true}
+	\input{00-toc}
 	\cleardoublepage
 
 	\part{Primo semestre}
 
 	\pagenumbering{arabic}
-	\pagestyle{copyrighted}
+	% TODO apportare le modifiche effettuate sulla dispensa di logica
+% 	% \input{freemium}
+% 	% \input{copyright}
 
 	\subfile{02-analisi}
 	\subfile{03-funzioni}
@@ -95,9 +74,8 @@
 	% \subfile{17-prob}
 	% \subfile{19-approx}
 
-\end{document}
-
-	% \part{Laboratorio}
-	% \part{Esercizi}
-	% \part{Orale}
 	% \part{Esami}
+
+	% \part{Orale}
+
+\end{document}
