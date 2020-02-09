@@ -1,7 +1,8 @@
 %&settings/preamble.main
 
-% NOTE ha una sua cache, non precompilare
+% NOTE ha una sua cache, attenzione alla precompilazione
 \usepackage{set-minted}
+\mintedpath{{assets/codes/04/}}
 
 % NOTE gestione delle versioni del documento
 \usepackage{./settings/versions}
@@ -13,51 +14,51 @@
 % arara: latexmk:  { clean: partial }
 
 % NOTE creazione della versione di stampa
-\usepackage{print}
-% arara: pdflatex: { files: [main-bw.tex]}
-% arara: clean: { files: [main-bw.tex, main-bw.aux, main-bw.log]}
-% arara: pdflatex: { files: [main-cl.tex]}
-% arara: clean: { files: [main-cl.tex, main-cl.aux, main-cl.log]}
+%\usepackage{print}
+%% arara: pdflatex: { files: [main-bw.tex]}
+%% arara: clean: { files: [main-bw.tex, main-bw.aux, main-bw.log]}
+%% arara: pdflatex: { files: [main-cl.tex]}
+%% arara: clean: { files: [main-cl.tex, main-cl.aux, main-cl.log]}
 
 \begin{document}
 
-\frontmatter
-
-    % NOTE nessun contatore delle pagine
-	\pagenumbering{gobble}
-
-    % NOTE frontespizio
-    \input{00-pagina-iniziale}
-	\cleardoublepage
-
-    % NOTE pagina con la dedica (non numerata)
-	\input{00-dedica}
-	\cleardoublepage
-	\pagestyle{plain}
-
-	% TODO scrivere il prologo
-	% \subfile{00-prologo}
-
-\mainmatter
-
-	\input{00-toc}
-	\cleardoublepage
-
-	\part{Primo semestre}
-
-	\pagenumbering{arabic}
-	% TODO apportare le modifiche effettuate sulla dispensa di logica
-% 	% \input{freemium}
-% 	% \input{copyright}
-
-	\subfile{02-analisi}
-	\subfile{03-funzioni}
-	\subfile{04-strutture}
-	\subfile{05-alberi}
-	\subfile{06-abr}
-	\subfile{08-insiemi-dizionari}
-	\subfile{09-grafi}
-	\subfile{12-dividi}
+% \frontmatter
+%
+%     % NOTE nessun contatore delle pagine
+% 	\pagenumbering{gobble}
+%
+%     % NOTE frontespizio
+%     \input{00-pagina-iniziale}
+% 	\cleardoublepage
+%
+%     % NOTE pagina con la dedica (non numerata)
+% 	\input{00-dedica}
+% 	\cleardoublepage
+% 	\pagestyle{plain}
+%
+% 	% TODO scrivere il prologo
+% 	% \subfile{00-prologo}
+%
+% \mainmatter
+%
+% 	\input{00-toc}
+% 	\cleardoublepage
+%
+% 	\part{Primo semestre}
+%
+% 	\pagenumbering{arabic}
+% 	% TODO apportare le modifiche effettuate sulla dispensa di logica
+% % 	% \input{freemium}
+% % 	% \input{copyright}
+%
+% 	\subfile{02-analisi}
+% 	\subfile{03-funzioni}
+% 	\subfile{04-strutture}
+% 	\subfile{05-alberi}
+% 	\subfile{06-abr}
+% 	\subfile{08-insiemi-dizionari}
+% 	\subfile{09-grafi}
+% 	\subfile{12-dividi}
 
 	% \part{Secondo semestre}
 	%
@@ -69,7 +70,7 @@
 	% \subfile{11-scelta}
 	% \subfile{13-dp}
 	% \subfile{14-greedy}
-	% \subfile{15-local}
+	\subfile{15-local}
 	% \subfile{16-backtrack}
 	% \subfile{17-prob}
 	% \subfile{19-approx}

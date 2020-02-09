@@ -4,9 +4,11 @@
 *.cut
 *.fdb_latexmk
 *.fls
+*.loc
 *.lof
 *.log
 *.synctex.gz
+*.soc
 *.toc
 
 # file di scripting

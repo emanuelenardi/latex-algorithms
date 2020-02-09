@@ -1,10 +1,12 @@
-\documentclass[main.tex]{subfiles}
-%&../../preamble.main
+%&../settings/preamble.main
+\usepackage{set-minted}
+\mintedpath{{../assets/codes/04/}}
 
 \setcounter{chapter}{3}
 
 % arara: pdflatex: { shell: yes, draft: yes }
 % arara: pdflatex: { shell: yes, synctex: yes }
+% arara: latexmk:  { clean: all }
 \begin{document}
 \chapter{Strutture dati}
 \begin{fquote}
@@ -328,11 +330,11 @@ Il costo delle operazioni di lettura, scrittura, inserimento e rimozione per que
 \begin{code}
 	\captionof{listing}{Lista bidirezionale \emph{senza} sentinella in Java}
 	\label{code:java-lista-bidirezionale-sentinella}
-	\javafile{assets/codes/04/List.java}
+	\pathinputminted{java}{List.java}
 \end{code}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{forgetting}
 	\caption[]{\texttt{xkcd no.\ 379}}
@@ -366,7 +368,7 @@ Le pile possono essere implementate come:
 \begin{code}
 	\captionof{listing}{Pila basata su vettore circolare in Java}
 	\label{code:vector-stack}
-	\javafile{assets/codes/04/VectorStack.java}
+	\pathinputminted{java}{VectorStack.java}
 \end{code}
 \end{figure}
 
@@ -398,7 +400,7 @@ Le code possono essere implementate come:
 \begin{code}
 	\captionof{listing}{Coda basata su vettore in Java}
 	\label{code:vector-queue}
-	\javafile{assets/codes/04/VectorQueue.java}
+	\pathinputminted{java}{VectorQueue.java}
 \end{code}
 \end{figure}
 

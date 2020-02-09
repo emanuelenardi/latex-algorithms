@@ -1,10 +1,11 @@
-\documentclass[main.tex]{subfiles}
-%&../../preamble.main
+%&../settings/preamble.main
+\usepackage{set-minted}
 
 \setcounter{chapter}{2}
 
-% arara: pdflatex: { draft: yes }
-% arara: pdflatex: { synctex: yes }
+% arara: pdflatex: { shell: yes, draft: yes }
+% arara: pdflatex: { shell: yes, synctex: yes }
+% arara: latexmk:  { clean: all }
 \begin{document}
 \chapter{Analisi delle funzioni di costo}
 
