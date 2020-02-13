@@ -22,6 +22,7 @@ arara 14-greedy
 arara 15-local
 arara 16-backtrack
 arara 17-prob
+arara 18-pnp
 arara 19-approx
 
 rmdir /q /s _minted-cache

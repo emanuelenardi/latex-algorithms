@@ -1,9 +1,15 @@
 % NOTE disabilita la protrusion localmente
 \microtypesetup{protrusion = false}
 
-% TODO controlla la profondità della TOC
-% NOTE % chapthers + sections + subsections
-\setcounter{tocdepth}{2}
+% -1 part
+%  0 chapter
+%  1 section
+%  2 subsection
+%  3 subsubsection
+%  4 paragraph
+%  5 subparagraph
+\setcounter{secnumdepth}{2} % NOTE determines up to what level the sectioning titles are numbered
+\setcounter{tocdepth}{3} % NOTE determines to which level the sectioning commands are printed in the ToC
 \tableofcontents
 
 \listoffigures
