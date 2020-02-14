@@ -20,19 +20,18 @@
 	\(DP[0][0] \Assign \True\)\;
 
 	\BlankLine
-	\tcp{dati 0 oggetti posso ottenere un valore di \(k > 0\)}
+	\tcp{dati 0 oggetti non posso ottenere un valore di \(k > 0\)}
 	\For{\(r \Assign 1\) \DownTo \(k\)}{
 
 		\BlankLine
-		\tcp{riempio la prima riga}
-		\(DP[0][r] \Assign \False\)\;
+		\(DP[0][r] \Assign \False\) \tcp{riempio la prima riga}
 	}
 
 	\BlankLine
 	\tcp{riempi la tabella}
 	\From{\(i \Assign 1\) \DownTo \(n\)}{
-		\From(\Comment*[h]{inserisci commento}){\(r \Assign A[i]\) \DownTo \(k\)}{
-		\tcp{\(A[i]\): semplifico, inserisci commento}
+		\From(\Comment*[h]{perché parto da \(A[i]\) ?}){\(r \Assign A[i]\) \DownTo \(k\)}{
+		% \tcp{\(A[i]\): semplifico, inserisci commento}
 
 			\BlankLine
 			\tcp{logica dell'algoritmo}
@@ -41,7 +40,8 @@
 	}
 
 	\BlankLine
-	\Return DP[n][k]\;
+	\tcp{restituisco il valore in posizione \(k\)-esima}
+	\Return \(DP[n][k]\)\;
 }
 
 \ifstandalone

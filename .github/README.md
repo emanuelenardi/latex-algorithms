@@ -14,7 +14,7 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 
 ## Licenza 📃
 
-> Gli elaborati presenti in questa repository sono basati sulle trasparenze e gli appunti del Prof.re Alberto Montresor, i quali sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+> Gli elaborati presenti in questa repository sono basati sulle trasparenze e gli appunti del Prof.re Alberto Montresor, i quali sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 <!-- specificare una licenza -->
 

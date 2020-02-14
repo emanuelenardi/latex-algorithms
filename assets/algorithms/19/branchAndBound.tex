@@ -8,7 +8,7 @@
 \fi
 
 \prototype{\branchAndBound{\Array{Item} \(S\), \Int \(n\), \Int \(i\), \Int \(minCost\), \Int \(minSol\)}}{
-	\Set \(C \Assign \getChoices{S, n, i, \dots}\) \Comment*[l]{determina l'insieme in funzione delle scelte precedenti}
+	\Set \(C \Assign \getChoices{S, n, i, \dots}\) \Comment*[l]{determina l'insieme in funzione delle scelte precedenti \(S[1 \dots i-1]\)}
 
 	\BlankLine
 	\tcp{esamino ogni scelta}

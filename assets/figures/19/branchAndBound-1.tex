@@ -1,11 +1,21 @@
 \documentclass{standalone}
-\usepackage{../../../preamble.forest}
+\usepackage{../../../settings/preamble.forest}
 
 % arara: pdflatex: { draft: yes }
 % arara: pdflatex: { synctex: no }
 % arara: latexmk:  { clean: partial }
 \begin{document}
-\begin{forest} compact tree
-	[[[[[][]][[][]]][[[][]][[][]]]][[[[][]][[][]]][[[][]][[][]]]]]
+\begin{forest} compact tree, yellow
+[
+	[, edge label={node[midway, above left]{\(S[0]\)}}, edge={very thick}
+		[, edge label={node[midway, above left]{\(S[1]\)}}, edge={very thick}
+			[[][]][, edge label={node[midway, above right]{\(S[2]\)}}, edge={very thick}
+				[, edge label={node[midway, above left]{\(S[3]\)}}, edge={very thick}
+				][]]
+		]
+		[[[][]][[][]]]
+	]
+		[[[[][]][[][]]][[[][]][[][]]]]
+]
 \end{forest}
 \end{document}
