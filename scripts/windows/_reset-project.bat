@@ -4,13 +4,13 @@ cd settings
 rmdir /q /s _minted-cache
 del preamble.main.log
 del preamble.main.fmt
-cd ..
+cd ../..
 
 REM cancello il preambolo degli algoritmi
 cd assets/algorithms
 del preamble.log
 del preamble.fmt
-cd ../..
+cd ../../..
 
 cd chapters
 rmdir /q /s _minted-cache
@@ -24,7 +24,7 @@ latexmk -C
 del *.loc
 del *.soc
 
-cd ../..
+cd ../../..
 
 REM pulizia dei file generali
 latexmk -C
