@@ -1,15 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Fibonacci ottimizzato]{}
 \fi
 
 \prototype{\Int \fibonacci{\Int n}}{
@@ -29,6 +24,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

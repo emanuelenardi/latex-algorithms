@@ -4,15 +4,13 @@
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Fibonacci iterativo]{}
 \fi
 
 \prototype{\Int \fibonacciIter{\Int \(n\)}}{
 
 	\BlankLine
-	\(DP\) \Assign \new \Array{\Int}{0}{n}\;
+	\(DP\) \Assign \new \Array{\Int}[0][n]\;
 	\(DP[0] \Assign DP[1] \Assign 1\)\;
 
 	\BlankLine
