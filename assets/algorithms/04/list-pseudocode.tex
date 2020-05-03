@@ -1,0 +1,100 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\begin{minipage}[t]{.48\textwidth}
+
+% \BlankLine
+\List \Comment*[r]{bidirezionale con sentinella}
+
+\BlankLine
+\List \Pred		\Comment*[r]{predecessore}
+\List \Succ		\Comment*[r]{successore}
+\List \Value	\Comment*[r]{elemento}
+
+\BlankLine
+\prototype{\List \listConstructor}{
+	\tcp{la sentinella fa riferimento a sé stessa}
+	\(t.\Pred = t\)\;
+	\(t.\Succ = t\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\prototype{\Pos \listHead}{
+	\Return \Succ\;
+}
+
+\BlankLine
+\prototype{\Pos \listTail}{
+	\Return \Pred\;
+}
+
+\BlankLine
+\prototype{\Pos \listSucc}{
+	\Return \(p.\Succ\)\;
+}
+
+\BlankLine
+\prototype{\Pos \listPred}{
+	\Return \(p.\Pred\)\;
+}
+
+\BlankLine
+\prototype{\Bool \listEnd{\Pos p}}{
+	\Return \(p = \This\)\;
+}
+
+\end{minipage}\hfill%
+\begin{minipage}[t]{.45\textwidth}
+
+% \BlankLine
+\prototype{\Item \listRead{\Pos p}}{
+	\Return \(p.\Value\)\;
+}
+
+\BlankLine
+\prototype{\listWrite{\Pos p}}{
+	\Return \(p.\Value\)\;
+}
+
+\BlankLine
+\tcp{posso fare queste operazioni essendo sicuro}
+\tcp{di avere sempre un predecessore}
+	\prototype{\Pos \listInsert{\Pos p, \Item v}}{
+	\List \(t = \listConstructor\)
+	\(t.\Value = v\)\;
+	\(t.\Pred = p.\Pred\)\;
+	\(p.\Pred.\Succ = t\)\;
+	\(t.\Succ = p\)\;
+	\(p.\Pred = t\)\;
+
+	\BlankLine
+	\Return \(p\)\;
+}
+
+\BlankLine
+\prototype{\Pos \listRemove{\Pos p}}{
+	\(p.\Pred.\Succ = p.\Succ\)\;
+	\(p.\Succ.\Pred = p.\Pred\)\;
+	\List \(t = p.\Succ\)\;
+
+	\BlankLine
+	\Delete \(p\)\;
+	\Return \(t\)\;
+}
+
+\vspace{15pt}
+\vphantom{0pt}
+
+\end{minipage}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

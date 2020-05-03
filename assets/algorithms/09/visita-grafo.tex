@@ -1,0 +1,51 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\prototype{\visitaGrafo{\Graph G, \Node r}}{
+
+	\BlankLine
+	\Set \(S\) \Assign \setConstructor \Comment*[l]{insieme generico, da specificare (\Stack, \Queue)}
+	\(S.\setInsert{r}\) \Comment*[l]{inserisco il nodo, da specificare}
+
+	\BlankLine
+	\tcp{ho visitato il nodo}
+	\{ \alert{marca il nodo \(r\) come \enquote{scoperto}} \}
+
+	\BlankLine
+	\tcp{fintanto che l'insieme non è vuoto}
+	\While{\(S.\setSize > 0\)}{
+
+		\BlankLine
+		\tcp{la politica di rimozione dipende dal problema da risolvere}
+		\Node \(u \Assign S.\setRemove\)\;
+
+		\BlankLine
+		\{ \alert{esamina il nodo \(u\)} \}
+
+		\BlankLine
+		\ForEach{\(v \in G.\adj{u}\)}{
+
+			\BlankLine
+			\{ \alert{esamina l'arco \((u,v)\)} \}
+
+			\BlankLine
+			\If{\(v\) non è già stato scoperto}{
+
+				\BlankLine
+				\tcp{serve a non inserire il nodo più di una volta}
+				\{ \alert{marca il nodo \(v\) come \enquote{scoperto}} \}\;
+
+				\(S.\setInsert{v}\) \Comment*[l]{inserisce il nodo nell'insieme, da specificare}
+			}
+		}
+	}
+}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

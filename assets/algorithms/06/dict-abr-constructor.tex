@@ -1,0 +1,23 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{COSTRUTTORE}
+\prototype{\dictionaryConstructor}{
+	\Tree \(tree\)
+
+	\prototype{\dictionaryConstructor}{
+		\(tree = \Nil\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

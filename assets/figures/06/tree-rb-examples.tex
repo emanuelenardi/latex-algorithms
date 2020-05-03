@@ -1,0 +1,135 @@
+%&_preamble
+
+% arara: pdflatex: { interaction: batchmode }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\begin{page}
+	\begin{forest} rb tree
+		[30
+			[15
+				[10
+					[5, red[][]]
+					[]
+				]
+				[20[][]]
+			]
+			[70
+				[60, red
+					[50
+						[40, red[][]]
+						[55, red[][]]
+					]
+					[65[][]]
+				]
+				[85
+					[80, red[][]]
+					[90, red[][]]
+				]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} rb tree
+		[30
+			[15
+				[10
+					[5, red[][]]
+					[]
+				]
+				[20[][]]
+			]
+			[70
+				[60, red
+					[50
+						[40, red[][]]
+						[55, red[][]]
+					]
+					[65[][]]
+				]
+				[85
+					[80, red[][]]
+					[90, red[][]]
+				]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} rb tree
+		[30
+			[15
+				[10
+					[5, red[][]]
+					[]
+				]
+				[20[][]]
+			]
+			[70, red
+				[60
+					[50, red
+						[40[][]]
+						[55[][]]
+					]
+					[65[][]]
+				]
+				[85
+					[80[][]]
+					[90[][]]
+				]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} rb tree
+		[30
+			[15
+				[10[][]
+				]
+				[20[][]]
+			]
+			[70
+				[60, red
+					[50
+						[40[][]]
+						[55[][]]
+					]
+					[65[][]]
+				]
+				[85
+					[80, red[][]]
+					[90, red[][]]
+				]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} rb tree
+		[30
+			[15, red
+				[10[][]]
+				[20[][]]
+			]
+			[70, red
+				[60
+					[50, red
+						[40[][]]
+						[55[][]]
+					]
+					[65, red[][]]
+				]
+				[85
+					[80, red[][]]
+					[90, red[][]]
+				]
+			]
+		]
+	\end{forest}
+\end{page}
+\end{document}

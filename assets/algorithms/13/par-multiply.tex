@@ -1,0 +1,29 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Matrix{\Int} \multiplyFunction{\Matrix{\Int} A, \Matrix{\Int} S, \Int i, \Int j}}{
+
+	\BlankLine
+	\eIf{\( i \Equal j \)}
+	{ \Return \Array{A}{i}\; }
+	{
+		\BlankLine
+		\Matrix{\Int} \(X\) = \multiplyFunction{\( last[][], i, last[i][j] \)}\;
+
+		\Matrix{\Int} \(Y\) = \multiplyFunction{\( last[][], last[i][j] + 1, j \)}\;
+
+		\BlankLine
+		\Return \multiplyMatrices{X,Y}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

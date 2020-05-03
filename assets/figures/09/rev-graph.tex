@@ -1,0 +1,24 @@
+\documentclass[tikz]{standalone}
+\usepackage{../tikz-preamble}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\begin{tikzpicture}[bend right=20]
+
+    \node[state] (a) {a};
+    \node[state] (b) [above right = of a] {b};
+    \node[state] (c) [right = of b] {c};
+    \node[state] (d) [below right = of a] {d};
+	\node[state] (e) [right = of d] {e};
+    \node[state] (f) [above right = of e] {f};
+
+    \path[->] (a) edge node {} (b);
+    \path[->] (b) edge node {} (c);
+    \path[->] (a) edge [bend right] node {} (d);
+	\path[->] (d) edge [bend right] node {} (a);
+    \path[->] (d) edge node {} (e);
+    \path[->] (e) edge node {} (c);
+
+\end{tikzpicture}
+\end{document}

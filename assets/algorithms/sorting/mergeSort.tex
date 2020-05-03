@@ -1,0 +1,64 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{ordina i sottovettori}
+\prototype{\mergeSort{\Item{} \(A\), \Int \(primo\), \Int \(ultimo\)}}{
+
+	\BlankLine
+	\If(\Comment*[h]{devono esistere almeno due elementi}){\(primo < ultimo\)}{
+		\Int \(mezzo \Assign \floor{\frac{primo + ultimo}{2}}\)\;
+		\mergeSort{\(A\), \(primo\), \(mezzo\)}\;
+		\mergeSort{\(A\), \(mezzo+1\), \(ultimo\)}\;
+		\merge{\(A\), \(primo\), \(ultimo\), \(mezzo\)}\Comment*[l]{unisce le soluzioni}\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi
+
+% \BlankLine
+% \BlankLine
+% Equazione di ricorrenza:
+% \[
+% 	T =
+% 	\begin{dcases}
+% 		\Theta(1) & n = 1\\
+% 		\T*{\nicefrac{n}{2}} + \T*{\nicefrac{n}{2}} + \Theta(n) & n > 1 \\
+% 	\end{dcases}
+% 	=
+% 	\begin{dcases}
+% 		c & n = 1\\
+% 		2\T{\nicefrac{n}{2}} + dn & n > 1\\
+% 	\end{dcases}
+% \]
+%
+% \BlankLine
+% Analisi per livelli:
+% \[
+% \Omicron \left( \sum_{i=0}^{k} \Ccancel{2^i} \frac{n}{\Ccancel{2^i}} \right) = \Omicron \left( \sum_{i=0}^{k} n \right) = \Omicron(k \cdot n) = \Omicron(n \log n)
+% \]
+% %
+% Teorema dell'esperto:
+%
+% \begin{minipage}[t]{.4\linewidth}
+% \begin{align*}
+% 		\alpha &= \log_2 2 = 1 \\
+% 		\beta  &= 1 \\
+% 		\alpha &= \beta \\
+% \end{align*}
+% \end{minipage}
+% \begin{minipage}[t]{.4\linewidth}
+% \begin{align*}
+% 	T &= \Omicron(n^{\alpha} \log n) \\
+% 	  &= \Omicron(n \log n) \\
+% \end{align*}
+% \end{minipage}

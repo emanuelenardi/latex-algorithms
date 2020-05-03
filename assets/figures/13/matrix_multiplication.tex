@@ -1,0 +1,97 @@
+\documentclass[border={5pt 15pt 15pt 5pt}]{standalone}
+
+\usepackage[utf8]{inputenc}
+\usepackage[upright]{fourier}
+
+\usepackage{tikz}
+\usetikzlibrary{
+	,arrows
+	,decorations.pathmorphing
+	,matrix
+}
+
+\usepackage{xcolor}
+\colorlet{brighter}{blue!50!white}
+\colorlet{darker}{blue!50!black}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+
+% l' unite
+\newcommand{\myunit}{1 cm}
+\tikzset{
+    node style sp/.style={draw,circle,minimum size=\myunit},
+    node style ge/.style={circle,minimum size=\myunit},
+    arrow style mul/.style={draw,sloped,midway,fill=white},
+    arrow style plus/.style={midway,sloped,fill=white},
+}
+
+\begin{tikzpicture}[>=latex]
+% les matrices
+\matrix (A) [matrix of math nodes,%
+             nodes = {node style ge},%
+             left delimiter  = (,%
+             right delimiter = )] at (0,0)
+{%
+  a_{11} & a_{12} & \ldots & a_{1p}  \\
+  |[node style sp]| a_{21}%
+         & |[node style sp]| a_{22}%
+                  & \ldots%
+                           & |[node style sp]| {a_{2p}}; \\
+  \vdots & \vdots & \ddots & \vdots  \\
+  a_{n1} & a_{n2} & \ldots & a_{np}  \\
+};
+\node [draw,below=10pt] at (A.south)
+    { \(A\) : \textcolor{darker}{\(n\) righe} \(p\) colonne};
+
+\matrix (B) [matrix of math nodes,%
+             nodes = {node style ge},%
+             left delimiter  = (,%
+             right delimiter =)] at (6*\myunit,6*\myunit)
+{%
+  b_{11} & |[node style sp]| b_{12}%
+                  & \ldots & b_{1q}  \\
+  b_{21} & |[node style sp]| b_{22}%
+                  & \ldots & b_{2q}  \\
+  \vdots & \vdots & \ddots & \vdots  \\
+  b_{p1} & |[node style sp]| b_{p2}%
+                  & \ldots & b_{pq}  \\
+};
+\node [draw,above=10pt] at (B.north)
+    { \(B\) : \(p\) righe \textcolor{darker}{\(q\) colonne}};
+% matrice rÃƒÂ©sultat
+\matrix (C) [matrix of math nodes,%
+             nodes = {node style ge},%
+             left delimiter  = (,%
+             right delimiter = )] at (6*\myunit,0)
+{%
+  c_{11} & c_{12} & \ldots & c_{1q} \\
+  c_{21} & |[node style sp,darker]| c_{22}%
+                  & \ldots & c_{2q} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  c_{n1} & c_{n2} & \ldots & c_{nq} \\
+};
+% les fleches
+\draw[brighter] (A-2-1.north) -- (C-2-2.north);
+\draw[brighter] (A-2-1.south) -- (C-2-2.south);
+\draw[brighter] (B-1-2.west)  -- (C-2-2.west);
+\draw[brighter] (B-1-2.east)  -- (C-2-2.east);
+
+\draw[<->,darker](A-2-1) to[in=180,out=90]
+    node[arrow style mul] (x) {\(a_{21}\times b_{12}\)} (B-1-2);
+\draw[<->,darker](A-2-2) to[in=180,out=90]
+    node[arrow style mul] (y) {\(a_{22}\times b_{22}\)} (B-2-2);
+\draw[<->,darker](A-2-4) to[in=180,out=90]
+    node[arrow style mul] (z) {\(a_{2p}\times b_{p2}\)} (B-4-2);
+
+\draw[darker,->] (x) to node[arrow style plus] {\(+\)} (y)%
+                  to node[arrow style plus] {\(+\raisebox{.5ex}{\ldots}+\)} (z)%
+                  to (C-2-2.north west);
+
+\node [draw,below=10pt] at (C.south)
+    {\(C = A\times B\) : \textcolor{darker}{\(n\) righe}  \textcolor{darker}{\(q\) colonne}};
+
+\end{tikzpicture}
+\end{document}

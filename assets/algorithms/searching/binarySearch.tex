@@ -1,0 +1,33 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\tcp{Effettua una ricerca binaria su un vettore di lunghezza arbitraria}
+\prototype{\binarySearch{\Item{} A, \Item v, \Int i, \Int j}}{
+
+	\BlankLine
+	\eIf(\tcp*[h]{se i cursori si incrociano}){\(i > j\)}{
+		\Return \(0\) \tcp{l'elemento non esiste}
+	}{
+		\Int \(m \Assign \Floor{\frac{(i+j)}{2}}\)\Comment*[l]{assegna la mediana}
+
+		\BlankLine
+		\uIf(\tcp*[h]{abbiamo trovato l'elemento}){\(A[m] \Equal v\)}{
+			\Return \(m\)\Comment*[l]{lo restitisco al chiamante}
+		}
+		\uElseIf(\tcp*[h]{se l'elemento cercato è più grande}){\(A[m] < v\)}{
+			\Return \binarySearch{\(A, v, m+1, j\)}\Comment*[l]{cerco nella seconda metà}
+		}
+		\Else(\tcp*[h]{altrimenti}){
+			\Return \binarySearch{\(A, v, i, m-1\)}\Comment*[l]{cerco nella prima metà}
+		}
+	}
+}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

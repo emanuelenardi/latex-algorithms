@@ -1,0 +1,43 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\begin{minipage}[t]{.45\textwidth}
+
+Una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{collezione non ordinata di elementi} senza valori ripetuti.
+
+\BlankLine
+\setConstructor
+
+\BlankLine
+\tcp{INTERPRETARE}
+\Int \setSize \Comment*[r]{cardinalità dell'insieme}
+\Bool \setContains \Comment*[r]{\True se \(x\) è contenuto}
+
+% \vspace{20pt}
+\end{minipage}\hfill%
+\begin{minipage}[t]{.48\textwidth}
+
+% \BlankLine
+\tcp{OPERAZIONI DI BASE}
+\tcp{inserisce \(x\) nell'insieme, se assente}
+\setInsert{\Item \(k\)}
+
+\tcp{rimuove \(x\) nell'insieme, se presente}
+\setRemove{\Item \(k\)}
+
+\BlankLine
+\tcp{OPERAZIONI INSIEMISTICHE}
+\static \Set \setUnion{\Set \(A\), \Set \(B\)}\;
+\static \Set \setIntersection{\Set \(A\), \Set \(B\)}\;
+\static \Set \setDifference{\Set \(A\), \Set \(B\)}\;
+
+\end{minipage}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

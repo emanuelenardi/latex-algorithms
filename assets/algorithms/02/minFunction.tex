@@ -1,0 +1,34 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\begin{algorithm}[H]
+
+\BlankLine
+\prototype{\Int \minFunction{\Array{\Int} \(S\), \Int \(n\)}}{
+
+    \BlankLine
+    \From(\tcp*[h]{per ogni elemento del vettore}){\(i \Assign 1\) \DownTo \(n\)}{
+
+        \BlankLine
+        \Bool \(isMin \Assign \True\) \tcp{assumo di aver trovato il minimo}
+        \From(\tcp*[h]{confronto l'elemento con tutti gli altri}){\(j \Assign 1\) \DownTo \(n\)}{
+
+            \BlankLine
+            \If(\tcp*[h]{se trovo un valore più piccolo}){\(i \Neq j\) \And \(S[j] < S[i]\)}{
+
+                \BlankLine
+                \(isMin \Assign \False\) \tcp{quell'indice non contiene l'elemento minimo}
+            }
+        }
+
+        \BlankLine
+        \tcp{se dopo aver controllare ogni indice\dots}
+        \If(\tcp*[h]{\dots trovo un valore che ha conservato il valore \True}){\(isMin\)}{
+            \Return \(S[i]\) \tcp{l'elemento in posizione \(i\)-esima è il più piccolo}
+        }
+    }
+}
+\end{algorithm}
+\end{document}

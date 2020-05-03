@@ -1,0 +1,55 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\begin{minipage}[c]{.4\textwidth}
+
+\prototype{\conteggioNodi{\Tree \(t\)}}{
+	\eIf{\(t \Equal \Nil\)}{
+		\tcp{è un albero vuoto}
+		\Return \(0\)\;
+	}{
+		\tcp{conto ricorsivamente i nodi}
+		\(C_{\ell} = \conteggioNodi{\(t.\treeLeft\)}\)\;
+		\(C_{r} = \conteggioNodi{\(t.\treeRight\)}\)\;
+
+		\BlankLine
+		\Return \(C_{\ell} + C_{r} + 1\)\;
+	}
+}
+
+\end{minipage}%
+\begin{minipage}[c]{.5\textwidth}%
+\ifFigureOfAlgo%
+\hfill% centramento orizzontale
+\begin{minipage}[t][3.8cm]{.85\linewidth}
+	\centering
+	\begin{forest} circled, wide,
+		for tree={
+			font=\scshape,
+			count/.style 2 args={
+				edge label={node[near end, font=\sffamily\scriptsize, #1]{#2}},
+		    },
+		}
+		[a
+			[b, count={above left}{3}
+				[c, count={above left}{1}]
+				[d, count={above right}{1}]
+			]
+			[e, count={above right}{3}
+				[f, count={above left}{1}]
+				[g, count={above right}{1}]
+			]
+		]
+	\end{forest}
+\end{minipage}
+\fi
+\end{minipage}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

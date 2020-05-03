@@ -1,0 +1,690 @@
+% REVIEW esercizi
+
+% NOTE keyword di linguaggio OPP
+\SetKwFunction{static}{static}
+
+% NOTE esercizi capitolo 11[]
+\SetKwFunction{minDist}{distanzaMinima}
+
+% REVIEW esami
+
+\SetKwFunction{mergeFour}{merge4}
+\SetKwFunction{mergeSortFour}{mergeSort4}
+\SetKwFunction{mergeSortK}{mergeSort4}
+
+\SetKwFunction{sortinoSort}{sortinoSort}
+
+\SetKwFunction{fun}{fun}
+\SetKwFunction{mistery}{mistery}
+
+\SetKwFunction{canItalyWin}{canItalyWin}
+\SetKwFunction{printOrder}{printOrder}
+\SetKwFunction{printOrderRec}{printOrderRec}
+
+\SetKwFunction{minColoring}{colorazioneMinima}
+\SetKwFunction{countRec}{contaRic}
+
+\SetKwFunction{minPalindrome}{minPalindrome}
+\SetKwFunction{minPalRec}{minPalRec}
+
+% REVIEW Cap. 1 - Introduzione
+
+\SetKwFunction{lookup}{lookup} % NOTE ricerca
+\SetKwFunction{binarySearch}{binarySearch}
+% \SetKwFunction{iterativeBinarySearch}{iterativeBinarySearch}
+% \SetKwData{Rettangolo}{rettangolo}
+
+% REVIEW Cap. 2 - Analisi
+
+\SetKwFunction{pdi}{pdi}
+\SetKwFunction{karatsuba}{karatsuba}
+% \SetKwFunction{increment}{add}
+% \SetKwFunction{pippo}{pippo}
+% \SetKwFunction{follia}{follia}
+\SetKwFunction{ordina}{selectionSort}
+% \SetKwFunction{ordinaBandiera}{ordinaBandiera}
+% \newcommand{\Bianco}{\textsc{bianco}\xspace}
+% \newcommand{\Verde}{\textsc{verde}\xspace}
+% \newcommand{\Rosso}{\textsc{rosso}\xspace}
+
+% REVIEW Cap. 2 - Analisi ammortizzata
+
+\SetKwFunction{increment}{increment}
+
+% REVIEW Cap. 3 - Strutture dati
+
+% CHANGED Pos -> varPos
+\newcommand{\varPos}{\fontvar{pos}}
+
+% CHANGED Postype -> Pos
+\SetKwData{Pos}{Pos}
+\SetKwData{List}{List}
+\SetKwArray{List}{List}
+\SetKwData{Sequence}{Sequence}
+
+% NOTE SEQUENZE
+\SetKwFunction{sequenceConstructor}{Sequence}
+\SetKwFunction{listConstructor}{List}
+\SetKwFunction{listEmpty}{isEmpty}
+\SetKwFunction{listEnd}{finished}
+\SetKwFunction{listHead}{head}
+\SetKwFunction{listTail}{tail}
+\SetKwFunction{listSucc}{next}
+\SetKwFunction{listPred}{prev}
+\SetKwFunction{listInsert}{insert}
+\SetKwFunction{listRemove}{remove}
+\SetKwFunction{listRead}{read}
+\SetKwFunction{listWrite}{write}
+
+% NOTE INSIEMI
+% WARNING already defined
+\SetKwData{Set}{Set}
+\SetKwFunction{setConstructor}{Set}
+\SetKwFunction{setSize}{size}
+
+\SetKwFunction{setInsert}{insert}
+\SetKwFunction{setRemove}{remove}
+
+\SetKwFunction{setContains}{contains}
+\SetKwFunction{setEmpty}{isEmpty}
+
+\SetKwFunction{setUnion}{union}
+\SetKwFunction{setIntersection}{intersection}
+\SetKwFunction{setDifference}{difference}
+
+% NOTE dizionari
+\SetKwData{dictionaryConstructor}{dictionary}
+\SetKwFunction{dictInsert}{insert}
+\SetKwFunction{dictRemove}{remove}
+\SetKwFunction{dictLookup}{lookup}
+
+% TODO importare firme esercizi
+% \SetKwFunction{donGiovanni}{donGiovanni}
+
+% NOTE LISTA
+% NOTE le funzioni sono definite sopra
+\SetKwData{List}{List}
+
+% NOTE CODA
+% \SetKwData{Dequeue}{Dequeue}
+% NOTE le funzioni sono definite sopra
+
+% NOTE non ancora utilizzati -> esercizi
+% \newcommand{\Catalogo}{\fontvar{catalogo}}
+% \newcommand{\Duchessa}{\fontvar{duchessa}}
+% \newcommand{\Spagnola}{\fontvar{spagnola}}
+% \newcommand{\Nazione}{\fontvar{nazione}}
+% \newcommand{\Rango}{\fontvar{rango}}
+
+\SetKwData{Queue}{Queue}
+\SetKwFunction{queueConstructor}{Queue}
+\SetKwFunction{queueInsert}{enqueue}
+\SetKwFunction{queueRemove}{dequeue}
+\SetKwFunction{queueTop}{top}
+\SetKwFunction{queueSize}{size}
+\SetKwFunction{queueEmpty}{isEmpty}
+
+\SetKwData{Stack}{Stack}
+\SetKwFunction{stackConstructor}{Stack}
+\SetKwFunction{stackPush}{push}
+\SetKwFunction{stackTop}{top}
+\SetKwFunction{stackPop}{pop}
+\SetKwFunction{stackSize}{size}
+\SetKwFunction{stackEmpty}{isEmpty}
+
+\newcommand{\Pred}{\fontvar{pred}}
+\newcommand{\Succ}{\fontvar{succ}}
+\newcommand{\Value}{\fontvar{value}}
+% \newcommand{\Size}{\fontvar{n}}
+\newcommand{\Capacity}{\fontvar{m}}
+\newcommand{\Head}{\fontvar{testa}}
+
+% \newcommand{\Origine}{\fontvar{origine}}
+% \newcommand{\Destinazione}{\fontvar{destinazione}}
+% \newcommand{\Intermedio}{\fontvar{intermedio}}
+% \newcommand{\Conta}{\fontvar{conta}}
+
+% \newcommand{\Status}{\fontvar{pos}}
+% \SetKwData{INIZIO}{inizio}
+% \SetKwData{DOPOa}{dopo1}
+% \SetKwData{DOPOb}{dopo2}
+% \SetKwData{FINE}{fine}
+% \SetKwData{STOP}{stop}
+
+% NOTE esercizi
+% \SetKwFunction{stampaDifferenze}{stampaDifferenze}
+% \SetKwFunction{Tangentopoli}{tangentopoli}
+% \SetKwFunction{Epurazione}{epurazione}
+% \SetKwFunction{primiN}{primiN}
+% \SetKwFunction{rangoproc}{rango}
+% \newcommand{\finedelmondo}{\fontvar{finedelmondo}\xspace}
+
+% Cap 5. - Tree
+
+\SetKwData{Tree}{Tree}
+
+% NOTE operazioni di visita
+% \SetKwFunction{treeVisitaDFS}{visitaProfondità}
+% \SetKwFunction{treeVisitaBFS}{visitaAmpiezza}
+% \SetKwFunction{treePreVisita}{previsita}
+% \SetKwFunction{treeInVisita}{invisita}
+% \SetKwFunction{treePostVisita}{postvisita}
+
+% NOTE operazioni di lettura-scrittura (specifica)
+\SetKwFunction{treeRead}{read}
+\SetKwFunction{treeWrite}{write}
+
+% NOTE operazioni di visita
+\SetKwFunction{treeConstructor}{Tree}
+\SetKwFunction{treeChild}{leftmostChild}
+\SetKwFunction{treeSibling}{rightSibling}
+\SetKwFunction{treeParent}{parent}
+\SetKwFunction{treeLeft}{left}
+\SetKwFunction{treeRight}{right}
+
+\SetKwFunction{insertChild}{insertChild}
+\SetKwFunction{insertSibling}{insertSibling}
+\SetKwFunction{deleteChild}{deleteChild}
+\SetKwFunction{deleteSibling}{deleteSibling}
+\SetKwFunction{treeDelete}{delete}
+% \SetKwFunction{setParent}{setParent}
+\SetKwFunction{insertRight}{insertRight}
+\SetKwFunction{deleteRight}{deleteRight}
+\SetKwFunction{insertLeft}{insertLeft}
+\SetKwFunction{deleteLeft}{deleteLeft}
+
+\newcommand{\varChild}{\fontvar{child}}
+\newcommand{\varSibling}{\fontvar{sibling}}
+\newcommand{\varParent}{\fontvar{parent}}
+\newcommand{\varPrev}{\fontvar{prev}}
+\newcommand{\varLeft}{\fontvar{left}}
+\newcommand{\varRight}{\fontvar{right}}
+\newcommand{\varValue}{\fontvar{value}}
+\newcommand{\varKey}{\fontvar{key}}
+
+\SetKwFunction{conteggioNodi}{count}
+\SetKwFunction{stampaEspressioni}{stampaEspressioni}
+% \SetKwFunction{depth}{depth}
+% \SetKwFunction{cancellaFoglia}{deleteLeaf}
+% \SetKwFunction{inserisciFoglia}{inserisciFoglia}
+
+% \SetKwFunction{aggiusta}{raggruppa1}
+% \SetKwFunction{conta}{conta1}
+% \SetKwFunction{sposta}{sposta1}
+% \SetKwFunction{foglieK}{leafK}
+
+
+% REVIEW Cap. 6 - ABR
+
+\SetKwFunction{createChild}{Tree}
+\SetKwFunction{lookupNode}{lookupNode}
+\SetKwFunction{insertNode}{insertNode}
+\SetKwFunction{removeNode}{removeNode}
+
+\SetKwFunction{treeKey}{key}
+\SetKwFunction{treeValue}{value}
+
+\SetKwFunction{succNode}{successorNode}
+\SetKwFunction{predNode}{predecessorNode}
+\SetKwFunction{minNode}{min}
+\SetKwFunction{maxNode}{max}
+\SetKwFunction{shortcut}{link}
+\SetKwFunction{treeFixInsert}{balanceInsert}
+\SetKwFunction{treeFixDelete}{balanceDelete}
+\newcommand{\varMin}{\fontvar{min}}
+\newcommand{\varMax}{\fontvar{max}}
+
+\newcommand{\varColor}{\fontvar{color}} % variable
+\SetKwFunction{treeColor}{color} % GETTER
+\SetKwFunction{leftRotation}{rotateLeft}
+\SetKwFunction{rightRotation}{rotateRight}
+\SetKwData{BLACK}{black}
+\SetKwData{RED}{red}
+
+% NOTE Cap. 6 - ABR esercizi
+\SetKwFunction{verifyABR}{verifyABR}
+% \SetKwFunction{stampaNodi}{stampaNodi}
+
+% REVIEW Cap. 7 - Hash
+
+% \SetKwData{Hash}{Hash}
+% \SetKwFunction{hashconstructor}{Hash}
+
+% \newcommand{\Binario}{\fontvar{bin}}
+% \newcommand{\Intero}{\fontvar{int}}
+% \newcommand{\Ordinale}{\fontvar{ord}}
+
+% \SetKwFunction{hashscan}{scan}
+
+% \newcommand{\hashInsert}{\fontvar{insert}}
+% \newcommand{\hashEmpty}{\textbf{nil}\xspace}
+% \newcommand{\hashCancel}{\textbf{deleted}\xspace}
+% \newcommand{\hashSize}{\fontvar{dim}}
+
+
+% REVIEW Cap. 8 - Insiemi
+
+\newcommand{\varSize}{\fontvar{size}}
+\newcommand{\varCapacity}{\fontvar{dim}}
+
+% REVIEW Cap. 9 - Grafi
+
+\SetKwData{Graph}{Graph}
+\SetKwFunction{graphConstructor}{Graph}
+\SetKwData{Node}{Node}
+\SetKwArray{Edge}{edge}
+
+% NOTE operazioni sul grafo
+\SetKwFunction{VV}{V}
+\SetKwFunction{EE}{E}
+\SetKwFunction{adj}{adj}
+\SetKwFunction{weight}{w}
+\SetKwFunction{graphSize}{size}
+
+% NOTE operazioni sul nodo
+\SetKwFunction{nodeInsert}{insertNode}
+\SetKwFunction{nodeDelete}{deleteNode}
+\SetKwFunction{edgeInsert}{insertEdge}
+\SetKwFunction{edgeDelete}{deleteEdge}
+
+\SetKwFunction{visitaGrafo}{visita}
+\SetKwFunction{visitaAlbero}{BFSTraversal}
+\SetKwFunction{erdos}{erdos}
+\SetKwFunction{printPath}{stampaCammino}
+
+% NOTE operazioni di visita
+
+% NOTE ...nel testo
+\SetKwData{depthFirstSearch}{dfs}
+\SetKwData{breadthFirstSearch}{bfs}
+
+% NOTE ...negli algoritmi
+\SetKwFunction{dfsProc}{dfs}
+\SetKwFunction{dfsProcIter}{dfs}
+\SetKwFunction{dfsSchema}{dfs-schema}
+\SetKwFunction{bfsProc}{bfs}
+
+\SetKwFunction{ConnectedComponents}{cc}
+\SetKwFunction{ccdfs}{ccdfs}
+
+\SetKwFunction{hasCycleRec}{hasCycleRec}
+\SetKwFunction{hasCycle}{hasCycle}
+
+\SetKwFunction{StrongConnectedComponents}{scc}
+\SetKwFunction{dfsStack}{dfsStack}
+
+\SetKwFunction{topSort}{topSort}
+\SetKwFunction{topSortdfs}{ts-dfs}
+\SetKwFunction{transpose}{transpose}
+
+% NOTE esercizi
+% \SetKwFunction{isBipartite}{bipartito}
+% \newcommand{\Currentcolor}{\fontvar{corrente}}
+% \newcommand{\changecolor}{\fontvar{cambiaColore}}
+% \SetKwData{Uncolored}{senzacolore}
+% \SetKwData{BipRed}{rosso}
+% \SetKwData{BipWhite}{bianco}
+
+% \SetKwFunction{Scheduling}{scheduling}
+% \newcommand{\Partenze}{\fontvar{partenza}}
+% \newcommand{\Tempi}{\fontvar{durata}}
+
+% \SetKwFunction{maxdistance}{maxDistance}
+
+
+% REVIEW Cap. 10 - Code con priorità
+
+\SetKwData{Heap}{PriorityQueue}
+\SetKwArray{PriorityItem}{PriorityItem}
+
+\SetKwFunction{heapConstructor}{PriorityQueue}
+\SetKwFunction{maxHeapConstructor}{MaxPriorityQueue}
+\SetKwFunction{minHeapConstructor}{MinPriorityQueue}
+\SetKwFunction{heapEmpty}{isEmpty}
+\SetKwFunction{heapMin}{min}
+\SetKwFunction{heapDeleteMin}{deleteMin}
+\SetKwFunction{heapMax}{max}
+\SetKwFunction{heapDeleteMax}{deleteMax}
+\SetKwFunction{heapInsert}{inserisci}
+\SetKwFunction{heapDecrease}{decrease}
+\SetKwFunction{heapIncrease}{increase}
+
+% \newcommand{\heapRight}{\fontvar{r}}
+% \newcommand{\heapLeft}{\fontvar{l}}
+% \newcommand{\heapParent}{\fontvar{p}}
+
+% \SetKwFunction{heapOrdina}{sort}
+\SetKwFunction{minHeapify}{minHeapRestore}
+\SetKwFunction{maxHeapify}{maxHeapRestore}
+\SetKwFunction{heapBuild}{heapBuild}
+\SetKwFunction{heapSort}{heapsort}
+
+% \newcommand{\heapSize}{\fontvar{capacity}}
+% \newcommand{\heapCount}{\fontvar{dim}}
+% \newcommand{\heapPriority}{\fontvar{priority}}
+% \newcommand{\heapItem}{\fontvar{value}}
+% \newcommand{\heapPos}{\fontvar{pos}}
+
+% NOTE Insiemi Merge-Find
+\SetKwData{mfSet}{Mfset}
+\SetKwFunction{mfConstructor}{Mfset}
+\SetKwFunction{mfFind}{find}
+\SetKwFunction{mfMerge}{merge}
+\SetKwFunction{mfMakeSet}{makeset}
+
+% \newcommand{\mfrank}{\fontvar{rank}}
+% \newcommand{\mfparent}{\fontvar{parent}}
+
+
+% REVIEW Cap. 11 - Scelta
+
+\SetKwData{DataStructure}{StrutturaDati}
+\SetKwFunction{dsConstructor}{StrutturaDati}
+\SetKwFunction{dsAdd}{aggiungi}
+\SetKwFunction{dsRemove}{estrai}
+
+\SetKwFunction{extract}{estrai}
+
+% \SetKwData{DQueue}{DeQueue}
+% \SetKwFunction{dqConstructor}{DeQueue}
+% \SetKwFunction{dqInserthead}{insertHead}
+% \SetKwFunction{dqInserttail}{insertTail}
+% \SetKwFunction{dqRemove}{removeHead}
+
+% \SetKwData{In}{in}
+% \SetKwData{Out}{out}
+
+% \SetKwFunction{search}{ricerca}
+
+
+% REVIEW Cap. 12 - Divide et impera
+
+\SetKwFunction{minRec}{minrec}
+
+\SetKwFunction{ricHanoi}{hanoi}
+% \SetKwFunction{iterHanoi}{hanoiIterativa}
+
+\SetKwFunction{gap}{gap}
+\SetKwFunction{gapRec}{gapRec}
+
+% \SetKwFunction{divideetimpera}{divideEtImpera}
+
+% \SetKwFunction{matrixmultiply}{moltiplicaMatrici}
+% \SetKwFunction{matrixstrassen}{strassen}
+% \SetKwFunction{polinomialMultiply}{moltiplicaPolinomi}
+% \SetKwFunction{polinomialDivide}{moltiplicaPolinomiD&I}
+
+% \SetKwFunction{interpolationSearch}{ricercaInterpolata}
+
+% NOTE vedi ordinamento (in fondo)
+% \SetKwFunction{quickSort}{quickSort}
+% \SetKwFunction{pivot}{perno}
+
+% \SetKwFunction{fft}{fft}
+% \SetKwData{discreteFT}{dft}
+
+% \SetKwFunction{inversioni}{Inversioni}
+% \SetKwFunction{mergeCount}{Contamerge}
+
+% \SetKwFunction{MINfour}{min4}
+% \SetKwFunction{torneo}{torneo}
+% \SetKwFunction{maxUnimodale}{maxUnimodale}
+% \SetKwFunction{contaZero}{conta0}
+% \SetKwFunction{trovaH}{trovaH}
+
+% \newcommand{\imax}{\fontvar{imax}}
+% \newcommand{\imin}{\fontvar{imin}}
+% \newcommand{\imed}{\fontvar{imed}}
+% \newcommand{\jmax}{\fontvar{jmax}}
+% \newcommand{\jmin}{\fontvar{jmin}}
+% \newcommand{\jmed}{\fontvar{jmed}}
+% \newcommand{\gmax}{\fontvar{gmax}}
+% \newcommand{\gmin}{\fontvar{gmin}}
+% \newcommand{\gmed}{\fontvar{gmed}}
+
+
+% REVIEW Cap. 13 - Programmazione dinamica
+
+% NOTE evita di definirli in questo modo
+% \SetKwArray{DP}{DP}
+% \SetKwArray{last}{last}
+% \SetKwArray{pred}{pred}
+
+\SetKwFunction{fibonacciIter}{domino1}
+\SetKwFunction{fibonacciRic}{domino2}
+\SetKwFunction{fibonacci}{domino3}
+
+\SetKwFunction{hateville}{hateville}
+\SetKwFunction{hatevilleSolution}{solution}
+
+\SetKwFunction{computePredecessor}{computePredecessor}
+
+\SetKwFunction{knapsack}{knapsack}
+\SetKwFunction{knapsackRec}{knapsackRec}
+\SetKwFunction{knapsackMemo}{knapsack}
+\SetKwFunction{knapsackSolution}{solution}
+
+\SetKwFunction{LongestCommonSubsequence}{LCS}
+
+% \SetKwFunction{tartaglia}{tartaglia}
+% \SetKwFunction{floyd}{floydWarshall}
+\SetKwFunction{recPar}{recPar}
+\SetKwFunction{computePar}{computePar}
+\SetKwFunction{printPar}{stampaPar}
+\SetKwArray{last}{last}
+% WARNING non usare 'multiply' -> è riservato
+\SetKwFunction{multiplyFunction}{multiply}
+\SetKwFunction{multiplyMatrices}{multiplyMatrices}
+
+\SetKwFunction{stringMatching}{stringMatching}
+\SetKwArray{Item}{Item}
+\SetKwArray{Key}{Key}
+\SetKwFunction{stringMatchingMod}{stringMatchingSingleRow}
+\SetKwFunction{LCS}{lcs}
+\SetKwFunction{zaino}{zaino}
+\SetKwFunction{printDiff}{printdiff}
+\SetKwFunction{maxInterval}{maxinterval}
+
+\SetKwFunction{huffman}{huffman}
+
+% REVIEW Cap. 14 - Greedy
+
+\newcommand{\peso}{\fontvar{peso}}
+
+\SetKwFunction{resto}{resto}
+\SetKwFunction{restoDP}{restoDP}
+\SetKwFunction{restoGreedy}{restoGreedy}
+
+\SetKwFunction{mstGenerico}{mst-generico}
+\SetKwFunction{CamminiMinimi}{CamminiMinimi}
+\SetKwFunction{kruskal}{kruskal}
+\SetKwFunction{prim}{prim}
+\SetKwFunction{dijkstra}{dijkstra}
+
+\SetKwFunction{independentSet}{independentSet}
+% \SetKwData{interval}{Interval}
+% \SetKwFunction{moore}{moore}
+
+
+% \SetKwData{Arco}{Arco}
+
+
+% REVIEW Cap. 17 - Prob
+
+\SetKwFunction{isPrime}{isPrime}
+\SetKwFunction{random}{random}
+\SetKwFunction{isComposite}{isComposite}
+\SetKwFunction{MCD}{mcd}
+\SetKwFunction{heapSelect}{heapSelect}
+\SetKwFunction{selection}{selection}
+\SetKwFunction{select}{select}
+\SetKwFunction{insertionSort}{insertionSort}
+\SetKwFunction{medianFive}{median5}
+% \SetKwFunction{separa}{separa}
+% \SetKwFunction{congiungi}{congiungi}
+% \SetKwFunction{euclideExtended}{euclideEsteso}
+
+
+% REVIEW Cap. 16 - Backtrack
+
+% \SetKwData{Line}{line}
+
+% \newcommand{\Back}{\fontvar{back}}
+
+\SetKwFunction{enumeration}{enumerazione}
+\SetKwFunction{getChoices}{scelte}
+\SetKwFunction{processSolution}{processSolution}
+\SetKwFunction{isAdmissible}{isAdmissible}
+\SetKwFunction{subSets}{subSets}
+\SetKwFunction{permutations}{permutazioni}
+\SetKwFunction{horse}{cavallo}
+\SetKwFunction{moves}{mosse}
+\SetKwFunction{sudoku}{sudoku}
+\SetKwFunction{check}{verifica}
+\SetKwFunction{stessaparte}{stessaparte}
+\SetKwData{Point}{point}
+\SetKwFunction{graham}{graham}
+\SetKwFunction{stackTopDue}{top2}
+% \SetKwFunction{isSolution}{isSolution}
+% \SetKwFunction{ricercaBruta}{ricercaBruta}
+% \SetKwFunction{Kmp}{kmp}
+% \SetKwFunction{computeBack}{calcolaBack}
+
+% WARNING count è già definita
+% \newcommand{\Count}{\fontvar{count}}
+
+
+% REVIEW Cap. 15 - Ricerca Locale
+
+\SetKwFunction{ricercaLocale}{ricercaLocale}
+
+% \newcommand{\Sol}{\fontvar{Sol}}
+
+% \SetKwFunction{azzera}{azzera}
+% \SetKwFunction{satura}{satura}
+% \SetKwFunction{aumenta}{aumenta}
+% \SetKwFunction{residuo}{residuo}
+% \SetKwFunction{instrada}{instrada}
+% \SetKwFunction{update}{aggiorna}
+% \SetKwFunction{KMN}{kmn}
+
+% \newcommand{\Portata}{\fontvar{portata}}
+% \newcommand{\Stop}{\fontvar{stop}}
+% \newcommand{\esci}{\fontvar{esci}}
+
+% \SetKwFunction{shellSort}{shellSort}
+
+% \SetKwFunction{Successivo}{succ}
+% \SetKwFunction{Scambio}{scambio}
+% \SetKwFunction{Flusso}{maxFlow}
+
+% Cap. 17 - Algoritmi probabilistici
+
+% \SetKwFunction{selezione}{selezione}
+
+% REVIEW Cap. 18 - NP
+
+% \newcommand{\SI}{\textsc{sì}\xspace}
+% \newcommand{\NO}{\textsc{no}\xspace}
+
+\newcommand{\shortestPath}{\textsc{shortest-path}}
+
+\newcommand{\sat}{\textsc{sat}}
+
+\newcommand{\PTIME}{\mbox{\(\mathbb{P}\)}}
+\newcommand{\coPTIME}{\mbox{\emph{co}-\(\mathbb{P}\)}}
+\newcommand{\TIME}{\mbox{\(\mathbb{TIME}\)}}
+\newcommand{\EXPTIME}{\mbox{\(\mathbb{EXPTIME}\)}}
+\newcommand{\SPACE}{\mbox{\(\mathbb{SPACE}\)}}
+\newcommand{\PSPACE}{\mbox{\(\mathbb{PSPACE}\)}}
+\newcommand{\NP}{\mbox{\(\mathbb{NP}\)}}
+\newcommand{\coNP}{\mbox{\emph{co}-\(\mathbb{NP}\)}}
+\newcommand{\EXP}{\mbox{\(\mathbb{EXP}\)}}
+\newcommand{\NEXP}{\mbox{\(\mathbb{NEXP}\)}}
+
+% \SetKwFunction{nonDeterministica}{nonDeterministica}
+% \SetKwFunction{certificatoCricca}{certificatoCricca}
+% \SetKwFunction{enCricca}{enCricca}
+% \SetKwFunction{ndCricca}{ndCricca}
+% \SetKwFunction{certificatoTsp}{certificatoTsp}
+% \SetKwFunction{enTsp}{enTsp}
+% \SetKwFunction{ndTsp}{ndTsp}
+% \SetKwFunction{ndZaino}{ndZaino}
+% \SetKwFunction{enZaino}{enZaino}
+% \SetKwFunction{enCopertura}{enCopertura}
+
+% \SetKwFunction{mazzette}{mazzette}
+
+% \newcommand{\PS}{\textsc{ps}\xspace}
+% \newcommand{\PDF}{\textsc{pdf}\xspace}
+
+
+% NOTE Cap 19 - Approx
+
+\SetKwFunction{subSetSum}{subSetSum}
+% \SetKwFunction{approximatedSubSetSum}{approximatedSubSetSum}
+\SetKwFunction{clique}{clique}
+
+% \newcommand{\deltatsp}{\probrefi{$\Delta$tsp}{deltatsp@$\Delta$\textsc{tsp}}}
+
+% \newcommand{\ratemon}{\textsc{rm}\xspace}
+% \newcommand{\CTT}{\textsc{ctt}\xspace}
+% \newcommand{\FF}{\textsc{ff}\xspace}
+% \newcommand{\FFD}{\textsc{ffd}\xspace}
+
+\SetKwFunction{lowerBound}{lb}
+\SetKwFunction{branchAndBound}{branch\&bound}
+\newcommand{\minSol}{\fontvar{minSol}}
+\newcommand{\maxSol}{\fontvar{maxSol}}
+\newcommand{\minCost}{\fontvar{minCost}}
+
+\SetKwFunction{travelSalesmanProblem}{Tsp}
+\SetKwFunction{bbTsp}{bbTsp}
+\SetKwFunction{greedyTsp}{greedyTsp}
+
+% \newcommand{\minMaxGreedy}{\textit{min-max-greedy}\xspace}
+
+% \newcommand{\in}{\fontvar{in}}
+% \newcommand{\ultimoUso}{\fontvar{ultimo}}
+% \newcommand{\iterazioni}{\fontvar{iterazioni}}
+% \newcommand{\fine}{\fontvar{end}}
+% \newcommand{\inizio}{\fontvar{start}}
+% \newcommand{\individuale}{\fontvar{individuale}}
+% \SetKwFunction{bisezionertf}{bisectionFixed}
+% \SetKwFunction{bisezionertr}{bisectionRandom}
+% \SetKwFunction{bisezionereactive}{bisectionReactive}
+% \SetKwFunction{Mossamigliore}{bestMove}
+
+% \newcommand{\cestino}{\fontvar{cestino}}
+% \newcommand{\Dimensione}{\fontvar{dim}}
+
+% \SetKwFunction{bucketInsert}{insert}
+% \SetKwFunction{bucketDelete}{remove}
+% \SetKwFunction{bucketInc}{inc}
+
+% \SetKwFunction{bottino}{bottino}
+
+% REVIEW Ordinamento
+
+\SetKwFunction{sumFunction}{sum}
+
+\SetKwFunction{mergeSort}{mergeSort}
+\SetKwFunction{merge}{merge}
+
+\newcommand{\First}{\fontvar{primo}}
+\newcommand{\Last}{\fontvar{ultimo}}
+\newcommand{\Mid}{\fontvar{mezzo}}
+
+\SetKwFunction{countingSort}{countingSort}
+\SetKwFunction{insertionSort}{insertionSort}
+\SetKwFunction{minFunction}{min}
+\SetKwFunction{maxFunction}{max}
+\SetKwFunction{quickSort}{quickSort}
+\SetKwFunction{pivot}{perno}
+\SetKwFunction{selectionSort}{selectionSort}
+\SetKwFunction{shellSort}{shellSort}
+\SetKwFunction{spaghettiSort}{spaghettiSort}
+\SetKwFunction{pigeonholeSort}{pigeonholeSort}
+\SetKwFunction{bucketSort}{bucketSort}
+
+\SetKwArray{Record}{record}

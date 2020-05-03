@@ -1,0 +1,58 @@
+% NOTE creare un file a parte con le macro del testo
+\NewDocumentCommand\exercise{m}{%
+	\begin{center}
+		\fbox{#1}%
+	\end{center}
+}
+
+% NOTE parole in lingue diverse dall'italiano (inglese)
+\NewDocumentCommand{\foreign}{m}{%
+	\foreignlanguage{english}{%
+		\emph{#1}%
+	}%
+}
+
+% NOTE simbolo di ricorrenza
+\NewDocumentCommand{\T}{ s o m }{
+	\ensuremath{%
+		\IfValueTF{#2}
+			{T_{#2}}
+			{T}
+		\left(%
+		\IfBooleanTF{#1}
+			{\left\lfloor#3\right\rfloor}
+			{#3}
+		\right)
+	}
+}
+
+% NOTE per avere i parametri allineati a sx con un box di dimensione pari alla stringa più lunga
+\usepackage{eqparbox}
+\NewDocumentCommand{\params}{ mo }
+	{ \tcp{\eqparbox{params}{\(#1\):} #2}\vspace{-3pt} }
+
+\newcommand{\slide}[1]{\footnotesize\fbox{#1}}
+
+% NOTE 🔖 [Big O and related notations](texblog.org/2014/06/24/)
+\NewDocumentCommand{\Omicron}{o}{
+	\IfValueTF{#1}
+		{\mathcal{O}(#1)}
+		{\mathcal{O}}
+}
+\let\oldTheta\Theta
+\RenewDocumentCommand{\Theta}{o}{
+	\IfValueTF{#1}
+		{\oldTheta(#1)}
+		{\oldTheta}
+}
+\let\oldOmega\Omega
+\RenewDocumentCommand{\Omega}{o}{
+	\IfValueTF{#1}
+		{\oldOmega(#1)}
+		{\oldOmega}
+}
+
+% NOTE capitolo algoritmi ingordi
+\newcommand{\myCircle}{\tikz\draw circle(.7ex);}
+\newcommand{\R}[1]{\textcolor{red}{#1}}
+\newcommand{\B}[1]{\textcolor{blue}{#1}}

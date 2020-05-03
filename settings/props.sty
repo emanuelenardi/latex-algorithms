@@ -1,0 +1,109 @@
+% NOTE impostazione del logo dell'università
+\newcommand\Logo{\includegraphics[width=0.85\textwidth, keepaspectratio]{logo-unitn}}
+
+% NOTE impostazione percorsi di default per in comando 'input'
+% https://tex.stackexchange.com/questions/79058/
+
+\makeatletter
+\providecommand*{\input@path}{}
+\g@addto@macro\input@path{%
+	{chapters/}%
+}% append
+\makeatother
+
+\makeatletter
+\providecommand*{\input@path}{}
+\g@addto@macro\input@path{%
+	% NOTE percorsi dal main
+	{assets/algorithms/01/}% 01-introduzione
+	{assets/algorithms/02/}% 02-analisi
+	{assets/algorithms/03/}% 03-funzioni
+	{assets/algorithms/04/}% 04-strutture
+	{assets/algorithms/05/}% 05-alberi
+	{assets/algorithms/06/}% 06-abr
+	{assets/algorithms/07/}% 07-hashing
+	{assets/algorithms/08/}% 08-insiemi-dizionari
+	{assets/algorithms/09/}% 09-grafi
+	{assets/algorithms/10/}% 10-strutture-speciali
+	{assets/algorithms/11/}% 11-scelta
+	{assets/algorithms/12/}% 12-dividi
+	{assets/algorithms/13/}% 13-dp
+	{assets/algorithms/14/}% 14-greedy
+	{assets/algorithms/15/}% 15-local
+	{assets/algorithms/16/}% 16-backtrack
+	{assets/algorithms/17/}% 17-prob
+	{assets/algorithms/18/}% 18-pnp
+	{assets/algorithms/19/}% 19-approx
+	{assets/algorithms/searching/}% 02-analisi
+	{assets/algorithms/sorting/}% 02-analisi
+	% NOTE percorsi dai capitoli
+	{../assets/algorithms/01/}% 01-introduzione
+	{../assets/algorithms/02/}% 02-analisi
+	{../assets/algorithms/03/}% 03-funzioni
+	{../assets/algorithms/04/}% 04-strutture
+	{../assets/algorithms/05/}% 05-alberi
+	{../assets/algorithms/06/}% 06-abr
+	{../assets/algorithms/07/}% 07-hashing
+	{../assets/algorithms/08/}% 08-insiemi-dizionari
+	{../assets/algorithms/09/}% 09-grafi
+	{../assets/algorithms/10/}% 10-strutture-speciali
+	{../assets/algorithms/11/}% 11-scelta
+	{../assets/algorithms/12/}% 12-dividi
+	{../assets/algorithms/13/}% 13-dp
+	{../assets/algorithms/14/}% 14-greedy
+	{../assets/algorithms/15/}% 15-local
+	{../assets/algorithms/16/}% 16-backtrack
+	{../assets/algorithms/17/}% 17-prob
+	{../assets/algorithms/18/}% 18-pnp
+	{../assets/algorithms/19/}% 19-approx
+	{../assets/algorithms/searching/}% 02-analisi
+	{../assets/algorithms/sorting/}% 02-analisi
+}% append
+\makeatother
+
+% NOTE impostazione percorsi di default per in comando 'includegraphics'
+\graphicspath{
+	% NOTE percorsi dal main
+	{assets/figures/logo/}%
+	{assets/figures/01/}% 01-introduzione
+	{assets/figures/02/}% 02-analisi
+	{assets/figures/03/}% 03-funzioni
+	{assets/figures/04/}% 04-strutture
+	{assets/figures/05/}% 05-alberi
+	{assets/figures/06/}% 06-abr
+	{assets/figures/07/}% 07-hashing
+	{assets/figures/08/}% 08-insiemi-dizionari
+	{assets/figures/09/}% 09-grafi
+	{assets/figures/10/}% 10-strutture-speciali
+	{assets/figures/11/}% 11-scelta
+	{assets/figures/12/}% 12-dividi
+	{assets/figures/13/}% 13-dp
+	{assets/figures/14/}% 14-greedy
+	{assets/figures/15/}% 15-local
+	{assets/figures/16/}% 16-backtrack
+	{assets/figures/17/}% 17-prob
+	{assets/figures/18/}% 18-pnp
+	{assets/figures/19/}% 19-approx
+	{assets/figures/sorting/}% 19-approx
+	% NOTE percorsi dai capitoli
+	{../assets/figures/01/}% 01-introduzione
+	{../assets/figures/02/}% 02-analisi
+	{../assets/figures/03/}% 03-funzioni
+	{../assets/figures/04/}% 04-strutture
+	{../assets/figures/05/}% 05-alberi
+	{../assets/figures/06/}% 06-abr
+	{../assets/figures/07/}% 07-hashing
+	{../assets/figures/08/}% 08-insiemi-dizionari
+	{../assets/figures/09/}% 09-grafi
+	{../assets/figures/10/}% 10-strutture-speciali
+	{../assets/figures/11/}% 11-scelta
+	{../assets/figures/12/}% 12-dividi
+	{../assets/figures/13/}% 13-dp
+	{../assets/figures/14/}% 14-greedy
+	{../assets/figures/15/}% 15-local
+	{../assets/figures/16/}% 16-backtrack
+	{../assets/figures/17/}% 17-prob
+	{../assets/figures/18/}% 18-pnp
+	{../assets/figures/19/}% 19-approx
+	{../assets/figures/sorting/}% 19-approx
+}

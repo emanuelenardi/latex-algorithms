@@ -1,0 +1,18 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\Bool \stackEmpty \Comment*[r]{restituisce vero se la pila è vuota}
+\stackPush{\Item \(v\)} \Comment*[r]{inserisce \(v\) in cima alla pila}
+\Item \stackPop \Comment*[r]{estrae l'elemento in cima alla pila e lo restituisce al chiamante}
+\Item \stackTop \Comment*[r]{legge l'elemento in cima alla pila}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

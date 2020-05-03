@@ -1,0 +1,63 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{verifica se un albero binario è un albero di ricerca,}
+\tcp{usando gli operatori degli alberi binari}
+\prototype{\Bool \verifyABR{\Tree t}}{
+
+	\BlankLine
+	\If{\(t = \Nil\)}{
+		\tcp{l'albero non esiste}
+		\Return \True
+	}
+
+	\BlankLine
+	\tcp{controllo ricorsivo}
+	\If{\Not \verifyABR{t.\varLeft} \And \verifyABR{t.\varRight}}{
+		\Return \False
+	}
+
+
+	\BlankLine
+	\tcp{controllo dei valori all'interno dei nodi}
+	\(t.\varMin = t.\varValue\)\;
+	\(t.\varMax = t.\varValue\)\;
+
+	\BlankLine
+	\If{\(t.\varLeft \Neq \Nil\)}{
+		\tcp{esiste nodo sinistro}
+		\(t.\varMin = \minFunction{min, t.\varLeft.\varMin}\)\;
+		\(t.\varMax = \minFunction{max, t.\varLeft.\varMax}\)\;
+	}
+
+	\BlankLine
+	\If{\(t.\varRight \Neq \Nil\)}{
+		\tcp{esiste nodo destro}
+		\(t.\varMin = \minFunction{min, t.\varRight.\varMin}\)\;
+		\(t.\varMax = \minFunction{max, t.\varRight.\varMax}\)\;
+	}
+
+	\BlankLine
+	\Bool \(answer =\)
+	\((t.\varLeft = \Nil \Or t.\varValue > t.\varLeft.\varMin)\)
+	\And
+	\((t.\varLeft = \Nil \Or t.\varValue > t.\varRight.\varRight)\)\;
+
+	\BlankLine
+	\Return \(answer\)
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi
+
+% \paragraph{Analisi della complessità}
+% L'algoritmo ha complessità \(\Omicron(n)\), in quanto è il costo di una visita.

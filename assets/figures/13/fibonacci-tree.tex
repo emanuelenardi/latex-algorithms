@@ -1,0 +1,54 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{../tikz-preamble}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\begin{tikzpicture}[%
+    level distance=1.2cm,
+    level 1/.style={sibling distance=8cm},
+    level 2/.style={sibling distance=4cm},
+    level 3/.style={sibling distance=2cm},
+    level 4/.style={sibling distance=1cm},
+    level 5/.style={sibling distance=1cm}]
+    \node[mynodegr] {\(6\)}
+    child {node[mynodeg] {\(5\)}
+      child {node[mynodev] {\(4\)}
+        child {node[mynodeb] {\(3\)}
+          child {node[mynoder] {\(2\)}
+            child {node[mynode] {\(1\)}}
+            child {node[mynode] {\(0\)}}
+          }
+          child {node[mynode] {\(1\)}}
+        }
+        child {node[mynoder] {\(2\)}
+          child {node[mynode] {\(1\)}}
+          child {node[mynode] {\(0\)}}
+        }
+      }
+      child {node[mynodeb] {\(3\)}
+        child {node[mynoder] {\(2\)}
+          child {node[mynode] {\(1\)}}
+          child {node[mynode] {\(0\)}}
+        }
+        child {node[mynode] {\(1\)}}
+      }
+    }
+    child {node[mynodev] {\(4\)}
+      child {node[mynodeb] {\(3\)}
+        child {node[mynoder] {\(2\)}
+          child {node[mynode] {\(1\)}}
+          child {node[mynode] {\(0\)}}
+        }
+        child {node[mynode] {\(1\)}}
+      }
+      child {node[mynoder] {\(2\)}
+        child {node[mynode] {\(1\)}}
+        child {node[mynode] {\(0\)}}
+      }
+    }
+    ;
+\end{tikzpicture}
+\end{document}

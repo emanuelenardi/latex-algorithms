@@ -1,0 +1,38 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{ricerca di un ciclo \textbf{per grafi disconnessi}}
+\prototype{\Bool \hasCycle{\Graph \(G\)}}{
+
+	\BlankLine
+	\Array{\Bool} \(visited\) \Assign \new \Array{\Bool}{1}{G.\setSize} \Comment*[l]{creo il vettore}
+
+	\ForEach(\tcp*[h]{lo inizializzo}){\(u \in G.\VV\)}{
+		\(visited[u]\) \Assign \False\;
+	}
+
+	\BlankLine
+	\ForEach(\tcp*[h]{per ciascun nodo appartenente al grafo}){\(u \in G.\VV\)}{
+		\If(\tcp*[h]{il primo nodo non sarà stato visitato}){\Not \(visited[u]\)}{
+			\If{\hasCycleRec{G, v, \Null, visited}}{
+			\tcp{effettuo una visita ricorsiva sul nodo vicino \(v\)}
+				\Return \True\;
+			}
+		}
+	}
+
+	\BlankLine
+	\Return \False
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

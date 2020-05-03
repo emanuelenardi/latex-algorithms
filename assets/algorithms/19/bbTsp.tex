@@ -1,0 +1,48 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\bbTsp{\Array{\Item} \(S\), \Array{\Int} \(C\), \Set \(R\), \Int \(n\), \Int \(i\)}}{
+	\ForEach{\(c \in R\)}{
+		\(S[i] \Assign c\)\;
+		\(R.\setRemove{c}\)\;
+
+		\BlankLine
+		\(C[i] \Assign C[i-1] + d[S[i-1]][S[i]]\)\;
+
+		\BlankLine
+		\{ calcola \(A\), \(B\), \(D[H]\) per ogni \(h \in R\) \}
+
+		\BlankLine
+		\Int \(lb \Assign C[i] + \iif{ \(i<n\), \(\Ceil{\frac{\sum_{h \not\in S} D[h]}{2}}\), \(d[S[i]][S[1]]\) }\)\;
+
+
+		\BlankLine
+		\tcp{inizializza \(minCost\) ad una permutazione casuale}
+		\(minCost \Assign \random\)
+
+		\BlankLine
+		\If{\(lb < minCost\)}{
+			\eIf{\(i < n\)}{
+				\bbTsp{S, C, R, n, \(i+1\)}\;
+			}{
+				\(C[n] \Assign lb\)\;
+				\(minSol \Assign S\)\;
+				\(minCost \Assign C[n]\)\;
+			}
+		}
+
+		\BlankLine
+		\(R.\setInsert{c}\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

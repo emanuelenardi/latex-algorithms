@@ -1,0 +1,38 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Set \independentSet{\Array{\Int} \(a\), \Array{\Int} \(b\)}}{
+
+	\BlankLine
+	\{ ordina \(a\) e \(b\) in modo che \(b[1] \leqslant b[2] \leqslant \cdots \le b[n]\) \}\;
+	\tcp{\(\Omicron(n)\) se già ordinati, \(\Omicron(n \log n)\) altrimenti}
+
+	\BlankLine
+	\Set \(S \Assign \setConstructor\)\;
+	\(S\).\setInsert(1) \Comment*[h]{inserisco il primo intervallo}\;
+	\Int \Last \(\Assign 1\) \Comment*[h]{ultimo intervallo inserito}\;
+
+	\BlankLine
+	\From{\(i \Assign 2\) \DownTo \(n\)}{
+		\If{\(a[i] \geqslant b[\Last]\)}{
+			\tcp{gli intervalli sono indipendenti}
+
+			\BlankLine
+			\(S\).\setInsert(i) \Comment*[h]{lo inserisco}\;
+			\(\Last \Assign i\) \Comment*[h]{lo rendo l'ultimo inserito}\;
+		}
+	}
+
+	\Return \(S\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

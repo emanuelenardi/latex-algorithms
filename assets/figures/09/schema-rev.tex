@@ -1,0 +1,42 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+\begin{document}
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0, 4) (a) {a};
+	\node[mynode] at (2, 4) (b) {b};
+	\node[mynode] at (0, 2) (c) {c};
+	\node[mynode] at (2, 2) (d) {d};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (d);
+	\draw[myedge] (c) edge[bend right=10] node {} (a);
+	\draw[myedge] (a) edge[bend right=10] node {} (c);
+	\draw[myedge] (d) edge node {} (b);
+	\draw[myedge] (d) edge node {} (c);
+	\draw[myedge] (b) edge node {} (c);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (1, 3.5) (a) {a};
+	\node[mynode] at (0, 2.0) (b) {b};
+	\node[mynode] at (0, 0.5) (c) {c};
+	\node[mynode] at (2, 2.0) (d) {d};
+
+	\draw[myedger] (a) edge node {} (b);
+	\draw[myedger] (a) edge node {} (d);
+	\draw[myedgegd] (c) edge[bend right=25] node {} (a);
+	\draw[myedgevd] (a) edge[bend right=65] node {} (c);
+	\draw[myedgexd] (d) edge[bend left=20] node {} (b);
+	\draw[myedgexd] (d) edge[bend left=20] node {} (c);
+	\draw[myedger] (b) edge node {} (c);
+
+\end{tikzpicture}
+\end{page}
+\end{document}

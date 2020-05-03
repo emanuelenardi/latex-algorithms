@@ -1,0 +1,38 @@
+% IDEA figure
+
+% TODO rimuovere centering da ogni figura
+
+% NOTE 'graphicx' - inserimento figure nel docuemento
+% NOTE 'float' - definisce l'opzione 'H' per gli oggetti fluttuanti
+\usepackage{
+	graphicx,
+	float,
+	caption,
+	subcaption
+}
+
+\captionsetup{
+	figureposition = bottom,
+	tableposition  = top,
+	font           = small,
+	labelfont      = {sf, bf},
+	justification  = centering
+}
+
+\captionsetup[figure]{
+	format         = hang,
+	justification  = raggedright,
+	singlelinecheck= off
+}
+
+\captionsetup[subfigure]{
+	format         = hang,
+	justification  = raggedright,
+	singlelinecheck= off
+}
+
+\captionsetup[listing]{
+	position       = above,
+	justification  = centering
+	% skip = -5pt
+}

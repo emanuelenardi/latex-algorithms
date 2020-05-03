@@ -1,0 +1,16 @@
+%&_preamble
+
+% \documentclass{standalone}
+% \usepackage{_preamble}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\begin{tikzpicture}[transform shape, scale=1]
+	\node[mynode] at (0,0) (a) {a};
+	\node[mynode] at (3,0) (b) {b};
+
+	\draw[edgen] (a) edge[above] node[background] {\R{5}+\G{2}/\B{7}} (b);
+\end{tikzpicture}
+\end{document}

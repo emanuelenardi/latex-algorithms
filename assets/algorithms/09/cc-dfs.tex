@@ -1,0 +1,38 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{visita ricorsiva di ciascuna componente}
+\prototype{\ccdfs{\Graph G, \Int counter, \Node u, \Array{\Int} id}}{
+
+	\vspace{2pt}
+	\params{counter}[identificatore di quante cc ho trovato fin'ora]
+	\params{u}[il nodo che sto visitando]
+	\params{id}[l'identificativo della componente]
+
+	\BlankLine
+	\tcp{memorizzo l'identificativo della cc}
+	\(id[v] \Assign counter\)\;
+
+	\BlankLine
+	\ForEach(\tcp*[h]{per ciascun nodo adiacente}){\(v \in G.\adj{u}\)}{
+
+		\BlankLine
+		\If(\tcp*[h]{non è ancora stato visitato}){\(id[v] \Equal 0\)}{
+			\tcp{\(v\): il nodo su cui vado ad operare}
+
+			\BlankLine
+			\ccdfs{G, counter, v, id} \Comment*[l]{lo visito ricorsivamente}
+		}
+	}
+}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

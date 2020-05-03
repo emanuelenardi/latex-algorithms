@@ -1,0 +1,31 @@
+% NOTE definizione della licenza
+% NOTE https://creativecommons.org/share-your-work/licensing-considerations/compatible-licenses
+\usepackage[
+	type       = CC,
+	modifier   = by-nc-sa,
+	version    = 4.0,
+	imagewidth = 4em,
+]{doclicense}
+
+% TODO da aggiornare ad ogni modifica rilasciata
+% TODO tenere un changelog pubblico delle modifiche apportate
+\newcommand\docversion{v.\ 1.0.0}
+% \date{\today\\{\small\texttt{\docversion}}}
+
+% NOTE 'fancyhdr' - permette la personalizzazione di testatina e piè di pagina
+\usepackage{fancyhdr, lastpage}
+
+% NOTE redefine the plain page style ISSUED BY CHAPTER
+\fancypagestyle{plain}{%
+	\fancyhead[]{}
+	\fancyfoot[]{}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{default}{
+	\fancyhead[]{}
+	\fancyfoot[C]{\footnotesize \thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}

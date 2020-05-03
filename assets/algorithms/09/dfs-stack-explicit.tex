@@ -1,0 +1,53 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\algorithmstyle{ruled}
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption[Visita in profondità iterativa]{Visita in profondità, iterativa con stack esplicito e visita in \emph{pre}-ordine}
+\fi
+
+\BlankLine
+\tcp{effettua una visita in profondità iterativa}
+\prototype{\dfsProcIter{\Graph G, \Node r}}{
+	\Stack \(S \Assign \stackConstructor\)\;
+	\(S.\stackPush{r}\) \Comment*[l]{inserisco la radice nella pila}
+
+	\BlankLine
+	\Array{\Bool} \(visitato \Assign\) \new \Array{\Bool}[1][G.\graphSize]\;
+	\lForEach{\(u \in G.\VV - \{r\}\)}{
+		\(visitato[u] \Assign \False\)\;
+	}
+	\(visitato[r] \Assign \True\) \Comment*[l]{marco la radice come visitata}
+
+	\BlankLine
+	\While{\Not \(S.\stackEmpty\)}{
+
+		\BlankLine
+		\Node \(u \Assign S.\stackPop\) \Comment*[l]{estraggo un nodo}
+		\If(\tcp*[h]{se non l'ho ancora visitato}){\Not \(visitato[v]\)}{
+			\BlankLine
+			\{ \alert{esamina il nodo \(u\) in \emph{pre}-ordine} \}\;
+			\(visitato[v] \Assign \True\) \Comment*[l]{lo segno come visitato}
+
+			\BlankLine
+			\ForEach(\tcp*[h]{per ciascun nodo adiacente}){\(v \in G.\adj{u}\)}{
+
+				\BlankLine
+				\{ \alert{esamina l'arco \((u,v)\)} \}
+
+					\(S.\stackPush{v}\) \Comment*[l]{lo inserisco nella pila}
+			}
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\algorithmstyle{tworuled}
+\end{document}
+\fi

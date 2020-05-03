@@ -1,0 +1,73 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\greedyTsp{\Graph \(G\)}}{
+
+	\BlankLine
+	\tcp{creazione strutture dati}
+	\Set \(S \Assign  \setConstructor\)\;
+	\mfSet \(M \Assign  \mfConstructor{G.\setSize}\)\;
+	\tcp{archi in ingresso ad un nodo}
+	\Array{\Int} \(in \Assign \) \new \Array{\Int}{1}{G.\setSize}\;
+
+	\BlankLine
+	\tcp{inizializzazione}
+	\From{\(i \Assign 1\) \DownTo \(G.\setSize\)}{
+		\(in[i] \Assign  0\)\;
+	}
+
+	\BlankLine
+	\{ ordina gli archi per peso decrescente \}
+
+	\BlankLine
+	\ForEach{\([u,v] \in G.\EE\)}{
+		\If{\(in[u] \Neq 2\) \And \(in[v] \Neq 2\) \And \(M.\mfFind{u} \Neq M.\mfFind{v}\)}{
+			\tcp{non si è formato un ciclo}
+
+			\BlankLine
+			\tcp{prendo nota dell'arco inserito}
+			\(S.\setInsert{\(\angleled{u,v}\)}\)\;
+
+			\BlankLine
+			\tcp{aggiorno il no.\ di lati entranti nei due nodi}
+			\(\Increment{in[u]}\)\;
+			\(\Increment{in[v]}\)\;
+
+			\BlankLine
+			\tcp{li considero come un unico nodo}
+			\(M.\mfMerge{u,v}\)\;
+		}
+	}
+
+	\BlankLine
+	\tcp{chiudo il circuito}
+	\Int \(u \Assign  1\)\;
+	\lWhile{\(in[1] \Neq 1\)}{
+		\(\Increment{u}\)
+	}
+
+	\BlankLine
+	\Int \(v \Assign  u + 1\)\;
+	\lWhile{\Not \(in[v] \Neq 1\)}{
+		\(\Increment{v}\)
+	}
+
+	\BlankLine
+	\tcp{chiusura del circuito hamiltoniano}
+	\(S.\setInsert{\(\angleled{u,v}\)}\)
+
+	\BlankLine
+	\tcp{restituisco l'insieme che archi che costituisce il percorso}
+	\Return \(S\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

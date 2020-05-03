@@ -1,0 +1,32 @@
+% NOTE disabilita la protrusion localmente
+\microtypesetup{protrusion = false}
+
+% -1 part
+%  0 chapter
+%  1 section
+%  2 subsection
+%  3 subsubsection
+%  4 paragraph
+%  5 subparagraph
+\setcounter{secnumdepth}{2} % NOTE determines up to what level the sectioning titles are numbered
+\setcounter{tocdepth}{3} % NOTE determines to which level the sectioning commands are printed in the ToC
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+% TODO il pacchetto crea problemi con il preambolo, non carica i pacchetti successivi
+% \listoftheorems[ignoreall, show={theorem, definition}] % NOTE si sovrascrivono
+% \renewcommand{\thmtformatoptarg}[1]{ -- #1}
+% \renewcommand{\listtheoremname}{Elenco dei teoremi}
+% \listoftheorems[ignoreall, show={theorem}]
+% \listoftheorems[ignoreall, show={definition}]
+% \listoftheorems[ignoreall, show={note}]
+
+% TODO risolvere questo problema
+% NOTE non stampa nulla
+% \listofalgorithms
+
+% NOTE (ri)abilita la protrusion
+\microtypesetup{protrusion = true}

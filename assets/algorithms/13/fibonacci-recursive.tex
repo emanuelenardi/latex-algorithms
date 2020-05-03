@@ -1,0 +1,22 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Int \fibonacciRic{\Int n}}{
+	\eIf{\( n \leqslant 1 \)}{
+		\Return \(1\)\;
+	}{
+		% \tcp{due chiamate ricorsive \(time \to \Omicron(2^n)\)}
+		\Return \(\fibonacciRic{\(n-1\)} + \fibonacciRic{\(n-2\)}\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

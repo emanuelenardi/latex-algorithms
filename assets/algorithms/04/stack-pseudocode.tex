@@ -1,0 +1,75 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\begin{minipage}[t]{.45\textwidth}
+
+% \BlankLine
+\Item{} \(A\)	\Comment*[r]{elementi}
+\Int \(n\)		\Comment*[r]{cursore}
+\Int \(m\)		\Comment*[r]{dimesione massima}
+
+\BlankLine
+\tcp{crea una pila vuota}
+\prototype{\Stack \stackConstructor{\Int dim}}{
+	\Stack \(t =\) \new \Stack\;
+	\(t.A =\) \new \Array{\Int}[0][dim-1]\;
+	\(t.m = dim\)\;
+	\(t.n = 0\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\tcp{leggi l'elemento in cima alla pila}
+\prototype{\Item \stackTop}{
+	\precondition{\(n > 0\)}
+
+	\BlankLine
+	\Return A[n]\;
+}
+
+% \vspace{10pt}
+\end{minipage}\hfill%
+\begin{minipage}[t]{.45\textwidth}
+% \BlankLine
+\tcp{restituisce \True se la pila è vuota}
+\prototype{\Bool \stackEmpty}{
+	\Return \(n \Equal 0\)
+}
+
+\BlankLine
+\tcp{estrae l'elemento in cima alla pila e lo restituisce al chiamante}
+\prototype{\Item \stackPop}{
+	\precondition{\(n > 0\)}
+
+	\BlankLine
+	\Item \(t = A[n]\)\;
+	\Decrement{n}\;
+
+	\BlankLine
+	\Return \(t\)
+}
+
+\BlankLine
+\tcp{inserisce \(v\) in cima alla pila}
+\prototype{\stackPush{\Item v}}{
+	\precondition{\(n < m\)}
+
+	\BlankLine
+	\Increment{n}\;
+	\(A[n] = v\)
+}
+
+\vphantom{0pt}
+
+\end{minipage}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

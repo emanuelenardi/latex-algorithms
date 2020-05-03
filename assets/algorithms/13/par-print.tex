@@ -1,0 +1,26 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\printPar{\Matrix{\Int} \(last\), \Int \(i\), \Int \(j\)}}{
+
+	\eIf{\( i \Equal j \)}{
+		\Print \enquote{A[};\ \Print \(i\);\ \Print \enquote{]}\;
+	}{
+		\Print \enquote{(} \Comment*[r]{aperta}
+		\printPar{\(last, i, last[i][j]\)} \Comment*[r]{parentesizzazione ottima fino a \(k\)}
+		\Print \enquote{\(\cdot\)} \Comment*[r]{segno di moltiplicazione}
+		\printPar{\(last, last[i][j] + 1, j\)} \Comment*[r]{parentesizzazione ottima da \(k+1\)}
+		\Print \enquote{)} \Comment*[r]{chiusa}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

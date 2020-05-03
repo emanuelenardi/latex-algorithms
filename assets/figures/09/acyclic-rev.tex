@@ -1,0 +1,50 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+\begin{document}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0,-4.5) (a2) {a};
+	\node[mynode] at (2,-3.0) (b2) {b};
+	\node[mynode] at (4,-3.0) (c2) {c};
+	\node[mynode] at (2,-6.0) (d2) {d};
+	\node[mynode] at (4,-6.0) (e2) {e};
+	\node[mynode] at (6,-4.5) (f2) {f};
+
+	\draw[myedge] (a2) edge node {} (b2);
+	\draw[myedge] (a2) edge node {} (d2);
+	\draw[myedge] (b2) edge node {} (c2);
+	\draw[myedge] (d2) edge node {} (e2);
+	\draw[myedge] (d2) edge node {} (c2);
+	\draw[myedge] (e2) edge node {} (f2);
+	\draw[myedge] (c2) edge node {} (f2);
+	\draw[myedge] (c2) edge node {} (e2);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0,-9.0) (a3) {a};
+	\node[mynode] at (2,-7.5) (b3) {b};
+	\node[mynode] at (4,-7.5) (c3) {c};
+	\node[mynode] at (2,-10.5) (d3) {d};
+	\node[mynode] at (4,-10.5) (e3) {e};
+	\node[mynode] at (6,-9.0) (f3) {f};
+
+	\draw[myedge] (a3) edge node {} (b3);
+	\draw[myedge] (a3) edge node {} (d3);
+	\draw[myedge] (b3) edge node {} (c3);
+	\draw[myedger] (e3) edge node {} (d3);
+	\draw[myedger] (d3) edge node {} (c3);
+	\draw[myedge] (e3) edge node {} (f3);
+	\draw[myedge] (c3) edge node {} (f3);
+	\draw[myedger] (c3) edge node {} (e3);
+
+\end{tikzpicture}
+\end{page}
+
+\end{document}

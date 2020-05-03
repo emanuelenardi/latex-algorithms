@@ -1,0 +1,18 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\Bool \queueEmpty \Comment*[r]{restituisce vero se la coda è vuota}
+\Item \queueInsert{\Item \(v\)} \Comment*[r]{inserisce \(v\) in fondo alla coda}
+\Item \queueRemove \Comment*[r]{estrae l'elemento in cima alla coda e lo restituisce al chiamante}
+\Item \queueTop \Comment*[r]{legge l'elemento in testa alla coda}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

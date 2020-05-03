@@ -1,0 +1,19 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{IMPLEMENTAZIONE DIZIONARIO}
+\prototype{\dictInsert{\Item \(k\), \Item \(v\)}}{
+	\(tree\) \Assign \insertNode{\(tree, k, v\)}\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

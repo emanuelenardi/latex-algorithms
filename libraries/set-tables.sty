@@ -1,0 +1,24 @@
+% IDEA tabelle
+% NOTE 'array' - permette di creare delle colonne personalizzate
+% NOTE 'booktabs' - genera filetti professionali per le tabelle
+% NOTE 'makecell' -
+% NOTE 'multirow' - tabelle con righe multilinea
+\usepackage{
+	array,
+	booktabs,
+	makecell,
+	multirow,
+	tabularx,
+	tabu
+}
+
+% NOTE linea sottile fra le righe di una tabella
+\setlength{\lightrulewidth}{0.1pt}
+\newcommand{\lightrule}{%
+	\arrayrulecolor{black!30}%
+	\midrule[\lightrulewidth]%
+	\arrayrulecolor{black}}
+% NOTE linea verticale più spessa
+\newcolumntype{?}{!{\vrule width 1pt}}
+% NOTE linea orizzontale pesante
+\newcommand{\thickrule}{\Xhline{1pt}}

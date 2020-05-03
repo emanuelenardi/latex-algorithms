@@ -1,0 +1,35 @@
+\documentclass{standalone}
+\usepackage{xcolor}
+\usepackage{../../../libraries/set-math}
+\usepackage{tikz}
+\usetikzlibrary{
+	,trees
+	,shapes
+	,positioning
+	,arrows.meta
+}
+
+\tikzset{
+	,mynode/.style = {circle, draw=black, align=center,fill=white, font=\ttfamily}
+	% ,mynoder/.style = {circle, draw=black, align=center,fill=red!30, font=\ttfamily}
+	% ,mynodeb/.style = {circle, draw=black, align=center,fill=blue!30, font=\ttfamily}
+	% ,mynodew/.style = {circle, thick, draw=white, align=center,fill=white, font=\ttfamily}
+	,edgen/.style = {-latex, thick}
+	,values/.style = {font=\footnotesize}
+	,background/.style = {values, rounded corners=2pt,fill=white}
+	,source/.style = {label={[label distance=5pt] left:\(s\)}}
+	,sink/.style = {label={[label distance=5pt] right:\(t\)}}
+	% ,edger/.style = {-latex, thick, red}
+	% ,edgeb/.style = {-latex, thick, blue}
+	% ,edgeg/.style = {-latex, thick, gray}
+	% ,edgegd/.style = {-latex, thick, brown,dashed} % back
+	% ,edgevd/.style = {-latex, thick, violet,dotted} % forward
+	% ,edgexd/.style = {-latex, thick, blue,densely dotted} % traversal
+	% ,every picture/.style={/utils/exec={\ttfamily\bfseries}}
+	% ,every picture/.style={font issue=\ttfamily\bfseries}
+	% ,font issue/.style={execute at begin picture={#1\selectfont}}}
+}
+
+\newcommand{\R}[1]{\textcolor{red}{#1}}
+\newcommand{\B}[1]{\textcolor{blue}{#1}}
+\newcommand{\G}[1]{\textcolor{violet}{#1}}

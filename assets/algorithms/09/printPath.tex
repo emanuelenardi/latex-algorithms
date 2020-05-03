@@ -1,0 +1,32 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{stampa il cammino da \(r\) a \(s\) nell'ordine corretto}
+\prototype{\printPath{\Node \(r\), \Node \(s\), \Array{\Node} \(parent\)}}{
+	\params{parent}[vettore dei padri]
+
+	\BlankLine
+	\uIf(\tcp*[h]{se è la radice}){\(r \Equal s\)}{
+		\Print \(s\) \Comment*[l]{la stampo}
+	}
+	\uElseIf{\(parent[s] \Equal \Nil\)}{
+		\Print \enquote{nessun cammino da \(r\) a \(s\)}
+	}
+	\Else{
+		\tcp{la chiamata ricorsiva prima della stampa per stampare in ordine}
+		\printPath{\(r\), \(parent[s]\), \(p\)}\;
+		\Print \(s\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

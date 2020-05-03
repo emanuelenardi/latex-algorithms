@@ -1,0 +1,25 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\ifstandalone
+\begin{algorithm}[H]
+\fi
+
+% TODO
+\prototype{\Int \knapsack{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(C\)}}{
+
+    \BlankLine
+    \tcp{comment}
+    \(DP \Assign \new \Array{\Int}[0\dots n][0\dots C]\)\;
+
+    \BlankLine
+    \tcp{comment}
+    ...
+}
+
+\ifstandalone
+\end{algorithm}
+\fi
+\end{document}

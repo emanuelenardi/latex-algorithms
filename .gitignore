@@ -1,0 +1,22 @@
+# file ausiliari di latex
+*.aux
+*.cut
+*.fdb_latexmk
+*.fls
+*.loc
+*.lof
+*.log
+*.lot
+*.pyg
+*.soc
+*.synctex.gz
+*.synctex(busy)
+*.toc
+
+*.pdf
+
+**/_minted-cache
+
+# preamboli pre-compilati
+settings/preamble.main.fmt
+assets/algorithms/preamble.fmt

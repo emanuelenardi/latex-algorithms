@@ -1,0 +1,49 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Bool \enumeration{\Item{} S, \Int n, \Int i, \dots}}{
+	\params{S}[vettore contenente le soluzioni parziali \(S[1][i]\)]
+	\params{n}[il numero massimo di scelte possibili]
+	\params{i}[indice corrente]
+	\params{\dots}[parametri addizionali dipendenti dal problema]
+
+	\BlankLine
+	\BlankLine
+	\Set \(C = \getChoices{S, n, i, \dots}\) \Comment*[h]{Determina \(C\) in funzione di \(S[1][i-1]\)}
+
+	\params{C}[l'insieme dei possibili candidati per estendere la soluzione]
+
+	\BlankLine
+	\ForEach(\tcp*[h]{per ogni possibile scelta fra quelle possibili}){\(c \in C\)}{
+		\(S[i] \Assign c\) \Comment*[l]{registro la scelta}
+
+		\BlankLine
+		\If{\(\isAdmissible{S, n, i}\)}{
+			\tcp{\(S[1][i]\) è una soluzione ammissibile}
+			\If{\(\processSolution{S, n, i, \dots}\)}{
+				\tcp{vogliamo bloccare l'esecuzione alla prima soluzione possibile}
+				\Return \True
+			}
+		}
+
+		\BlankLine
+		\tcp{non decido di fermarmi alla prima soluzione ammissibile}
+		\If{\(\enumeration{S, n, \(\mhl{i+1}\), \dots}\)}{
+			\tcp{effettuo la \(i+1\)-esima scelta}
+			\Return \True
+		}
+	}
+	\tcp{non ho trovato la soluzione cercata}
+	\Return \False\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

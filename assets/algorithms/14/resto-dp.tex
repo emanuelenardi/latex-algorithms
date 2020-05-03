@@ -1,0 +1,49 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\restoDP{\Array{\Int} t, \Int n, \Int R}}{
+	\params{t}[tagli disponibili]
+	\params{n}[numero di monete]
+	\params{R}[il resto da dare]
+
+	\BlankLine
+	\BlankLine
+	\(DP\) \Assign \new \Array{\Int}[0][R]\;
+	\(S\) \Assign \new \Array{\Int}[0][R]\;
+	\(DP[0] \Assign 0\) \Comment*[h]{caso base}\;
+
+	\BlankLine
+	\tcp{Riempire la tabella \(DP\)}
+	\From{\(i \Assign 1\) \DownTo \(R\)} {
+		\(DP[i] \Assign +\infty\)\;
+
+		\BlankLine
+		\BlankLine
+		\From(\Comment*[h]{Riempio la tabella}){\(j \Assign 1\) \DownTo \(n\)} {
+			\If{\(t[j] \leqslant i\) \And \(DP[i-t[j]] + 1 < DP[i]\)}{
+				\tcp{aggiorno il valore}
+
+				\BlankLine
+				\(DP[i] \Assign DP[i - t[j]] + 1\) \Comment*[h]{registro il valore}\;
+				\(S[i] \Assign j\) \Comment*[h]{la moneta da utilizzare per risolvere il problema quando il taglio è \(i\)}\;
+			}
+		}
+	}
+
+	\BlankLine
+	\While(\Comment*[h]{ho resto da dare}){\(R > 0\)}{
+		\Print \(t[S[R]]\) \Comment*[h]{stampo la moneta}\;
+		\(R \Assign R - t[S[R]]\) \Comment*[h]{decremento il resto}\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

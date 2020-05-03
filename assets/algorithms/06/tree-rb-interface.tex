@@ -1,0 +1,35 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{CONTENUTO DI UN NODO}
+
+\BlankLine
+\Tree \varParent\;
+\Tree \varLeft\;
+\Tree \varRight\;
+\Int \alert{\varColor} \Comment*[l]{\RED o \BLACK}
+\Item \varKey\;
+\Item \varValue\;
+
+\BlankLine
+\tcp{GETTERS}
+
+\BlankLine
+\Tree \treeParent\;
+\Tree \treeLeft\;
+\Tree \treeRight\;
+\Int \treeColor\;
+\Item \treeKey\;
+\Item \treeValue\;
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

@@ -1,0 +1,27 @@
+%&_preamble
+
+% \documentclass{standalone}
+% \usepackage{_preamble}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\begin{tikzpicture}[transform shape, scale=1]
+	\node[mynode] at (0.0, 3.0) (a) {a};
+	\node[mynode] at (0.0, 0.0) (b) {b};
+	\node[mynode] at (2.0, 1.5) (c) {c};
+	\node[mynode] at (4.0, 3.0) (d) {d};
+	\node[mynode] at (4.0, 0.0) (e) {e};
+
+	\draw[edgen] (a) edge[bend left=25] node[background] {\R{2}} (c);
+	\draw[edgen] (b) edge[bend left=25] node[background] {\R{3}} (c);
+	\draw[edgen] (c) edge[bend left=25] node[background] {\R{1}} (d);
+	\draw[edgen] (c) edge[bend left=25] node[background] {\R{4}} (e);
+
+	\draw[edgen] (c) edge[dashed, bend left=25] node[background] {\R{-2}} (a);
+	\draw[edgen] (c) edge[dashed, bend left=25] node[background] {\R{-3}} (b);
+	\draw[edgen] (d) edge[dashed, bend left=25] node[background] {\R{-1}} (c);
+	\draw[edgen] (e) edge[dashed, bend left=25] node[background] {\R{-4}} (c);
+\end{tikzpicture}
+\end{document}

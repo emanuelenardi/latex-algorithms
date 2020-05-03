@@ -1,0 +1,41 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{sposta gli elementi più piccoli a sinistra del perno, i più grandi a destra}
+\prototype{\Int \pivot{\Item{} A, \Int primo, \Int ultimo}}{
+	\Item \(x \Assign A[primo]\) \Comment*[l]{il perno è il primo elemento}
+	\Int \(j \Assign primo\) \Comment*[l]{il cursore parte dal primo elemento}
+
+	\BlankLine
+	\tcp{spostamenti \enquote{in-place}}
+	\From{\(i \Assign primo\) \DownTo \(ultimo\)}{
+		\If(\tcp*[h]{l'elemento è più piccolo del perno}){\(A[i] < x\)}{
+			\Increment{j} \Comment*[l]{sposta il cursore \(j\)}
+			\Swap{\(A[i]\)}{\(A[j]\)} \Comment*[l]{scambia gli elementi: \(i \leftrightarrow j\)}
+		}
+	}
+
+	\BlankLine
+	\tcc{a questo punto tutti gli elementi posizionati prima della posizione \(j\) sono più piccoli del perno, rimane solo da riposizionare il perno nella sua posizione finale (è ordinato)}
+
+	\BlankLine
+	\tcp{riposiziono il perno}
+	\(A[primo] \Assign A[j]\)\;
+	\(A[j] \Assign x\)\;
+
+	\BlankLine
+	\tcp{restituisco la posizione del perno}
+	\Return \(j\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

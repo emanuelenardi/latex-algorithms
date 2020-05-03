@@ -1,0 +1,27 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\quickSort{\Item{} A, \Int primo, \Int ultimo}}{
+
+	\BlankLine
+	\tcp{su almeno due elementi}
+	\If{\(primo < ultimo\)}{
+		\Int \(j \Assign \pivot{A, primo, ultimo}\) \Comment*[l]{logica dell'algoritmo}
+
+		\BlankLine
+		\tcp{richiamo l'algoritmo su entrambi i sottovettori}
+		\quickSort{A, primo, \(j-1\)}\;
+		\quickSort{A, \(j+1\), ultimo}\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

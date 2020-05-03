@@ -1,0 +1,75 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\begin{minipage}{.5\textwidth}
+\BlankLine
+\tcp{RICERCA DEL PREDECESSORE}
+\prototype{\Tree \predNode{\Tree \(t\)}}{
+
+	\BlankLine
+	\If{\(t \Equal \Nil\)}{
+		\Return \(t\)\;
+	}
+
+	\BlankLine
+	\eIf{\(t.\alert{\treeLeft} \Neq \Nil\)}{
+	\lnlset{sx-does-exists}{1}%
+		\Return \(\alert{\maxNode{t.\treeLeft}}\)\;
+	}{\lnlset{sx-not-exists}{2}%
+		\Tree \(p \Assign t.\treeParent\)\;
+
+		\BlankLine
+		\While{\(p \Neq \Nil\) \And \(t \Equal p.\alert{\treeLeft}\)}{
+			\(t \Assign p\) \Comment*[l]{padre}
+			\(p \Assign p.\treeParent\) \Comment*[l]{nonno}
+		}
+	}
+
+	\BlankLine
+	\Return \(p\)\;
+}
+
+% \vspace{-5pt}
+% \vphantom{0pt}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+
+\BlankLine
+\tcp{RICERCA DEL SUCCESSORE}
+\prototype{\Tree \succNode{\Tree \(t\)}}{
+
+	\BlankLine
+	\If{\(t \Equal \Nil\)}{
+		\Return \(t\)\;
+	}
+
+	\BlankLine
+	\eIf{\(t.\alert{\treeRight} \Neq \Nil\)}{
+	\lnlset{dx-dies-exists}{3}%
+		\Return \(\alert{\minNode{t.\alert{\treeRight}}}\)\;
+	}{\lnlset{dx-not-exists}{4}%
+		\Tree \(p \Assign t.\treeParent\)\;
+
+		\BlankLine
+		\While{\(p \Neq \Nil\) \And \(t \Equal p.\alert{\treeRight}\)}{
+			\(t \Assign p\)\;
+			\(p \Assign p.\treeParent\)\;
+		}
+	}
+
+	\BlankLine
+	\Return \(p\)\;
+}
+\end{minipage}
+\BlankLine
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

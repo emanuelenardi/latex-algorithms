@@ -1,0 +1,50 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Bool \subSetSum{\Array{\Int} \(A\), \Int \(n\), \Int \(k\)}}{
+
+	\BlankLine
+	\Array{\Bool} \(DP\) \Assign \new \Array{\Bool}{0}{k}\;
+
+	\BlankLine
+	\tcp{implementazione dei casi base}
+
+	\BlankLine
+	\tcp{dati nessun oggetto posso ottenere il valore 0}
+	\(DP[0][0] \Assign \True\)\;
+
+	\BlankLine
+	\tcp{dati 0 oggetti non posso ottenere un valore di \(k > 0\)}
+	\For{\(r \Assign 1\) \DownTo \(k\)}{
+
+		\BlankLine
+		\(DP[0][r] \Assign \False\) \tcp{riempio la prima riga}
+	}
+
+	\BlankLine
+	\tcp{riempi la tabella}
+	\From{\(i \Assign 1\) \DownTo \(n\)}{
+		\From(\Comment*[h]{perché parto da \(A[i]\) ?}){\(r \Assign A[i]\) \DownTo \(k\)}{
+		% \tcp{\(A[i]\): semplifico, inserisci commento}
+
+			\BlankLine
+			\tcp{logica dell'algoritmo}
+			\(DP[i][r] \Assign DP[i-1][k]\) \Or \(DP[i-1][r - A[i]]\)\;
+		}
+	}
+
+	\BlankLine
+	\tcp{restituisco il valore in posizione \(k\)-esima}
+	\Return \(DP[n][k]\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

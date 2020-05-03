@@ -1,0 +1,19 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{IMPLEMENTAZIONE DIZIONARIO}
+\prototype{\dictRemove{\Item \(k\)}}{
+	\Tree \(tree \Assign \removeNode{tree, k}\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

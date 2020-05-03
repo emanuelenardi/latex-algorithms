@@ -1,0 +1,31 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\tcp{Algoritmo prototipo dei cammini minimi}
+(\Int, \Int)\prototype{ \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
+
+	\BlankLine
+	\tcp{Inizializza \(T\) ad una foresta di copertura composta da nodi isolati}
+	\tcp{Inizializza \(d\) con una sovrastima della distanza (\(d[s] = 0\), \(d[x] = +\infty\))}
+
+	\BlankLine
+	\While{\( \exists (u,v) \colon d[u] + G.\weight{u,v} < d[v] \)}{
+		\tcp{Esiste un arco che mi permette di migliorare la stima}
+
+		\BlankLine
+		\(d[v] = d[u] + \weight{u,v}\) \Comment*[h]{Aggiorno la distanza}\;
+		\tcp{Sostituisci il padre di \(v\) in \(T\) con \(u\)}
+	}
+	\Return \((T,d)\)
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

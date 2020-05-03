@@ -1,0 +1,59 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\begin{minipage}{.5\textwidth}
+
+\prototype{\bfsProc{\Tree \(t\)}}{
+	\Queue \(Q \Assign\) \queueConstructor\;
+	\(Q.\queueInsert{t}\) \Comment*[l]{inserisci la radice}
+
+	\BlankLine
+	\While{\Not \(Q.\queueEmpty\)}{
+		\tcp{fintanto che la coda non è vuota}
+		\tcp{estraggo un nodo dalla coda}
+		\Tree \(u \Assign Q.\queueRemove\)\;
+
+		\BlankLine
+		\tcp{visita per livelli del nodo \(u\)}
+		\Print \(u\)\;
+
+		\BlankLine
+		\tcp{fintanto che ho almeno un figlio}
+		\(u \Assign u.\treeChild\)\;
+		\While{\(u \Neq \Nil\)}{
+
+			\BlankLine
+			\tcp{metto in coda il figlio}
+			\(Q.\queueInsert{u}\)\;
+			\tcp{passo al figlio destro}
+			\(u \Assign u.\treeSibling\)\;
+		}
+	}
+}
+
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+
+\ifFigureOfAlgo
+\begin{minipage}[t][7.5cm]{.85\linewidth}
+	\vfill\centering
+	\begin{center}
+		\begin{forest} circled, wide
+		[\textsc{a}[\textsc{b}[\textsc{c}][\textsc{d}]][\textsc{e}[\textsc{f}][\textsc{g}]]]
+		\end{forest}
+	\end{center}
+	Sequenza: {\scshape a b e c d f g}
+	\vfill\null
+\end{minipage}
+\fi
+
+\end{minipage}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

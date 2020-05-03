@@ -1,0 +1,38 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\prototype{\dfsProc{\Tree \(t\)}}{
+	\If{\(t \neq \Nil\)}{
+
+		\BlankLine
+		\tcp{pre-order visit}
+		\Print \(t\)\;
+
+		\BlankLine
+		\dfsProc{\(t.\treeLeft{}\)}\;
+
+		\BlankLine
+		\tcp{effettuo visita}
+		\Tree \(u\) \Assign \(t\).\treeChild\;
+		\While{\(u \Neq \Nil\)}{
+			\dfsProc{\(u\)}\;
+			\(u\).\treeSibling\;
+		}
+
+		\BlankLine
+		\tcp{post-order visit}
+		\Print \(t\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi
