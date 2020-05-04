@@ -7,9 +7,58 @@
 \begin{algorithm}[H]
 \fi
 
-% TODO
-\prototype{\Int \minFunction{parameters}}{
+\BlankLine
+\tcp{funzione wrapper}
+\prototype{\Int \knapsack{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(C\)}}{
 
+    \BlankLine
+    \(DP\) \Assign \new \Matrix{\Int}[1\dots n][1\dots C]\;
+
+    \BlankLine
+    \From{\(i \Assign 1\) \DownTo \(n\)}{
+
+        \BlankLine
+        \From{\(c \Assign 1\) \DownTo \(C\)}{
+
+            \BlankLine
+            \(DP[i][c] = -1\) \tcp{non ho ancora risolto questo sotto-problema}
+        }
+    }
+
+    \BlankLine
+    \Return \knapsackRec{\(w\), \(p\), \(n\), \(C\), \(DP\)}\;
+}
+
+\BlankLine
+\prototype{\Int \knapsackRec{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(c\), \Matrix{\Int}[][] \(DP\)}}{
+
+    \BlankLine
+    \uIf{\(c < 0\)}{
+        \Return \(-\infty\)\;
+        \BlankLine
+
+    }
+    \uElseIf{\(i \Equal 0\) \Or \(c \Equal 0\)}{
+        \Return \(0\)\;
+        \BlankLine
+
+    }
+    \Else{
+
+        % \BlankLine
+        % \If{\(DP[i][c] < 0\)}{
+        %
+        %     \BlankLine
+        %     \Int \(nottaken\) \Assign \knapsackRec{\(w\), \(p\), \(i-1\), \(c\), \(DP\)}\;
+        %     \Int \(taken\) \Assign \knapsackRec{\(w\), \(p\), \(i-1\), \(c-w[i]\), \(DP\)} \(+ p[i]\)}\;
+        %
+        %     \BlankLine
+        %     \(DP[i][c]\) \Assign \maxFunction{\(nottaken\), \(taken\)}\;
+        % }
+
+        \BlankLine
+        \Return \(DP[i][c]\)\;
+    }
 }
 
 \ifstandalone

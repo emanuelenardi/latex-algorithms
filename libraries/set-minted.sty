@@ -1,4 +1,18 @@
 \usepackage[newfloat, cachedir=_minted-cache]{minted}
+\usemintedstyle{manni}
+\setminted{
+	breaklines = true,
+	breakanywhere,
+	breakaftersymbolpre = \raisebox{0ex}[0ex][0ex]{\ensuremath{\rhookswarrow}},
+	breakaftersymbolpost = \raisebox{0ex}[0ex][0ex]{\ensuremath{\rcurvearrowse}\space},
+	frame = lines,
+	,fontsize = \footnotesize
+	,fontseries = bold
+	,numberblanklines = false
+	,texcomments
+	,mathescape
+    ,tabsize = 4
+}
 
 % NOTE permette di trattare il codice come se fosse un float
 \newenvironment{code}{\captionsetup{type=listing}}{}
@@ -26,62 +40,3 @@
    }
  }
 \ExplSyntaxOff
-
-% NOTE inline mint options
-
-% NOTE Languace C++
-\newmintinline[cppinline]{cpp}{}
-\newmint[cppcode]{cpp}{}
-\newmintedfile[cppfile]{cpp}{}
-
-% NOTE Language Java
-\newmintinline[javainline]{java}{}
-\newmint[javacode]{java}{}
-\newmintedfile[javafile]{java}{}
-
-% IDEA se stampato non ci devono essere colori
-\newif\ifprinted
-% NOTE di default produci il codice colorato
-% \printedtrue
-
-\ifprinted
-	\usemintedstyle{bw}
-\else
-	\usemintedstyle{manni}
-\fi
-
-% IDEA opzioni globali
-\setminted{
-	breaklines = true,
-	breakanywhere,
-	breakaftersymbolpre = \raisebox{0ex}[0ex][0ex]{\ensuremath{\rhookswarrow}},
-	breakaftersymbolpost = \raisebox{0ex}[0ex][0ex]{\ensuremath{\rcurvearrowse}\space},
-	frame = lines,
-	% ,linenos
-	,fontsize = \footnotesize
-	,fontseries = bold
-	% ,highlightcolor = highlightColor
-	,numberblanklines = false
-	,texcomments
-	% WARNING il carattere '|' crea problemi
-	% escapeinside = ||
-	,mathescape
-}
-
-% NOTE opzioni per linguaggio 'C++'
-\setminted[java]{
-	,linenos = false
-	,tabsize = 4
-}
-
-% NOTE opzioni per linguaggio 'C++'
-\setminted[cpp]{
-	,linenos = false
-	,tabsize = 4
-}
-
-% NOTE opzioni per linguaggio 'C'
-\setminted[c]{
-	,linenos = false
-	,tabsize = 4
-}

@@ -9,7 +9,8 @@
 	makecell,
 	multirow,
 	tabularx,
-	tabu
+	tabu,
+	diagbox
 }
 
 % NOTE linea sottile fra le righe di una tabella
@@ -18,7 +19,14 @@
 	\arrayrulecolor{black!30}%
 	\midrule[\lightrulewidth]%
 	\arrayrulecolor{black}}
+
 % NOTE linea verticale più spessa
 \newcolumntype{?}{!{\vrule width 1pt}}
+
 % NOTE linea orizzontale pesante
 \newcommand{\thickrule}{\Xhline{1pt}}
+
+% NOTE math-mode version of l/c/r column type
+\newcolumntype{L}{>{$}l<{$}}
+\newcolumntype{C}{>{$}c<{$}}
+\newcolumntype{R}{>{$}r<{$}}

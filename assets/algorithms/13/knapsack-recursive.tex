@@ -7,9 +7,36 @@
 \begin{algorithm}[H]
 \fi
 
-% TODO
-\prototype{\Int \minFunction{parameters}}{
+\BlankLine
+\tcp{metodo wrapper}
+\prototype{\Int \knapsack{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(C\)}}{
 
+    \BlankLine
+    \Return \knapsackRec{\(w\), \(p\), \(n\), \(C\)}\;
+}
+
+\BlankLine
+\prototype{\Int \knapsackRec{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(c\)}}{
+    \params{c}[capacità residua]
+
+    \BlankLine
+    \uIf{\(c < 0\)}{
+        \Return \(-\infty\)\;
+        \BlankLine
+
+    }
+    \uElseIf{\(i \Equal 0\) \Or \(c \Equal 0\)}{
+        \Return \(0\)\;
+        \BlankLine
+
+    }
+    \Else{
+        \Int \(nottaken\) \Assign \knapsackRec{\(w\), \(p\), \(i-1\), \(c\)}\;
+        \Int \(taken\) \Assign \knapsackRec{\(w\), \(p\), \(i-1\), \(c-w[i]\)} \(+ p[i]\)\;
+
+        \BlankLine
+        \Return \maxFunction{\(nottaken\), \(taken\)}\;
+    }
 }
 
 \ifstandalone
