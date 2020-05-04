@@ -13,7 +13,7 @@
 *.synctex(busy)
 *.toc
 
-*.pdf
+chapters/*.pdf
 
 **/_minted-cache
 
