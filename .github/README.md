@@ -27,35 +27,37 @@ Una versione pubblica e aggiornata dell'errata corrige sarà presente alla pagin
 
 	| no. | Presente | Titolo                          | no. pagine |
 	| --- | -------- | ------------------------------- | --- |
-	| 1   | ✔️       | Introduzione                    | 6  |
-	| 2   | ✔️       | Analisi di algoritmi            | 18 |
-	| 2   | ✔️       | Analisi delle funzioni di costo | -  |
+	| 1   | ✔️       | Introduzione                    | 7  |
+	| 2   | ✔️       | Analisi di algoritmi            | 21 |
+	| 2   | ✔️       | Analisi delle funzioni di costo | 20 |
 	| 3   | ❌       | Analisi ammortizzata            | -  |
-	| 4   | ✔️       | Strutture Dati                  | -  |
-	| 5   | ✔️       | Alberi                          | -  |
-	| 6   | ✔️       | Alberi Binari di Ricerca        | -  |
+	| 4   | ✔️       | Strutture Dati                  | 11 |
+	| 5   | ✔️       | Alberi                          | 9  |
+	| 6   | ✔️       | Alberi Binari di Ricerca        | 20 |
 	| 7   | ❌       | Hashing                         | -  |
-	| 8   | ✔️       | Insiemi e dizionari             | -  |
-	| 9   | ✔️       | Grafi                           | -  |
+	| 8   | ✔️       | Insiemi e dizionari             | 4  |
+	| 9   | ✔️       | Grafi                           | 32 |
 	| 10  | ❌       | Strutture dati speciali         | -  |
-	| 11  | ✔️       | "Scelta"                        | -  |
-	| 12  | ✔️       | Divide et Impera                | -  |
+	| 11  | ✔️       | "Scelta"                        | 10 |
+	| 12  | ✔️       | Divide et Impera                | 7  |
 
 -   2° Semetre
 
-	| no. | Presente | Titolo                          | no. pagine |
-	| --- | -------- | ------------------------------- | --- |
-	| 13  | ✔️       | Programmazione Dinamica         | -  |
-	| 14  | ✔️       | Algoritmi ingordi               | -  |
-	| 15  | ✔️       | Ricerca locale                  | -  |
-	| 16  | ✔️       | Backtrack                       | -  |
-	| 19  | ✔️       | Algoritmi probabilistici        | -  |
+	| no. | Presente | Titolo                                | no. pagine |
+	| --- | -------- | ------------------------------------- | --- |
+	| 13  | ❌       | Programmazione Dinamica               | -  |
+	| 14  | ✔️       | Algoritmi ingordi                     | 14 |
+	| 15  | ❌       | Ricerca locale                        | -  |
+	| 16  | ✔️       | Backtrack                             | 10 |
+	| 17  | ❌       | Algoritmi probabilistici              | -  |
+	| 18  | ❌       | Problemi intrattabili                 | -  |
+	| 19  | ❌       | Soluzioni per problemi intrattabili   | 5  |
 
 -   Appendici
 
 	| no. | Presente | Titolo                          | no. pagine |
 	| --- | -------- | ------------------------------- | --- |
-	| A1  | ❌       | Problema dell'ordinamento       | -  |
+	| A1  | ✔️       | Problema dell'ordinamento       | -  |
 
 ## Licenza 📃
 
@@ -83,7 +85,6 @@ I comandi sono equivalenti per la piattaforma Windows utilizzando gli script sul
 
 Nel caso si eseguissero modifiche al file `settings/preamble.main` è necessario compilarlo nuovamente per vedere il risultato delle proprie modifiche riflesse sul documento finale.
 ```bash
-unix/scripts/reset-project     # elimino i file ausiliari
 unix/scripts/compile-preambles # pre-compilo i preamboli
-unix/scripts/compile-project   # produco il pdf
+arara main
 ```
