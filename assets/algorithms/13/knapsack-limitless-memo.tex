@@ -7,8 +7,37 @@
 \begin{algorithm}[H]
 \fi
 
-\prototype{\Int \minFunction{parameters}}{
+\BlankLine
+\tcp{funzione wrapper}
+\prototype{\Int \knapsack{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(C\)}}{
 
+    \BlankLine
+    \(DP\) \Assign \new \Matrix{\Int}[1\dots n][1\dots C]\;
+
+    \BlankLine
+    \From{\(i \Assign 0\) \DownTo \(C\)}{
+            \BlankLine
+            \(DP[i][c] = -1\) \tcp{non ho ancora risolto questo sotto-problema}
+    }
+
+    \BlankLine
+    \Return \knapsackRec{\(w\), \(p\), \(n\), \(C\), \(DP\)}\;
+	\Return \(DP[C]\)\;
+}
+
+\BlankLine
+\prototype{\Int \knapsackRec{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(c\), \Array{\Int} \(DP\)}}{
+
+    \BlankLine
+    \If{\(c \Equal 0\)}{
+        \Return \(0\)\;
+    }
+
+	\BlankLine
+	\If{\(DP[c] < 0\)}{
+		\BlankLine
+		
+	}
 }
 
 \ifstandalone

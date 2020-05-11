@@ -45,16 +45,16 @@
     }
     \Else{
 
-        % \BlankLine
-        % \If{\(DP[i][c] < 0\)}{
-        %
-        %     \BlankLine
-        %     \Int \(nottaken\) \Assign \knapsackRec{\(w\), \(p\), \(i-1\), \(c\), \(DP\)}\;
-        %     \Int \(taken\) \Assign \knapsackRec{\(w\), \(p\), \(i-1\), \(c-w[i]\), \(DP\)} \(+ p[i]\)}\;
-        %
-        %     \BlankLine
-        %     \(DP[i][c]\) \Assign \maxFunction{\(nottaken\), \(taken\)}\;
-        % }
+        \BlankLine
+        \If{\(DP[i][c] < 0\)}{
+
+            \BlankLine
+            \Int \(nottaken\) \Assign \knapsackRec{\(w\), \(p\), \(i-1\), \(c\), \(DP\)}\;
+            \Int \(taken\) \Assign \knapsackRec{\(w\), \(p\), \(i-1\), \(c-w[i]\), \(DP\)} \(+ p[i]\)\;
+
+            \BlankLine
+            \(DP[i][c]\) \Assign \maxFunction{\(nottaken\), \(taken\)}\;
+        }
 
         \BlankLine
         \Return \(DP[i][c]\)\;
