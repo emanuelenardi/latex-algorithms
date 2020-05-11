@@ -7,8 +7,82 @@
 \begin{algorithm}[H]
 \fi
 
-\prototype{\Int \minFunction{parameters}}{
+\BlankLine
+\tcp{funzione wrapper}
+\prototype{\Int \knapsack{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(C\)}}{
 
+    \BlankLine
+	\Array{\Int} \(DP\) \Assign \new \Array{\Int}[0][C]\;
+    \Array{\Int} \(pos\) \Assign \new \Array{\Int}[0][C] \tcp{vettori delle posizioni}
+
+    \BlankLine
+    \From{\(i \Assign 0\) \DownTo \(C\)}{
+            \BlankLine
+			\(DP[i] = -1\)\;
+            \(pos[i] = -1\) \tcp{lo inizializzo}
+    }
+
+    \BlankLine
+    \knapsackRec{\(w\), \(p\), \(n\), \(C\), \(DP\), \(pos\)}\;
+	\Return \knapsackSolution{\(w\), \(C\), \(pos\)}
+}
+
+\BlankLine
+\tcp{calcolo dei valori}
+\prototype{\Int \knapsackRec{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(c\), \Array{\Int} \(DP\), \Array{\Int} \(pos\)}}{
+
+    \BlankLine
+    \If{\(c \Equal 0\)}{
+        \Return \(0\)\;
+    }
+
+	\BlankLine
+	\If{\(DP[c] < 0\)}{
+		\BlankLine
+		\(DP[c] \Assign 0\)\;
+
+		\BlankLine
+		\From{\(i \Assign 1\) \DownTo \(n\)}{
+
+			\BlankLine
+			\If{\(w[i] \leqslant c\)}{
+
+				\BlankLine
+				\Int \(val\) \Assign \knapsackRec{\(w\), \(p\), \(n\), \(c-w[i]\), \(DP\), \(pos\)} \(+\ p[i]\)\;
+
+				\BlankLine
+				\If{\(val \geqslant DP[c]\)}{
+
+					\BlankLine
+					\(DP[c]\) \Assign \(val\)\;
+					\(pos[c]\) \Assign \(i\)\;
+				}
+			}
+		}
+	}
+
+	\BlankLine
+	\Return \(DP[c]\)\;
+}
+
+
+\BlankLine
+\tcp{ricostruzione della soluzione}
+\prototype{\knapsackSolution{\Array{\Int} \(w\), \Int \(c\), \Array{\Int} \(pos\)}}{
+
+	\BlankLine
+	\eIf{\(c \Equal 0\) \Or \(pos[c] < 0\)}{
+
+		\BlankLine
+		\Return \listConstructor{}\;
+	}{
+		\BlankLine
+		\List \(L\) \Assign \knapsackSolution{\(w\), \(c-w[pos[c]]\), \(pos\)}\;
+		\(L\).\listInsert{\(L\).\listHead{}, \(pos[c]\)}\;
+
+		\BlankLine
+		\Return \(L\)\;
+	}
 }
 
 \ifstandalone

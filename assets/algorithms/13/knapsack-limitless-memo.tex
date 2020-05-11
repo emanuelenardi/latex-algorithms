@@ -12,12 +12,12 @@
 \prototype{\Int \knapsack{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(C\)}}{
 
     \BlankLine
-    \(DP\) \Assign \new \Matrix{\Int}[1\dots n][1\dots C]\;
+    \Array{\Int} \(DP\) \Assign \new \Array{\Int}[0][C]\;
 
     \BlankLine
     \From{\(i \Assign 0\) \DownTo \(C\)}{
             \BlankLine
-            \(DP[i][c] = -1\) \tcp{non ho ancora risolto questo sotto-problema}
+            \(DP[i] = -1\)\;
     }
 
     \BlankLine
@@ -36,8 +36,23 @@
 	\BlankLine
 	\If{\(DP[c] < 0\)}{
 		\BlankLine
-		
+		\(DP[c] \Assign 0\)\;
+
+		\BlankLine
+		\From{\(i \Assign 1\) \DownTo \(n\)}{
+
+			\BlankLine
+			\If{\(w[i] \leqslant c\)}{
+
+				\BlankLine
+				\Int \(val\) \Assign \knapsackRec{\(w\), \(p\), \(n\), \(c-w[i]\), \(DP\)} \(+\ p[i]\)\;
+				\(DP[c] \Assign \maxFunction{\(DP[c]\), \(val\)}\)\;
+			}
+		}
 	}
+
+	\BlankLine
+	\Return \(DP[c]\)\;
 }
 
 \ifstandalone

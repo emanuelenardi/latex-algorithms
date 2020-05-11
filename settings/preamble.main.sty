@@ -1,4 +1,8 @@
+% https://tex.stackexchange.com/questions/359867/
+\RequirePackage[T1]{fontenc}
 \documentclass{book}
+
+\usepackage{etoolbox}
 \usepackage{./book-redefinitions}
 
 % WARNING da caricare presto
@@ -8,26 +12,9 @@
 % NOTE toglie i numeri a piè pagina dalle pagine bianche
 \usepackage{emptypage}
 
-% NOTE gestione dei margini
-\usepackage[
-	,top	= 1in % default: 1in
-	,bottom	= 1in % default: 1in
-	,left	= 1in % default: 1in
-	,right	= 1in % default: 1in
-	% NOTE tex.stackexchange.com/questions/29125/
-	% NOTE allargo i margini di stampa
-	,marginparwidth=4.6cm
-	,heightrounded
-]{geometry}
+\usepackage{../libraries/set-geometry}
 
-% NOTE 'xcolor' permette di definire colori personalizzati
-\usepackage[
-	,dvipsnames
-	,svgnames
-	,x11names
-	,table
-	% ,gray
-]{xcolor}
+\usepackage{../libraries/set-color}
 
 % NOTE gestione delle pagine
 \usepackage{../libraries/set-pages}
@@ -41,51 +28,8 @@
 % NOTE 'xparse' - it offers a replacement for LATEX2ε’s \newcommand macro
 \usepackage{comment, xargs, xparse}
 
-% NOTE sperimentazioni con il cambio del carattere
-% TODO da rimuovere
-\begin{comment}
-% NOTE tex.stackexchange.com/questions/39700/
-% save defaults
-\edef\keptrmdefault{\rmdefault}
-\edef\keptsfdefault{\sfdefault}
-\edef\keptttdefault{\ttdefault}
-
-% WARNING creano conflitti con i pacchetti matematici
-% NOTE bisogna caricarli dopo?
-% \usepackage[garamond]{mathdesign}
-% \usepackage[charter]{mathdesign}
-
-% NOTE non mi piace, troppo pesante
-% \usepackage{fouriernc}
-
-% NOTE mi piace il font del testo, ma non quello matematico
-% \usepackage{ccfonts}
-\usepackage[euler-digits, euler-hat-accent]{eulervm}
-\usepackage[T1]{fontenc}
-
-% restore defaults
-\edef\rmdefault{\keptrmdefault}
-\edef\sfdefault{\keptsfdefault}
-\edef\ttdefault{\keptttdefault}
-\end{comment}
-
-% NOTE input and output options and language/date support
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english, italian]{babel}
+\usepackage{../libraries/set-fonts}
 \usepackage[useregional, datesep=/, style=ddmmyyyy]{datetime2}
-\usepackage[
-	% ,activate	= {true, nocompatibility}
-	,activate	= {true}
-	,final
-	% ,draft
-	,tracking	= true
-	,kerning	= true
-	% ,spacing	= true
-	,factor		= 1100
-	,stretch	= 10
-	,shrink		= 10
-]{microtype}
 
 \usepackage{../libraries/set-lists}
 
@@ -153,6 +97,7 @@
 
 % NOTE avoid error "Can be used only in preamble" in subfiles
 \newif\ifloadsubpreamble
+\loadsubpreambletrue
 
 % NOTE funzione di utilità per accertarmi di aver caricato il preambolo correttamente
 \def\preambleloaded{Precompiled preamble loaded.}
