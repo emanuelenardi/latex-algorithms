@@ -165,16 +165,15 @@
 % #2 - valore 0-esimo o estremo sinisto
 % #3 - valore 0-esimo o estremo destro
 \NewDocumentCommand\Array{ m o o }{%
-	\ensuremath{%
 	\KwSty{#1}% <- spazio
 		\IfNoValueTF{#2}{%
-			[\,]% <- inizialmente vuoto
+			\textup{[\,]}% <- inizialmente vuoto
 		}{%
 		\IfNoValueTF{#3}{%
-			[#2]% <- valore iniziale
+			\textup{[\(#2\)]}% <- valore iniziale
 		}{%
-			[#2\dots#3]% <- intervallo
-		}}}%
+			\textup{[\(#2\dots#3\)]}% <- intervallo
+		}}%
 	\xspace%
 }
 

@@ -40,27 +40,22 @@
 \usepackage{witharrows}
 % WARNING dipendenza set-color
 \colorlet{brighter}{blue!50!white}
-% NOTE tolta opzione poiché risulta inesistente
-% \WithArrowsOptions{tikz=brighter, MoreColumns}
 \WithArrowsOptions{tikz=brighter}
 
-% NOTE comando definito dal package 'amsmath'
-\DeclarePairedDelimiter\norm{\lVert}{\rVert}
-
+% https://tex.stackexchange.com/a/340580/127473
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
-\DeclarePairedDelimiter\Abs{\bigg\lvert}{\bigg\rvert}
-
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
-\DeclarePairedDelimiter\Ceil{\big\lceil}{\big\rceil}
-
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-\DeclarePairedDelimiter\Floor{\big\lfloor}{\big\rfloor}
-
 \DeclarePairedDelimiter\angleled{\langle}{\rangle}
-\DeclarePairedDelimiter\Angleled{\big\langle}{\big\rangle}
-
-\DeclarePairedDelimiter\Braces{\left(}{\right)}
-\DeclarePairedDelimiter\Bracket{\lbrack}{\rbrack}
+\DeclarePairedDelimiter\braces{(}{)}
+\DeclarePairedDelimiter\bracket{\lbrack}{\rbrack}
+% \DeclarePairedDelimiter\Abs{\bigg\lvert}{\bigg\rvert}
+% \DeclarePairedDelimiter\Ceil{\big\lceil}{\big\rceil}
+% \DeclarePairedDelimiter\Floor{\big\lfloor}{\big\rfloor}
+% \DeclarePairedDelimiter\Angleled{\big\langle}{\big\rangle}
+% \DeclarePairedDelimiter\Braces{\left(}{\right)}
+% \DeclarePairedDelimiter\Bracket{\lbrack}{\rbrack}
 
 % IDEA teoremi, lemmi e nota bene
 
