@@ -1,6 +1,8 @@
 %&settings/preamble.main
-\usepackage{../libraries/set-minted}
-\mintedpath{{assets/codes/04/}}
+
+% \usepackage{../libraries/set-minted}
+% \mintedpath{{assets/codes/04/}}
+
 \loadsubpreamblefalse
 
 % NOTE gestione delle versioni del documento
@@ -13,56 +15,56 @@
 % arara: latexmk:  { clean: partial }
 
 \begin{document}
-\frontmatter
-
-    % NOTE nessun contatore delle pagine
-	\pagenumbering{gobble}
-
-    % NOTE frontespizio
-    \input{00-pagina-iniziale}
-	\cleardoublepage
-
-    % NOTE pagina con la dedica (non numerata)
-	\input{00-dedica}
-	\cleardoublepage
-
-	\subfile{00-prologo}
-
-\mainmatter
-
-	\input{00-toc}
-	\cleardoublepage
-
-\part{Primo semestre}
+% \frontmatter
+%
+%     % NOTE nessun contatore delle pagine
+% 	\pagenumbering{gobble}
+%
+%     % NOTE frontespizio
+%     \input{00-pagina-iniziale}
+% 	\cleardoublepage
+%
+%     % NOTE pagina con la dedica (non numerata)
+% 	\input{00-dedica}
+% 	\cleardoublepage
+%
+% 	\subfile{00-prologo}
+%
+% \mainmatter
+%
+% 	\input{00-toc}
+% 	\cleardoublepage
+%
+% \part{Primo semestre}
 
 	\pagenumbering{arabic}
 
 	\subfile{01-introduzione}
-	\subfile{02-analisi}
-	\subfile{03-funzioni}
-	\subfile{03-funzioni-added}
-	\subfile{02-analisi-ammortizzata}
-	\subfile{04-strutture}
-	\subfile{05-alberi}
-	\subfile{06-abr}
-	\subfile{08-insiemi-dizionari}
-	\subfile{09-grafi}
-	\subfile{10-strutture-speciali}
-	\subfile{12-dividi}
-
-\part{Secondo semestre}
-
-	\subfile{11-scelta}
-	\subfile{13-dp}
-	\subfile{14-greedy}
-	\subfile{15-local}
-	\subfile{16-backtrack}
-	\subfile{17-prob}
-	\subfile{18-pnp}
-	\subfile{19-approx}
-
-\appendix
-
-	\subfile{A1-sorting}
+% 	\subfile{02-analisi}
+% 	\subfile{03-funzioni}
+% 	\subfile{03-funzioni-added}
+% 	\subfile{02-analisi-ammortizzata}
+% 	\subfile{04-strutture}
+% 	\subfile{05-alberi}
+% 	\subfile{06-abr}
+% 	\subfile{08-insiemi-dizionari}
+% 	\subfile{09-grafi}
+% 	\subfile{10-strutture-speciali}
+% 	\subfile{12-dividi}
+%
+% \part{Secondo semestre}
+%
+% 	\subfile{11-scelta}
+% 	\subfile{13-dp}
+% 	\subfile{14-greedy}
+% 	\subfile{15-local}
+% 	\subfile{16-backtrack}
+% 	\subfile{17-prob}
+% 	\subfile{18-pnp}
+% 	\subfile{19-approx}
+%
+% \appendix
+%
+% 	\subfile{A1-sorting}
 
 \end{document}

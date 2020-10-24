@@ -13,7 +13,7 @@
 	\eIf(\tcp*[h]{se i cursori si incrociano}){\(i > j\)}{
 		\Return \(0\) \tcp{l'elemento non esiste}
 	}{
-		\Int \(m \Assign \Floor{\frac{(i+j)}{2}}\)\Comment*[l]{assegna la mediana}
+		\Int \(m \Assign \floor{\frac{(i+j)}{2}}\)\Comment*[l]{assegna la mediana}
 
 		\BlankLine
 		\uIf(\tcp*[h]{abbiamo trovato l'elemento}){\(A[m] \Equal v\)}{
