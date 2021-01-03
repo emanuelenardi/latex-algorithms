@@ -231,7 +231,7 @@ L'implementazione dell'algoritmo consiste nei seguenti passaggi:
 	\BlankLine
 	\tcp{individua la mediana delle mediane e usala come perno}
 	\lnl{select:ricorsiva-prima}%
-	\Item \(m \Assign \select \left(M, 1, \ceil{\nicefrac{n}{5}}, \Ceil{ \frac{ \ceil{\nicefrac{n}{5}} }{2} } \right)\)\;
+	\Item \(m \Assign \select \left(M, 1, \ceil{\nicefrac{n}{5}}, \ceil{ \frac{ \ceil{\nicefrac{n}{5}} }{2} } \right)\)\;
 
 	\BlankLine
 	\Int \(j \Assign \pivot{A, \First, \Last, m}\) \tcp{Versione con \(m\) in input}
@@ -278,7 +278,7 @@ L'implementazione dell'algoritmo consiste nei seguenti passaggi:
 	la prima chiamata ricorsiva dell'algoritmo \select viene effettuata su \(\lceil n/5 \rceil\) elementi;
 
 	\item[\circled{\ref{select:ricorsiva-seconda}}]
-	la seconda chiamata ricorsiva dell'algoritmo \select viene effettuata al massimo  su \(7 \frac{n}{10}\) elementi (esattamente \(n - 3\, \Ceil{ \frac{ \ceil{\nicefrac{n}{5}} }{2} }\)).
+	la seconda chiamata ricorsiva dell'algoritmo \select viene effettuata al massimo  su \(7 \frac{n}{10}\) elementi (esattamente \(n - 3\, \ceil{ \frac{ \ceil{\nicefrac{n}{5}} }{2} }\)).
 \end{itemize}
 
 L'algoritmo \select esegue nel caso pessimo \(O(n)\) confronti:
