@@ -1,5 +1,8 @@
 %&../settings/preamble.main
 
+% NOTE per controllare dove sfori la pagina
+\setlength\overfullrule{5pt}
+
 \ifloadsubpreamble
 \pagestyle{plain}
 \setcounter{chapter}{17}
@@ -384,7 +387,7 @@ In \enquote{\foreign{Reducibility Among Combinatorial Problems}} Richard Karp ha
 \subsection{Problemi {\NP}-Completi \enquote{Classici}}
 
 \begin{minipage}[c]{.7\textwidth}
-\subsubsection*{Cricca (\clique)}
+\subsubsection*{Cricca (\cliqueProblem)}
 
 Dati un grafo non orientato ed un intero \(k\), esiste un sottoinsieme di almeno \(k\) nodi tutti mutualmente adiacenti?
 
@@ -433,7 +436,7 @@ La sottocollezione che partiziona \(X\) è \(\mathcal{Z} = \{ B,D,F \}\).
 
 Dato un vettore \(A\) contenente \(n\) interi positivi, esiste un sottoinsieme \(S \subseteq \{ 1 \dots n \}\) tale che \(\sum_{i \in S} A[i] = \sum_{i \in S} A[i]\)?
 
-\subsubsection*{Somma di sottoinsieme ({\subSetSum})}
+\subsubsection*{Somma di sottoinsieme ({\subSetSumProblem})}
 Dati un vettore \(A\) contenente \(n\) interi positivi ed un intero positivo \(k\), esiste un sottoinsieme \(S \subseteq \{ 1 \dots n \}\) tale che \(\sum_{i \in S} a[i] = k\)?
 
 \subsubsection*{Zaino}

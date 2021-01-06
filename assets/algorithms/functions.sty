@@ -93,6 +93,7 @@
 \SetKwFunction{setDifference}{difference}
 
 % NOTE dizionari
+\SetKwData{dictionary}{dictionary}
 \SetKwData{dictionaryConstructor}{dictionary}
 \SetKwFunction{dictInsert}{insert}
 \SetKwFunction{dictRemove}{remove}
@@ -584,22 +585,28 @@
 
 % REVIEW Cap. 18 - NP
 
+% NOTE "ls" sta per "letter spacing"
+% How to do extra spacing when using small caps for abbreviations?
+% https://tex.stackexchange.com/a/13035/127473
+\newcommand*{\abbrev}[1]{\textls[50]{\textsc{#1}}}
+
 % NOTE problemi
-\newcommand{\shortestPath}{\textsc{shortest-path}}
-\newcommand{\graphColoring}{\textsc{graph-coloring}}
-\newcommand{\sudokuProblem}{\textsc{sudoku}} % NOTE: "sudoku" esiste già
-\newcommand{\sudokuPrecolored}{\textsc{sudoku-precolored}}
-\newcommand{\indipendentSet}{\textsc{indipendent-set}}
-\newcommand{\vertexCover}{\textsc{vertex-cover}}
-\newcommand{\sat}{\textsc{sat}}
-\newcommand{\treeSat}{\textsc{3-sat}}
-\newcommand{\clique}{\textsc{clique}}
-\newcommand{\tsp}{\textsc{tsp}}
-\newcommand{\exactCover}{\textsc{exact cover}}
-\newcommand{\partition}{\textsc{partition}}
-\newcommand{\subSetSum}{\textsc{Subset sum}}
-\newcommand{\knapsackProblem}{\textsc{knapsack}} % NOTE: "knapsack" esiste già
-\newcommand{\hamiltonianCircuit}{\textsc{hamiltonian-circuit}}
+\newcommand{\shortestPath}{\abbrev{shortest-path}}
+\newcommand{\graphColoring}{\abbrev{graph-coloring}}
+\newcommand{\sudokuProblem}{\abbrev{sudoku}} % NOTE: "sudoku" esiste già
+\newcommand{\sudokuPrecolored}{\abbrev{sudoku-precolored}}
+\newcommand{\indipendentSet}{\abbrev{indipendent-set}}
+\newcommand{\vertexCover}{\abbrev{vertex-cover}}
+\newcommand{\sat}{\abbrev{sat}}
+\newcommand{\treeSat}{\abbrev{3-sat}}
+\newcommand{\clique}{\abbrev{clique}}
+\newcommand{\tsp}{\abbrev{tsp}}
+\newcommand{\exactCover}{\abbrev{exact cover}}
+\newcommand{\partition}{\abbrev{partition}}
+\newcommand{\subSetSumProblem}{\abbrev{subset-sum}}
+\newcommand{\cliqueProblem}{\abbrev{clique}}
+\newcommand{\knapsackProblem}{\abbrev{knapsack}} % NOTE: "knapsack" esiste già
+\newcommand{\hamiltonianCircuit}{\abbrev{hamiltonian-circuit}}
 
 % NOTE nomenclatura
 \newcommand{\PTIME}{\mbox{\(\mathbb{P}\)}}
@@ -610,7 +617,7 @@
 \newcommand{\PSPACE}{\mbox{\(\mathbb{PSPACE}\)}}
 \newcommand{\NP}{\mbox{\(\mathbb{NP}\)}}
 % \newcommand{\coNP}{\mbox{\emph{co}-\(\mathbb{NP}\)}}
-\newcommand{\EXP}{\mbox{\(\mathbb{EXP}\)}}
+% \newcommand{\EXP}{\mbox{\(\mathbb{EXP}\)}}
 % \newcommand{\NEXP}{\mbox{\(\mathbb{NEXP}\)}}
 
 % \SetKwFunction{nonDeterministica}{nonDeterministica}
@@ -633,8 +640,13 @@
 % NOTE Cap 19 - Approx
 
 \SetKwFunction{subSetSum}{subSetSum}
-% \SetKwFunction{approximatedSubSetSum}{approximatedSubSetSum}
-\SetKwFunction{clique}{clique}
+\SetKwFunction{subSetSumRec}{ssRec}
+\SetKwFunction{subSetSumMemo}{ssRec}
+% \SetKwFunction{clique}{clique}
+
+\newcommand{\treePartition}{\abbrev{3-partition}}
+\newcommand{\firstFit}{\abbrev{first-fit}}
+\newcommand{\deltaTsp}{\(\Delta\)-\abbrev{tsp}}
 
 % \newcommand{\deltatsp}{\probrefi{$\Delta$tsp}{deltatsp@$\Delta$\textsc{tsp}}}
 

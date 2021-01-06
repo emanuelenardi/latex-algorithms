@@ -1,5 +1,8 @@
 %&../settings/preamble.main
 
+% NOTE per controllare dove sfori la pagina
+\setlength\overfullrule{5pt}
+
 \ifloadsubpreamble
 \pagestyle{plain}
 \setcounter{chapter}{18}
@@ -9,237 +12,709 @@
 % arara: pdflatex: { synctex: no }
 % arara: latexmk:  { clean: partial }
 \begin{document}
+\tableofcontents
+
 \chapter{Soluzioni per problemi intrattabili}
 
 \section{Algoritmi pseudo-polinomiali}
 
+Non si può avere tutto dalla vita; bisogna rinunciare a qualcosa:
+\begin{itemize}
+	\item \textbf{generalità}: algoritmi pseudo-polinomiali che funzionano per solo alcuni casi particolari dell'input;
+	\item \textbf{ottimalità}: algoritmi di approssimazione, che garantiscono di ottenere soluzioni \enquote{vicine} alla soluzione ottimale;
+	\item \textbf{formalità}: algoritmi euristici, di solito basati su tecniche \foreign{greedy} o di ricerca locale, che forniscano sperimentalmente risultati buoni;
+	\item \textbf{efficienza}: algoritmi esponenziali branch-\&-bound, che limitano lo spazio di ricerca con un'accurata potatura.
+\end{itemize}
+
 \subsection{Somma di sottoinsieme}
 
 \paragraph{Definizione del problema}
-Dati un insieme \(A = \{a_1, a_2, \dots, a_n\}\) di interi positivi e un intero positivo \(k\), esiste un sottoinsieme \(S\) di indici in \(1, \dots, n\) tale che \(\sum_{i \in S}^{a_i} = k\) ?
+Dati un insieme \(A = \{a_1, a_2, \dots, a_n\}\) di interi positivi e un intero positivo \(k\), esiste un sottoinsieme \(S\) di indici in \(\{1, \dots, n\}\) tale che \(\sum_{i \in S}^{a_i} = k\) ?
 
-\paragraph{Definizione equazione di ricorrenza}
+Utilizzando \foreign{backtracking}, abbiamo risolto la versione di ricerca di questo problema.
+Quella appena enunciata è la versione decisionale.
+Per semplificare il confronto, ci concentriamo sulla seconda.
+
+\subsubsection{Somma di sottoinsiemi risolto tramite programmazione dinamica}
 
 Definiamo una tabella booleana \(DP[0 \dots n][0 \dots k]\).
 \(DP[i][r]\) è uguale a \True se e solo se è possibile ottenere \(r\) dai primi \(i\) valori memorizzati nel vettore di input.
 \[
 	DP[i][r] =
 	\begin{dcases}
-		\False & r < 0 \\
-		\True & r = 0 \\
-		\False & r > 0 \land i = 0 \\
-		DP[i - 1][r]\text{ \Or }DP[i - 1][r - A[i]]& r > 0 \land i > 0 \\
+		\True                                         & r = 0 \\
+		\False                                        & r > 0 \land i = 0\\
+		DP[i-1][r]                                    & r > 0 \land i > 0 \land A[i] > r\\
+		DP[i - 1][r] \text{ \Or } DP[i - 1][r - A[i]] & r > 0 \land i > 0 \land A[i] \leqslant r\\
 	\end{dcases}
 \]
 
-Essendo un problema decisionale, è possibile semplificare e utilizzare spazio \(\Theta(k)\) invece che \(\Theta(nk)\), in quanto avrò \(n\) righe e \(k\) colonne.
-
-\paragraph{Algoritmo}
-
-L'algoritmo sfrutta l'equazione di ricorrenza
+Essendo un problema decisionale, è possibile semplificare e utilizzare spazio \(\Theta(k)\), invece che \(\Theta(nk)\), in quanto avrò \(n\) righe e \(k\) colonne.
+L'algoritmo sfrutta l'equazione di ricorrenza.
 
 \begin{algorithm}[H]
-	\caption{Somma di sottoinsiemi}
+	\caption{Somma di sottoinsiemi risolto tramite programmazione dinamica}
 	\input{subSetSum}
 \end{algorithm}
 
+Ad esempio prendendo l'insieme \(A = [5,9,10]\) di interi positivi e l'intero positivo \(k = 24\) proviamo a riempire la tabella di programmazione dinamica.
+Dove le righe rappresentano gli indici presi e le colonne il valore di \(k\) desiderato.
+
+\begin{table}[H]\centering
+	\begin{tabular}{@{} c *{25}{@{\hskip 8pt}c} @{}}
+		\toprule
+			& \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} & \textbf{14} & \textbf{15} & \textbf{16} & \textbf{17} & \textbf{18} & \textbf{19} & \textbf{20} & \textbf{21} & \textbf{22} & \textbf{23} & \textbf{24}\\
+		\cmidrule{2-26}
+			\textbf{0} & 1 &&&&&&&&&&&&&&&&&&&&&&&& \\
+		\lightrule
+			\textbf{1} & 1 &&&&& 1 &&&&&&&&&&&&&&&&&&& \\
+		\lightrule
+			\textbf{2} & 1 &&&&& 1 &&&& 1 &&&&& 1 &&&&&&&&&& \\
+		\lightrule
+			\textbf{3} & 1 &&&&& 1 &&&& 1 & 1 &&&& 1 & 1 &&&& 1 &&&&& 1 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
 \paragraph{Analisi della complessità}
-La complessità dell'algoritmo è \(\Omicron(nk)\), ma la complessità dei dati in ingresso è \(\Omicron(n \log k)\) in quanto i valori più grandi del nostro obiettivo possono essere esclusi.
+La complessità dell'algoritmo è \(\Theta(nk)\), ma la complessità dei dati in ingresso è \(\Omicron(n \log k)\), in quanto i valori più grandi del nostro obiettivo possono essere esclusi.
 Se \(k\) è \(\Omicron(n^c)\) con \(c\) costante, allora \subSetSum ha complessità polinomiale \(\Omicron(n^{c+1})\).
 Ma se \(k\) è  \(\Omicron(2^n)\), allora \subSetSum ha complessità superpolinomiale \(\Omicron(n \cdot 2^{n})\).
 
 \begin{observation}
-La complessità di \subSetSum dipende quindi dai valori contenuti nell'insieme, e non soltanto dalla cardinalità dei dati in ingresso (\(n\)).
+La complessità di \subSetSum dipende quindi dai valori contenuti nell'insieme e non soltanto dalla cardinalità dei dati in ingresso (\(n\)).
 \end{observation}
+
+\subsubsection{Somma di sottoinsiemi risolto tramite backtracking}
+
+\begin{algorithm}[H]
+	\caption{Somma di sottoinsiemi risolto tramite backtracking}
+	\input{subSetSumRec}
+\end{algorithm}
+
+\begin{table}[H]\centering
+	\begin{tabular}{@{} c *{25}{@{\hskip 8pt}c} @{}}
+		\toprule
+			& \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} & \textbf{14} & \textbf{15} & \textbf{16} & \textbf{17} & \textbf{18} & \textbf{19} & \textbf{20} & \textbf{21} & \textbf{22} & \textbf{23} & \textbf{24}\\
+		\cmidrule{2-26}
+			\textbf{0} & 1 &&&&& 0 &&&& 0 & 0 &&&& 0 & 0 &&&&&&&&& 0 \\
+		\lightrule
+			\textbf{1} &&&&&& 1 &&&&&&&&& 0 & 0 &&&&&&&&& 0 \\
+		\lightrule
+			\textbf{2} &&&&&&&&&&&&&&& 1 &&&&&&&&&& 0 \\
+		\lightrule
+			\textbf{3} &&&&&&&&&&&&&&&&&&&&&&&&& 1 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\paragraph{Complessità}
+\(\Omicron(2^n)\)
+
+\subsubsection{Somma di sottoinsiemi risolto tramite memoization}
+
+\begin{algorithm}[H]
+	\caption{Somma di sottoinsiemi risolto tramite memoization}
+	\input{subSetSumMemo}
+\end{algorithm}
+
+\begin{table}[H]\centering
+	\begin{tabular}{@{} c *{25}{@{\hskip 8pt}c} @{}}
+		\toprule
+			& \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} & \textbf{14} & \textbf{15} & \textbf{16} & \textbf{17} & \textbf{18} & \textbf{19} & \textbf{20} & \textbf{21} & \textbf{22} & \textbf{23} & \textbf{24}\\
+		\cmidrule{2-26}
+			\textbf{0} & 1 &&&&& 0 &&&& 0 & 0 &&&& 0 & 0 &&&&&&&&& 0 \\
+		\lightrule
+			\textbf{1} &&&&&& 1 &&&&&&&&& 0 & 0 &&&&&&&&& 0 \\
+		\lightrule
+			\textbf{2} &&&&&&&&&&&&&&& 1 &&&&&&&&&& 0 \\
+		\lightrule
+			\textbf{3} &&&&&&&&&&&&&&&&&&&&&&&&& 1 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Se prendiamo in considerazione un altro esempio con l'insieme \(A = [1,1,1,1,1]\) di interi positivi e l'intero positivo \(k = 5\) proviamo a riempire la tabella di programmazione dinamica
+
+\begin{table}[H]\centering
+	\begin{tabular}{@{} c *{6}{@{\hskip 16pt}c} @{}}
+		\toprule
+			& \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+		\cmidrule{2-7}
+			\textbf{0} & 1 & 0 & 0 & 0 & 0 & 0 \\
+		\lightrule
+			\textbf{1} &   & 1 & 0 & 0 & 0 & 0 \\
+		\lightrule
+			\textbf{2} &   &   & 1 & 0 & 0 & 0 \\
+		\lightrule
+			\textbf{3} &   &   &   & 1 & 0 & 0 \\
+		\lightrule
+			\textbf{4} &   &   &   &   & 1 & 0 \\
+		\lightrule
+			\textbf{5} &   &   &   &   &   & 1 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\paragraph{Complessità}
+\(\Omicron(nk)\)
+
+\subsubsection*{Discussione sulla complessità di somma di sottoinsiemi}
+
+Riassumendo abbiamo risolto il problema tramite la programmazione dinamica ottenendo una complessità di \(\Theta(nk)\), tramite backtracking ottenendo una complessità di \(\Omicron(2^n)\) ed infine tramite memoization ottenendo una complessità di \(\Omicron(nk)\).
+
+Ma \(\Omicron(nk)\) è una complessità superpolinomiale?
+No, non lo è, infatti \(k\) è parte dell'input, non una dimensione dell'input.
+\(k\) viene rappresentato da \(t = \ceil{\log k}\) cifre binarie.
+Quindi la complessità è \(\Omicron(nk) = \Omicron(n \dots 2^t)\), esponenziale.
+
+\section{Problemi fortemente, debolmente {\NP}-completi}
+
+\begin{definition}[dimensioni del problema]
+Dato un problema decisionale \(R\) e una sua istanza \(I\).
+La \alert{dimensione \(d\)} di \(I\) è la lunghezza della stringa che codifica \(I\).
+Il \alert{valore \texttt{\#}} è il più grande numero intero che appare in \(I\).
+\end{definition}
+
+\begin{table}[htbp]\centering
+	\caption{Problemi decisionali e relative grandezze}
+	\label{tab:problem-dimensions}
+	\begin{tabular}{@{} l *{3}{l} @{}}
+		\toprule
+			\textbf{Nome} & \multicolumn{1}{c}{\textbf{Istanza} \(I\)} & \multicolumn{1}{c}{\textbf{No.\ più grande} \texttt{\#}} & \multicolumn{1}{c}{\textbf{Dimensione} \(d\)} \\
+		\midrule
+			{\subSetSumProblem} & \(\{n, k, A\}\)    & \(\max\{n, k, \max(A)\)\} & \(\Omicron(n \log\texttt{\#})\)\\
+		\lightrule
+			{\cliqueProblem}    & \(\{n, m, k, G\}\) & \(\max\{n,m,k\}\) & \(\Omicron(n + m + \log\texttt{\#})\)\\
+		\lightrule
+			{\tsp} & \(\{n,k,d\}\) & \(\max\{n, k, \max(d)\}\) & \(\Omicron(n^2 \log\texttt{\#})\)\\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 \begin{definition}[problema fortemente \NP-completo]
 Sia \(R_p\) il problema \(R\) ristretto a quei dati d'ingresso per i quali il più grande valore da rappresentare è limitato superiormente da \(p(d)\), con \(p\) funzione polinomiale in \(d\).
-R è \alert{fortemente \NP-completo} se \(R_p\) è \NP-completo.
+\(R\) è \alert{fortemente \NP-completo} se \(R_p\) è \NP-completo.
 \end{definition}
 
-Il problema cricca (\clique), ad esempio, è fortemente \NP-completo, mentre \subSetSum non lo è.
+\begin{observation}
+Il problema cricca ({\cliqueProblem}), ad esempio, è fortemente \NP-completo, mentre quello della somma di sottoinsieme {\subSetSumProblem} non lo è.
+\end{observation}
 
 \begin{definition}[problema debolmente \NP-completo]
 Se un problema \NP-completo non è fortemente \NP-completo, allora è \alert{debolmente \NP-completo}.
 \end{definition}
 
+\subsection{Esempio di problema debolmente \NP-completo}
+
+\subsubsection{Somma di sottoinsiemi (\subSetSumProblem)}
+
+\paragraph{Definizione del problema}
+Dati un vettore \(A\) contenente \(n\) interi positivi ed un intero positivo \(k\), \alert{esiste} un sottoinsieme \(S \subseteq \{1 \dots n\}\) tale che \(\sum_{i \in S} a[i] = k\)?
+
+\begin{proof}[Dimostrazione. Somma di sottoinsieme è debolmente \NP-completo]
+\(\forall A[i] \leqslant k\) (valori più grandi di \(k\) vanno esclusi).
+Se \(k = \Omicron(n^c)\), allora \(\texttt{\#} = \max\{n, k, a_1, \dots, a_n\} = \Omicron(n^c)\).
+La soluzione basata su programmazione dinamica ha complessità \(\Omicron(nk) = \Omicron(n^{c+1})\), quindi in {\PTIME}.
+Possiamo dedurne che {\subSetSumProblem} non è fortemente \NP-completo.
+\end{proof}
+
 \begin{note}
-Il problema di \subSetSum è debolmente \NP-completo, in quanto limitando le dimensioni dei dati in ingresso il problema diventa polinomiale.
+Il problema di {\subSetSumProblem} è debolmente \NP-completo, in quanto limitando le dimensioni dei dati in ingresso il problema diventa polinomiale.
 \end{note}
 
-\subsection{Partizione}
-\SetKwFunction{partition}{partizione}
-\SetKwFunction{partitionThree}{partizioneTerne}
+\subsection{Algoritmi pseudo-polinomiali}
+
+\begin{definition*}[Algoritmo pseudo-polinomiale]
+Un algoritmo che risolve un certo problema \(R\), per qualsiasi dato \(I\) d'ingresso, in tempo \(p(\texttt{\#},d)\), con \(p\) funzione polinomiale in \texttt{\#} e \(d\), ha complessità \alert{pseudo-polinomiale}.
+\end{definition*}
+
+\begin{observation}
+Gli algoritmi per {\subSetSumProblem} basati su programmazione dinamica e memoization sono pseudo-polinomiali.
+\end{observation}
+
+\begin{theorem*}
+Nessun problema fortemente \NP-completo può essere risolto da un algoritmo pseudo-polinomiale, a meno che non sia \(\PTIME = \NP\).
+\end{theorem*}
+
+\subsection{Esempi di problemi fortemente \NP-completo}
+
+\subsubsection{Cricca (\cliqueProblem)}
 
 \paragraph{Definizione del problema}
-Dato un insieme \(A = \{a_1, a_2, \dots, a_n\}\) di interi positivi, trovare un sottoinsieme \(S\) di \(1, \dots, n\) tale che \(\sum_{i \in S} a_i = \sum_{i \not\in S} a_i\).
+Dati un grafo non orientato ed un intero \(k\), esiste un sottoinsieme di almeno \(k\) nodi tutti mutuamente adiacenti?
 
-% TODO figura
-\texttt{MATERIALE MANCANTE}
+\begin{proof}[Dimostrazione. {\cliqueProblem} è fortemente \NP-completo]
+\(k \leqslant n\) (altrimenti la risposta è \False), \(\texttt{\#} = \max\{n,m,k\}\), in quanto \(k \leqslant n\) possiamo semplificare \(\texttt{\#} = \max\{n,m\}\), \(d = \Omicron(n + m + \log\texttt{\#}) = \Omicron(n + m)\).
+Quindi \(\texttt{\#} = \max\{n, m\}\) è limitato superiormente da \(\Omicron(n + m)\).
+Possiamo dedurne che il problema ristretto è identico a {\cliqueProblem}, che è \NP-completo.
+\end{proof}
 
-\paragraph{Considerazioni}
-L'algoritmo \partition è debolmente \NP-completo perché è possibile ridurlo a \subSetSum scegliendo come valore \(k\) la metà di tutti i valori scelti.
-
-% TODO formula
-\texttt{MATERIALE MANCANTE}
-
-\subsection{Partizione di terne}
+\subsubsection{Commesso viaggiatore}
 
 \paragraph{Definizione del problema}
-Dati \(3n\) interi \(\{a_1, a_2, \dots, a_n\}\), trovare una partizione di \(n\) triple \(T_1, \dots, T_n\) tale che la somma dei tre elementi di ogni \(T_j\) sia la stessa, per \(1 \leqslant j \leqslant n\).
+Date \(n\) città e una matrice simmetrica d di distanze positive, dove \(d[i][j]\) è la distanza fra \(i\) e \(j\), trovare un percorso che, partendo da una qualsiasi città, attraversi ogni città esattamente una volta e ritorni alla città di partenza, in modo che la distanza totale percorsa sia minima.
 
-\texttt{MATERIALE MANCANTE}
-% TODO 3 7 2 / 10 1 1
+\begin{proof}[Dimostrazione per assurdo che {\tsp} è fortemente \NP-completo]
+Per assurdo, supponiamo che {\tsp} sia debolmente \NP-completo.
+Allora esiste una soluzione pseudo-polinomiale.
+Usiamo questa soluzione per risolvere un problema \NP-completo in tempo polinomiale, il che è assurdo a meno che \(\PTIME = \NP\).
+\end{proof}
+
+\subsubsection{Circuito hamiltoniano}
+
+\paragraph{Definizione del problema}
+Dato un grafo non orientato \(G\), esiste un circuito che attraversi ogni nodo una e una sola volta?
 
 \paragraph{Considerazioni}
-L'algoritmo \partitionThree è fortemente \NP-completo, in quanto non esiste un algoritmo pseudo-polinomiale per risolvere questo problema.
+Il problema {\hamiltonianCircuit} è \NP-completo.
+\'{E} uno dei 21 problemi elencati nell'articolo di Karp.
+
+\begin{proof}[Dimostriamo che {\tsp} è fortemente \NP-completo.]
+Sia \(G = (V,E)\) un grafo non orientato.
+Definiamo una matrice di distanze a partire da \(G\).
+\[
+	d[i][j] =
+	\begin{dcases}
+		1 & (i,j) \in E\\
+		2 & (i,j) \not\in E\\
+	\end{dcases}
+\]
+
+Il grafo \(G\) ha un circuito hamiltoniano se e solo se è possibile trovare un percorso da commesso viaggiatore di costo \(n\).
+
+\paragraph{Simmetria fra {\tsp} e {\hamiltonianCircuit}}
+Se esistesse un algoritmo pseudopolinomiale \(A\) per {\tsp}, {\hamiltonianCircuit} potrebbe essere risolto da \(A\) in tempo polinomiale.
+\end{proof}
+
+\subsubsection{Partizione (\partition)}
+
+\paragraph{Definizione del problema}
+Dato un vettore \(A\) contenente \(n\) interi positivi, esiste un sottoinsieme \(S \subseteq \{1 \dots n\}\) tale che \(\sum_{i \in S} A[i] = \sum_{i \in S} A[i]\)?
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\coordinate (t) at (.25,+.6);
+		\foreach \num in {0,1,...,5}{
+			\node[font=\tiny] at (t) {\num};
+			\coordinate (t) at ($(t) + (0.6,0)$);
+		}
+
+		\coordinate (s) at (0,0);
+		\foreach \num in {14,6,12,3,7,2}{
+			% \node[draw, thick, rectangle, minimum size=0.5cm] at (s) {\num};
+			\node[cell, minimum width = 0.6cm, minimum height = 0.6cm] at (s) {\num};
+			\coordinate (s) at ($(s) + (0.6,0)$);
+		}
+	\end{tikzpicture}
+\end{figure}
+
+\paragraph{Conclusioni}
+Il problema {\partition} è debolmente \NP-completo perché è possibile ridurlo a {\subSetSumProblem} scegliendo come valore \(k\) la metà di tutti i valori presenti:
+\[
+	k = \frac{\sum_{i=1}^{n} A[i]}{2} = \frac{44}{2} = 22
+\]
+
+\subsubsection{3-Partizione (\treePartition)}
+
+Dati \(3n\) interi \(\{a_1, \dots, a_{3n}\}\) esiste una partizione in \(n\) triple \(T_1, \dots, T_n\), tale che la somma dei tre elementi di ogni \(T_j\) sia la stessa, per \(1 \leqslant j \leqslant n\)?
+
+\paragraph{Conclusioni}
+Il problema {\treePartition} è fortemente \NP-completo perché non esiste un algoritmo pseudopolinomiale per risolverlo.
 
 \section{Algoritmi di approssimazione}
 
-% TODO copiare testo
+Facciamo una piccola premessa.
+I problemi più interessanti sono in forma di ottimizzazione.
+Se il problema di decisione è \NP-completo, non sono noti algoritmi polinomiali per il problema di ottimizzazione.
+Esistono algoritmi polinomiali che trovano soluzioni ammissibili più o meno vicine a quella ottima.
+
+\begin{definition*}[Algoritmi di approssimazione]
+Se è possibile dimostrare un limite superiore/inferiore al rapporto fra la soluzione trovata e la soluzione ottima, allora tali algoritmi vengono detti \alert{algoritmi di approssimazione}.
+\end{definition*}
+
+\begin{definition*}[\(\alpha(n)-approssimazione\)]
+Dato un problema di ottimizzazione con funzione costo non negativa \(c\), un algoritmo si dice di \alert{\(\alpha(n)\)-approssimazione} se fornisce una soluzione ammissibile \(x\) il cui costo \(c(x)\) non si discosta dal costo \(c(x^*)\) della soluzione ottima \(x^*\) per più di un fattore \(\alpha(n)\), per qualunque input di dimensione \(n\):
+\begin{alignat}{4}
+	c(x^*) \leqslant c(x)           &\leqslant \alpha(n) c(x^*) &\quad& \alpha(n) > 1 \quad (\text{Minimizzazione})\\
+	\alpha(n) c(x^*) \leqslant c(x) &\leqslant c(x^*)           &\quad& \alpha(n) < 1 \quad (\text{Massimizzazione})
+\end{alignat}
+\end{definition*}
+
+\begin{observation}
+\(\alpha(n)\) può essere una costante, valida per tutti gli \(n\).
+\end{observation}
 
 \begin{note}
-\texttt{MATERIALE MANCANTE}
-% TODO copiare nota
+Identificare un valore \(\alpha(n)\) e dimostrare che l'algoritmo lo rispetta è ciò che rende un buon algoritmo un algoritmo di approssimazione.
 \end{note}
 
 \subsection{Bin packing}
 
 \paragraph{Definizione del problema}
-% TODO ricopiare testo
-\texttt{MATERIALE MANCANTE}
+Dati un vettore \(A\) contenente \(n\) interi positivi (i \alert{volumi} degli \alert{oggetti}) e un intero positivo \(k\) (la \alert{capacità} di una \alert{scatola}, tale che \(\forall i: A[i] \leqslant k\)), si vuole trovare una partizione di \(\{1, \dots, n\}\) nel minimo numero di sottoinsiemi disgiunti (\enquote{scatole}) tali che \(\sum_{i \in S} A[i] \leqslant k\) per ogni insieme \(S\) della partizione.
 
-Utilizziamo un approccio ingordo.
+Dato il seguente vettore e un intero \(k = 8\) come risolvereste il problema?
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\coordinate (t) at (.25,+.5);
+		\foreach \num in {0,1,...,6}{
+			\node[font=\tiny] at (t) {\num};
+			\coordinate (t) at ($(t) + (0.5,0)$);
+		}
 
-Se consideriamo gli oggetti in ordine non descrescente.
+		\coordinate (s) at (0,0);
+		\foreach \num in {3,7,2,5,4,3,5}{
+			\node[cell] at (s) {\num};
+			\coordinate (s) at ($(s) + (0.5,0)$);
+		}
+	\end{tikzpicture}
+\end{figure}
 
-\subsection{Commesso viaggiatore}
-\texttt{MATERIALE MANCANTE}
+\subsubsection{Appoccio ingordo per il problema bin packing}
 
-\paragraph{Definizione del problema}
-% TODO ricopiare testo
-\texttt{MATERIALE MANCANTE}
-
-\paragraph{Restringiamo il problema}
-\texttt{MATERIALE MANCANTE}
-
-\begin{theorem}[tsp non approssimabile]
-\texttt{MATERIALE MANCANTE}
-\end{theorem}
-
-\begin{note}
-\(\Delta-tsp\) è un problema approssimabile, ma il problema generale no.
-\end{note}
-
-\section{Algoritmi branch\&bound}
-
-Variante della tecnica di programmazione backtrack.
-Cerchiamo di analizare tutto lo spazio delle soluzioni, evitando certe sequence di scelte che facciano diminuire il costo della soluzione parziale costruita.
-
-Cerchiamo i limiti (superiore ed inferiore) della soluzione minima.
+\paragraph{Algoritmo first-fit}
+Gli oggetti sono considerati in un ordine qualsiasi e ciascun oggetto è assegnato alla prima scatola che lo può contenere, tenuto conto di quanto spazio è stato occupato della stessa.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics{branchAndBound-1}
-	\caption{Se \textsf{lb}(\(S\),\(i\)) è maggiore o uguale a \(minCost\), allora si può evitare di generare ed esplorare il sottoalbero delle scelte radicato in tal nodo.}
-	% \label{}
+	\begin{tikzpicture}
+
+		\coordinate (s) at (0,0);
+		\foreach \num in {{3,2,3},7,5,4,5}{
+			\node[cell, minimum width = 1.3cm] at (s) {\num};
+			\coordinate (s) at ($(s) + (1.3,0)$);
+		}
+	\end{tikzpicture}
 \end{figure}
 
-Questo metodo non migliora la complessità (superpolinomiale) della procedura \enumeration, ma nella pratica ne abbassa di molto il tempo di esecuzione.
-Tutto dipende dalla funzione \lowerBound, che deve essere il più possibile vicino alla soluzione ottima.
-Il limite superiore è dato dal \(minCost\).
-
-\begin{algorithm}[H]
-	\caption{Somma di sottoinsiemi}
-	\input{branchAndBound}
-\end{algorithm}
-
-\paragraph{Problema del commesso viaggiatore}
-Applichiamo questo ragionamento al problema del commesso viaggiatore.
-Sia \(n\) il numero delle città, e \(d[h][k]\) la distanza, intera e non negativa, fra le città \(h\) e \(k\).
-Al passo \(i\)-esimo sono state fatte le scelte \(S[1][i]\) prese dall'insieme \(1, \dots, n\).
-Un percorso ammissible che \enquote{espande} \(S[1][i]\) deve
-\begin{enumerate*}[label=\arabic*)]
-	\item attraversare le città \(S[1][i]\);
-	\item passare da \(S[i]\) ad una qualsiasi delle rimanenti \(n-1\) città;
-	\item attraversare queste ultime città in un ordine qualsiasi;
-	\item da una di queste ritornare a \(S[1]\).
-\end{enumerate*}
-
-Facciamoci un po' di calcoli:
-\(C[i]\) è il costo che ho sostenuto per fare i primi \(i\) passi.
-\begin{equation*}
-	C[i] =
-	\begin{dcases}
-		0 & i = 1 \\
-		C[i-1] + d[ S[i-1] ][ S[i] ] & i > 1 \\
-	\end{dcases}
-\end{equation*}
-
-Il limite inferiore (\foreign{lower bound}) della distanza per tornare a \(S[1]\) (\(O(n)\)):
-\[A = \min_{h \notin S} \{ d[S[h][1] \}\]
-
-Il limite inferiore (\foreign{lower bound}) della distanza per andarsene da \(S[i]\) (\(O(n)\)):
-\[B = \min_{h \notin S}\{d[S[i], h] \}\]
-
-Lower bound della distanza percorsa per attraversare una qualsiasi di queste ultime \(n - i\) città, provenendo da (e dirigendosi verso) un'altra di queste \(n - i\) città (\(O(n^3)\))
-\[D[h] = \min_{p,q}\{d[p, h] + d[h, q] \colon h \Neq p \Neq q \},\;\]
-
-Un lower bound \(\lowerBound(S)\) è dato dalla seguente espressione:
+Sia \(N > 1\) il numero di scatole usare da {\firstFit} (se \(N=1\), l'algoritmo è ottimale).
+Il numero minimo di scatole \(N^*\) è limitato da:
 \[
-\lowerBound(s,i) =
-	\begin{cases}
-		C[i] + d[S[i], S[1]] & i=n \\
-		C[i] + A + B + \left\lceil (\sum_{h \notin S} D[h])/2\right\rceil & i < n
-	\end{cases}
+	N^{*} \geqslant \frac{\sum_{i=1}^n A[i]}{k} = \frac{29}{8} = 3.625
+\]
+non possono esserci due scatole riempite meno della metà:
+\[
+	N < \frac{\sum_{i=1}^n A[i]}{k/2} = \frac{29}{8/2} = 7.250
+\]
+abbiamo quindi:
+\[
+	N < \frac{\sum_{i=1}^n A[i]}{k/2} = 2 \frac{\sum_{i=1}^n A[i]}{k} \leqslant 2N^* = \alpha(n) N^{*}
+\]
+che implica \(\alpha(n) = 2\).
+
+\paragraph{Algoritmo first-fit decreasing}
+Se consideriamo gli oggetti in ordine non descrescente è possibile dimostrare un risultato migliore per questo algoritmo.
+\[
+	N < \frac{17}{10} N^{*} + 2
 \]
 
-\begin{algorithm}[H]
-	\caption{Appoccio branch\&bound al problema del commesso viaggiatore}
-	\input{bbTsp}
-\end{algorithm}
+Nella variante \textsc{ffd} (First-fit decreasing): gli oggetti sono considerati in ordine non decrescente
+\[
+	N < \frac{11}{9} N^{*} + 4
+\]
+Queste sono dimostrazioni di limiti superiori per il fattore \(\alpha(n)\), per casi particolari l'approssimazione può essere migliore.
+
+\subsection[Commesso viaggiatore con disuguaglianze triangolari]
+		   {Commesso viaggiatore con disuguaglianze triangolari ({\deltaTsp})}
+
+\paragraph{Definizione del problema}
+Siano date \(n\) città e le distanze (positive) \(d[i][j]\) tra esse, \alert{tale per cui vale la regola delle diseguaglianze triangolari}:
+\[
+	d[i][j] \leqslant d[i][k] + d[k][j] \quad \forall i,j,k: \quad 1 \leqslant i,j,k \leqslant n
+\]
+Trovare un percorso che, partendo da una qualsiasi città, attraversi ogni città esattamente una volte e ritorni alla città di partenza, in modo che la distanza complessiva percorsa sia minima.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{branchAndBound-2}
-	\caption{inserisci didascalia}
+	\begin{subfigure}[t]{.5\linewidth}\centering
+		\includegraphics[page=1]{triangle-inequality}
+		\caption{con diseguaglianza triangolare}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.5\linewidth}\centering
+		\includegraphics[page=2]{triangle-inequality}
+		\caption{senza diseguaglianza triangolare}
+	\end{subfigure}
 \end{figure}
 
-\clearpage
-\section{Algoritmi euristici}
+\begin{proof}[Dimostriamo che {\hamiltonianCircuit} \(\leqslant_p\) {\deltaTsp}]
+Sia \(G = (V, E)\) un grafo non orientato. Definiamo una matrice delle distanze a partire da \(G\)
+\[
+	d[i][j] =
+	\begin{dcases}
+		1 & (i,j) \in E\\
+		2 & (i,j) \not\in E\\
+	\end{dcases}
+\]
+Il grafo \(G\) ha un circuito hamiltoniano se e solo se è possibile trovare un percorso da commesso viaggiatore lungo \(n\).
+Valgono le diseguaglianze triangolari:
+\[
+	d[i][j] \leqslant 2 \leqslant d[i][k] + d[k][j]
+\]
+\end{proof}
 
-Si può ricorrere ad algoritmi \enquote{euristici} che forniscono una soluzione ammissibile, non necessariamente ottima né approssimata.
-Possiamo utilizzare le tecniche di programmazione per algoritmi ingordi o di ricerca locale.
+\subsubsection{Commesso viaggiatore come circuito hamiltoniano pesato}
 
-\paragraph{Shortest edges first}
-Cambiamo approccio per il problema del commesso viaggiatore.
-Ordiniamo gli archi per pesi non decrescenti e aggiungiamo archi alla soluzioni seguendo questo ordine finché non sono stati aggiunti \(n-1\) archi, dove \(n\) è il numero di nodi.
-Però, attenzione, per poter aggiungere un arco, occorre verificare che:
-\begin{enumerate*}[label={\arabic*)}]
-	\item per ciascuno dei suoi nodi non siano stati già scelti due archi;
-    \item che non si formino circuiti (\mfSet);
-\end{enumerate*}
-A questo punto, si è trovata una catena Hamiltoniana e si chiude il circuito aggiungendo l'arco tra i due nodi estremi della catena.
+Interpretiamo {\deltaTsp} come il problema di trovare un circuito hamiltoniano di peso minimo su un grafo completo.
 
-% TODO figure
+% NOTE includere grafica
+% \begin{figure}[H]\centering
+% 	\includegraphics{tsp-greedy}
+% \end{figure}
 
-\begin{algorithm}[H]
-	\caption{Approccio ingordo al problema del commesso viaggiatore}
-	\input{greedyTsp}
-\end{algorithm}
+\begin{figure}[H]\centering
+	\begin{subfigure}[t]{.25\linewidth}\centering
+		\includegraphics[page=2, width=\linewidth]{tsp-pentagon}
+		\caption{}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.25\linewidth}\centering
+		\includegraphics[page=3, width=\linewidth]{tsp-pentagon}
+		\caption{}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.25\linewidth}\centering
+		\includegraphics[page=4, width=\linewidth]{tsp-pentagon}
+		\caption{}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.25\linewidth}\centering
+		\includegraphics[page=5, width=\linewidth]{tsp-pentagon}
+		\caption{}
+	\end{subfigure}%
 
-\subparagraph{Analisi della complessità}
-L'algoritmo costa \(\Omicron(n^2 \log n)\) a causa dell'\emph{ordinamento degli archi}.
+	\vspace{10pt}
 
-La soluzione ottenuta può essere la base di partenza per un algoritmo \branchAndBound che può essere migliorata tramite ricerca locale.
+	\begin{subfigure}[t]{.25\linewidth}\centering
+		\includegraphics[page=6, width=\linewidth]{tsp-pentagon}
+		\caption{}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.25\linewidth}\centering
+		\includegraphics[page=7, width=\linewidth]{tsp-pentagon}
+		\caption{}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.25\linewidth}\centering
+		\includegraphics[page=8, width=\linewidth]{tsp-pentagon}
+		\caption{}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.25\linewidth}\centering
+		\includegraphics[page=9, width=\linewidth]{tsp-pentagon}
+		\caption{}
+	\end{subfigure}%
+	\caption{Commesso viaggiatore pentagon}
+\end{figure}
 
-\paragraph{Approccio Nearest neighbor}
-Si parte da una città e si seleziona come prossima città quella più vicina.
-Si va avanti così, evitando città già visitate.
-Quando si sono visitate tutte le città si torna alla città di partenza.
+Il costo totale risulta 21.
 
-\subparagraph{Analisi della complessità}
-Questo algortimo ha complessità \(\Omicron(n^2)\) perché per ogni città devo guardare tutte le altre.
+\begin{figure}[H]\centering
+	\begin{subfigure}[t]{.20\linewidth}\centering
+		\includegraphics[page=1, width=\linewidth]{tsp-local}
+		\caption{}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.20\linewidth}\centering
+		\includegraphics[page=2, width=\linewidth]{tsp-local}
+		\caption{}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.20\linewidth}\centering
+		\includegraphics[page=3, width=\linewidth]{tsp-local}
+		\caption{}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.20\linewidth}\centering
+		\includegraphics[page=4, width=\linewidth]{tsp-local}
+		\caption{}
+	\end{subfigure}%
+	\hfill
+	\begin{subfigure}[t]{.20\linewidth}\centering
+		\includegraphics[page=5, width=\linewidth]{tsp-local}
+		\caption{}
+	\end{subfigure}%
+	\caption{Commesso viaggiatore locale}
+\end{figure}
+
+Il costo totale risulta 19.
+
+\subsubsection{Algoritmo di approssimazione per {\deltaTsp}}
+
+Se si considera un circuito hamiltoniano e si cancella un suo arco, si ottiene un albero di copertura.
+
+% \begin{figure}[H]\centering
+% 	\includegraphics[width=1\textwidth]{toscana}
+% 	\caption{didascalia}%
+% 	\label{fig:etichetta}
+% \end{figure}
+
+\begin{theorem*}
+Qualunque circuito hamiltoniano \(\pi\) ha costo \(c(\pi)\) superiore al costo \(mst\) di albero di copertura di peso minimo, ovvero \(mst < c(\pi)\).
+\end{theorem*}
+
+\begin{proof}[Dimostrazione per assurdo.]
+Supponiamo che esista un circuito hamiltoniano \(\pi\) di costo \(c(\pi) \leqslant mst\).
+Togliamo un arco, otteniamo un albero di copertura con peso inferiore \(mst' < c(\pi) \leqslant mst\).
+Contraddizione, visto che \(mst\) è il costo minimo fra tutti gli alberi di copertura.
+\end{proof}
+
+\subsubsection{Algoritmo per {\deltaTsp}}
+
+Si individua un minimo albero di copertura di peso \(mst\) e se ne percorrono gli archi due volte, prima in un senso e poi nell'altro.
+In questo modo, si visita ogni città almeno una volta.
+La distanza complessiva di tale circuito è uguale a \(2 \cdot mst\).
+Ma non è un circuito hamiltoniano!
+
+\begin{figure}[H]\centering
+	\begin{subfigure}[t]{.5\linewidth}\centering
+		\includegraphics[page=1]{toscana-mst}
+		\caption{con diseguaglianza triangolare}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.5\linewidth}\centering
+		\includegraphics[page=2]{toscana-mst}
+		\caption{senza diseguaglianza triangolare}
+	\end{subfigure}
+\end{figure}
+
+
+
+% \begin{figure}[H]\centering
+% 	\begin{subfigure}[t]{.20\linewidth}\centering
+% 		\includegraphics[page=1, width=\linewidth]{tsp-nn}
+% 		\caption{}
+% 	\end{subfigure}%
+% 	\begin{subfigure}[t]{.20\linewidth}\centering
+% 		\includegraphics[page=2, width=\linewidth]{tsp-nn}
+% 		\caption{}
+% 	\end{subfigure}%
+% 	\begin{subfigure}[t]{.20\linewidth}\centering
+% 		\includegraphics[page=3, width=\linewidth]{tsp-nn}
+% 		\caption{}
+% 	\end{subfigure}%
+% 	\begin{subfigure}[t]{.20\linewidth}\centering
+% 		\includegraphics[page=4, width=\linewidth]{tsp-nn}
+% 		\caption{}
+% 	\end{subfigure}%
+% 	\begin{subfigure}[t]{.20\linewidth}\centering
+% 		\includegraphics[page=5, width=\linewidth]{tsp-nn}
+% 		\caption{}
+% 	\end{subfigure}%
+% 	\caption{Commesso viaggiatore nn}
+% \end{figure}
+
+% \paragraph{Restringiamo il problema}
+% \texttt{MATERIALE MANCANTE}
+%
+% \begin{theorem}[tsp non approssimabile]
+% \texttt{MATERIALE MANCANTE}
+% \end{theorem}
+%
+% \begin{note}
+% \(\Delta-tsp\) è un problema approssimabile, ma il problema generale no.
+% \end{note}
+%
+% \section{Algoritmi branch\&bound}
+%
+% Variante della tecnica di programmazione backtrack.
+% Cerchiamo di analizare tutto lo spazio delle soluzioni, evitando certe sequence di scelte che facciano diminuire il costo della soluzione parziale costruita.
+%
+% Cerchiamo i limiti (superiore ed inferiore) della soluzione minima.
+%
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics{branchAndBound-1}
+% 	\caption{Se \textsf{lb}(\(S\),\(i\)) è maggiore o uguale a \(minCost\), allora si può evitare di generare ed esplorare il sottoalbero delle scelte radicato in tal nodo.}
+% 	% \label{}
+% \end{figure}
+%
+% Questo metodo non migliora la complessità (superpolinomiale) della procedura \enumeration, ma nella pratica ne abbassa di molto il tempo di esecuzione.
+% Tutto dipende dalla funzione \lowerBound, che deve essere il più possibile vicino alla soluzione ottima.
+% Il limite superiore è dato dal \(minCost\).
+%
+% \begin{algorithm}[H]
+% 	\caption{Somma di sottoinsiemi}
+% 	\input{branchAndBound}
+% \end{algorithm}
+%
+% \paragraph{Problema del commesso viaggiatore}
+% Applichiamo questo ragionamento al problema del commesso viaggiatore.
+% Sia \(n\) il numero delle città, e \(d[h][k]\) la distanza, intera e non negativa, fra le città \(h\) e \(k\).
+% Al passo \(i\)-esimo sono state fatte le scelte \(S[1][i]\) prese dall'insieme \(1, \dots, n\).
+% Un percorso ammissible che \enquote{espande} \(S[1][i]\) deve
+% \begin{enumerate*}[label=\arabic*)]
+% 	\item attraversare le città \(S[1][i]\);
+% 	\item passare da \(S[i]\) ad una qualsiasi delle rimanenti \(n-1\) città;
+% 	\item attraversare queste ultime città in un ordine qualsiasi;
+% 	\item da una di queste ritornare a \(S[1]\).
+% \end{enumerate*}
+%
+% Facciamoci un po' di calcoli:
+% \(C[i]\) è il costo che ho sostenuto per fare i primi \(i\) passi.
+% \begin{equation*}
+% 	C[i] =
+% 	\begin{dcases}
+% 		0 & i = 1 \\
+% 		C[i-1] + d[ S[i-1] ][ S[i] ] & i > 1 \\
+% 	\end{dcases}
+% \end{equation*}
+%
+% Il limite inferiore (\foreign{lower bound}) della distanza per tornare a \(S[1]\) (\(O(n)\)):
+% \[A = \min_{h \notin S} \{ d[S[h][1] \}\]
+%
+% Il limite inferiore (\foreign{lower bound}) della distanza per andarsene da \(S[i]\) (\(O(n)\)):
+% \[B = \min_{h \notin S}\{d[S[i], h] \}\]
+%
+% Lower bound della distanza percorsa per attraversare una qualsiasi di queste ultime \(n - i\) città, provenendo da (e dirigendosi verso) un'altra di queste \(n - i\) città (\(O(n^3)\))
+% \[D[h] = \min_{p,q}\{d[p, h] + d[h, q] \colon h \Neq p \Neq q \},\;\]
+%
+% Un lower bound \(\lowerBound(S)\) è dato dalla seguente espressione:
+% \[
+% \lowerBound(s,i) =
+% 	\begin{cases}
+% 		C[i] + d[S[i], S[1]] & i=n \\
+% 		C[i] + A + B + \left\lceil (\sum_{h \notin S} D[h])/2\right\rceil & i < n
+% 	\end{cases}
+% \]
+%
+% \begin{algorithm}[H]
+% 	\caption{Appoccio branch\&bound al problema del commesso viaggiatore}
+% 	\input{bbTsp}
+% \end{algorithm}
+%
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{branchAndBound-2}
+% 	\caption{inserisci didascalia}
+% \end{figure}
+%
+% \clearpage
+% \section{Algoritmi euristici}
+%
+% Si può ricorrere ad algoritmi \enquote{euristici} che forniscono una soluzione ammissibile, non necessariamente ottima né approssimata.
+% Possiamo utilizzare le tecniche di programmazione per algoritmi ingordi o di ricerca locale.
+%
+% \paragraph{Shortest edges first}
+% Cambiamo approccio per il problema del commesso viaggiatore.
+% Ordiniamo gli archi per pesi non decrescenti e aggiungiamo archi alla soluzioni seguendo questo ordine finché non sono stati aggiunti \(n-1\) archi, dove \(n\) è il numero di nodi.
+% Però, attenzione, per poter aggiungere un arco, occorre verificare che:
+% \begin{enumerate*}[label={\arabic*)}]
+% 	\item per ciascuno dei suoi nodi non siano stati già scelti due archi;
+%     \item che non si formino circuiti (\mfSet);
+% \end{enumerate*}
+% A questo punto, si è trovata una catena Hamiltoniana e si chiude il circuito aggiungendo l'arco tra i due nodi estremi della catena.
+%
+% % TODO figure
+%
+% \begin{algorithm}[H]
+% 	\caption{Approccio ingordo al problema del commesso viaggiatore}
+% 	\input{greedyTsp}
+% \end{algorithm}
+%
+% \subparagraph{Analisi della complessità}
+% L'algoritmo costa \(\Omicron(n^2 \log n)\) a causa dell'\emph{ordinamento degli archi}.
+%
+% La soluzione ottenuta può essere la base di partenza per un algoritmo \branchAndBound che può essere migliorata tramite ricerca locale.
+%
+% \paragraph{Approccio Nearest neighbor}
+% Si parte da una città e si seleziona come prossima città quella più vicina.
+% Si va avanti così, evitando città già visitate.
+% Quando si sono visitate tutte le città si torna alla città di partenza.
+%
+% \subparagraph{Analisi della complessità}
+% Questo algortimo ha complessità \(\Omicron(n^2)\) perché per ogni città devo guardare tutte le altre.
 
 % TODO figura
 

@@ -1,0 +1,44 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Bool \subSetSumMemo{\Array{\Int} \(A\), \Int \(i\), \Int \(r\), \dictionary \(DP\)}}{
+
+	\BlankLine
+	\uIf{\(r \Equal 0\)}{
+		\Return \True\;
+		\BlankLine
+	}
+	\uElseIf{\(r < 0\) \Or \(i \Equal 0\)}{
+		\Return \False\;
+		\BlankLine
+	}
+	\Else{
+		\Bool \(res\) \Assign \(DP.\dictLookup((i,r))\)\;
+
+		\BlankLine
+		\If{\(res \Equal \Nil\)}{
+
+			\BlankLine
+			\If{\(A[i] < r\)}{
+				\(res\) \Assign \(res\) \Or \(\subSetSumMemo(A, i-1, r-A[i], DP)\)\;
+			}
+
+			\BlankLine
+			\(DP.\dictInsert((i,1), res)\)\;
+		}
+
+		\BlankLine
+		\Return \(res\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

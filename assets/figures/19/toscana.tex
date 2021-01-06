@@ -1,0 +1,117 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+% NOTE ridefinizione stile solo per questi file
+\tikzset{
+    % NOTE linee più sottili
+    myedge/.style={
+        % >=latex,
+        ->,
+        thick,
+    },
+    % NOTE nodi meno grandi
+    mynode/.style={
+        fill	= nodeYellow,
+        thick,
+        circle,
+        draw	= black,
+        align	= center,
+        % minimum width = .8cm,
+        font	= \ttfamily\Large,
+    },
+}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+
+% NOTE nome del file originario "toscana-hamilton"
+\begin{page}
+\begin{tikzpicture}
+    \node[mynode, label={below:Pisa}] at (0.0, 0.0) (pisa) {};
+    \node[mynode, label={below:Vinci}] at (2.0, -0.1) (vinci) {};
+    \node[mynode, label={above:Firenze}] at (3.8, -0.5) (firenze) {};
+    \node[mynode, label={below:Rignano}] at (4.5, -0.9) (rignano) {};
+    \node[mynode, label={above:Firenzuola}] at (4.6, 1.1) (firenzuola) {};
+    \node[mynode, label={above:\hspace{0.8cm}Serravalle}] at (2.1, 0.6) (serravalle) {};
+    \node[mynode, label={above:Castelnuovo}] at (0.8, 1.5) (castelnuovo) {};
+
+    \draw[myedge,-] (pisa)                edge node {} (vinci);
+    \draw[myedge,-] (vinci)               edge node {} (firenze);
+    \draw[myedge,-] (firenze)             edge node {} (rignano);
+    \draw[myedge,-] (rignano)             edge node {} (firenzuola);
+    \draw[myedger, dashed,-] (firenzuola) edge node {} (serravalle);
+    \draw[myedge,-] (serravalle)          edge node {} (castelnuovo);
+    \draw[myedge,-] (castelnuovo)         edge node {} (pisa);
+\end{tikzpicture}
+\end{page}
+
+% NOTE nome del file originario "toscana-mst"
+\begin{page}
+\begin{tikzpicture}
+    \node[mynode, label={below:Pisa}] at (0.0, 0.0) (pisa) {};
+    \node[mynode, label={below:Vinci}] at (2.0, -0.1) (vinci) {};
+    \node[mynode, label={above right:Firenze}] at (3.8, -0.5) (firenze) {};
+    \node[mynode, label={below:Rignano}] at (4.5, -0.9) (rignano) {};
+    \node[mynode, label={above:Firenzuola}] at (4.6, 1.1) (firenzuola) {};
+    \node[mynode, label={above:\hspace{0.8cm}Serravalle}] at (2.1, 0.6) (serravalle) {};
+    \node[mynode, label={above:Castelnuovo}] at (0.8, 1.5) (castelnuovo) {};
+
+    \draw[myedge, -] (pisa)       edge node {} (vinci);
+    \draw[myedge, -] (vinci)      edge node {} (firenze);
+    \draw[myedge, -] (firenze)    edge node {} (rignano);
+    \draw[myedge, -] (firenze)    edge node {} (firenzuola);
+    \draw[myedge, -] (vinci)      edge node {} (serravalle);
+    \draw[myedge, -] (serravalle) edge node {} (castelnuovo);
+\end{tikzpicture}
+\end{page}
+
+% NOTE nome del file originario "toscana-mst2"
+\begin{page}
+\begin{tikzpicture}
+    \node[mynode, label={below:Pisa}] at (0.0, 0.0) (pisa) {};
+    \node[mynode, label={below:Vinci}] at (2.0, -0.1) (vinci) {};
+    \node[mynode, label={below left:Firenze}] at (3.8, -0.5) (firenze) {};
+    \node[mynode, label={below:Rignano}] at (4.5, -0.9) (rignano) {};
+    \node[mynode, label={above:Firenzuola}] at (4.6, 1.1) (firenzuola) {};
+    \node[mynode, label={right:Serravalle}] at (2.1, 0.6) (serravalle) {};
+    \node[mynode, label={above:Castelnuovo}] at (0.8, 1.5) (castelnuovo) {};
+
+    \draw[myedge] (pisa)       edge [bend left=20] node {} (vinci);
+    \draw[myedge] (vinci)      edge [bend left=20] node {} (firenze);
+    \draw[myedge] (firenze)    edge [bend left=20] node {} (rignano);
+    \draw[myedge] (firenze)    edge [bend left=20] node {} (firenzuola);
+    \draw[myedge] (vinci)      edge [bend left=20] node {} (serravalle);
+    \draw[myedge] (serravalle) edge [bend left=20] node {} (castelnuovo);
+
+    \draw[myedge] (vinci)       edge [bend left=20] node {} (pisa);
+    \draw[myedge] (firenze)     edge [bend left=20] node {} (vinci);
+    \draw[myedge] (rignano)     edge [bend left=20] node {} (firenze);
+    \draw[myedge] (firenzuola)  edge [bend left=20] node {} (firenze);
+    \draw[myedge] (serravalle)  edge [bend left=20] node {} (vinci);
+    \draw[myedge] (castelnuovo) edge [bend left=20] node {} (serravalle);
+\end{tikzpicture}
+\end{page}
+
+% NOTE nome del file originario "toscana-mst2"
+\begin{page}
+\begin{tikzpicture}
+    \node[mynode] at (0.0, 0.0) (pisa) {};
+    \node[mynode] at (2.0, -0.1) (vinci) {};
+    \node[mynode] at (3.8, -0.5) (firenze) {};
+    \node[mynode] at (4.5, -0.9) (rignano) {};
+    \node[mynode] at (4.6, 1.1) (firenzuola) {};
+    \node[mynode] at (2.1, 0.6) (serravalle) {};
+    \node[mynode] at (0.8, 1.5) (castelnuovo) {};
+
+    \draw[myedge] (firenze) edge[bend left=10] node {} (firenzuola);
+    \draw[myedge] (firenzuola) edge[bend left=10] node {} (rignano);
+    \draw[myedge] (rignano) edge[bend left=20] node {} (vinci);
+    \draw[myedge] (vinci) edge[bend left=10] node {} (pisa);
+    \draw[myedge] (pisa) edge[bend left=10] node {} (serravalle);
+    \draw[myedge] (serravalle) edge[bend left=10] node {} (castelnuovo);
+    \draw[myedge] (castelnuovo) edge[bend left=20] node {} (firenze);
+\end{tikzpicture}
+\end{page}
+\end{document}

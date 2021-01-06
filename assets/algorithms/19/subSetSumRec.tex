@@ -1,0 +1,36 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Bool \subSetSumRec{\Array{\Int} \(A\), \Int \(i\), \Int \(r\)}}{
+
+	\BlankLine
+	\uIf{\(r \Equal 0\)}{
+		\Return \True\;
+		\BlankLine
+	}
+	\uElseIf{\(i \Equal 0\)}{
+		\Return \False\;
+		\BlankLine
+	}
+	\uElseIf{\(A[i] > r\)}{
+		\Return \(\subSetSumRec(A, i-1, r)\)\;
+		\BlankLine
+	}
+	\Else{
+		\Return \(\subSetSumRec(A, i-1, r)\) \Or \(\subSetSumRec(A, i-1, r-A[i])\)\;
+	}
+
+	\BlankLine
+	\Return \(res\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

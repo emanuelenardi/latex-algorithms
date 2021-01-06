@@ -10,32 +10,38 @@
 \prototype{\Bool \subSetSum{\Array{\Int} \(A\), \Int \(n\), \Int \(k\)}}{
 
 	\BlankLine
-	\Array{\Bool} \(DP\) \Assign \new \Array{\Bool}{0}{k}\;
+	\Matrix{\Bool} \(DP\) \Assign \new \Matrix{\Bool}[0\dots n][0\dots k] = \{{\False}\}\;
 
 	\BlankLine
-	\tcp{implementazione dei casi base}
-
-	\BlankLine
-	\tcp{dati nessun oggetto posso ottenere il valore 0}
-	\(DP[0][0] \Assign \True\)\;
-
-	\BlankLine
-	\tcp{dati 0 oggetti non posso ottenere un valore di \(k > 0\)}
-	\For{\(r \Assign 1\) \DownTo \(k\)}{
+	\tcp{se il valore da ottenere è 0, non ho bisogno di selezionare nessun indice}
+	\For{\(i \Assign 0\) \DownTo \(n\)}{
 
 		\BlankLine
-		\(DP[0][r] \Assign \False\) \tcp{riempio la prima riga}
+		\(DP[i][0] \Assign \True\) \tcp{\(r=0\)}
 	}
 
 	\BlankLine
-	\tcp{riempi la tabella}
+	\tcp{se non ho nessun intero positivo da selezionare non mi è possibile arrivare al valore richiesto}
+	\For{\(r \Assign 1\) \DownTo \(k\)}{
+
+		\BlankLine
+		\(DP[0][r] \Assign \False\) \tcp{\(r>0 \land i=0\)}
+	}
+
+	\BlankLine
+	\tcp{RIEMPI LA TABELLA}
 	\From{\(i \Assign 1\) \DownTo \(n\)}{
-		\From(\Comment*[h]{perché parto da \(A[i]\) ?}){\(r \Assign A[i]\) \DownTo \(k\)}{
-		% \tcp{\(A[i]\): semplifico, inserisci commento}
+		\From(\Comment*[h]{\(A[i] > r\)}){\(r \Assign 1\) \DownTo \(A[i]-1\)}{
 
 			\BlankLine
-			\tcp{logica dell'algoritmo}
-			\(DP[i][r] \Assign DP[i-1][k]\) \Or \(DP[i-1][r - A[i]]\)\;
+			\(DP[i][r] \Assign DP[i-1][r]\)\;
+		}
+
+		\BlankLine
+		\From(\Comment*[h]{\(A[i] \leqslant r\)}){\(r \Assign A[i]\) \DownTo \(k\)}{
+
+			\BlankLine
+			\(DP[i][r] \Assign DP[i-1][r]\) \Or \(DP[i-1][r - A[i]]\)\;
 		}
 	}
 

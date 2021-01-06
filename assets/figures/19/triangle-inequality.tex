@@ -1,0 +1,35 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+
+% NOTE con disuglianza
+\begin{page}
+\begin{tikzpicture}
+    \node[mynode] at (0.0, 0.0) (a) {a};
+    \node[mynode] at (1.5, 1.5) (b) {b};
+    \node[mynode] at (3.0, 0.0) (c) {c};
+
+    \draw[myedge, -] (a) edge[above]       node {5} (c);
+    \draw[myedge, -] (a) edge[above left]  node {3} (b);
+    \draw[myedge, -] (b) edge[above right] node {3} (c);
+\end{tikzpicture}
+\end{page}
+
+% NOTE senza disuguaglianza
+\begin{page}
+\begin{tikzpicture}
+    \node[mynode] at (4.5, 0.0) (d) {a};
+    \node[mynode] at (6.0, 1.5) (e) {b};
+    \node[mynode] at (7.5, 0.0) (f) {c};
+
+    \draw[myedge, -] (d) edge[above]       node {5} (f);
+    \draw[myedge, -] (d) edge[above left]  node {2} (e);
+    \draw[myedge, -] (e) edge[above right] node {2} (f);
+\end{tikzpicture}
+\end{page}
+
+\end{document}

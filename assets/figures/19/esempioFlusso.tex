@@ -1,7 +1,6 @@
-\documentclass{standalone}
-\usepackage{xcolor}
-\usepackage{set-math}
-\usepackage{set-forest}
+\documentclass[tikz]{standalone}
+\usepackage{../tikz-preamble}
+\usepackage{../../../libraries/set-math}
 
 \newif\ifmaxFlow
 % \maxFlowtrue
@@ -28,17 +27,17 @@
 	\node[mynode, sink] at (4,1) (d) {d};
 
 	\ifmaxFlow
-	\draw[edgen] (a) edge[above left]  node[values] {\showFlow{2}{2}} (b);
-	\draw[edgen] (a) edge[below left]  node[values] {\showFlow{2}{2}} (c);
-	\draw[edgen] (c) edge[right]       node[values] {\showFlow{1}{1}} (b);
-	\draw[edgen] (c) edge[below right] node[values] {\showFlow{1}{1}} (d);
-	\draw[edgen] (b) edge[above right] node[values] {\showFlow{3}{3}} (d);
+	\draw[myedge] (a) edge[above left]  node[values] {\showFlow{2}{2}} (b);
+	\draw[myedge] (a) edge[below left]  node[values] {\showFlow{2}{2}} (c);
+	\draw[myedge] (c) edge[right]       node[values] {\showFlow{1}{1}} (b);
+	\draw[myedge] (c) edge[below right] node[values] {\showFlow{1}{1}} (d);
+	\draw[myedge] (b) edge[above right] node[values] {\showFlow{3}{3}} (d);
 	\else
-	\draw[edgen] (a) edge[above left]  node[values] {\showFlow{2}{2}} (b);
-	\draw[edgen] (a) edge[below left]  node[values] {\showFlow{1}{2}} (c);
-	\draw[edgen] (c) edge[right]       node[values] {\showFlow{0}{1}} (b);
-	\draw[edgen] (c) edge[below right] node[values] {\showFlow{1}{1}} (d);
-	\draw[edgen] (b) edge[above right] node[values] {\showFlow{2}{3}} (d);
+	\draw[myedge] (a) edge[above left]  node[values] {\showFlow{2}{2}} (b);
+	\draw[myedge] (a) edge[below left]  node[values] {\showFlow{1}{2}} (c);
+	\draw[myedge] (c) edge[right]       node[values] {\showFlow{0}{1}} (b);
+	\draw[myedge] (c) edge[below right] node[values] {\showFlow{1}{1}} (d);
+	\draw[myedge] (b) edge[above right] node[values] {\showFlow{2}{3}} (d);
 	\fi
 \end{tikzpicture}
 
