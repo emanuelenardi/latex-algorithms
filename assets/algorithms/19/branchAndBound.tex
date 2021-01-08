@@ -7,8 +7,8 @@
 \begin{algorithm}[H]
 \fi
 
-\prototype{\branchAndBound{\Array{Item} \(S\), \Int \(n\), \Int \(i\), \Int \(minCost\), \Int \(minSol\)}}{
-	\Set \(C \Assign \getChoices{S, n, i, \dots}\) \Comment*[l]{determina l'insieme in funzione delle scelte precedenti \(S[1 \dots i-1]\)}
+\prototype{\branchAndBound{\datiProblema, \Item{} \(S\), \Int \(i\), \datiParziali}}{
+	\Set \(C \Assign \getChoices{\datiProblema, n, i, \datiParziali}\) \Comment*[l]{determina l'insieme in funzione delle scelte precedenti \(S[1 \dots i-1]\)}
 
 	\BlankLine
 	\tcp{esamino ogni scelta}
@@ -17,28 +17,31 @@
 
 		\BlankLine
 		\tcp{calcolo il lower bound}
-		\Int \(lb \Assign \lowerBound{S, i}\) \Comment*[l]{calcolato in base alle scelte fatte fin'ora}
+		\Int \(lb \Assign \lowerBound{\datiProblema, S, i, \datiParziali}\) \Comment*[l]{calcolato in base alle scelte fatte fin'ora}
 
 		\BlankLine
-		\If{\(lb < minCost\)}{
-			\tcp{il limite inferiore non eccede il costo minimo}
+		\If(\tcp*[h]{se il limite inferiore non eccede il costo minimo}){\(lb < minCost\)}{
 
 			\BlankLine
-			\uIf{\(i < n\)}{
-				\tcp{sono arrivato "in fondo"}
+			\uIf(\tcp*[h]{posso ancora effettuare delle scelte}){\(i < n\)}{
 
 				\BlankLine
 				\tcp{faccio ricorsivamente le scelte successive}
-				\branchAndBound{S, n, \(i+1\), minCost, minSol}
+				\branchAndBound{\datiProblema, S, \(i+1\), \datiParziali}
 				\BlankLine
 
 			}
-			\ElseIf{\(c(S,i) < minCost\)}{
-				\tcp{la soluzione trovata è migliore del minimo parziale}
+			\Else{
 
 				\BlankLine
-				\(minSol \Assign S\) \Comment*[l]{aggiorno la soluzione minima parziale}
-				\(minCost \Assign c(S,i)\)  \Comment*[l]{aggiorno il costo minimo parziale}
+				\tcp{se il costo della soluzione trovata è minore del costo della soluzione parziale}
+				\If{\(\cost(S,i) < minCost\)}{
+					\tcp{allora la soluzione trovata è migliore del minimo parziale}
+
+					\BlankLine
+					\(minSol \Assign S\) \Comment*[l]{aggiorno la soluzione minima parziale}
+					\(minCost \Assign \cost(S,i)\)  \Comment*[l]{aggiorno il costo minimo parziale}
+				}
 			}
 		}
 

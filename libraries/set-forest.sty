@@ -2,6 +2,15 @@
 
 \forestset{
 	% NOTE nodi più pronuciati
+	,rounded/.style={
+		,for tree={
+			,draw = black
+			,thick
+			,rounded rectangle
+			,fit = band
+			,align=left
+		}
+	}
 	,circled/.style={
 		,for tree={
 			,draw = black
@@ -19,7 +28,6 @@
 	,compact tree/.style={
 		,circled
 	}
-	% NOTE usato dove?
 	,circled math tree/.style={
 		,circled
 		,wide

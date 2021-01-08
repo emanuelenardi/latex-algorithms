@@ -167,12 +167,12 @@
 \NewDocumentCommand\Array{ m o o }{%
 	\KwSty{#1}% <- spazio
 		\IfNoValueTF{#2}{%
-			\textup{[\,]}% <- inizialmente vuoto
+			[\,]% <- inizialmente vuoto
 		}{%
 		\IfNoValueTF{#3}{%
-			\textup{[\(#2\)]}% <- valore iniziale
+			[\(#2\)]% <- valore iniziale
 		}{%
-			\textup{[\(#2\dots#3\)]}% <- intervallo
+			[\(#2\dots#3\)]% <- intervallo
 		}}%
 	\xspace%
 }
@@ -188,7 +188,7 @@
 			[\,][\,]% <- inizialmente vuoto
 		}{%
 		\IfValueT{#3}{%
-			[#2][#3]% <- valori iniziali
+			[#2][#3]% <- valori iniziali o intervalli
 		}}}%
 	\xspace%
 }

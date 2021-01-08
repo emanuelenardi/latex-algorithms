@@ -7,33 +7,41 @@
 \begin{algorithm}[H]
 \fi
 
-\prototype{\bbTsp{\Array{\Item} \(S\), \Array{\Int} \(C\), \Set \(R\), \Int \(n\), \Int \(i\)}}{
-	\ForEach{\(c \in R\)}{
-		\(S[i] \Assign c\)\;
-		\(R.\setRemove{c}\)\;
+\prototype{\bbTsp{\Array{} \(S\), \Int \(\cost\), \Set \(R\), \Int \(n\), \Int \(i\)}}{
+
+	\BlankLine
+	\Set \(\choices\) \Assign \copyFunction{\(R\)}\;
+
+	\ForEach{\(c \in \choices\)}{
 
 		\BlankLine
-		\(C[i] \Assign C[i-1] + d[S[i-1]][S[i]]\)\;
+		\(S[i] \Assign c\) \tcp{memorizza la scelta}
+		\(R.\setRemove{c}\) \tcp{rimuovi la scelta dell'insieme delle scelte possibili?}
 
 		\BlankLine
-		\{ calcola \(A\), \(B\), \(D[H]\) per ogni \(h \in R\) \}
+		\eIf{\(i < n\)}{
 
-		\BlankLine
-		\Int \(lb \Assign C[i] + \iif{ \(i<n\), \(\ceil{\frac{\sum_{h \not\in S} D[h]}{2}}\), \(d[S[i]][S[1]]\) }\)\;
+			\BlankLine
+			\{ calcola \(\out\), \(\back\), \(\transfer[h]\) per ogni \(h \in R\) \}
 
+			\BlankLine
+			\Int \(\lb\) \Assign \(\ceil*{\frac{\out + \sum_{h \not\in S} \transfer[h] + \back}{2}}\)
 
-		\BlankLine
-		\tcp{inizializza \(minCost\) ad una permutazione casuale}
-		\(minCost \Assign \random\)
+			\BlankLine
+			\If{\(\lb < \minCost\)}{
+				\bbTsp{\(S\), \(\cost + d[S[i-1]][S[i]]\), \(R\), \(i+1\)}\;
+			}
+		}{
 
-		\BlankLine
-		\If{\(lb < minCost\)}{
-			\eIf{\(i < n\)}{
-				\bbTsp{S, C, R, n, \(i+1\)}\;
-			}{
-				\(C[n] \Assign lb\)\;
-				\(minSol \Assign S\)\;
-				\(minCost \Assign C[n]\)\;
+			\BlankLine
+			\(\lb\) \Assign \(\lb + d[S[i]][S[1]]\) \tcp{aggiorna il limite inferiore}
+
+			\BlankLine
+			\If(\tcp*[h]{se abbiamo trovato una soluzione migliore}){\(\lb < \minCost\)}{
+
+				\BlankLine
+				\(minSol\) \Assign \(S\) \tcp{aggiorna la soluzione ottimale}
+				\(minCost\) \Assign \(\lb\) \tcp{aggiorna il costo minimo}
 			}
 		}
 

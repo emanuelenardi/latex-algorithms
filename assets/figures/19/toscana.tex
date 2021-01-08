@@ -3,6 +3,10 @@
 
 % NOTE ridefinizione stile solo per questi file
 \tikzset{
+    % NOTE scritte in serif
+    every label/.append style={
+        font=\scriptsize
+    },
     % NOTE linee più sottili
     myedge/.style={
         % >=latex,
@@ -17,7 +21,7 @@
         draw	= black,
         align	= center,
         % minimum width = .8cm,
-        font	= \ttfamily\Large,
+        % font	= \ttfamily\Large,
     },
 }
 
@@ -94,7 +98,25 @@
 \end{tikzpicture}
 \end{page}
 
-% NOTE nome del file originario "toscana-mst2"
+% NOTE nome del file originario "toscana-algo"
+\begin{page}
+\begin{tikzpicture}
+    \node[mynode] at (0.0, 0.0) (pisa) {};
+    \node[mynode] at (2.0, -0.1) (vinci) {};
+    \node[mynode, label={below left:Firenze}] at (3.8, -0.5) (firenze) {};
+    \node[mynode, label={below:Rignano}] at (4.5, -0.9) (rignano) {};
+    \node[mynode, label={above:Firenzuola}] at (4.6, 1.1) (firenzuola) {};
+    \node[mynode] at (2.1, 0.6) (serravalle) {};
+    \node[mynode] at (0.8, 1.5) (castelnuovo) {};
+
+    \draw[myedge] (firenze)             edge[bend left=20] node {} (firenzuola);
+    \draw[myedger, dashed] (firenzuola) edge[bend left=10] node {} (firenze);
+    \draw[myedger, dashed] (firenze)    edge[bend left=20] node {} (rignano);
+    \draw[myedge] (firenzuola)          edge[bend left=20] node {} (rignano);
+\end{tikzpicture}
+\end{page}
+
+% NOTE nome del file originario "toscana-percorso"
 \begin{page}
 \begin{tikzpicture}
     \node[mynode] at (0.0, 0.0) (pisa) {};

@@ -3,6 +3,9 @@
 % NOTE per controllare dove sfori la pagina
 \setlength\overfullrule{5pt}
 
+% NOTE stampa della sottosottosezione
+\setcounter{tocdepth}{3}
+
 \ifloadsubpreamble
 \pagestyle{plain}
 \setcounter{chapter}{18}
@@ -26,7 +29,7 @@ Non si può avere tutto dalla vita; bisogna rinunciare a qualcosa:
 	\item \textbf{efficienza}: algoritmi esponenziali branch-\&-bound, che limitano lo spazio di ricerca con un'accurata potatura.
 \end{itemize}
 
-\subsection{Somma di sottoinsieme}
+\subsection{Somma di sottoinsiemi {\subSetSumProblem}}
 
 \paragraph{Definizione del problema}
 Dati un insieme \(A = \{a_1, a_2, \dots, a_n\}\) di interi positivi e un intero positivo \(k\), esiste un sottoinsieme \(S\) di indici in \(\{1, \dots, n\}\) tale che \(\sum_{i \in S}^{a_i} = k\) ?
@@ -250,7 +253,7 @@ Quindi \(\texttt{\#} = \max\{n, m\}\) è limitato superiormente da \(\Omicron(n 
 Possiamo dedurne che il problema ristretto è identico a {\cliqueProblem}, che è \NP-completo.
 \end{proof}
 
-\subsubsection{Commesso viaggiatore}
+\subsubsection{Commesso viaggiatore (\tsp)}
 
 \paragraph{Definizione del problema}
 Date \(n\) città e una matrice simmetrica d di distanze positive, dove \(d[i][j]\) è la distanza fra \(i\) e \(j\), trovare un percorso che, partendo da una qualsiasi città, attraversi ogni città esattamente una volta e ritorni alla città di partenza, in modo che la distanza totale percorsa sia minima.
@@ -261,7 +264,7 @@ Allora esiste una soluzione pseudo-polinomiale.
 Usiamo questa soluzione per risolvere un problema \NP-completo in tempo polinomiale, il che è assurdo a meno che \(\PTIME = \NP\).
 \end{proof}
 
-\subsubsection{Circuito hamiltoniano}
+\subsubsection{Circuito hamiltoniano (\hamiltonianCircuit)}
 
 \paragraph{Definizione del problema}
 Dato un grafo non orientato \(G\), esiste un circuito che attraversi ogni nodo una e una sola volta?
@@ -417,8 +420,7 @@ Nella variante \textsc{ffd} (First-fit decreasing): gli oggetti sono considerati
 \]
 Queste sono dimostrazioni di limiti superiori per il fattore \(\alpha(n)\), per casi particolari l'approssimazione può essere migliore.
 
-\subsection[Commesso viaggiatore con disuguaglianze triangolari]
-		   {Commesso viaggiatore con disuguaglianze triangolari ({\deltaTsp})}
+\subsection{Commesso viaggiatore con disuguaglianze triangolari ({\deltaTsp})}
 
 \paragraph{Definizione del problema}
 Siano date \(n\) città e le distanze (positive) \(d[i][j]\) tra esse, \alert{tale per cui vale la regola delle diseguaglianze triangolari}:
@@ -458,88 +460,30 @@ Valgono le diseguaglianze triangolari:
 
 Interpretiamo {\deltaTsp} come il problema di trovare un circuito hamiltoniano di peso minimo su un grafo completo.
 
-% NOTE includere grafica
-% \begin{figure}[H]\centering
-% 	\includegraphics{tsp-greedy}
-% \end{figure}
-
 \begin{figure}[H]\centering
-	\begin{subfigure}[t]{.25\linewidth}\centering
-		\includegraphics[page=2, width=\linewidth]{tsp-pentagon}
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[t]{.25\linewidth}\centering
-		\includegraphics[page=3, width=\linewidth]{tsp-pentagon}
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[t]{.25\linewidth}\centering
-		\includegraphics[page=4, width=\linewidth]{tsp-pentagon}
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[t]{.25\linewidth}\centering
-		\includegraphics[page=5, width=\linewidth]{tsp-pentagon}
-		\caption{}
-	\end{subfigure}%
-
-	\vspace{10pt}
-
-	\begin{subfigure}[t]{.25\linewidth}\centering
-		\includegraphics[page=6, width=\linewidth]{tsp-pentagon}
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[t]{.25\linewidth}\centering
-		\includegraphics[page=7, width=\linewidth]{tsp-pentagon}
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[t]{.25\linewidth}\centering
-		\includegraphics[page=8, width=\linewidth]{tsp-pentagon}
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[t]{.25\linewidth}\centering
-		\includegraphics[page=9, width=\linewidth]{tsp-pentagon}
-		\caption{}
-	\end{subfigure}%
-	\caption{Commesso viaggiatore pentagon}
-\end{figure}
-
-Il costo totale risulta 21.
-
-\begin{figure}[H]\centering
-	\begin{subfigure}[t]{.20\linewidth}\centering
-		\includegraphics[page=1, width=\linewidth]{tsp-local}
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[t]{.20\linewidth}\centering
-		\includegraphics[page=2, width=\linewidth]{tsp-local}
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[t]{.20\linewidth}\centering
-		\includegraphics[page=3, width=\linewidth]{tsp-local}
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[t]{.20\linewidth}\centering
-		\includegraphics[page=4, width=\linewidth]{tsp-local}
-		\caption{}
+	\hfill
+	\begin{subfigure}[c]{.22\linewidth}\centering
+		\includegraphics{tsp-greedy}
 	\end{subfigure}%
 	\hfill
-	\begin{subfigure}[t]{.20\linewidth}\centering
-		\includegraphics[page=5, width=\linewidth]{tsp-local}
-		\caption{}
+	\begin{subfigure}[c]{.22\linewidth}\centering
+		\includegraphics[page=9, width=\linewidth]{tsp-pentagon}
 	\end{subfigure}%
-	\caption{Commesso viaggiatore locale}
+	\hfill
+	\begin{subfigure}[c]{.22\linewidth}\centering
+		\includegraphics[page=5, width=\linewidth]{tsp-local}
+	\end{subfigure}%
+	\hfill\null
+	\caption{Il costo totale risulta 21. Il costo totale risulta 19.}
 \end{figure}
-
-Il costo totale risulta 19.
 
 \subsubsection{Algoritmo di approssimazione per {\deltaTsp}}
 
 Se si considera un circuito hamiltoniano e si cancella un suo arco, si ottiene un albero di copertura.
 
-% \begin{figure}[H]\centering
-% 	\includegraphics[width=1\textwidth]{toscana}
-% 	\caption{didascalia}%
-% 	\label{fig:etichetta}
-% \end{figure}
+\begin{figure}[H]\centering
+	\includegraphics[page=1, width=0.5\linewidth]{toscana}
+\end{figure}
 
 \begin{theorem*}
 Qualunque circuito hamiltoniano \(\pi\) ha costo \(c(\pi)\) superiore al costo \(mst\) di albero di copertura di peso minimo, ovvero \(mst < c(\pi)\).
@@ -560,162 +504,307 @@ Ma non è un circuito hamiltoniano!
 
 \begin{figure}[H]\centering
 	\begin{subfigure}[t]{.5\linewidth}\centering
-		\includegraphics[page=1]{toscana-mst}
+		\includegraphics[page=2, width=.8\linewidth]{toscana}
 		\caption{con diseguaglianza triangolare}
 	\end{subfigure}%
 	\begin{subfigure}[t]{.5\linewidth}\centering
-		\includegraphics[page=2]{toscana-mst}
+		\includegraphics[page=3, width=.8\linewidth]{toscana}
 		\caption{senza diseguaglianza triangolare}
 	\end{subfigure}
 \end{figure}
 
+Si evita di passare per città già visitate, saltandole.
+Per la diseguaglianza triangolare, il costo \(c(\pi)\) del circuito così ottenuto è inferiore o uguale a \(2 \cdot mst\).
+Concludendo, \(c(\pi) \leqslant 2 \cdot mst < 2 \cdot 2 \cdot c(\pi^*)\) implica che \(\alpha(n) = 2\), dove \(c(\pi^*)\) è il costo del circuito hamiltoniano ottimo.
+
+\begin{figure}[H]\centering
+	\begin{subfigure}[t]{.5\linewidth}\centering
+		\includegraphics[page=4, width=.8\linewidth]{toscana}
+		\caption{con diseguaglianza triangolare}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.5\linewidth}\centering
+		\includegraphics[page=5, width=.8\linewidth]{toscana}
+		\caption{senza diseguaglianza triangolare}
+	\end{subfigure}
+\end{figure}
+
+\subsubsection{Discussione sulla complessità dell'algoritmo per {\deltaTsp}}
+
+La complessità dell'algoritmo è pari a \(\Omicron(n^2 \log n)\).
+I fattori che contribuiscono sono:
+\begin{itemize}
+	\item \(\Omicron(n^2 \log n)\) per l'algoritmo di Kruskal;
+	\item \(\Omicron(n)\) per la visita in profondità del MST con \(2n\) archi.
+\end{itemize}
+Tuttavia esistono grafi \enquote{perversi} per cui il fattore di approssimazione tende al valore 2.
+L'algoritmo di Christofides (1976) ha un fattore di approssimazione di 3/2, il migliore risultato al momento.
+
+\subsubsection{Non approssimabilità di {\tsp}}
+
+Non esiste alcun algoritmo di \(\alpha(n)\)-approssimazione per {\tsp} tale che \(c(x') \leqslant sc(x^*)\), con \(s \geqslant 2\) intero positivo, a meno che non sia \(\PTIME = \NP\).
+
+\begin{note}
+\(\Delta-tsp\) è un problema approssimabile, ma il problema generale non lo è.
+\end{note}
+
+\section{Algoritmi euristici}
+
+Quando si è presi dalla disperazione a causa della enorme difficoltà di un problema di ottimizzazione {\NP}-hard, si può ricorrere ad algoritmi \enquote{euristici} che forniscono una soluzione ammissibile, che non è necessariamente ottima, né non necessariamente approssimata.
+
+Le tecniche che è possibile utilizzare in questi casi sono l'approccio ingordo e la ricerca locale.
+
+\newpage
+\subsection{Approccio ingordo per {\tsp}}
+
+\subsubsection{Algoritmo \enquote{Shortest edges fist}}
+
+Ordiniamo gli archi per pesi non decrescenti e aggiungiamo archi alle soluzioni seguendo questo ordine finché non sono stati aggiunti \(n-1\) archi, dove \(n\) è il numero di nodi.
+Per poter aggiungere un arco, occorre verificare che per ciascuno dei suoi nodi non siano stati già scelti due archi e che non si formino circuiti (questo lo si fa tramite l'utilizzo della struttura dati {\mfSet}).
+A questo punto, si è trovata una catena Hamiltoniana.
+Si chiude il circuito aggiungendo l'arco tra i due nodi estremi della catena.
+
+\begin{figure}[H]\centering
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=1, width=\linewidth]{tsp-pentagon}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=2, width=\linewidth]{tsp-pentagon}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=3, width=\linewidth]{tsp-pentagon}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=4, width=\linewidth]{tsp-pentagon}
+	\end{subfigure}
+
+	\vspace{10pt}
+
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=5, width=\linewidth]{tsp-pentagon}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=6, width=\linewidth]{tsp-pentagon}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=7, width=\linewidth]{tsp-pentagon}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=8, width=\linewidth]{tsp-pentagon}
+	\end{subfigure}%
+
+	\caption{"pentagon"}
+\end{figure}
+
+\begin{algorithm}[H]
+	\caption{Risoluzione del commesso viaggiatore con algoritmo ingordo}
+	\input{greedyTsp}
+\end{algorithm}
+
+\newpage
+\subsubsection{Algoritmo \enquote{Nearest neighbor}}
+
+Possiamo usare un approccio diverso.
+Si parte da una città, si seleziona come prossima città quella più vicina e si va avanti così, evitando città già visitate.
+Quando si sono visitate tutte le città, si torna alla città di partenza.
+
+Così facendo possiamo lavorare direttamente sulla matrice senza usare strutture di appoggio.
+
+\begin{figure}[H]\centering
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=1, width=\linewidth]{tsp-nn}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=2, width=\linewidth]{tsp-nn}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=3, width=\linewidth]{tsp-nn}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=4, width=\linewidth]{tsp-nn}
+	\end{subfigure}%
+
+	\vspace{10pt}
+
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=5, width=\linewidth]{tsp-nn}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=6, width=\linewidth]{tsp-nn}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=7, width=\linewidth]{tsp-nn}
+	\end{subfigure}%
+	\begin{subfigure}{.25\linewidth}\centering
+		\includegraphics[page=8, width=\linewidth]{tsp-nn}
+	\end{subfigure}%
+
+	\caption{"nn"}
+\end{figure}
+
+\subsubsection{Discussione sulla complessità dell'algoritmo ingordo per {\tsp}}
+
+Il costo computazionale dell'algoritmo \enquote{Shortest edges fist} ha un costo computazionale di \(\Omicron(n^2 \log n)\), dove \(\log n\) è dovuto all'ordinamento degli archi; mentre l'algoritmo \enquote{Nearest Neighbor} ha un costo di \(\Omicron(n^2)\).
+
+La soluzione così ottenuta si può utilizzare come base di partenza per un algoritmo branch-\&-Bound, può essere migliorata ancora tramite ricerca locale.
+
+\subsection{Approccio ricerca locale per {\tsp}}
+
+\paragraph{Algoritmo di ricerca locale}
+
+Sia \(\pi\) un circuito Hamiltoniano del grafo completo derivante dal problema {\tsp}.
+Si consideri il seguente intorno:
+\(I_2(\pi) =\) \{\(\pi'\): \(\pi'\) è ottenuto da \(\pi\) cancellando due archi non consecutivi del circuito e sostituendoli con due archi esterni al circuito\}
+
+\begin{note}
+La cardinalità di \(I_(\pi)\) è \(\abs{I_(\pi)} = \frac{n(n-1)}{2}-n\), in quanto ci sono \(\frac{n(n-1)}{2}\) coppie di archi del circuito e \(n\) di esse sono consecutive.
+
+Una volta spezzato il circuito, esiste un solo modo per riconnetterlo.
+\end{note}
+
+Il costo per esaminare \(I_2(\pi)\) è \(\Omicron(n^2)\).
+
+\begin{figure}[H]\centering
+	\begin{subfigure}[c]{.4\linewidth}\centering
+		\includegraphics[page=1, width=.5\linewidth]{tsp-local}\hfill
+		\includegraphics[page=2, width=.5\linewidth]{tsp-local}
+		\caption{Costo: 25.}
+	\end{subfigure}%
+	\begin{subfigure}[c]{.4\linewidth}\centering
+		\includegraphics[page=3, width=.5\linewidth]{tsp-local}\hfill
+		\includegraphics[page=4, width=.5\linewidth]{tsp-local}
+		\caption{Costo: 23.}
+	\end{subfigure}%
+	\begin{subfigure}[c]{.20\linewidth}\centering
+		\includegraphics[page=5, width=\linewidth]{tsp-local}
+		\caption{Costo: 19.}
+	\end{subfigure}%
+	\caption{Applicazione dell'algoritmo di ricerca locale.}
+\end{figure}
+
+\section{Algoritmi branch\&bound}
+
+Per risolvere un problema di ottimizzazione \NP-arduo, si può modificare la procedura \enumeration, vista nel capitolo sul backtracking, in modo da \enquote{potare} certe sequenze di scelte che di rivelino incapaci di generare la soluzione ottima.
+Cerchiamo quindi di analizzare tutto lo spazio delle soluzioni, evitando certe sequence di scelte che facciano diminuire il costo della soluzione parziale costruita.
+
+Facciamo una serie di assunzioni senza perdere troppa generalità:
+\begin{itemize}
+	\item problema di ottimizzazione;
+	\item ogni sequenza di scelte abbia costo non negativo;
+	\item ogni scelta, aggiunta alle scelte già effettuate, non faccia diminuire il costo della soluzione parziale così ottenuta.
+\end{itemize}
+
+\begin{algorithm}[H]
+	\caption{Ripasso della procedura di enumerazione delle soluzioni}
+	\input{enumeration}
+\end{algorithm}
+
+Cerchiamo i limiti (superiore ed inferiore) della soluzione minima.
+
+\subsubsection{Limite superiore}
+
+Durante l'enumerazione, si mantengono informazioni sulla miglior soluzione ammissibile (\(minSol\)) ed il suo costo (\(minCost\)).
+\(minCost\) costituisce un limite superiore (\foreign{upper bound}) per il costo della soluzione minima.
+
+\subsubsection{Limite inferiore}
+
+Si supponga di avere a disposizione una opportuna funziona \enquote{lower bound} {\lowerBound{\(\angleled{dati\ problema}\), S, i, \(\angleled{dati\ parziali}\)}}, che dipenda dalla sequenza di scelte fatte in precedenza \(S[1 \dots i]\), e che garantisca che tutte le soluzioni ammissibili generabili facendo nuove scelte abbiano costo \(\geqslant \lowerBound\).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{branchAndBound-1}
+	\caption{Se \textsf{lb}(\(S\),\(i\)) è maggiore o uguale a \(minCost\), allora si può evitare di generare ed esplorare il sottoalbero delle scelte radicato in tal nodo, effettuando così una \textbf{potatura}.}
+\end{figure}
+
+Questo metodo non migliora la complessità (superpolinomiale) della procedura \enumeration, ma nella pratica ne abbassa di molto il tempo di esecuzione.
+Tutto dipende dalla funzione \lowerBound, che deve approssimare il più possibile il costo della soluzione ottima.
+Il limite superiore è dato dal \(minCost\).
+
+\begin{algorithm}[H]
+	\caption{Somma di sottoinsiemi}
+	\input{branchAndBound}
+\end{algorithm}
+
+\subsection{Approccio branch-\&-Bound per {\tsp}}
+
+Applichiamo questo ragionamento al problema del commesso viaggiatore.
+
+Sia \(n\) il numero delle città, e \(d[h][k]\) la distanza, intera e non negativa, fra le città \(h\) e \(k\).
+Al passo \(i\)-esimo sono state fatte le scelte \(S[1 \dots i]\) prese dall'insieme \(\{1, \dots, n\}\).
+Un percorso ammissible che \enquote{espande} \(S[1 \dots i]\) deve
+\begin{enumerate}[label=\arabic*)]
+	\item attraversare le città \(S[1 \dots i]\);
+	\item passare da \(S[i]\) ad una qualsiasi delle rimanenti \(n-1\) città;
+	\item attraversare queste ultime città in un ordine qualsiasi;
+	\item da una di queste ritornare a \(S[1]\).
+\end{enumerate}
+
+Facciamo un po' di calcoli.
+
+La distanza percorsa finora è \(cost[i]\), ossia il costo che ho sostenuto per fare i primi \(i\) passi.
+\[
+	cost[i] =
+	\begin{dcases}
+		0                               & i = 1\\
+		cost[i-1] + d[ S[i-1] ][ S[i] ] & i > 1\\
+	\end{dcases}
+\]
 
 
-% \begin{figure}[H]\centering
-% 	\begin{subfigure}[t]{.20\linewidth}\centering
-% 		\includegraphics[page=1, width=\linewidth]{tsp-nn}
-% 		\caption{}
-% 	\end{subfigure}%
-% 	\begin{subfigure}[t]{.20\linewidth}\centering
-% 		\includegraphics[page=2, width=\linewidth]{tsp-nn}
-% 		\caption{}
-% 	\end{subfigure}%
-% 	\begin{subfigure}[t]{.20\linewidth}\centering
-% 		\includegraphics[page=3, width=\linewidth]{tsp-nn}
-% 		\caption{}
-% 	\end{subfigure}%
-% 	\begin{subfigure}[t]{.20\linewidth}\centering
-% 		\includegraphics[page=4, width=\linewidth]{tsp-nn}
-% 		\caption{}
-% 	\end{subfigure}%
-% 	\begin{subfigure}[t]{.20\linewidth}\centering
-% 		\includegraphics[page=5, width=\linewidth]{tsp-nn}
-% 		\caption{}
-% 	\end{subfigure}%
-% 	\caption{Commesso viaggiatore nn}
-% \end{figure}
+Il limite inferiore (\foreign{lower bound}) della distanza per "uscire" da \(S[i]\) (ha un costo di \(O(n)\)):
+\[
+	\out  = \min_{h \notin S} \{ d[S[i], h] \}
+\]
 
-% \paragraph{Restringiamo il problema}
-% \texttt{MATERIALE MANCANTE}
-%
-% \begin{theorem}[tsp non approssimabile]
-% \texttt{MATERIALE MANCANTE}
-% \end{theorem}
-%
-% \begin{note}
-% \(\Delta-tsp\) è un problema approssimabile, ma il problema generale no.
-% \end{note}
-%
-% \section{Algoritmi branch\&bound}
-%
-% Variante della tecnica di programmazione backtrack.
-% Cerchiamo di analizare tutto lo spazio delle soluzioni, evitando certe sequence di scelte che facciano diminuire il costo della soluzione parziale costruita.
-%
-% Cerchiamo i limiti (superiore ed inferiore) della soluzione minima.
-%
-% \begin{figure}[H]
-% 	\centering
-% 	\includegraphics{branchAndBound-1}
-% 	\caption{Se \textsf{lb}(\(S\),\(i\)) è maggiore o uguale a \(minCost\), allora si può evitare di generare ed esplorare il sottoalbero delle scelte radicato in tal nodo.}
-% 	% \label{}
-% \end{figure}
-%
-% Questo metodo non migliora la complessità (superpolinomiale) della procedura \enumeration, ma nella pratica ne abbassa di molto il tempo di esecuzione.
-% Tutto dipende dalla funzione \lowerBound, che deve essere il più possibile vicino alla soluzione ottima.
-% Il limite superiore è dato dal \(minCost\).
-%
-% \begin{algorithm}[H]
-% 	\caption{Somma di sottoinsiemi}
-% 	\input{branchAndBound}
-% \end{algorithm}
-%
-% \paragraph{Problema del commesso viaggiatore}
-% Applichiamo questo ragionamento al problema del commesso viaggiatore.
-% Sia \(n\) il numero delle città, e \(d[h][k]\) la distanza, intera e non negativa, fra le città \(h\) e \(k\).
-% Al passo \(i\)-esimo sono state fatte le scelte \(S[1][i]\) prese dall'insieme \(1, \dots, n\).
-% Un percorso ammissible che \enquote{espande} \(S[1][i]\) deve
-% \begin{enumerate*}[label=\arabic*)]
-% 	\item attraversare le città \(S[1][i]\);
-% 	\item passare da \(S[i]\) ad una qualsiasi delle rimanenti \(n-1\) città;
-% 	\item attraversare queste ultime città in un ordine qualsiasi;
-% 	\item da una di queste ritornare a \(S[1]\).
-% \end{enumerate*}
-%
-% Facciamoci un po' di calcoli:
-% \(C[i]\) è il costo che ho sostenuto per fare i primi \(i\) passi.
-% \begin{equation*}
-% 	C[i] =
-% 	\begin{dcases}
-% 		0 & i = 1 \\
-% 		C[i-1] + d[ S[i-1] ][ S[i] ] & i > 1 \\
-% 	\end{dcases}
-% \end{equation*}
-%
-% Il limite inferiore (\foreign{lower bound}) della distanza per tornare a \(S[1]\) (\(O(n)\)):
-% \[A = \min_{h \notin S} \{ d[S[h][1] \}\]
-%
-% Il limite inferiore (\foreign{lower bound}) della distanza per andarsene da \(S[i]\) (\(O(n)\)):
-% \[B = \min_{h \notin S}\{d[S[i], h] \}\]
-%
-% Lower bound della distanza percorsa per attraversare una qualsiasi di queste ultime \(n - i\) città, provenendo da (e dirigendosi verso) un'altra di queste \(n - i\) città (\(O(n^3)\))
-% \[D[h] = \min_{p,q}\{d[p, h] + d[h, q] \colon h \Neq p \Neq q \},\;\]
-%
-% Un lower bound \(\lowerBound(S)\) è dato dalla seguente espressione:
-% \[
-% \lowerBound(s,i) =
-% 	\begin{cases}
-% 		C[i] + d[S[i], S[1]] & i=n \\
-% 		C[i] + A + B + \left\lceil (\sum_{h \notin S} D[h])/2\right\rceil & i < n
-% 	\end{cases}
-% \]
-%
-% \begin{algorithm}[H]
-% 	\caption{Appoccio branch\&bound al problema del commesso viaggiatore}
-% 	\input{bbTsp}
-% \end{algorithm}
-%
-% \begin{figure}[H]
-% 	\centering
-% 	\includegraphics[width=\textwidth]{branchAndBound-2}
-% 	\caption{inserisci didascalia}
-% \end{figure}
-%
-% \clearpage
-% \section{Algoritmi euristici}
-%
-% Si può ricorrere ad algoritmi \enquote{euristici} che forniscono una soluzione ammissibile, non necessariamente ottima né approssimata.
-% Possiamo utilizzare le tecniche di programmazione per algoritmi ingordi o di ricerca locale.
-%
-% \paragraph{Shortest edges first}
-% Cambiamo approccio per il problema del commesso viaggiatore.
-% Ordiniamo gli archi per pesi non decrescenti e aggiungiamo archi alla soluzioni seguendo questo ordine finché non sono stati aggiunti \(n-1\) archi, dove \(n\) è il numero di nodi.
-% Però, attenzione, per poter aggiungere un arco, occorre verificare che:
-% \begin{enumerate*}[label={\arabic*)}]
-% 	\item per ciascuno dei suoi nodi non siano stati già scelti due archi;
-%     \item che non si formino circuiti (\mfSet);
-% \end{enumerate*}
-% A questo punto, si è trovata una catena Hamiltoniana e si chiude il circuito aggiungendo l'arco tra i due nodi estremi della catena.
-%
-% % TODO figure
-%
-% \begin{algorithm}[H]
-% 	\caption{Approccio ingordo al problema del commesso viaggiatore}
-% 	\input{greedyTsp}
-% \end{algorithm}
-%
-% \subparagraph{Analisi della complessità}
-% L'algoritmo costa \(\Omicron(n^2 \log n)\) a causa dell'\emph{ordinamento degli archi}.
-%
-% La soluzione ottenuta può essere la base di partenza per un algoritmo \branchAndBound che può essere migliorata tramite ricerca locale.
-%
-% \paragraph{Approccio Nearest neighbor}
-% Si parte da una città e si seleziona come prossima città quella più vicina.
-% Si va avanti così, evitando città già visitate.
-% Quando si sono visitate tutte le città si torna alla città di partenza.
-%
-% \subparagraph{Analisi della complessità}
-% Questo algortimo ha complessità \(\Omicron(n^2)\) perché per ogni città devo guardare tutte le altre.
+Il limite inferiore (\foreign{lower bound}) della distanza per tornare a \(S[1]\) (ha un costo di \(O(n)\)):
+\[
+	\back = \min_{h \notin S} \{ d[h, S[1]] \}
+\]
 
-% TODO figura
+Il limite inferiore della distanza percorsa per attraversare una qualsiasi di queste ultime città \(h\) delle \(n - i\) città, provenendo da (e dirigendosi verso) una città non compresa in \(S[2\dots n]\) (ha un costo di \(O(n^3)\)).
+\[
+	\forall h \not\in S: \transfer = \min_{p,q \not\in S[2\dots i-1]}\{d[p, h] + d[h, q] \colon h \Neq p \Neq q \}
+\]
+
+Se posso effettuare ancora delle scelte (\(i < n\)), è possibile calcolare un possibile limite inferiore \(\lowerBound{d, S, i}\) calcolando la somma:
+\begin{itemize}
+	\item del costo \(cost[i]\) per arrivare al nodo \(S[i]\), già speso;
+	\item metà del costo ottenuto sommando:
+	\begin{itemize}
+		\item il limite inferiore \(out\) del costo per andare dal nodo \(S[i]\) ad un qualunque altro nodo;
+		\item il limite inferiore per attraversare i nodi non contenuti in \(S\);
+		\item il limite inferiore \(\back\) del costo per tornare al nodo \(S[i]\) da un qualunque altro nodo.
+	\end{itemize}
+\end{itemize}
+\[
+	\lowerBound(d,S,i) = cost[i] + \ceil*{\frac{\out + \sum_{h \not\in S} \transfer[h] + \back}{2}}
+\]
+
+\begin{algorithm}[H]
+	\caption{Appoccio branch\&bound al problema del commesso viaggiatore}
+	\input{bbTsp}
+\end{algorithm}
+
+\subsubsection{Precisazione sull'algoritmo}
+
+\(\minCost\) è una variabile globale.
+Invece di inizializzarla a \(+\infty\) possiamo sceglie una permutazione a caso.
+Ad esempio la permutazione 1-2-3-4-5 ha un costo pari a \(21\).
+Per evitare che lo stesso circuito sia generato più volte, si parte da un nodo fissato (ad esempio 1).
+
+\begin{figure}[H]\centering
+	\includegraphics[width=\textwidth]{branchAndBound-2}
+\end{figure}
+In questo semplice esempio è stato possibile \enquote{potare} 42 nodi su 65.
+
+\subsubsection{Possibili miglioramenti}
+
+Sono possibili diversi miglioramenti:
+\begin{itemize}
+	\item è possibile variare l'ordine di visita dell'albero delle scelte;
+	\item è possibile variare il meccaniscmo di ramificazione (\foreign{brancing});
+	\item è possibile cercare dei limiti inferiori più stretti.
+\end{itemize}
+
+
 
 \end{document}
