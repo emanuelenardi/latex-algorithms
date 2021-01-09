@@ -13,8 +13,11 @@
 	\Matrix{\Bool} \(DP\) \Assign \new \Matrix{\Bool}[0\dots n][0\dots k] = \{{\False}\}\;
 
 	\BlankLine
+	\tcp{CASI BASE}
+
+	\BlankLine
 	\tcp{se il valore da ottenere è 0, non ho bisogno di selezionare nessun indice}
-	\For{\(i \Assign 0\) \DownTo \(n\)}{
+	\For(\tcp*[h]{\(prima colonna\)}){\(i \Assign 0\) \DownTo \(n\)}{
 
 		\BlankLine
 		\(DP[i][0] \Assign \True\) \tcp{\(r=0\)}
@@ -22,26 +25,26 @@
 
 	\BlankLine
 	\tcp{se non ho nessun intero positivo da selezionare non mi è possibile arrivare al valore richiesto}
-	\For{\(r \Assign 1\) \DownTo \(k\)}{
+	\For(\tcp*[h]{\(prima riga\)}){\(r \Assign 1\) \DownTo \(k\)}{
 
 		\BlankLine
 		\(DP[0][r] \Assign \False\) \tcp{\(r>0 \land i=0\)}
 	}
 
 	\BlankLine
-	\tcp{RIEMPI LA TABELLA}
+	\tcp{CASO RICORSIVO}
 	\From{\(i \Assign 1\) \DownTo \(n\)}{
-		\From(\Comment*[h]{\(A[i] > r\)}){\(r \Assign 1\) \DownTo \(A[i]-1\)}{
+		\From(\tcp*[h]{\(commento\)}){\(r \Assign 1\) \DownTo \(A[i]-1\)}{
 
 			\BlankLine
-			\(DP[i][r] \Assign DP[i-1][r]\)\;
+			\(DP[i][r] \Assign DP[i-1][r]\) \tcp{\(A[i] > r\)}
 		}
 
 		\BlankLine
-		\From(\Comment*[h]{\(A[i] \leqslant r\)}){\(r \Assign A[i]\) \DownTo \(k\)}{
+		\From(\tcp*[h]{\(commento\)}){\(r \Assign A[i]\) \DownTo \(k\)}{
 
 			\BlankLine
-			\(DP[i][r] \Assign DP[i-1][r]\) \Or \(DP[i-1][r - A[i]]\)\;
+			\(DP[i][r] \Assign DP[i-1][r]\) \Or \(DP[i-1][r - A[i]]\) \tcp{\(A[i] \leqslant r\)}
 		}
 	}
 

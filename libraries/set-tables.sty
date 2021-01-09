@@ -30,3 +30,19 @@
 \newcolumntype{L}{>{$}l<{$}}
 \newcolumntype{C}{>{$}c<{$}}
 \newcolumntype{R}{>{$}r<{$}}
+
+% NOTE centering flexible columns
+\usepackage{ragged2e}
+\newcolumntype{Y}{>{\Centering}X}
+
+% https://tex.stackexchange.com/questions/213648
+% NOTE fill column with gray 0 when empty
+\usepackage{collcell}
+\newcolumntype{F}[1]{ >{\collectcell\fillempty} #1 <{\endcollectcell} }
+\newcommand{\fillempty}[1]{%
+	\if\relax\detokenize{#1}\relax
+		\textcolor{gray}{0}%
+	\else
+		#1%
+	\fi
+}
