@@ -1,10 +1,11 @@
 %&../settings/preamble.main
 
 % NOTE per controllare dove sfori la pagina
-\setlength\overfullrule{5pt}
+% \setlength\overfullrule{5pt}
 
 % NOTE stampa della sottosottosezione
-\setcounter{tocdepth}{3}
+% \setcounter{tocdepth}{3}
+% \tableofcontents
 
 \ifloadsubpreamble
 \pagestyle{plain}
@@ -15,7 +16,6 @@
 % arara: pdflatex: { synctex: no }
 % arara: latexmk:  { clean: partial }
 \begin{document}
-\tableofcontents
 
 \chapter{Soluzioni per problemi intrattabili}
 
@@ -112,7 +112,7 @@ La complessità di \subSetSum dipende quindi dai valori contenuti nell'insieme e
 \end{table}
 
 \paragraph{Complessità}
-\(\Omicron(2^n)\)
+\(\Omicron(2^n)\).
 
 \subsubsection{Somma di sottoinsiemi risolto tramite memoization}
 
@@ -170,6 +170,26 @@ Ma \(\Omicron(nk)\) è una complessità superpolinomiale?
 No, non lo è, infatti \(k\) è parte dell'input, non una dimensione dell'input.
 \(k\) viene rappresentato da \(t = \ceil{\log k}\) cifre binarie.
 Quindi la complessità è \(\Omicron(nk) = \Omicron(n \dots 2^t)\), esponenziale.
+
+\begin{table}[htbp]\centering
+	\caption[Complessità di {\subSetSumProblem}]{Di seguito sono riportate le complessità dei vari algoritmi per la risoluzione del problema di somma di sottoinsiemi. Notiamo che nell'applicazione dell'algoritmo di programmazione dinamica, i valori \(k\) contenuti nell'insieme di input influenzano la complessità dell'algoritmo; mentre nell'applicazione dell'algoritmo di memoization i valori fanno parte dell'input, quindi ciò che influenza la complessità è la dimensione della rappresentazione dei dati dell'insieme, non i valori contenuti in esso. Infine nell'applicazione della tecnica di backtracking la complessità non è influenzata dai dati in ingresso.}
+	\label{tab:subsetsum-complexity}
+	\begin{tabular}{@{} *{5}{l} @{}}
+		\toprule
+			\multicolumn{5}{c}{{\subSetSumProblem}} \\
+		\midrule
+			\emph{Tecnica} & \emph{Algoritmo} & \emph{Input} & \emph{Complessità} & \\
+		\midrule
+			\multirow{2}{*}{Programmazione Dinamica} & \multirow{2}{*}{\(\Theta(nk)\)} & \(k = \Omicron(n^c)\) & \(\Omicron(n^{c+1})\) & polinomiale\\
+		\addlinespace
+			& & \(k = \Omicron(2^n)\) & \(\Omicron(n \cdot 2^n)\)  & superpolinomiale\\
+		\lightrule
+			Backtracking & \(\Omicron(2^n)\) & \multicolumn{1}{c}{-} & \(\Omicron(2^n)\) & esponenziale\\
+		\lightrule
+			Memoization & \(\Omicron(nk)\) & \(t = \ceil{\log k}\) & \(\Theta(n\dots 2^k)\) & esponenziale\\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 \section{Problemi fortemente, debolmente {\NP}-completi}
 
@@ -240,7 +260,7 @@ Gli algoritmi per {\subSetSumProblem} basati su programmazione dinamica e memoiz
 Nessun problema fortemente \NP-completo può essere risolto da un algoritmo pseudo-polinomiale, a meno che non sia \(\PTIME = \NP\).
 \end{theorem*}
 
-\subsection{Esempi di problemi fortemente \NP-completo}
+\subsection{Esempi di problemi fortemente \NP-completi}
 
 \subsubsection{Cricca (\cliqueProblem)}
 
@@ -376,7 +396,7 @@ Dato il seguente vettore e un intero \(k = 8\) come risolvereste il problema?
 	\end{tikzpicture}
 \end{figure}
 
-\subsubsection{Appoccio ingordo per il problema bin packing}
+\subsubsection{Appoccio ingordo per bin packing}
 
 \paragraph{Algoritmo first-fit}
 Gli oggetti sono considerati in un ordine qualsiasi e ciascun oggetto è assegnato alla prima scatola che lo può contenere, tenuto conto di quanto spazio è stato occupato della stessa.
@@ -556,7 +576,7 @@ Le tecniche che è possibile utilizzare in questi casi sono l'approccio ingordo 
 \newpage
 \subsection{Approccio ingordo per {\tsp}}
 
-\subsubsection{Algoritmo \enquote{Shortest edges fist}}
+\subsubsection{Algoritmo \enquote{Shortest edges first}}
 
 Ordiniamo gli archi per pesi non decrescenti e aggiungiamo archi alle soluzioni seguendo questo ordine finché non sono stati aggiunti \(n-1\) archi, dove \(n\) è il numero di nodi.
 Per poter aggiungere un arco, occorre verificare che per ciascuno dei suoi nodi non siano stati già scelti due archi e che non si formino circuiti (questo lo si fa tramite l'utilizzo della struttura dati {\mfSet}).
@@ -601,7 +621,7 @@ Si chiude il circuito aggiungendo l'arco tra i due nodi estremi della catena.
 \end{algorithm}
 
 \newpage
-\subsubsection{Algoritmo \enquote{Nearest neighbor}}
+\subsubsection{Algoritmo \enquote{Nearest Neighbor}}
 
 Possiamo usare un approccio diverso.
 Si parte da una città, si seleziona come prossima città quella più vicina e si va avanti così, evitando città già visitate.
@@ -641,15 +661,15 @@ Così facendo possiamo lavorare direttamente sulla matrice senza usare strutture
 	\caption{"nn"}
 \end{figure}
 
-\subsubsection{Discussione sulla complessità dell'algoritmo ingordo per {\tsp}}
+\subsubsection{Discussione sulla complessità dell'approccio ingordo per {\tsp}}
 
-Il costo computazionale dell'algoritmo \enquote{Shortest edges fist} ha un costo computazionale di \(\Omicron(n^2 \log n)\), dove \(\log n\) è dovuto all'ordinamento degli archi; mentre l'algoritmo \enquote{Nearest Neighbor} ha un costo di \(\Omicron(n^2)\).
+Il costo computazionale dell'algoritmo \enquote{Shortest edges first} ha un costo computazionale di \(\Omicron(n^2 \log n)\), dove \(\log n\) è dovuto all'ordinamento degli archi; mentre l'algoritmo \enquote{Nearest Neighbor} ha un costo di \(\Omicron(n^2)\).
 
-La soluzione così ottenuta si può utilizzare come base di partenza per un algoritmo branch-\&-Bound, può essere migliorata ancora tramite ricerca locale.
+La soluzione così ottenuta si può utilizzare come base di partenza per un algoritmo branch-\&-bound, può essere migliorata ancora tramite ricerca locale.
 
 \subsection{Approccio ricerca locale per {\tsp}}
 
-\paragraph{Algoritmo di ricerca locale}
+\subsubsection{Algoritmo di ricerca locale}
 
 Sia \(\pi\) un circuito Hamiltoniano del grafo completo derivante dal problema {\tsp}.
 Si consideri il seguente intorno:
@@ -660,8 +680,6 @@ La cardinalità di \(I_(\pi)\) è \(\abs{I_(\pi)} = \frac{n(n-1)}{2}-n\), in qua
 
 Una volta spezzato il circuito, esiste un solo modo per riconnetterlo.
 \end{note}
-
-Il costo per esaminare \(I_2(\pi)\) è \(\Omicron(n^2)\).
 
 \begin{figure}[H]\centering
 	\begin{subfigure}[c]{.4\linewidth}\centering
@@ -680,6 +698,10 @@ Il costo per esaminare \(I_2(\pi)\) è \(\Omicron(n^2)\).
 	\end{subfigure}%
 	\caption{Applicazione dell'algoritmo di ricerca locale.}
 \end{figure}
+
+\subsubsection{Discussione sulla complessità dell'approccio di ricerca locale per {\tsp}}
+
+Il costo per esaminare \(I_2(\pi)\) è \(\Omicron(n^2)\).
 
 \section{Algoritmi branch\&bound}
 
@@ -805,6 +827,24 @@ Sono possibili diversi miglioramenti:
 	\item è possibile cercare dei limiti inferiori più stretti.
 \end{itemize}
 
+\section{Riassumendo}
 
+Abbiamo prima trattato di algoritmi pseudopolinomiali vedendo più soluzioni per il problema di somma di sottoinsiemi ({\subSetSumProblem}).
+Abbiamo visto che è possibile risolverlo utilizzando più tecniche.
+Tramite la programmazione dinamica abbiamo ottenuto una complessità di \(\Theta(nk)\), tramite backtracking una complessità di \(\Omicron(2^n)\) ed infine tramite memoization una complessità di \(\Omicron(nk)\).
+Sia tramite la programmazione dinamica che la memoization, che abbiamo visto essere un miglioramento della stessa, la complessità dell'algoritmo dipende dalla dimensione dell'input.
+
+Abbiamo poi definito i problemi fortemente e debolmente {\NP}-completi.
+Abbiamo illustrato vari problemi e abbiamo dimostrato le varie equivalenze fra di essi.
+Per illustrare i capitoli successivi abbiamo preso come modello il problema del commesso viaggiatore {\tsp}.
+
+Nell'affrontare l'argomento degli algoritmi di approssimazione abbiamo dovuto definire un problema ristretto rispetto a {\tsp}, {\deltaTsp}, in quanto esso risulta non approssimabile.
+
+Abbiamo poi affrontato il capitolo degli algoritmi euristici vedendo due approcci ingordi per {\tsp}.
+L'algoritmo \enquote{Shortest edges first} ha una complessità di \(\Omicron(n^2 \log n)\), dove \(\log n\) è dovuto all'ordinamento degli archi; mentre \enquote{Nearest Neighbor} ha un costo di \(\Omicron(n^2)\).
+Abbiamo poi migliorato ulteriolmente l'algoritmo utilizzando l'approccio di ricerca locale.
+Tuttavia non siamo riusciti ad ottenere un miglioramento nella complessità che è risultata comunque di \(\Omicron(n^2)\).
+
+Infine abbiamo visto un'ultima tipologia di algoritmi, quelli del tipo \enquote{branch-\&-bound}.
 
 \end{document}
