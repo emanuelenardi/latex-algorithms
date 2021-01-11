@@ -22,7 +22,7 @@
 	\BlankLine
 	\tcp{per ogni arco che appartiene all'insieme degli archi}
 	\ForEach{\((u,v) \in A\)}{
-		\tcp{se non si è formato un ciclo}
+		\tcp{se gli archi entranti in entrambi i nodi sono minori di 2 e non si è formato un circuito}
 		\If{\(edges[u] < 2\) \And \(edges[v] < 2\) \And \(M.\mfFind{u} \Neq M.\mfFind{v}\)}{
 
 			\BlankLine

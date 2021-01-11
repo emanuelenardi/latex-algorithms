@@ -7,34 +7,38 @@
 \begin{algorithm}[H]
 \fi
 
-\prototype{\Bool \subSetSumMemo{\Array{\Int} \(A\), \Int \(i\), \Int \(r\), \dictionary \(DP\)}}{
+\prototype{\Bool \subSetSumMemo{\Array{\Int} \(A\), \Int \(i\), \Int \(r\), \dictionary \(\DP\)}}{
 
 	\BlankLine
+	\tcp{CASI BASE}
 	\uIf{\(r \Equal 0\)}{
 		\Return \True\;
 		\BlankLine
 	}
 	\uElseIf{\(r < 0\) \Or \(i \Equal 0\)}{
 		\Return \False\;
-		\BlankLine
 	}
-	\Else{
-		\Bool \(res\) \Assign \(DP.\dictLookup((i,r))\)\;
+	\Else(\tcp*[h]{CASI RICORSIVI}){
+		\Bool \(\result\) \Assign \(\DP.\dictLookup((i,r))\) \tcp{uso come chiave la descrizione del problema}
 
 		\BlankLine
-		\If{\(res \Equal \Nil\)}{
+		\If(\tcp*[h]{se il problema non è stato ancora calcolato}){\(res \Equal \Nil\)}{
+
 
 			\BlankLine
-			\If{\(A[i] < r\)}{
-				\(res\) \Assign \(res\) \Or \(\subSetSumMemo(A, i-1, r-A[i], DP)\)\;
+			\(\result\) \Assign \subSetSumMemo{\(A\), \(i-1\), \(r\), \(\DP\)} \tcp{calcolo il caso precedente}
+
+			\BlankLine
+			\If(\tcp*[h]{se posso prenderlo prendo in considerazione la possibilità di farlo}){\(A[i] < r\)}{
+				\(\result\) \Assign \(\result\) \Or \(\subSetSumMemo(A, i-1, r-A[i], DP)\)\;
 			}
 
 			\BlankLine
-			\(DP.\dictInsert((i,1), res)\)\;
+			\(DP.\dictInsert((i,r), res)\) \tcp{inserisco la soluzione nel dizionario}
 		}
 
 		\BlankLine
-		\Return \(res\)\;
+		\Return \(\result\)\;
 	}
 }
 

@@ -13,11 +13,13 @@
 	\BlankLine
 	\tcp{esamino ogni scelta}
 	\ForEach{\(c \in C\)}{
-		\(S[i] \Assign c\)\;
 
 		\BlankLine
-		\tcp{calcolo il lower bound}
-		\Int \(lb \Assign \lowerBound{\datiProblema, S, i, \datiParziali}\) \Comment*[l]{calcolato in base alle scelte fatte fin'ora}
+		\(S[i] \Assign c\) \tcp{effettuo la scelta \(i\)-esima}
+
+		\BlankLine
+		\tcp{calcolo il lower bound in base alle scelte fasse in precedenza}
+		\Int \(lb \Assign \lowerBound{\datiProblema, S, i, \datiParziali}\)\;
 
 		\BlankLine
 		\If(\tcp*[h]{se il limite inferiore non eccede il costo minimo}){\(lb < minCost\)}{
@@ -32,6 +34,7 @@
 
 			}
 			\Else{
+				\tcp{ho effettuato tutte le scelte possibili (\(i \Equal n\))}
 
 				\BlankLine
 				\tcp{se il costo della soluzione trovata è minore del costo della soluzione parziale}

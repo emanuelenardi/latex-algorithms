@@ -50,14 +50,14 @@ Una versione pubblica e aggiornata dell'errata corrige sarà presente alla pagin
 	| 15  | ❌       | Ricerca locale                        | -  |
 	| 16  | ✔️       | Backtrack                             | 10 |
 	| 17  | ❌       | Algoritmi probabilistici              | -  |
-	| 18  | ❌       | Problemi intrattabili                 | -  |
-	| 19  | ❌       | Soluzioni per problemi intrattabili   | 5  |
+	| 18  | ✔️       | Problemi intrattabili                 | 10 |
+	| 19  | ✔️       | Soluzioni per problemi intrattabili   | 20 |
 
 -   Appendici
 
 	| no. | Presente | Titolo                          | no. pagine |
 	| --- | -------- | ------------------------------- | --- |
-	| A1  | ✔️       | Problema dell'ordinamento       | -  |
+	| A1  | ✔️       | Problema dell'ordinamento       |  5  |
 
 ## Licenza 📃
 

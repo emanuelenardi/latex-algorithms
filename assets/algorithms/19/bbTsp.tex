@@ -16,13 +16,17 @@
 
 		\BlankLine
 		\(S[i] \Assign c\) \tcp{memorizza la scelta}
-		\(R.\setRemove{c}\) \tcp{rimuovi la scelta dell'insieme delle scelte possibili?}
 
 		\BlankLine
+		\tcp{MECCANISMO PER GENERARE LE PERMUTAZIONI}
+		\(R.\setRemove{c}\) \tcp{rimuovi la scelta nell'insieme delle scelte possibili}
+
+		\BlankLine
+		\tcp{MECCANISMO DI VALUTAZIONE}
 		\eIf{\(i < n\)}{
 
 			\BlankLine
-			\{ calcola \(\out\), \(\back\), \(\transfer[h]\) per ogni \(h \in R\) \}
+			\{ calcola \(\out\), \(\back\), \(\transfer[h]\) per ogni \(h \in R \Leftrightarrow h \not\in S[1\dots i]\) \}
 
 			\BlankLine
 			\Int \(\lb\) \Assign \(\ceil*{\frac{\out + \sum_{h \not\in S} \transfer[h] + \back}{2}}\)
@@ -34,19 +38,19 @@
 		}{
 
 			\BlankLine
-			\(\lb\) \Assign \(\lb + d[S[i]][S[1]]\) \tcp{aggiorna il limite inferiore}
+			\(\lb\) \Assign \(\cost + d[S[i]][S[1]]\) \tcp{aggiorna il limite inferiore}
 
 			\BlankLine
 			\If(\tcp*[h]{se abbiamo trovato una soluzione migliore}){\(\lb < \minCost\)}{
 
 				\BlankLine
-				\(minSol\) \Assign \(S\) \tcp{aggiorna la soluzione ottimale}
+				\(minSol\) \Assign \copyFunction{\(S\)} \tcp{aggiorna la soluzione ottimale}
 				\(minCost\) \Assign \(\lb\) \tcp{aggiorna il costo minimo}
 			}
 		}
 
 		\BlankLine
-		\(R.\setInsert{c}\)\;
+		\(R.\setInsert{c}\) \tcp{reinserisco la scelta nell'insieme delle scelte possibili}
 	}
 }
 
