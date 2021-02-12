@@ -1,6 +1,5 @@
 # file ausiliari di latex
 *.aux
-*.cut
 *.fdb_latexmk
 *.fls
 *.loc
@@ -14,9 +13,6 @@
 *.toc
 
 chapters/*.pdf
-
-prints
-
 **/_minted-cache
 
 # preamboli pre-compilati

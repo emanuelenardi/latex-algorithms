@@ -1,18 +1,21 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-science.svg)](https://forthebadge.com)
 
+[![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](https://forthebadge.com)
+
 <!-- [![forthebadge](https://forthebadge.com/images/badges/cc-by-nd.svg)](https://forthebadge.com) -->
 
 # Appunti di Algoritmi e Strutture Dati
 
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![GitHub tag](https://img.shields.io/github/tag/emanuelenardi/algorithms.svg)](https://gitHub.com/emanuelenardi/algorithms/tags/)
 
 Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture Dati tenuto all'Università degli Studi di Trento dal Prof.re Alberto Montresor.
 
 ## Ringraziamenti
 
-Vorrei ringraziare _Francesco Bozzo_ e _Samuele Conti_ per aver revisionato questa dispensa, per la considerevole pazienza e meticolosità delle correzioni.
+Vorrei ringraziare [Francesco Bozzo](https://github.com/FrancescoBozzo),  [Samuele Conti](https://github.com/Samaretas) e [Filippo Frezza](https://github.com/morethanmad) per aver revisionato questa dispensa, per la considerevole pazienza e meticolosità delle correzioni.
 Le carenze di questa dispensa sarebbero considerevolmente maggiori e più numerose se non fosse stato per la loro assistenza.
 Gli errori rimanenti sono, ovviamente, interamente miei.
 
