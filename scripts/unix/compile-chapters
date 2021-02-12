@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd chapters
+find *.tex | xargs -n 1 -I{} echo {}
