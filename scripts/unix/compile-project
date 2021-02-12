@@ -1,2 +1,6 @@
 #!/bin/bash
+
+./scripts/unix/reset-project
+./scripts/unix/compile-preambles
+
 arara main
