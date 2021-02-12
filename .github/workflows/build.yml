@@ -19,11 +19,13 @@ jobs:
         with:
           python-version: '3.8'
           architecture: 'x64'
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v2
       - name: Compile LaTeX document
         uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            pip3 install Pygments
+            pip install Pygments
             ./scripts/unix/compile-preambles
             ./scripts/unix/compile-project
       - name: Upload pdf as artifact
