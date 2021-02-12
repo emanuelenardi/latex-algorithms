@@ -28,7 +28,7 @@ jobs:
         with:
           run: |
             ./scripts/unix/compile-preambles
-            ./scripts/unix/compile-project
+            arara -v main.tex 
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v2
         with:
