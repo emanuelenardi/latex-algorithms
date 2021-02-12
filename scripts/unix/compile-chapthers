@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd chapthers
+find *.tex | xargs -n 1 -I{} arara {}
