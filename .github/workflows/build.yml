@@ -20,10 +20,10 @@ jobs:
         #   run: |
         #     apk add make
         #     make
-      - name: Compile LaTeX document
-        run: |
-        scripts/unix/compile-preambles
-        scripts/unix/compile-project
+      - name: Compile preambles
+        run: ./scripts/unix/compile-preambles
+      - name: Compile document
+        run: ./scripts/unix/compile-project
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v2
         with:
