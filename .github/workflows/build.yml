@@ -14,6 +14,11 @@ jobs:
           java-version: '11'
           java-package: jdk # (jre, jdk, or jdk+fx)
           architecture: x64 # (x64 or x86)
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+          architecture: 'x64'
       - name: Compile LaTeX document
         uses: xu-cheng/texlive-action/full@v1
         with:
