@@ -18,7 +18,7 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           compiler: arara
-          root_file: main.tex
+          args: main.tex
           pre_compile: "scripts/unix/compile-preambles"
           extra_system_packages: "py-pygments"
       - name: Upload pdf as artifact
