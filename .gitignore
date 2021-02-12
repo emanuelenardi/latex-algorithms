@@ -11,6 +11,7 @@
 *.synctex.gz
 *.synctex(busy)
 *.toc
+main.pdf
 
 chapters/*.pdf
 **/_minted-cache

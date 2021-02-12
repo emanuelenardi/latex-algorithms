@@ -1,0 +1,29 @@
+name: Build LaTeX document
+on:
+  push:
+    branches: master
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Set up JVM
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+          java-package: jdk # (jre, jdk, or jdk+fx)
+          architecture: x64 # (x64 or x86)
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          compiler: arara
+          root_file: main.tex
+          pre_compile: "scripts/unix/compile-preambles"
+          extra_system_packages: "py-pygments"
+      - name: Upload pdf as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-dispensa
+          path: ./main.pdf
+        if: ${{ success() }}

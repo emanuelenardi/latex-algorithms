@@ -5,7 +5,7 @@ source "$(dirname $0)/reset-project"
 echo ""
 echo "COMPILO PREAMBOLO PRINCIPALE ELIMINANDO EVENTUALI FILE AUSILIARI PRODOTTI"
 echo ""
-read -rsp $'Press enter to continue...\n'
+# read -rsp $'Press enter to continue...\n'
 
 cd $BASE_DIR/settings
 pdflatex --shell-escape -ini -jobname="preamble.main" "&pdflatex ./preamble.main.sty\dump"
@@ -15,7 +15,7 @@ clear
 echo ""
 echo "COMPILO PREAMBOLO ALGORITMI ELIMINANDO EVENTUALI FILE AUSILIARI PRODOTTI"
 echo ""
-read -rsp $'Press enter to continue...\n'
+# read -rsp $'Press enter to continue...\n'
 
 cd $BASE_DIR/assets/algorithms
 pwd
