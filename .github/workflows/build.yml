@@ -16,10 +16,10 @@ jobs:
           architecture: x64 # (x64 or x86)
       - name: Install LaTeX environment
         uses: xu-cheng/texlive-action/full@v1
-        # with:
-        #   run: |
-        #     apk add make
-        #     make
+        with:
+          run: |
+            apk add make
+            make
       - name: Compile preambles
         run: ./scripts/unix/compile-preambles
       - name: Compile document
