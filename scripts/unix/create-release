@@ -2,11 +2,6 @@
 source "$(dirname $0)/common"
 
 cd $BUILD_DIR
-mkdir -p chapters
+zip -r "release-$(date +"%Y.%m.%d_%H.%M").zip" chapters main.pdf
 
-# shopt -s extglob # it extends regexes
-# mv !("main.pdf") ./chapters
-mv *.pdf ./chapters
-
-zip -r "release.zip" chapters main.pdf
-# zip -r "release-$(date +"%Y.%m.%d_%H.%M").zip" chapters main.pdf
+cd $BASE_DIR

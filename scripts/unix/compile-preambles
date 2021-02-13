@@ -5,7 +5,6 @@ source "$(dirname $0)/reset-project"
 echo ""
 echo "COMPILO PREAMBOLO PRINCIPALE ELIMINANDO EVENTUALI FILE AUSILIARI PRODOTTI"
 echo ""
-
 cd $SETTINGS_DIR
 pdflatex --shell-escape --interaction=batchmode -ini -jobname="preamble.main" "&pdflatex ./preamble.main.sty\dump"
 rm -f preamble.main.log
@@ -13,7 +12,6 @@ rm -f preamble.main.log
 echo ""
 echo "COMPILO PREAMBOLO ALGORITMI ELIMINANDO EVENTUALI FILE AUSILIARI PRODOTTI"
 echo ""
-
 cd $ALGORITHMS_DIR
 pdflatex --interaction=batchmode -ini -jobname="preamble" "&pdflatex preamble.sty\dump"
 rm -f preamble.log
