@@ -16,4 +16,4 @@ cd $BUILD_DIR
 if [ -d "$BUILD_DIR\chapters" ]; then rm -Rf $BUILD_DIR\chapters; fi
 rm -rf *.*
 
-cd $BASE_DIR
+cd $SRC_DIR

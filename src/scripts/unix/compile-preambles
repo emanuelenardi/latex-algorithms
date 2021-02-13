@@ -1,7 +1,6 @@
 #!/bin/bash
 # source "$(dirname $0)/common"
 
-echo DENTRO
 echo ""
 echo "COMPILO PREAMBOLO PRINCIPALE ELIMINANDO EVENTUALI FILE AUSILIARI PRODOTTI"
 echo ""
@@ -16,4 +15,4 @@ cd $ALGORITHMS_DIR
 pdflatex --interaction=batchmode -ini -jobname="preamble" "&pdflatex preamble.sty\dump"
 rm -f preamble.log
 
-cd $BASE_DIR
+cd $SRC_DIR

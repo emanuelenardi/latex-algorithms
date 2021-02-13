@@ -4,4 +4,4 @@ source "$(dirname $0)/common"
 cd $BUILD_DIR
 zip -r "release-$(date +"%Y.%m.%d_%H.%M").zip" chapters main.pdf
 
-cd $BASE_DIR
+cd $SRC_DIR
