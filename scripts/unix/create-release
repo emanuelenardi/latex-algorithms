@@ -2,7 +2,7 @@
 source "$(dirname $0)/common"
 
 cd $BUILD_DIR
-mkdir chapters
+mkdir -p chapters
 
 shopt -s extglob # it extends regexes
 mv !("main.pdf") ./chapters
