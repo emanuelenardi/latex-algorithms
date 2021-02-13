@@ -9,10 +9,16 @@
 \usepackage{./settings/versions}
 
 % NOTE compilazione del documento principale
-% arara: latexmk: { clean: all }
-% arara: pdflatex: { shell: yes, draft: yes }
-% arara: pdflatex: { shell: yes, synctex: yes }
-% arara: latexmk:  { clean: partial }
+% arara: pdflatex: {
+% arara: --> options: ["--output-directory=build"],
+% arara: --> shell: yes,
+% arara: --> draft: yes
+% arara: --> }
+% arara: pdflatex: {
+% arara: --> options: ["--output-directory=build"],
+% arara: --> shell: yes,
+% arara: --> synctex: yes,
+% arara: --> }
 
 \begin{document}
 \frontmatter

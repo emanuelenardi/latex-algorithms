@@ -6,16 +6,14 @@ echo ""
 echo "COMPILO PREAMBOLO PRINCIPALE ELIMINANDO EVENTUALI FILE AUSILIARI PRODOTTI"
 echo ""
 
-cd $BASE_DIR/settings
+cd $SETTINGS_DIR
 pdflatex --shell-escape -ini -jobname="preamble.main" "&pdflatex ./preamble.main.sty\dump"
 rm -f preamble.main.log
 
-clear
 echo ""
 echo "COMPILO PREAMBOLO ALGORITMI ELIMINANDO EVENTUALI FILE AUSILIARI PRODOTTI"
 echo ""
 
-cd $BASE_DIR/assets/algorithms
-pwd
+cd $ALGORITHMS_DIR
 pdflatex -ini -jobname="preamble" "&pdflatex preamble.sty\dump"
 rm -f preamble.log

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-./scripts/unix/reset-project
-./scripts/unix/compile-preambles
-
-arara main
+source "$(dirname $0)/compile-preambles"
+source "$(dirname $0)/compile-main"
+source "$(dirname $0)/compile-chapters"

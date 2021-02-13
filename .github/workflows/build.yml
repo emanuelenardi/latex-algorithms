@@ -27,10 +27,11 @@ jobs:
         uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            ./scripts/unix/compile-project 
+            ./scripts/unix/compile-project
+            ./scripts/unix/compile-chapters
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: build-dispensa
-          path: ./main.pdf
+          name: Upload document
+          path: ./build/main.pdf
         if: ${{ success() }}

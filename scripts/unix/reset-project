@@ -1,34 +1,17 @@
 #!/bin/bash
 source "$(dirname $0)/common"
 
-cd $BASE_DIR/settings
+cd $SETTINGS_DIR
 
 echo "cancello il preambolo pre-compilato del main"
 rm -f preamble.main.log
 rm -f preamble.main.fmt
 
-echo "cancello le cache di minted"
-rm -fr _minted-cache
-
 echo "cancello log e preambolo degli algoritmi"
-cd $BASE_DIR/assets/algorithms
+cd $ALGORITHMS_DIR
 rm -f preamble.log
 rm -f preamble.fmt
-
-cd $BASE_DIR/chapters
-
-echo "cancello le cache di minted"
-rm -fr _minted-cache
-
-echo "pulizia dei file ausiliari dei capitoli"
-latexmk -C
-rm -f *.loc
-rm -f *.soc
 
 echo "pulizia dei file generali"
 cd $BASE_DIR
 latexmk -C
-
-echo "cancello le versioni di stampa"
-rm -f main-bw.pdf
-rm -f main-cl.pdf

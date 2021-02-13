@@ -7,9 +7,8 @@
 \setcounter{chapter}{2}
 \fi
 
-% arara: pdflatex: { shell: yes, draft: yes, synctex: no }
-% arara: pdflatex: { shell: yes, synctex: no }
-% arara: latexmk:  { clean: partial }
+% arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, draft: yes, synctex: no }
+% arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, synctex: no }
 \begin{document}
 \chapter{Analisi delle funzioni di costo}
 

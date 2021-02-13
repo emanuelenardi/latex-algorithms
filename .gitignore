@@ -11,9 +11,7 @@
 *.synctex.gz
 *.synctex(busy)
 *.toc
-main.pdf
-
-chapters/*.pdf
+*.pdf
 **/_minted-cache
 
 # preamboli pre-compilati

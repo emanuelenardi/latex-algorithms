@@ -4,6 +4,7 @@
 % NOTE impostazione percorsi di default per in comando 'input'
 % https://tex.stackexchange.com/questions/79058/
 
+\ifwindows
 \makeatletter
 \providecommand*{\input@path}{}
 \g@addto@macro\input@path{%
@@ -12,6 +13,16 @@
 	{chapters/outro}%
 }% append
 \makeatother
+\else
+\makeatletter
+\providecommand*{\input@path}{}
+\g@addto@macro\input@path{%
+	{chapters/intro/}%
+	{chapters/}%
+	{chapters/outro/}%
+}% append
+\makeatother
+\fi
 
 \makeatletter
 \providecommand*{\input@path}{}

@@ -12,9 +12,8 @@
 % \usepackage{silence}
 % \WarningsOff[caption]
 
-% arara: pdflatex: { draft: yes, synctex: no }
-% arara: pdflatex: { synctex: no }
-% arara: latexmk:  { clean: partial }
+% arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
+% arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
 \chapter{Alberi}
 

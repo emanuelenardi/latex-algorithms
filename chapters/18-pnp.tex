@@ -8,9 +8,8 @@
 \setcounter{chapter}{17}
 \fi
 
-% arara: pdflatex: { draft: yes, synctex: no }
-% arara: pdflatex: { synctex: yes }
-% arara: latexmk:  { clean: partial }
+% arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
+% arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
 \chapter[Problemi intrattabili e Teoria dell'NP-completezza]{Problemi intrattabili\\Teoria dell'NP-completezza}
 

@@ -5,9 +5,8 @@
 \setcounter{chapter}{2}
 \fi
 
-% arara: pdflatex: { draft: yes, shell: yes }
-% arara: pdflatex: { synctex: yes, shell: yes }
-% arara: latexmk:  { clean: partial }
+% arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, draft: yes, synctex: no }
+% arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, synctex: no }
 \begin{document}
 
 \section{Algoritmo della somma massimale di un sottovettore}

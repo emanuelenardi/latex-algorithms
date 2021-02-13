@@ -8,9 +8,8 @@
 \setcounter{chapter}{14}
 \fi
 
-% arara: pdflatex: { shell: yes, draft: yes, synctex: no }
-% arara: pdflatex: { shell: yes, synctex: no }
-% arara: latexmk:  { clean: partial }
+% arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
+% arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
 \chapter{Ricerca locale}
 
