@@ -2,4 +2,5 @@
 source "$(dirname $0)/common"
 
 cd $BUILD_DIR
-ls | grep -v *.pdf | xargs rm -r
+find . -type f ! -name '*.pdf' ! -name '.gitignore' | xargs -r rm
+rm -r _minted-*
