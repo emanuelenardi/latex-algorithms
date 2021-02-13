@@ -21,7 +21,7 @@ Gli errori rimanenti sono, ovviamente, interamente miei.
 ## Segnalazione errori
 
 Se trovi errori di qualsiasi natura non avere remure a segnalarmeli, li correggerò il prima possibile e aggiornerò l'errata corrige, inoltre (se ti fa piacere) verrai menzionato vicino all'errore segnalato.
-Una versione pubblica e aggiornata dell'errata corrige sarà presente alla pagina "[Errata corrige](https://github.com/emanuelenardi/algorithms/wiki/errata)" nella Wiki del progetto.
+Una versione pubblica e aggiornata dell'errata corrige sarà presente alla pagina "[Errata corrige](https://github.com/emanuelenardi/latex-algorithms/wiki/Errata-corrige)" nella Wiki del progetto.
 
 ## Contenuto 📖
 
