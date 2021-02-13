@@ -10,3 +10,7 @@ echo "cancello log e preambolo degli algoritmi"
 cd $ALGORITHMS_DIR
 rm -f preamble.log
 rm -f preamble.fmt
+
+echo "cancello contenuto cartella build"
+cd $BUILD_DIR
+rm -rf *.*

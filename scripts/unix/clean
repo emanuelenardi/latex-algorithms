@@ -1,0 +1,5 @@
+#!/bin/bash
+source "$(dirname $0)/common"
+
+cd $BUILD_DIR
+ls | grep -v *.pdf | xargs rm -r
