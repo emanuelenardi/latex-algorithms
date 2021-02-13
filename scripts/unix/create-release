@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd $BUILD_DIR
+mkdir chapters
+
+shopt -s extglob # it extends regexes
+mv !("main.pdf") ./chapters
+
+zip -r "release.zip" chapters main.pdf
+# zip -r "release-$(date +"%Y.%m.%d_%H.%M").zip" chapters main.pdf
