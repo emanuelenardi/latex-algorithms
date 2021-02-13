@@ -32,5 +32,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Upload document
-          path: ./build/release.zip
+          path: ./build/main.pdf
         if: ${{ success() }}
