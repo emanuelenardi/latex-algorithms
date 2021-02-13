@@ -17,3 +17,5 @@ echo ""
 cd $ALGORITHMS_DIR
 pdflatex -ini -jobname="preamble" "&pdflatex preamble.sty\dump"
 rm -f preamble.log
+
+cd $BASE_DIR

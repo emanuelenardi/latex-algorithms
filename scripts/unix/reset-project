@@ -1,9 +1,8 @@
 #!/bin/bash
 source "$(dirname $0)/common"
 
-cd $SETTINGS_DIR
-
 echo "cancello il preambolo pre-compilato del main"
+cd $SETTINGS_DIR
 rm -f preamble.main.log
 rm -f preamble.main.fmt
 
@@ -11,7 +10,3 @@ echo "cancello log e preambolo degli algoritmi"
 cd $ALGORITHMS_DIR
 rm -f preamble.log
 rm -f preamble.fmt
-
-echo "pulizia dei file generali"
-cd $BASE_DIR
-latexmk -C

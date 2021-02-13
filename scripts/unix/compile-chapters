@@ -6,3 +6,5 @@ find *.tex | xargs -n 1 -I{} arara {}
 
 cd $BUILD_DIR
 rm -v !(*.pdf)
+
+cd $BASE_DIR

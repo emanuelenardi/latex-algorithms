@@ -1,5 +1,6 @@
 #!/bin/bash
 source "$(dirname $0)/common"
 
-cd $BASE_DIR
-arara main
+# arara main
+cd $BUILD_DIR
+rm -r $(ls -I "*.pdf" )
