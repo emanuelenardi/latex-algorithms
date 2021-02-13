@@ -6,3 +6,5 @@ cd $BUILD_DIR
 # remove auxiliary files
 find . -type f ! -name '*.pdf' ! -name '.gitignore' | xargs -r rm
 rm -r _minted-*
+
+cd $BASE_DIR

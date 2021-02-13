@@ -3,4 +3,5 @@ source "$(dirname $0)/common"
 
 cd $CHAPTERS_DIR
 find *.tex | xargs -n 1 -I{} arara -v {}
+
 cd $BASE_DIR
