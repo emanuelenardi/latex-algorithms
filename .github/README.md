@@ -7,7 +7,7 @@
 
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-![Build LaTeX document](https://github.com/emanuelenardi/latex-algorithms/workflows/build/badge.svg)
+![Build LaTeX document](https://github.com/emanuelenardi/latex-algorithms/workflows/Build%20LaTeX%20document/badge.svg)
 [![GitHub tag](https://img.shields.io/github/tag/emanuelenardi/algorithms.svg)](https://gitHub.com/emanuelenardi/algorithms/tags/)
 
 Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture Dati tenuto all'Università degli Studi di Trento dal Prof.re Alberto Montresor.
