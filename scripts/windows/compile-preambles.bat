@@ -12,14 +12,14 @@ echo(
 echo COMPILO PREAMBOLO DEL MAIN
 echo(
 cd "%BASE_DIR%\settings"
-pdflatex --shell-escape -ini -jobname="preamble.main" "&pdflatex ./preamble.main.sty\dump"
+pdflatex --shell-escape --interaction=batchmode -ini -jobname="preamble.main" "&pdflatex ./preamble.main.sty\dump"
 del preamble.main.log
 
 echo(
 echo COMPILO PREAMBOLO DEGLI ALGORITMI
 echo(
 cd "%BASE_DIR%\assets\algorithms"
-pdflatex -ini -jobname="preamble" "&pdflatex preamble.sty\dump"
+pdflatex --interaction=batchmode -ini -jobname="preamble" "&pdflatex preamble.sty\dump"
 del preamble.log
 
 cd %BASE_DIR%
