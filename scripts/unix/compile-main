@@ -1,6 +1,4 @@
 #!/bin/bash
 source "$(dirname $0)/common"
 
-# arara main
-cd $BUILD_DIR
-rm -r $(ls -I "*.pdf" )
+arara main
