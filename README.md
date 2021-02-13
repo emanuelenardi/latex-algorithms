@@ -9,7 +9,7 @@
 ![Build LaTeX document](https://github.com/emanuelenardi/latex-algorithms/workflows/Build%20LaTeX%20document/badge.svg)
 [![GitHub tag](https://img.shields.io/github/tag/emanuelenardi/algorithms.svg)](https://gitHub.com/emanuelenardi/algorithms/tags/)
 
-![logo](assets/figures/logo/logo-unitn.png)
+![logo](src/assets/figures/logo/logo-unitn.png)
 
 Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture Dati tenuto all'Università degli Studi di Trento dal Prof.re Alberto Montresor.
 
