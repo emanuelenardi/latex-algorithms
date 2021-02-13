@@ -15,3 +15,5 @@ echo "cancello contenuto cartella build"
 cd $BUILD_DIR
 rm -r chapters
 rm -rf *.*
+
+cd $BASE_DIR

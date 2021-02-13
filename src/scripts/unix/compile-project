@@ -1,6 +1,7 @@
 #!/bin/bash
 source "$(dirname $0)/common"
 
+source "$(dirname $0)/reset-project"
 source "$(dirname $0)/compile-preambles"
 source "$(dirname $0)/compile-chapters"
 source "$(dirname $0)/compile-main"
