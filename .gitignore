@@ -2,18 +2,15 @@
 *.aux
 *.fdb_latexmk
 *.fls
+*.fmt
 *.loc
 *.lof
 *.log
 *.lot
+*.pdf
 *.pyg
 *.soc
 *.synctex.gz
 *.synctex(busy)
 *.toc
-*.pdf
 **/_minted-cache
-
-# preamboli pre-compilati
-settings/preamble.main.fmt
-assets/algorithms/preamble.fmt
