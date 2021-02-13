@@ -13,7 +13,7 @@ rm -f preamble.fmt
 
 echo "cancello contenuto cartella build"
 cd $BUILD_DIR
-rm -r chapters
+if [ -d "$BUILD_DIR\chapters" ]; then rm -Rf $BUILD_DIR\chapters; fi
 rm -rf *.*
 
 cd $BASE_DIR
