@@ -11,16 +11,15 @@
 
 % NOTE compilazione del documento principale
 % arara: pdflatex: {
-% arara: --> options: ["--output-directory=build"],
+% arara: --> options: ['--interaction=batchmode' ,'--output-directory=build'],
 % arara: --> shell: yes,
 % arara: --> draft: yes
 % arara: --> }
 % arara: pdflatex: {
-% arara: --> options: ["--output-directory=build"],
+% arara: --> options: ['--interaction=batchmode' ,'--output-directory=build'],
 % arara: --> shell: yes,
 % arara: --> synctex: yes,
 % arara: --> }
-
 \begin{document}
 \frontmatter
 
