@@ -27,7 +27,7 @@ jobs:
         uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            ./src/scripts/unix/compile-project
+            ./src/scripts/unix/compile-project.sh
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v2
         with:
