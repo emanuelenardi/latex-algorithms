@@ -9,7 +9,7 @@ find *.tex | xargs -n 1 -I{} arara {}
 
 cd $BUILD_DIR
 mkdir -p ./chapters
-mv *.pdf ./chapters
-find . -type f ! -name '*.pdf' ! -name '.gitignore' | xargs -r rm
+# mv *.pdf ./chapters
+# find . -type f ! -name '*.pdf' ! -name '.gitignore' | xargs -r rm
 
 cd $INITIAL_WORKING_DIRECTORY
