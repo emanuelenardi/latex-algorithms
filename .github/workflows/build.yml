@@ -28,7 +28,7 @@ jobs:
         with:
           run: |
             ./src/scripts/unix/compile-project.sh
-      - name: Upload pdf as artifact
+      - name: Upload zip folder as artifact
         uses: actions/upload-artifact@v2
         with:
           name: dispensa+capitoli
@@ -36,5 +36,13 @@ jobs:
             ./src/build/chapters
             ./src/build/main.pdf
           if-no-files-found: warn
-          retention-days: 90
+          retention-days: 7
+        if: ${{ success() }}
+      - name: Send dispensa to Telegram Group
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Nuova build
+          document: ./src/build/main.pdf
         if: ${{ success() }}
