@@ -1,17 +1,16 @@
 #!/bin/bash
+source "src/scripts/unix/common.sh"
 
-echo ""
-echo "COMPILO PREAMBOLO PRINCIPALE ELIMINANDO EVENTUALI FILE AUSILIARI PRODOTTI"
-echo ""
-cd src/settings
-pdflatex --shell-escape --interaction=batchmode -ini -jobname="preamble.main" "&pdflatex ./preamble.main.sty\dump"
+INITIAL_WORKING_DIRECTORY=$(pwd)
+
+MESSAGE="\n==================== COMPILO PREAMBOLO PRINCIPALE ====================" ; simple_blue_echo
+cd $SETTINGS_DIR
+pdflatex --interaction=batchmode --shell-escape -ini -jobname="preamble.main" "&pdflatex ./preamble.main.sty\dump"
 rm -f preamble.main.log
-cd ../..
 
-echo ""
-echo "COMPILO PREAMBOLO ALGORITMI ELIMINANDO EVENTUALI FILE AUSILIARI PRODOTTI"
-echo ""
-cd src/assets/algorithms
+MESSAGE="\n==================== COMPILO PREAMBOLO ALGORITMI ====================" ; simple_blue_echo
+cd $ALGORITHMS_DIR
 pdflatex --interaction=batchmode -ini -jobname="preamble" "&pdflatex preamble.sty\dump"
 rm -f preamble.log
-cd ../../..
+
+cd $INITIAL_WORKING_DIRECTORY

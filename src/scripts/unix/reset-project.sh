@@ -1,19 +1,19 @@
 #!/bin/bash
-source "$(dirname $0)/common"
+source "src/scripts/unix/common.sh"
 
-echo "cancello il preambolo pre-compilato del main"
-cd $SETTINGS_DIR
+MESSAGE="\n=========== CANCELLO IL PREAMBOLO PRE-COMPILATO DEL MAIN =============" ; simple_red_echo
+cd src
 rm -f preamble.main.log
 rm -f preamble.main.fmt
 
-echo "cancello log e preambolo degli algoritmi"
+MESSAGE="============== CANCELLO LOG E PREAMBOLO DEGLI ALGORITMI ==============" ; simple_red_echo
 cd $ALGORITHMS_DIR
 rm -f preamble.log
 rm -f preamble.fmt
 
-echo "cancello contenuto cartella build"
+MESSAGE="================= CANCELLO CONTENUTO CARTELLA BUILD ==================" ; simple_red_echo
 cd $BUILD_DIR
-if [ -d "$BUILD_DIR\chapters" ]; then rm -Rf $BUILD_DIR\chapters; fi
+if [ -d "$BUILD_DIR/chapters" ]; then rm -Rf $BUILD_DIR/chapters; fi
 rm -rf *.*
 
-cd $SRC_DIR
+cd $ROOT_DIR

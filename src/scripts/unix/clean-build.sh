@@ -1,8 +1,0 @@
-#!/bin/bash
-cd src/build
-
-# remove auxiliary files
-find . -type f ! -name '*.pdf' ! -name '.gitignore' | xargs -r rm
-rm -r _minted-*
-
-cd ../..
