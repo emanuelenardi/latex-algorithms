@@ -1,10 +1,9 @@
 %&settings/preamble.main
 
+\subfilefalse
 \usepackage[newfloat, cachedir=_minted-cache, outputdir=build]{minted}
 \usepackage{libraries/set-minted}
 \mintedpath{{assets/codes/04/}}
-
-\loadsubpreamblefalse
 
 % NOTE gestione delle versioni del documento
 \usepackage{./settings/versions}
@@ -12,11 +11,13 @@
 % NOTE compilazione del documento principale
 % arara: pdflatex: {
 %! arara: --> options: ['--interaction=batchmode', '--output-directory=build'],
+% arara: --> options: ['--output-directory=build'],
 % arara: --> shell: yes,
 % arara: --> draft: yes
 % arara: --> }
 % arara: pdflatex: {
 %! arara: --> options: ['--interaction=batchmode' ,'--output-directory=build'],
+% arara: --> options: ['--output-directory=build'],
 % arara: --> shell: yes,
 % arara: --> synctex: yes,
 % arara: --> }
@@ -45,35 +46,35 @@
 
 	\pagenumbering{arabic}
 
-% 	\subfile{01-introduzione}
-% 	\subfile{02-analisi}
-% 	\subfile{03-funzioni}
-% 	\subfile{03-funzioni-added}
-% 	\subfile{02-analisi-ammortizzata}
-% 	\subfile{04-strutture}
-% 	\subfile{05-alberi}
-% 	\subfile{06-abr}
-% 	\subfile{07-hashing}
-% 	\subfile{08-insiemi-dizionari}
-% 	\subfile{09-grafi}
-% 	\subfile{10-strutture-speciali}
-% 	\subfile{12-dividi}
+	\input{01-introduzione}
+	\input{02-analisi}
+	\input{03-funzioni}
+	\input{03-funzioni-added}
+	\input{02-analisi-ammortizzata}
+	\input{04-strutture}
+	\input{05-alberi}
+	\input{06-abr}
+	\input{07-hashing}
+	\input{08-insiemi-dizionari}
+	\input{09-grafi}
+	\input{10-strutture-speciali}
+	\input{12-dividi}
 
-% \part{Secondo semestre}
+\part{Secondo semestre}
 
-% 	\subfile{10-strutture-speciali}
-% 	\subfile{11-scelta}
-% 	\subfile{12-dividi}
-% 	\subfile{13-dp}
-% 	\subfile{14-greedy}
-% 	\subfile{15-local}
-% 	\subfile{16-backtrack}
-% 	\subfile{17-prob}
-% 	\subfile{18-pnp}
-% 	\subfile{19-approx}
+	\input{10-strutture-speciali}
+	\input{11-scelta}
+	\input{12-dividi}
+	\input{13-dp}
+	\input{14-greedy}
+	\input{15-local}
+	\input{16-backtrack}
+	\input{17-prob}
+	\input{18-pnp}
+	\input{19-approx}
 
-% \appendix
+\appendix
 
-% 	\subfile{A1-sorting}
+	\input{A1-sorting}
 
 \end{document}

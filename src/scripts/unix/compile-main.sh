@@ -5,7 +5,7 @@ INITIAL_WORKING_DIRECTORY=$(pwd)
 
 MESSAGE="\n==================== COMPILO DOCUMENTO PRINCIPALE ====================" ; simple_blue_echo
 cd $SRC_DIR
-arara main
+arara -v main
 cd $BUILD_DIR
 find . -type f ! -name '*.pdf' ! -name '.gitignore' | xargs -r rm
 rm -r _minted-*

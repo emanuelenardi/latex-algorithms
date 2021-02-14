@@ -1,6 +1,6 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 % NOTE sopprimere i warnings localmente
 \hbadness=10000
 \hfuzz=\maxdimen\newdimen\hfuzz
@@ -10,11 +10,11 @@
 
 \pagestyle{plain}
 \setcounter{chapter}{11}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter{Divide et Impera}
 
 \section{Risoluzione di problemi}
@@ -300,4 +300,6 @@ Voglia provare per induzione sulla dimensione \(n\) del sottovettore che il sott
 	\end{tabular}
 \end{table}
 
+\ifsubfile
 \end{document}
+\fi

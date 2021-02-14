@@ -1,13 +1,13 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{7}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter{Insiemi}
 
 Possono essere implementati con molte delle strutture dati viste fin'ora.
@@ -112,5 +112,6 @@ Le implementazioni più diffuse degli alberi bilanciati sono \texttt{TreeSet} in
 	\end{tabular}
 \end{table}
 
+\ifsubfile
 \end{document}
-% \section{Dizionari}
+\fi

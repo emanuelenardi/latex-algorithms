@@ -1,14 +1,13 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{18}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
-
+\fi
 \chapter{Soluzioni per problemi intrattabili}
 \epigraph{Chi si accontenta, gode}{Proverbio}
 
@@ -977,4 +976,6 @@ Tuttavia non siamo riusciti ad ottenere un miglioramento nella complessità che 
 
 Infine abbiamo visto un'ultima tipologia di algoritmi, quelli del tipo \enquote{branch-\&-bound}.
 
+\ifsubfile
 \end{document}
+\fi

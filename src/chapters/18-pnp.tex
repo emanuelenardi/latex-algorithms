@@ -1,16 +1,16 @@
 %&../settings/preamble.main
 
 % NOTE per controllare dove sfori la pagina
-\setlength\overfullrule{5pt}
+% \setlength\overfullrule{5pt}
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{17}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter[Problemi intrattabili e Teoria dell'NP-completezza]{Problemi intrattabili\\Teoria dell'NP-completezza}
 
 \section*{Introduzione}
@@ -499,4 +499,6 @@ Potete approfondire l'argomento nei seguenti testi:
     \includegraphics[width=0.6\textwidth]{tsp-xkcd}
 \end{figure}
 
+\ifsubfile
 \end{document}
+\fi

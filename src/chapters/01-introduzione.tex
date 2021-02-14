@@ -1,13 +1,13 @@
 %&../settings/preamble.main
 
-% \ifloadsubpreamble
-% \pagestyle{plain}
-% \setcounter{chapter}{0}
-% \fi
+\ifsubfile
+\pagestyle{plain}
+\setcounter{chapter}{0}
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter{Introduzione}
 % \begin{fquote}
 % 	[Lewis Carroll]
@@ -361,5 +361,6 @@ I quali risultano però di secondaria importanza per un corso di algoritmi, e ve
 
 Alcune proprietà hanno un costo aggiuntivo in termini di prestazioni: ad esempio per scrivere codice modulare dobbiamo pagare il costo della gestione delle chiamate o per scrivere codice Java dobbiamo pagare il costo di interpretazione.
 Progettare algoritmi efficienti è quindi un prerequisito per poter pagare questo costo.
-
+\ifsubfile
 \end{document}
+\fi

@@ -1,13 +1,15 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{9}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter{Strutture dati speciali}
 
+\ifsubfile
 \end{document}
+\fi

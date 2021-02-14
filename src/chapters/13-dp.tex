@@ -1,16 +1,16 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \usepackage[newfloat, cachedir=_minted-cache, outputdir=../build]{minted}
 \usepackage{../libraries/set-minted}
 
 \pagestyle{plain}
 \setcounter{chapter}{12}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, synctex: no }
 \begin{document}
+\fi
 \chapter{Programmazione Dinamica}
 \begin{fquote}[George Santayana][1905]
 Those who cannot remember the past are condemned to repeat it
@@ -1307,4 +1307,7 @@ Conviene tuttavia memorizzare l'indice da cui deriva il massimo.
 % La programmazione dinamica non è la soluzione di tutti i vostri problemi.
 % Esistono altre tecniche che possono fare \emph{meglio di così}.
 % Inoltre, è possibile che soluzioni ad-hoc possano essere migliori.
+
+\ifsubfile
 \end{document}
+\fi

@@ -1,9 +1,8 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{4}
-\fi
 
 % NOTE sopprimere i warnings localmente
 % \hbadness=10000
@@ -15,6 +14,7 @@
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter{Alberi}
 
 % TODO scrivere introduzione
@@ -262,4 +262,7 @@ Nella realizzazione con vettore dei padri, l'albero è rappresentato da un vetto
 \bigskip
 Questa realizzazione può sembrare particolarmente assurda poiché dato un nodo non permette di stabilire direttamente quali sono i suoi figli, ma ci sono molti algoritmi che sono interessati solo ai padri.
 Questa è la rappresentazione più compatta che possiamo creare, vedremo la sua utilità quando andremo a studiare le visite sui grafi.
+
+\ifsubfile
 \end{document}
+\fi

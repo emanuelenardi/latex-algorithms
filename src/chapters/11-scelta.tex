@@ -1,13 +1,13 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{10}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter{Scelta della struttura dati}
 
 \begin{note}
@@ -590,4 +590,6 @@ M^{k}[x][y] =
 Abbiamo visto una panoramica dei più importanti algoritmi per la ricerca dei cammini minimi.
 Esistono anche altri algoritmi, in particolare l'algortimo \(A^*\) utilizza euristiche per velocizzare la ricerca.
 
+\ifsubfile
 \end{document}
+\fi

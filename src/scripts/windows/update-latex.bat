@@ -1,1 +1,1 @@
-tlmgr update --self && tlmgr update --list && tlmgr update --all
+tlmgr update --self --all

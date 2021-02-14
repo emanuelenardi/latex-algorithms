@@ -1,13 +1,13 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{16}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \section{Algoritmi probabilistici}
 
 \begin{idea}
@@ -285,4 +285,6 @@ L'algoritmo \select esegue nel caso pessimo \(O(n)\) confronti:
 T(n) = T\left( \frac{n}{5} \right) + T\left( 7 \frac{n}{10} \right) + \frac{11}{5} n = \Omicron(n)
 \end{equation*}
 
+\ifsubfile
 \end{document}
+\fi

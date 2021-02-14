@@ -1,13 +1,13 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \appendix
 \pagestyle{plain}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter{Algoritmi di ordinamento}
 
 \section*{Introduzione}
@@ -222,4 +222,6 @@ Molto veloce quando \(k = \Omicron(n)\).
 \shellSort \(\Omicron(n \sqrt{n})\), stabile, adatto per piccoli valori, sequenze quasi ordinate.
 \`{E} una versione migliorata di \insertionSort.
 
+\ifsubfile
 \end{document}
+\fi

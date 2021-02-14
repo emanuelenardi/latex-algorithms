@@ -1,13 +1,13 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{1}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter{Analisi di algoritmi}
 
 \section{Introduzione}
@@ -883,4 +883,6 @@ Questo algoritmo è preferibile --- per grandi dimensioni di \(n\) --- al \selec
 % 	\item \mergeSort
 % \end{itemize}
 % Nell'ultima lezione vedremo molti altri algoritmi di ordinamento.
+\ifsubfile
 \end{document}
+\fi

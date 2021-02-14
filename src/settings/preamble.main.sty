@@ -8,7 +8,10 @@
 
 % WARNING da caricare presto
 \usepackage[subpreambles=false]{standalone}
-\usepackage{subfiles}
+% \usepackage{subfiles}
+% NOTE soluzione per utilizzare il preambolo precompilato del main
+\newif\ifsubfile
+\subfiletrue
 
 \usepackage{../libraries/set-geometry}
 
@@ -35,7 +38,7 @@
 \usepackage{pgfplots}
 % What does "running in backwards compatibility mode" mean and what should I fix to get rid of it?
 % https://tex.stackexchange.com/questions/81899
-\pgfplotsset{compat=1.16}
+\pgfplotsset{compat=1.17}
 
 % NOTE dichiarazione di 'cell'
 \usepackage{../assets/figures/tikz-preamble}
@@ -91,10 +94,6 @@
 \usepackage{./props}
 % NOTE impostazione dei metadati del PDF
 \usepackage{./pdf-props}
-
-% NOTE avoid error "Can be used only in preamble" in subfiles
-\newif\ifloadsubpreamble
-\loadsubpreambletrue
 
 % NOTE funzione di utilità per accertarmi di aver caricato il preambolo correttamente
 \def\preambleloaded{Precompiled preamble loaded.}

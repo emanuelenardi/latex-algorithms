@@ -1,16 +1,16 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \usepackage[newfloat, cachedir=_minted-cache, outputdir=../build]{minted}
 \usepackage{../libraries/set-minted}
 
 \pagestyle{plain}
 \setcounter{chapter}{2}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, synctex: no }
 \begin{document}
+\fi
 \chapter{Analisi delle funzioni di costo}
 
 Abbiamo concluso la prima parte delle lezioni che ci introduceva alle equazioni di ricorrenza: ora andremo a capire i fondamenti matematici che ci permetteranno di analizzarne una famiglia più grande.
@@ -998,4 +998,6 @@ Le soluzioni sono indicate fra parentesi.
 	\item \(T(n) = T(n-2) - T(n-1) + 1\) \hfill[costo esponenziale]
 \end{itemize}
 
+\ifsubfile
 \end{document}
+\fi

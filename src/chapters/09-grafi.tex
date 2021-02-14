@@ -1,13 +1,13 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{8}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter{Grafi}
 
 \section{Introduzione}
@@ -1286,4 +1286,6 @@ L'algoritmo di Tarjan è preferito a quello di Kosaraju il quale, avendo comunqu
 
 Gli algoritmi sulle componenti fortemente connesse possono essere utilizzati per risolvere il problema \enquote{2-satisfiability} (2-SAT), un problema di soddisfacibilità booleana con clausole composte da coppie di letterali.
 
+\ifsubfile
 \end{document}
+\fi

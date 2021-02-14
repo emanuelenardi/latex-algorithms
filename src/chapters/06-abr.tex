@@ -1,13 +1,13 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{5}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter{Alberi Binari di Ricerca}
 
 \section{Introduzione}
@@ -635,4 +635,6 @@ La cancellazione è concettualmente complicata, ma è efficiente.
 % \paragraph{Complessità}
 \`{E} possibile visitare al massimo un numero \(\Omicron(\log n)\) di casi, ognuno dei quali è gestito in \(\Omicron(1)\).
 
+\ifsubfile
 \end{document}
+\fi

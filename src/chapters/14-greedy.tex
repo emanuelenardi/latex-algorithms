@@ -1,13 +1,13 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{13}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \section{Greedy}
 \begin{fquote}
 	[Gordon Gekko]
@@ -708,4 +708,7 @@ Se questo problema si possa risolvere in tempo lineare in modo deterministico è
 Gli algoritmi ingordi sono semplici da programmare e molto efficienti.
 Inoltre quando è possibile dimostrare la proprietà di scelta ingorda, danno la soluzione ottima.
 Una soluzione sub-ottima è comunque accettabile.
+
+\ifsubfile
 \end{document}
+\fi

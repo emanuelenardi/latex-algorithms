@@ -1,13 +1,13 @@
 %&../settings/preamble.main
 
-\ifloadsubpreamble
+\ifsubfile
 \pagestyle{plain}
 \setcounter{chapter}{15}
-\fi
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
+\fi
 \chapter{Backtrack}
 
 \paragraph{Problemi tipici}
@@ -738,4 +738,6 @@ La complessità ammonta a \(\Omicron(n^2 \cdot (n-2) = \Omicron(n^3)\)
 \paragraph{Complessità}
 L'algoritmo di Graham ha complessità \(\Omicron(n \log n)\) in quanto è dominato dall'ordinamento dei punti.
 
+\ifsubfile
 \end{document}
+\fi
