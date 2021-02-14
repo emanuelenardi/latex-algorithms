@@ -33,4 +33,6 @@ jobs:
         with:
           name: build-dispensa
           path: ./src/build/main.pdf
+          if-no-files-found: warn
+          retention-days: 90
         if: ${{ success() }}
