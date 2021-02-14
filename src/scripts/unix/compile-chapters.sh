@@ -5,7 +5,7 @@ INITIAL_WORKING_DIRECTORY=$(pwd)
 
 cd $CHAPTERS_DIR
 MESSAGE="\n==================== COMPILO SINGOLI CAPITOLI ====================" ; simple_blue_echo
-# find *.tex | xargs -n 1 -I{} arara {}
+find *.tex | xargs -n 1 -I{} arara {}
 
 # cd $BUILD_DIR
 mkdir -p ./chapters
