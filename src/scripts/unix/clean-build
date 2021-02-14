@@ -1,10 +1,8 @@
 #!/bin/bash
-source "$(dirname $0)/common"
-
-cd $BUILD_DIR
+cd src/build
 
 # remove auxiliary files
 find . -type f ! -name '*.pdf' ! -name '.gitignore' | xargs -r rm
 rm -r _minted-*
 
-cd $BASE_DIR
+cd ../..

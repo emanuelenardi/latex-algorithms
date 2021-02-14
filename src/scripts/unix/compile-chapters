@@ -1,11 +1,13 @@
 #!/bin/bash
-source "$(dirname $0)/common"
+# source "$(dirname $0)/common"
 
-cd $CHAPTERS_DIR
+cd src/chapters
 find *.tex | xargs -n 1 -I{} arara -v {}
 
-cd $BUILD_DIR
-mkdir -p chapters
+cd ../build
+
+mkdir -p ./chapters
+# find *.pdf | xargs -n 1 -I{} mv -v {} ./chapters
 mv *.pdf ./chapters
 
-cd $SRC_DIR
+cd ../..
