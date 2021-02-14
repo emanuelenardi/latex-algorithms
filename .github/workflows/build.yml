@@ -31,8 +31,10 @@ jobs:
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: build-dispensa
-          path: ./src/build/main.pdf
+          name: dispensa+capitoli
+          path: |
+            ./src/build/chapters
+            ./src/build/main.pdf
           if-no-files-found: warn
           retention-days: 90
         if: ${{ success() }}
