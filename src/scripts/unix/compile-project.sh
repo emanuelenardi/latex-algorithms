@@ -17,5 +17,6 @@ source "src/scripts/unix/common.sh"
 source "src/scripts/unix/compile-preambles.sh"
 source "src/scripts/unix/compile-main.sh"
 source "src/scripts/unix/compile-chapters.sh"
+source "src/scripts/unix/create-release.sh"
 
 cd $INITIAL_WORKING_DIRECTORY
