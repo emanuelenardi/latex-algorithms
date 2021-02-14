@@ -14,3 +14,5 @@
 *.synctex(busy)
 *.toc
 **/_minted-cache
+
+!src/assets/**/*.pdf
