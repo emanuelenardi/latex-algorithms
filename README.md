@@ -1,4 +1,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![forthebadge](https://forthebadge.com/images/badges/built-with-science.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](https://forthebadge.com)
 
@@ -91,3 +94,23 @@ Nel caso si eseguissero modifiche al file `settings/preamble.main` è necessario
 unix/scripts/compile-preambles # pre-compilo i preamboli
 arara main
 ```
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/FrancescoBozzo"><img src="https://avatars.githubusercontent.com/u/32967065?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Francesco Bozzo</b></sub></a><br /><a href="https://github.com/emanuelenardi/latex-algorithms/commits?author=FrancescoBozzo" title="Tests">⚠️</a> <a href="#platform-FrancescoBozzo" title="Packaging/porting to new platform">📦</a> <a href="https://github.com/emanuelenardi/latex-algorithms/pulls?q=is%3Apr+reviewed-by%3AFrancescoBozzo" title="Reviewed Pull Requests">👀</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
