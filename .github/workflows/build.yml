@@ -15,23 +15,23 @@ jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
-      # # Set up container
-      # - name: Step 1 - Set up JDK 11
-      #   uses: actions/setup-java@v1
-      #   with:
-      #     java-version: '11'
-      #     java-package: jdk # (jre, jdk, or jdk+fx)
-      #     architecture: x64 # (x64 or x86)
-      # - name: Step 2 - Set up Python
-      #   uses: actions/setup-python@v2
-      #   with:
-      #     python-version: '3.8' # last cached version
-      #     architecture: 'x64'
-      # - name: Step 3 - Set up Python dependencies
-      #   id: setup-python-dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install Pygments
+      # Set up container
+      - name: Step 1 - Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+          java-package: jdk # (jre, jdk, or jdk+fx)
+          architecture: x64 # (x64 or x86)
+      - name: Step 2 - Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8' # last cached version
+          architecture: 'x64'
+      - name: Step 3 - Set up Python dependencies
+        id: setup-python-dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install Pygments
       
       # Compile LaTeX document
       - name: Step 4 - (1/2) Checkout the main Github branch
@@ -42,10 +42,10 @@ jobs:
           echo "BUILD_DIR=$GITHUB_WORKSPACE/src/build" >> $GITHUB_ENV
           echo "SCRIPT_DIR=$GITHUB_WORKSPACE/src/scripts/unix/" >> $GITHUB_ENV
       
-      # - name: Step 5 - Compile LaTeX document
-      #   uses: xu-cheng/texlive-action/full@v1
-      #   with:
-      #     run: $SCRIPT_DIR/compile-project.sh
+      - name: Step 5 - Compile LaTeX document
+        uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: $SCRIPT_DIR/compile-project.sh
 
       - name: Step 6 - Bump version and push tag
         id: push-tag
