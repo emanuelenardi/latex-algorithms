@@ -60,7 +60,7 @@ jobs:
       # Prepare variables used to name the files
       - name: Step 7 - (1/2) Setting environment variables (TAG_NAME, DATE)
         run: |
-          echo "TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+          echo "TAG_NAME=${{ steps.push-tag.outputs.new_tag }}" >> $GITHUB_ENV
           echo "DATE=$(date -d '+1 hour' +'%Y.%m.%d_%H.%M')" >> $GITHUB_ENV
       - name: Step 7 - (2/2) Setting environment variables (ZIP_NAME)
         run: |
@@ -100,7 +100,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.push-tag.outputs.new_tag }}
+          tag_name: ${{ env.TAG_NAME }}
           release_name: Release ${{ env.TAG_NAME }}
           draft: false
           prerelease: false
