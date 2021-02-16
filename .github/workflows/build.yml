@@ -8,9 +8,6 @@ on:
       - '.all-contributorsrc'
       - 'README.md'
       - 'src/build'
-    tags:        
-      - v*             # Push events to v* tag
-      - v*.*           # Push events to v*.0, v1.1, and v1.9 tags
 jobs:
   build_latex:
     runs-on: ubuntu-latest
