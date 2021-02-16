@@ -1,0 +1,45 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\tcp{ordina un vettore di \Record in base al campo numerico \emph{key} associato ad ognuno di essi}
+\prototype{\pigeonholeSort{\Record{} \(A\), \Int \(n\), \Int \(min\), \Int \(max\)}}{
+	\Int \(size \Assign max - min + 1\)\;
+	\List \(L\) \Assign \new \Array{\List}[0][size - 1]\;
+
+	\BlankLine
+	\From{\(j \Assign 1\) \DownTo \(size\)}{
+		\(L[j] \Assign \List\)
+	}
+
+	\BlankLine
+	\tcp{scansione iniziale}
+	\From{\(i \Assign 1\) \DownTo \(n\)}{
+		\List \(M \Assign L[ A[i].key - min ]\)\;
+		\(M.\listInsert{\(M.\listTail\), \(A[i]\)}\)\;
+	}
+	\(i = 1\)\;
+
+	\BlankLine
+	\tcp{scansione vettore \(B\)}
+	\From{\(j \Assign 0\) \DownTo \(size-1\)}{
+		\Pos \(p \Assign L[j].\listHead\)\;
+
+		\BlankLine
+		\While{\Not \(L[j].\listEnd{p}\)}{
+			\(A[i] \Assign L[j].\listRead{p}\)\;
+			\Increment{i}\;
+			\(p \Assign L[j].\listSucc\)\;
+		}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

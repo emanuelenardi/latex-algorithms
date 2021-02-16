@@ -1,0 +1,49 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\begin{minipage}{.5\textwidth}
+\BlankLine
+\tcp{RICERCA DEL MINIMO}
+\prototype{\Tree \minNode{\Tree \(T\)}}{
+	\Tree \(u = T\) \Comment*[l]{parto dalla radice}
+
+	\BlankLine
+	\While{\(u.\treeLeft \Neq \Nil\)}{
+		\(u \Assign u.\treeLeft\)\;
+	}
+
+	\BlankLine
+	\Return \(u\)\;
+}
+
+% \vspace{-5pt}
+% \vphantom{0pt}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+
+\BlankLine
+\tcp{RICERCA DEL MASSIMO}
+\prototype{\Tree \maxNode{\Tree \(T\)}}{
+	\Tree \(u = T\) \Comment*[l]{parto dalla radice}
+
+	\BlankLine
+	\While{\(u.\treeRight \Neq \Nil\)}{
+		\(u \Assign u.\treeRight\)\;
+	}
+
+	\BlankLine
+	\Return \(u\)\;
+}
+\end{minipage}
+\BlankLine
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

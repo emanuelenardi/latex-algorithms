@@ -1,0 +1,61 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{funzione wrapper}
+\prototype{\Int \knapsack{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(C\)}}{
+
+    \BlankLine
+    \Array{\Int} \(DP\) \Assign \new \Array{\Int}[0][C]\;
+
+    \BlankLine
+    \From{\(i \Assign 0\) \DownTo \(C\)}{
+            \BlankLine
+            \(DP[i] = -1\)\;
+    }
+
+    \BlankLine
+    \Return \knapsackRec{\(w\), \(p\), \(n\), \(C\), \(DP\)}\;
+	\Return \(DP[C]\)\;
+}
+
+\BlankLine
+\prototype{\Int \knapsackRec{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(c\), \Array{\Int} \(DP\)}}{
+
+    \BlankLine
+    \If{\(c \Equal 0\)}{
+        \Return \(0\)\;
+    }
+
+	\BlankLine
+	\If{\(DP[c] < 0\)}{
+		\BlankLine
+		\(DP[c] \Assign 0\)\;
+
+		\BlankLine
+		\From{\(i \Assign 1\) \DownTo \(n\)}{
+
+			\BlankLine
+			\If{\(w[i] \leqslant c\)}{
+
+				\BlankLine
+				\Int \(val\) \Assign \knapsackRec{\(w\), \(p\), \(n\), \(c-w[i]\), \(DP\)} \(+\ p[i]\)\;
+				\(DP[c] \Assign \maxFunction{\(DP[c]\), \(val\)}\)\;
+			}
+		}
+	}
+
+	\BlankLine
+	\Return \(DP[c]\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

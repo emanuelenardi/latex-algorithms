@@ -1,0 +1,37 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+% \tcp{efficiente per ordinare piccoli insiemi di elementi}
+\tcp{effettua l'ordinamento di un vettore}
+\prototype{\insertionSort{\Item{} A, \Int n}}{
+
+	\BlankLine
+	\From(\Comment*[h]{il 1\textsuperscript{o} elemento verrà ordinato in seguito}){\Int \(i=2\) \DownTo \(n\)}{
+
+		\BlankLine
+		\Item \(temp \Assign A[i]\) \Comment*[h]{elemento da ordinare}\;
+		\Int \(j \Assign i\)\;
+
+		\BlankLine
+		\While{\(j > 1\) \And \(A[j-1] > temp\)}{
+			\(A[j] \Assign A[j-1]\) \Comment*[h]{copio l'elemento}\;
+			\Decrement{j} \Comment*[h]{mi sposto}\;
+		}
+
+		\BlankLine
+		\(A[j] \Assign temp\)\;
+	}
+}
+% \tcp{vettore già ordinato: \(\Omega(n)\)}
+% \tcp{vettore decrescente: \(\Omicron(n^2)\)}
+% \tcp{in media \(\Omicron(n^2)\)}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

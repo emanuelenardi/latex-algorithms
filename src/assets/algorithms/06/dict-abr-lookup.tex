@@ -1,0 +1,50 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\prototype{\Int \dictLookup{\Item \(k\)}}{
+	\Tree \(t\) \Assign \lookupNode{\(tree, k\)}\;
+
+	\BlankLine
+	\eIf{\(t \Neq \Nil\)}{
+		\Return \(t\).\treeValue\;
+	}{
+		\Return \Nil\;
+	}
+}
+
+\BlankLine
+% \tcp{Restituisce il nodo dell'albero \(t\)}
+% \tcp{che contiene la chiave \(k\),}
+% \tcp{se presente, \Nil altrimenti}
+\tcp{RICERCA DI UN NODO, iterativa}
+\prototype{\Tree \lookupNode{\Tree \(T\), \Item \(k\)}}{
+	\Tree \(u \Assign T\) \Comment*[l]{parto dalla radice}
+
+	\BlankLine
+	\While{\(u \Neq \Nil\) \And \(u.\treeKey \Neq k\)}{
+		\(u\) \Assign \iif{\(k < u.\treeKey, u.\treeLeft, u.\treeRight\)}\;
+	}
+}
+
+\BlankLine
+\tcp{RICERCA DI UN NODO, ricorsiva}
+\prototype{\Tree \lookupNode{\Tree \(T\), \Item \(k\)}}{
+	\eIf{\(T \Equal \Nil\) \Or \(T.\treeKey \Equal k\)}{
+		\Return \(T\)\;
+	}{
+		\Return \lookupNode{\iif{\(k < u.\treeKey, u.\treeLeft, u.\treeRight\)}, \(k\)}\;
+	}
+}
+\BlankLine
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

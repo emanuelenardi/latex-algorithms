@@ -1,0 +1,132 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+% \caption{Struttura dati \textsc{Set} implementata come Vettore Booleano}
+% \the\columnsep
+% \setlength{\columnsep}{-3.5cm}
+% \the\columnsep
+% \begin{multicols}{2}
+\fi
+% Una struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una \emph{collezione non ordinata di elementi} senza valori ripetuti.
+
+\begin{minipage}[t]{.4\textwidth}
+\BlankLine
+\Array{\Bool} \(V\)\;
+\Int \(size\)\;
+\Int \(dim\)\;
+
+\BlankLine
+\prototype{\Set \setConstructor{\Int m}}{
+	\Set \(t \Assign\) \new \Set\;
+	\(t.\varSize \Assign 0\)\;
+	\(t.\varCapacity \Assign m\)\;
+	\(t.V \Assign [\False] * m\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\BlankLine
+\prototype{\Set \setContains{\Int \(x\)}}{
+
+	\BlankLine
+	\eIf{\(1 \leqslant x \leqslant \varCapacity\)}{
+		\Return \(V[x]\)\;
+	}{
+		\Return \(\False\)\;
+	}
+}
+
+\BlankLine
+\prototype{\Int \setSize}{
+	\Return \(\varSize\)\;
+}
+
+\BlankLine
+\prototype{\setInsert{\Int \(x\)}}{
+	\If{\(1 \leqslant x \leqslant \varCapacity\)}{
+		\If{\Not \(V[x]\)}{
+			\(\Increment{\varSize}\)\;
+			\(V[x] \Assign \True\)\;
+		}
+	}
+}
+
+\BlankLine
+\prototype{\setRemove{\Int \(x\)}}{
+	\If{\(1 \leqslant x \leqslant \varCapacity\)}{
+		\If{\(V[x]\)}{
+			\(\Decrement{\varSize}\)\;
+			\(V[x] \Assign \False\)\;
+		}
+	}
+}
+
+\end{minipage}%
+\begin{minipage}[t]{.5\textwidth}
+
+\BlankLine
+\prototype{\Set \setUnion{\Set \(A\), \Set \(B\)}}{
+	\tcp{crea un insieme della capacità max}
+	\Set \(C \Assign\) \setConstructor{\maxFunction{\(A.\varCapacity, A.\varCapacity\)}}\;
+
+	\BlankLine
+	\tcp{inserisci gli elementi di \(A\)}
+	\From{\(i \Assign 1\) \DownTo \(A.\varCapacity\)}{
+		\If{\(A.\setContains{i}\)}{
+			\(C.\setInsert{i}\)\;
+		}
+	}
+
+	\BlankLine
+	\tcp{inserisci gli elementi di \(B\)}
+	\From{\(i \Assign 1\) \DownTo \(B.\varCapacity\)}{
+		\If{\(A.\setContains{i}\)}{
+			\(C.\setInsert{i}\)\;
+		}
+	}
+}
+
+\BlankLine
+\prototype{\Set \setIntersection{\Set \(A\), \Set \(B\)}}{
+	\tcp{crea un insieme della capacità min}
+	\Set \(C \Assign\) \setConstructor{\(\minFunction{A.\varCapacity, A.\varCapacity}\)}\;
+
+	\BlankLine
+	\From{\(i \Assign 1\) \DownTo \(\minFunction{A.\varCapacity, A.\varCapacity}\)}{
+		\tcp{se è contenuto in entambi}
+		\If{\(A.\setContains{i}\) \And \(B.\setContains{i}\)}{
+			\(C.\setInsert{i}\) \Comment*[l]{aggiungilo}
+		}
+	}
+}
+
+\BlankLine
+\prototype{\Set \setDifference{\Set \(A\), \Set \(B\)}}{
+	\Set \(C \Assign\) \setConstructor{\(A.\varCapacity\)}\;
+
+	\BlankLine
+	\From{\(i \Assign 1\) \DownTo \(A.\varCapacity\)}{
+		\tcp{se è contenuto \(A\) e non in \(B\)}
+		\If{\(A.\setContains{i}\) \And \Not \(B.\setContains{i}\)}{
+			\(C.\setInsert{i}\) \Comment*[l]{aggiungilo}
+		}
+	}
+}
+
+% \vspace{35pt}
+% \vphantom{0pt}
+
+\end{minipage}
+\ifstandalone
+% \end{multicols}
+% \the\columnsep
+% \setlength{\columnsep}{10pt}
+% \the\columnsep
+\end{algorithm}
+\end{document}
+\fi

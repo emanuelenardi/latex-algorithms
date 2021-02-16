@@ -1,0 +1,48 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Bool \enumeration{\datiProblema, \Item{} \(S\), \Int i, \datiParziali}}{
+	\params{S}[vettore contenente le soluzioni parziali \(S[1][i]\)]
+	\params{i}[indice della scelta corrente]
+
+	\BlankLine
+	\BlankLine
+	\uIf{\isAdmissible{\datiProblema, \(S\), \(i\), \datiParziali}}{
+		\tcp{è una soluzione ammissibile}
+		\If{\processSolution{\datiProblema, \(S\), \(i\), \datiParziali}}{
+			\tcp{vogliamo bloccare l'esecuzione alla prima soluzione trovata}
+			\Return \True \tcp{trovata soluzione, restituisco \True}
+		}
+	}
+	\uElseIf{\reject{\datiProblema, \(S\), \(i\), \datiParziali}}{
+
+		\BlankLine
+		\Return \False \tcp{impossibile trovare soluzioni, restituisco \False}
+	}
+	\Else{
+		\Set \(C\) \Assign \getChoices{\datiProblema, \(S\), \(i\), \datiParziali} \tcp{l'insieme delle scelte possibili}
+
+		\BlankLine
+		\ForEach(\tcp*[h]{per ogni possibile scelta fra quelle possibili}){\(c \in C\)}{
+			\(S[i]\) \Assign \(c\) \tcp{memorizzo la scelta parziale}
+
+			\BlankLine
+			\tcp{richiamo ricorsivamente l'algoritmo effettuando la scelta successiva}
+			\If{\enumeration{\datiProblema, \(S\), \(i+1\), \datiParziali}}{
+				\Return \True \tcp{trovata soluzione, restituisco \True}
+			}
+		}
+	}
+	\Return \False \tcp{nessuna soluzione, restituisco \False}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

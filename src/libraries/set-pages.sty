@@ -1,0 +1,19 @@
+% IDEA gestione delle pagine
+
+% NOTE 'pdfpages' inserimento di pdf all'interno del documento
+% NOTE 'afterpage' esegue il comando dopo la prossima interruzione di pagine
+\usepackage{
+	,pdfpages
+	,afterpage
+}
+
+% NOTE permette di inserire una pagina bianca
+\newcommand{\blankpage}{%
+	\null%
+	\thispagestyle{empty}%
+	\addtocounter{page}{-1}%
+	\newpage%
+}
+
+% NOTE toglie i numeri a piè pagina dalle pagine bianche
+\usepackage{emptypage}

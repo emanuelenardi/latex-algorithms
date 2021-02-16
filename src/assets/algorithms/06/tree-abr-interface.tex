@@ -1,0 +1,67 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\begin{minipage}[t]{.45\textwidth}
+\BlankLine
+\tcp{CONTENUTO DI UN NODO}
+
+\BlankLine
+\Tree \varParent\;
+\Tree \varLeft\;
+\Tree \varRight\;
+\Item \varKey\;
+\Item \varValue\;
+
+\BlankLine
+\tcp{GETTERS}
+
+\BlankLine
+\Tree \treeParent\;
+\Tree \treeLeft\;
+\Tree \treeRight\;
+\Item \treeKey\;
+\Item \treeValue\;
+
+% \columnbreak
+% \vspace{15pt}
+% \vphantom{0pt}
+\end{minipage}\hfill%
+\begin{minipage}[t]{.45\textwidth}
+
+\BlankLine
+\tcp{ORDINAMENTO}
+
+\BlankLine
+\Tree \succNode{\Tree \(t\)}\;
+\Tree \predNode{\Tree \(t\)}\;
+\Tree \minNode\;
+\Tree \maxNode\;
+
+\BlankLine
+\tcp{FUNZIONI DIZIONARIO}
+
+\BlankLine
+\Item \dictLookup{\Item \(k\)}\;
+\dictInsert{\Item \(k\), \Item \(v\)}\;
+\dictRemove{\Item \(k\)}\;
+
+\BlankLine
+\tcp{FUNZIONI INTERNE}
+
+\BlankLine
+\Item \lookupNode\;
+\insertNode{\Tree \(T\), \Item \(k\), \Item \(v\)}\;
+\removeNode{\Tree \(T\), \Item \(k\)}\;
+\end{minipage}
+\BlankLine
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

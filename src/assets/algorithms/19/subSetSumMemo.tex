@@ -1,0 +1,48 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Bool \subSetSumMemo{\Array{\Int} \(A\), \Int \(i\), \Int \(r\), \dictionary \(\DP\)}}{
+
+	\BlankLine
+	\tcp{CASI BASE}
+	\uIf{\(r \Equal 0\)}{
+		\Return \True\;
+		\BlankLine
+	}
+	\uElseIf{\(r < 0\) \Or \(i \Equal 0\)}{
+		\Return \False\;
+	}
+	\Else(\tcp*[h]{CASI RICORSIVI}){
+		\Bool \(\result\) \Assign \(\DP.\dictLookup((i,r))\) \tcp{uso come chiave la descrizione del problema}
+
+		\BlankLine
+		\If(\tcp*[h]{se il problema non è stato ancora calcolato}){\(res \Equal \Nil\)}{
+
+
+			\BlankLine
+			\(\result\) \Assign \subSetSumMemo{\(A\), \(i-1\), \(r\), \(\DP\)} \tcp{calcolo il caso precedente}
+
+			\BlankLine
+			\If(\tcp*[h]{se posso prenderlo prendo in considerazione la possibilità di farlo}){\(A[i] < r\)}{
+				\(\result\) \Assign \(\result\) \Or \(\subSetSumMemo(A, i-1, r-A[i], DP)\)\;
+			}
+
+			\BlankLine
+			\(DP.\dictInsert((i,r), res)\) \tcp{inserisco la soluzione nel dizionario}
+		}
+
+		\BlankLine
+		\Return \(\result\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

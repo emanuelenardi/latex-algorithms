@@ -1,0 +1,31 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Int \fibonacci{\Int \(n\)}}{
+
+	\BlankLine
+	\Int \(DP_0 \Assign 1\)\;
+	\Int \(DP_1 \Assign 1\)\;
+	\Int \(DP_2 \Assign 1\)\;
+
+	\BlankLine
+	\From{\(i \Assign 2\) \DownTo \(n\)}{
+		\(DP_0 \Assign DP_1\)\;
+		\(DP_1 \Assign DP_2\)\;
+		\(DP_2 \Assign DP_0 + DP_1\)\;
+	}
+
+	\BlankLine
+	\Return \(DP_2\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

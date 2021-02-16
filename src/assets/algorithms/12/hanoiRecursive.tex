@@ -1,0 +1,23 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\ricHanoi{\Int \(n\), \Int \(src\), \Int \(dest\), \Int \(middle\)}}{
+	\eIf{\(n=1\)}{
+		\Print \(src \rightarrow dest\)
+	}{
+		\ricHanoi{\(n-1, src, middle, dest\)} \Comment*[l]{sposta \(n-1\) dischi da \(src\) a \(middle\)}
+		\Print \(src \rightarrow dest\) \Comment*[l]{sposta \(1\) disco da \(src\) a \(dest\)}
+		\ricHanoi{\(n-1, middle, dest, src\)} \Comment*[l]{sposta \(n-1\) dischi da \(middle\) a \(dest\)}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

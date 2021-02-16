@@ -1,0 +1,135 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+\begin{document}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0,2) (a) {a};
+	\node[mynode] at (2,4) (b) {b};
+	\node[mynode] at (2,2) (c) {c};
+	\node[mynode] at (4,2) (d) {d};
+	\node[mynode] at (2,0) (e) {e};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (c);
+	\draw[myedge] (a) edge node {} (e);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (b) edge node {} (d);
+
+	\path[use as bounding box] (-0.7,-2.2) rectangle (4.7, 5.2);
+	\node[align=left, above right, draw] at (-0.5,-2.0) {Stack = \{  \}};
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0,2) (a) {a};
+	\node[mynode] at (2,4) (b) {b};
+	\node[mynode] at (2,2) (c) {c};
+	\node[mynode] at (4,2) (d) {d};
+	\node[mynodeb,label={below:\([1, 2]\)}] at (2,0) (e) {e};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (c);
+	\draw[myedge] (a) edge node {} (e);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (b) edge node {} (d);
+
+	\path[use as bounding box] (-0.7,-2.2) rectangle (4.7, 5.2);
+	\node[align=left, above right, draw] at (-0.5,-2.0) {Stack = \{ e \}};
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0,2) (a) {a};
+	\node[mynode] at (2,4) (b) {b};
+	\node[mynodeb,label={above:\([3, 4]\)}] at (2,2) (c) {c};
+	\node[mynode] at (4,2) (d) {d};
+	\node[mynodeb,label={below:\([1, 2]\)}] at (2,0) (e) {e};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (c);
+	\draw[myedge] (a) edge node {} (e);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (b) edge node {} (d);
+
+	\path[use as bounding box] (-0.7,-2.2) rectangle (4.7, 5.2);
+	\node[align=left, above right, draw] at (-0.5,-2.0) {Stack = \{ c, e \}};
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0,2) (a) {a};
+	\node[mynode] at (2,4) (b) {b};
+	\node[mynodeb,label={above:\([3, 4]\)}] at (2,2) (c) {c};
+	\node[mynodeb,label={below:\([5, 6]\)}] at (4,2) (d) {d};
+	\node[mynodeb,label={below:\([1, 2]\)}] at (2,0) (e) {e};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (c);
+	\draw[myedge] (a) edge node {} (e);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (b) edge node {} (d);
+
+	\path[use as bounding box] (-0.7,-2.2) rectangle (4.7, 5.2);
+	\node[align=left, above right, draw] at (-0.5,-2.0) {Stack = \{ d, c, e \}};
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0,2) (a) {a};
+	\node[mynodeb,label={above:\([7, 8]\)}] at (2,4) (b) {b};
+	\node[mynodeb,label={above:\([3, 4]\)}] at (2,2) (c) {c};
+	\node[mynodeb,label={below:\([5, 6]\)}] at (4,2) (d) {d};
+	\node[mynodeb,label={below:\([1, 2]\)}] at (2,0) (e) {e};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (c);
+	\draw[myedge] (a) edge node {} (e);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (b) edge node {} (d);
+
+	\path[use as bounding box] (-0.7,-2.2) rectangle (4.7, 5.2);
+	\node[align=left, above right, draw] at (-0.5,-2.0) {Stack = \{ b, d, c, e \}};
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb,label={below:\([9, 10\)}] at (0,2) (a) {a};
+	\node[mynodeb,label={above:\([7, 8]\)}] at (2,4) (b) {b};
+	\node[mynodeb,label={above:\([3, 4]\)}] at (2,2) (c) {c};
+	\node[mynodeb,label={below:\([5, 6]\)}] at (4,2) (d) {d};
+	\node[mynodeb,label={below:\([1, 2]\)}] at (2,0) (e) {e};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (c);
+	\draw[myedge] (a) edge node {} (e);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (b) edge node {} (d);
+
+	\path[use as bounding box] (-0.7,-2.2) rectangle (4.7, 5.2);
+	\node[align=left, above right, draw] at (-0.5,-2.0) {Stack = \{ a, b, d, c, e \}};
+
+\end{tikzpicture}
+\end{page}
+
+
+
+
+\end{document}

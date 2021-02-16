@@ -1,0 +1,124 @@
+% NOTE utilizzato per arrotondare i numeri nelle tabelle
+\usepackage{siunitx}
+\sisetup{
+	group-digits = true,
+	group-separator = {\,},
+	output-decimal-marker = {,}
+}
+
+% WARNING Mantenere l'ordine dei pacchetti è fonadamentale per non rompere la build
+% IDEA math symbols
+% NOTE 'abraces' - angle brakets fine tuning
+% NOTE 'MnSymbol' - fornisce le freccie che utilizzo per andare a capo riga nelle liste di codice
+\usepackage{
+	,amsthm
+	,amsfonts
+	,amssymb
+	,MnSymbol
+}
+
+% NB 'mathtools' - mathtools = amsmath + other stuff
+% NOTE 'leqno' places the numbering of formulas on the left hand side instead of the right;
+% NOTE 'fleqn' typesets displayed formulas left-aligned instead of centered;
+\usepackage[
+	,leqno
+	% ,fleqn
+]{mathtools}
+
+% NOTE 'braket' - permette l'uso di parentesi angolari
+% WARNING 'semantic' da caricare sopo "amsmath"
+% NOTE 'nicefrac' - divisione in linea
+% NOTE 'textgreek' - puoi utilizzare caratteri greci nel testo
+\usepackage{
+	% ,braket
+	% ,semantic
+	,empheq
+	,nicefrac
+	,textgreek
+}
+
+\usepackage{witharrows}
+% WARNING dipendenza set-color
+\colorlet{brighter}{blue!50!white}
+\WithArrowsOptions{tikz=brighter}
+
+% https://tex.stackexchange.com/a/340580/127473
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\angleled{\langle}{\rangle}
+\DeclarePairedDelimiter\braces{(}{)}
+\DeclarePairedDelimiter\bracket{\lbrack}{\rbrack}
+
+% IDEA teoremi, lemmi e nota bene
+
+% NOTE https://tex.stackexchange.com/questions/28165/amsthm-how-to-reduce-the-vertical-spacing-between-theorem-and-proof
+% NOTE diminuire lo spazio sopra e sotto i teoremi
+% WARNING crea problemi alla dispensa di algoritmi e non ne capisco il motivo, lo commento
+% \usepackage{thmtools}
+% \declaretheoremstyle[%
+% 	spaceabove=6pt,%
+% 	spacebelow=6pt,%
+% 	headfont=\normalfont\itshape,%
+% 	postheadspace=1em,%
+% 	qed=\qedsymbol%
+% ]{mystyle}
+% \let\proof\oldproof
+% \declaretheorem[name={Dimostrazione},style=mystyle,unnumbered]{proof}
+
+% NOTE con o senza (*) contatori
+\theoremstyle{plain}% default
+\newtheorem{theorem}{Teorema}
+\newtheorem*{theorem*}{Teorema}
+\newtheorem{axiom}{Assioma}
+\newtheorem*{axiom*}{Assioma}
+\newtheorem*{property*}{Proprietà}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma*}{Lemma}
+\newtheorem*{exam}{Esercizio d'esame}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definizione}[section]
+\newtheorem*{definition*}{Definizione}
+\newtheorem*{notation*}{Notazione}
+\newtheorem{corollario}{Corollario}
+\newtheorem*{corollario*}{Corollario}
+\newtheorem{proposition}{Proposizione}
+\newtheorem{problem}{Problema}
+\newtheorem*{example}{Esempio}
+
+% NOTE senza contatori
+\theoremstyle{remark}
+% https://tex.stackexchange.com/questions/264010/amsthm-with-usepackagefrenchbabel
+% \addto\captionsitalian{\renewcommand\proofname{Dimostrazione}}
+\newtheorem*{remark}{Ricorda}
+\newtheorem*{note}{Nota}
+\newtheorem*{observation}{Osservazione}
+\newtheorem*{hint}{Suggerimento}
+\newtheorem*{idea}{Idea}
+
+\usepackage[makeroom]{cancel}
+\newcommand\Ccancel[2][lightgray]{%
+	\renewcommand\CancelColor{\color{#1}}\cancel{#2}%
+}
+
+% NOTE colorare simboli matematici
+% tex.stackexchange.com/questions/21598/
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+	\protect\leavevmode
+	\begingroup
+		\color#1{#2}#3%
+	\endgroup
+}
+\makeatother
+
+% TODO da spostare nel documento in cui viene usato
+\newcommand\mhl[1]{\mathcolor{mathcolor}{#1}}
+
+% TODO da spostare nel documento in cui viene usato
+% 'uq' sta per 'upquote'
+% \newcommand\uq{\ensuremath{\text{\textquotesingle}}}
+\newcommand\bs[1]{\boldsymbol{#1}}

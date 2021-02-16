@@ -1,0 +1,168 @@
+%&_preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\begin{page}
+	\begin{forest} circled, wide
+		[n
+			[p
+				[t]
+				[,phantom]
+			]
+			[z
+				[,phantom]
+				[,phantom]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} circled, wide
+		[t, black[][]]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} circled, wide
+		[t, red[][]]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} circled, wide
+		[p, black
+			[t, red
+				[, black]
+				[, black]
+			]
+			[z
+				[,phantom]
+				[,phantom]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest}
+		circled,
+		wide,
+		for tree = {%
+			l sep = 5mm,
+			s sep = 20mm
+		}
+		[n, black
+			[p, red
+				[t, red
+					[, black, subtree={\textsc{a}}]
+					[, black, subtree={\textsc{b}}]
+				]
+				[, black, subtree={\textsc{c}}]
+			]
+			[z, red
+				[, black, subtree={\textsc{d}}]
+				[, black, subtree={\textsc{e}}]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest}
+		circled,
+		wide,
+		for tree = {%
+				l sep = 5mm,
+				s sep = 20mm
+		}
+		[n, red
+			[p, black
+				[t, red
+					[, black, subtree={\textsc{a}}]
+					[, black, subtree={\textsc{b}}]
+				]
+				[, black, subtree={\textsc{c}}]
+			]
+			[z, black
+				[, black, subtree={\textsc{d}}]
+				[, black, subtree={\textsc{e}}]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest}
+		circled,
+		wide,
+		for tree = {%
+				l sep = 5mm,
+				s sep = 20mm
+		}
+		[n, black
+			[p, red
+				[, black, subtree={\textsc{a}}]
+				[t, red
+					[, black, subtree={\textsc{b}}]
+					[, black, subtree={\textsc{c}}]
+				]
+			]
+			[z, black
+				[, black, subtree={\textsc{d}}]
+				[, black, subtree={\textsc{e}}]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest}
+		circled,
+		wide,
+		for tree = {%
+				l sep = 5mm,
+				s sep = 20mm
+		}
+		[n, black
+			[p, red
+				[t, red
+					[, black, subtree={\textsc{a}}]
+					[, black, subtree={\textsc{b}}]
+				]
+				[, black, subtree={\textsc{c}}]
+			]
+			[z, black
+				[, black, subtree={\textsc{d}}]
+				[, black, subtree={\textsc{e}}]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest}
+		circled,
+		wide,
+		for tree = {%
+				l sep = 5mm,
+				s sep = 20mm
+		}
+		[p, black
+			[t, red
+					[, black, subtree={\textsc{a}}]
+					[, black, subtree={\textsc{b}}]
+			]
+			[n, red
+				[, black, subtree={\textsc{c}}]
+				[z, black
+					[, black, subtree={\textsc{d}}]
+					[, black, subtree={\textsc{e}}]
+				]
+			]
+		]
+	\end{forest}
+\end{page}
+\end{document}

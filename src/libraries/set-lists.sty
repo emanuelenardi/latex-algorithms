@@ -1,0 +1,8 @@
+% NOTE 'enumitem' - permette di personalizzare gli elenchi puntati e in linea
+\usepackage[inline]{enumitem}
+
+\newlist{compactlist}{itemize}{2}
+\setlist[compactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 0pt, partopsep = 0pt}
+
+\newlist{semicompactlist}{itemize}{2}
+\setlist[semicompactlist]{label=\textbullet, noitemsep, topsep = 0pt, parsep = 5pt, partopsep = 0pt}

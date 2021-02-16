@@ -1,0 +1,45 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+% \tcp{identifica le componenti connesse di un grafo non orientato}
+\tcp{parte iterativa}
+\prototype{\Array{\Int} \ConnectedComponents{\Graph G, \Stack S}}{
+
+	\BlankLine
+	\tcp{creo un vettore della dimensione dei nodi del grafo}
+	\Array{\Int} \(id\) \Assign \new \Array{\Int}[1][G.\setSize]\;
+	\tcp{inizializzo il vettore}
+	\lForEach{\(u \in G.\VV\)}{
+		\(id[u] \Assign 0\)
+	}
+
+	\Int \(counter = 0\) \Comment*[l]{contatore delle componenti connesse}
+
+	\BlankLine
+	\ForEach(\tcp*[h]{per ogni nodo del grafo}){\(u \in G.\VV\)}{
+
+		\BlankLine
+		\If(\tcp*[h]{ho trovato una nuova componente connessa}){\(id[u] \Equal 0\)}{
+			\Increment{counter} \Comment*[l]{aggiorno il contatore}
+
+			\BlankLine
+			\tcp{effettuo una chiamata ricorsiva sul nodo scoperto}
+			\ccdfs{G, counter, u, id}
+		}
+	}
+
+	\BlankLine
+	\tcp{restituisco l'identificativo della componente connessa}
+	\Return \(id\)
+}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

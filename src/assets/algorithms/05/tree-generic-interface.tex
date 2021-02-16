@@ -1,0 +1,63 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{GESTIONE ALBERO}
+
+\BlankLine
+\treeConstructor{\Item \(v\)} \Comment*[l]{costruisce un nuovo nodo, contenente \(v\), senza figli o genitori}
+\Item \treeRead \Comment*[l]{legge il valore memorizzato nel nodo}
+\treeWrite{\Item \(v\)} \Comment*[l]{modifica il valore memorizzato nel nodo}
+\Tree \treeParent \Comment*[l]{restituisce il padre, oppure \Nil se questo nodo è radice}
+
+\BlankLine
+\BlankLine
+\tcp{GESTIONE STRUTTURA}
+
+\begin{minipage}{\textwidth}%
+\begin{multicols}{2}%
+
+\BlankLine
+\tcp{restituiscono il primo figlio,}
+\tcp{oppure \Nil se questo nodo è una foglia}
+\Tree \treeChild\;
+
+\BlankLine
+\tcp{restituisce il prossimo fratello,}
+\tcp{oppure \Nil se assente}
+\Tree \treeSibling\;
+
+\BlankLine
+\tcp{inserisce il sottoalbero \(t\)}
+\tcp{come primo figlio di questo nodo}
+\insertChild{\Tree \(t\)}
+
+\BlankLine
+\tcp{inserisce il sottoalbero \(t\)}
+\tcp{come prossimo fratello di questo nodo}
+\insertSibling{\Tree \(t\)}
+
+\BlankLine
+\tcp{distuggi l'albero radicato}
+\tcp{identificato dal primo fratello}
+\deleteChild
+
+\BlankLine
+\tcp{distuggi l'albero radicato}
+\tcp{identificato dal primo figlio}
+\deleteSibling
+
+\end{multicols}
+\end{minipage}
+\vspace{5pt}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

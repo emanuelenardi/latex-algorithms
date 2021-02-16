@@ -1,0 +1,39 @@
+%&../preamble
+
+\SetKwFunction{quadrato}{quadrato}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\tcp{calcola il quadrato di un grafo orientato}
+\prototype{\quadrato{\Matrix{\Int} A}}{
+
+	\BlankLine
+	\From{\(i=1\) \DownTo \(n\)}{
+		\From{\(j=1\) \DownTo \(n\)}{
+			\(k=1\)\;
+			\(found = \False\)\;
+
+			\BlankLine
+			\While{\(k \leqslant n\) \And \Not \(found\)}{
+				\(found = (A[i,k] = 1) \land (A[k,j] = 1) \land (i \Neq k) \land (j \Neq k)\)\;
+				\(\Increment{k}\)\;
+			}
+
+			\BlankLine
+			\tcp{comment}
+			\eIf{\(found\)}{
+				\(A^2[i,j] = 1\)\;
+			}{
+				\(A^2[i,j] = 0\)\;
+			}
+		}
+	}
+}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

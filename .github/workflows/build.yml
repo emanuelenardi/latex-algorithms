@@ -1,0 +1,117 @@
+name: Build LaTeX document
+on:
+  push:
+    branches:       
+      - main           # Push events on main branch
+    paths-ignore:
+      - 'docs/**'
+      - .all-contributorsrc
+      - 'README.md'
+    tags:        
+      - v*             # Push events to v* tag
+      - v*.*           # Push events to v*.0, v1.1, and v1.9 tags
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      # # Set up container
+      # - name: Step 1 - Set up JDK 11
+      #   uses: actions/setup-java@v1
+      #   with:
+      #     java-version: '11'
+      #     java-package: jdk # (jre, jdk, or jdk+fx)
+      #     architecture: x64 # (x64 or x86)
+      # - name: Step 2 - Set up Python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: '3.8' # last cached version
+      #     architecture: 'x64'
+      # - name: Step 3 - Set up Python dependencies
+      #   id: setup-python-dependencies
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install Pygments
+      
+      # Compile LaTeX document
+      - name: Step 4 - (1/2) Checkout the main Github branch
+        uses: actions/checkout@v2
+      - name: Step 4 - (2/2) Setting environment variables (ROOT_DIR, BUILD_DIR, SCRIPT_DIR)
+        run: |
+          echo "ROOT_DIR=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+          echo "BUILD_DIR=$GITHUB_WORKSPACE/src/build" >> $GITHUB_ENV
+          echo "SCRIPT_DIR=$GITHUB_WORKSPACE/src/scripts/unix/" >> $GITHUB_ENV
+      
+      # - name: Step 5 - Compile LaTeX document
+      #   uses: xu-cheng/texlive-action/full@v1
+      #   with:
+      #     run: $SCRIPT_DIR/compile-project.sh
+
+      - name: Step 6 - Bump version and push tag  
+        uses: anothrNick/github-tag-action@1.34.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          RELEASE_BRANCHES: main
+          DEFAULT_BUMP: patch # default: minor
+          DRY_RUN: true # for debugging purposes
+          INITIAL_VERSION: 0.0.0
+
+      # Prepare variables used to name the files
+      - name: Step 7 - (1/2) Setting environment variables (TAG_NAME, DATE)
+        run: |
+          echo "TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+          echo "DATE=$(date -d '+1 hour' +'%Y.%m.%d_%H.%M')" >> $GITHUB_ENV
+      - name: Step 7 - (2/2) Setting environment variables (ZIP_NAME)
+        run: |
+          echo "ZIP_NAME=dispensa-$TAG_NAME-$DATE" >> $GITHUB_ENV
+
+      # Upload artifact
+      - name: Step 8 - Upload zip folder as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.ZIP_NAME }}
+          path: |
+            ${{ env.BUILD_DIR }}
+            !${{ env.BUILD_DIR }}/.gitignore
+          if-no-files-found: error
+          retention-days: 90
+        if: ${{ success() }}
+      
+      # Send zip file to Telegram public channel
+      - name: Step 9 - Create zip file
+        run: |
+          cd $BUILD_DIR
+          zip -r ../../"$ZIP_NAME.zip" chapters main.pdf
+          cd $ROOT_DIR
+          ls
+
+      - name: Step 10 - Send it to Telegram private channel
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: " "
+          document: ${{ env.ZIP_NAME }}.zip
+        if: ${{ success() }}
+      
+      # Create a Github release
+      - name: Step 10 - (1/2) Create a release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.TAG_NAME }}
+          release_name: Release ${{ env.TAG_NAME }}
+          draft: false
+          prerelease: false
+      - name: Step 10 - (2/2) Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ${{ env.ROOT_DIR }}/${{ env.ZIP_NAME }}.zip
+          asset_name: ${{ env.ZIP_NAME }}.zip
+          asset_content_type: application/zip

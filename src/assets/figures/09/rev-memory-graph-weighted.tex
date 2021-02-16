@@ -1,0 +1,48 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+\usepackage{pdfpages}
+\usepackage{blkarray}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\begin{document}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=20]
+
+    \node[state] (0) {0};
+	\node[state] (1) [right = of 0] {1};
+	\node[state] (2) [right = of 1] {2};
+	\node[state] (3) [below = 2.5cm of 0] {3};
+	\node[state] (4) [right = of 3] {4};
+    \node[state] (5) [right = of 4] {5};
+
+	\path[undi] (0) edge node[below] {\textcolor{accent}{3}} (1);
+	\path[undi] (0) edge node[right] {\textcolor{accent}{1}} (3);
+	\path[undi] (1) edge node[below] {\textcolor{accent}{4}} (2);
+	\path[undi] (2) edge node[below right] {\textcolor{accent}{4}} (3);
+	\path[undi] (3) edge node[below] {\textcolor{accent}{8}} (4);
+    \path[undi] (4) edge node[below right] {\textcolor{accent}{7}} (2);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}\Large
+\begin{blockarray}{ *{7}{ >{\bfseries}c } }
+	& 0 & 1 & 2 & 3 & 4 & 5 \\[5pt]
+	\begin{block}{ >{\bfseries}c @{\hspace{20pt}} ( *{6}{c} ) }
+		0 &   & \color{accent}3 & 0 & \color{accent}1 & 0 & 0 \\
+		1 &   &   & \color{accent}4 & 0 & 0 & 0 \\
+		2 &   &   &   & \color{accent}4 & \color{accent}7 & 0 \\
+		3 &   &   &   &   & \color{accent}8 & 0 \\
+		4 &   &   &   &   &   & 0 \\
+		5 &   &   &   &   &   &   \\
+	\end{block}
+\end{blockarray}
+\end{page}
+
+\begin{page}
+\includegraphics{memory4}
+\end{page}
+
+\end{document}

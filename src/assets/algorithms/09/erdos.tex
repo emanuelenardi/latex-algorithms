@@ -1,0 +1,54 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{il camminimo più breve fra due vertici viene memorizzato tramite il vettore dei padri \(p\)}
+\prototype{\erdos{\Graph \(G\), \Node \(r\), \Array{\Int} \(erdos\), \Node \(parent\)}}{
+
+	\BlankLine
+	\tcp{struttura di supporto}
+	\Queue \(S\) \Assign \queueConstructor \Comment*[l]{creo una pila}
+	\(S.\queueInsert{r}\) \Comment*[l]{inserisco la radice}
+
+	\BlankLine
+	\tcp{inizializzazione}
+
+	\lForEach(\tcp*[h]{nodi non ancora raggiunti}){\(u \in G.\VV - \{r\}\)}{
+		\(erdos[u]\) \Assign \(\infty\)
+	}
+	\(erdos[r]\) \Assign \True \Comment*[l]{erdõs ha distanza 0 da se stesso}
+	\(parent[r]\) \Assign \Nil \Comment*[l]{per la stampa del cammino}
+
+	\BlankLine
+	\tcp{visita del grafo}
+	\While{\Not \(S.\setEmpty\)}{
+		\Node \(u\) \Assign \(S\).\queueRemove\;
+
+		\BlankLine
+		\ForEach{\(u \in G.\adj{u}\)}{
+
+			\BlankLine
+			\{ \alert{esamina l'arco \((u,v)\)} \}
+
+			\BlankLine
+			\If{\(erdos[v] \Equal \infty\)}{
+				\tcp{il nodo non è stato ancora stato scoperto}
+
+				\BlankLine
+				\(erdos[v]\) \Assign \(erdos[u] + 1\) \Comment*[l]{gli assegno un livello di erdõs+1}
+				\(parent[v]\) \Assign \(u\) \Comment*[l]{memorizzo il padre del nodo attuale nel v.\ dei padri}
+				\(S\).\queueInsert{v} \Comment*[l]{è la prima volta che lo raggiungo quindi lo metto in coda}
+			}
+		}
+	}
+}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

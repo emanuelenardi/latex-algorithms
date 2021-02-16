@@ -1,0 +1,48 @@
+% IDEA tabelle
+% NOTE 'array' - permette di creare delle colonne personalizzate
+% NOTE 'booktabs' - genera filetti professionali per le tabelle
+% NOTE 'makecell' -
+% NOTE 'multirow' - tabelle con righe multilinea
+\usepackage{
+	array,
+	booktabs,
+	makecell,
+	multirow,
+	tabularx,
+	tabu,
+	diagbox
+}
+
+% NOTE linea sottile fra le righe di una tabella
+\setlength{\lightrulewidth}{0.1pt}
+\newcommand{\lightrule}{%
+	\arrayrulecolor{black!30}%
+	\midrule[\lightrulewidth]%
+	\arrayrulecolor{black}}
+
+% NOTE linea verticale più spessa
+\newcolumntype{?}{!{\vrule width 1pt}}
+
+% NOTE linea orizzontale pesante
+\newcommand{\thickrule}{\Xhline{1pt}}
+
+% NOTE math-mode version of l/c/r column type
+\newcolumntype{L}{>{$}l<{$}}
+\newcolumntype{C}{>{$}c<{$}}
+\newcolumntype{R}{>{$}r<{$}}
+
+% NOTE centering flexible columns
+\usepackage{ragged2e}
+\newcolumntype{Y}{>{\Centering}X}
+
+% https://tex.stackexchange.com/questions/213648
+% NOTE fill column with gray 0 when empty
+\usepackage{collcell}
+\newcolumntype{F}[1]{ >{\collectcell\fillempty} #1 <{\endcollectcell} }
+\newcommand{\fillempty}[1]{%
+	\if\relax\detokenize{#1}\relax
+		\textcolor{gray}{0}%
+	\else
+		#1%
+	\fi
+}

@@ -1,0 +1,42 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{ritorna una pila in cui il primo elemento è il primo elemento dell'ordinamento}
+\prototype{\Stack \topSort{\Graph \(G\)}}{
+
+	\BlankLine
+	\Stack \(S\) \Assign \stackConstructor\;
+
+	\BlankLine
+	\Array{\Bool} \(visited\) \Assign \new \Array{\Bool}[1][G.\setSize]
+
+	\ForEach{\(u \in G.\VV\)}{
+		\(visited[u]\) \Assign \False\;
+	}
+
+	\BlankLine
+	\ForEach(\tcp*[h]{per ogni nodo del grafo}){\(u \in G.\VV\)}{
+
+		\If(\tcp*[h]{se non l'ho visitato}){\Not \(visitato[u]\)}{
+
+			\BlankLine
+			\tcp{effettua una chiamata ricorsiva}
+			\topSortdfs{G, u, visitato, S}
+		}
+	}
+
+	\BlankLine
+	\Return \(S\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

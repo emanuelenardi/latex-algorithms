@@ -1,0 +1,60 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Int \hateville{\Array{\Int} D, \Int n}}{
+
+	\BlankLine
+	\tcp{creo la tabella}
+	\Array{\Int} \(DP\) \Assign \new \Array{\Int}[0][n]\;
+
+	\BlankLine
+	\tcp{inserisco i casi base}
+	\(DP[0] \Assign 0\)\;
+	\(DP[1] \Assign DP[1]\)\;
+
+	\BlankLine
+	\tcp{calcolo il valore \(i\)-esimo}
+	\From{\(i \Assign 2\) \DownTo \(n\)}{
+		\(DP[i]\) \Assign \maxFunction{\(DP[i-1]\), \(DP[i-2] + D[i]\)}
+	}
+
+	\BlankLine
+	\tcp{restituisco il valore \(n\)-esimo}
+	\Return \hatevilleSolution{\(DP\), \(D\), \(n\)}\;
+}
+
+\BlankLine
+\tcp{ricostruisce l'insieme degli indici dato il valore massimale}
+\prototype{\Int \hatevilleSolution{\Array{\Int} \(DP\), \Array{\Int} \(D\), \Int \(i\)}}{
+	\params{i}[indice di scorrimento]
+
+	\BlankLine
+	\uIf(\tcp*[h]{nessun donatore}){\(i \Equal 0\)}{
+		\Return \(\emptyset\)\;
+	}
+	\uElseIf(\tcp*[h]{un solo donatore}){\(i \Equal 1\)}{
+		\Return \(\{1\}\)\;
+	}
+	\uElseIf(\Comment*[l]{se non c'è variazione fra valori consecutivi}){\(DP[i] \Equal DP[i-1]\)}{
+		\Return \hatevilleSolution{\(DP\), \(D\), \(i-1\)} \tcp{scarto l'indice}
+	}
+	\Else(\tcp*[h]{c'è variazione fra valori consecutivi}){
+		\Set \(sol =\) \hatevilleSolution{\(DP\), \(D\), \(i-2\)} \tcp{chiamo ricorsivamente l'algoritmo sull'indice \(i-2\)}
+		\(sol\).\setInsert{i} \tcp{inserisco l'indice nell'insieme}
+
+		\BlankLine
+		\tcp{restituisco l'insieme degli indici}
+		\Return \(sol\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

@@ -1,0 +1,25 @@
+%&_preamble
+
+% arara: pdflatex: { interaction: batchmode }
+% arara: latexmk: { clean: partial }
+\begin{document}
+\begin{page}
+	\begin{forest} rb tree
+		[30
+			[15
+				[10[][]]
+				[20[][]]
+			]
+			[70
+				[60
+					[50
+						[40[][]]
+						[55[][]]
+					]
+					[]
+				][85[][]]
+			]
+		]
+	\end{forest}
+\end{page}
+\end{document}

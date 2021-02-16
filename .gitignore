@@ -1,0 +1,18 @@
+# file ausiliari di latex
+*.aux
+*.fdb_latexmk
+*.fls
+*.fmt
+*.loc
+*.lof
+*.log
+*.lot
+*.pdf
+*.pyg
+*.soc
+*.synctex.gz
+*.synctex(busy)
+*.toc
+**/_minted-cache
+
+!src/assets/**/*.pdf

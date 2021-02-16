@@ -1,0 +1,57 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Int \knapsack{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(C\)}}{
+    \params{w}[vettore dei pesi]
+    \params{p}[vettore dei profitti]
+    \params{n}[numero di oggetti]
+    \params{C}[capacità massima dello zaino]
+
+    \BlankLine
+    \tcp{creo la tabella di programmazione dinamica}
+    \(DP\) \Assign \new \Matrix{\Int}[0\dots n][0\dots C]\;
+
+    \BlankLine
+    \tcp{la inizializzo}
+    \From{\(i \Assign 0\) \DownTo \(n\)}{
+        \(DP[i][0] = 0\) \tcp{capacità nulla}
+    }
+
+    \BlankLine
+    \From{\(c \Assign 0\) \DownTo \(C\)}{
+        \(DP[0][c] = 0\) \tcp{nessun oggetto}
+    }
+
+    \BlankLine
+    \tcp{calcolo caso per caso}
+    \From{\(i \Assign 1\) \DownTo \(n\)}{
+
+        \BlankLine
+        \From{\(c \Assign 1\) \DownTo \(C\)}{
+
+            \BlankLine
+            \eIf(\tcp*[h]{se la capacità residua è sufficiente}){\(w[i] \leqslant c\)}{
+
+                \BlankLine
+                \(DP[i][c] = \maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c])\) \tcp{decido se prenderlo o scartarlo}
+            }{
+                \(DP[i][c] = DP[i-1][c]\) \tcp{lo scarto}
+            }
+        }
+    }
+
+    \BlankLine
+    \tcp{restituisco il profitto massimo}
+    \Return \(DP[n][C]\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

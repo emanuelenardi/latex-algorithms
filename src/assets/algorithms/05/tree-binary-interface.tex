@@ -1,0 +1,43 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{GESTIONE ALBERO}
+
+\BlankLine
+\treeConstructor{\Item \(v\)} \Comment*[l]{costruisce un nuovo nodo, contenente \(v\), senza figli o genitori}
+\Item \treeRead \Comment*[l]{legge il valore memorizzato nel nodo}
+\treeWrite{\Item \(v\)} \Comment*[l]{modifica il valore memorizzato nel nodo}
+\Tree \treeParent \Comment*[l]{restituisce il padre, oppure \Nil se questo nodo è radice}
+
+\BlankLine
+\BlankLine
+\tcp{GESTIONE STRUTTURA}
+
+\BlankLine
+\tcp{restituiscono il figlio sinistro (destro) di questo nodo,}
+\tcp{restituisce \Nil se assente}
+\Tree \treeLeft\;
+\Tree \treeRight\;
+
+\BlankLine
+\tcp{inserisce il sottoalbero radicato in \(t\)}
+\tcp{come figlio sinistro (destro) di questo nodo}
+\insertLeft{\Tree \(t\)}\;
+\insertRight{\Tree \(t\)}\;
+
+\BlankLine
+\tcp{distrugge (ricorsivamente) il figlio sinistro (destro) di questo nodo}
+\deleteLeft\;
+\deleteRight\;
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

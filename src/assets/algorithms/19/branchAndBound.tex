@@ -1,0 +1,57 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\branchAndBound{\datiProblema, \Item{} \(S\), \Int \(i\), \datiParziali}}{
+	\Set \(C \Assign \getChoices{\datiProblema, n, i, \datiParziali}\) \Comment*[l]{determina l'insieme in funzione delle scelte precedenti \(S[1 \dots i-1]\)}
+
+	\BlankLine
+	\tcp{esamino ogni scelta}
+	\ForEach{\(c \in C\)}{
+
+		\BlankLine
+		\(S[i] \Assign c\) \tcp{effettuo la scelta \(i\)-esima}
+
+		\BlankLine
+		\tcp{calcolo il lower bound in base alle scelte fasse in precedenza}
+		\Int \(lb \Assign \lowerBound{\datiProblema, S, i, \datiParziali}\)\;
+
+		\BlankLine
+		\If(\tcp*[h]{se il limite inferiore non eccede il costo minimo}){\(lb < minCost\)}{
+
+			\BlankLine
+			\uIf(\tcp*[h]{posso ancora effettuare delle scelte}){\(i < n\)}{
+
+				\BlankLine
+				\tcp{faccio ricorsivamente le scelte successive}
+				\branchAndBound{\datiProblema, S, \(i+1\), \datiParziali}
+				\BlankLine
+
+			}
+			\Else{
+				\tcp{ho effettuato tutte le scelte possibili (\(i \Equal n\))}
+
+				\BlankLine
+				\tcp{se il costo della soluzione trovata è minore del costo della soluzione parziale}
+				\If{\(\cost(S,i) < minCost\)}{
+					\tcp{allora la soluzione trovata è migliore del minimo parziale}
+
+					\BlankLine
+					\(minSol \Assign S\) \Comment*[l]{aggiorno la soluzione minima parziale}
+					\(minCost \Assign \cost(S,i)\)  \Comment*[l]{aggiorno il costo minimo parziale}
+				}
+			}
+		}
+
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

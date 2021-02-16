@@ -1,0 +1,198 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+
+\begin{page}
+    \begin{tikzpicture}
+        \node[mynode] at ( 0.00,  3.00) (1) {1};
+        \node[mynode] at ( 1.90,  1.62) (2) {2};
+        \node[mynode] at ( 1.18, -0.62) (3) {3};
+        \node[mynode] at (-1.18, -0.62) (4) {4};
+        \node[mynode] at (-1.90,  1.62) (5) {5};
+
+        \draw[myedge, -] (1) edge [above] node {3} (2);
+        \draw[myedge, -] (1) edge [right] node {4} (3);
+        \draw[myedge, -] (1) edge [left] node {2} (4);
+        \draw[myedge, -] (1) edge [above] node {7} (5);
+        \draw[myedge, -] (2) edge [left] node {4} (3);
+        \draw[myedge, -] (2) edge [above] node {6} (4);
+        \draw[myedge, -] (2) edge [above] node {3} (5);
+        \draw[myedge, -] (3) edge [above] node {5} (4);
+        \draw[myedge, -] (3) edge [above] node {8} (5);
+        \draw[myedge, -] (4) edge [right] node {6} (5);
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}
+        \node[mynode] at ( 0.00,  3.00) (1) {1};
+        \node[mynode] at ( 1.90,  1.62) (2) {2};
+        \node[mynode] at ( 1.18, -0.62) (3) {3};
+        \node[mynode] at (-1.18, -0.62) (4) {4};
+        \node[mynode] at (-1.90,  1.62) (5) {5};
+
+        \draw[myedge, -] (1) edge [above] node {3} (2);
+        \draw[myedge, -] (1) edge [right] node {4} (3);
+        \draw[myedger, ultra thick, -] (1) edge [left] node {2} (4);
+        \draw[myedge, -] (1) edge [above] node {7} (5);
+        \draw[myedge, -] (2) edge [left] node {4} (3);
+        \draw[myedge, -] (2) edge [above] node {6} (4);
+        \draw[myedge, -] (2) edge [above] node {3} (5);
+        \draw[myedge, -] (3) edge [above] node {5} (4);
+        \draw[myedge, -] (3) edge [above] node {8} (5);
+        \draw[myedge, -] (4) edge [right] node {6} (5);
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}
+        \node[mynode] at ( 0.00,  3.00) (1) {1};
+        \node[mynode] at ( 1.90,  1.62) (2) {2};
+        \node[mynode] at ( 1.18, -0.62) (3) {3};
+        \node[mynode] at (-1.18, -0.62) (4) {4};
+        \node[mynode] at (-1.90,  1.62) (5) {5};
+
+        \draw[myedge, -] (1) edge [above] node {3} (2);
+        \draw[myedge, -] (1) edge [right] node {4} (3);
+        \draw[myedger, ultra thick, -] (1) edge [left] node {2} (4);
+        \draw[myedge, -] (1) edge [above] node {7} (5);
+        \draw[myedge, -] (2) edge [left] node {4} (3);
+        \draw[myedge, -] (2) edge [above] node {6} (4);
+        \draw[myedger, ultra thick, -] (2) edge [above] node {3} (5);
+        \draw[myedge, -] (3) edge [above] node {5} (4);
+        \draw[myedge, -] (3) edge [above] node {8} (5);
+        \draw[myedge, -] (4) edge [right] node {6} (5);
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}
+        \node[mynode] at ( 0.00,  3.00) (1) {1};
+        \node[mynode] at ( 1.90,  1.62) (2) {2};
+        \node[mynode] at ( 1.18, -0.62) (3) {3};
+        \node[mynode] at (-1.18, -0.62) (4) {4};
+        \node[mynode] at (-1.90,  1.62) (5) {5};
+
+        \draw[myedger, ultra thick, -] (1) edge [above] node {3} (2);
+        \draw[myedge, -] (1) edge [right] node {4} (3);
+        \draw[myedger, ultra thick, -] (1) edge [left] node {2} (4);
+        \draw[myedge, -] (1) edge [above] node {7} (5);
+        \draw[myedge, -] (2) edge [left] node {4} (3);
+        \draw[myedge, -] (2) edge [above] node {6} (4);
+        \draw[myedger, ultra thick, -] (2) edge [above] node {3} (5);
+        \draw[myedge, -] (3) edge [above] node {5} (4);
+        \draw[myedge, -] (3) edge [above] node {8} (5);
+        \draw[myedge, -] (4) edge [right] node {6} (5);
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}
+        \node[mynode] at ( 0.00,  3.00) (1) {1};
+        \node[mynode] at ( 1.90,  1.62) (2) {2};
+        \node[mynode] at ( 1.18, -0.62) (3) {3};
+        \node[mynode] at (-1.18, -0.62) (4) {4};
+        \node[mynode] at (-1.90,  1.62) (5) {5};
+
+        \draw[myedger, ultra thick, -] (1) edge [above] node {3} (2);
+        \draw[myedge, -] (1) edge [right] node {4} (3);
+        \draw[myedger, ultra thick, -] (1) edge [left] node {2} (4);
+        \draw[myedge, -] (1) edge [above] node {7} (5);
+        \draw[myedgeb, dashed, -] (2) edge [left] node {4} (3);
+        \draw[myedge, -] (2) edge [above] node {6} (4);
+        \draw[myedger, ultra thick, -] (2) edge [above] node {3} (5);
+        \draw[myedge, -] (3) edge [above] node {5} (4);
+        \draw[myedge, -] (3) edge [above] node {8} (5);
+        \draw[myedge, -] (4) edge [right] node {6} (5);
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}
+        \node[mynode] at ( 0.00,  3.00) (1) {1};
+        \node[mynode] at ( 1.90,  1.62) (2) {2};
+        \node[mynode] at ( 1.18, -0.62) (3) {3};
+        \node[mynode] at (-1.18, -0.62) (4) {4};
+        \node[mynode] at (-1.90,  1.62) (5) {5};
+
+        \draw[myedger, ultra thick, -] (1) edge [above] node {3} (2);
+        \draw[myedgeb, dashed, -] (1) edge [right] node {4} (3);
+        \draw[myedger, ultra thick, -] (1) edge [left] node {2} (4);
+        \draw[myedge, -] (1) edge [above] node {7} (5);
+        \draw[myedgeb, dashed, -] (2) edge [left] node {4} (3);
+        \draw[myedge, -] (2) edge [above] node {6} (4);
+        \draw[myedger, ultra thick, -] (2) edge [above] node {3} (5);
+        \draw[myedge, -] (3) edge [above] node {5} (4);
+        \draw[myedge, -] (3) edge [above] node {8} (5);
+        \draw[myedge, -] (4) edge [right] node {6} (5);
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}
+        \node[mynode] at ( 0.00,  3.00) (1) {1};
+        \node[mynode] at ( 1.90,  1.62) (2) {2};
+        \node[mynode] at ( 1.18, -0.62) (3) {3};
+        \node[mynode] at (-1.18, -0.62) (4) {4};
+        \node[mynode] at (-1.90,  1.62) (5) {5};
+
+        \draw[myedger, ultra thick, -] (1) edge [above] node {3} (2);
+        \draw[myedgeb, dashed, -] (1) edge [right] node {4} (3);
+        \draw[myedger, ultra thick, -] (1) edge [left] node {2} (4);
+        \draw[myedge, -] (1) edge [above] node {7} (5);
+        \draw[myedgeb, dashed, -] (2) edge [left] node {4} (3);
+        \draw[myedge, -] (2) edge [above] node {6} (4);
+        \draw[myedger, ultra thick, -] (2) edge [above] node {3} (5);
+        \draw[myedger, ultra thick, -] (3) edge [above] node {5} (4);
+        \draw[myedge, -] (3) edge [above] node {8} (5);
+        \draw[myedge, -] (4) edge [right] node {6} (5);
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}
+        \node[mynode] at ( 0.00,  3.00) (1) {1};
+        \node[mynode] at ( 1.90,  1.62) (2) {2};
+        \node[mynode] at ( 1.18, -0.62) (3) {3};
+        \node[mynode] at (-1.18, -0.62) (4) {4};
+        \node[mynode] at (-1.90,  1.62) (5) {5};
+
+        \draw[myedger, ultra thick, -] (1) edge [above] node {3} (2);
+        \draw[myedgeb, dashed, -] (1) edge [right] node {4} (3);
+        \draw[myedger, ultra thick, -] (1) edge [left] node {2} (4);
+        \draw[myedge, -] (1) edge [above] node {7} (5);
+        \draw[myedgeb, dashed, -] (2) edge [left] node {4} (3);
+        \draw[myedge, -] (2) edge [above] node {6} (4);
+        \draw[myedger, ultra thick, -] (2) edge [above] node {3} (5);
+        \draw[myedger, ultra thick, -] (3) edge [above] node {5} (4);
+        \draw[myedgeb, ultra thick, -] (3) edge [above] node {8} (5);
+        \draw[myedge, -] (4) edge [right] node {6} (5);
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}
+        \node[mynode] at ( 0.00,  3.00) (1) {1};
+        \node[mynode] at ( 1.90,  1.62) (2) {2};
+        \node[mynode] at ( 1.18, -0.62) (3) {3};
+        \node[mynode] at (-1.18, -0.62) (4) {4};
+        \node[mynode] at (-1.90,  1.62) (5) {5};
+
+        \draw[myedger, ultra thick, -] (1) edge [above] node {3} (2);
+        \draw[myedge, -] (1) edge [right] node {4} (3);
+        \draw[myedger, ultra thick, -] (1) edge [left] node {2} (4);
+        \draw[myedge, -] (1) edge [above] node {7} (5);
+        \draw[myedge, -] (2) edge [left] node {4} (3);
+        \draw[myedge, -] (2) edge [above] node {6} (4);
+        \draw[myedger, ultra thick, -] (2) edge [above] node {3} (5);
+        \draw[myedger, ultra thick, -] (3) edge [above] node {5} (4);
+        \draw[myedger, ultra thick, -] (3) edge [above] node {8} (5);
+        \draw[myedge, -] (4) edge [right] node {6} (5);
+    \end{tikzpicture}
+\end{page}
+
+\end{document}

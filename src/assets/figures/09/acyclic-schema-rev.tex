@@ -1,0 +1,172 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+\tikzset{
+	mynode/.append style={
+		minimum width = 1cm,
+	}
+}
+
+\begin{document}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0.0, 0.0) (a) {a};
+	\node[mynode] at (2.0, 2.0) (b) {b};
+	\node[mynode] at (4.0, 0.0) (c) {c};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (a) edge node {} (c);
+
+	\path[use as bounding box] (-0.5,-1.00) rectangle (4.7, 2.0);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynoder, label={below:\([1,\!\texttt{-}]\)}] at (0.0, 0.0) (a) {a};
+	\node[mynode] at (2.0, 2.0) (b) {b};
+	\node[mynode] at (4.0, 0.0) (c) {c};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (a) edge node {} (c);
+
+	\path[use as bounding box] (-0.5,-1.00) rectangle (4.7, 2.0);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynoder, label={below:\([1,\!\texttt{-}]\)}] at (0.0, 0.0) (a) {a};
+	\node[mynode] at (2.0, 2.0) (b) {b};
+	\node[mynode] at (4.0, 0.0) (c) {c};
+
+	\draw[myedger] (a) edge[below right] node {\(dt[v]=0\)} (b);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (a) edge node {} (c);
+
+	\path[use as bounding box] (-0.5,-1.00) rectangle (4.7, 2.0);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynoder, label={below:\([1,\!\texttt{-}]\)}] at (0.0, 0.0) (a) {a};
+	\node[mynoder, label={below:\([2,\!\texttt{-}]\)}] at (2.0, 2.0) (b) {b};
+	\node[mynode] at (4.0, 0.0) (c) {c};
+
+	\draw[myedger] (a) edge node {} (b);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (a) edge node {} (c);
+
+	\path[use as bounding box] (-0.5,-1.00) rectangle (4.7, 2.0);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynoder, label={below:\([1,\!\texttt{-}]\)}] at (0.0, 0.0) (a) {a};
+	\node[mynoder, label={below:\([2,\!\texttt{-}]\)}] at (2.0, 2.0) (b) {b};
+	\node[mynode] at (4.0, 0.0) (c) {c};
+
+	\draw[myedger] (a) edge node {} (b);
+	\draw[myedger] (b) edge[above right] node {\(dt[v]=0\)} (c);
+	\draw[myedge] (a) edge node {} (c);
+
+	\path[use as bounding box] (-0.5,-1.00) rectangle (4.7, 2.0);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynoder, label={below:\([1,\!\texttt{-}]\)}] at (0.0, 0.0) (a) {a};
+	\node[mynoder, label={below:\([2,\!\texttt{-}]\)}] at (2.0, 2.0) (b) {b};
+	\node[mynoder, label={below:\([3,\!\texttt{-}]\)}] at (4.0, 0.0) (c) {c};
+
+	\draw[myedger] (a) edge node {} (b);
+	\draw[myedger] (b) edge node {} (c);
+	\draw[myedge] (a) edge node {} (c);
+
+	\path[use as bounding box] (-0.5,-1.00) rectangle (4.7, 2.0);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynoder, label={below:\([1,\!\texttt{-}]\)}] at (0.0, 0.0) (a) {a};
+	\node[mynoder, label={below:\([2,\!\texttt{-}]\)}] at (2.0, 2.0) (b) {b};
+	\node[mynodeb, label={below:\([3, 4]\)}] at (4.0, 0.0) (c) {c};
+
+	\draw[myedger] (a) edge node {} (b);
+	\draw[myedger] (b) edge node {} (c);
+	\draw[myedge] (a) edge node {} (c);
+
+	\path[use as bounding box] (-0.5,-1.00) rectangle (4.7, 2.0);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynoder, label={below:\([1,\!\texttt{-}]\)}] at (0.0, 0.0) (a) {a};
+	\node[mynodeb, label={below:\([2, 5]\)}] at (2.0, 2.0) (b) {b};
+	\node[mynodeb, label={below:\([3, 4]\)}] at (4.0, 0.0) (c) {c};
+
+	\draw[myedger] (a) edge node {} (b);
+	\draw[myedger] (b) edge node {} (c);
+	\draw[myedge] (a) edge node {} (c);
+
+	\path[use as bounding box] (-0.5,-1.00) rectangle (4.7, 2.0);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynoder, label={below:\([1,\!\texttt{-}]\)}] at (0.0, 0.0) (a) {a};
+	\node[mynodeb, label={below:\([2, 5]\)}] at (2.0, 2.0) (b) {b};
+	\node[mynodeb, label={below:\([3, 4]\)}] at (4.0, 0.0) (c) {c};
+
+	\draw[myedger] (a) edge node {} (b);
+	\draw[myedger] (b) edge node {} (c);
+	\draw[myedgevd] (a) edge[above] node {\footnotesize \(dt[u]< dt[v], ft[v] \neq 0\)} (c);
+
+	\path[use as bounding box] (-0.5,-1.00) rectangle (4.7, 2.0);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb, label={below:\([1, 6]\)}] at (0.0, 0.0) (a) {a};
+	\node[mynodeb, label={below:\([2, 5]\)}] at (2.0, 2.0) (b) {b};
+	\node[mynodeb, label={below:\([3, 4]\)}] at (4.0, 0.0) (c) {c};
+
+	\draw[myedger] (a) edge node {} (b);
+	\draw[myedger] (b) edge node {} (c);
+	\draw[myedgevd] (a) edge node {} (c);
+
+	\path[use as bounding box] (-0.5,-1.00) rectangle (4.7, 2.0);
+
+\end{tikzpicture}
+\end{page}
+
+\end{document}

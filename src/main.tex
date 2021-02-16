@@ -1,0 +1,79 @@
+%&settings/preamble.main
+
+\subfilefalse
+\usepackage[newfloat, cachedir=_minted-cache, outputdir=build]{minted}
+\usepackage{libraries/set-minted}
+\mintedpath{{assets/codes/04/}}
+
+% NOTE gestione delle versioni del documento
+\usepackage{./settings/versions}
+
+% NOTE compilazione del documento principale
+% arara: pdflatex: {
+% arara: --> options: ['--interaction=batchmode', '--output-directory=build'],
+%! arara: --> options: ['--output-directory=build'],
+% arara: --> shell: yes,
+% arara: --> draft: yes
+% arara: --> }
+% arara: pdflatex: {
+% arara: --> options: ['--interaction=batchmode' ,'--output-directory=build'],
+% arara: --> shell: yes,
+% arara: --> synctex: yes,
+% arara: --> }
+\begin{document}
+\frontmatter
+
+    % NOTE nessun contatore delle pagine
+	\pagenumbering{gobble}
+
+    % NOTE frontespizio
+    \input{00-pagina-iniziale}
+	\cleardoublepage
+
+    % NOTE pagina con la dedica (non numerata)
+	\input{00-dedica}
+	\cleardoublepage
+
+	\input{00-prologo}
+
+\mainmatter
+
+	\input{00-toc}
+	\cleardoublepage
+
+\part{Primo semestre}
+
+	\pagenumbering{arabic}
+
+	\input{01-introduzione}
+	\input{02-analisi}
+	\input{03-funzioni}
+	\input{03-funzioni-added}
+	\input{02-analisi-ammortizzata}
+	\input{04-strutture}
+	\input{05-alberi}
+	\input{06-abr}
+	\input{07-hashing}
+	\input{08-insiemi-dizionari}
+	\input{09-grafi}
+	\input{10-strutture-speciali}
+	\input{12-dividi}
+
+\part{Secondo semestre}
+
+	\input{10-strutture-speciali}
+	\input{11-scelta}
+	\input{12-dividi}
+	\input{13-dp}
+	\input{14-greedy}
+	\input{15-local}
+	\input{16-backtrack}
+	\input{17-prob}
+	\input{18-pnp}
+	\input{19-approx}
+
+\appendix
+
+	\input{A1-sorting}
+
+\end{document}

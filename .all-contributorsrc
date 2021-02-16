@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "FrancescoBozzo",
+      "name": "Francesco Bozzo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32967065?v=4",
+      "profile": "https://github.com/FrancescoBozzo",
+      "contributions": [
+        "test",
+        "platform",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "latex-algorithms",
+  "projectOwner": "emanuelenardi",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

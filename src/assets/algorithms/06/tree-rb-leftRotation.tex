@@ -1,0 +1,47 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{effettua una rotazione verso sinistra}
+\prototype{\Tree \leftRotation{\Tree x}}{
+	\lnl{case:primo-step}%
+	\Tree \(y \Assign x.\treeRight\)\;
+	\Tree \(p \Assign x.\treeParent\)\;
+
+	\BlankLine
+	\lnl{case:secondo-step}%
+	\(x.\treeRight \Assign y.\treeLeft\) \Comment*[l]{il sottoalbero \(B\) diventa figlio destro di \(x\)}
+	\If{\(y.\treeLeft \Neq \Nil\)}{
+		\(y.\treeLeft.\treeParent \Assign x\)\;
+	}
+
+	\BlankLine
+	\lnl{case:terzo-step}%
+	\(y.\treeLeft \Assign x\) \Comment*[l]{\(x\) diventa figlio sinistro di \(y\)}
+	\(x.\treeParent \Assign y\)\;
+
+	\BlankLine
+	\lnl{case:quarto-step}%
+	\(y.\treeParent \Assign p\) \Comment*[l]{\(y\) diventa figlio di \(p\)}
+	\If{\(p \Neq \Nil\)}{
+		\eIf{\(p.\treeLeft \Equal x\)}{
+			\(p.\treeLeft \Assign y\)
+		}{
+			\(p.\treeRight \Assign y\)
+		}
+	}
+
+	\BlankLine
+	\Return \(y\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

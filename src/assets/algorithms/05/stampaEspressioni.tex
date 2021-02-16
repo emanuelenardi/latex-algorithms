@@ -1,0 +1,48 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\begin{minipage}{.5\textwidth}
+
+\prototype{\Int \stampaEspressioni{\Tree \(t\)}}{
+	\eIf{\(t.\treeLeft \Equal \Nil\) \And \(t.\treeRight \Equal \Nil\)}{
+		\tcp{siamo in una foglia}
+		\Print \(t.\treeRead\)
+	}{
+		\tcp{sono su un nodo interno}
+		\Print \enquote{(}\;
+
+		\stampaEspressioni{\(t.\treeLeft\)}\;
+
+		\Print \(t.\treeRead\)\;
+
+		\stampaEspressioni{\(t.\treeRight\)}\;
+
+		\Print \enquote{)}\;
+	}
+}
+
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+\ifFigureOfAlgo
+\begin{minipage}[t][4.5cm]{.85\linewidth}
+	\vfill\centering
+	\begin{center}
+		\begin{forest} circled math tree
+		[*[+[4][9]][+[3][4]]]
+		\end{forest}
+	\end{center}
+	Stampa: \texttt{(( 4 + 9 ) * ( 3 + 4 ))}
+	\vfill
+\end{minipage}
+\fi
+
+\end{minipage}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

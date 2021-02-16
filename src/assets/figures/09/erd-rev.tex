@@ -1,0 +1,402 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+\begin{document}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode, label={0}] at (4, 0.5) (a) {a};
+	\node[mynode] at (0,-3) (b) {b};
+	\node[mynode] at (2,-2) (c) {c};
+	\node[mynode] at (6,-2) (d) {d};
+	\node[mynode] at (8,-2) (e) {e};
+	\node[mynode] at (4,-4) (f) {f};
+	\node[mynode] at (6,-4) (g) {g};
+	\node[mynode] at (8,-4) (h) {h};
+	\node[mynode] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ a \}};
+
+	\draw[myedge,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedge,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynoder, label={0}] at (4, 0.5) (a) {a};
+	\node[mynode] at (0,-3) (b) {b};
+	\node[mynode, label={1}] at (2,-2) (c) {c};
+	\node[mynode] at (6,-2) (d) {d};
+	\node[mynode, label={1}] at (8,-2) (e) {e};
+	\node[mynode, label={below:1}] at (4,-4) (f) {f};
+	\node[mynode] at (6,-4) (g) {g};
+	\node[mynode] at (8,-4) (h) {h};
+	\node[mynode] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ c, e, f \}};
+
+	\draw[myedger,-] (a) edge node {} (c);
+	\draw[myedger,-] (a) edge node {} (e);
+	\draw[myedger,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb, label={0}] at (4, 0.5) (a) {a};
+	\node[mynode, label={2}] at (0,-3) (b) {b};
+	\node[mynoder, label={1}] at (2,-2) (c) {c};
+	\node[mynode, label={2}] at (6,-2) (d) {d};
+	\node[mynode, label={1}] at (8,-2) (e) {e};
+	\node[mynode, label={below:1}] at (4,-4) (f) {f};
+	\node[mynode] at (6,-4) (g) {g};
+	\node[mynode] at (8,-4) (h) {h};
+	\node[mynode] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ e, f, b, d \}};
+
+	\draw[myedger,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedge,-] (a) edge node {} (f);
+	\draw[myedger,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedger,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb, label={0}] at (4, 0.5) (a) {a};
+	\node[mynode, label={2}] at (0,-3) (b) {b};
+	\node[mynodeb, label={1}] at (2,-2) (c) {c};
+	\node[mynode, label={2}] at (6,-2) (d) {d};
+	\node[mynoder, label={1}] at (8,-2) (e) {e};
+	\node[mynode, label={below:1}] at (4,-4) (f) {f};
+	\node[mynode] at (6,-4) (g) {g};
+	\node[mynode, label={below:2}] at (8,-4) (h) {h};
+	\node[mynode] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ f, b, d, h \}};
+
+	\draw[myedge,-] (a) edge node {} (c);
+	\draw[myedger,-] (a) edge node {} (e);
+	\draw[myedge,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedger,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb, label={0}] at (4, 0.5) (a) {a};
+	\node[mynode, label={2}] at (0,-3) (b) {b};
+	\node[mynodeb, label={1}] at (2,-2) (c) {c};
+	\node[mynode, label={2}] at (6,-2) (d) {d};
+	\node[mynodeb, label={1}] at (8,-2) (e) {e};
+	\node[mynoder, label={below:1}] at (4,-4) (f) {f};
+	\node[mynode, label={below:2}] at (6,-4) (g) {g};
+	\node[mynode, label={below:2}] at (8,-4) (h) {h};
+	\node[mynode] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ b, d, h, g \}};
+
+	\draw[myedge,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedger,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedger,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedger,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedger,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb, label={0}] at (4, 0.5) (a) {a};
+	\node[mynoder, label={2}] at (0,-3) (b) {b};
+	\node[mynodeb, label={1}] at (2,-2) (c) {c};
+	\node[mynode, label={2}] at (6,-2) (d) {d};
+	\node[mynodeb, label={1}] at (8,-2) (e) {e};
+	\node[mynodeb, label={below:1}] at (4,-4) (f) {f};
+	\node[mynode, label={below:2}] at (6,-4) (g) {g};
+	\node[mynode, label={below:2}] at (8,-4) (h) {h};
+	\node[mynode] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ d, h, g \}};
+
+	\draw[myedge,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedge,-] (a) edge node {} (f);
+	\draw[myedger,-] (b) edge node {} (c);
+	\draw[myedger,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb, label={0}] at (4, 0.5) (a) {a};
+	\node[mynodeb, label={2}] at (0,-3) (b) {b};
+	\node[mynodeb, label={1}] at (2,-2) (c) {c};
+	\node[mynoder, label={2}] at (6,-2) (d) {d};
+	\node[mynodeb, label={1}] at (8,-2) (e) {e};
+	\node[mynodeb, label={below:1}] at (4,-4) (f) {f};
+	\node[mynode, label={below:2}] at (6,-4) (g) {g};
+	\node[mynode, label={below:2}] at (8,-4) (h) {h};
+	\node[mynode] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ h, g \}};
+
+	\draw[myedge,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedge,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedger,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedger,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedger,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb, label={0}] at (4, 0.5) (a) {a};
+	\node[mynodeb, label={2}] at (0,-3) (b) {b};
+	\node[mynodeb, label={1}] at (2,-2) (c) {c};
+	\node[mynodeb, label={2}] at (6,-2) (d) {d};
+	\node[mynodeb, label={1}] at (8,-2) (e) {e};
+	\node[mynodeb, label={below:1}] at (4,-4) (f) {f};
+	\node[mynode, label={below:2}] at (6,-4) (g) {g};
+	\node[mynoder, label={below:2}] at (8,-4) (h) {h};
+	\node[mynode, label={right:3}] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ g, j \}};
+
+	\draw[myedge,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedge,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedger,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedger,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb, label={0}] at (4, 0.5) (a) {a};
+	\node[mynodeb, label={2}] at (0,-3) (b) {b};
+	\node[mynodeb, label={1}] at (2,-2) (c) {c};
+	\node[mynodeb, label={2}] at (6,-2) (d) {d};
+	\node[mynodeb, label={1}] at (8,-2) (e) {e};
+	\node[mynodeb, label={below:1}] at (4,-4) (f) {f};
+	\node[mynoder, label={below:2}] at (6,-4) (g) {g};
+	\node[mynodeb, label={below:2}] at (8,-4) (h) {h};
+	\node[mynode, label={right:3}] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ j \}};
+
+	\draw[myedge,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedge,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedger,-] (f) edge node {} (g);
+	\draw[myedger,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedger,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb, label={0}] at (4, 0.5) (a) {a};
+	\node[mynodeb, label={2}] at (0,-3) (b) {b};
+	\node[mynodeb, label={1}] at (2,-2) (c) {c};
+	\node[mynodeb, label={2}] at (6,-2) (d) {d};
+	\node[mynodeb, label={1}] at (8,-2) (e) {e};
+	\node[mynodeb, label={below:1}] at (4,-4) (f) {f};
+	\node[mynodeb, label={below:2}] at (6,-4) (g) {g};
+	\node[mynodeb, label={below:2}] at (8,-4) (h) {h};
+	\node[mynoder, label={right:3}] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ j \}};
+
+	\draw[myedge,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedge,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedger,-] (g) edge node {} (j);
+	\draw[myedger,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb, label={0}] at (4, 0.5) (a) {a};
+	\node[mynodeb, label={2}] at (0,-3) (b) {b};
+	\node[mynodeb, label={1}] at (2,-2) (c) {c};
+	\node[mynodeb, label={2}] at (6,-2) (d) {d};
+	\node[mynodeb, label={1}] at (8,-2) (e) {e};
+	\node[mynodeb, label={below:1}] at (4,-4) (f) {f};
+	\node[mynodeb, label={below:2}] at (6,-4) (g) {g};
+	\node[mynodeb, label={below:2}] at (8,-4) (h) {h};
+	\node[mynodeb, label={right:3}] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ \}};
+
+	\draw[myedge,-] (a) edge node {} (c);
+	\draw[myedge,-] (a) edge node {} (e);
+	\draw[myedge,-] (a) edge node {} (f);
+	\draw[myedge,-] (b) edge node {} (c);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedge,-] (c) edge node {} (d);
+	\draw[myedge,-] (f) edge node {} (g);
+	\draw[myedge,-] (d) edge node {} (g);
+	\draw[myedge,-] (e) edge node {} (h);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+	\draw[myedge,-] (h) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynodeb, label={0}] at (4, 0.5) (a) {a};
+	\node[mynodeb, label={2}] at (0,-3) (b) {b};
+	\node[mynodeb, label={1}] at (2,-2) (c) {c};
+	\node[mynodeb, label={2}] at (6,-2) (d) {d};
+	\node[mynodeb, label={1}] at (8,-2) (e) {e};
+	\node[mynodeb, label={below:1}] at (4,-4) (f) {f};
+	\node[mynodeb, label={below:2}] at (6,-4) (g) {g};
+	\node[mynodeb, label={below:2}] at (8,-4) (h) {h};
+	\node[mynodeb, label={right:3}] at (7,-6) (j) {j};
+	\node[mynode] at (11,-2) (k) {k};
+	\node[mynode] at (10,-4) (l) {l};
+	\node[align=left, above right, draw] at (0,-6) {Queue = \{ \}};
+
+	\draw[myedger] (c) edge node {} (a);
+	\draw[myedger] (e) edge node {} (a);
+	\draw[myedger] (f) edge node {} (a);
+	\draw[myedger] (b) edge node {} (c);
+	\draw[myedger] (d) edge node {} (c);
+	\draw[myedger] (h) edge node {} (e);
+	\draw[myedger] (j) edge node {} (h);
+	\draw[myedge,-] (g) edge node {} (d);
+	\draw[myedge,-] (b) edge node {} (f);
+	\draw[myedger] (g) edge node {} (f);
+	\draw[myedge,-] (k) edge node {} (l);
+	\draw[myedge,-] (f) edge node {} (d);
+	\draw[myedge,-] (g) edge node {} (j);
+
+\end{tikzpicture}
+\end{page}
+
+\end{document}

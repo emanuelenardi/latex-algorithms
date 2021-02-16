@@ -1,0 +1,60 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\bbTsp{\Array{} \(S\), \Int \(\cost\), \Set \(R\), \Int \(n\), \Int \(i\)}}{
+
+	\BlankLine
+	\Set \(\choices\) \Assign \copyFunction{\(R\)}\;
+
+	\ForEach{\(c \in \choices\)}{
+
+		\BlankLine
+		\(S[i] \Assign c\) \tcp{memorizza la scelta}
+
+		\BlankLine
+		\tcp{MECCANISMO PER GENERARE LE PERMUTAZIONI}
+		\(R.\setRemove{c}\) \tcp{rimuovi la scelta nell'insieme delle scelte possibili}
+
+		\BlankLine
+		\tcp{MECCANISMO DI VALUTAZIONE}
+		\eIf{\(i < n\)}{
+
+			\BlankLine
+			\{ calcola \(\out\), \(\back\), \(\transfer[h]\) per ogni \(h \in R \Leftrightarrow h \not\in S[1\dots i]\) \}
+
+			\BlankLine
+			\Int \(\lb\) \Assign \(\ceil*{\frac{\out + \sum_{h \not\in S} \transfer[h] + \back}{2}}\)
+
+			\BlankLine
+			\If{\(\lb < \minCost\)}{
+				\bbTsp{\(S\), \(\cost + d[S[i-1]][S[i]]\), \(R\), \(i+1\)}\;
+			}
+		}{
+
+			\BlankLine
+			\(\lb\) \Assign \(\cost + d[S[i]][S[1]]\) \tcp{aggiorna il limite inferiore}
+
+			\BlankLine
+			\If(\tcp*[h]{se abbiamo trovato una soluzione migliore}){\(\lb < \minCost\)}{
+
+				\BlankLine
+				\(minSol\) \Assign \copyFunction{\(S\)} \tcp{aggiorna la soluzione ottimale}
+				\(minCost\) \Assign \(\lb\) \tcp{aggiorna il costo minimo}
+			}
+		}
+
+		\BlankLine
+		\(R.\setInsert{c}\) \tcp{reinserisco la scelta nell'insieme delle scelte possibili}
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

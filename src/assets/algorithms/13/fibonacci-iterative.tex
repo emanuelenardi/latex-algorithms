@@ -1,0 +1,29 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Int \fibonacciIter{\Int \(n\)}}{
+
+	\BlankLine
+	\(DP\) \Assign \new \Array{\Int}[0][n] \tcp{inizializzo la \enquote{tabella} DP}
+	\(DP[0] \Assign DP[1] \Assign 1\) \tcp{inserisco i casi base}
+
+	\BlankLine
+	\tcp{computo i valori successivi sulla base dei valori precedenti}
+	\From{\(i \Assign 2\) \DownTo \(n\)}{
+		\(DP[i]\) \Assign \(DP[i-1] + DP[i-2]\)\;
+	}
+
+	\BlankLine
+	\Return \(DP[n]\) \tcp{restituisco il valore \(n\)-esimo richiesto}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

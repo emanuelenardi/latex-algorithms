@@ -1,0 +1,46 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{restituisce \True se trova un ciclo}
+\prototype{\Bool \hasCycleRec{\Graph \(G\), \Node \(u\), \Node \(p\), \Array{\Bool} \(visited\)}}{
+	\params{G}[grafo esplorato]
+	\params{u}[nodo da esaminare]
+	\params{p}[nodo da cui provengo (padre)]
+	\params{visited}[vettore dei nodi visitati]
+
+	\BlankLine
+	\(visited[u]\) \Assign \True \Comment*[l]{lo visito per la prima volta}
+
+	\BlankLine
+	\ForEach(\tcp*[h]{visito tutti i suoi vicini}){\(v \in G.\adj{u} - \{p\}\)}{
+		\tcp{\(G.\adj{u} - \{p\}\): non considero il nodo da cui provengo (è un grafo orientato)}
+
+		\BlankLine
+		\uIf(\tcp*[h]{ho già visitato il nodo}){\(visited[v]\)}{
+			\Return \True \Comment*[l]{ho trovato un ciclo}
+
+			\BlankLine
+			\tcp{altrimenti effettuo una visita ricorsiva sul nodo vicino \(v\)}
+		}
+		\ElseIf{\hasCycleRec{G, v, u, visited}}{
+			\tcp{se una qualsiasi delle sottochiamate ritorna vero, allora ho trovato un ciclo}
+			\Return \True\;
+		}
+	}
+
+	\BlankLine
+	\tcp{non ho trovato alcun ciclo}
+	\Return \False\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

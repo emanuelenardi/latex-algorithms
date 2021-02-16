@@ -1,0 +1,62 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\begin{minipage}[t]{.5\textwidth}
+
+\tcp{crea un nuovo albero}
+\tcp{restituisce la radice dell'albero creato}
+\prototype{\Tree \treeConstructor{\Item \(v\)}}{
+	\Tree \(t =\) \new \Tree\;
+	\(t.\varParent \Assign \Nil\)\;
+	\(t.\varLeft \Assign t.\varRight \Assign \Nil\)\;
+	\(t.\Value \Assign v\)\;
+
+	\BlankLine
+	\Return \(t\)\;
+}
+
+\prototype{\insertLeft{\Tree \(t\)}}{
+	\If{\(\varLeft \Neq \Nil\)}{
+		\(t.\varParent \Assign \This\)\;
+		\(\varLeft \Assign t\)\;
+	}
+}
+
+\prototype{\insertRight{\Tree \(t\)}}{
+	\If{\(\varRight \Neq \Nil\)}{
+		\(t.\varParent \Assign \This\)\;
+		\(\varRight \Assign t\)\;
+	}
+}
+
+\end{minipage}% <- importante, non toccare!
+\begin{minipage}[t]{.5\textwidth}
+
+\tcp{elimina ricorsivamente il sottoalbero sinistro}
+\prototype{\deleteLeft{}}{
+	\If{\(\varLeft \Neq \Nil\)}{
+		\(\varLeft.\deleteLeft\)\;
+		\(\varLeft.\deleteRight\)\;
+		\(\varLeft \Assign \Nil\)\;
+	}
+}
+
+\tcp{elimina ricorsivamente il sottoalbero destro}
+\prototype{\deleteRight{}}{
+	\If{\(\varRight \Neq \Nil\)}{
+		\(\varRight.\deleteLeft\)\;
+		\(\varRight.\deleteRight\)\;
+		\(\varRight \Assign \Nil\)\;
+	}
+}
+
+\end{minipage}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

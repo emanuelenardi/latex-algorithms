@@ -1,0 +1,21 @@
+\documentclass[tikz]{standalone}
+\usepackage{../tikz-preamble}
+
+\begin{document}
+\begin{tikzpicture}
+
+	\node[mynode] at (0,0) (a) {a};
+	\node[mynode] at (2,1.5) (b) {b};
+	\node[mynode] at (4,1.5) (c) {c};
+	\node[mynode] at (2,-1.5) (d) {d};
+	\node[mynode] at (4,-1.5) (e) {e};
+
+	\draw[myedger] (a) edge node {} (b);
+	\draw[myedger] (d) edge node {} (a);
+	\draw[myedger] (b) edge node {} (c);
+	\draw[myedge] (d) edge node {} (c);
+	\draw[myedger] (e) edge node {} (d);
+	\draw[myedger] (c) edge node {} (e);
+
+\end{tikzpicture}
+\end{document}

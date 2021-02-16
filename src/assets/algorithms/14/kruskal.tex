@@ -1,0 +1,50 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Set \kruskal{\Edge{} \(A\), \Int \(n\), \Int \(m\)}}{
+\tcp{\Edge{}: vettore di archi}
+
+	\BlankLine
+	\lnl{kruskal:init}%
+	\Set \(T\) \Assign \setConstructor \Comment*[h]{insieme (inizialmente vuoto) che conterrà gli archi dell'albero minimo}\;
+	\mfSet \(M\) \Assign \mfConstructor{n} \Comment*[h]{insieme disgiunto grande }\;
+
+	\BlankLine
+	\tcp{ordino per peso crescente}
+	\lnl{kruskal:order}%
+	\{ ordina \(A[1][m]\) in modo che \(A[1].\peso \leqslant \cdots \leqslant A[m].\peso\) \}\;
+%
+	\BlankLine
+	\Int \(c \Assign 0\) \Comment*[h]{quanti archi ho aggiunto}\;
+	\Int \(i \Assign 1\) \Comment*[h]{quale arco sto guardando}\;
+	\lnl{kruskal:op}%
+	\While(\Comment*[h]{Termina quando l'albero è costruito}){\(c < n-1\) \And \(i \leqslant m\)}{
+%
+		\BlankLine
+		\tcp{\(c < n-1\): ho raggiunto tutti gli archi necessari per fare un albero}
+		\tcp{\(i \leqslant m\): ho esaurito tutti gli archi da guardare (per controllo)}
+		\If(\Comment*[h]{non fanno parte dello stesso albero}){\(M.\mfFind{\(A[i].u\)} \Neq M.\mfFind{\(A[i].v\)}\)}{
+
+			\BlankLine
+			\(M.\mfMerge{\(A[i].u\), \(A[i].v\)}\) \Comment*[l]{unisco gli insiemi disgiunti}
+			\(T.\setInsert{\(A[i]\)}\) \Comment*[l]{inserisco l'arco all'albero}
+			\(c \Assign c + 1\) \Comment*[l]{ho aggiunto un altro arco}
+		}
+
+		\BlankLine
+		\(i \Assign i + 1\) \Comment*[l]{guardo il prossimo arco}
+	}
+
+	\Return \(T\) \Comment*[l]{Ritorna l'albero di copertura minimo}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

@@ -1,0 +1,63 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\begin{minipage}[t]{.48\textwidth}
+
+Una struttura dati \emph{dinamica}, \emph{lineare} che rappresenta una sequenza \emph{ordinata} di valori, dove lo stesso valore può comparire più volte.
+
+\BlankLine
+\sequenceConstructor
+
+\BlankLine
+\tcp{INTERPRETARE}
+\Bool \listEmpty \Comment*[r]{\True se la sequenza è vuota}
+\Bool \listEnd \Comment*[r]{\True se \(p\) è uguale a \(pos_0\) o a \(pos_{n+1}\)}
+
+\BlankLine
+\tcp{LEGGERE}
+\Pos \listHead \Comment*[r]{posizione del primo elemento}
+\Pos \listTail \Comment*[r]{posizione dell'ultimo elemento}
+
+\BlankLine
+\tcp{ITERARE}
+\Pos \listSucc \Comment*[r]{posizione dell'elem.\ che segue \(p\)}
+\Pos \listPred \Comment*[r]{posizione dell'elem.\ che precede \(p\)}
+
+% \vspace{20pt}
+\end{minipage}\hfill%
+\begin{minipage}[t]{.45\textwidth}
+
+% \BlankLine
+\tcp{MODIFICA}
+
+\BlankLine
+\tcp{inserisce l'elemento di tipo \Item nella posizione \(p\),}
+\tcp{ritorna la nuova posizione,}
+\tcp{che diviene il predecessore di \(p\)}
+\Pos \listInsert{\Pos p, \Item v}
+
+\tcp{rimuove l'elemento contenuto nella pos.\ \(p\),}
+\tcp{ritorna il successore di \(p\)}
+\Pos \listRemove{\Pos p}
+
+\BlankLine
+\tcp{legge l'elemento di tipo \Item}
+\tcp{contenuto nella posizione \(p\)}
+\listRead{\Pos p}
+
+\BlankLine
+\tcp{scrive l'elemento \(v\) di tipo \Item}
+\tcp{nella posizione \(p\)}
+\listWrite{\Pos p, \Item v}
+
+\vphantom{0pt}
+\end{minipage}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

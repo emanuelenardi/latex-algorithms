@@ -1,0 +1,16 @@
+%&../settings/preamble.main
+
+\ifsubfile
+\pagestyle{plain}
+\setcounter{chapter}{2}
+
+% arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
+% arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
+\begin{document}
+\fi
+\chapter{Analisi ammortizzata}
+
+Testo.
+\ifsubfile
+\end{document}
+\fi

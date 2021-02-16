@@ -1,0 +1,35 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\NoCaptionOfAlgo
+\begin{algorithm}[H]
+\caption{Struttura dati \textsc{Graph}}
+\fi
+
+% Il \Graph è una struttura dati dinamica che permette di aggiungere e rimuovere nodi ed archi.
+
+\graphConstructor \Comment*[r]{crea un grafo vuoto}
+
+\BlankLine
+\Set \VV \Comment*[r]{restituisce l'insieme di tutti i nodi}
+\Int \graphSize \Comment*[r]{restituisce il numero di nodi}
+
+\BlankLine
+\Set \adj{\Node u} \Comment*[r]{restituisce l'insieme di nodi adiacenti a \(u\)}
+
+\BlankLine
+\nodeInsert{\Node \(u\)}				\Comment*[r]{aggiunge il nodo \(u\) al grafo}
+\nodeDelete{\Node \(u\)}				\Comment*[r]{rimuove il nodo \(u\) dal grafo}
+
+\BlankLine
+\edgeInsert{\Node \(u\), \Node \(v\)}	\Comment*[r]{aggiunge l'arco \((u,v)\) al grafo}
+\edgeDelete{\Node \(u\), \Node \(v\)}	\Comment*[r]{rimuove l'arco \((u,v)\) dal grafo}
+
+\ifstandalone
+\end{algorithm}
+\RestoreCaptionOfAlgo
+\end{document}
+\fi

@@ -1,0 +1,91 @@
+% http://www.texample.net/tikz/examples/merge-sort-recursion-tree/
+% NOTE ho modificato il simbolo 'Omicron'
+% NOTE allineamento nodi etichettati con '\color{black}' midway -> near start
+\documentclass{standalone}
+% \usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\usepackage{xparse}
+\NewDocumentCommand{\Omicron}{o}{
+	\IfValueTF{#1}
+		{\mathcal{O}(#1)}
+		{\mathcal{O}}
+}
+
+\begin{document}
+
+% \ovalbox{
+\scalebox{0.9}{
+\begin{tikzpicture}[level/.style={sibling distance=60mm/#1}]
+\node [circle,draw] (z){$n$}
+  child {node [circle,draw] (a) {$\frac{n}{2}$}
+    child {node [circle,draw] (b) {$\frac{n}{2^2}$}
+      child {node {$\vdots$}
+        child {node [circle,draw] (d) {$\frac{n}{2^k}$}}
+        child {node [circle,draw] (e) {$\frac{n}{2^k}$}}
+      }
+      child {node {$\vdots$}}
+    }
+    child {node [circle,draw] (g) {$\frac{n}{2^2}$}
+      child {node {$\vdots$}}
+      child {node {$\vdots$}}
+    }
+  }
+  child {node [circle,draw] (j) {$\frac{n}{2}$}
+    child {node [circle,draw] (k) {$\frac{n}{2^2}$}
+      child {node {$\vdots$}}
+      child {node {$\vdots$}}
+    }
+  child {node [circle,draw] (l) {$\frac{n}{2^2}$}
+    child {node {$\vdots$}}
+    child {node (c){$\vdots$}
+      child {node [circle,draw] (o) {$\frac{n}{2^k}$}}
+      child {node [circle,draw] (p) {$\frac{n}{2^k}$}
+        child [grow=right] {node (q) {$=$} edge from parent[draw=none]
+          child [grow=right] {node (q) {$\Omicron_{k = \log n}(n)$} edge from parent[draw=none]
+            child [grow=up] {node (r) {$\vdots$} edge from parent[draw=none]
+              child [grow=up] {node (s) {$\Omicron_2(n)$} edge from parent[draw=none]
+                child [grow=up] {node (t) {$\Omicron_1(n)$} edge from parent[draw=none]
+                  child [grow=up] {node (u) {$\Omicron_0(n)$} edge from parent[draw=none]}
+                }
+              }
+            }
+            child [grow=down] {node (v) {$\Omicron(n \cdot \log n)$}edge from parent[draw=none]}
+          }
+        }
+      }
+    }
+  }
+};
+\path (a) -- (j) node [midway] {+};
+\path (b) -- (g) node [midway] {+};
+\path (k) -- (l) node [midway] {+};
+\path (k) -- (g) node [midway] {+};
+\path (d) -- (e) node [midway] {+};
+\path (o) -- (p) node [midway] {+};
+\path (o) -- (e) node (x) [midway] {\(\cdots\)}
+  child [grow=down] {
+    node (y) {\(\Omicron\left(\displaystyle\sum_{i = 0}^k 2^i \cdot \frac{n}{2^i}\right)\)}
+    edge from parent[draw=none]
+  };
+\path (q) -- (r) node [midway] {+};
+\path (s) -- (r) node [midway] {+};
+\path (s) -- (t) node [midway] {+};
+\path (s) -- (l) node [near end] {\color{black}=};
+\path (t) -- (u) node [midway] {+};
+\path (z) -- (u) node [near start] {\color{black}=};
+\path (j) -- (t) node [near start] {\color{black}=};
+\path (y) -- (x) node [midway] {\(\Downarrow\)};
+\path (v) -- (y)
+  node (w) [midway] {\(\Omicron\left(\displaystyle\sum_{i = 0}^k n\right) = \Omicron(k \cdot n)\)};
+\path (q) -- (v) node [midway] {=};
+\path (e) -- (x) node [midway] {+};
+\path (o) -- (x) node [midway] {+};
+\path (y) -- (w) node [midway] {\(=\)};
+\path (v) -- (w) node [midway] {\(\Leftrightarrow\)};
+\path (r) -- (c) node [midway] {\color{black}\(\cdots\)};
+\end{tikzpicture}
+}
+% }
+\end{document}

@@ -1,0 +1,40 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+\prototype{\countingSort{\Item{} A, \Int n, \Int k}}{
+
+	\BlankLine
+	% \Int i, j, k\;
+	\Array{\Int} \(B\) \Assign \new \Array{\Int}[1][k] \tcp{creo il vettore d'appoggio}
+
+	\BlankLine
+	% \tcp{Inizializza i vettori}
+	\For(\tcp*[h]{\(\Omicron(k)\)}){\(i \Assign 1\) \DownTo \(k\)}{
+		\(B[i] = 0\) \tcp{azzero il vettore d'appoggio}
+	}
+
+	\BlankLine
+	\For(\tcp*[h]{\(\Omicron(n)\)}){\(j \Assign 1\) \DownTo \(n\)}{
+		\(B[A[j]] = B[A[j]] + 1\) \tcp{conto quante volte incontro quel valore}
+	}
+
+	\BlankLine
+	\tcp{vado a ricollocare i vari valori man mano che li incontro}
+	\(j = 1\) \tcp{partendo dalla prima posizione}
+	\From(\tcp*[h]{scorro tutto il vettore}){\(i=1\) \DownTo \(k\)}{
+		\While(\tcp*[h]{per tutte le occorrenze di un determinato valore}){\(B[i] > 0\)}{
+			\(A[j] \Assign i\) \tcp{lo inserisco nel vettore}
+			\(\Increment{j}\) \tcp{scorro il cursore}
+			\(B[i] \Assign B[i] - 1\) \tcp{diminuisco le occorrenze}
+		}
+	}
+}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

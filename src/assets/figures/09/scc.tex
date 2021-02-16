@@ -1,0 +1,139 @@
+\documentclass[tikz, multi=page]{standalone}
+\usepackage{../tikz-preamble}
+
+\begin{document}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode] at (0.5,0) (a) {a};
+	\node[mynode] at (2,1.5) (b) {b};
+	\node[mynode] at (4,1.5) (c) {c};
+	\node[mynode] at (2,-1.5) (d) {d};
+	\node[mynode] at (4,-1.5) (e) {e};
+	\node[mynode] at (5.5,0) (f) {f};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (d);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (e) edge node {} (d);
+	\draw[myedge] (f) edge node {} (c);
+	\draw[myedge] (e) edge node {} (f);
+	\draw[myedge] (d) edge node {} (c);
+
+	\path[use as bounding box] (-0.5,-2.5) rectangle (6.5, 2.5);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+\node[mynode] at (0.5,0) (a) {a};
+	\node[mynoder] at (2,1.5) (b) {b};
+	\node[mynodeb] at (4,1.5) (c) {c};
+	\node[mynodeb] at (2,-1.5) (d) {d};
+	\node[mynodeb] at (4,-1.5) (e) {e};
+	\node[mynodeb] at (5.5,0) (f) {f};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (d);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (e) edge node {} (d);
+	\draw[myedge] (f) edge node {} (c);
+	\draw[myedge] (e) edge node {} (f);
+	\draw[myedge] (d) edge node {} (c);
+
+	\draw[ultra thick,teal,densely dotted] (0.5,0) circle (0.5cm);
+	\draw[ultra thick,teal,densely dotted] (2,1.5) circle (0.5cm);
+	\draw[ultra thick,teal,densely dotted,rotate around={-50:(3.8,-0.1)}] (3.8,-0.1) ellipse (1.7cm and 2.8cm);
+
+	\path[use as bounding box] (-0.5,-2.5) rectangle (6.5, 2.5);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynode, label={3}] at (0.5,0) (a) {a};
+	\node[mynoder, label={2}] at (2,1.5) (b) {b};
+	\node[mynodeb, label={1}] at (4,1.5) (c) {c};
+	\node[mynodeb, label={below:1}] at (2,-1.5) (d) {d};
+	\node[mynodeb, label={below:1}] at (4,-1.5) (e) {e};
+	\node[mynodeb, label={1}] at (5.5,0) (f) {f};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (d);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (e) edge node {} (d);
+	\draw[myedge] (f) edge node {} (c);
+	\draw[myedge] (e) edge node {} (f);
+	\draw[myedge] (d) edge node {} (c);
+
+	\draw[ultra thick,teal,densely dotted] (0.5,0) circle (0.5cm);
+	\draw[ultra thick,teal,densely dotted] (2,1.5) circle (0.5cm);
+	\draw[ultra thick,teal,densely dotted,rotate around={-50:(3.8,-0.1)}] (3.8,-0.1) ellipse (1.7cm and 2.8cm);
+
+	\path[use as bounding box] (-0.5,-2.5) rectangle (6.5, 2.5);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}
+
+	\node[mynoder, label={2}] at (0.5,0) (a) {a};
+	\node[mynodeb, label={1}] at (2,1.5) (b) {b};
+	\node[mynodeb, label={1}] at (4,1.5) (c) {c};
+	\node[mynodeb, label={below:1}] at (2,-1.5) (d) {d};
+	\node[mynodeb, label={below:1}] at (4,-1.5) (e) {e};
+	\node[mynodeb, label={1}] at (5.5,0) (f) {f};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (d);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (e) edge node {} (d);
+	\draw[myedge] (f) edge node {} (c);
+	\draw[myedge] (e) edge node {} (f);
+	\draw[myedge] (d) edge node {} (c);
+
+	\draw[ultra thick,teal,densely dotted] (0.5,0) circle (0.5cm);
+	\draw[ultra thick,teal,densely dotted,rounded corners=15pt] (1.25,1.95) rectangle (6,-1.95);
+
+	\path[use as bounding box] (-0.5,-2.5) rectangle (6.5, 2.5);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}
+
+	\node[mynodeb, label={1}] at (0.5,0) (a) {a};
+	\node[mynodeb, label={1}] at (2,1.5) (b) {b};
+	\node[mynodeb, label={1}] at (4,1.5) (c) {c};
+	\node[mynodeb, label={below:1}] at (2,-1.5) (d) {d};
+	\node[mynodeb, label={below:1}] at (4,-1.5) (e) {e};
+	\node[mynodeb, label={1}] at (5.5,0) (f) {f};
+
+	\draw[myedge] (a) edge node {} (b);
+	\draw[myedge] (a) edge node {} (d);
+	\draw[myedge] (b) edge node {} (c);
+	\draw[myedge] (c) edge node {} (e);
+	\draw[myedge] (e) edge node {} (d);
+	\draw[myedge] (f) edge node {} (c);
+	\draw[myedge] (e) edge node {} (f);
+	\draw[myedge] (d) edge node {} (c);
+
+	\draw[ultra thick,teal,densely dotted] (3,0) ellipse (3cm and 2.1cm);
+
+	\path[use as bounding box] (-0.5,-2.5) rectangle (6.5, 2.5);
+
+\end{tikzpicture}
+\end{page}
+
+\end{document}

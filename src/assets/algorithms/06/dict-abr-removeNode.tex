@@ -1,0 +1,89 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{RIMOZIONE DI UN NODO}
+\prototype{\Tree \removeNode{\Tree \(T\), \Item \(k\)}}{
+	% NOTE viene dichiarato ma non viene utilizzato
+	% \Tree \(t\)\;
+
+	\BlankLine
+	\tcp{individuo il nodo da rimuovere}
+	\Tree \(u \Assign\) \lookupNode{\(T, k\)}\;
+
+	\BlankLine
+	\tcp{se il nodo da rimuovere è presente nell'albero\dots}
+	\If{\(u \neq \Nil\)}{
+		\lnl{case:primo-caso}%
+		\tcp{\dots e non ha figli}
+		\uIf{\(u.\treeLeft \Equal \Nil\) \And \(u.\treeRight \Equal \Nil\)}{
+		% \uIf(\tcp*[h]{nessun figlio}){\(u.\treeLeft \Equal \Nil\) \And \(u.\treeRight \Equal \Nil\)}{
+			\If(\tcp*[h]{se esiste il padre}){\(u.\treeParent \Neq \Nil\)}{
+				\shortcut{\(u.\treeParent, \Nil, k\)} \Comment*[l]{rimuovo il puntatore al figlio}
+			}
+
+			\BlankLine
+			\tcp{rimuovo direttamente il nodo}
+			\delete \(u\)\;
+		}\lnlset{terzo-caso}{3}%
+		\tcp{\dots ed ha due figli}
+		\uIf{\(u.\treeLeft \neq \Nil\) \And \(u.\treeRight \neq \Nil\)}{
+		% \uIf(\tcp*[h]{due figli}){\(u.\treeLeft \neq \Nil\) \And \(u.\treeRight \neq \Nil\)}{
+
+			\BlankLine
+			\Tree \(s\) \Assign \succNode \Comment*[l]{individuo il successore}
+
+			\BlankLine
+			\shortcut{\(s.\treeParent, s.\treeRight, s.\treeKey\)} \Comment*[l]{collego il sottoalbero destro}
+
+			\BlankLine
+			\tcp{copio il successore}
+			\tcp{nella posizione del nodo rimosso}
+			\(u.\treeKey \Assign s.\treeKey\)\;
+			\(u.\treeValue \Assign s.\treeValue\)\;
+
+			\BlankLine
+			\tcp{rimuovo il successore}
+			\delete \(s\)\;
+		}\lnl{case:secondo-caso}%
+		\tcp{\dots ed ha un solo figlio (sinistro)}
+		\uIf{\(u.\treeLeft \neq \Nil\) \And \(u.\treeRight \Equal \Nil\)}{
+		% \uIf(\tcp*[h]{solo un figlio (sinistro)}){\(u.\treeLeft \neq \Nil\) \And \(u.\treeRight \Equal \Nil\)}{
+
+			\BlankLine
+			\shortcut{\(u.\treeParent, u.\treeLeft, k\)} \Comment*[l]{collega il figlio al padre}
+
+			\BlankLine
+			\If(\tcp*[h]{se il padre non esiste}){\(u.\treeParent \Equal \Nil\)}{
+				\(T \Equal u.\treeRight\) \Comment*[l]{il figlio diventa la radice}
+			}
+		}
+		\tcp{\dots ed ha un solo figlio (sinistro)}
+		\Else{
+		% \Altrimenti(\tcp*[h]{solo un figlio (destro)}){
+
+			\BlankLine
+			\shortcut{\(u.\treeParent, u.\treeRight, k\)} \Comment*[l]{collega il figlio al padre}
+
+			\BlankLine
+			\If(\tcp*[h]{se il padre non esiste}){\(u.\treeParent \Equal \Nil\)}{
+				\(T \Equal u.\treeRight\) \Comment*[l]{il figlio diventa la radice}
+			}
+		}
+	}
+
+	\BlankLine
+	\tcp{restituisco la radice}
+	\Return \(T\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

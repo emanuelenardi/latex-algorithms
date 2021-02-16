@@ -1,0 +1,28 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{collega un nodo padre \(p\) ad un nodo figlio \(u\)}
+\prototype{\shortcut{\Tree p, \Tree u, \Item x}}{
+	\If{\(u \Neq \Nil\)}{
+		\tcp{il nodo è stato cancellato}
+		\(u\).\treeParent \Assign \(p\) \Comment*[l]{registro il padre}
+	}
+
+	\BlankLine
+	\If{\(p \Neq \Nil\)}{
+		\tcp{collego il nodo sul figlio corretto}
+		\(u\) \Assign \iif{\(x < p.\treeKey, p.\treeLeft, p.\treeRight\)}\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

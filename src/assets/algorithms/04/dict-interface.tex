@@ -1,0 +1,37 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+Un dizionario è una struttura dati che rappresenta il concetto matematico di \emph{relazione univoca} o associazione chiave-valore.
+
+\BlankLine
+\dictionaryConstructor
+
+\BlankLine
+\Item \dictLookup{\Item \(k\)} \Comment*[r]{restituisce il valore associato alla chiave \(k\), \Nil altrimenti}
+\Item \dictInsert{\Key \(k\), \Item \(v\)} \Comment*[r]{associa il valore \(v\) alla chiave \(k\)}
+\dictRemove{\Key \(k\)} \Comment*[r]{rimuove l'associazione della chiave \(k\)}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi
+
+\iffalse
+% NOTE definizione alternativa
+Struttura dati \emph{dinamica}, \emph{non lineare} che memorizza una collezione non ordinata di elementi senza valori ripetuti.
+Rappresenta i concetto matematico di \emph{relazione univoca} \(R\colon D \to C\), o associazione chiave-valore. Dove \(D\) rappresenta il dominio di elementi detti \emph{chiave}, mentre \(C\) rappresenta il codominio degli elementi detti \emph{valori}.
+Ogni \emph{valore} può essere associato a più \emph{chiavi}, ma non il contrario.
+
+\BlankLine
+\Item \dictLookup{\Item k} \Comment*[r]{restituisce il valore associato alla chiave \(k\) se presente, \Nil altrimenti}
+
+\dictInsert{\Item k, \Item v} \Comment*[r]{associa il valore \(v\) alla chiave \(k\), sovrascrive se già presente}
+
+\dictRemove{\Item k} \Comment*[r]{rimuove l'associazione della chiave \(k\)}
+\fi

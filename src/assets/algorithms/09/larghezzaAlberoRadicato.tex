@@ -1,0 +1,55 @@
+%&../preamble
+
+\SetKwFunction{larghezzaAR}{larghezzaAlberoRadicato}
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\caption[Visita in profondità iterativa]{}
+\fi
+
+La procedura si ottiene semplicemente sostituendo una pila alla coda utilizzata nella visita \breadthFirstSearch.
+\BlankLine
+\tcp{effettua una visita in profondità iterativa}
+\prototype{\larghezzaAR{\Graph G, \Node r}}{
+	\Int \(max = 0\)\;
+	\Queue \(S = \queueConstructor\)\;
+	\(S.\queueInsert{r}\)\;
+
+	\BlankLine
+	\tcp{inizializzazione}
+	\Array{\Bool} \(dist =\) \new \Array{\Bool}[1][G.\graphSize]\;
+	\Array{\Bool} \(count =\) \new \Array{\Bool}[1][G.\graphSize]\;
+	\ForEach{\(u \in G.\VV - \{r\}\)}{
+		\(dist[u] = -1\)\;
+		\(count[u] = 0\)\;
+	}
+
+	\BlankLine
+	\(dist[r] = 0\) \Comment*[l]{la radice dista 0 da sé stessa}
+	\While{\Not \(S.\queueEmpty\)}{
+		\Node \(u = S.\queueRemove\) \Comment*[l]{estrai il nodo}
+
+		\BlankLine
+		\ForEach{\(v \in G.\adj{u}\)}{
+
+			\BlankLine
+			\If{\(dist[v] < 0\)}{
+				\tcp{non ho ancora scoperto il nodo}
+
+				\BlankLine
+				\alert{\(dist[v] = dist[u] + 1\)} \Comment*[l]{imposta la distanza}
+				\alert{\(\Increment{count[dist[v]]}\)} \Comment*[l]{ho scoperto un nuovo nodo}
+
+				\BlankLine
+				\(S.\queueInsert{v}\) \Comment*[l]{inserisci il nodo}
+			}
+		}
+	}
+}
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

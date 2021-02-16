@@ -1,0 +1,1987 @@
+\documentclass[tikz, multi=page, border=.5cm]{standalone}
+\usepackage{../tikz-preamble}
+\colorlet{foundColor}{red!80}
+\usepackage{comment}
+
+\tikzset{
+	on grid,%  it measures the distance between the centers of the nodes
+	found/.style={
+		color = foundColor,
+		dashed
+	},
+	every node/.style={
+		node distance = 2cm
+	},
+	every edge/.append style={
+		very thick
+	},
+}
+
+\begin{document}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+	% \draw[help lines,step=1] (10.5,-4.5) grid (-0.5,0.5);
+	\node[mynode] (a) {a}; % ,label={1}
+	\node[mynode, right=of a] (b) {b}; % ,label={1}
+	\node[mynode, right=of b] (c) {c}; % ,label={1}
+	\node[mynode, below=of b] (d) {d}; % ,label={below:1}
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedge] (a) edge[bend left] (b);
+	\draw[myedge] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (a);
+
+	\draw[myedge] (b) edge[bend left] (c);
+	\draw[myedge] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (b);
+
+	\draw[myedge] (c) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a}; % ,label={1}
+	\node[mynode, right=of a] (b) {b}; % ,label={1}
+	\node[mynode, right=of b] (c) {c}; % ,label={1}
+	\node[mynode, below=of b] (d) {d}; % ,label={below:1}
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedge] (a) edge[bend left] (b);
+	\draw[myedge] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (a);
+
+	\draw[myedge] (b) edge[bend left] (c);
+	\draw[myedge] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (b);
+
+	\draw[myedge] (c) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynoder, label={1}, right=of a] (b) {b};
+	\node[mynode, right=of b] (c) {c}; % ,label={1}
+	\node[mynode, below=of b] (d) {d}; % ,label={below:1}
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedge] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (a);
+
+	\draw[myedge] (b) edge[bend left] (c);
+	\draw[myedge] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (b);
+
+	\draw[myedge] (c) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynoder, label={1}, right=of a] (b) {b};
+	\node[mynode, right=of b] (c) {c}; % ,label={1}
+	\node[mynode, below=of b] (d) {d}; % ,label={below:1}
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (a);
+
+	\draw[myedge] (b) edge[bend left] (c);
+	\draw[myedge] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (b);
+
+	\draw[myedge] (c) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynoder, label={1}, right=of a] (b) {b};
+	\node[mynoder, label={1}, right=of b] (c) {c}; % ,label={1}
+	\node[mynode, below=of b] (d) {d}; % ,label={below:1}
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedge] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (b);
+
+	\draw[myedge] (c) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynoder, label={1}, right=of a] (b) {b};
+	\node[mynoder, label={1}, right=of b] (c) {c}; % ,label={1}
+	\node[mynode, below=of b] (d) {d}; % ,label={below:1}
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (b);
+
+	\draw[myedge] (c) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynoder, label={1}, right=of a] (b) {b};
+	\node[mynoder, label={1}, right=of b] (c) {c};
+	\node[mynoder, label={below:1}, below=of b] (d) {d};
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynoder, label={1}, right=of a] (b) {b};
+	\node[mynoder, label={1}, right=of b] (c) {c};
+	\node[mynoder, label={below:1}, below=of b] (d) {d};
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynoder, label={1}, right=of a] (b) {b};
+	\node[mynoder, label={1}, right=of b] (c) {c};
+	\node[mynoder, label={below:1}, below=of b] (d) {d};
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedge] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynoder, label={1}, right=of a] (b) {b};
+	\node[mynoder, label={1}, right=of b] (c) {c};
+	\node[mynoder, label={below:1}, below=of b] (d) {d};
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynoder, label={1}, right=of a] (b) {b};
+	\node[mynoder, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynoder, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedge] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynoder, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedge] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynode, right=of c] (e) {e}; % ,label={2}
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynode, right=of e] (f) {f}; % ,label={2}
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedge] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynode, right=of g] (h) {h}; % ,label={below:2}
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedge] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynoder,label={below:2}, right=of g] (h) {h};
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedge] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynode, below=of e] (g) {g}; % ,label={below:2}
+	\node[mynoder,label={below:2}, right=of g] (h) {h};
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedge] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynoder,label={below:2}, below=of e] (g) {g};
+	\node[mynoder,label={below:2}, right=of g] (h) {h};
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynoder,label={below:2}, below=of e] (g) {g};
+	\node[mynoder,label={below:2}, right=of g] (h) {h};
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedge] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynoder,label={below:2}, below=of e] (g) {g};
+	\node[mynoder,label={below:2}, right=of g] (h) {h};
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynodeb,label={below:2}, below=of e] (g) {g};
+	\node[mynoder,label={below:2}, right=of g] (h) {h};
+	\node[mynode, right=of f] (i) {i}; % ,label={2}
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedge] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynodeb,label={below:2}, below=of e] (g) {g};
+	\node[mynoder,label={below:2}, right=of g] (h) {h};
+	\node[mynoder,label={2}, right=of f] (i) {i};
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (f);
+
+	\draw[myedger] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynodeb,label={below:2}, below=of e] (g) {g};
+	\node[mynoder,label={below:2}, right=of g] (h) {h};
+	\node[mynoder,label={2}, right=of f] (i) {i};
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (f);
+
+	\draw[myedger] (h) edge[bend left] (i);
+	\draw[myedge] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynodeb,label={below:2}, below=of e] (g) {g};
+	\node[mynoder,label={below:2}, right=of g] (h) {h};
+	\node[mynoder,label={2}, right=of f] (i) {i};
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (f);
+
+	\draw[myedger] (h) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynodeb,label={below:2}, below=of e] (g) {g};
+	\node[mynoder,label={below:2}, right=of g] (h) {h};
+	\node[mynodeb,label={2}, right=of f] (i) {i};
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (f);
+
+	\draw[myedger] (h) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynodeb,label={below:2}, below=of e] (g) {g};
+	\node[mynodeb,label={below:2}, right=of g] (h) {h};
+	\node[mynodeb,label={2}, right=of f] (i) {i};
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedge] (f) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (f);
+
+	\draw[myedger] (h) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynoder,label={2}, right=of e] (f) {f};
+	\node[mynodeb,label={below:2}, below=of e] (g) {g};
+	\node[mynodeb,label={below:2}, right=of g] (h) {h};
+	\node[mynodeb,label={2}, right=of f] (i) {i};
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedger, found] (f) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (f);
+
+	\draw[myedger] (h) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynodeb,label={2}, right=of e] (f) {f};
+	\node[mynodeb,label={below:2}, below=of e] (g) {g};
+	\node[mynodeb,label={below:2}, right=of g] (h) {h};
+	\node[mynodeb,label={2}, right=of f] (i) {i};
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedge] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedger, found] (f) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (f);
+
+	\draw[myedger] (h) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynoder,label={2}, right=of c] (e) {e};
+	\node[mynodeb,label={2}, right=of e] (f) {f};
+	\node[mynodeb,label={below:2}, below=of e] (g) {g};
+	\node[mynodeb,label={below:2}, right=of g] (h) {h};
+	\node[mynodeb,label={2}, right=of f] (i) {i};
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedger, found] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedger, found] (f) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (f);
+
+	\draw[myedger] (h) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynodeb,label={2}, right=of c] (e) {e};
+	\node[mynodeb,label={2}, right=of e] (f) {f};
+	\node[mynodeb,label={below:2}, below=of e] (g) {g};
+	\node[mynodeb,label={below:2}, right=of g] (h) {h};
+	\node[mynodeb,label={2}, right=of f] (i) {i};
+
+	\node[mynode, below=2cm of d, xshift=1cm] (j) {j}; % ,label={3}
+	\node[mynode, right=of j] (k) {k}; % ,label={3}
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedger, found] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedger, found] (f) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (f);
+
+	\draw[myedger] (h) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (h);
+
+	\draw[myedge] (j) edge[bend left] (k);
+	\draw[myedge] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={1}] (a) {a};
+	\node[mynodeb, label={1}, right=of a] (b) {b};
+	\node[mynodeb, label={1}, right=of b] (c) {c};
+	\node[mynodeb, label={below:1}, below=of b] (d) {d};
+
+	\node[mynodeb,label={2}, right=of c] (e) {e};
+	\node[mynodeb,label={2}, right=of e] (f) {f};
+	\node[mynodeb,label={below:2}, below=of e] (g) {g};
+	\node[mynodeb,label={below:2}, right=of g] (h) {h};
+	\node[mynodeb,label={2}, right=of f] (i) {i};
+
+	\node[mynodeb,label={3}, below=2cm of d, xshift=1cm] (j) {j};
+	\node[mynodeb,label={3}, right=of j] (k) {k};
+
+	\draw[myedger] (a) edge[bend left] (b);
+	\draw[myedger, found] (b) edge[bend left] (a);
+
+	\draw[myedger, found] (a) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (a);
+
+	\draw[myedger] (b) edge[bend left] (c);
+	\draw[myedger, found] (c) edge[bend left] (b);
+
+	\draw[myedger, found] (b) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (b);
+
+	\draw[myedger] (c) edge[bend left] (d);
+	\draw[myedger, found] (d) edge[bend left] (c);
+
+	\draw[myedger] (e) edge[bend left] (f);
+	\draw[myedger, found] (f) edge[bend left] (e);
+
+	\draw[myedger, found] (e) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (e);
+
+	\draw[myedger] (h) edge[bend left] (g);
+	\draw[myedger, found] (g) edge[bend left] (h);
+
+	\draw[myedger, found] (h) edge[bend left] (f);
+	\draw[myedger] (f) edge[bend left] (h);
+
+	\draw[myedger, found] (f) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (f);
+
+	\draw[myedger] (h) edge[bend left] (i);
+	\draw[myedger, found] (i) edge[bend left] (h);
+
+	\draw[myedger] (j) edge[bend left] (k);
+	\draw[myedger, found] (k) edge[bend left] (j);
+
+\end{tikzpicture}
+\end{page}
+
+\end{document}

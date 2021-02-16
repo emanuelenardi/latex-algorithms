@@ -1,0 +1,54 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{Inserimento di un nodo in un albero Red-Black}
+\prototype{\Tree \insertNode{\Tree T, \Tree k, \Item x}}{
+	\Tree \(p \Assign \Nil\) \Comment*[l]{riferimento al padre}
+	\Tree \(u \Assign T\) \Comment*[l]{riferimento alla radice}
+
+	\BlankLine
+	\tcp{cerco posizione inserimento}
+	\While{\(u \Neq \Nil\) \And \(u.\treeKey \Neq k\)}{
+		\(p \Assign u\)\;
+		\(u\) \Assign \iif{\(k < u.\treeKey, u.\treeLeft, u.\treeRight\)}\;
+	}
+
+	\BlankLine
+	\eIf{\(u \Neq \Nil\) \And \(u.\treeKey \Equal k\)}{
+		\tcp{la chiave è già presente, aggiorno il valore}
+
+		\BlankLine
+		\(u.\treeValue \Assign v\)\;
+	}{
+		\tcp{la chiave non è presente}
+		\tcp{creo un nodo coppia chiave-valore}
+		\Tree \(new\) \Assign \treeConstructor{\(k, v\)}\;
+
+		\BlankLine
+		\tcp{collego il nodo creato}
+		\shortcut{\(p, new, k\)}\;
+
+		\alert{\treeFixInsert{\(new\)}}\;
+
+		\BlankLine
+		\If{\(p \Equal \Nil\)}{
+			\(T \Assign new\) \Comment*[l]{primo nodo ad essere inserito}
+		}
+	}
+
+	\BlankLine
+	\tcp{restituisco l'albero non modificato o il nuovo nodo}
+	\Return \(T\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

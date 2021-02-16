@@ -1,0 +1,59 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{effettua l'ordinamento dei sotto-vettori}
+\prototype{\merge{\Item \(A\), \Int \(primo\), \Int \(ultimo\), \Int \(mezzo\)}}{
+	\Int \(i\), \(j\), \(k\), \(h\)\;
+
+	\BlankLine
+	\tcp{inizializzo i puntatori}
+	\(i \Assign primo\)\;
+	\(j \Assign mezzo\)\;
+	\(k \Assign primo\)\tcp*[l]{\(k\): indica la prossima posizione di scrittura}
+
+	\BlankLine
+	% \tcp{}
+	\While{\(i \leqslant mezzo\) \And \(j \leqslant ultimo\)}{
+
+		\BlankLine
+		\tcp{B è il vettore di appoggio in cui memorizzo la porzione di vettore già ordinata}
+		\eIf{\(A[i] \leqslant A[j]\)}{
+			\tcp{l'elemento è gia ordinato}
+			\(B[k] \Assign A[i]\)\;
+			\Increment{i}\;
+		}{
+			\(B[k] \Assign A[j]\)\;
+			\Increment{j}\;
+		}
+
+		\BlankLine
+		\tcp{\emph{in entrambi i casi} ho inserito un valore}
+		\Increment{k}\;
+	}
+
+	\BlankLine
+	\tcp{se uno dei due vettori finisce ricopio la parte ordinata alla fine del vettore d'appoggio}
+	\(j \Assign ultimo\)\;
+	\From{\(h \Assign mezzo\) \DownTo \(i\)}{
+		\(A[j] \Assign A[h]\)\;
+		\Decrement{j}\;
+	}
+
+	\BlankLine
+	\tcp{ricopio il vettore d'appoggio del vettore originale}
+	\From{\(j \Assign primo\) \DownTo \(k-1\)}{
+		\(A[j] \Assign B[j]\)\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

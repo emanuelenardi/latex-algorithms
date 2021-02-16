@@ -1,0 +1,35 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\tcp{Pre-computa i predecessori}
+\prototype{\Array{\Int} \computePredecessor{\Array{\Int} a, \Array{\Int} a, \Int n}}{
+
+	\BlankLine
+	\Matrix{\Int} \(pred\) \(\Assign\) \new \Array{\Int}{0}{n}\;
+	\(pred[0] \Assign 0\)\;
+
+	\BlankLine
+	\From{\(i \Assign 1\) \DownTo \(n\)}{
+		\(j \Assign i-1\)\;
+
+		\BlankLine
+		\While{\(j > 0\) \And \(b[j] > a[i]\)}{
+			\(\Decrement{j}\)\;
+		}
+		\(pred[i] \Assign j\)\;
+	}
+
+	\BlankLine
+	\Return \(pred\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

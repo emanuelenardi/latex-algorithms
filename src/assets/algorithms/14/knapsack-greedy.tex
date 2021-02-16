@@ -1,0 +1,31 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\zaino{\Array{\Real} \(p\), \Array{\Real} \(v\), \Real \(C\), \Int \(n\), \Array{\Real} \(x\)}}{
+
+	\BlankLine
+	\{ ordina \(p\) e \(v\) in modo che \(\frac{p[1]}{w[1]} \geqslant \frac{p[2]}{w[2]} \geqslant \cdots \geqslant \frac{p[n]}{w[n]}\)\}\;
+
+	\BlankLine
+	\tcp{\(\Omicron(n)\) se già ordinato, \(\Omicron(n \log n)\) altrimenti}
+
+	\BlankLine
+	\BlankLine
+	\From{\(i \Assign 1\) \DownTo \(n\)}{
+		\(x[i] \Assign \MathMin\left( \dfrac{C}{w[i]}, 1 \right)\) \Comment*[h]{ne prendo solo una frazione?}\;
+
+		\BlankLine
+		\(C \Assign C - x[i] \cdot w[i]\) \Comment*[h]{aggiorno la capacità residua}\;
+	}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

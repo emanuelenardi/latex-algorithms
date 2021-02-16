@@ -1,0 +1,40 @@
+\documentclass[varwidth, tikz]{standalone}
+\usepackage{../tikz-preamble}
+\usepackage{../../../libraries/set-forest}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\begin{forest}
+    math tree,
+    for tree = {
+        rounded corners
+    },
+    % tex.stackexchange.com/questions/280331/
+    before typesetting nodes = {
+        where n children = 0 {
+                draw, fit=band, rounded corners, math content, blue,
+                append = {
+                    [, draw, rounded corners, fit=band, math content, gray, tier = terminal, edge = dotted, content/.pgfmath = content("!u")]
+                }
+        }{}
+    }
+    [1:2
+        [2:3, edge label={node[midway, above left]{\(<\)}}
+            [{1,2,3}, edge label={node[midway, above left]{\(<\)}}]
+            [1:3, edge label={node[midway, above right]{\(>\)}}
+                [{1,3,2}, edge label={node[midway, left]{\(<\)}}]
+                [{3,1,2}, edge label={node[midway, right]{\(>\)}}]
+            ]
+        ]
+        [1:3, edge label={node[midway, above right]{\(>\)}}
+            [{2,1,3}, edge label={node[midway, above left]{\(<\)}}]
+            [2:3, edge label={node[midway, above right]{\(>\)}}
+                [{2,3,1}, edge label={node[midway, left]{\(<\)}}]
+                [{3,2,1}, edge label={node[midway, right]{\(>\)}}]
+            ]
+        ]
+    ]
+\end{forest}
+\end{document}

@@ -1,0 +1,176 @@
+\usepackage{comment}
+\usepackage{subcaption}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes}
+
+\usepackage{xcolor}
+
+% NB è una copia, copia le modifiche su 'assets/algorithms/preamble'
+\colorlet{nodeRed}{red!30}
+\colorlet{nodeBlue}{blue!30}
+\colorlet{nodeYellow}{yellow!30}
+\colorlet{nodeGray}{gray!30}
+\colorlet{nodeGreen}{green!30}
+\colorlet{nodeViolet}{violet!30}
+
+\colorlet{arcoAlbero}{red}
+\colorlet{arcoIndietro}{teal} % brown -> teal
+\colorlet{arcoAvanti}{purple}
+\colorlet{arcoAttraversamento}{blue}
+
+% NOTE https://latex.org/forum/viewtopic.php?t=22367
+\DeclareRobustCommand\circled[1]{%
+	\tikz[baseline = (char.base)]{%
+		\node[draw, circle, inner sep = 1pt]%
+			(char) {\small #1};%
+	}
+}
+
+% NOTE riscrituttura delle immagini dei grafi come automi, tag 'rev'
+\usetikzlibrary{arrows, automata}
+% NOTE accent color
+\colorlet{accent}{red}
+\tikzset{
+	% NOTE state = node
+	every state/.style = {
+		draw = black,
+		thick,
+		fill = yellow!30,
+		minimum size = .8cm,
+		font=\ttfamily\Large,
+		node distance = 1cm, % dist	ance between nodes
+	},
+	% NOTE vedi sotto stile 'every label/.append style'
+	% label/.style = {
+	% 	node distance = 2pt,
+	% 	font	= \ttfamily\small,
+	% 	align	= right,
+	% },
+	% NOTE DIrected edges
+	di/.style = {
+		draw,
+		->,
+		> = stealth, % arrow head style
+		shorten > = 1pt, % don't touch arrow head to node
+		very thick, % edge style
+		auto,
+	},
+	% NOTE UNDIrected edges
+	undi/.style = {
+		draw,
+		% > = stealth, % arrow head style
+		% shorten > = 1pt, % don't touch arrow head to node
+		very thick, % edge style
+		auto,
+	},
+	job/.style = {
+		rectangle,
+		draw = black,
+		align = center,
+		anchor = west,
+		fill = white,
+		minimum height = 0.5cm},
+	cell/.style = {
+		job,
+		thick,
+		font = \ttfamily\bfseries,
+		minimum size = 0.5cm}
+}
+
+% \forestset{
+% 	job/.style = {
+% 		rectangle,
+% 		draw = black,
+% 		align = center,
+% 		anchor = west,
+% 		fill = white,
+% 		minimum height = 0.5cm},
+% 	cell/.style = {
+% 		job,
+% 		thick,
+% 		font = \ttfamily\bfseries,
+% 		minimum size = 0.5cm}
+% }
+
+\tikzset{
+	every label/.append style={
+		font=\ttfamily\small
+	},
+	mynoder/.style={
+		mynode,
+		fill = nodeRed
+	},
+	mynodeb/.style={
+		mynode,
+		fill = nodeBlue
+	},
+	mynodeg/.style={
+		mynode,
+		fill = nodeGreen
+	},
+	mynodegr/.style={
+		mynode,
+		fill = nodeGray
+	},
+	mynodev/.style={
+		mynode,
+		fill = nodeViolet
+	},
+	mynode/.style={
+		fill	= nodeYellow,
+		thick,
+		circle,
+		draw	= black,
+		align	= center,
+		minimum width = .8cm,
+		font	= \ttfamily\Large,
+	},
+	myedge/.style={
+		>=latex, ->,
+		thick,
+	},
+	myedgeb/.style={
+		myedge,
+		color = blue,% color = draw + text
+	},
+	myedger/.style={
+		myedge,
+		color = arcoAlbero,% color = draw + text
+	},
+	myedgevd/.style={
+		myedge,
+		dashed,
+		color = arcoAvanti,% color = draw + text
+	},
+	myedgegd/.style={
+		myedge,
+		dashed,
+		color = arcoIndietro,
+	},
+	myedgexd/.style={
+		myedge,
+		dashed,
+		color = arcoAttraversamento,
+	},
+	cc/.style={
+		draw = teal,
+		ultra thick,
+		densely dotted
+	},
+	% NOTE indicare dove li ho utilizzati
+	values/.style={
+		font=\scriptsize},
+	background/.style={
+		values,
+		fill = white,
+		rounded corners = 2pt,
+		inner sep = 2pt
+	},
+	source/.style={
+		label={[label distance=5pt] left:\(s\)}
+	},
+	sink/.style={
+		label={[label distance=5pt] right:\(t\)}
+	},
+}

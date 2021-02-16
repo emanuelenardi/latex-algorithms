@@ -1,0 +1,408 @@
+\documentclass[tikz, multi=page, border={-3.5 0 -3.5 0}]{standalone}
+\usetikzlibrary{positioning}
+\usepackage{../tikz-preamble}
+
+\begin{document}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynode] at (0, 0) (e) {e};
+	\node[mynode] at (2.5, 0) (c) {c};XB
+	\node[mynode] at (2.5, 2.5) (b) {b};
+	\node[mynode] at (0, 2.5) (a) {a};
+	\node[mynode] at (2.5, 5) (d) {d};
+
+	\draw[myedge]	(a) edge node {} (b);
+	\draw[myedge]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedge]	(a) edge[bend left] node {} (d);
+	\draw[myedge]	(d) edge[bend left] node {} (a);
+	\draw[myedge]	(d) edge node {} (b);
+	\draw[myedge]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynode] at	 (2.5, 2.5) (b) {b};
+	\node[mynode] at (2.5, 0) (c) {c};
+	\node[mynode] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedge]	(a) edge node {} (b);
+	\draw[myedge]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedge]	(a) edge[bend left] node {} (d);
+	\draw[myedge]	(d) edge[bend left] node {} (a);
+	\draw[myedge]	(d) edge node {} (b);
+	\draw[myedge]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynode] at (2.5, 2.5) (b) {b};
+	\node[mynode] at (2.5, 0) (c) {c};
+	\node[mynode] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge[below] node {\(dt[v]=0\)} (b);
+	\draw[myedge]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedge]	(a) edge[bend left] node {} (d);
+	\draw[myedge]	(d) edge[bend left] node {} (a);
+	\draw[myedge]	(d) edge node {} (b);
+	\draw[myedge]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynoder, label={below left:\([2,\!\texttt{-}]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynode] at (2.5, 0) (c) {c};
+	\node[mynode] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedge]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedge]	(a) edge[bend left] node {} (d);
+	\draw[myedge]	(d) edge[bend left] node {} (a);
+	\draw[myedge]	(d) edge node {} (b);
+	\draw[myedge]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynoder, label={below left:\([2,\!\texttt{-}]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynode] at (2.5, 0) (c) {c};
+	\node[mynode] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedge]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedge]	(a) edge[bend left] node {} (d);
+	\draw[myedge]	(d) edge[bend left] node {} (a);
+	\draw[myedge]	(d) edge node {} (b);
+	\draw[myedger]	(b) edge node[fill=white, inner sep=2pt] {\(dt[v]=0\)} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynoder, label={below left:\([2,\!\texttt{-}]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynoder, label={below:\([3,\!\texttt{-}]\)}] at (2.5, 0) (c) {c};
+	\node[mynode] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedge]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedge]	(a) edge[bend left] node {} (d);
+	\draw[myedge]	(d) edge[bend left] node {} (a);
+	\draw[myedge]	(d) edge node {} (b);
+	\draw[myedger]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynoder, label={below left:\([2,\!\texttt{-}]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+	\node[mynode] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedge]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedge]	(a) edge[bend left] node {} (d);
+	\draw[myedge]	(d) edge[bend left] node {} (a);
+	\draw[myedge]	(d) edge node {} (b);
+	\draw[myedger]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynodeb, label={below left:\([2,\!5]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+	\node[mynode] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedge]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedge]	(a) edge[bend left] node {} (d);
+	\draw[myedge]	(d) edge[bend left] node {} (a);
+	\draw[myedge]	(d) edge node {} (b);
+	\draw[myedger]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynodeb, label={below left:\([2,\!5]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+	\node[mynode] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedge]	(a) edge[bend left] node {} (d);
+	\draw[myedge]	(d) edge[bend left] node {} (a);
+	\draw[myedge]	(d) edge node {} (b);
+	\draw[myedger]	(b) edge node {} (c);
+	\draw[myedgevd]	(a) edge node[background] {\(dt[u] < dt[v], ft[v] \neq 0\)} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynodeb, label={below left:\([2,\!5]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+	\node[mynode] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedgevd]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedge]	(d) edge[bend left] node {} (a);
+	\draw[myedge]	(d) edge node {} (b);
+	\draw[myedger]	(b) edge node {} (c);
+	\draw[myedger]	(a) edge[bend left] node[background] {\(dt[v]=0\)} (d);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynodeb, label={below left:\([2,\!5]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+	\node[mynoder, label={above:\([6,\!\texttt{-}]\)}] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedgevd]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedger]	(a) edge[bend left,above left] node {} (d);
+	\draw[myedge]	(d) edge[bend left] node {} (a);
+	\draw[myedge]	(d) edge node {} (b);
+	\draw[myedger]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+		\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+		\node[mynodeb, label={below left:\([2,\!5]\)}] at (2.5, 2.5) (b) {b};
+		\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+		\node[mynoder, label={above:\([6,\!\texttt{-}]\)}] at (2.5, 5) (d) {d};
+		\node[mynode] at (0, 0) (e) {e};
+
+		\draw[myedger]	(a) edge node {} (b);
+		\draw[myedgevd]	(a) edge node {} (c);
+		\draw[myedge]	(e) edge node {} (c);
+		\draw[myedger]	(a) edge[bend left,above left] node {} (d);
+		\draw[myedge]	(d) edge node {} (b);
+		\draw[myedger]	(b) edge node {} (c);
+		\draw[myedgegd]	(d) edge[bend left, above] node[background] {\(dt[u] > dt[v], ft[v] = 0\)} (a);
+
+		\path[draw=none] (-0.7,-1.00) rectangle (2.7, 5.0);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynodeb, label={below left:\([2,\!5]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+	\node[mynoder, label={above:\([6,\!\texttt{-}]\)}] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedgexd]	(d) edge node[background] {otherwise} (b);
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedgevd]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedger]	(a) edge[bend left] node {} (d);
+	\draw[myedgegd]	(d) edge[bend left] node {} (a);
+	\draw[myedger]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynoder, label={above:\([1,\!\texttt{-}]\)}] at (0, 2.5) (a) {a};
+	\node[mynodeb, label={below left:\([2,\!5]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+	\node[mynodeb, label={above:\([6,\!7]\)}] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedgevd]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedger]	(a) edge[bend left] node {} (d);
+	\draw[myedgegd]	(d) edge[bend left] node {} (a);
+	\draw[myedgexd]	(d) edge node {} (b);
+	\draw[myedger]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={above:\([1,\!8]\)}] at (0, 2.5) (a) {a};
+	\node[mynodeb, label={below left:\([2,\!5]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+	\node[mynodeb, label={above:\([6,\!7]\)}] at (2.5, 5) (d) {d};
+	\node[mynode] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedgevd]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedger]	(a) edge[bend left] node {} (d);
+	\draw[myedgegd]	(d) edge[bend left] node {} (a);
+	\draw[myedgexd]	(d) edge node {} (b);
+	\draw[myedger]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={above:\([1,\!8]\)}] at (0, 2.5) (a) {a};
+	\node[mynodeb, label={below left:\([2,\!5]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+	\node[mynodeb, label={above:\([6,\!7]\)}] at (2.5, 5) (d) {d};
+	\node[mynoder, label={below:\([9,\!\texttt{-}]\)}] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedgevd]	(a) edge node {} (c);
+	\draw[myedge]	(e) edge node {} (c);
+	\draw[myedger]	(a) edge[bend left] node {} (d);
+	\draw[myedgegd]	(d) edge[bend left] node {} (a);
+	\draw[myedgexd]	(d) edge node {} (b);
+	\draw[myedger]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+		\node[mynodeb, label={above:\([1,\!8]\)}] at (0, 2.5) (a) {a};
+		\node[mynodeb, label={below left:\([2,\!5]\)}] at (2.5, 2.5) (b) {b};
+		\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+		\node[mynodeb, label={above:\([6,\!7]\)}] at (2.5, 5) (d) {d};
+		\node[mynoder, label={below:\([9,\!\texttt{-}]\)}] at (0, 0) (e) {e};
+
+		\draw[myedgexd] (e) edge[below] node[background, fill=none] {otherwise} (c);
+		\draw[myedger]	(a) edge node {} (b);
+		\draw[myedgevd]	(a) edge node {} (c);
+		\draw[myedger]	(a) edge[bend left] node {} (d);
+		\draw[myedgegd]	(d) edge[bend left] node {} (a);
+		\draw[myedgexd]	(d) edge node {} (b);
+		\draw[myedger]	(b) edge node {} (c);
+
+		\path[draw=none] (-0.7,-1.00) rectangle (2.7, 5.0);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\begin{page}
+	\begin{tikzpicture}[bend angle=10]
+
+	\node[mynodeb, label={above:\([1,\!8]\)}] at (0, 2.5) (a) {a};
+	\node[mynodeb, label={below left:\([2,\!5]\)}] at (2.5, 2.5) (b) {b};
+	\node[mynodeb, label={below:\([3,\!4]\)}] at (2.5, 0) (c) {c};
+	\node[mynodeb, label={above:\([6,\!7]\)}] at (2.5, 5) (d) {d};
+	\node[mynodeb, label={below:\([9, 10]\)}] at (0, 0) (e) {e};
+
+	\draw[myedger]	(a) edge node {} (b);
+	\draw[myedgevd]	(a) edge node {} (c);
+	\draw[myedgexd]	(e) edge node {} (c);
+	\draw[myedger]	(a) edge[bend left] node {} (d);
+	\draw[myedgegd]	(d) edge[bend left] node {} (a);
+	\draw[myedgexd]	(d) edge node {} (b);
+	\draw[myedger]	(b) edge node {} (c);
+
+	\path[draw=none] (-1, -1) rectangle (3.5, 6);
+
+\end{tikzpicture}
+\end{page}
+
+\end{document}

@@ -1,0 +1,25 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\BlankLine
+\tcp{indentifica le componenti fortemente connesse}
+\prototype{\Array{\Int} \StrongConnectedComponents{\Graph G}}{
+
+	\BlankLine
+	\Stack \(S\) \Assign \topSort{\(G\)} \Comment*[l]{prima visita}
+	\(G^T\) \Assign \transpose{\(G\)} \Comment*[l]{trasposizione del grafo}
+
+	\BlankLine
+	\Return \ConnectedComponents{\(G^T, S\)} \Comment*[l]{seconda visita}
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

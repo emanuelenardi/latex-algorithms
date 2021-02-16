@@ -1,0 +1,44 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+(\Array{\Int}, \Array{\Int})\prototype{\ \CamminiMinimi{\Graph \(G\), \Node \(s\)}}{
+
+	\BlankLine
+	\lnlset{bellman:init}{1}%
+	\alert{ \Queue \(S\) \Assign \queueConstructor }\;
+	\alert{ \(S.\queueInsert{s}\) } \Comment*[h]{metto in coda il nodo sorgente}\;
+
+	\BlankLine
+	\While(\Comment*[h]{\(\Omicron(n)\)}){\Not \(S\).\setEmpty}{
+
+		\lnlset{bellman:remove}{2}%
+		\alert{ \Int \(u\) \Assign \(S\).\queueRemove } \Comment*[l]{\(\Omicron(1 \cdot n)\)}
+		\(b[u]\) \Assign \False\;
+
+		\BlankLine
+		\ForEach{\( v \in G.\adj{u} \)}{
+			\If{\( d[u] + G.\weight{u,v} < d[v] \)}{
+
+				\BlankLine
+				\If{\Not \(b[v]\)}{
+					\lnlset{bellman:add}{3}%
+					\tcp{lo metto in cosa quando c'è un miglioramento}
+					\alert{ \(S.\queueInsert{v}\) } \Comment*[h]{\(\Omicron(m \cdot n)\)}\;
+					\(b[v]\) \Assign \True\;
+				}
+			}
+		}
+	}
+	\Return \((T, d)\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

@@ -1,0 +1,35 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Int \hateville{\Array{\Int} D, \Int n}}{
+
+	\BlankLine
+	\tcp{creo la tabella, un vettore in questo caso}
+	\Array{\Int} \(DP\) \Assign \new \Array{\Int}[0][n]\;
+
+	\BlankLine
+	\tcp{inserisco i casi base}
+	\(DP[0] \Assign 0\) \tcp{nessun donatore}
+	\(DP[1] \Assign D[1]\) \tcp{un solo donatore}
+
+	\BlankLine
+	\tcp{calcolo il valore \(n\)-esimo}
+	\From{\(i \Assign 2\) \DownTo \(n\)}{
+		\(DP[i]\) \Assign \maxFunction{\(DP[i-1]\), \(DP[i-2] + D[i]\)}
+	}
+
+	\BlankLine
+	\tcp{restituisco il valore \(n\)-esimo}
+	\Return \(DP[n]\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

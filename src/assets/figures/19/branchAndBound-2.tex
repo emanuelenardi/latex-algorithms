@@ -1,0 +1,52 @@
+\documentclass{standalone}
+\usepackage{../../../libraries/set-forest}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\begin{forest}
+	wide
+	,for tree = {
+		,draw, thick, rounded corners=5pt,
+		align=left, font=\footnotesize
+	},
+	mylabel/.style n args=2{%
+      edge label/.expanded={%
+        node [midway, #1, font=\unexpanded{\scriptsize}] {#2}%
+      },
+    }
+	[21\\18
+		[21\\18, mylabel={above right}{2},
+			[21\\21, mylabel={above left}{3}]
+			[21\\22, mylabel={right}{4}]
+			[21\\18, mylabel={above right}{5}
+				[21\\21, mylabel={left}{3}]
+				[21\\21, mylabel={right}{4}]
+			]
+		]
+		[21\\18, mylabel={above left}{3}
+			[21\\19, mylabel={above left}{2}
+				[21\\25, mylabel={left}{4}]
+				[21\\19, mylabel={right}{5}
+						[19\\19, mylabel={right}{4}]
+				]
+			]
+			[19\\21, mylabel={left}{4}]
+			[19\\21, mylabel={right}{5}]
+		]
+		[19\\18, mylabel={below left}{4}
+			[19\\20, mylabel={above left}{2}]
+			[19\\18, mylabel={right}{3}
+				[19\\21, mylabel={left}{2}]
+				[19\\21, mylabel={right}{5}]
+			]
+			[19\\18, mylabel={above right}{5}
+				[19\\19, mylabel={left}{2}]
+				[19\\24, mylabel={right}{3}]
+			]
+		]
+		[21, mylabel={above right}{5}]
+	]
+\end{forest}
+\end{document}
