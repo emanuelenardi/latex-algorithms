@@ -46,7 +46,8 @@ jobs:
       #   with:
       #     run: $SCRIPT_DIR/compile-project.sh
 
-      - name: Step 6 - Bump version and push tag  
+      - name: Step 6 - Bump version and push tag
+        id: push-tag
         uses: anothrNick/github-tag-action@1.34.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -99,7 +100,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.TAG_NAME }}
+          tag_name: ${{ steps.push-tag.outputs.new_tag }}
           release_name: Release ${{ env.TAG_NAME }}
           draft: false
           prerelease: false
