@@ -14,7 +14,7 @@ else
 fi
 
 source "src/scripts/unix/compile-preambles.sh"
-source "src/scripts/unix/compile-main.sh"
 source "src/scripts/unix/compile-chapters.sh"
+source "src/scripts/unix/compile-main.sh"
 
 cd $INITIAL_WORKING_DIRECTORY
