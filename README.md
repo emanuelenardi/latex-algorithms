@@ -83,10 +83,6 @@ Una versione pubblica e aggiornata dell'errata corrige sarà presente alla pagin
 
 ## Ringraziamenti 🙌🏻🙇🏻
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-
 Vorrei ringraziare [Francesco Bozzo](https://github.com/FrancescoBozzo),  [Samuele Conti](https://github.com/Samaretas), [Filippo Frezza](https://github.com/morethanmad) e [Sofia Zanrosso](https://github.com/sofiazanrosso) per aver revisionato questa dispensa, per la considerevole pazienza e meticolosità delle correzioni.
 Le carenze di questa dispensa sarebbero considerevolmente maggiori e più numerose se non fosse stato per la loro assistenza.
 Gli errori rimanenti sono, ovviamente, interamente miei.
