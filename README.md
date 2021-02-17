@@ -1,5 +1,5 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/built-with-science.svg)](https://forthebadge.com)
+[![ForTheBadge makes-people-smile](http://ForTheBadge.com/images/badges/makes-people-smile.svg)](http://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](https://forthebadge.com)
 
 # Appunti di Algoritmi e Strutture Dati
@@ -7,6 +7,15 @@
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 ![Build LaTeX document](https://github.com/emanuelenardi/latex-algorithms/workflows/Build%20LaTeX%20document/badge.svg)
+
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/emanuelenardi/latex-algorithms/graphs/commit-activity)
+![Maintaner](https://img.shields.io/badge/maintainer-theMaintainer-blue)
+[![GitHub contributors](https://img.shields.io/github/contributors/emanuelenardi/latex-algorithms.svg)](https://GitHub.com/emanuelenardi/latex-algorithms/graphs/contributors/)
+
+[![GitHub release](https://img.shields.io/github/release/emanuelenardi/latex-algorithms.svg)](https://GitHub.com/emanuelenardi/latex-algorithms/releases/)
+[![GitHub tag](https://img.shields.io/github/tag/emanuelenardi/latex-algorithms.svg)](https://GitHub.com/emanuelenardi/latex-algorithms/tags/)
+[![Github all releases](https://img.shields.io/github/downloads/emanuelenardi/latex-algorithms/total.svg)](https://GitHub.com/emanuelenardi/latex-algorithms/releases/)
+[![HitCount](http://hits.dwyl.com/emanuelenardi/latex-algorithms.svg)](http://hits.dwyl.com/emanuelenardi/latex-algorithms)
 
 ![logo](src/assets/figures/logo/logo-unitn.png)
 
