@@ -9,10 +9,9 @@
 
 % TODO da aggiornare ad ogni modifica rilasciata
 % TODO tenere un changelog pubblico delle modifiche apportate
-\newcommand\docversion{v.\ 1.0.0}
-% \date{\today\\{\small\texttt{\docversion}}}
+\newcommand\docversion{unreleased, v0.0.4}
 
-% NOTE 'fancyhdr' - permette la personalizzazione di testatina e piè di pagina
+% NOTE permette la personalizzazione di testatina e piè di pagina
 \usepackage{fancyhdr}
 
 % NOTE redefine the plain page style ISSUED BY CHAPTER
@@ -24,7 +23,7 @@
 }
 
 \fancypagestyle{default}{
-	\fancyhead[]{}
+	\fancyhead[]{\version - \date}
 	\fancyfoot[C]{\footnotesize \thepage}
 	\renewcommand{\headrulewidth}{0pt}
 	\renewcommand{\footrulewidth}{0pt}

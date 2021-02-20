@@ -3,6 +3,7 @@
 *.fdb_latexmk
 *.fls
 *.fmt
+*.loa
 *.loc
 *.lof
 *.log
@@ -16,3 +17,5 @@
 **/_minted-cache
 
 !src/assets/**/*.pdf
+src/tests
+workspace.code-workspace

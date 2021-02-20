@@ -11,6 +11,14 @@
 \newif\ifFigureOfAlgo
 \FigureOfAlgotrue% stampa l'immagine
 
+% NOTE cambia lo stile dell'algoritmo nel testo
+% https://tex.stackexchange.com/questions/210161/
+\makeatletter
+\newcommand{\algorithmstyle}[1]{%
+	\renewcommand{\algocf@style}{#1}%
+}
+\makeatother
+
 \usepackage{booktabs}
 % https://tex.stackexchange.com/a/583773/127473
 \makeatletter

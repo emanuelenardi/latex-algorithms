@@ -106,7 +106,8 @@ Una soluzione \emph{ammissibile} può essere descritta da un \emph{albero di cop
 		\caption{Soluzione ottima (albero dei cammini minimi)}%
 		\label{fig:soluzione-ottima}
 	\end{subfigure}
-	\caption{Nota la differenza fra i due alberi: a sinistra l'albero di \emph{peso minimo} che rappresenta una soluzione ammissibile, ma non ottima, mentre a destra l'albero dei cammini minimi, ossia l'insieme dei percorsi che minimizzano il peso fra il nodo sorgente e tutti gli altri nodi, il quale rappresenta la soluzione ottima.}
+	\caption[Differenza fra albero di peso minimo e albero dei cammini minimi]
+	        {Nota la differenza fra i due alberi: a sinistra l'albero di \emph{peso minimo} che rappresenta una soluzione ammissibile, ma non ottima, mentre a destra l'albero dei cammini minimi, ossia l'insieme dei percorsi che minimizzano il peso fra il nodo sorgente e tutti gli altri nodi, il quale rappresenta la soluzione ottima.}
 \end{figure}
 
 \begin{note}
@@ -188,7 +189,7 @@ L'algoritmo utilizza una coda con priorità basata su vettore.
 \end{algorithm}
 
 \paragraph{Analisi della complessità}
-\vspace{-15pt}
+% \vspace{-15pt}
 
 \begin{itemize}
 	\item[\circled{\ref{dijkstra:init}}]
@@ -211,9 +212,9 @@ L'algoritmo utilizza una coda con priorità basata su vettore.
 	Per un costo di \(O(1)\).
 \end{itemize}
 
-\vspace{-15pt}
+% \vspace{-15pt}
 \subsubsection*{Esempio di esecuzione}
-\vspace{-10pt}
+% \vspace{-10pt}
 
 \begin{minipage}[c]{0.5\textwidth}\centering
 	\begin{tikzpicture}[
