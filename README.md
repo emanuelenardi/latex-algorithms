@@ -9,7 +9,7 @@
 ![Build LaTeX document](https://github.com/emanuelenardi/latex-algorithms/workflows/Build%20LaTeX%20document/badge.svg)
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/emanuelenardi/latex-algorithms/graphs/commit-activity)
-![Maintaner](https://img.shields.io/badge/maintainer-emanuelenardi-green)
+[![Maintaner](https://img.shields.io/badge/maintainer-emanuelenardi-green)](https://github.com/emanuelenardi)
 [![GitHub contributors](https://img.shields.io/github/contributors/emanuelenardi/latex-algorithms.svg)](https://github.com/emanuelenardi/latex-algorithms/graphs/contributors/)
 
 [![GitHub release](https://img.shields.io/github/release/emanuelenardi/latex-algorithms.svg)](https://github.com/emanuelenardi/latex-algorithms/releases/)
