@@ -678,7 +678,7 @@ Altrimenti la visita deve ricominciare da capo da un nodo non marcato, identific
 \subsection*{Grafi aciclici non orientati}
 
 \begin{definition}[ciclo, \foreign{cycle}]
-In un grafo non orientato \(G = (V, E)\), un ciclo \(C\) di lunghezza \(k > 2\) è una sequenza di nodi \(u_0, u_1, \dots u_k\) tale che \((u_i, u_{i+1} \in E)\) (un cammino) per \(0 \leqslant i \leqslant k-1\) e \(u_0 = u_k\) (il primo e l'ultimo nodo coincidono, ossia è chiuso).
+In un grafo orientato \(G = (V, E)\), un ciclo \(C\) di lunghezza \(k > 2\) è una sequenza di nodi \(u_0, u_1, \dots u_k\) tale che \((u_i, u_{i+1} \in E)\) (un cammino) per \(0 \leqslant i \leqslant k-1\) e \(u_0 = u_k\) (il primo e l'ultimo nodo coincidono, ossia è chiuso).
 \end{definition}
 
 \begin{figure}[H]
@@ -958,7 +958,7 @@ Sfruttando questa dimostrazione possiamo quindi semplificare l'algoritmo precede
 % TODO aggiunge schema degli intervalli
 
 \begin{note}
-Se nella schema degli intervalli ci sono due intervalli sovrapposti, allora esiste un ciclo.
+Se nello schema degli intervalli ci sono due intervalli sovrapposti, allora esiste un ciclo.
 \end{note}
 
 \clearpage
@@ -1133,7 +1133,7 @@ Le componenti connesse (e i relativi alberi \foreign{depth-first}) rappresentano
 Restituisce un vettore di interi che associa ad ogni nodo l'id della sua componente fortemente connessa.
 Applicando l'algoritmo di ordinamento topologico \emph{su un grafo generale}, siamo sicuri che:
 \begin{itemize}
-	\item se un arco \((u,v)\) non appartiene ad un ciclo, allora \(u\) viene lista prima di \(v\) nella sequenza ordinata;
+	\item se un arco \((u,v)\) non appartiene ad un ciclo, allora \(u\) viene listato prima di \(v\) nella sequenza ordinata;
 	\item gli archi di un ciclo vengono listati in qualche ordine (che è ininfluente).
 \end{itemize}
 Utilizziamo quindi la procedura \topSort per ottenere i nodi in ordine decrescente di tempo di fine.

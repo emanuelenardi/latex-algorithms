@@ -1,12 +1,21 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/built-with-science.svg)](https://forthebadge.com)
+[![ForTheBadge makes-people-smile](http://ForTheBadge.com/images/badges/makes-people-smile.svg)](http://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](https://forthebadge.com)
 
 # Appunti di Algoritmi e Strutture Dati
 
-[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
 ![Build LaTeX document](https://github.com/emanuelenardi/latex-algorithms/workflows/Build%20LaTeX%20document/badge.svg)
+
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/emanuelenardi/latex-algorithms/graphs/commit-activity)
+![Maintaner](https://img.shields.io/badge/maintainer-emanuelenardi-green)
+[![GitHub contributors](https://img.shields.io/github/contributors/emanuelenardi/latex-algorithms.svg)](https://github.com/emanuelenardi/latex-algorithms/graphs/contributors/)
+
+[![GitHub release](https://img.shields.io/github/release/emanuelenardi/latex-algorithms.svg)](https://github.com/emanuelenardi/latex-algorithms/releases/)
+[![GitHub tag](https://img.shields.io/github/tag/emanuelenardi/latex-algorithms.svg)](https://github.com/emanuelenardi/latex-algorithms/tags/)
+[![Github all releases](https://img.shields.io/github/downloads/emanuelenardi/latex-algorithms/total.svg)](https://github.com/emanuelenardi/latex-algorithms/releases/)
+[![HitCount](http://hits.dwyl.com/emanuelenardi/latex-algorithms.svg)](http://hits.dwyl.com/emanuelenardi/latex-algorithms)
 
 ![logo](src/assets/figures/logo/logo-unitn.png)
 
@@ -65,7 +74,7 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 
 ## Licenza 📃
 
-> Gli elaborati presenti in questa repository sono basati sulle trasparenze e gli appunti del Prof.re Alberto Montresor, i quali sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Gli elaborati presenti in questa repository sono basati sulle trasparenze e gli appunti del Prof.re Alberto Montresor, i quali sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ## Segnalazione errori 🐞
 
@@ -73,10 +82,6 @@ Se trovi errori di qualsiasi natura non avere remure a segnalarmeli, li corregge
 Una versione pubblica e aggiornata dell'errata corrige sarà presente alla pagina "[Errata corrige](https://github.com/emanuelenardi/latex-algorithms/wiki/Errata-corrige)" nella Wiki del progetto.
 
 ## Ringraziamenti 🙌🏻🙇🏻
-
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Vorrei ringraziare [Francesco Bozzo](https://github.com/FrancescoBozzo),  [Samuele Conti](https://github.com/Samaretas), [Filippo Frezza](https://github.com/morethanmad) e [Sofia Zanrosso](https://github.com/sofiazanrosso) per aver revisionato questa dispensa, per la considerevole pazienza e meticolosità delle correzioni.
 Le carenze di questa dispensa sarebbero considerevolmente maggiori e più numerose se non fosse stato per la loro assistenza.

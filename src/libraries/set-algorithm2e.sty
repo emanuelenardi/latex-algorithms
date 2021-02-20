@@ -1,6 +1,8 @@
+\usepackage{tocbibind}
 \usepackage[
 	,ruled % default: plain, other option: tworuled
 	,vlined
+	,dotocloa % require tocbibind package
 ]{algorithm2e}
 \DontPrintSemicolon
 \LinesNotNumbered
@@ -18,25 +20,12 @@
 \makeatother
 
 \usepackage{booktabs}
-% https://tex.stackexchange.com/questions/345737/
+% https://tex.stackexchange.com/a/583773/127473
 \makeatletter
-\newcommand\fs@booktabsruled{%
-	\def\@fs@cfont{\bfseries\strut}\let\@fs@capt\floatc@ruled
-	\def\@fs@pre{\hrule height\heavyrulewidth depth0pt \kern\belowrulesep}%
-	\def\@fs@mid{\kern\aboverulesep\hrule height\lightrulewidth\kern\belowrulesep}%
-	\def\@fs@post{\kern\aboverulesep\hrule height\heavyrulewidth\relax}%
-	\let\@fs@iftopcapt\iftrue
-	% NOTE aggiunto dal codice sorgente di algorithm2e
-	\let\@mathsemicolon=\;\def\;{\ifmmode\@mathsemicolon\else\@endalgoln\fi}%
-}
+\renewcommand*{\@algocf@pre@ruled}{\hrule height\heavyrulewidth depth0pt \kern\belowrulesep}
+\renewcommand*{\algocf@caption@ruled}{\box\algocf@capbox\kern\aboverulesep\hrule height\lightrulewidth\kern\belowrulesep}
+\renewcommand*{\@algocf@post@ruled}{\kern\aboverulesep\hrule height\heavyrulewidth\relax}
 \makeatother
-
-\usepackage{float}
-\newfloat{algorithm}{h}{alg}[section]
-\floatname{algorithm}{Algoritmo}
-
-\floatstyle{booktabsruled}
-\restylefloat{algorithm}
 
 % https://tex.stackexchange.com/questions/153646/algorithm2e-disabling-line-numbers-for-specific-lines
 % NOTE Disabling line numbers for specific lines with 'linesnumbered' option on

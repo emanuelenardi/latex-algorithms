@@ -1,21 +1,19 @@
 %&../settings/preamble.main
 
-% \ifsubfile
+\ifsubfile
 
-% \appendix
+\appendix
 \setcounter{chapter}{1}
 \pagestyle{plain}
 
-%! arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
-%! arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
-% arara: pdflatex: { draft: yes, synctex: no }
-% arara: pdflatex: { synctex: no }
+% arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
+% arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
-% \fi
+\fi
 \chapter{Algoritmo di Tarjan}
 
 Testo.
 
-% \ifsubfile
+\ifsubfile
 \end{document}
-% \fi
+\fi

@@ -2,7 +2,7 @@
 
 \subfilefalse
 \usepackage[newfloat, cachedir=_minted-cache, outputdir=build]{minted}
-\usepackage{libraries/set-minted}
+\usepackage{./libraries/set-minted}
 \mintedpath{{assets/codes/04/}}
 
 % NOTE gestione delle versioni del documento
@@ -11,7 +11,6 @@
 % NOTE compilazione del documento principale
 % arara: pdflatex: {
 % arara: --> options: ['--interaction=batchmode', '--output-directory=build'],
-%! arara: --> options: ['--output-directory=build'],
 % arara: --> shell: yes,
 % arara: --> draft: yes
 % arara: --> }
@@ -75,5 +74,6 @@
 \appendix
 
 	\input{A1-sorting}
+	\input{A2-tarjan}
 
 \end{document}

@@ -476,7 +476,7 @@ Sapendo già il risultato proviamo -- per tentativi -- a dimostrare che \fbox{\(
 	\item \textbf{caso base} dimostriamo \(T(1)\):
 	\[T(1) = 1 \overset{?}{\leqslant} c \cdot 1 \iff c \geqslant 1\]
 	\item \textbf{ipotesi induttiva} \(\forall k < n \,\colon T(n) \leqslant ck\), ossia assumiamo che per tutti i valori più piccoli di \(n\) la dimostrazione sia già stata fatta.
-	\item \textbf{ipotesi induttiva} dimostriamo la disequazione per \(T(n)\):
+	\item \textbf{passo induttivo} dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
 	T(n) &= T(\floor{\frac{n}{2}}) + n \Arrow{sost. ip. ind. con \(k = \floor{\frac{n}{2}}\)}\\
 	&\leqslant c \floor{\frac{n}{2}} + n \Arrow{semplifico l'intero inferiore}\\
@@ -511,7 +511,7 @@ Usiamo la costante \(d\) al solo scopo di non confonderla la costante \(c\) usat
 		 &\geqslant d \frac{n}{2} - 1 + n \Arrow{raccolgo \(n\)}\\
 		 &= \left( \frac{d}{2} - \frac{1}{n} + 1 \right) n \Arrow{obiettivo}\\
 		 &= \left( \frac{d}{2} - \frac{1}{n} + 1 \right) n \overset{?}{\geqslant} dn \Arrow[jump=2]{semplifico}\\
-		 &\Rightarrow \frac{d}{2} - \frac{1}{n} + 1 \geqslant n\\
+		 &\Rightarrow \frac{d}{2} - \frac{1}{n} + 1 \geqslant d\\
 		 &\Rightarrow d \leqslant 2 - \frac{2}{n}
 	\end{WithArrows}\]
 
@@ -528,7 +528,7 @@ Usiamo la costante \(d\) al solo scopo di non confonderla la costante \(c\) usat
 Nota che avremmo potuto evitare la dimostrazione del limite inferiore osservando che
 \[\textstyle T(n) = T(\floor{\frac{n}{2}}) + n \geqslant n \overset{?}{\geqslant} dn\]
 l'ultima disequazione risulta vera per \(d \leqslant 1\), la quale è una condizione identica a quella del caso base.
-Nota che non abbiamo fatto nemmeno ricordo all'ipotesi induttiva.
+Nota che non abbiamo fatto nemmeno ricorso all'ipotesi induttiva.
 
 \subsection*{Cosa succede se si sbaglia l'intuizione}
 

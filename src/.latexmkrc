@@ -1,5 +1,5 @@
 $pdflatex = "pdflatex --shell-escape -synctex=1 -halt-on-error %O %S";
-@generated_exts = (@generated_exts, 'synctex.gz');
+$clean_ext = "synctex.gz loa"
 
 $sleep_time = 1; # 1 second
 $pdf_mode = 1;   # tex -> pdf
