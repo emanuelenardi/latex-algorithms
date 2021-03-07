@@ -7,10 +7,10 @@ on:
     paths-ignore:
       - '/*'                    # ignores root files
       - '/*/'                   # ignores root directories
-      - '!/.github/'            # un-ignores the root ".github" directory
-      - '!/src/'                # un-ignores the root "src" directory
-      - '/src/build/'           # ignores build directory inside src directory
-      - '/src/scripts/windows/' # ignores windows scripts directory
+      - '!/.github/build.yml'   # un-ignores this workflow
+      - '!/src/'                # un-ignores the root 'src' directory
+      - '/src/build/'           # ignores 'build' dir inside "src" dir
+      - '/src/scripts/windows/' # ignores "windows scripts" dir
   pull_request:
     types: [opened, reopened, synchronize]
 jobs:
