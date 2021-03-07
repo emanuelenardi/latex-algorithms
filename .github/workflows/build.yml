@@ -20,7 +20,7 @@ jobs:
       zip_name: ${{ steps.name.outputs.ZIP_NAME }}
       tag_name: ${{ steps.push-tag.outputs.new_tag }}
       part: ${{ steps.push-tag.outputs.part }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
 
       # Set up container
@@ -63,7 +63,6 @@ jobs:
           RELEASE_BRANCHES: main, develop
           DEFAULT_BUMP: patch # default: minor
           DRY_RUN: true # for debugging purposes
-          # INITIAL_VERSION: 0.0.0
           PRERELEASE_SUFFIX: preview
 
       # Prepare variables used to name the files
@@ -99,7 +98,7 @@ jobs:
   send_docs:
     name: Manda file zip a Telegram
     needs: build_docs
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
 
       - name: Step 0 - Setting 🔧 environment variables
@@ -126,7 +125,7 @@ jobs:
   create_release:
     name: Crea una bozza di release
     needs: build_docs
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
 
       - name: Step 0 - Setting 🔧 environment variables
