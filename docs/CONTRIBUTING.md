@@ -159,6 +159,7 @@ Di seguito sono elencate le motivazioni di quei suggerimenti, in modo tale che p
 - [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)
 - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) per incolpare chi ha scritto quella riga di codice che non funziona
 - [Github Actions](https://marketplace.visualstudio.com/items?itemName=cschleiden.vscode-github-actions) per la modifica del file di workflow contenuti nella cartella `.github/workflows`
+- [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) nel codice sorgente ci sono degli appunti (note, warning, attention), questa estensione li mette in risalto
 
 ## 1.6. Docker 🐳
 
@@ -215,9 +216,7 @@ Una volta riavviato VScode ti verrà chiesto se vorrai aprire la cartella all'in
 Il primo avvio del container richiederà del tempo.
 Una volta fatto vedrai nell'angolo in basso a sinistra che stai sviluppando il progetto all'interno che del container "`latex-env`".
 
-<p align="center">
-	<img alt="preview-latex-env" src="https://camo.githubusercontent.com/3f65f3a8c24cee70d4de2f9faf2608287bacc629a212aed8fbd9054d5f4a11fd/68747470733a2f2f692e696d6775722e636f6d2f57366d6d4269672e706e67" width="480">
-</p>
+![Antemprima Ambiente](https://camo.githubusercontent.com/3f65f3a8c24cee70d4de2f9faf2608287bacc629a212aed8fbd9054d5f4a11fd/68747470733a2f2f692e696d6775722e636f6d2f57366d6d4269672e706e67)
 
 Ora è possibile aprire il file `main.tex` e compilare in PDF eseguendo l'attività di compilazione del codice (accessibile tramite la shortcut `ctrl+shift+B`) o semplicemente salvando il file se l'opzione `latex-workshop.latex.autoBuild.run` è impostata a `onSave`.
 
@@ -251,37 +250,34 @@ Per la generazione dei grafici sono stati utilizzati i pacchetti [tikz](tikz-doc
 
 ### 1.8.1. Motivazione
 
-Prima di tutto: perché precompilare il preambolo?
-In presenza di una grande quantità di pacchetti la precompilazione del preambolo (un dump propriamente) permette di memorizzare l'espansione delle macro e risparmiare molto tempo nelle build successive.
+_Perché precompilare il preambolo?_ In presenza di una grande quantità di pacchetti la precompilazione del preambolo (un dump propriamente) permette di memorizzare l'espansione delle macro e risparmiare molto tempo nelle build successive.
 Per approndondire consulta "[_Ultrafast PDFLaTeX with precompiling_](https://tex.stackexchange.com/questions/79493/ultrafast-pdflatex-with-precompiling)".
 
 ### 1.8.2. Funzionamento ed utilizzo
 
-All'interno del file `src\settings\preamble.main.sty` è presente la dichiarazione un if a basso livello e viene impostato a `true`.
+- All'interno del file `src\settings\preamble.main.sty` è presente la dichiarazione di un if a basso livello e viene impostato di default a `true`.
 
-```latex
-\newif\ifsubfile
-\subfiletrue
-```
+  ![Preambolo](preamble-main-sty.png)
+  
+  Questo permette di eseguire in modo condizionato del codice nei sotto capitoli, nel documento principale (`src/main.tex`) è infatti specificata l'opzione `\subfilefalse` come prima istruzione dopo il caricamento del file dump del preambolo.
 
-Questo permette di eseguire in modo condizionato del codice nei sotto capitoli, nel documento principale (`src/main.tex`) è infatti specificata l'opzione `\subfilefalse` come prima istruzione dopo il caricamento del file dump del preambolo.
+- Il codice presente nei singoli capitoli listato fra i flag `\ifsubfile` e `\fi` viene eseguito soltanto all'interno dei singoli capitoli.
 
-Il codice presente nei singoli capitoli listato fra i flag `\ifsubfile` e `\fi` viene eseguito soltanto all'interno dei singoli capitoli.
-Nel file `src/settings/subfile.sty` è presente del codice comune a tutti i singoli capitoli.
+- Nel file `src/settings/subfile.sty` è presente del codice comune a tutti i singoli capitoli.
 
-Analizziamo il preambolo di un capitolo che utilizza il pacchetto `minted`, ad esempio il capitolo `03-funzione` per illustrarne il funzionamento.
+- Analizziamo il preambolo di un capitolo che utilizza il pacchetto `minted`, ad esempio il capitolo `03-funzione` per illustrarne il funzionamento.
 
-![Preambolo dei capitoli](preamble-chapters.png)
+  ![Preambolo di un capitolo](preamble-chapters.png)
 
-Questo codice inserisce il contenuto di `src/settings/subfile` (con path relativo) all'interno del capitolo.
-Imposta il contatore del capitolo a 2, quindi il verrà stampato "Capitolo 3".
-Viene importata la libreria `minted` che, dato che ha una gestione della cache particolare viene carica sui singoli capitoli che lo utilizzano e con la cartella della cache relativa a quella dei capitoli (`outputdir=../build`).
+  Questo codice inserisce il contenuto di `src/settings/subfile` (con path relativo) all'interno del capitolo.
+  Imposta il contatore del capitolo a 2, quindi il verrà stampato "Capitolo 3".
+  Viene importata la libreria `minted` che, dato che ha una gestione della cache particolare viene carica sui singoli capitoli che lo utilizzano e con la cartella della cache relativa a quella dei capitoli (`outputdir=../build`).
 
-Segue il codice del file `src/main.tex`:
+- Segue il codice del file `src/main.tex`:
 
-![Preambolo del main](preamble-main.png)
+  ![Preambolo del documento principale](preamble-main.png)
 
-Nota che in questo caso la cartella in cui la cache di minted viene generata è `outputdir=build` e non più `outputdir=../build` come nei singoli capitoli.
+  > **Nota** In questo caso la cartella in cui la cache di minted viene generata è `outputdir=build` e non più `outputdir=../build` come nei singoli capitoli.
 
 [algorithm2e-doc]: https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf
 [standalone-doc]: https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/standalone/standalone.pdf
