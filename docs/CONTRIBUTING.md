@@ -271,48 +271,15 @@ Nel file `src/settings/subfile.sty` è presente del codice comune a tutti i sing
 
 Analizziamo il preambolo di un capitolo che utilizza il pacchetto `minted`, ad esempio il capitolo `03-funzione` per illustrarne il funzionamento.
 
-```latex
-%&../settings/preamble.main
-
-\ifsubfile
-\usepackage{../settings/subfile}
-\setcounter{chapter}{2}
-
-\usepackage[newfloat, cachedir=_minted-cache, outputdir=../build]{minted}
-\usepackage{../libraries/set-minted}
-
-% arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, draft: yes, synctex: no }
-% arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, synctex: no }
-\begin{document}
-\fi
-```
+![Preambolo dei capitoli](preamble-chapters.png)
 
 Questo codice inserisce il contenuto di `src/settings/subfile` (con path relativo) all'interno del capitolo.
 Imposta il contatore del capitolo a 2, quindi il verrà stampato "Capitolo 3".
 Viene importata la libreria `minted` che, dato che ha una gestione della cache particolare viene carica sui singoli capitoli che lo utilizzano e con la cartella della cache relativa a quella dei capitoli (`outputdir=../build`).
 
 Segue il codice del file `src/main.tex`:
-```latex
-%&settings/preamble.main
-\subfilefalse
 
-\usepackage{./settings/pagestyles}
-
-\usepackage[newfloat, cachedir=_minted-cache, outputdir=build]{minted}
-\usepackage{./libraries/set-minted}
-\mintedpath{{assets/codes/04/}}
-
-% arara: pdflatex: {
-% arara: --> options: ['--output-directory=build'],
-% arara: --> shell: yes,
-% arara: --> draft: yes
-% arara: --> }
-% arara: pdflatex: {
-% arara: --> options: ['--output-directory=build'],
-% arara: --> shell: yes,
-% arara: --> synctex: yes,
-% arara: --> }
-```
+![Preambolo del main](preamble-main.png)
 
 Nota che in questo caso la cartella in cui la cache di minted viene generata è `outputdir=build` e non più `outputdir=../build` come nei singoli capitoli.
 
