@@ -33,18 +33,18 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '11'
-      - name: Step 1 - (2/3) Set up Python 🐍
+      - name: Step 1 🐍 - (2/3) Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.8' # last cached version
-      - name: Step 1 - (3/3) Set up Python 🐍 dependencies
+      - name: Step 1 🐍 - (3/3) Set up Python dependencies
         id: setup-python-dependencies
         run: pip install Pygments
       
       # Checkout branch and set environment variables
-      - name: Step 2 - (1/2) Checkout 👀 the HEAD
+      - name: Step 2 🔧 - (1/2) Checkout the HEAD
         uses: actions/checkout@v2 
-      - name: Step 2 - (2/2) Setting 🔧 environment variables
+      - name: Step 2 🔧 - (2/2) Setting environment variables
         run: |
           echo "ROOT_DIR=$GITHUB_WORKSPACE" >> $GITHUB_ENV
           echo "BUILD_DIR=$GITHUB_WORKSPACE/src/build" >> $GITHUB_ENV
@@ -52,17 +52,17 @@ jobs:
           echo "RUN_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
       
       # Compile LaTeX document
-      - name: Step 3 - (1/2) Compile ⚙️ LaTeX document
+      - name: Step 3 ⚙️ - (1/2) Compile LaTeX documents
         uses: xu-cheng/texlive-action/full@v1
         with:
           run: $SCRIPT_DIR/compile-project.sh
         
-      - name: Step 3 - (2/2) Log build 👀
+      - name: Step 3 👀 - (2/2) Log build
         uses: xu-cheng/texlive-action/full@v1
         with:
           run: source $SCRIPT_DIR/check-files.sh; isCompilationRanCorrectly
 
-      - name: Step 4 - Bump version 🔼 & push tag 🏷️
+      - name: Step 4 🔼 - Bump version & push tag
         if: ${{ success() }}
         id: push-tag
         uses: anothrNick/github-tag-action@1.34.0
@@ -75,11 +75,11 @@ jobs:
           PRERELEASE_SUFFIX: preview
 
       # Prepare variables used to name the files
-      - name: Step 5 - (1/2) Setting 🔧 environment variables
+      - name: Step 5 🔧 - (1/2) Setting environment variables
         run: |
           echo "TAG_NAME=${{ steps.push-tag.outputs.new_tag }}" >> $GITHUB_ENV
           echo "DATE=$(date -d '+1 hour' +'%Y.%m.%d_%H.%M')" >> $GITHUB_ENV
-      - name: Step 5 - (2/2) Setting 🔧 environment variables
+      - name: Step 5 🔧 - (2/2) Setting environment variables
         id: name
         run: |
           echo "ZIP_NAME=dispensa-$TAG_NAME-$DATE" >> $GITHUB_ENV
@@ -87,7 +87,7 @@ jobs:
           echo "::set-output name=ZIP_NAME::dispensa-$TAG_NAME-$DATE"
           echo "::set-output name=MAIN_NAME::main-$TAG_NAME-$DATE"
 
-      - name: Step 6 - Create folder with pdfs
+      - name: Step 6 🔧 - Create folder with pdfs
         run: |
           cd $BUILD_DIR
           mkdir $ZIP_NAME
