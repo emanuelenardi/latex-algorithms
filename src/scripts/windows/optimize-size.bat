@@ -41,7 +41,7 @@ echo|set /p="[0!current_file!/%files%] compressing main.pdf ... "
 @REM TODO controlla che ghostscript non corrompa i collegamenti ipertestuali
 @REM gswin64 %options-gs% -sOutputFile=main-compressed.pdf main.pdf
 
-@REM pdfsizeopt %options-pso% "main.pdf" "main.pdf"
+pdfsizeopt %options-pso% "main.pdf" "main.pdf"
 echo done
 set /a current_file+=1
 set "spaces=                  "
@@ -50,20 +50,18 @@ cd chapters
 @REM loop over all files in all (sub)directories with given extension
 for /f "delims=*" %%f in ('dir "*.%ext%" /b /a:-d') do (
     set basename=%%~nxf
-    set filename=%%~dpnf
-    set pathname=%%~dpnxf
+    @REM set filename=%%~dpnf
+    @REM set pathname=%%~dpnxf
 
     @REM padding
     if !current_file! LSS 10 (
         set "line=[0!current_file!/%files%] compressing !basename! ... %spaces%"
         set "line=!line:~0,52!"
         echo|set /p=!line!
-        @REM echo|set /p=%line%
     ) else (
         set "line=[!current_file!/%files%] compressing !basename! ... %spaces%"
         set "line=!line:~0,52!"
         echo|set /p=!line!
-        @REM echo|set /p=%line%
     )
 
     @REM sostituisci i file originali se più piccoli
@@ -83,7 +81,7 @@ for /f "delims=*" %%f in ('dir "*.%ext%" /b /a:-d') do (
         )
         set /a diff=!newSize!*100/!oldSize!
         echo done ^(!diff!%%^)
-    @REM )
+    )
 
     set /a current_file+=1
 )
