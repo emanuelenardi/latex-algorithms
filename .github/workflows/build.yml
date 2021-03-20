@@ -6,18 +6,23 @@ on:
       - preview                 # Push events on develop branch
     paths-ignore:
       - '*'                            # ignores root files
+      - '.vscode/'                     # ignores suggestions
+      - '.devcontainer/'               # ignores docker settings
       - 'docs/**'                      # ignores documentation
       - '.github/workflows/**'         # ignores all workflows
       - '!.github/workflows/build.yml' # un-ignores this workflow
       - 'src/build/'                   # ignores "build" dir inside "src" dir
-      - 'src/scripts/windows/'         # ignores "windows scripts" dir
+      - '**.bat'                       # ignores windows scripts
   pull_request:
     types: [opened, reopened, synchronize]
+    paths-ignore:
+      - '**.md'
 jobs:
   build_docs:
     name: Compila documento
     outputs:
       zip_name: ${{ steps.name.outputs.ZIP_NAME }}
+      main_name: ${{ steps.name.outputs.MAIN_NAME }}
       tag_name: ${{ steps.push-tag.outputs.new_tag }}
       part: ${{ steps.push-tag.outputs.part }}
     runs-on: ubuntu-latest
@@ -66,7 +71,7 @@ jobs:
           WITH_V: true
           RELEASE_BRANCHES: main
           DEFAULT_BUMP: patch # default: minor
-          # DRY_RUN: true # for debugging purposes
+          DRY_RUN: true # for debugging purposes
           PRERELEASE_SUFFIX: preview
 
       # Prepare variables used to name the files
@@ -78,13 +83,17 @@ jobs:
         id: name
         run: |
           echo "ZIP_NAME=dispensa-$TAG_NAME-$DATE" >> $GITHUB_ENV
+          echo "MAIN_NAME=main-$TAG_NAME-$DATE" >> $GITHUB_ENV
           echo "::set-output name=ZIP_NAME::dispensa-$TAG_NAME-$DATE"
+          echo "::set-output name=MAIN_NAME::main-$TAG_NAME-$DATE"
 
       - name: Step 6 - Create folder with pdfs
         run: |
           cd $BUILD_DIR
           mkdir $ZIP_NAME
-          cp -r -t $ZIP_NAME chapters main.pdf
+          mv main.pdf $MAIN_NAME.pdf
+          cp -r -t $ZIP_NAME chapters $MAIN_NAME.pdf
+          ls -la
 
       - name: ⚠️ notifica fallimento build ⚠️
         if: ${{ failure() }}
@@ -106,75 +115,100 @@ jobs:
             ${{ env.BUILD_DIR }}
             !${{ env.BUILD_DIR }}/.gitignore
             !${{ env.BUILD_DIR }}/chapters
-            !${{ env.BUILD_DIR }}/main.pdf
+            !${{ env.BUILD_DIR }}/${{ env.MAIN_NAME }}.pdf
           if-no-files-found: error
           retention-days: 7
 
-  send_docs:
-    name: Manda file zip a Telegram
-    needs: build_docs
-    runs-on: ubuntu-latest
-    steps:
+  # send_docs:
+  #   name: Manda file zip a Telegram
+  #   needs: build_docs
+  #   runs-on: ubuntu-latest
+  #   steps:
 
-      - name: Step 0 - Setting 🔧 environment variables
-        run: |
-          echo "ZIP_NAME=${{ needs.build_docs.outputs.zip_name }}" >> $GITHUB_ENV
+  #     - name: Step 0 - Setting 🔧 environment variables
+  #       run: |
+  #         echo "ZIP_NAME=${{ needs.build_docs.outputs.zip_name }}" >> $GITHUB_ENV
 
-      - name: Step 1 - Download artifact ⏬
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ env.ZIP_NAME }}
+  #     - name: Step 1 - Download artifact ⏬
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: ${{ env.ZIP_NAME }}
 
-      - name: Step 2 - Zip downloaded folder
-        run: zip -r $ZIP_NAME.zip $ZIP_NAME
+  #     - name: Step 2 - Zip downloaded folder
+  #       run: zip -r $ZIP_NAME.zip $ZIP_NAME
 
-      - name: Step 3 - Send it to Telegram private channel
-        if: ${{ success() }}
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{ github.event.head_commit.message }}
-          document: ${{ env.ZIP_NAME }}.zip
+  #     - name: Step 3 - Send it to Telegram private channel
+  #       if: ${{ success() }}
+  #       uses: appleboy/telegram-action@master
+  #       with:
+  #         to: ${{ secrets.TELEGRAM_TO }}
+  #         token: ${{ secrets.TELEGRAM_TOKEN }}
+  #         message: ${{ github.event.head_commit.message }}
+  #         document: ${{ env.ZIP_NAME }}.zip
+  
+  # upload-dropbox:
+  #   name: Carica il main su Dropbox
+  #   needs: build_docs
+  #   runs-on: ubuntu-latest
+  #   steps:
+
+  #     - name: Step 0 - Setting 🔧 environment variables
+  #       run: |
+  #         echo "ZIP_NAME=${{ needs.build_docs.outputs.zip_name }}" >> $GITHUB_ENV
+  #         echo "MAIN_NAME=${{ needs.build_docs.outputs.main_name }}" >> $GITHUB_ENV
+
+  #     - name: Step 1 - Download artifact ⏬
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: ${{ env.ZIP_NAME }}
+
+  #     - name: Step 2 - Extract main
+  #       uses: deka0106/upload-to-dropbox@v2
+  #       with:
+  #         dropbox_access_token: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+  #         src: ${{ env.ZIP_NAME }}/${{ env.MAIN_NAME }}.pdf
+  #         dest: /latex-algorithms/${{ env.MAIN_NAME }}.pdf
+  #         mode: "add"
+  #         # mute: "true"
+
+  # create_release:
+  #   name: Crea una bozza di release
+  #   needs: build_docs
+  #   if: ${{ needs.build_docs.outputs.part == ('major' || 'minor') }}
+  #   runs-on: ubuntu-latest
+  #   steps:
+
+  #     - name: Step 0 - Setting 🔧 environment variables
+  #       run: |
+  #         echo "ZIP_NAME=${{ needs.build_docs.outputs.zip_name }}" >> $GITHUB_ENV
+  #         echo "TAG_NAME=${{ needs.build_docs.outputs.tag_name }}" >> $GITHUB_ENV
+
+  #     - name: Step 1 - Create a draft release ✏️
+  #       id: create_release
+  #       uses: actions/create-release@v1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with:
+  #         tag_name: ${{ env.TAG_NAME }}
+  #         release_name: Release ${{ env.TAG_NAME }}
+  #         # draft: true
+  #         prerelease: true
+
+  #     - name: Step 2 - (1/3) Download artifact ⏬
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: ${{ env.ZIP_NAME }}
       
-  create_release:
-    name: Crea una bozza di release
-    needs: build_docs
-    if: ${{ needs.build_docs.outputs.part == ('major' || 'minor') }}
-    runs-on: ubuntu-latest
-    steps:
+  #     - name: Step 2 - (2/3) Zip downloaded folder
+  #       run: zip -r $ZIP_NAME.zip $ZIP_NAME
 
-      - name: Step 0 - Setting 🔧 environment variables
-        run: |
-          echo "ZIP_NAME=${{ needs.build_docs.outputs.zip_name }}" >> $GITHUB_ENV
-          echo "TAG_NAME=${{ needs.build_docs.outputs.tag_name }}" >> $GITHUB_ENV
-
-      - name: Step 1 - Create a draft release ✏️
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ env.TAG_NAME }}
-          release_name: Release ${{ env.TAG_NAME }}
-          # draft: true
-          prerelease: true
-
-      - name: Step 2 - (1/3) Download artifact ⏬
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ env.ZIP_NAME }}
-      
-      - name: Step 2 - (2/3) Zip downloaded folder
-        run: zip -r $ZIP_NAME.zip $ZIP_NAME
-
-      - name: Step 2 - (3/3) Upload release asset ⏫
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.ZIP_NAME }}.zip
-          asset_name: ${{ env.ZIP_NAME }}.zip
-          asset_content_type: application/zip
+  #     - name: Step 2 - (3/3) Upload release asset ⏫
+  #       id: upload-release-asset
+  #       uses: actions/upload-release-asset@v1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with:
+  #         upload_url: ${{ steps.create_release.outputs.upload_url }}
+  #         asset_path: ${{ env.ZIP_NAME }}.zip
+  #         asset_name: ${{ env.ZIP_NAME }}.zip
+  #         asset_content_type: application/zip
