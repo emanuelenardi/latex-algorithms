@@ -1,5 +1,7 @@
 # 1. Contribuire a questo progetto
 
+Ciao! 👋🏻 Sono entusiasta che tu voglia contribuire a questo progetto.
+Il tuo aiuto è essenziale per mantenerlo alla grande!
 I contributi sono sempre benvenuti, non importa quanto piccoli o grandi siano.
 
 - [1. Contribuire a questo progetto](#1-contribuire-a-questo-progetto)
