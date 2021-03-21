@@ -23,7 +23,7 @@ jobs:
     name: Compila documento
     runs-on: ubuntu-latest
     env:
-      RUN_URL: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+      RUN_URL: "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
     outputs:
       zip_name: ${{ steps.name.outputs.ZIP_NAME }}
       main_name: ${{ steps.name.outputs.MAIN_NAME }}
@@ -162,7 +162,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            @emanuelenardi *build $RUN_NUMBER fallita* 🙁, [vedi log run]($RUN_URL)
+            @emanuelenardi *build ${{ env.RUN_NUMBER }} fallita* 🙁, [vedi log run](${{ env.RUN_URL }})
           format: markdown
           disable_web_page_preview: true
 
