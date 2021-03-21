@@ -21,7 +21,7 @@ on:
 jobs:
 
   build_docs:
-    name: Compila documento
+    name: 0. Compila documento
     runs-on: ubuntu-latest
     env:
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -199,7 +199,7 @@ jobs:
           retention-days: 7
           
   send_docs:
-    name: Manda file zip a Telegram
+    name: 1. ✈️ Manda file zip a Telegram
     runs-on: ubuntu-latest
     needs: build_docs
     env:
@@ -223,8 +223,8 @@ jobs:
           message: ${{ github.event.head_commit.message }}
           document: ${{ env.ZIP_NAME }}.zip
   
-  upload-dropbox:
-    name: Carica main su Dropbox
+  upload_dropbox:
+    name: 2. ⏫ Carica main su Dropbox
     runs-on: ubuntu-latest
     needs: build_docs
     env:
@@ -249,7 +249,7 @@ jobs:
           mute: "true"
 
   create_release:
-    name: Crea bozza release
+    name: 3. 📦 Crea bozza release
     runs-on: ubuntu-latest
     needs: build_docs
     if: ${{ needs.build_docs.outputs.tag_part == ('major' || 'minor') }}
