@@ -50,7 +50,6 @@ jobs:
           echo "ROOT_DIR=$GITHUB_WORKSPACE" >> $GITHUB_ENV
           echo "BUILD_DIR=$GITHUB_WORKSPACE/src/build" >> $GITHUB_ENV
           echo "SCRIPT_DIR=$GITHUB_WORKSPACE/src/scripts/unix" >> $GITHUB_ENV
-          echo "RUN_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
       
       # Compile LaTeX document
       - name: Step 3 ⚙️ - (1/2) Compile LaTeX documents
@@ -119,8 +118,7 @@ jobs:
           cd $BUILD_DIR
           mkdir $ZIP_NAME
           mv main.pdf $MAIN_NAME.pdf
-          sudo mv -r -t $ZIP_NAME chapters $MAIN_NAME.pdf
-          ls -la
+          sudo mv -t $ZIP_NAME chapters $MAIN_NAME.pdf
 
       - name: ⚠️ notifica fallimento build ⚠️
         if: ${{ failure() }}
@@ -129,7 +127,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            @emanuelenardi *build ${{ env.RUN_NUMBER }} fallita* 😅, [vedi log](https://github.com/emanuelenardi/latex-algorithms/actions)
+            @emanuelenardi *build $GITHUB_RUN_NUMBER fallita* 😅, [vedi log](https://github.com/emanuelenardi/latex-algorithms/actions)
           format: markdown
           disable_web_page_preview: true
 
@@ -138,11 +136,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.ZIP_NAME }}
-          path: |
-            ${{ env.BUILD_DIR }}
-            # !${{ env.BUILD_DIR }}/.gitignore
-            # !${{ env.BUILD_DIR }}/chapters
-            # !${{ env.BUILD_DIR }}/${{ env.MAIN_NAME }}.pdf
+          path: ${{ env.BUILD_DIR }}
           if-no-files-found: error
           retention-days: 7
 
