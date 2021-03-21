@@ -35,7 +35,7 @@ jobs:
         # Useful references
       - name: Step 0 💡 - Print enviroment variables
         run: |
-          print_var () { printf '%18s %s\n' "$1:" "$($1)"; }
+          print_var () { printf '%18s %s\n' "$1:" "${$1}"; }
           print_var "GITHUB_WORKFLOW"
           print_var "GITHUB_RUN_ID"
           print_var "GITHUB_RUN_NUMBER"
