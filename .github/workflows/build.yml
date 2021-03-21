@@ -41,7 +41,7 @@ jobs:
       - name: Step 1 🐍 - (3/3) Set up Python dependencies
         id: setup-python-dependencies
         run: pip install Pygments
-
+    
       # Checkout branch and set environment variables
       - name: Step 2 🔧 - (1/2) Checkout the HEAD
         uses: actions/checkout@v2 
@@ -137,7 +137,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.ZIP_NAME }}
-          path: ${{ env.BUILD_DIR }}
+          path: |
+            ${{ env.BUILD_DIR }}
+            !${{ env.BUILD_DIR }}/.gitignore
           if-no-files-found: error
           retention-days: 7
 
