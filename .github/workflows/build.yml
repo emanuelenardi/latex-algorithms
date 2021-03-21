@@ -21,7 +21,6 @@ jobs:
 
   build_docs:
     name: Compila documento
-    needs: configure
     runs-on: ubuntu-latest
     outputs:
       zip_name: ${{ steps.name.outputs.ZIP_NAME }}
