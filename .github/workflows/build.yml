@@ -94,7 +94,7 @@ jobs:
         
       - name: Step 3 👀 - (2/2) Log build
         working-directory: $SCRIPTS_DIR
-        run: source check-files.sh; isCompilationRanCorrectly
+        run: source ./check-files.sh; isCompilationRanCorrectly
 
 
       - name: Step 4 👻 - (1/3) Install pdfsizeopt from source
