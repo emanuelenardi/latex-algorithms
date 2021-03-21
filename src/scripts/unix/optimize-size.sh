@@ -5,16 +5,10 @@ INITIAL_WORKING_DIRECTORY=$(pwd)
 source "${BASH_SOURCE%/*}/common.sh"
 
 cd $BUILD_DIR
-# main=$(find -name "main-*.pdf" | cut -f 2 -d '/')
-# chapters=$(find chapters/ -name "*.pdf" | cut -f 2 -d '/')
 pdfs=$(find . -type f -name "*.pdf")
 fileTotal=$(find . -type f -name "*.pdf" | wc -l)
-
-# echo $main
-# printf '%s\n' "$chapters"
-# printf '%s\n' "$pdfs"
-
 fileProcessed=0
+
 OPTIONS_PSO="--use-pngout=false --use-jbig2=false --quiet"
 OPTIONS_GS="-sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH"
 
@@ -22,7 +16,9 @@ for file in $pdfs; do
     basename=$(basename $file)
     filebase=$(basename $file .pdf)
     
+    # padding numbers
     fileProcessed=$(printf %02d "$((10#$fileProcessed + 1))")
+    fileTotal=$(printf %02d "$((10#$fileTotal))")
     printf 'Compressing %s %-40s' "[$fileProcessed/$fileTotal]" "$basename ..."
     optfile="/tmp/$$-${filebase}_opt.pdf"
     
@@ -48,11 +44,15 @@ for file in $pdfs; do
             continue
         fi
         
-        # bytesSaved=$(expr $orgsize - $optsize)
-        percent=$(expr $optsize '*' 100 / $orgsize)
-        sudo rm "${file}"
-        sudo mv "${optfile}" "${file}"
+        if [[ -z "${GITHUB_ACTIONS}" ]] ; then
+            rm "${file}"
+            mv "${optfile}" "${file}"
+        else
+            sudo rm "${file}"
+            sudo mv "${optfile}" "${file}"
+        fi
 
+        percent=$(expr $optsize '*' 100 / $orgsize)
         echo "done (now ${percent}% of old)"
     fi
 done
