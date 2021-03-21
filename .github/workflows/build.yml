@@ -134,7 +134,7 @@ jobs:
 
       - name: Step 4 👻 - (3/3) Compress files
         working-directory: $SCRIPTS_DIR
-        run: optimize-size.sh
+        run: ./optimize-size.sh
 
 
       - name: Step 5 🔼 - Bump version & push tag
