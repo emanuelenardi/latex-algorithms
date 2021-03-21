@@ -44,8 +44,8 @@ jobs:
           printf '%19s %s\n' "GITHUB_WORKSPACE:"   "$GITHUB_WORKSPACE"
           printf '%19s %s\n' "GITHUB_SHA:"         "$GITHUB_SHA"
           printf '%19s %s\n' "GITHUB_REF:"         "$GITHUB_REF"
-          printf '%19s %s\n' "GITHUB_HEAD_REF:"    "$GITHUB_HEAD_REF" # only for pull request
-          printf '%19s %s\n' "GITHUB_BASE_REF:"    "$GITHUB_BASE_REF" # only for pull request
+          printf '%19s %s\n' "GITHUB_HEAD_REF:"    "$GITHUB_HEAD_REF # only for pull requests"
+          printf '%19s %s\n' "GITHUB_BASE_REF:"    "$GITHUB_BASE_REF # only for pull requests"
           # printf '%19s %s\n' "GITHUB_SERVER_URL:"  "$GITHUB_SERVER_URL"
           # printf '%19s %s\n' "GITHUB_API_URL:"     "$GITHUB_API_URL"
           # printf '%19s %s\n' "GITHUB_GRAPHQL_URL:" "$GITHUB_GRAPHQL_URL"
