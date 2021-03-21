@@ -40,17 +40,17 @@ jobs:
           printf '%19s %s\n' "GITHUB_ACTOR:"       "$GITHUB_ACTOR"
           printf '%19s %s\n' "GITHUB_REPOSITORY:"  "$GITHUB_REPOSITORY"
           printf '%19s %s\n' "GITHUB_EVENT_NAME:"  "$GITHUB_EVENT_NAME"
-          printf '%19s %s\n' "GITHUB_EVENT_PATH:"  "$GITHUB_EVENT_PATH"
+          # printf '%19s %s\n' "GITHUB_EVENT_PATH:"  "$GITHUB_EVENT_PATH"
           printf '%19s %s\n' "GITHUB_WORKSPACE:"   "$GITHUB_WORKSPACE"
           printf '%19s %s\n' "GITHUB_SHA:"         "$GITHUB_SHA"
           printf '%19s %s\n' "GITHUB_REF:"         "$GITHUB_REF"
           printf '%19s %s\n' "GITHUB_HEAD_REF:"    "$GITHUB_HEAD_REF" # only for pull request
           printf '%19s %s\n' "GITHUB_BASE_REF:"    "$GITHUB_BASE_REF" # only for pull request
-          printf '%19s %s\n' "GITHUB_SERVER_URL:"  "$GITHUB_SERVER_URL"
-          printf '%19s %s\n' "GITHUB_API_URL:"     "$GITHUB_API_URL"
-          printf '%19s %s\n' "GITHUB_GRAPHQL_URL:" "$GITHUB_GRAPHQL_URL"
-          printf '%19s %s\n' "branch:"             "${GITHUB_REF#refs/heads/}"
-          RUN_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> $GITHUB_ENV
+          # printf '%19s %s\n' "GITHUB_SERVER_URL:"  "$GITHUB_SERVER_URL"
+          # printf '%19s %s\n' "GITHUB_API_URL:"     "$GITHUB_API_URL"
+          # printf '%19s %s\n' "GITHUB_GRAPHQL_URL:" "$GITHUB_GRAPHQL_URL"
+          printf '%19s %s\n' "BRANCH:"             "${GITHUB_REF#refs/heads/}"
+          RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> $GITHUB_ENV
           printf '%19s %s\n' "RUN_URL:"            "$RUN_URL"
 
       # Set up container
@@ -152,7 +152,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            @emanuelenardi *build ${GITHUB_RUN_NUMBER} fallita* 🙁, [vedi log run]($RUN_URL)
+            @emanuelenardi *build $GITHUB_RUN_NUMBER fallita* 🙁, [vedi log run]($RUN_URL)
           format: markdown
           disable_web_page_preview: true
 
