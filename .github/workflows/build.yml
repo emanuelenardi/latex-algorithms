@@ -182,7 +182,7 @@ jobs:
           disable_web_page_preview: true
 
           
-      - name: Step 8 ⏫ - Upload artifact
+      - name: Step 8 ⏫ - Upload artifact to Github
         if: ${{ success() }}
         uses: actions/upload-artifact@v2
         with:
@@ -220,30 +220,30 @@ jobs:
   #         message: ${{ github.event.head_commit.message }}
   #         document: ${{ env.ZIP_NAME }}.zip
   
-  # upload-dropbox:
-  #   name: Carica il main su Dropbox
-  #   needs: build_docs
-  #   runs-on: ubuntu-latest
-  #   steps:
+  upload-dropbox:
+    name: Carica il main su Dropbox
+    needs: build_docs
+    runs-on: ubuntu-latest
+    env:
+      ZIP_NAME: ${{ needs.build_docs.outputs.zip_name }}
+      MAIN_NAME: ${{ needs.build_docs.outputs.main_name }}
+    steps:
 
-  #     - name: Step 0 - Setting 🔧 environment variables
-  #       run: |
-  #         echo "ZIP_NAME=${{ needs.build_docs.outputs.zip_name }}" >> $GITHUB_ENV
-  #         echo "MAIN_NAME=${{ needs.build_docs.outputs.main_name }}" >> $GITHUB_ENV
+      - name: Step 1 ⏬ - Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ env.ZIP_NAME }}
 
-  #     - name: Step 1 - Download artifact ⏬
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: ${{ env.ZIP_NAME }}
-
-  #     - name: Step 2 - Extract main
-  #       uses: deka0106/upload-to-dropbox@v2
-  #       with:
-  #         dropbox_access_token: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
-  #         src: ${{ env.ZIP_NAME }}/${{ env.MAIN_NAME }}.pdf
-  #         dest: /latex-algorithms/${{ env.MAIN_NAME }}.pdf
-  #         mode: "add"
-  #         # mute: "true"
+      - name: Step 2 ⏫ -  Upload to Dropbox
+        uses: deka0106/upload-to-dropbox@v2
+        env:
+          DROPBOX_FOLDER: latex-algorithms
+        with:
+          dropbox_access_token: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+          src: ${{ env.ZIP_NAME }}/${{ env.MAIN_NAME }}.pdf
+          dest: /${{ env.DROPBOX_FOLDER }}/${{ env.MAIN_NAME }}.pdf
+          mode: "add"
+          # mute: "true"
 
   # create_release:
   #   name: Crea una bozza di release
