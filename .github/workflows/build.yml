@@ -21,7 +21,7 @@ on:
 jobs:
 
   build_docs:
-    name: 0. Compila documento
+    name: 0. ⚙️ Compila documento
     runs-on: ubuntu-latest
     env:
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -166,8 +166,8 @@ jobs:
         run: |
           echo "ZIP_NAME=dispensa-$TAG_NAME-$F_TIME" >> $GITHUB_ENV
           echo "MAIN_NAME=main-$TAG_NAME-$F_TIME" >> $GITHUB_ENV
-          echo "::set-output name=ZIP_NAME::dispensa-$TAG_NAME-$DATE"
-          echo "::set-output name=MAIN_NAME::main-$TAG_NAME-$DATE"
+          echo "::set-output name=ZIP_NAME::dispensa-$TAG_NAME-$F_TIME"
+          echo "::set-output name=MAIN_NAME::main-$TAG_NAME-$F_TIME"
 
       - name: Step 6 🔧 - Create folder with pdfs
         working-directory: ${{ env.BUILD_DIR }}
@@ -199,7 +199,7 @@ jobs:
           retention-days: 7
           
   send_docs:
-    name: 1. ✈️ Manda file zip a Telegram
+    name: 1. ✈️ Manda zip su Telegram
     runs-on: ubuntu-latest
     needs: build_docs
     env:
