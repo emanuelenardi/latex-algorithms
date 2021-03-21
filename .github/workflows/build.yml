@@ -62,7 +62,7 @@ jobs:
         with:
           run: source $SCRIPT_DIR/check-files.sh; isCompilationRanCorrectly
 
-      - name: Step 4 👻 - (1/3) install pdfsizeopt from source
+      - name: Step 4 👻 - (1/3) Install pdfsizeopt from source
         run: |
           mkdir -p bin/pdfsizeopt
           cd bin/pdfsizeopt
@@ -74,7 +74,7 @@ jobs:
           ln -s      pdfsizeopt.single pdfsizeopt
           echo "$GITHUB_WORKSPACE/bin/pdfsizeopt/" >> $GITHUB_PATH
 
-      - name: Step 4 👻 - (1/3) install ghostscript from source
+      - name: Step 4 👻 - (2/3) Install ghostscript from source
         run: |
           mkdir -p bin/ghostscript
           cd  bin/ghostscript
@@ -85,7 +85,7 @@ jobs:
           ln -s      gs-9533-linux-x86_64 ghostscript
           echo "$GITHUB_WORKSPACE/bin/ghostscript/ghostscript-9.53.3-linux-x86_64/" >> $GITHUB_PATH
 
-      - name: Step 4 👻 - (3/3) compress files
+      - name: Step 4 👻 - (3/3) Compress files
         run: $SCRIPT_DIR/optimize-size.sh
 
       - name: Step 5 🔼 - Bump version & push tag
@@ -105,7 +105,8 @@ jobs:
         run: |
           echo "TAG_NAME=${{ steps.push-tag.outputs.new_tag }}" >> $GITHUB_ENV
           echo "DATE=$(date -d '+1 hour' +'%Y.%m.%d_%H.%M')" >> $GITHUB_ENV
-      - name: Step 5 🔧 - (2/2) Setting environment variables
+
+      - name: Step 6 🔧 - (2/2) Setting environment variables
         id: name
         run: |
           echo "ZIP_NAME=dispensa-$TAG_NAME-$DATE" >> $GITHUB_ENV
@@ -127,7 +128,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            @emanuelenardi *build $GITHUB_RUN_NUMBER fallita* 😅, [vedi log](https://github.com/emanuelenardi/latex-algorithms/actions)
+            @emanuelenardi *build $GITHUB_RUN_NUMBER fallita* , [vedi log](https://github.com/emanuelenardi/latex-algorithms/actions)
           format: markdown
           disable_web_page_preview: true
 
