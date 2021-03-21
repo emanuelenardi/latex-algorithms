@@ -18,16 +18,29 @@ on:
     paths-ignore:
       - '**.md'
 jobs:
+
+  configure:
+    runs-on: ubuntu-latest
+    outputs:
+      uid_gid: ${{ steps.get-user.outputs.uid_gid }}
+    steps:
+      - id: get-user
+        run: echo "::set-output name=uid_gid::$(id -u):$(id -g)"
+
   build_docs:
     name: Compila documento
+    needs: configure
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/vscode/devcontainers/base:ubuntu
+      options: --user ${{ needs.configure.outputs.uid_gid }}
     outputs:
       zip_name: ${{ steps.name.outputs.ZIP_NAME }}
       main_name: ${{ steps.name.outputs.MAIN_NAME }}
       tag_name: ${{ steps.push-tag.outputs.new_tag }}
       part: ${{ steps.push-tag.outputs.part }}
-    runs-on: ubuntu-latest
     steps:
-
+    
       # Set up container
       - name: Step 1 ☕ - (1/3) Set up Java
         uses: actions/setup-java@v1
@@ -133,7 +146,7 @@ jobs:
           format: markdown
           disable_web_page_preview: true
 
-      - name: Step 8 - Upload artifact ⏫
+      - name: Step 8 ⏫ - Upload artifact
         if: ${{ success() }}
         uses: actions/upload-artifact@v2
         with:
