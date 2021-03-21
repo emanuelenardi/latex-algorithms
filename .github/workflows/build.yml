@@ -23,7 +23,7 @@ jobs:
     name: Compila documento
     runs-on: ubuntu-latest
     env:
-      RUN_URL: "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     outputs:
       zip_name: ${{ steps.name.outputs.ZIP_NAME }}
       main_name: ${{ steps.name.outputs.MAIN_NAME }}
@@ -36,7 +36,7 @@ jobs:
         run: |
           # USEFUL REFERENCES
           # https://stackoverflow.com/questions/16553089/dynamic-variable-names-in-bash
-          print_var () { var=$1 ; printf '%18s %s\n' "!var:" "${!var}"; }
+          print_var () { var=$1 ; printf '%18s %s\n' "$var:" "${!var}"; }
           print_var "CI"
           print_var "GITHUB_WORKFLOW"
           print_var "GITHUB_RUN_ID"
