@@ -36,7 +36,7 @@ jobs:
         run: |
           # USEFUL REFERENCES
           # https://stackoverflow.com/questions/16553089/dynamic-variable-names-in-bash
-          print_var () { var=$1 ; printf '%18s %s\n' "var:" "${!var}"; }
+          print_var () { var=$1 ; printf '%18s %s\n' "!var:" "${!var}"; }
           print_var "CI"
           print_var "GITHUB_WORKFLOW"
           print_var "GITHUB_RUN_ID"
@@ -59,33 +59,34 @@ jobs:
           echo "RUN_URL=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> $GITHUB_ENV
           echo "RUN_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
 
+
       # Set up container
       - name: Step 1 ☕ - (1/3) Set up Java
         uses: actions/setup-java@v1
         with:
           java-version: '11'
+
       - name: Step 1 🐍 - (2/3) Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.8' # last cached version
+          
       - name: Step 1 🐍 - (3/3) Set up Python dependencies
         id: setup-python-dependencies
         run: pip install Pygments
-    
+
+
       # Checkout branch and set environment variables
       - name: Step 2 🔽 - (1/2) Checkout the HEAD
         uses: actions/checkout@v2
-      
+
       - name: Step 2 🔧 - (2/2) Setting environment variables
-        env:
-          ROOT_DIR: "${GITHUB_WORKSPACE}"
-          BUILD_DIR: "${GITHUB_WORKSPACE}/src/build"
-          SCRIPTS_DIR: "${GITHUB_WORKSPACE}/src/scripts/unix"
         run: |
-          echo $ROOT_DIR >> $GITHUB_ENV
-          echo $BUILD_DIR >> $GITHUB_ENV
-          echo $SCRIPTS_DIR >> $GITHUB_ENV
-      
+          echo "$ROOT_DIR=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+          echo "$BUILD_DIR=$GITHUB_WORKSPACE/src/build" >> $GITHUB_ENV
+          echo "$SCRIPTS_DIR=$GITHUB_WORKSPACE/src/scripts/unix" >> $GITHUB_ENV
+
+
       # Compile LaTeX document
       - name: Step 3 ⚙️ - (1/2) Compile LaTeX documents
         uses: xu-cheng/texlive-action/full@v1
@@ -95,6 +96,7 @@ jobs:
       - name: Step 3 👀 - (2/2) Log build
         working-directory: $SCRIPTS_DIR
         run: source check-files.sh; isCompilationRanCorrectly
+
 
       - name: Step 4 👻 - (1/3) Install pdfsizeopt from source
         working-directory: $ROOT_DIR 
@@ -125,6 +127,7 @@ jobs:
         working-directory: $SCRIPTS_DIR
         run: optimize-size.sh
 
+
       - name: Step 5 🔼 - Bump version & push tag
         if: ${{ success() }}
         id: tag-version
@@ -134,8 +137,9 @@ jobs:
           release_branches: main
           pre_release_branches: preview
           default_bump: patch
-          custom_release_rules: perf:major, feat:minor, fix:patch, hotfix:patch, pre-feat:preminor, pre-feat:preminor
+          custom_release_rules: perf:major, feat:minor, fix:patch, hotfix:patch, pre-feat:preminor
           dry_run: true
+
 
       # Prepare variables used to name the files
       - name: Step 6 🔧 - (1/2) Setting environment variables
@@ -148,12 +152,14 @@ jobs:
           echo "::set-output name=ZIP_NAME::dispensa-$TAG_NAME-$DATE"
           echo "::set-output name=MAIN_NAME::main-$TAG_NAME-$DATE"
 
+
       - name: Step 7 🔧 - Create folder with pdfs
         working-directory: $BUILD_DIR
         run: |
           mkdir $ZIP_NAME
           mv main.pdf $MAIN_NAME.pdf
           sudo mv -t $ZIP_NAME chapters $MAIN_NAME.pdf
+
 
       - name: ⚠️ notifica fallimento build ⚠️
         if: ${{ failure() }}
@@ -165,6 +171,7 @@ jobs:
             @emanuelenardi *build ${{ env.RUN_NUMBER }} fallita* 🙁, [vedi log run](${{ env.RUN_URL }})
           format: markdown
           disable_web_page_preview: true
+
 
       - name: Step 8 ⏫ - Upload artifact
         if: ${{ success() }}
