@@ -32,6 +32,7 @@ jobs:
       changelog: ${{ steps.tag-version.outputs.changelog }}
     steps:
     
+        # Print useful references
       - name: Step 0 💡 - Print enviroment variables
         run: |
           print_var () { printf '%18s %s\n' "$1:" "$$1"; }
@@ -68,9 +69,9 @@ jobs:
       
       - name: Step 2 🔧 - (2/2) Setting environment variables
         env:
-          ROOT_DIR: "$GITHUB_WORKSPACE"
-          BUILD_DIR: "$GITHUB_WORKSPACE/src/build"
-          SCRIPTS_DIR: "$GITHUB_WORKSPACE/src/scripts/unix"
+          ROOT_DIR: "${{ env.GITHUB_WORKSPACE }}"
+          BUILD_DIR: "${{ env.GITHUB_WORKSPACE }}/src/build"
+          SCRIPTS_DIR: "${{ env.GITHUB_WORKSPACE }}/src/scripts/unix"
         run: |
           echo $ROOT_DIR >> $GITHUB_ENV
           echo $BUILD_DIR >> $GITHUB_ENV
