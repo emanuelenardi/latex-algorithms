@@ -27,14 +27,15 @@ jobs:
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       RUN_NUMBER: ${{ github.run_number }}
     outputs:
-      zip_name: ${{ steps.name.outputs.ZIP_NAME }}
-      main_name: ${{ steps.name.outputs.MAIN_NAME }}
+      zip_name: ${{ steps.naming-objects.outputs.ZIP_NAME }}
+      main_name: ${{ steps.naming-objects.outputs.MAIN_NAME }}
       part: ${{ steps.tag-version.outputs.part }}
       tag_name: ${{ steps.tag-version.outputs.new_tag }}
       changelog: ${{ steps.tag-version.outputs.changelog }}
     steps:
     
-      - name: Step 0 💡 - Print enviroment variables
+      # Print useful references
+      - name: Step 0 👀 - Print enviroment variables
         run: |
           # USEFUL REFERENCES
           # https://stackoverflow.com/questions/16553089/dynamic-variable-names-in-bash
@@ -54,7 +55,7 @@ jobs:
           print_var "GITHUB_HEAD_REF" # only for pull requests
           print_var "GITHUB_BASE_REF" # only for pull requests
       
-      - name: Step 0 💡 - Set enviroment variables
+      - name: Step 0 🌱 - Set enviroment variables
         run: |
           echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
           echo "BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
@@ -74,17 +75,15 @@ jobs:
         id: setup-python-dependencies
         run: pip install Pygments
 
-
       # Checkout branch and set environment variables
       - name: Step 2 🔽 - (1/2) Checkout the HEAD
         uses: actions/checkout@v2
 
-      - name: Step 2 🔧 - (2/2) Setting environment variables
+      - name: Step 2 🌱 - (2/2) Setting environment variables
         run: |
           echo "ROOT_DIR=$GITHUB_WORKSPACE" >> $GITHUB_ENV
           echo "BUILD_DIR=$GITHUB_WORKSPACE/src/build" >> $GITHUB_ENV
           echo "SCRIPTS_DIR=$GITHUB_WORKSPACE/src/scripts/unix" >> $GITHUB_ENV
-
 
       # Compile LaTeX document
       - name: Step 3 ⚙️ - (1/2) Compile LaTeX documents
@@ -96,48 +95,50 @@ jobs:
         working-directory: ${{ env.SCRIPTS_DIR }}
         run: source ./check-files.sh; isCompilationRanCorrectly
 
-
+      # Compress documents
       - name: Step 4 👻 - (1/3) Install pdfsizeopt from source
         working-directory: ${{ env.ROOT_DIR }}
         env:
-          FOLDER_PSO: bin/pdfsizeopt
-          TGZ_DL: https://github.com/pts/pdfsizeopt/releases/download/2017-01-24/pdfsizeopt_libexec_linux-v3.tar.gz
+          PSO_FOLDER: bin/pdfsizeopt
+          DL_TGZ: https://github.com/pts/pdfsizeopt/releases/download/2017-01-24/pdfsizeopt_libexec_linux-v3.tar.gz
           TGZ: pdfsizeopt_libexec_linux.tar.gz
-          SINGLE_DL: https://raw.githubusercontent.com/pts/pdfsizeopt/master/pdfsizeopt.single
-          SINGLE: pdfsizeopt.single
+          DL_PSO_BIN: https://raw.githubusercontent.com/pts/pdfsizeopt/master/pdfsizeopt.single
+          PSO_BIN: pdfsizeopt.single
         run: |
-          mkdir -p $FOLDER_PSO
-          cd $FOLDER_PSO
-          wget -q -O $TGZ $TGZ_DL
+          mkdir -p $PSO_FOLDER
+          cd $PSO_FOLDER
+          wget -q -O $TGZ $DL_TGZ
           tar -xzf $TGZ
           rm -f $TAR
-          wget -q -O $SINGLE $SINGLE_DL
-          chmod +x $SINGLE
-          ln -s $SINGLE pdfsizeopt
-          echo "$ROOT_DIR/$FOLDER_PSO/" >> $GITHUB_PATH
+          wget -q -O $PSO_BIN $DL_PSO_BIN
+          chmod +x $PSO_BIN
+          ln -s $PSO_BIN pdfsizeopt
+          echo "$ROOT_DIR/$PSO_FOLDER/" >> $GITHUB_PATH
 
       - name: Step 4 👻 - (2/3) Install ghostscript from source
         working-directory: ${{ env.ROOT_DIR }}
         env:
-          FOLDER_GS: bin/ghostscript
-          TGZ_DL: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9533/ghostscript-9.53.3-linux-x86_64.tgz
+          GS_FOLDER: bin/ghostscript
+          DL_TGZ: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9533/ghostscript-9.53.3-linux-x86_64.tgz
           TGZ: ghostscript-9.53.3-linux-x86_64.tgz
+          GS_VERSION: ghostscript-9.53.3-linux-x86_64
+          GS_BIN: gs-9533-linux-x86_64
         run: |
-          mkdir -p $FOLDER_GS
-          cd $FOLDER_GS
-          wget -q -O $TGZ $TGZ_DL
+          mkdir -p $GS_FOLDER
+          cd $GS_FOLDER
+          wget -q -O $TGZ $DL_TGZ
           tar -xzf $TGZ
           rm -f $TGZ
-          cd ghostscript-9.53.3-linux-x86_64
-          ln -s gs-9533-linux-x86_64 ghostscript
-          echo "$ROOT_DIR/$FOLDER_GS/ghostscript-9.53.3-linux-x86_64/" >> $GITHUB_PATH
+          cd $GS_VERSION
+          ln -s $GS_BIN ghostscript
+          echo "$ROOT_DIR/$FOLDER_GS/$GS_VERSION/" >> $GITHUB_PATH
 
       - name: Step 4 👻 - (3/3) Compress files
         working-directory: ${{ env.SCRIPTS_DIR }}
         run: ./optimize-size.sh
 
-
-      - name: Step 5 🔼 - Bump version & push tag
+      # Tag version document
+      - name: Step 5 🔼 - (1/3) Bump version & push tag
         if: ${{ success() }}
         id: tag-version
         uses: mathieudutour/github-tag-action@v5.3
@@ -149,26 +150,31 @@ jobs:
           custom_release_rules: perf:major, feat:minor, fix:patch, hotfix:patch, pre-feat:preminor, pre-feat:preminor
           dry_run: true
 
+      - name: Step 5 🌱 - (2/3) Get current time
+        uses: 1466587594/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYY.MM.DD-HH:mm
+          utcOffset: "+01:00"
 
       # Prepare variables used to name the files
-      - name: Step 6 🔧 - (1/2) Setting environment variables
+      - name: Step 5 🌱 - (3/3) Setting environment variables
+        id: naming-objects
         env:
           TAG_NAME: ${{ steps.tag-version.outputs.new_tag }}
+          F_TIME: ${{ steps.current-time.outputs.formattedTime }}
         run: |
-          echo "DATE=$(date -d '+1 hour' +'%Y.%m.%d_%H.%M')"
-          echo "ZIP_NAME=dispensa-$TAG_NAME-$DATE" >> $GITHUB_ENV
-          echo "MAIN_NAME=main-$TAG_NAME-$DATE" >> $GITHUB_ENV
+          echo "ZIP_NAME=dispensa-$TAG_NAME-$F_TIME" >> $GITHUB_ENV
+          echo "MAIN_NAME=main-$TAG_NAME-$F_TIME" >> $GITHUB_ENV
           echo "::set-output name=ZIP_NAME::dispensa-$TAG_NAME-$DATE"
           echo "::set-output name=MAIN_NAME::main-$TAG_NAME-$DATE"
 
-
-      - name: Step 7 🔧 - Create folder with pdfs
+      - name: Step 6 🔧 - Create folder with pdfs
         working-directory: ${{ env.BUILD_DIR }}
         run: |
           mkdir $ZIP_NAME
           mv main.pdf $MAIN_NAME.pdf
           sudo mv -t $ZIP_NAME chapters $MAIN_NAME.pdf
-
 
       - name: ⚠️ notifica fallimento build ⚠️
         if: ${{ failure() }}
@@ -182,7 +188,7 @@ jobs:
           disable_web_page_preview: true
 
           
-      - name: Step 8 ⏫ - Upload artifact to Github
+      - name: Step 7 ⏫ - Upload artifact to Github
         if: ${{ success() }}
         uses: actions/upload-artifact@v2
         with:
@@ -192,33 +198,31 @@ jobs:
             !${{ env.BUILD_DIR }}/.gitignore
           if-no-files-found: error
           retention-days: 7
+          
+  send_docs:
+    name: Manda file zip a Telegram
+    needs: build_docs
+    runs-on: ubuntu-latest
+    env:
+      ZIP_NAME: ${{ needs.build_docs.outputs.zip_name }}
+    steps:
 
-  # send_docs:
-  #   name: Manda file zip a Telegram
-  #   needs: build_docs
-  #   runs-on: ubuntu-latest
-  #   steps:
+      - name: Step 1 ⏬ - Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ env.ZIP_NAME }}
 
-  #     - name: Step 0 - Setting 🔧 environment variables
-  #       run: |
-  #         echo "ZIP_NAME=${{ needs.build_docs.outputs.zip_name }}" >> $GITHUB_ENV
+      - name: Step 2 ⚙️ - Zip downloaded folder
+        run: zip -r $ZIP_NAME.zip $ZIP_NAME
 
-  #     - name: Step 1 - Download artifact ⏬
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: ${{ env.ZIP_NAME }}
-
-  #     - name: Step 2 - Zip downloaded folder
-  #       run: zip -r $ZIP_NAME.zip $ZIP_NAME
-
-  #     - name: Step 3 - Send it to Telegram private channel
-  #       if: ${{ success() }}
-  #       uses: appleboy/telegram-action@master
-  #       with:
-  #         to: ${{ secrets.TELEGRAM_TO }}
-  #         token: ${{ secrets.TELEGRAM_TOKEN }}
-  #         message: ${{ github.event.head_commit.message }}
-  #         document: ${{ env.ZIP_NAME }}.zip
+      - name: Step 3 ✈️ - Send it to Telegram private channel
+        if: ${{ success() }}
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: ${{ github.event.head_commit.message }}
+          document: ${{ env.ZIP_NAME }}.zip
   
   upload-dropbox:
     name: Carica il main su Dropbox
@@ -234,7 +238,7 @@ jobs:
         with:
           name: ${{ env.ZIP_NAME }}
 
-      - name: Step 2 ⏫ -  Upload to Dropbox
+      - name: Step 2 ⏫ - Upload to Dropbox
         uses: deka0106/upload-to-dropbox@v2
         env:
           DROPBOX_FOLDER: latex-algorithms
@@ -243,7 +247,7 @@ jobs:
           src: ${{ env.ZIP_NAME }}/${{ env.MAIN_NAME }}.pdf
           dest: /${{ env.DROPBOX_FOLDER }}/${{ env.MAIN_NAME }}.pdf
           mode: "add"
-          # mute: "true"
+          mute: "true"
 
   # create_release:
   #   name: Crea una bozza di release
