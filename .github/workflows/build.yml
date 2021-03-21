@@ -8,11 +8,12 @@ on:
       - '*'                            # ignores root files
       - '.vscode/'                     # ignores suggestions
       - '.devcontainer/'               # ignores docker settings
-      - 'docs/**'                      # ignores documentation
       - '.github/workflows/**'         # ignores all workflows
       - '!.github/workflows/build.yml' # un-ignores this workflow
+      - 'docs/**'                      # ignores documentation
       - 'src/build/'                   # ignores "build" dir inside "src" dir
       - '**.bat'                       # ignores windows scripts
+      - '**.md'                        # ignores doc files
   pull_request:
     types: [opened, reopened, synchronize]
     paths-ignore:
@@ -24,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      RUN_NUMBER: ${{ github.run_number }}
     outputs:
       zip_name: ${{ steps.name.outputs.ZIP_NAME }}
       main_name: ${{ steps.name.outputs.MAIN_NAME }}
@@ -106,8 +108,8 @@ jobs:
           SINGLE_DL: https://raw.githubusercontent.com/pts/pdfsizeopt/master/pdfsizeopt.single
           SINGLE: pdfsizeopt.single
         run: |
-          mkdir -p $FOLDER
-          cd $FOLDER
+          mkdir -p $FOLDER_PSO
+          cd $FOLDER_PSO
           wget -q -O $TGZ $TGZ_DL
           tar -xzf $TGZ
           rm -f $TAR
@@ -177,7 +179,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            @emanuelenardi *build ${{ github.run_number }} fallita* 🙁, [vedi log run](${{ env.RUN_URL }})
+            @emanuelenardi *build ${{ env.RUN_NUMBER }} fallita* 🙁, [vedi log run](${{ env.RUN_URL }})
           format: markdown
           disable_web_page_preview: true
 
