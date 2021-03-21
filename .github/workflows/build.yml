@@ -75,7 +75,7 @@ jobs:
           ln -s      pdfsizeopt.single pdfsizeopt
           echo "$GITHUB_WORKSPACE/bin/pdfsizeopt/" >> $GITHUB_PATH
 
-      - name: Step 4 👻 - (1/3) install ghostscript 9.53.3 from source
+      - name: Step 4 👻 - (1/3) install ghostscript from source
         run: |
           mkdir -p bin/ghostscript
           cd  bin/ghostscript
@@ -119,7 +119,7 @@ jobs:
           cd $BUILD_DIR
           mkdir $ZIP_NAME
           mv main.pdf $MAIN_NAME.pdf
-          cp -r -t $ZIP_NAME chapters $MAIN_NAME.pdf
+          sudo mv -r -t $ZIP_NAME chapters $MAIN_NAME.pdf
           ls -la
 
       - name: ⚠️ notifica fallimento build ⚠️
@@ -140,9 +140,9 @@ jobs:
           name: ${{ env.ZIP_NAME }}
           path: |
             ${{ env.BUILD_DIR }}
-            !${{ env.BUILD_DIR }}/.gitignore
-            !${{ env.BUILD_DIR }}/chapters
-            !${{ env.BUILD_DIR }}/${{ env.MAIN_NAME }}.pdf
+            # !${{ env.BUILD_DIR }}/.gitignore
+            # !${{ env.BUILD_DIR }}/chapters
+            # !${{ env.BUILD_DIR }}/${{ env.MAIN_NAME }}.pdf
           if-no-files-found: error
           retention-days: 7
 
