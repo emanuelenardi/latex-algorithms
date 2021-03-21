@@ -141,7 +141,7 @@ jobs:
         if: ${{ success() }}
         id: tag-version
         uses: mathieudutour/github-tag-action@v5.3
-        env:
+        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: main
           pre_release_branches: preview
@@ -154,8 +154,8 @@ jobs:
       - name: Step 6 🔧 - (1/2) Setting environment variables
         env:
           TAG_NAME: ${{ steps.tag-version.outputs.new_tag }}
-          DATE: $(date -d '+1 hour' +'%Y.%m.%d_%H.%M')
         run: |
+          echo "DATE=$(date -d '+1 hour' +'%Y.%m.%d_%H.%M')"
           echo "ZIP_NAME=dispensa-$TAG_NAME-$DATE" >> $GITHUB_ENV
           echo "MAIN_NAME=main-$TAG_NAME-$DATE" >> $GITHUB_ENV
           echo "::set-output name=ZIP_NAME::dispensa-$TAG_NAME-$DATE"
