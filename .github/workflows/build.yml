@@ -19,21 +19,10 @@ on:
       - '**.md'
 jobs:
 
-  configure:
-    runs-on: ubuntu-latest
-    outputs:
-      uid_gid: ${{ steps.get-user.outputs.uid_gid }}
-    steps:
-      - id: get-user
-        run: echo "::set-output name=uid_gid::$(id -u):$(id -g)"
-
   build_docs:
     name: Compila documento
     needs: configure
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/vscode/devcontainers/base:ubuntu
-      options: --user ${{ needs.configure.outputs.uid_gid }}
     outputs:
       zip_name: ${{ steps.name.outputs.ZIP_NAME }}
       main_name: ${{ steps.name.outputs.MAIN_NAME }}
@@ -54,7 +43,6 @@ jobs:
         id: setup-python-dependencies
         run: pip install Pygments
 
-      
       # Checkout branch and set environment variables
       - name: Step 2 🔧 - (1/2) Checkout the HEAD
         uses: actions/checkout@v2 

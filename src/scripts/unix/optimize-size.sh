@@ -50,8 +50,8 @@ for file in $pdfs; do
         
         # bytesSaved=$(expr $orgsize - $optsize)
         percent=$(expr $optsize '*' 100 / $orgsize)
-        rm "${file}"
-        mv "${optfile}" "${file}"
+        sudo rm "${file}"
+        sudo mv "${optfile}" "${file}"
 
         echo "done (now ${percent}% of old)"
     fi
