@@ -34,20 +34,20 @@ jobs:
     
       - name: Step 0 💡 - Print enviroment variables
         run: |
-          print_var () { printf '%19s %s\n' "$1:" "$$1" }
-          print_var "GITHUB_WORKFLOW:"
-          print_var "GITHUB_RUN_ID:"
-          print_var "GITHUB_RUN_NUMBER:"
-          print_var "GITHUB_ACTION:"
-          print_var "GITHUB_ACTIONS:"
-          print_var "GITHUB_ACTOR:"
-          print_var "GITHUB_REPOSITORY:"
-          print_var "GITHUB_EVENT_NAME:"
-          print_var "GITHUB_WORKSPACE:"
-          print_var "GITHUB_SHA:"
-          print_var "GITHUB_REF:"
-          print_var "GITHUB_HEAD_REF:" # only for pull requests
-          print_var "GITHUB_BASE_REF:" # only for pull requests
+          print_var () { printf '%19s %s\n' "$1:" "\$$1"; }
+          print_var "GITHUB_WORKFLOW"
+          print_var "GITHUB_RUN_ID"
+          print_var "GITHUB_RUN_NUMBER"
+          print_var "GITHUB_ACTION"
+          print_var "GITHUB_ACTIONS"
+          print_var "GITHUB_ACTOR"
+          print_var "GITHUB_REPOSITORY"
+          print_var "GITHUB_EVENT_NAME"
+          print_var "GITHUB_WORKSPACE"
+          print_var "GITHUB_SHA"
+          print_var "GITHUB_REF"
+          print_var "GITHUB_HEAD_REF" # only for pull requests
+          print_var "GITHUB_BASE_REF" # only for pull requests
           printf '%19s %s\n' "RUN_URL:" "${{ env.RUN_URL }}"
 
       # Set up container
