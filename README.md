@@ -2,7 +2,7 @@
 [![ForTheBadge makes-people-smile](http://ForTheBadge.com/images/badges/makes-people-smile.svg)](http://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](https://forthebadge.com)
 
-# Appunti di Algoritmi e Strutture Dati
+# Dispensa di Algoritmi e Strutture Dati
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
@@ -18,9 +18,9 @@
 
 ![logo](src/assets/figures/logo/logo-unitn.png)
 
-Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture Dati tenuto all'Università degli Studi di Trento dal Prof.re Alberto Montresor.
+Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture Dati tenuto all'Università degli Studi di Trento dal Prof.re Alberto Montresor durante l'a.a. 2020/2021.
 
-## Contenuto 📖
+## 📖 Contenuto
 
 <table>
 <tr><th>1° Semetre</th><th>2° Semetre</th></tr>
@@ -71,7 +71,7 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
 </td></tr>
 </table>
 
-## Anteprima 👀
+## 👀 Anteprima
 
 Premi sull'immagine per vedere il PDF online 👇🏻
 
@@ -81,22 +81,32 @@ Premi sull'immagine per vedere il PDF online 👇🏻
     </a>
 </p>
 
-## Segnalazione errori 🐞
+## 🐞 Segnalazione errori
 
 Se trovi errori di qualsiasi natura non avere remore a segnalarli sul [gruppo di discussione Telegram](https://t.me/DiscussioneDispensaAlgoritmi), li correggerò il prima possibile e aggiornerò l'[errata corrige](https://github.com/emanuelenardi/latex-algorithms/wiki/Errata-corrige).
 
-## Contribuire ✏️
+Suggerimenti e miglioramenti [sono i benvenuti](https://github.com/emanuelenardi/latex-algorithms/issues)!
+
+## ✏️ Contribuire
 
 I nuovi collaboratori sono sempre benvenuti! Leggi le [linee guida](docs/CONTRIBUTING.md) per essere coinvolto.
 
 Se hai trovato utili questi appunti metti la ⭐!
 
-## Licenza 📃
+## 📃 Licenza
 
 Le trasparenze e gli appunti del Prof.re Alberto Montresor sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.it).
 Gli elaborati presenti su questa repository sono rilasciati sotto licenza [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it).
 
-## Ringraziamenti 🙌🏻🙇🏻
+## 🐻 Autore
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/emanuelenardi"><img src="https://avatars.githubusercontent.com/u/15109661?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Emanuele Nardi</b></sub></a>
+  </tr>
+</table>
+
+## 🙌🏻🙇🏻 Ringraziamenti
 
 Vorrei ringraziare [Francesco Bozzo](https://github.com/FrancescoBozzo),  [Samuele Conti](https://github.com/Samaretas), [Filippo Frezza](https://github.com/morethanmad) e [Sofia Zanrosso](https://github.com/sofiazanrosso) per aver revisionato questa dispensa, per la considerevole pazienza e meticolosità delle correzioni.
 Le carenze di questa dispensa sarebbero considerevolmente maggiori e più numerose se non fosse stato per la loro assistenza.
