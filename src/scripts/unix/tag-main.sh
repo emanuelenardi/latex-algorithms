@@ -56,5 +56,6 @@ setDocumentVersion() {
     rm "$main_name"
     mv "$main_tagged" "$main_name"
 
+
     cd $INITIAL_WORKING_DIRECTORY
 }

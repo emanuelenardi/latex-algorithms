@@ -12,8 +12,7 @@ else
 fi
 
 source "${BASH_SOURCE%/*}/compile-preambles.sh"
-# NOTE for debugging purposes
-# source "${BASH_SOURCE%/*}/compile-chapters.sh"
+source "${BASH_SOURCE%/*}/compile-chapters.sh"
 source "${BASH_SOURCE%/*}/compile-main.sh"
 
 cd $INITIAL_WORKING_DIRECTORY
