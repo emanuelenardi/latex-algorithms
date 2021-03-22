@@ -9,6 +9,7 @@ on:
       - '.vscode/'                     # ignores suggestions
       - '.devcontainer/'               # ignores docker settings
       - '.github/workflows/**'         # ignores all workflows
+      - '**.yml'                       # ignores doc files
       - '!.github/workflows/build.yml' # un-ignores this workflow
       - 'docs/**'                      # ignores documentation
       - 'src/build/'                   # ignores "build" dir inside "src" dir
