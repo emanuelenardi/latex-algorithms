@@ -1,5 +1,5 @@
 #!/bin/bash
-source "src/scripts/unix/common.sh"
+source "${BASH_SOURCE%/*}/common.sh"
 
 INITIAL_WORKING_DIRECTORY=$(pwd)
 

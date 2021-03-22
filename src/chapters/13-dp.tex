@@ -7,6 +7,8 @@
 \usepackage[newfloat, cachedir=_minted-cache, outputdir=../build]{minted}
 \usepackage{../libraries/set-minted}
 
+% \usepackage{debug}
+
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, synctex: no }
 \begin{document}
@@ -18,16 +20,17 @@
 \section*{Introduzione}
 
 La programmazione dinamica è un metodo per spezzare ricorsivamente un problema in
-sottoproblemi, i quali vengono risolti una sola volta e la loro soluzione viene memorizzata in una tabella.
+sottoproblemi, i quali vengono risolti una volta sola e la loro soluzione viene memorizzata in una tabella.
 Nel caso il sottoproblema debba essere risolto nuovamente, si recupera la soluzione dalla tabella.
-La tabella è facilmente indirizzabile: la sua consultazione costa \(\Omicron(1)\).
+La tabella è facilmente indirizzabile: la sua consultazione (\lookup) costa \(\Omicron(1)\).
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=.65\textwidth]{progrdyn}
     \caption{Approccio generale ad un problema per capire quale tecnica utilizzare}
 \end{figure}
-\vspace{-15pt}
+
+Le soluzioni dei sottoproblemi confluiscono nella tabella delle soluzioni, nel caso stia risolvendo un problema di conteggio allora posso restituire immediatamente la soluzione, altrimenti ho un meccanismo (la tabella) per ricostruire la soluzione ottima.
 
 \subsection*{La programmazione dinamica nella storia}
 
@@ -45,7 +48,7 @@ La \emph{programmazione dinamica} è caratterizzata da 4 fasi principali:
 \end{enumerate}
 
 \clearpage
-\section{Domino}
+\section{Domino lineare}
 
 \paragraph{Definizione del problema}
 Il gioco del domino è basato su tessere di dimensione \(2 \times 1\).
@@ -94,49 +97,49 @@ L'equazione di ricorrenza associata a \fibonacciRic è la seguente:
     \end{dcases}
 \]
 \`{E} una ricorrenza lineare di ordine costante, per calcolare la sua complessità applichiamo quindi il \foreign{master theorem}: i fattori moltiplicativi di \(T(n-1)\) e \(T(n-2)\) sono \(a_1 = 1\) e \(a_2 = 1\) rispettivamente, possiamo raccogliergli in \(a = a_1 + a_2 = 2\), il fattore \(\beta\) risulta pari a \(0\), in quanto \(n^0=1\).
-Possiamo quindi concludere che la complessità dell'algoritmo è \(\Theta(a^n \cdot n^\beta) = \Theta(2^n)\).
+Possiamo concludere che la complessità dell'algoritmo è \(\Theta(a^n \cdot n^\beta) = \Theta(2^n)\).
 
-L'albero di ricorsione generato dall'algoritmo è il seguente:
+L'albero di ricorsione generato dall'algoritmo è quello mostrato in~\cref{fig:fibonacci-tree}.
 
 \begin{figure}[H]\centering
     \includegraphics[width=.7\textwidth]{fibonacci-tree}
-    \caption[]{Albero di ricorsione per \fibonacciRic. Possiamo notare che molti sottoproblemi vengono ripetuti.}
+    \caption[Albero di ricorsione in cui si possono notare problemi ripetuti]
+            {Albero di ricorsione per \fibonacciRic. Possiamo notare che molti sottoproblemi vengono ripetuti.}%
+    \label{fig:fibonacci-tree}
 \end{figure}
 
 \subsubsection{Come evitare di risolvere un problema più di una volta}
 
-Dall'albero di ricorsione possiamo notare che molti sottoproblemi vengono ripetuti.
+Dalla~\cref{fig:fibonacci-tree} possiamo notare che molti sottoproblemi vengono ripetuti.
 Per evitare che questo avvenga memorizziamo il risultato ottenuto risolvendo un particolare
-problema in una \textbf{tabella DP}, la quale sarà un vettore, una matrice o dizionario dipendentemente dalle nostre esigenze.
+problema in una \textbf{tabella DP}, la quale sarà un vettore, una matrice o un dizionario dipendentemente dalle nostre esigenze.
 La tabella conterrà un elemento per ogni sottoproblema che dobbiamo risolvere.
 Memorizzeremo i casi base nelle relative posizioni.
 Dopodiché l'iterazione sarà \foreign{bottom-up}: partiremo dai casi base e andremo verso problemi via via sempre più grandi fino a risolvere il problema originale.
 
 \begin{algorithm}[H]
-    \caption{Algoritmo \emph{iterativo} che risolve il problema Domino}
+    \caption[Algoritmo iterativo per Domino]
+            {Algoritmo \emph{iterativo} per Domino}
     \input{fibonacci-iterative}
 \end{algorithm}
+
+\begin{table}[H]\centering
+    \caption[]
+            {I casi base vengono inseriti manualmente nelle relative posizioni.\\
+             Ogni valore \(i\)-esimo successivo viene computato sulla base dei suoi valori precedenti \(i-1\) e \(1-2\)}
+    \includegraphics[width=.4\textwidth]{fib-table1}
+\end{table}
+
 \paragraph{Analisi della complessità}
 % La complessità in tempo è lineare, come lo è la complessità spaziale.
 La complessità in tempo è \(T(n) = \Theta(n)\), quella in spazio è \(S(n) = \Theta(n)\).
 \`{E} possibile migliorare l'algoritmo riducendo lo spazio utilizzato.
 
-\begin{table}[H]\centering
-    \caption[Inserire didascalia per il toc]
-            {I casi base vengono inseriti manualmente nelle relative posizioni.\\
-             Ogni valore \(i\)-esimo successivo viene computato sulla base dei suoi valori precedenti \(i-1\) e \(1-2\).}
-    % \includegraphics[width=.4\textwidth]{fib-table1}
-    \begin{tabular}{@{} *{9}{C} @{}}
-    \toprule
-        n & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
-    \midrule
-        DP[n] & \emph{1} & \emph{1} & 2 & 3 & 5 & 8 & 13 & 21 \\
-    \bottomrule
-    \end{tabular}
-\end{table}
+\subsubsection{Ottimizzazione dello spazio utilizzato}
 
 \begin{algorithm}[H]
-    \caption{Algoritmo \emph{iterativo che ottimizza lo spazio utilizzato} che risolve il problema Domino}
+    \caption[Algoritmo iterativo che ottimizza lo spazio utilizzato per Domino]
+            {Algoritmo \emph{iterativo che ottimizza lo spazio utilizzato} per Domino}
     \input{fibonacci-space-optimize}
 \end{algorithm}
 \paragraph{Analisi della complessità}
@@ -154,11 +157,11 @@ Questa implementazione ha costo costante nello spazio \(S(n) = \Theta(1)\).
     \end{tabular}
 \end{table}
 \renewcommand\arraystretch{1}
-
-Sotto il modello di costo logaritmico, le tre versioni hanno le complessità mostrate nella tabella.
+ 
+Sotto il modello di costo logaritmico (vedi~\cref{sec:valutare-dimensione-input}), le tre versioni hanno le complessità mostrate nella~\cref{tab:fibonacci-versions}.
 
 \begin{table}[H]\centering
-    \caption{Confronto delle varie versioni della funzione di fibonacci}
+    \caption{Confronto delle varie versioni della funzione di fibonacci}\label{tab:fibonacci-versions}
     \begin{tabular}{@{} ll cc @{}}
     \toprule
         Funzione & Tipologia & \(T(n)\) & \(S(n)\) \\

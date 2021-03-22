@@ -30,34 +30,34 @@
 % arara: latexmk:  { clean: partial }
 \begin{document}
 
-% NOTE: tutti i pesi sono pari a 1
+% NOTE tutti i pesi sono pari a 1
 \ifgreedy
 	\ganttset{bar label text = 1}
 \fi
 
 \begin{ganttchart}[
 	,expand chart = \textwidth
-	% NOTE: unità
+	% NOTE unità
 	% ,x unit = .5cm % default 1cm
 	,y unit title = .5cm
 	,y unit chart = .4cm % default 1cm
 	%
-	% NOTE: stili
+	% NOTE stili
 	,canvas/.style = {shape=rectangle, fill=white, draw=none, ultra thin}
 	,bar/.append style = {fill=barcolor, draw=white}
 	,vrule/.append style = {gray, thick}
 	,vgrid={*{1}{lightgray, ultra thin}}
 	%
-	% NOTE: fonts
+	% NOTE fonts
 	,title label font = \em\footnotesize\color{darker}
-	% OPTIMIZE: proposta stile per lucidi
+	% OPTIMIZE proposta stile per lucidi
 	% ,bar label font = \tiny\color{white}
 	% ,bar height = .5
 	% ,inline
 	,bar label font = \footnotesize\color{darker}
 	% ,bar label text = #1,
 	,title/.style = {draw=none, fill=none}
-	% NOTE: elimina lo spazio del titolo se non mostrato
+	% NOTE elimina lo spazio del titolo se non mostrato
 	,include title in canvas = false
 ]{1}{14}
 	% \gantttitle{Prenotazione di una sala conferenze}{15}

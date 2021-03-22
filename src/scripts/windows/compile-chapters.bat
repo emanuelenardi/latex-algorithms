@@ -1,7 +1,6 @@
 @echo off
-call "%~dp0\common.bat"
-
 set INITIAL_WORKING_DIRECTORY=%cd%
+call "%~dp0\common.bat"
 
 echo: & echo ==================== COMPILO SINGOLI CAPITOLI =================== & echo:
 cd %CHAPTERS_DIR%
@@ -14,7 +13,12 @@ cd %BUILD_DIR%
 @REM rmdir /q /s _minted-cache >nul 2>&1
 del /s *.aux >nul 2>&1
 del /s *.log >nul 2>&1
+
 mkdir chapters
-move *.pdf chapters
+for %%i in (*.pdf) do (
+	if not "%%i"=="main.pdf" (
+		move "%%i" chapters
+	)
+)
 
 cd %INITIAL_WORKING_DIRECTORY%

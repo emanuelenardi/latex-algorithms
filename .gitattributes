@@ -1,0 +1,32 @@
+# topic: line endings
+# https://stackoverflow.com/a/5834094/6505634
+# https://docs.github.com/en/github/using-git/configuring-git-to-handle-line-endings
+# https://stackoverflow.com/a/34088712/6505634
+
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+*.all-contributorsrc text
+*.gitignore text
+*.ist text
+*.java text
+*.json text
+*.latexmkrc text
+*.md text
+*.otf text
+*.sty text
+*.tex text
+*.ttf text
+*.txt text
+*.yml text
+
+# Declare files that will always have LF or CRLF line endings on checkout.
+*.bat text eol=crlf
+*.sh text eol=lf
+
+# Denote all files that are truly binary and should not be modified.
+*.pdf binary
+*.png binary
+*.jpg binary

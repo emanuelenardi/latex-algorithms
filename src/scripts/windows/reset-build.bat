@@ -1,9 +1,8 @@
 @echo off
 call "%~dp0\common.bat"
-
 set INITIAL_WORKING_DIRECTORY=%cd%
 
-echo: & echo ===================== CANCELLO CONTENUTO CARTELLA BUILD ===================== & echo:
+echo: & echo ================== CANCELLO CONTENUTO CARTELLA BUILD =================
 cd %BUILD_DIR%
 
 @REM cache algoritmi

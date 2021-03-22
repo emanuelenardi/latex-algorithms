@@ -2,7 +2,7 @@
 [![ForTheBadge makes-people-smile](http://ForTheBadge.com/images/badges/makes-people-smile.svg)](http://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](https://forthebadge.com)
 
-# Appunti di Algoritmi e Strutture Dati
+# Dispensa di Algoritmi e Strutture Dati
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
@@ -18,60 +18,62 @@
 
 ![logo](src/assets/figures/logo/logo-unitn.png)
 
-Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture Dati tenuto all'Università degli Studi di Trento dal Prof.re Alberto Montresor.
+Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture Dati tenuto all'Università degli Studi di Trento dal Prof.re Alberto Montresor durante l'a.a. 2020/2021.
 
-## Contenuto 📖
+## 📖 Contenuto
 
 <table>
 <tr><th>1° Semetre</th><th>2° Semetre</th></tr>
 <tr><td align="center">
 
 | no. | Titolo                          | pagine |
-| --- | ------------------------------- | --- |
-| 1   | Introduzione                    | 7  |
-| 2   | Analisi di algoritmi            | 21 |
-| 2   | Analisi delle funzioni di costo | 20 |
-| 3   | Analisi ammortizzata            | -  |
-| 4   | Strutture Dati                  | 11 |
-| 5   | Alberi                          | 9  |
-| 6   | Alberi Binari di Ricerca        | 20 |
-| 7   | Hashing                         | -  |
-| 8   | Insiemi e dizionari             | 4  |
-| 9   | Grafi                           | 32 |
-| 10  | Strutture dati speciali         | -  |
-| 11  | "Scelta"                        | 10 |
-| 12  | Divide et Impera                | 7  |
+| --- | ------------------------------- | ------ |
+| 1   | Introduzione                    | 7      |
+| 2   | Analisi di algoritmi            | 21     |
+| 2   | Analisi delle funzioni di costo | 20     |
+| 3   | Analisi ammortizzata            | -      |
+| 4   | Strutture Dati                  | 11     |
+| 5   | Alberi                          | 9      |
+| 6   | Alberi Binari di Ricerca        | 20     |
+| 7   | Hashing                         | -      |
+| 8   | Insiemi e dizionari             | 4      |
+| 9   | Grafi                           | 32     |
+| 10  | Strutture dati speciali         | -      |
+| 11  | "Scelta"                        | 10     |
+| 12  | Divide et Impera                | 7      |
 
 </td><td valign="top" align="center">
 
-| no. | titolo                                | pagine |
-| --- | ------------------------------------- | --- |
-| 13  | Programmazione Dinamica               | -  |
-| 14  | Algoritmi ingordi                     | 14 |
-| 15  | Ricerca locale                        | -  |
-| 16  | Backtrack                             | 10 |
-| 17  | Algoritmi probabilistici              | -  |
-| 18  | Problemi intrattabili                 | 10 |
-| 19  | Soluzioni per problemi intrattabili   | 20 |
+| no. | titolo                              | pagine |
+| --- | ----------------------------------- | ------ |
+| 13  | Programmazione Dinamica             | -      |
+| 14  | Algoritmi ingordi                   | 14     |
+| 15  | Ricerca locale                      | -      |
+| 16  | Backtrack                           | 10     |
+| 17  | Algoritmi probabilistici            | -      |
+| 18  | Problemi intrattabili               | 10     |
+| 19  | Soluzioni per problemi intrattabili | 20     |
 
 </td></tr>
 <tr><th colspan="2">Appendici</th></tr>
 <tr><td align="center">
 	
-| no. | titolo                          | pagine |
-| --- | ------------------------------- | --- |
-| A1  | Problema dell'ordinamento       |  5  |
+| no. | titolo                    | pagine |
+| --- | ------------------------- | ------ |
+| A1  | Problema dell'ordinamento | 5      |
 
 </td><td align="center">
 	
-| no. | titolo                          | pagine |
-| --- | ------------------------------- | --- |
-| A2  | Algoritmo di Tarjan             |  -  |
+| no. | titolo              | pagine |
+| --- | ------------------- | ------ |
+| A2  | Algoritmo di Tarjan | -      |
 
 </td></tr>
 </table>
 
-## Anteprima
+## 👀 Anteprima
+
+Premi sull'immagine per vedere il PDF online 👇🏻
 
 <p align="center">
     <a href="https://issuu.com/nardiemanuele">
@@ -79,16 +81,42 @@ Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture
     </a>
 </p>
 
-## Segnalazione errori 🐞
+## 🐞 Segnalazione errori
 
 Se trovi errori di qualsiasi natura non avere remore a segnalarli sul [gruppo di discussione Telegram](https://t.me/DiscussioneDispensaAlgoritmi), li correggerò il prima possibile e aggiornerò l'[errata corrige](https://github.com/emanuelenardi/latex-algorithms/wiki/Errata-corrige).
 
-## Licenza 📃
+Suggerimenti e miglioramenti [sono i benvenuti](https://github.com/emanuelenardi/latex-algorithms/issues)!
+
+## ✏️ Contribuire
+
+I nuovi collaboratori sono sempre benvenuti! Leggi le [linee guida](docs/CONTRIBUTING.md) per essere coinvolto.
+
+Se hai trovato utili questi appunti metti la ⭐!
+
+## 📃 Licenza
 
 Le trasparenze e gli appunti del Prof.re Alberto Montresor sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.it).
 Gli elaborati presenti su questa repository sono rilasciati sotto licenza [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it).
 
-## Ringraziamenti 🙌🏻🙇🏻
+## 🧐 Download
+
+L'ultima versione della dispensa con i singoli capitoli è disponibile [nelle release](https://github.com/emanuelenardi/latex-algorithms/releases/lastest).
+
+Inoltre è possibile visionare le vecchie versioni della dispensa nella [cartella di Dropbox](https://www.dropbox.com/sh/4c9e4n0umodm1wa/AAC4mZ3PqjjdvEWaCpzJBbB6a).
+
+## 🐻 Autore
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/emanuelenardi"><img src="https://avatars.githubusercontent.com/u/15109661?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Emanuele Nardi</b></sub></a>
+  </tr>
+</table>
+
+Se il contenuto che ho prodotto ti ha aiutato nel percorso di studi, prendi in considerazione di [offrirmi un caffé! ☕](paypal.me/emanuelenardi).
+
+Ti ringrazio per il tuo supporto 😄
+
+## 🙌🏻🙇🏻 Ringraziamenti
 
 Vorrei ringraziare [Francesco Bozzo](https://github.com/FrancescoBozzo),  [Samuele Conti](https://github.com/Samaretas), [Filippo Frezza](https://github.com/morethanmad) e [Sofia Zanrosso](https://github.com/sofiazanrosso) per aver revisionato questa dispensa, per la considerevole pazienza e meticolosità delle correzioni.
 Le carenze di questa dispensa sarebbero considerevolmente maggiori e più numerose se non fosse stato per la loro assistenza.

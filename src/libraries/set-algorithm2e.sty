@@ -9,6 +9,11 @@
 \DontPrintSemicolon
 \LinesNotNumbered
 
+% https://tex.stackexchange.com/questions/130355/
+\makeatletter
+\renewcommand*\l@algocf{\@dottedtocline{1}{1em}{3.2em}}% {1}{1em}{2.3em}
+\makeatother
+
 % NOTE inclusione delle immagini esplicative negli algoritmi
 \newif\ifFigureOfAlgo
 \FigureOfAlgotrue% stampa l'immagine

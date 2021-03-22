@@ -4,20 +4,20 @@ on:
     types: [opened]
 
 jobs:
-  comment:
-    name: Commenta segnalazione
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'Grazie per la segnalazione! 🙏🏻'
-            })
+  # comment:
+  #   name: Commenta segnalazione
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/github-script@v3
+  #       with:
+  #         github-token: ${{secrets.GITHUB_TOKEN}}
+  #         script: |
+  #           github.issues.createComment({
+  #             issue_number: context.issue.number,
+  #             owner: context.repo.owner,
+  #             repo: context.repo.repo,
+  #             body: 'Grazie per la segnalazione! 🙏🏻'
+  #           })
   apply-label:
     name: Applica etichetta
     runs-on: ubuntu-latest

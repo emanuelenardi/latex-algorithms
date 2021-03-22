@@ -1,5 +1,5 @@
 % Precompiled header with XeLaTeX not working
-% see: https://tex.stackexchange.com/questions/359867/
+% SEE https://tex.stackexchange.com/questions/359867/
 % \RequirePackage[T1]{fontenc}
 \documentclass{book}
 % NOTE evita di spaziare equamente il contenuto su tutta la pagina
@@ -8,7 +8,8 @@
 \usepackage{../libraries/set-color}
 % NOTE personalizzazione delle didascalie
 \usepackage{../libraries/set-graphics}
-% % NOTE impostazione dei percorsi globali
+
+% NOTE impostazione dei percorsi globali
 \usepackage{./paths}
 
 \usepackage[compact,explicit,sc]{titlesec}
@@ -16,33 +17,34 @@
 \usepackage{./redefinitions-part}
 
 \usepackage[none]{tocbibind}
-% % https://tex.stackexchange.com/a/346097/127473
+% SEE https://tex.stackexchange.com/a/346097/127473
 % \let\oldaddcontentsline\addcontentsline
 % \newcommand{\hidefromtoc}{\renewcommand{\addcontentsline}[3]{}}
 % \newcommand{\writetotoc}{\let\addcontentsline\oldaddcontentsline}
 \usepackage{./pretty-toc}
 
-% WARNING interferisce con il TOC, non utilizzare
-% NOTE toglie l'intentazione e inserisce spaziatura tra paragrafi
-% \usepackage[
-%     parfill=30pt, % default: 30pt
-%     tocskip=0pt   % default: \parskip
-% ]{parskip}
+\usepackage[
+	skip=0pt,     % default: .5\baselineskip plus 2pt
+    tocskip=0pt,  % default: \parskip
+	indent=0pt,
+    parfill=30pt  % default: 30pt
+]{parskip}
+
+% https://stackoverflow.com/questions/2318598/
+\setlength\partopsep{-\topsep}
+\addtolength\partopsep{-\parskip}
 
 \usepackage{appendix}
 \renewcommand{\appendixname}{Appendice}
 \renewcommand{\appendixpagename}{Appendici}
 \renewcommand{\appendixpage}{%
-	\thispagestyle{empty}%
-	\null\vfill%
-	\begin{flushright}%
-	\fontsize{40}{40}\selectfont\scshape\appendixpagename%
-	\end{flushright}%
-	\vfill\null%
-	\thispagestyle{epigraph}
+	\thispagestyle{epigraph}%
+	{\null\vfill%
+	\filleft\fontsize{40}{40}\selectfont\scshape\appendixpagename%
+	\vfill\null}%
 	\clearpage}
 
-% WARNING da caricare presto
+% WARNING package "standalone" da caricare presto
 \usepackage[subpreambles=false]{standalone}
 % \usepackage{subfiles}
 % NOTE soluzione per utilizzare il preambolo precompilato del main
@@ -78,9 +80,9 @@
 
 % NOTE dichiarazione nuovi colori
 \colorlet{darker}{blue!50!black}
-\colorlet{faded}{lightgray}
+\colorlet{faded}{gray}
 \colorlet{mathcolor}{blue}
-\colorlet{rose}{red!50!white}
+% \colorlet{rose}{red!50!white}
 
 % NOTE personalizzazione degli alberi
 \usepackage{../libraries/set-forest}
@@ -101,13 +103,9 @@
 
 % https://tex.stackexchange.com/a/585169/127473
 \usepackage{newfloat}
-% WARNING inserisce una voce 'indice' nel TOC
 % NOTE personalizzazione dell'aspetto degli algoritmi
 \usepackage{../libraries/set-algorithm2e}
-% https://tex.stackexchange.com/questions/130355/
-\makeatletter
-\renewcommand*\l@algocf{\@dottedtocline{1}{1em}{3.2em}}% {1}{1em}{2.3em}
-\makeatother
+
 % NOTE nomi delle funzioni
 \usepackage{../assets/algorithms/functions}
 

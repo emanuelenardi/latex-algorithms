@@ -68,11 +68,8 @@ L'\cref{alg:contatore-binario} illustra i passaggi\dots
     }
 \end{algorithm}
 
-Nella~\cref{tab:contatore-bit} notiamo che i bit modificati\dots
-
 \begin{table}[!ht]\centering
-    \caption{Esempio di contatore binario}%
-    \label{tab:contatore-bit}
+    \caption{Esempio di contatore binario}\label{tab:contatore-bit}
     \begin{tabular}{@{} *{9}{ F{C} } @{}}
         \toprule
             x & A[7] & A[6] & A[5] & A[4] & A[3] & A[2] & A[1] & A[0]\\
@@ -135,7 +132,7 @@ Eseguito in Java.
 
 \begin{figure}[!ht]\centering
     \includegraphics[width=.65\textwidth]{ops-ammortizzate}
-    \caption{Didascalia}\label{fig:ops-ammortizzate}
+    \caption{Andamento del costo di un'operazione con \(n = 2^k\) operazioni}\label{fig:ops-ammortizzate}
 \end{figure}
 
 \subsubsection{Metodo dell'aggregazione nel contatore binario}
@@ -146,8 +143,7 @@ Quanti bit vengono modificati?
 \newcommand{\diff}[1]{\textcolor{red}{\textbf{#1}}}
 
 \begin{table}[!ht]\centering
-    \caption{Numero di bit modificati}%
-    \label{tab:contatore-bit-modificati}
+    \caption{Numero di bit modificati}\label{tab:contatore-bit-modificati}
     \begin{tabular}{@{} *{9}{ F{C} } C @{}}
         \toprule
             x & A[7] & A[6] & A[5] & A[4] & A[3] & A[2] & A[1] & A[0] & \texttt{\#}\text{bit}\\
@@ -393,14 +389,14 @@ Il costo effettivo di un'operazione \textsf{add()} è dato dalla seguente espres
 \end{tabular}
 \end{center}
 
-Scrivere spiegazione\dots
+Ogni volta che con un inserimento vado ad eccedere la dimensione del vettore inizialmente allocato vado a pagare un costo pari alla dimensione del vecchio vettore che vado a copiare, più 1 per l'inserimento del nuovo valore.
 
 Il costo effettivo di \(n\) operazioni di raddoppiamento sono:
 \[\begin{WithArrows}[displaystyle]
-T(n) &= \sum_{i=1}^{n} c_i \Arrow{spiegazione}\\
-     &= n + \sum_{j=0}^{\floor{\log n}} 2^j \Arrow{spiegazione}\\
-     &= n + 2^{\floor{\log n} + 1} - 1 \Arrow{spiegazione}\\
-     &\leqslant n + 2^{\log n + 1} - 1 \Arrow{spiegazione}\\
+T(n) &= \sum_{i=1}^{n} c_i \Arrow{sostituisco \(c_i\) con l'equazione di costo}\\
+     &= n + \sum_{j=0}^{\floor{\log n}} 2^j \Arrow{svolgo la sommatoria}\\
+     &= n + 2^{\floor{\log n} + 1} - 1 \Arrow{sarà certamente minore di}\\
+     &\leqslant n + 2^{\log n + 1} - 1 \Arrow{consentendoci quindi di concludere che}\\
      &\leqslant n + 2n - 1 = \Omicron(n)
 \end{WithArrows}\]
 Il costo ammortizzato di un'operazione  è quindi \(T(n)/n = \Omicron(n)/n = \Omicron(1)\).
@@ -428,14 +424,15 @@ Il costo effettivo di un'operazione \textsf{add()} è dato dalla seguente espres
 \end{tabular}
 \end{center}
 
-Scrivere spiegazione\dots
+Anche qui, ogni volta che con un inserimento vado ad eccedere la dimensione del vettore inizialmente allocato vado a pagare un costo pari alla dimensione del vecchio vettore che vado a copiare, più 1 per l'inserimento del nuovo valore.
+La differenza tra le due operazioni quindi non sta tanto nel costo della chiamata che aumenta la dimensione del vettore, quanto più nel numero di volte che una tale chiamata sarà invocata.
 
 Il costo effettivo di \(n\) operazioni di incremento sono: 
 \[\begin{WithArrows}[displaystyle]
-T(n) &= \sum_{i=1}^{n} c_i \Arrow{spiegazione}\\
-     &= n + \sum_{j=1}^{\floor{n/d}} d \cdot j \Arrow{spiegazione}\\
-     &= n + d \sum_{j=1}^{\floor{n/d}} d \cdot j \Arrow{spiegazione}\\
-     &= n + d \frac{(\floor{n/d} + 1) \floor{n/d}}{2} \Arrow{spiegazione}\\
+T(n) &= \sum_{i=1}^{n} c_i \Arrow{sostituisco \(c_i\)  con l'equazione di costo}\\
+     &= n + \sum_{j=1}^{\floor{n/d}} d \cdot j \Arrow{estraggo la \(d\) dalla sommatoria}\\
+     &= n + d \sum_{j=1}^{\floor{n/d}} d \cdot j \Arrow{svolgo la sommatoria}\\
+     &= n + d \frac{(\floor{n/d} + 1) \floor{n/d}}{2} \Arrow{intrinsecamente minore di}\\
      &\leqslant n + \frac{(n/d + 1) n}{2} = \Omicron(n^2)
 \end{WithArrows}\]
 Il costo ammortizzato di un'operazione  è quindi \(T(n)/n = \Omicron(n^2)/n = \Omicron(n)\).
@@ -493,7 +490,7 @@ public static void print(int dim) {
 \end{listing}
 
 \begin{table}[htbp]\centering
-    \caption{didascalia}\label{tab:etichetta}
+    \caption{Differenza del tempo necessario per svolgere l'operazione di allocazione di memoria}\label{tab:etichetta}
     \begin{tabular}{@{} S[table-format=7] S[table-format=2] S[table-format=6] @{}}
         \toprule
             {\texttt{dim}} & {\texttt{StringBuffer} (ms)} & {String (ms)} \\
@@ -555,8 +552,9 @@ Considerate la seguente sequenza di \textbf{I}nserimenti e \textbf{R}imozioni in
 \end{center}
 
 Qual è il problema?
-Non abbiamo un numero di inserimenti/rimozioni sufficienti per ripagare le espansioni/contrazioni
-Dobbiamo lasciar decrescere il sistema ad un fattore inferiore a \(1/4\), dopo un'espansione o una contrazione, il fattore di carico diventa \(1/2\).
+Non abbiamo un numero di inserimenti/rimozioni sufficienti per ripagare le espansioni/contrazioni.
+Dobbiamo lasciar decrescere il sistema ad un fattore inferiore a \(1/4\).
+Dopo un'espansione o una contrazione, il fattore di carico diventa \(1/2\).
 
 \subsubsection{Analisi ammortizzata per la contrazione di un vettore}
 
@@ -576,11 +574,11 @@ Prendiamo in considerazione alcuni casi esplicativi:
 \end{itemize}
 In altre parole: immediatamente prima di espansioni e contrazioni il potenziale è sufficiente per \enquote{pagare} il loro costo.
 
-Nella~\cref{fig:dynvector} possiamo notare\dots
+Nella~\cref{fig:dynvector} possiamo notare quanto appena spiegato.
 
 \begin{figure}[!ht]\centering
     \includegraphics[width=.65\textwidth]{dynvector}
-    \caption{Didascalia}\label{fig:dynvector}
+    \caption{Variazione del potenziale e della capacità del vettore al variare della dimensione}\label{fig:dynvector}
 \end{figure}
 
 Se \(\alpha=\frac{1}{2}\) il costo ammortizzato di un inserimento \emph{senza espansione} è:

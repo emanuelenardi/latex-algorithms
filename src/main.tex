@@ -1,13 +1,13 @@
 %&settings/preamble.main
 \subfilefalse
 
-\usepackage{./settings/pagestyles}
-
 \usepackage[newfloat, cachedir=_minted-cache, outputdir=build]{minted}
 \usepackage{./libraries/set-minted}
 \mintedpath{{assets/codes/04/}}
 
-% TODO utilizzato nel capitolo "05-analisi-ammortizzata"
+\usepackage{./settings/pagestyles}
+
+% NOTE utilizzato nel capitolo "05-analisi-ammortizzata"
 \usepackage{transparent}
 
 % arara: pdflatex: {
@@ -32,16 +32,9 @@
 	\input{00-dedica}
 	\cleardoublepage
 
-	% \pagestyle{toc}
 	\input{00-toc}
 	\cleardoublepage
 
-% NOTE da caricare dopo il TOC
-% https://tex.stackexchange.com/questions/348020/
-\parskip=0.1\baselineskip \advance\parskip by 0pt plus 2pt % default: 0.0pt plus 1.0pt
-\parindent=0pt
-
-	% \pagestyle{default}
 	\input{00-prefazione}
 	\cleardoublepage
 
@@ -76,11 +69,17 @@
 	\input{18-prob}
 	\input{19-pnp}
 	\input{20-approx}
+	\input{21-summary}
+	\cleardoublepage
+
+	\input{00-conclusioni}
 	\cleardoublepage
 
 \input{03-appendix}
 
+\begin{appendices}
 	\input{A1-sorting}
 	\input{A2-tarjan}
+\end{appendices}
 
 \end{document}

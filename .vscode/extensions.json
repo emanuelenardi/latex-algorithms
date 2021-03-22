@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "cschleiden.vscode-github-actions",
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "gruntfuggly.todo-tree",
+        "james-yu.latex-workshop",
+        "ms-vscode-remote.remote-containers",
+        "ms-vscode-remote.remote-wsl",
+        "shd101wyy.markdown-preview-enhanced",
+        "yzhang.markdown-all-in-one",
+    ]
+}

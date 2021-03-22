@@ -7,6 +7,10 @@
 \usepackage{showframe}
 \renewcommand*\ShowFrameColor{\color{red}}
 
+\ifsubfile\else
+    \pagestyle{debug}
+\fi
+
 % NOTE per controllare dove sfori la pagina
 \setlength\overfullrule{5pt}
 

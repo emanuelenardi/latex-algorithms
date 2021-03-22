@@ -24,3 +24,6 @@
 
 # workspace VScode
 **/*.code-workspace
+
+# test folder
+tests

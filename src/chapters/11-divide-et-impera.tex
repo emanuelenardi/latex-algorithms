@@ -52,12 +52,12 @@ La definizione matematica può suggerire una possibile tecnica, ad esempio:
 
 Come vengono affrontati i problemi dalle varie tecniche?
 \begin{itemize}
-	\item nella tecnica divide-et-impera un problema viene suddiviso in sotto-problemi indipendenti, i quali vengono risolti ricorsivamente (avendo quindi un approccio dall'alto verso il basso, detto \foreign{top-down}); Abbiamo già visto diversi esempi dell'applicazione di questa tecnica, provate a pensare all'algoritmo \mergeSort: ordinare due sottovettori sono due problemi indipendenti (ordinare il sottovettore di sinistra non richiede conoscere il contenuto del vettore di destra e viceversa);
-	\item nella programmazione dinamica la soluzione viene costruita (dal basso verso l'altro, \foreign{bottom-up}) a partire da un insieme di sotto-problemi potenzialmente ripetuti.
+	\item nella \textbf{tecnica divide-et-impera} un problema viene suddiviso in sotto-problemi indipendenti, i quali vengono risolti ricorsivamente (avendo quindi un approccio dall'alto verso il basso, detto \foreign{top-down}); Abbiamo già visto diversi esempi dell'applicazione di questa tecnica, provate a pensare all'algoritmo \mergeSort: ordinare due sottovettori sono due problemi indipendenti (ordinare il sottovettore di sinistra non richiede conoscere il contenuto del vettore di destra e viceversa);
+	\item nella \textbf{programmazione dinamica} la soluzione viene costruita (dal basso verso l'altro, \foreign{bottom-up}) a partire da un insieme di sotto-problemi potenzialmente ripetuti.
 	\item la tecnica della \foreign{memoization} (annotazione) è la versione \foreign{top-down} della programmazione dinamica.
-	\item la tecnica \foreign{greedy} effettua sempre la scelta localmente ottima (necessita di una dimostrazione).
-	\item il backtrack procede per \enquote{tentativi}, tornando ogni tanto sui suoi passi;
-	\item nella ricerca locale la soluzione ottima viene trovata \enquote{migliorando} via via soluzioni esistenti; Negli algoritmi probabilistici si dimostra che talvolta è meglio scegliere casualmente, ma in modo \enquote{gratuito}, che con giudizio, ma in maniera costosa.
+	\item la \textbf{tecnica \foreign{greedy}} effettua sempre la scelta localmente ottima (necessita di una dimostrazione).
+	\item il \textbf{backtrack} procede per \enquote{tentativi}, tornando ogni tanto sui suoi passi;
+	\item nella ricerca locale la soluzione ottima viene trovata \enquote{migliorando} via via soluzioni esistenti; Negli \textbf{algoritmi probabilistici} si dimostra che talvolta è meglio scegliere casualmente, ma in modo \enquote{gratuito}, che con giudizio, ma in maniera costosa.
 \end{itemize}
 
 \section{La tecnica del Dividi-et-Impera}
@@ -75,6 +75,7 @@ Sfortunatamente non esiste una ricetta unica per applicare questa tecnica: ad es
 
 La tecnica \enquote{divide-et-impera} non è un proiettile d'argento, a volte utilizzarla crea più danni di quanti ne risolva.
 Osserva questo esempio nella quale è presentato un algoritmo di ricerca del minimo con questa tecnica.
+
 \begin{algorithm}[H]
 \caption{Algoritmo di ricerca del minimo con tecnica divide-et-impera}
 \prototype{\minRec{\Array{\Int} \(A\), \Int \(i\), \Int \(j\)}}{
@@ -153,13 +154,8 @@ Sono dati in input un vettore \(A[1 \dots n]\), gli indici \(start\), \(end\) ta
 
 \begin{algorithm}[H]
 \caption{quickSort}
-\input{quickSort}
-\end{algorithm}
-
-\clearpage
-\begin{algorithm}[H]
-\caption{perno}
-\input{quickSort-perno}
+	\input{quickSort}
+	\input{quickSort-perno}
 \end{algorithm}
 
 % TODO importare immagini di quickSort che spiegano l'ordinamento e la ricorsione

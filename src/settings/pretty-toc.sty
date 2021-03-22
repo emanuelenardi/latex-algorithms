@@ -2,10 +2,6 @@
 % https://tex.stackexchange.com/questions/35825/
 % https://tex.stackexchange.com/a/51059/127473
 
-% patching of \tableofcontents to use sans serif font for the tile
-\usepackage{etoolbox}
-\patchcmd{\tableofcontents}{\contentsname}{\sffamily\contentsname}{}{}
-
 \usepackage{framed}
 
 \definecolor{myred}{RGB}{127,0,0}
@@ -20,45 +16,51 @@
     {\endMakeFramed}
 
 \usepackage{titletoc}
+
+% \let\oldparbox\parbox
+% \renewcommand\parbox[3][c]{\oldparbox[#1]{#2}{%
+%     \setlength{\parskip}{0pt}%
+%     #3}}
+
 % using titletoc we redefine the ToC entries for chapters, sections, and subsections
 \titlecontents{chapter}
     [0em]%
-	  {\vspace*{2\baselineskip}}%
+	{\vspace*{2\baselineskip}}%
     {\begin{minipage}{\textwidth}%
         \parbox{4.5em}{%
     		\hfill\Huge\sffamily\bfseries\color{myred}\thecontentspage}%
-   			\vspace*{-2.3\baselineskip}\leftbar\textsc{\small\chaptername~\thecontentslabel}\\%
-			\sffamily}%
+   		\vspace*{-2.3\baselineskip}\leftbar\textsc{\small\chaptername~\thecontentslabel}\\%
+		\sffamily}%
     {\begin{minipage}{\textwidth}%
         \parbox{4.5em}{%
-          \hfill\Huge\sffamily\bfseries\color{myred}\thecontentspage}%
+            \hfill\Huge\sffamily\bfseries\color{myred}\thecontentspage}%
         \vspace*{-2.3\baselineskip}\leftbar\textsc{}\\%
         \sffamily}%
 	  {\endleftbar\end{minipage}\nopagebreak}%
     [\vskip2pt\nopagebreak]
 
 \titlecontents{section}
-  [8.4em]
-  {\sffamily\contentslabel{3em}}{}{}
-  {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
+    [8.4em]
+    {\sffamily\contentslabel{3em}}{}{}
+    {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
 
 \titlecontents{subsection}
-  [9.4em]
-  {\sffamily\contentslabel{3em}}{}{}  
-  {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
+    [9.4em]
+    {\sffamily\contentslabel{3em}}{}{}  
+    {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
 
 \titlecontents{subsubsection}
-  [10.4em]
-  {\sffamily\contentslabel{3em}}{}{}  
-  {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
+    [10.4em]
+    {\sffamily\contentslabel{3em}}{}{}  
+    {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
 
-% NOTE non vengono inseriti nel TOC
+% % NOTE non vengono inseriti nel TOC
 % \titlecontents{paragraph}
-%   [12.4em]
-%   {\sffamily\contentslabel{3em}}{}{}  
-%   {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
+%     [12.4em]
+%     {\sffamily\contentslabel{3em}}{}{}  
+%     {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
 
 % \titlecontents{subparagraph}
-%   [12.4em]
-%   {\sffamily\contentslabel{3em}}{}{}  
-%   {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
+%     [12.4em]
+%     {\sffamily\contentslabel{3em}}{}{}  
+%     {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}

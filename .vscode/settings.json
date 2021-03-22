@@ -1,0 +1,130 @@
+{
+    "files.autoSave": "onFocusChange",
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "arara 🦜",
+            "tools": [
+                "arara"
+            ]
+        },
+        {
+            "name": "latexmk 🔃",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "tools": [
+                "pdflatex",
+            ]
+        },
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "arara",
+            "command": "arara",
+            "args": [
+                "--verbose",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-shell-escape",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ],
+            "env": {}
+        }
+    ],
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "todo-tree.highlights.defaultHighlight": {
+        "icon": "circle",
+        "background": "#1D252C",
+        "type": "text",
+        "rulerLane": "disable"
+    },
+    "todo-tree.highlights.customHighlight": {
+        "ATTENTION": {
+            "icon": "code",
+            "iconColour": "yellow",
+            "foreground": "yellow",
+            "hideFromStatusBar": "true",
+            "hideFromTree": "true",
+        },
+        "BUG": {
+            "icon": "squirrel",
+            "iconColour": "MediumSlateBlue",
+            "foreground": "MediumSlateBlue",
+        },
+        "FIXME": {
+            "icon": "flame",
+            "iconColour": "Crimson",
+            "foreground": "Crimson",
+        },
+        "IDEA": {
+            "icon": "pin",
+            "iconColour": "#40E0D0",
+            "foreground": "#40E0D0",
+            "hideFromStatusBar": "true",
+            "hideFromTree": "true",
+        },
+        "NOTE": {
+            "icon": "pin",
+            "iconColour": "DodgerBlue",
+            "foreground": "DodgerBlue",
+        },
+        "OPTIMIZE": {
+            "icon": "arrow-up",
+            "iconColour": "MediumAquamarine",
+            "foreground": "MediumAquamarine",
+            "hideFromStatusBar": "true",
+        },
+        "SEE": {
+            "icon": "eye",
+            "iconColour": "Teal",
+            "foreground": "Teal",
+            "hideFromStatusBar": "true",
+            "hideFromTree": "true",
+        },
+        "TODO": {
+            "icon": "check-circle",
+            "iconColour": "Aquamarine",
+            "foreground": "Aquamarine",
+        },
+        "WARNING": {
+            "icon": "stop",
+            "iconColour": "Coral",
+            "foreground": "Coral",
+        },
+    },
+    "todo-tree.regex.regex": "((//|#|%|<!--|;|/\\*|^)\\s*($TAGS)|^\\s*- \\[ \\])",
+    "todo-tree.general.statusBar": "current file",
+    "todo-tree.tree.showCountsInTree": true,
+    "todo-tree.tree.buttons.groupBySubTag": true,
+    "todo-tree.tree.tagsOnly": true,
+    "todo-tree.tree.groupedByTag": true,
+    "todo-tree.tree.labelFormat": "${filename} - ${after}",
+    "todo-tree.tree.tooltipFormat": "${filename}, ${tag} a linea ${line}",
+    "workbench.list.smoothScrolling": true,
+    "workbench.tree.indent": 20,
+}

@@ -1,7 +1,6 @@
 @echo off
-call "%~dp0\common.bat"
-
 set INITIAL_WORKING_DIRECTORY=%cd%
+call "%~dp0\common.bat"
 
 echo: & echo ==================== COMPILO PREAMBOLO PRINCIPALE ==================== & echo:
 cd "%SETTINGS_DIR%"

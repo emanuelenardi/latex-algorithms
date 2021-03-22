@@ -1,7 +1,9 @@
 \pagestyle{empty}
+
 \usepackage{etoolbox}
 \patchcmd{\chapter}{plain}{empty}{}{}
-\usepackage[parfill=30pt]{parskip}
+
+\setlength{\parskip}{.5\baselineskip plus 2pt}
 
 % NOTE per controllare dove sfori la pagina
 % \setlength\overfullrule{5pt}

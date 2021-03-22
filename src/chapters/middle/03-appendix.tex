@@ -1,29 +1,9 @@
-\appendix
+% NOTE "appendix" resetta la numerazione numerica delle pagine
+% \appendix
+\setlength{\epigraphwidth}{.6\textwidth}
 \epigraphhead[450]{Appendix usually means \enquote{small outgrowth from large intestine}, but in this case it means \enquote{additional information accompanying main text}. Or are those really the same things? Think carefully before you insult this book.\par%
 \hspace*{\fill}--- \textsc{Pseudonymous Bosch}}%
 \appendixpage
 \addcontentsline{toc}{part}{Appendici}
 
-% using titletoc we redefine the ToC entries for chapters, sections, and subsections
-\titlecontents{chapter}
-    [0em]%
-	{\vspace*{2\baselineskip}}%
-    {\begin{minipage}{\textwidth}%
-        \parbox{4.5em}{%
-    		\hfill\Huge\sffamily\bfseries\color{myred}\thecontentspage}%
-   			\vspace*{-2.3\baselineskip}\leftbar\textsc{\small\appendixname~\thecontentslabel}\\%
-			\sffamily}%
-    {\begin{minipage}{\textwidth}%
-        \parbox{4.5em}{%
-          \hfill\Huge\sffamily\bfseries\color{myred}\thecontentspage}%
-        \vspace*{-2.3\baselineskip}\leftbar\textsc{}\\%
-        \sffamily}%
-	{\endleftbar\end{minipage}\nopagebreak}%
-    [\vskip2pt\nopagebreak]
-
-\titleformat{\chapter}[block]% shape
-	{\normalfont\bfseries\scshape\huge}% format
-	{\centering \appendixname~\thechapter\\}% The Chapter N° label
-	{0pt}% sep
-	{\centering \ruleline{\otherfancydraw}\\% The horizontal rule
-	\centering #1}% And the actual title
+\input{../../settings/redefinitions-appendix}
