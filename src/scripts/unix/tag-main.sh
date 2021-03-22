@@ -7,14 +7,6 @@ print_var () {
 
 setDocumentVersion() {
     source "${BASH_SOURCE%/*}/common.sh"
-
-    print_var "ROOT_DIR"
-    print_var "SRC_DIR"
-    print_var "SCRIPTS_DIR"
-    print_var "CHAPTERS_DIR"
-    print_var "SETTINGS_DIR"
-    print_var "BUILD_DIR"
-    print_var "ALGORITHMS_DIR"
     
     documentVersion="$1"
     echo "nuova versione: $documentVersion"
@@ -37,21 +29,19 @@ setDocumentVersion() {
         exit
     fi
     echo ""
-
-    echo riga 33
-
+    
     echo "Copio $main_tagged nella cartella build."
-    # if [[ ! -f "$BUILD_DIR/$main_tagged" ]]; then
+    if [[ ! -f "$BUILD_DIR/$main_tagged" ]]; then
         cd $SCRIPTS_DIR
-        echo riga 38
-        local_tex=${0%.*}.tex # stesso nome dello script
+
+        local_tex=tag-main.tex # stesso nome dello script
         cp "$local_tex" "$BUILD_DIR/$main_tagged"
         
         cd $BUILD_DIR
-    # else 
-        # echo "$main_tagged document already exists."
-    # fi
-    echo riga 46
+    else 
+        echo "$main_tagged document already exists."
+    fi
+    
     echo "Aggiorno versione documento." && echo ""
     sed -i "s/VERSIONE/${documentVersion}/g" "$main_tagged"
 
