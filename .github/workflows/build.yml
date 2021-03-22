@@ -239,6 +239,8 @@ jobs:
             - message: ${{ github.event.head_commit.message }}
             - [main su Dropbox](${{ env.DROPBOX_SHARED_FOLDER }})
             - [log run](${{ env.RUN_URL }})
+          format: markdown
+          disable_web_page_preview: true
           document: ${{ env.ZIP_NAME }}.zip
   
   upload_dropbox:
