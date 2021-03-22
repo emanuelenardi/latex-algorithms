@@ -63,5 +63,3 @@ setDocumentVersion() {
 
     cd $INITIAL_WORKING_DIRECTORY
 }
-
-setDocumentVersion v0.0.0
