@@ -94,7 +94,9 @@ jobs:
         
       - name: Step 3 👀 - (2/2) Log build
         working-directory: ${{ env.SCRIPTS_DIR }}
-        run: source ./check-files.sh; isCompilationRanCorrectly
+        run: |
+          source ./check-files.sh
+          isCompilationRanCorrectly
 
       # Tag version document
       - name: Step 4 🏷️ - (1/3) Bump version & push tag
@@ -114,7 +116,9 @@ jobs:
         env:
           NEW_TAG: ${{ steps.tag-version.outputs.new_tag }}
         with:
-          run: ${{ env.SCRIPTS_DIR }}/tag-main.sh getDocumentVersion $NEW_TAG
+          run: |
+            source $SCRIPTS_DIR/tag-main.sh
+            setDocumentVersion $NEW_TAG
 
       # Compress documents
       - name: Step 5 👻 - (1/3) Install pdfsizeopt from source
