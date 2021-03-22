@@ -105,7 +105,7 @@ jobs:
             source $SCRIPTS_DIR/tag-main.sh
             setDocumentVersion $NEW_TAG
             $SCRIPTS_DIR/compile-project.sh
-        
+            
       - name: Step 4 👀 - (2/2) Log build
         working-directory: ${{ env.SCRIPTS_DIR }}
         run: |
