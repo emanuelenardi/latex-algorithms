@@ -46,10 +46,10 @@ setDocumentVersion() {
     sed -i "s/VERSIONE/${documentVersion}/g" "$main_tagged"
 
     echo "Compilo il nuovo documento."
-    arara -v $main_tagged
+    arara $main_tagged
     main_tagged="${main_tagged%.*}.pdf"
 
-    echo "" && "Rimuovo file ausiliari."
+    echo "" && echo "Rimuovo file ausiliari."
     find . -type f ! -name '*.pdf' ! -name '.gitignore' | xargs -r rm
 
     echo "Sostitusco $main_tagged con $main_name."
