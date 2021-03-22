@@ -98,6 +98,12 @@ Se hai trovato utili questi appunti metti la ⭐!
 Le trasparenze e gli appunti del Prof.re Alberto Montresor sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.it).
 Gli elaborati presenti su questa repository sono rilasciati sotto licenza [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it).
 
+## 🧐 Download
+
+L'ultima versione della dispensa con i singoli capitoli è disponibile [nelle release](https://github.com/emanuelenardi/latex-algorithms/releases/lastest).
+
+Inoltre è possibile visionare le vecchie versioni della dispensa nella [cartella di Dropbox](https://www.dropbox.com/sh/4c9e4n0umodm1wa/AAC4mZ3PqjjdvEWaCpzJBbB6a).
+
 ## 🐻 Autore
 
 <table>
