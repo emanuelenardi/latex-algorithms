@@ -16,6 +16,7 @@
 \usepackage{./redefinitions-chapter}
 \usepackage{./redefinitions-part}
 
+% NOTE tabella dei contenuti
 \usepackage[none]{tocbibind}
 % SEE https://tex.stackexchange.com/a/346097/127473
 % \let\oldaddcontentsline\addcontentsline
@@ -23,6 +24,7 @@
 % \newcommand{\writetotoc}{\let\addcontentsline\oldaddcontentsline}
 \usepackage{./pretty-toc}
 
+% NOTE gestione spaziatura documento
 \usepackage[
 	skip=0pt,     % default: .5\baselineskip plus 2pt
     tocskip=0pt,  % default: \parskip
@@ -34,6 +36,7 @@
 \setlength\partopsep{-\topsep}
 \addtolength\partopsep{-\parskip}
 
+% NOTE appendice
 \usepackage{appendix}
 \renewcommand{\appendixname}{Appendice}
 \renewcommand{\appendixpagename}{Appendici}
@@ -44,7 +47,7 @@
 	\vfill\null}%
 	\clearpage}
 
-% WARNING package "standalone" da caricare presto
+% ATTENTION package "standalone" da caricare presto
 \usepackage[subpreambles=false]{standalone}
 % \usepackage{subfiles}
 % NOTE soluzione per utilizzare il preambolo precompilato del main
@@ -57,8 +60,6 @@
 % TODO rimuovere dipendenze e rimuovere pacchetto
 \usepackage{multicol}
 
-% IDEA pacchetti utili
-% NOTE 'comment' - fornisce l'ambiente dei commenti
 % NOTE 'xargs' - permette di usare più di un parametro opzionale in un nuovo comando
 % NOTE 'xparse' - it offers a replacement for LATEX2ε’s \newcommand macro
 \usepackage{comment, xargs, xparse}
@@ -71,8 +72,7 @@
 \usepackage{tikz}
 \usepackage{./cover}
 \usepackage{pgfplots}
-% What does "running in backwards compatibility mode" mean and what should I fix to get rid of it?
-% https://tex.stackexchange.com/questions/81899
+% SEE https://tex.stackexchange.com/questions/81899
 \pgfplotsset{compat=1.16}
 
 % NOTE dichiarazione di 'cell'
@@ -82,7 +82,6 @@
 \colorlet{darker}{blue!50!black}
 \colorlet{faded}{gray}
 \colorlet{mathcolor}{blue}
-% \colorlet{rose}{red!50!white}
 
 % NOTE personalizzazione degli alberi
 \usepackage{../libraries/set-forest}
@@ -101,7 +100,7 @@
 % NOTE notazione matematica
 \usepackage{../libraries/set-math}
 
-% https://tex.stackexchange.com/a/585169/127473
+% SEE https://tex.stackexchange.com/a/585169/127473
 \usepackage{newfloat}
 % NOTE personalizzazione dell'aspetto degli algoritmi
 \usepackage{../libraries/set-algorithm2e}
@@ -114,6 +113,10 @@
 
 % NOTE comandi personalizzati
 \usepackage{../libraries/set-macros}
+
+% NOTE versioning
+\usepackage{eso-pic}
+\usepackage{ifthen}
 
 % % NOTE impostazione dei metadati del PDF
 \usepackage{./pdf-props}
