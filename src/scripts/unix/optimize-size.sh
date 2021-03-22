@@ -12,6 +12,8 @@ fileProcessed=0
 OPTIONS_PSO="--use-pngout=false --use-jbig2=false --quiet"
 OPTIONS_GS="-sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH"
 
+optsize_tot=0
+orgsize_tot=0
 for file in $pdfs; do
     basename=$(basename $file)
     filebase=$(basename $file .pdf)
@@ -31,6 +33,8 @@ for file in $pdfs; do
     if [ $? == '0' ]; then
         optsize=$(stat -c "%s" "${optfile}")
         orgsize=$(stat -c "%s" "${file}")
+        let "optsize_tot+=optsize"
+        let "orgsize_tot+=optsize"
 
         if [ "${optsize}" -eq 0 ]; then
             echo "No output!  Keeping original"
@@ -56,5 +60,8 @@ for file in $pdfs; do
         echo "done (now ${percent}% of old)"
     fi
 done
+percent_total=$(expr $optsize_tot '*' 100 / $orgsize_tot)
+echo "Before compression: ${orgsize_tot}"
+echo "After compression: ${optsize_tot}, ${percent_total}% of old"
 
 cd $INITIAL_WORKING_DIRECTORY
