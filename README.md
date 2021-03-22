@@ -106,6 +106,10 @@ Gli elaborati presenti su questa repository sono rilasciati sotto licenza [CC BY
   </tr>
 </table>
 
+Se il contenuto che ho prodotto ti ha aiutato nel percorso di studi, prendi in considerazione di [offrirmi un caffé! ☕](paypal.me/emanuelenardi).
+
+Ti ringrazio per il tuo supporto 😄
+
 ## 🙌🏻🙇🏻 Ringraziamenti
 
 Vorrei ringraziare [Francesco Bozzo](https://github.com/FrancescoBozzo),  [Samuele Conti](https://github.com/Samaretas), [Filippo Frezza](https://github.com/morethanmad) e [Sofia Zanrosso](https://github.com/sofiazanrosso) per aver revisionato questa dispensa, per la considerevole pazienza e meticolosità delle correzioni.
