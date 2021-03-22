@@ -53,13 +53,8 @@ setDocumentVersion() {
     find . -type f ! -name '*.pdf' ! -name '.gitignore' | xargs -r rm
 
     echo "Sostitusco $main_tagged con $main_name."
-    if [[ -z "$GITHUB_ACTIONS" ]] ; then
-        rm "$main_name"
-        mv "$main_tagged" "$main_name"
-    else
-        sudo rm "$main_name"
-        sudo mv "$main_tagged" "$main_name"
-    fi
+    rm "$main_name"
+    mv "$main_tagged" "$main_name"
 
     cd $INITIAL_WORKING_DIRECTORY
 }
