@@ -151,7 +151,7 @@ jobs:
           pre_release_branches: preview
           default_bump: patch
           custom_release_rules: perf:major, feat:minor, fix:patch, hotfix:patch, pre-feat:preminor, pre-feat:preminor
-          dry_run: true
+          # dry_run: true
 
       - name: Step 5 🌱 - (2/3) Get current time
         uses: 1466587594/get-current-time@v2
