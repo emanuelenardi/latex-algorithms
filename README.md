@@ -102,7 +102,7 @@ Gli elaborati presenti su questa repository sono rilasciati sotto licenza [CC BY
 
 L'ultima versione della dispensa con i singoli capitoli è disponibile [nelle release](https://github.com/emanuelenardi/latex-algorithms/releases/lastest).
 
-Inoltre è possibile visionare le vecchie versioni della dispensa nella [cartella di Dropbox](https://www.dropbox.com/sh/4c9e4n0umodm1wa/AAC4mZ3PqjjdvEWaCpzJBbB6a).
+Inoltre è possibile visionare le vecchie versioni della dispensa nella [cartella Dropbox](https://www.dropbox.com/sh/4c9e4n0umodm1wa/AAC4mZ3PqjjdvEWaCpzJBbB6a).
 
 ## 🐻 Autore
 
