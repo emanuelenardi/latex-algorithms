@@ -99,39 +99,41 @@ jobs:
       - name: Step 4 👻 - (1/3) Install pdfsizeopt from source
         working-directory: ${{ env.ROOT_DIR }}
         env:
-          PSO_FOLDER: bin/pdfsizeopt
-          DL_TGZ: https://github.com/pts/pdfsizeopt/releases/download/2017-01-24/pdfsizeopt_libexec_linux-v3.tar.gz
-          TGZ: pdfsizeopt_libexec_linux.tar.gz
-          DL_PSO_BIN: https://raw.githubusercontent.com/pts/pdfsizeopt/master/pdfsizeopt.single
-          PSO_BIN: pdfsizeopt.single
+          PDFSIZEOPT_FOLDER: bin/pdfsizeopt
+          PDFSIZEOPT_TGZ_URL: https://github.com/pts/pdfsizeopt/releases/download/2017-01-24/pdfsizeopt_libexec_linux-v3.tar.gz
+          PDFSIZEOPT_TGZ: pdfsizeopt_libexec_linux.tar.gz
+          PDFSIZEOPT_BIN_URL: https://raw.githubusercontent.com/pts/pdfsizeopt/master/pdfsizeopt.single
+          PDFSIZEOPT_BIN: pdfsizeopt.single
+          PDFSIZEOPT: pdfsizeopt
         run: |
-          mkdir -p $PSO_FOLDER
-          cd $PSO_FOLDER
-          wget -q -O $TGZ $DL_TGZ
-          tar -xzf $TGZ
-          rm -f $TAR
-          wget -q -O $PSO_BIN $DL_PSO_BIN
-          chmod +x $PSO_BIN
-          ln -s $PSO_BIN pdfsizeopt
-          echo "$ROOT_DIR/$PSO_FOLDER/" >> $GITHUB_PATH
+          mkdir -p $PDFSIZEOPT_FOLDER
+          cd $PDFSIZEOPT_FOLDER
+          wget -q -O $PDFSIZEOPT_TGZ $PDFSIZEOPT_TGZ_URL
+          tar -xzf $PDFSIZEOPT_TGZ
+          rm -f $PDFSIZEOPT_TGZ
+          wget -q -O $PDFSIZEOPT_BIN $PDFSIZEOPT_BIN_URL
+          chmod +x $PDFSIZEOPT_BIN
+          ln -s $PDFSIZEOPT_BIN $PDFSIZEOPT
+          echo "$ROOT_DIR/$PDFSIZEOPT_FOLDER/" >> $GITHUB_PATH
 
       - name: Step 4 👻 - (2/3) Install ghostscript from source
         working-directory: ${{ env.ROOT_DIR }}
         env:
           GS_FOLDER: bin/ghostscript
-          DL_TGZ: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9533/ghostscript-9.53.3-linux-x86_64.tgz
-          TGZ: ghostscript-9.53.3-linux-x86_64.tgz
+          GS_TGZ_URL: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9533/ghostscript-9.53.3-linux-x86_64.tgz
+          GS_TGZ: ghostscript-9.53.3-linux-x86_64.tgz
           GS_VERSION: ghostscript-9.53.3-linux-x86_64
           GS_BIN: gs-9533-linux-x86_64
+          GS: ghostscript
         run: |
-          mkdir -p bin/ghostscript
-          cd bin/ghostscript
-          wget -q -O ghostscript-9.53.3-linux-x86_64.tgz https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9533/ghostscript-9.53.3-linux-x86_64.tgz
-          tar -xzf ghostscript-9.53.3-linux-x86_64.tgz
-          rm -f ghostscript-9.53.3-linux-x86_64.tgz
-          cd ghostscript-9.53.3-linux-x86_64
-          ln -s gs-9533-linux-x86_64 ghostscript
-          echo "$GITHUB_WORKSPACE/bin/ghostscript/ghostscript-9.53.3-linux-x86_64/" >> $GITHUB_PATH
+          mkdir -p $GS_FOLDER
+          cd $GS_FOLDER
+          wget -q -O $GS_TGZ $GS_TGZ_URL
+          tar -xzf $GS_TGZ
+          rm -f $GS_TGZ
+          cd $GS_VERSION
+          ln -s $GS_BIN $GS
+          echo "$GITHUB_WORKSPACE/bin/ghostscript/$GS_VERSION/" >> $GITHUB_PATH
 
       - name: Step 4 👻 - (3/3) Compress files
         working-directory: ${{ env.SCRIPTS_DIR }}
