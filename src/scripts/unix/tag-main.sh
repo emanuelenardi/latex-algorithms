@@ -1,5 +1,4 @@
 #!/bin/bash
-source "${BASH_SOURCE%/*}/common.sh"
 
 print_var () {
     var=$1
@@ -7,6 +6,8 @@ print_var () {
 }
 
 setDocumentVersion() {
+    source "${BASH_SOURCE%/*}/common.sh"
+    
     documentVersion=$1
     echo "nuova versione: $documentVersion"
 
@@ -62,3 +63,5 @@ setDocumentVersion() {
 
     cd $INITIAL_WORKING_DIRECTORY
 }
+
+setDocumentVersion v0.0.0
