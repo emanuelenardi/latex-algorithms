@@ -47,7 +47,7 @@ isCompilationRanCorrectly() {
   # lo elimino
   rm $filename
 
-  if [ $chapters_pdf -eq $chapters_tex ] && [ -f $main ]; then
+  if [ $chapters_pdf -eq $chapters_tex ] && [ -f $main_build ]; then
       exit 0 # success
   else
       exit 1 # failure
