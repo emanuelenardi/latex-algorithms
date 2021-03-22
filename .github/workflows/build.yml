@@ -96,7 +96,8 @@ jobs:
         working-directory: ${{ env.SCRIPTS_DIR }}
         run: |
           source ./check-files.sh
-          isCompilationRanCorrectly
+          # for debugging purposes
+          # isCompilationRanCorrectly
 
       # Tag version document
       - name: Step 4 🏷️ - (1/2) Bump version & push tag
