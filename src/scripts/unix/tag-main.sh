@@ -8,9 +8,7 @@ setDocumentVersion() {
     echo "nuova versione: $documentVersion"
 
     cd $SOURCE_DIR
-    pwd
-    ls
     echo "Aggiorno versione documento."
-    sed -i "s/VERSIONE/${documentVersion}/g" "main.pdf"
+    sed -i "s/VERSIONE/${documentVersion}/g" "main.tex"
     cd $INITIAL_WORKING_DIRECTORY
 }
