@@ -8,12 +8,12 @@ print_var () {
 setDocumentVersion() {
     source "${BASH_SOURCE%/*}/common.sh"
     
-    documentVersion=$1
+    documentVersion="$1"
     echo "nuova versione: $documentVersion"
 
     INITIAL_WORKING_DIRECTORY=$(pwd)
 
-    cd $BUILD_DIR
+    cd "$BUILD_DIR"
     MAIN_DOC=$(find -name "main*.pdf")
 
     echo ""
@@ -31,16 +31,16 @@ setDocumentVersion() {
     # echo ""
 
     echo "Copio $main_tagged nella cartella build."
-    if [[ ! -f "$BUILD_DIR/$main_tagged" ]]; then
+    # if [[ ! -f "$BUILD_DIR/$main_tagged" ]]; then
         cd $SCRIPTS_DIR
 
         local_tex=${0%.*}.tex # stesso nome dello script
         cp "$local_tex" "$BUILD_DIR/$main_tagged"
         
         cd $BUILD_DIR
-    else 
-        echo "$main_tagged document already exists."
-    fi
+    # else 
+        # echo "$main_tagged document already exists."
+    # fi
 
     echo "Aggiorno versione documento." && echo ""
     sed -i "s/VERSIONE/${documentVersion}/g" "$main_tagged"
