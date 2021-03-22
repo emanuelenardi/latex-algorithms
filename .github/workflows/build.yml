@@ -247,7 +247,7 @@ jobs:
         with:
           dropbox_access_token: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
           src: ${{ env.ZIP_NAME }}/${{ env.MAIN_NAME }}.pdf
-          # dest: /${{ env.DROPBOX_FOLDER }}/
+          dest: /${{ env.DROPBOX_FOLDER }}/${{ env.MAIN_NAME }}.pdf
           mode: add
           mute: false
 
