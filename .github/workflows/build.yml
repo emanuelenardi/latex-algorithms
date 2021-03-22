@@ -247,9 +247,9 @@ jobs:
         with:
           dropbox_access_token: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
           src: ${{ env.ZIP_NAME }}/${{ env.MAIN_NAME }}.pdf
-          dest: /${{ env.DROPBOX_FOLDER }}/${{ env.MAIN_NAME }}.pdf
-          mode: "add"
-          mute: "true"
+          # dest: /${{ env.DROPBOX_FOLDER }}/
+          mode: add
+          mute: false
 
   create_release:
     name: 3. 📦 Crea bozza release
