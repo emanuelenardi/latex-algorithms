@@ -3,7 +3,7 @@ set INITIAL_WORKING_DIRECTORY=%cd%
 call "%~dp0\common.bat"
 
 echo: & echo ==================== COMPILO DOCUMENTO PRINCIPALE ==================== & echo:
-cd %SRC_DIR%
+cd %SOURCE_DIR%
 arara -v main
 
 cd %BUILD_DIR%

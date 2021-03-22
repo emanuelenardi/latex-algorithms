@@ -4,7 +4,7 @@ source "${BASH_SOURCE%/*}/common.sh"
 INITIAL_WORKING_DIRECTORY=$(pwd)
 
 MESSAGE="\n=========== CANCELLO IL PREAMBOLO PRE-COMPILATO DEL MAIN =============" ; simple_red_echo
-cd $SRC_DIR
+cd $SOURCE_DIR
 rm -f preamble.main.log
 rm -f preamble.main.fmt
 

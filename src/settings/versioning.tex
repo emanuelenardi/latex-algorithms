@@ -1,8 +1,9 @@
-% SEE https://tex.stackexchange.com/a/1495/127473
 \newcommand{\versionTag}{%
     {\docversion} - {\today}%
 }
 
+\usepackage{eso-pic}
+\usepackage{ifthen}
 \AddToShipoutPictureBG{%
     \begin{tikzpicture}[remember picture, overlay]
         \ifthenelse{ \isodd{\value{page}} }{%
