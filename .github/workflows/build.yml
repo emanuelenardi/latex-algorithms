@@ -151,8 +151,9 @@ jobs:
           pre_release_branches: preview
           default_bump: patch
           custom_release_rules: perf:major, feat:minor, fix:patch, hotfix:patch, pre-feat:preminor, pre-feat:preminor
-          # dry_run: true
+          dry_run: true
 
+      # Prepare variables used to naming the files
       - name: Step 5 🌱 - (2/3) Get current time
         uses: 1466587594/get-current-time@v2
         id: current-time
@@ -160,7 +161,6 @@ jobs:
           format: YYYY.MM.DD-HH.mm
           utcOffset: "+01:00"
 
-      # Prepare variables used to name the files
       - name: Step 5 🌱 - (3/3) Setting environment variables
         id: naming-objects
         env:
@@ -171,6 +171,12 @@ jobs:
           echo "MAIN_NAME=main-$TAG_NAME-$F_TIME" >> $GITHUB_ENV
           echo "::set-output name=ZIP_NAME::dispensa-$TAG_NAME-$F_TIME"
           echo "::set-output name=MAIN_NAME::main-$TAG_NAME-$F_TIME"
+
+      - name: Step 6 🔧 - Dynamically tag main document
+        working-directory: ${{ env.BUILD_DIR }}
+        env:
+          NEW_TAG: ${{ steps.tag-version.outputs.new_tag }}
+        run: ./tag-main.sh getDocumentVersion $NEW_TAG
 
       - name: Step 6 🔧 - Create folder with PDFs
         working-directory: ${{ env.BUILD_DIR }}
