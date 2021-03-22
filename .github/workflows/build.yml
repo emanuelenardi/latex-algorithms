@@ -186,7 +186,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            @emanuelenardi *build ${{ env.RUN_NUMBER }} fallita* 🙁, [vedi log run](${{ env.RUN_URL }})
+            @emanuelenardi *build ${{ env.RUN_NUMBER }} fallita* 🙁
+            - [log run](${{ env.RUN_URL }})
           format: markdown
           disable_web_page_preview: true
           
@@ -220,10 +221,16 @@ jobs:
       - name: Step 3 ✈️ - Send it to Telegram private channel
         if: ${{ success() }}
         uses: appleboy/telegram-action@master
+        env:
+          DROPBOX_SHARED_FOLDER: https://www.dropbox.com/sh/4c9e4n0umodm1wa/AAC4mZ3PqjjdvEWaCpzJBbB6a
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{ github.event.head_commit.message }}
+          message: |
+            - run #${{ env.RUN_NUMBER }}
+            - message: ${{ github.event.head_commit.message }}
+            - [main su Dropbox]($DROPBOX_SHARED_FOLDER)
+            - [log run](${{ env.RUN_URL }})
           document: ${{ env.ZIP_NAME }}.zip
   
   upload_dropbox:
