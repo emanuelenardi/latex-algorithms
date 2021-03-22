@@ -191,7 +191,7 @@ jobs:
           mv main.pdf $MAIN_NAME.pdf
           sudo mv -t $ZIP_NAME chapters $MAIN_NAME.pdf
 
-      - name: ⚠️ notifica fallimento build ⚠️
+      - name: ⚠️ NOTIFICA FALLIMENTO BUILD ⚠️
         if: ${{ failure() }}
         uses: appleboy/telegram-action@master
         with:
