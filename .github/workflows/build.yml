@@ -172,7 +172,7 @@ jobs:
           echo "::set-output name=ZIP_NAME::dispensa-$TAG_NAME-$F_TIME"
           echo "::set-output name=MAIN_NAME::main-$TAG_NAME-$F_TIME"
 
-      - name: Step 6 🔧 - Dynamically tag main document
+      - name: Step 6 🏷️ - Dynamically tag main document
         working-directory: ${{ env.BUILD_DIR }}
         env:
           NEW_TAG: ${{ steps.tag-version.outputs.new_tag }}
