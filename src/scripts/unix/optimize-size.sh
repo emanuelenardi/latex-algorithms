@@ -44,7 +44,7 @@ for file in $pdfs; do
             continue
         fi
         
-        if [[ -z "${GITHUB_ACTIONS}" ]] ; then
+        if [[ -z "$GITHUB_ACTIONS" ]] ; then
             rm "${file}"
             mv "${optfile}" "${file}"
         else

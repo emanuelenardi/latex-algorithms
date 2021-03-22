@@ -124,14 +124,14 @@ jobs:
           GS_VERSION: ghostscript-9.53.3-linux-x86_64
           GS_BIN: gs-9533-linux-x86_64
         run: |
-          mkdir -p $GS_FOLDER
-          cd $GS_FOLDER
-          wget -q -O $TGZ $DL_TGZ
-          tar -xzf $TGZ
-          rm -f $TGZ
-          cd $GS_VERSION
-          ln -s $GS_BIN ghostscript
-          echo "$ROOT_DIR/$FOLDER_GS/$GS_VERSION/" >> $GITHUB_PATH
+          mkdir -p bin/ghostscript
+          cd bin/ghostscript
+          wget -q -O ghostscript-9.53.3-linux-x86_64.tgz https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9533/ghostscript-9.53.3-linux-x86_64.tgz
+          tar -xzf ghostscript-9.53.3-linux-x86_64.tgz
+          rm -f ghostscript-9.53.3-linux-x86_64.tgz
+          cd ghostscript-9.53.3-linux-x86_64
+          ln -s gs-9533-linux-x86_64 ghostscript
+          echo "$GITHUB_WORKSPACE/bin/ghostscript/ghostscript-9.53.3-linux-x86_64/" >> $GITHUB_PATH
 
       - name: Step 4 👻 - (3/3) Compress files
         working-directory: ${{ env.SCRIPTS_DIR }}
