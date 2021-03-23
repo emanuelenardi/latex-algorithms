@@ -35,16 +35,17 @@ set options-gs=-sDEVICE=pdfwrite -dPDFSETTINGS=/printer -dCompatibilityLevel=1.5
 set files=24
 set /a current_file=1
 
-echo|set /p="[0!current_file!/%files%] compressing main.pdf ... "
-@REM pdfsizeopt si comporta meglio con file di grandi dimensioni
-@REM TODO controlla se la compressione è migliore una volta finito il documento
-@REM TODO controlla che ghostscript non corrompa i collegamenti ipertestuali
-@REM gswin64 %options-gs% -sOutputFile=main-compressed.pdf main.pdf
 
+set "spaces=                   "
+set "line=[0!current_file!/%files%] compressing main.pdf ... %spaces%"
+set "line=!line:~0,52!"
+echo|set /p=!line!
+
+@REM pdfsizeopt si comporta meglio con file di grandi dimensioni
 pdfsizeopt %options-pso% "main.pdf" "main.pdf"
+@REM gswin64 %options-gs% -sOutputFile=main-compressed.pdf main.pdf
 echo done
 set /a current_file+=1
-set "spaces=                  "
 
 cd chapters
 @REM loop over all files in all (sub)directories with given extension
@@ -80,7 +81,7 @@ for /f "delims=*" %%f in ('dir "*.%ext%" /b /a:-d') do (
             del "%TEMP%\%%~nxf"
         )
         set /a diff=!newSize!*100/!oldSize!
-        echo done ^(!diff!%%^)
+        echo done ^(now !diff!%%^ of old^)
     )
 
     set /a current_file+=1

@@ -30,7 +30,7 @@ for file in $pdfs; do
   # padding numbers
   fileProcessed=$(printf %02d "$((10#$fileProcessed + 1))")
   fileTotal=$(printf %02d "$((10#$fileTotal))")
-  printf 'Compressing %s %-40s' "[$fileProcessed/$fileTotal]" "$basename ..."
+  printf '%s compressing %-40s' "[$fileProcessed/$fileTotal]" "$basename ..."
   optfile="/tmp/$$-${filebase}_opt.pdf"
 
   # NOTE pdfsizeopt si comporta meglio con i file di grandi dimensioni
