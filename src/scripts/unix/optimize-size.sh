@@ -34,7 +34,7 @@ for file in $pdfs; do
         optsize=$(stat -c "%s" "${optfile}")
         orgsize=$(stat -c "%s" "${file}")
         let "optsize_tot+=optsize"
-        let "orgsize_tot+=optsize"
+        let "orgsize_tot+=orgsize"
 
         if [ "${optsize}" -eq 0 ]; then
             echo "No output!  Keeping original"
@@ -61,7 +61,7 @@ for file in $pdfs; do
     fi
 done
 percent_total=$(expr $optsize_tot '*' 100 / $orgsize_tot)
-echo "Before compression: ${orgsize_tot}"
-echo "After compression: ${optsize_tot}, ${percent_total}% of old"
+echo "Before compression: $(expr $orgsize_tot / 1000000) Mb"
+echo "After compression: $(expr $optsize_tot / 1000000) Mb, ${percent_total}% of old"
 
 cd $INITIAL_WORKING_DIRECTORY

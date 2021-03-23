@@ -9,6 +9,6 @@ setDocumentVersion() {
 
     cd $SOURCE_DIR
     echo "Aggiorno versione documento."
-    sed -i "s/VERSION/${documentVersion}/g" "main.tex"
+    sed -i "s/development/${documentVersion}/g" "main.tex"
     cd $INITIAL_WORKING_DIRECTORY
 }
