@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo tlmgr update --self --all
+tlmgr update --self --all
