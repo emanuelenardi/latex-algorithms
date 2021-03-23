@@ -34,22 +34,22 @@ GREY_COLOR='\x1b[1;37m'
 #
 # For e.g. You can use the convention of using RED color for [E]rror messages
 red_echo() {
-    echo -e "${RED_COLOR}[E] $SELF_NAME: $MESSAGE${RESET_COLOR}"
+  echo -e "${RED_COLOR}[E] $SELF_NAME: $MESSAGE${RESET_COLOR}"
 }
 
 simple_red_echo() {
-    echo -e "${RED_COLOR}$MESSAGE${RESET_COLOR}"
+  echo -e "${RED_COLOR}$MESSAGE${RESET_COLOR}"
 }
 
 # Prints success/info $MESSAGE in green foreground color
 #
 # For e.g. You can use the convention of using GREEN color for [S]uccess messages
 green_echo() {
-    echo -e "${GREEN_COLOR}[S] $SELF_NAME: $MESSAGE${RESET_COLOR}"
+  echo -e "${GREEN_COLOR}[S] $SELF_NAME: $MESSAGE${RESET_COLOR}"
 }
 
 simple_green_echo() {
-    echo -e "${GREEN_COLOR}$MESSAGE${RESET_COLOR}"
+  echo -e "${GREEN_COLOR}$MESSAGE${RESET_COLOR}"
 }
 
 # Prints $MESSAGE in blue foreground color
@@ -57,9 +57,9 @@ simple_green_echo() {
 # For e.g. You can use the convetion of using BLUE color for [I]nfo messages
 # that require special user attention (especially when script requires input from user to continue)
 blue_echo() {
-    echo -e "${BLUE_COLOR}[I] $SELF_NAME: $MESSAGE${RESET_COLOR}"
+  echo -e "${BLUE_COLOR}[I] $SELF_NAME: $MESSAGE${RESET_COLOR}"
 }
 
 simple_blue_echo() {
-    echo -e "${BLUE_COLOR}$MESSAGE${RESET_COLOR}"
+  echo -e "${BLUE_COLOR}$MESSAGE${RESET_COLOR}"
 }
