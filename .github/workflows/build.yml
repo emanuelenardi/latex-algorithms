@@ -6,14 +6,11 @@ on:
       - preview                 # Push events on develop branch
     paths-ignore:
       - '*'                            # ignores root files
-      - '.vscode/'                     # ignores suggestions
-      - '.devcontainer/'               # ignores docker settings
-      - '.github/workflows/**'         # ignores all workflows
-      - '**.yml'                       # ignores doc files
+      - '.*/**'                        # ignores dotted folders
       - '!.github/workflows/build.yml' # un-ignores this workflow
       - 'docs/**'                      # ignores documentation
-      - 'src/build/'                   # ignores "build" dir inside "src" dir
       - '**.bat'                       # ignores windows scripts
+      - '**.yml'                       # ignores yaml files
       - '**.md'                        # ignores doc files
   pull_request:
     types: [opened, reopened, synchronize]
