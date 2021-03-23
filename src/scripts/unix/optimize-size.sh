@@ -4,6 +4,9 @@ INITIAL_WORKING_DIRECTORY=$(pwd)
 
 source "${BASH_SOURCE%/*}/common.sh"
 
+variable=82
+separator=$(printf '%0.s=' $(seq 1 $variable))
+
 cd $BUILD_DIR
 pdfs=$(find . -type f -name "*.pdf")
 fileTotal=$(find . -type f -name "*.pdf" | wc -l)
@@ -19,6 +22,7 @@ OPTIONS_GS="-sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -d
 
 optsize_tot=0
 orgsize_tot=0
+echo "${separator}"
 for file in $pdfs; do
     basename=$(basename $file)
     filebase=$(basename $file .pdf)
@@ -66,10 +70,12 @@ for file in $pdfs; do
         echo "done (now ${percent}% of old)"
     fi
 done
+echo "${separator}"
 percent_total=$(expr $optsize_tot '*' 100 / $orgsize_tot)
 orgsize_tot_mb=$(echo "scale=2; $orgsize_tot / 1000000" | bc)
 optsize_tot_mb=$(echo "scale=2; $optsize_tot / 1000000" | bc)
 printf "Before compression: %-4s Mb\n" "$orgsize_tot_mb"
 printf "After compression:  %-4s Mb, %s%% of old\n" "$optsize_tot_mb" "$percent_total"
+echo "${separator}"
 
 cd $INITIAL_WORKING_DIRECTORY
