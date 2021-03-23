@@ -13,7 +13,7 @@ setDocumentVersion() {
 
   cd $CHAPTERS_DIR
   echo "Aggiorno singoli capitoli documento."
-  chapters=$(find chapters/ -name "*.pdf" | cut -f 2 -d '/')
+  chapters=$(find -maxdepth 1 -type f -name "*.tex" | cut -f 2 -d '/')
   for chapter in $chapters; do
     sed -i "s/development/${documentVersion}/" "$chapter.tex"
   done
