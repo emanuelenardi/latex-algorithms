@@ -188,7 +188,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             @emanuelenardi *build #${{ env.RUN_NUMBER }} fallita* 🙁
-            - [log run](${{ env.RUN_URL }})
+            [[log run](${{ env.RUN_URL }}) 👀]
           format: markdown
           disable_web_page_preview: true
           
@@ -231,11 +231,11 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            *build* #${{ env.RUN_NUMBER }}, *tag* `${{ env.NEW_TAG }}`
+            (*build* #${{ env.RUN_NUMBER }}, *tag* `${{ env.NEW_TAG }}`)
 
-            *message*: ${{ github.event.head_commit.message }}
+            ${{ github.event.head_commit.message }}
             
-            [main su Dropbox](${{ env.DROPBOX_SHARED_FOLDER }}) 🗄️, [log run](${{ env.RUN_URL }}) 👀
+            [[main su Dropbox](${{ env.DROPBOX_SHARED_FOLDER }}) 🗄️, [log run](${{ env.RUN_URL }}) 👀]
           format: markdown
           disable_web_page_preview: true
           document: ${{ env.ZIP_NAME }}.zip
