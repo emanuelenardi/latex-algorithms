@@ -1,7 +1,7 @@
 name: Compila documento LaTeX
 on:
   push:
-    branches:       
+    branches:
       - main                    # Push events on main branch
       - preview                 # Push events on develop branch
     paths-ignore:
@@ -31,7 +31,7 @@ jobs:
       zip_name: ${{ steps.naming-objects.outputs.ZIP_NAME }}
       main_name: ${{ steps.naming-objects.outputs.MAIN_NAME }}
     steps:
-    
+
       # Print useful references
       - name: Step 0 👀 - Print enviroment variables
         run: |
@@ -63,7 +63,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.8' # last cached version
-          
+
       - name: Step 1 🐍 - (3/3) Set up Python dependencies
         id: setup-python-dependencies
         run: pip install Pygments
@@ -102,7 +102,7 @@ jobs:
             source $SCRIPTS_DIR/tag-document.sh
             setDocumentVersion $NEW_TAG
             $SCRIPTS_DIR/compile-project.sh
-            
+
       - name: Step 4 👀 - (2/2) Log build
         working-directory: ${{ env.SCRIPTS_DIR }}
         run: |
@@ -191,7 +191,7 @@ jobs:
             [[log run](${{ env.RUN_URL }}) 👀]
           format: markdown
           disable_web_page_preview: true
-          
+
       - name: Step 8 ⏫ - Upload artifact to Github
         if: ${{ success() }}
         uses: actions/upload-artifact@v2
@@ -202,7 +202,7 @@ jobs:
             !${{ env.BUILD_DIR }}/.gitignore
           if-no-files-found: error
           retention-days: 7
-          
+
   send_docs:
     name: 1. ✈️ Manda zip su Telegram
     runs-on: ubuntu-latest
@@ -231,15 +231,14 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            (*build* #${{ env.RUN_NUMBER }}, *tag* `${{ env.NEW_TAG }}`)
+            ⚙️ build #${{ env.RUN_NUMBER }}, 🏷️ `${{ env.NEW_TAG }}`
+            [main on Dropbox](${{ env.DROPBOX_SHARED_FOLDER }} 📁, [see log run](${{ env.RUN_URL }}) 👀
 
             ${{ github.event.head_commit.message }}
-            
-            [[main su Dropbox](${{ env.DROPBOX_SHARED_FOLDER }}) 🗄️, [log run](${{ env.RUN_URL }}) 👀]
           format: markdown
           disable_web_page_preview: true
           document: ${{ env.ZIP_NAME }}.zip
-  
+
   upload_dropbox:
     name: 2. ⏫ Carica main su Dropbox
     runs-on: ubuntu-latest
@@ -293,7 +292,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.ZIP_NAME }}
-        
+
       - name: Step 2 ⚙️ - (2/3) Zip downloaded folder
         run: zip -r $ZIP_NAME.zip $ZIP_NAME
 
