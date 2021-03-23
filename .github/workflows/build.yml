@@ -25,11 +25,11 @@ jobs:
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       RUN_NUMBER: ${{ github.run_number }}
     outputs:
+      tag_part: ${{ steps.tag-version.outputs.part }}
+      new_tag: ${{ steps.tag-version.outputs.new_tag }}
+      changelog: ${{ steps.tag-version.outputs.changelog }}
       zip_name: ${{ steps.naming-objects.outputs.ZIP_NAME }}
       main_name: ${{ steps.naming-objects.outputs.MAIN_NAME }}
-      tag_part: ${{ steps.tag-version.outputs.part }}
-      tag_name: ${{ steps.tag-version.outputs.new_tag }}
-      changelog: ${{ steps.tag-version.outputs.changelog }}
     steps:
     
       # Print useful references
@@ -164,13 +164,13 @@ jobs:
       - name: Step 6 🌱 - (2/2) Setting environment variables
         id: naming-objects
         env:
-          TAG_NAME: ${{ steps.tag-version.outputs.new_tag }}
-          F_TIME: ${{ steps.current-time.outputs.formattedTime }}
+          TAG: ${{ steps.tag-version.outputs.new_tag }}
+          TIME: ${{ steps.current-time.outputs.formattedTime }}
         run: |
-          echo "ZIP_NAME=dispensa-$TAG_NAME-$F_TIME" >> $GITHUB_ENV
-          echo "MAIN_NAME=main-$TAG_NAME-$F_TIME" >> $GITHUB_ENV
-          echo "::set-output name=ZIP_NAME::dispensa-$TAG_NAME-$F_TIME"
-          echo "::set-output name=MAIN_NAME::main-$TAG_NAME-$F_TIME"
+          echo "ZIP_NAME=dispensa-$TAG-$TIME" >> $GITHUB_ENV
+          echo "MAIN_NAME=main-$TAG-$TIME" >> $GITHUB_ENV
+          echo "::set-output name=ZIP_NAME::dispensa-$TAG-$TIME"
+          echo "::set-output name=MAIN_NAME::main-$TAG-$TIME"
 
       # Create folder with PDFs
       - name: Step 7 🔧 - Create folder with PDFs
@@ -187,7 +187,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            @emanuelenardi *build ${{ env.RUN_NUMBER }} fallita* 🙁
+            @emanuelenardi *build #${{ env.RUN_NUMBER }} fallita* 🙁
             - [log run](${{ env.RUN_URL }})
           format: markdown
           disable_web_page_preview: true
@@ -226,11 +226,13 @@ jobs:
         uses: appleboy/telegram-action@master
         env:
           DROPBOX_SHARED_FOLDER: https://www.dropbox.com/sh/4c9e4n0umodm1wa/AAC4mZ3PqjjdvEWaCpzJBbB6a
+          NEW_TAG: ${{ needs.build_docs.outputs.new_tag }}
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             - *build* #${{ env.RUN_NUMBER }}
+            - *tag* `${{ env.NEW_TAG }}`
             - *message*: ${{ github.event.head_commit.message }}
             - [main su Dropbox](${{ env.DROPBOX_SHARED_FOLDER }})
             - [log run](${{ env.RUN_URL }})
@@ -270,7 +272,8 @@ jobs:
     if: ${{ needs.build_docs.outputs.tag_part == ('major' || 'minor') }}
     env:
       ZIP_NAME: ${{ needs.build_docs.outputs.zip_name }}
-      MAIN_NAME: ${{ needs.build_docs.outputs.main_name }}
+      TAG_NAME: ${{ needs.build_docs.outputs.new_tag }}
+      changelog: ${{ needs.build_docs.outputs.changelog }}
     steps:
 
       - name: Step 1 ✏️ - Create a draft release
@@ -279,9 +282,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.TAG_NAME }}
-          release_name: Release ${{ env.TAG_NAME }}
-          # draft: true
+          tag_name: ${{ env.new_tag }}
+          release_name: Release ${{ env.new_tag }}
+          body: |
+            ${{ env.changelog }}
+          draft: false
           prerelease: true
 
       - name: Step 2 ⏬ - (1/3) Download artifact
