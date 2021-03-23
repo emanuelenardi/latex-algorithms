@@ -9,6 +9,11 @@ pdfs=$(find . -type f -name "*.pdf")
 fileTotal=$(find . -type f -name "*.pdf" | wc -l)
 fileProcessed=0
 
+if [[ ${fileTotal} -eq 0 ]]; then
+    echo "Build folder is empty."
+    exit 1
+fi
+
 OPTIONS_PSO="--use-pngout=false --use-jbig2=false --quiet"
 OPTIONS_GS="-sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH"
 
@@ -24,6 +29,7 @@ for file in $pdfs; do
     printf 'Compressing %s %-40s' "[$fileProcessed/$fileTotal]" "$basename ..."
     optfile="/tmp/$$-${filebase}_opt.pdf"
     
+    # NOTE pdfsizeopt si comporta meglio con i file di grandi dimensioni
     if [[ "$basename" == "main"* ]]; then
         pdfsizeopt $OPTIONS_PSO "${file}" "${optfile}"
     else
@@ -61,7 +67,7 @@ for file in $pdfs; do
     fi
 done
 percent_total=$(expr $optsize_tot '*' 100 / $orgsize_tot)
-echo "Before compression: $(expr $orgsize_tot / 1000000) Mb"
-echo "After compression: $(expr $optsize_tot / 1000000) Mb, ${percent_total}% of old"
+echo "Before compression: $(echo "scale=2; $orgsize_tot / 1000000" | bc) Mb"
+echo "After compression: $(echo "scale=2; $optsize_tot / 1000000" | bc) Mb, ${percent_total}% of old"
 
 cd $INITIAL_WORKING_DIRECTORY
