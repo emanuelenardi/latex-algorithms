@@ -2,16 +2,16 @@
     {\docversion} - {\today}%
 }
 
-\AddToShipoutPictureBG{%
-    \begin{tikzpicture}[remember picture, overlay]
-        \ifthenelse{ \isodd{\value{page}} }{%
-            \node[draw=darkgray, rectangle, fill=white, text=darkgray, font={\small\ttfamily}, %
-                  xshift=-1.5cm, yshift=8cm, opacity=.5, rotate=-90] %
-                  at (current page.south east) {\versionTag};
-        }{%
-            \node[draw=darkgray, rectangle, fill=white, text=darkgray, font={\small\ttfamily}, %
-                  xshift=1.5cm, yshift=8cm, opacity=.5, rotate=90] %
-                  at (current page.south west) {\versionTag};
-        }%
-    \end{tikzpicture}
-}
+% \AddToShipoutPictureBG{%
+%     \begin{tikzpicture}[remember picture, overlay]
+%         \ifthenelse{ \isodd{\value{page}} }{%
+%             \node[draw=darkgray, rectangle, fill=white, text=darkgray, font={\small\ttfamily}, %
+%                   xshift=-1.5cm, yshift=8cm, opacity=.5, rotate=-90] %
+%                   at (current page.south east) {\versionTag};
+%         }{%
+%             \node[draw=darkgray, rectangle, fill=white, text=darkgray, font={\small\ttfamily}, %
+%                   xshift=1.5cm, yshift=8cm, opacity=.5, rotate=90] %
+%                   at (current page.south west) {\versionTag};
+%         }%
+%     \end{tikzpicture}
+% }
