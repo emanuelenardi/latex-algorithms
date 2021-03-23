@@ -1,14 +1,13 @@
 %&settings/preamble.main
 \subfilefalse
+% ATTENTION non modificare "development", viene modificata automaticamente in deploy
+\newcommand{\docversion}{development}
 
 \usepackage[newfloat, cachedir=_minted-cache, outputdir=build]{minted}
 \usepackage{./libraries/set-minted}
 \mintedpath{{assets/codes/04/}}
 
 \usepackage{./settings/pagestyles}
-
-% for debugging purposes
-\newcommand{\docversion}{development}
 
 % NOTE utilizzato nel capitolo "05-analisi-ammortizzata"
 \usepackage{transparent}
@@ -29,6 +28,7 @@
 	\input{00-copertina}
 	\cleardoublepage
 
+	\input{./settings/versioning}
 	\input{00-pagina-iniziale}
 	\cleardoublepage
 
@@ -48,7 +48,6 @@
 
 \input{01-part-one}
 
-	\input{./settings/versioning}
 	\input{01-introduzione}
 	\input{02-analisi}
 	\input{03-funzioni}

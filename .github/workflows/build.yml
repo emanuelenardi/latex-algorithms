@@ -99,7 +99,7 @@ jobs:
           NEW_TAG: ${{ steps.tag-version.outputs.new_tag }}
         with:
           run: |
-            source $SCRIPTS_DIR/tag-main.sh
+            source $SCRIPTS_DIR/tag-document.sh
             setDocumentVersion $NEW_TAG
             $SCRIPTS_DIR/compile-project.sh
             
