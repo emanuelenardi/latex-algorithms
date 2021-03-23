@@ -16,6 +16,7 @@
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, synctex: no }
 \begin{document}
 \fi
+\tagThisPage
 \chapter{Analisi ammortizzata}
 
 \section{Introduzione}
@@ -53,16 +54,16 @@ L'\cref{alg:contatore-binario} illustra i passaggi\dots
     \caption{Incremento di un contatore binario}%
     \label{alg:contatore-binario}
     \prototype{\Int \increment{\Array{\Int}[] \(A\), \Int \(k\)}}{
-        
+
         \BlankLine
         \Int \(i\) \Assign \(0\)\;
-        
+
         \BlankLine
         \While{\(i < k\) \And \(A[i] \Equal 1\) }{
             \(A[i]\) \Assign 0\;
-            \Increment{i}\; 
+            \Increment{i}\;
         }
-        
+
         \BlankLine
         \If{\(i < k\)}{
             \(A[i]\) \Assign \(1\)\;
@@ -246,14 +247,14 @@ Il costo totale risultante è \(\Omicron(n)\), il costo ammortizzato \(\Omicron(
 \subsection{Metodo del potenziale}
 
 \begin{definition*}[Funzione di potenziale]
-Una funzione di potenziale \(\Phi\) associa ad uno stato \(S\) della struttura dati la \enquote{quantità di lavoro} \(\Phi(S)\) che è stato contabilizzato nell'analisi ammortizzata, ma non ancora eseguito. 
+Una funzione di potenziale \(\Phi\) associa ad uno stato \(S\) della struttura dati la \enquote{quantità di lavoro} \(\Phi(S)\) che è stato contabilizzato nell'analisi ammortizzata, ma non ancora eseguito.
 \end{definition*}
 
 In altre parole, \(\Phi(S)\) rappresenta la quantità di energia potenziale \enquote{immagazzinata} in quello stato.
 
 Il costo ammortizzato viene così definitivo come
 \[
-    \text{costo ammortizzato} = \text{costo effettivo} + \text{variazione di potenziale}    
+    \text{costo ammortizzato} = \text{costo effettivo} + \text{variazione di potenziale}
 \]
 ossia
 \[
@@ -292,7 +293,7 @@ Inserire un elemento \enquote{in fondo} alla sequenza (operazione di \texttt{app
     \hfill
     \begin{subfigure}[b]{.3\linewidth}
         \includegraphics[width=\linewidth, page=1]{vector-insert}
-        
+
         \vspace{5pt}
         \includegraphics[width=\linewidth, page=2]{vector-insert}
 
@@ -304,7 +305,7 @@ Inserire un elemento \enquote{in fondo} alla sequenza (operazione di \texttt{app
     \begin{subfigure}[b]{.3\linewidth}
         \centering
         \includegraphics[width=\linewidth, page=1]{vector-append}
-        
+
         \vspace{5pt}
         \includegraphics[width=\linewidth, page=2]{vector-append}
 
@@ -316,7 +317,7 @@ Inserire un elemento \enquote{in fondo} alla sequenza (operazione di \texttt{app
         {\transparent{0.2}
         \includegraphics[width=\linewidth, page=1]{vector-insert}
         % \includegraphics[width=\linewidth, page=1]{vector-remove}
-        
+
         \vspace{5pt}
         \includegraphics[width=\linewidth, page=2]{vector-insert}
         % \includegraphics[width=\linewidth, page=2]{vector-remove}
@@ -429,7 +430,7 @@ Il costo effettivo di un'operazione \textsf{add()} è dato dalla seguente espres
 Anche qui, ogni volta che con un inserimento vado ad eccedere la dimensione del vettore inizialmente allocato vado a pagare un costo pari alla dimensione del vecchio vettore che vado a copiare, più 1 per l'inserimento del nuovo valore.
 La differenza tra le due operazioni quindi non sta tanto nel costo della chiamata che aumenta la dimensione del vettore, quanto più nel numero di volte che una tale chiamata sarà invocata.
 
-Il costo effettivo di \(n\) operazioni di incremento sono: 
+Il costo effettivo di \(n\) operazioni di incremento sono:
 \[\begin{WithArrows}[displaystyle]
 T(n) &= \sum_{i=1}^{n} c_i \Arrow{sostituisco \(c_i\)  con l'equazione di costo}\\
      &= n + \sum_{j=1}^{\floor{n/d}} d \cdot j \Arrow{estraggo la \(d\) dalla sommatoria}\\
@@ -560,7 +561,7 @@ Dopo un'espansione o una contrazione, il fattore di carico diventa \(1/2\).
 
 \subsubsection{Analisi ammortizzata per la contrazione di un vettore}
 
-Usiamo una funzione di potenziale che vale 0 all'inizio e subito dopo un'espansione o contrazione e che cresce fino a raggiungere il numero di elementi presenti nella tavola quando \(\alpha\) aumenta fino ad 1 o diminuisce fino ad \(1/4\). 
+Usiamo una funzione di potenziale che vale 0 all'inizio e subito dopo un'espansione o contrazione e che cresce fino a raggiungere il numero di elementi presenti nella tavola quando \(\alpha\) aumenta fino ad 1 o diminuisce fino ad \(1/4\).
 \[
     \Phi =
     \begin{dcases}
@@ -570,7 +571,7 @@ Usiamo una funzione di potenziale che vale 0 all'inizio e subito dopo un'espansi
 \]
 Prendiamo in considerazione alcuni casi esplicativi:
 \begin{itemize}
-    \item dopo un'espansione o contrazione \(\alpha=\frac{1}{2}\), la funzione di potenziale \(\Phi=0\);  
+    \item dopo un'espansione o contrazione \(\alpha=\frac{1}{2}\), la funzione di potenziale \(\Phi=0\);
     \item prima di un'espansione \(\alpha=1\), la dimensione risulta pari alla capacità e la funzione di potenziale è pari alla dimensione del vettore (\(\Phi=\text{dim}\));
     \item prima di una contrazione \(\alpha=\frac{1}{4}\), la capacità risulta quattro volte la dimensione e la funzione di potenziale è pari alla dimensione.
 \end{itemize}

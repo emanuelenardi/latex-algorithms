@@ -15,6 +15,7 @@
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, synctex: no }
 \begin{document}
 \fi
+\tagThisPage
 \chapter{Programmazione Dinamica}
 \epigraph{\enquote{Those who cannot remember the past are condemned to repeat it.}}%
          {--- \textup{\textsc{George Santayana}, \emph{The Life of Reason} (1905)}}
@@ -159,7 +160,7 @@ Questa implementazione ha costo costante nello spazio \(S(n) = \Theta(1)\).
     \end{tabular}
 \end{table}
 \renewcommand\arraystretch{1}
- 
+
 Sotto il modello di costo logaritmico (vedi~\cref{sec:valutare-dimensione-input}), le tre versioni hanno le complessità mostrate nella~\cref{tab:fibonacci-versions}.
 
 \begin{table}[H]\centering

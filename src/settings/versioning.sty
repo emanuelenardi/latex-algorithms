@@ -1,0 +1,12 @@
+\newcommand{\versionTag}{%
+    {\docversion} - {\today}%
+}
+
+\usepackage{eso-pic}
+\newcommand{\tagThisPage}{%
+    \AddToShipoutPictureBG*{%
+        \begin{tikzpicture}[remember picture, overlay]
+            \node[draw=darkgray, rectangle, fill=white, text=darkgray, font={\small\ttfamily}, xshift=-1.5cm, yshift=8cm, opacity=.5, rotate=-90] at (current page.south east) {\versionTag};
+        \end{tikzpicture}%
+    }%
+}
