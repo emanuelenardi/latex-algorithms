@@ -231,8 +231,10 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ⚙️ build #${{ env.RUN_NUMBER }}, 🏷️ `${{ env.NEW_TAG }}`
-            [main on Dropbox](${{ env.DROPBOX_SHARED_FOLDER }} 📁, [see log run](${{ env.RUN_URL }}) 👀
+            ⚙️ build #${{ env.RUN_NUMBER }}
+            🏷️ `${{ env.NEW_TAG }}`
+            🗄️ [main on Dropbox](${{ env.DROPBOX_SHARED_FOLDER }})
+            👀 [see log run](${{ env.RUN_URL }})
 
             ${{ github.event.head_commit.message }}
           format: markdown
