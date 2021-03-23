@@ -4,7 +4,7 @@ INITIAL_WORKING_DIRECTORY=$(pwd)
 
 source "${BASH_SOURCE%/*}/common.sh"
 
-variable=82
+variable=81
 separator=$(printf '%0.s=' $(seq 1 $variable))
 
 cd $BUILD_DIR
