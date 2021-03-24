@@ -1,85 +1,158 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/its-not-a-lie-if-you-believe-it.svg)](https://forthebadge.com)
 [![ForTheBadge makes-people-smile](http://ForTheBadge.com/images/badges/makes-people-smile.svg)](http://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/powered-by-black-magic.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/powered-by-overtime.svg)](https://forthebadge.com)
 
 # Dispensa di Algoritmi e Strutture Dati
 
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
-![Build LaTeX document](https://github.com/emanuelenardi/latex-algorithms/workflows/Build%20LaTeX%20document/badge.svg)
-
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/emanuelenardi/latex-algorithms/graphs/commit-activity)
-[![Maintaner](https://img.shields.io/badge/maintainer-emanuelenardi-green)](https://github.com/emanuelenardi)
-[![GitHub contributors](https://img.shields.io/github/contributors/emanuelenardi/latex-algorithms.svg)](https://github.com/emanuelenardi/latex-algorithms/graphs/contributors/)
-
-[![GitHub release](https://img.shields.io/github/release/emanuelenardi/latex-algorithms.svg)](https://github.com/emanuelenardi/latex-algorithms/releases/)
-[![GitHub tag](https://img.shields.io/github/tag/emanuelenardi/latex-algorithms.svg)](https://github.com/emanuelenardi/latex-algorithms/tags/)
-[![Github all releases](https://img.shields.io/github/downloads/emanuelenardi/latex-algorithms/total.svg)](https://github.com/emanuelenardi/latex-algorithms/releases/)
-
 ![logo](src/assets/figures/logo/logo-unitn.png)
+<!-- markdownlint-disable -->
+<h4 style="text-align:center;">Appunti in preparazione all'esame di Algoritmi e Strutture Dati</h4>
+<!-- markdownlint-restore -->
 
-Questi sono gli appunti presi in preparazione all'esame di Algoritmi e Strutture Dati tenuto all'Università degli Studi di Trento dal Prof.re Alberto Montresor durante l'a.a. 2020/2021.
+<!-- markdownlint-disable -->
+<p style="text-align:center;">
+
+  <a href="https://github.com/emanuelenardi/latex-algorithms/actions">
+  <img src="https://github.com/emanuelenardi/latex-algorithms/workflows/Build%20LaTeX%20document/badge.svg"
+  alt="Github action workflow">
+
+<br>
+
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img src="https://img.shields.io/badge/Licenza-CC%20BY--NC--SA%204.0-lightgrey?style=flat"
+  alt="License">
+
+  <a href="https://github.com/emanuelenardi">
+  <img src="https://img.shields.io/badge/Autore-Emanuele%20Nardi-lightgray?style=flat&logo=github"
+  alt="Author">
+
+<br>
+
+  <a href="https://GitHub.com/emanuelenardi/latex-algorithms/graphs/commit-activity">
+  <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"
+  alt="Maintainer">
+
+  <a href="https://github.com/emanuelenardi">
+  <img src="https://img.shields.io/badge/Manutentore-Emanuele%20Nardi-blue?style=flat&logo=telegram"
+  alt="Maintainer">
+
+  <a href="https://github.com/emanuelenardi/latex-algorithms/graphs/contributors/">
+  <img src="https://img.shields.io/github/contributors/emanuelenardi/latex-algorithms?style=flat&logo=github"
+  alt="GitHub contributors">
+
+  <a href="https://t.me/DiscussioneDispensaAlgoritmi">
+  <img src="https://img.shields.io/badge/Gruppo-Discussione%20Dispensa%20Algoritmi-blue?style=flat&logo=telegram"
+  alt="Telegram Discussion Group">
+
+<br>
+
+  <a href="https://github.com/emanuelenardi/latex-algorithms/tags/">
+  <img src="https://img.shields.io/github/tag/emanuelenardi/latex-algorithms"
+  alt="GitHub tag">
+
+  <a href="https://github.com/emanuelenardi/latex-algorithms/releases/">
+  <img src="https://img.shields.io/github/release/emanuelenardi/latex-algorithms/all"
+  alt="GitHub release">
+
+  <a href="https://github.com/emanuelenardi/latex-algorithms/releases/">
+  <img src="https://img.shields.io/github/downloads/emanuelenardi/latex-algorithms/total"
+  alt="Github all releases">
+
+  <a href="https://github.com/emanuelenardi/latex-algorithms/commits/main">
+  <img src="https://img.shields.io/github/last-commit/emanuelenardi/latex-algorithms?style=flat&logo=github&logoColor=white"
+  alt="GitHub last commit">
+
+  <a href="https://github.com/builtbybel/burnbytes/issues">
+  <img src="https://img.shields.io/github/issues-raw/emanuelenardi/latex-algorithms?style=flat&logo=github&logoColor=white"
+  alt="GitHub issues">
+
+</p>
+
+<p style="text-align:center;">
+  <a href="#-contenuto">📖 Contenuto</a> •
+  <a href="#-anteprima">👀 Anteprima</a> •
+  <a href="#-segnalazione-errori">🐞 Segnalazione errori</a> •
+  <a href="#️-contribuire">✏️ Contribuire</a> •
+  <a href="#-licenza">📃 Licenza</a> •
+  <a href="#-download">🧐 Download</a> •
+  <a href="#-autore">🐻 Autore</a> •
+  <a href="#-ringraziamenti">🙌🏻🙇🏻 Ringraziamenti</a>
+</p>
+<!-- markdownlint-restore -->
 
 ## 📖 Contenuto
 
-<table>
+<!-- markdownlint-disable -->
+<table style="text-align:left; vertical-align: top;">
 <tr><th>1° Semetre</th><th>2° Semetre</th></tr>
-<tr><td align="center">
+<tr><td>
 
-| no. | Titolo                          | pagine |
-| --- | ------------------------------- | ------ |
-| 1   | Introduzione                    | 7      |
-| 2   | Analisi di algoritmi            | 21     |
-| 2   | Analisi delle funzioni di costo | 20     |
-| 3   | Analisi ammortizzata            | -      |
-| 4   | Strutture Dati                  | 11     |
-| 5   | Alberi                          | 9      |
-| 6   | Alberi Binari di Ricerca        | 20     |
-| 7   | Hashing                         | -      |
-| 8   | Insiemi e dizionari             | 4      |
-| 9   | Grafi                           | 32     |
-| 10  | Strutture dati speciali         | -      |
-| 11  | "Scelta"                        | 10     |
-| 12  | Divide et Impera                | 7      |
+| #  | titolo                          | pagine |
+|----|---------------------------------|--------|
+| 1  | Introduzione                    | 7      |
+| 2  | Analisi di algoritmi            | 21     |
+| 2  | Analisi delle funzioni di costo | 20     |
+| 3  | Analisi ammortizzata            | -      |
+| 4  | Strutture Dati                  | 11     |
+| 5  | Alberi                          | 9      |
+| 6  | Alberi Binari di Ricerca        | 20     |
+| 7  | Hashing                         | -      |
+| 8  | Insiemi e dizionari             | 4      |
+| 9  | Grafi                           | 32     |
+| 10 | Strutture dati speciali         | -      |
+| 11 | "Scelta"                        | 10     |
+| 12 | Divide et Impera                | 7      |
 
-</td><td valign="top" align="center">
+</td><td>
 
-| no. | titolo                              | pagine |
-| --- | ----------------------------------- | ------ |
-| 13  | Programmazione Dinamica             | -      |
-| 14  | Algoritmi ingordi                   | 14     |
-| 15  | Ricerca locale                      | -      |
-| 16  | Backtrack                           | 10     |
-| 17  | Algoritmi probabilistici            | -      |
-| 18  | Problemi intrattabili               | 10     |
-| 19  | Soluzioni per problemi intrattabili | 20     |
+| #  | titolo                              | pagine |
+|----|-------------------------------------|--------|
+| 13 | Programmazione Dinamica             | -      |
+| 14 | Algoritmi ingordi                   | 14     |
+| 15 | Ricerca locale                      | -      |
+| 16 | Backtrack                           | 10     |
+| 17 | Algoritmi probabilistici            | -      |
+| 18 | Problemi intrattabili               | 10     |
+| 19 | Soluzioni per problemi intrattabili | 20     |
 
 </td></tr>
-<tr><th colspan="2">Appendici</th></tr>
-<tr><td align="center">
-	
+<tr><th colspan="2" >Appendici</th></tr>
+<tr><td>
+
 | no. | titolo                    | pagine |
 | --- | ------------------------- | ------ |
 | A1  | Problema dell'ordinamento | 5      |
 
-</td><td align="center">
-	
+</td><td>
+
 | no. | titolo              | pagine |
 | --- | ------------------- | ------ |
 | A2  | Algoritmo di Tarjan | -      |
 
 </td></tr>
 </table>
+<!-- markdownlint-restore -->
 
 ## 👀 Anteprima
 
+<!-- markdownlint-disable -->
+<a href="https://issuu.com/nardiemanuele">
+<img alt="Download release" src="https://img.shields.io/badge/visualizza%20anteprima-white?style=for-the-badge&logo=issuu&logoColor=white">
+</a>
+<!-- markdownlint-restore -->
+
 Premi sull'immagine per vedere il PDF online 👇🏻
 
-<p align="center">
+<!-- markdownlint-disable -->
+<p style="text-align:center;">
     <a href="https://issuu.com/nardiemanuele">
-	<img alt="preview-issuu" src="https://github.com/emanuelenardi/latex-algorithms/blob/main/src/assets/figures/cover/preview-issuu.jpg" width="480">
+	<img alt="Anteprima su Issuu" src="https://github.com/emanuelenardi/latex-algorithms/blob/main/src/assets/figures/cover/preview-issuu.jpg" width="480">
     </a>
 </p>
+<!-- markdownlint-restore -->
 
 ## 🐞 Segnalazione errori
 
@@ -89,30 +162,60 @@ Suggerimenti e miglioramenti [sono i benvenuti](https://github.com/emanuelenardi
 
 ## ✏️ Contribuire
 
+<!-- markdownlint-disable -->
+<a href="https://github.com/emanuelenardi">
+<img alt="Segnala errori su Dropbox" src="https://img.shields.io/badge/Segnala%20errori%20-0061FF?style=for-the-badge&logo=dropbox">
+</a>
+
+<a href="https://github.com/emanuelenardi/latex-algorithms/issues">
+<img alt="Apri un issue" src="https://img.shields.io/badge/suggerisci%20miglioramenti-d73a49?style=for-the-badge&logo=github">
+</a>
+
+<a href="https://github.com/emanuelenardi">
+<img alt="Contattaci su Telegram" src="https://img.shields.io/badge/entra nel gruppo di discussione-24292e?style=for-the-badge&logo=telegram&logoColor=white">
+</a>
+<!-- markdownlint-restore -->
+
+I contributi sono sempre benvenuti, non importa quanto piccoli o grandi siano.
 I nuovi collaboratori sono sempre benvenuti! Leggi le [linee guida](docs/CONTRIBUTING.md) per essere coinvolto.
 
-Se hai trovato utili questi appunti metti la ⭐!
-
 ## 📃 Licenza
+
+<!-- markdownlint-disable -->
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Licenza: CC BY-NC-SA 4.0" src="https://img.shields.io/badge/BY--NC--SA%204.0-EF9421?style=for-the-badge&logo=creative-commons&logoColor=black">
+</a>
+<!-- markdownlint-restore -->
 
 Le trasparenze e gli appunti del Prof.re Alberto Montresor sono rilasciati sotto licenza [CC BY-NC 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.it).
 Gli elaborati presenti su questa repository sono rilasciati sotto licenza [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it).
 
 ## 🧐 Download
 
-L'ultima versione della dispensa con i singoli capitoli è disponibile [nelle release](https://github.com/emanuelenardi/latex-algorithms/releases/lastest).
+<!-- markdownlint-disable -->
 
-Inoltre è possibile visionare le vecchie versioni del documento principale nella [cartella Dropbox](https://www.dropbox.com/sh/4c9e4n0umodm1wa/AAC4mZ3PqjjdvEWaCpzJBbB6a).
+<a href="https://github.com/emanuelenardi/latex-algorithms/releases/">
+<img alt="Sponsorizzazione" src="https://img.shields.io/badge/Sponsorizza%20progetto-00457C?style=for-the-badge&logo=paypal&logoColor=white">
+</a>
+
+<a href="https://github.com/emanuelenardi/latex-algorithms/releases/">
+<img alt="Download release" src="https://img.shields.io/badge/-Scarica%20release-blue?style=for-the-badge&logo=github">
+</a>
+
+<!-- markdownlint-restore -->
+
+L'ultima versione della dispensa con i singoli capitoli è disponibile [nelle release](https://github.com/emanuelenardi/latex-algorithms/releases/lastest).
+Se hai trovato utili questi appunti metti la ⭐!
 
 ## 🐻 Autore
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/emanuelenardi"><img src="https://avatars.githubusercontent.com/u/15109661?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Emanuele Nardi</b></sub></a>
+    <td style="text-align:center;"><a href="https://github.com/emanuelenardi"><img src="https://avatars.githubusercontent.com/u/15109661?v=4?s=100" width="200px;" alt=""/><br /><sub><b>Emanuele Nardi</b></sub></a>
+    <td style="text-align:left;">
+    Se i contenuti da me prodotti ed offerti ti fossero stati d'aiuto, potresti prendere in considerazione di <a href="https://paypal.me/emanuelenardi">offrirmi un caffé!</a> ☕
   </tr>
 </table>
-
-Se il contenuto che ho prodotto ti ha aiutato nel percorso di studi, prendi in considerazione di [offrirmi un caffé! ☕](paypal.me/emanuelenardi).
 
 Ti ringrazio per il tuo supporto 😄
 
@@ -122,8 +225,7 @@ Vorrei ringraziare [Francesco Bozzo](https://github.com/FrancescoBozzo),  [Samue
 Le carenze di questa dispensa sarebbero considerevolmente maggiori e più numerose se non fosse stato per la loro assistenza.
 Gli errori rimanenti sono, ovviamente, interamente miei.
 
-Questo progetto segue la specifica [all-contributors](https://github.com/all-contributors/all-contributors).
-Se vuoi contribuire consulta la [documentazione](docs/CONTRIBUTING.md).
+Se vuoi contribuire anche tu e far parte di questo gruppo meraviglioso, consulta la [documentazione](docs/CONTRIBUTING.md) 📄
 
 Grazie a queste persone meravigliose ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -135,8 +237,9 @@ Grazie a queste persone meravigliose ([emoji key](https://allcontributors.org/do
     <td align="center"><a href="https://github.com/FrancescoBozzo"><img src="https://avatars.githubusercontent.com/u/32967065?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Francesco Bozzo</b></sub></a><br /><a href="#platform-FrancescoBozzo" title="Packaging/porting to new platform">📦</a> <a href="https://github.com/emanuelenardi/latex-algorithms/commits?author=FrancescoBozzo" title="Tests">⚠️</a></td>
   </tr>
 </table>
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
+Questo progetto segue la specifica [all-contributors](https://github.com/all-contributors/all-contributors).
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
