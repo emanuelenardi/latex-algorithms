@@ -140,7 +140,7 @@
 
 <!-- markdownlint-disable -->
 <a href="https://issuu.com/nardiemanuele">
-<img alt="Download release" src="https://img.shields.io/badge/visualizza%20anteprima-white?style=for-the-badge&logo=issuu&logoColor=white">
+<img alt="Visualizza anteprima" src="https://img.shields.io/badge/visualizza%20anteprima-F36D5D?style=for-the-badge&logo=issuu&logoColor=white">
 </a>
 <!-- markdownlint-restore -->
 
@@ -163,17 +163,19 @@ Suggerimenti e miglioramenti [sono i benvenuti](https://github.com/emanuelenardi
 ## ✏️ Contribuire
 
 <!-- markdownlint-disable -->
-<a href="https://github.com/emanuelenardi">
-<img alt="Segnala errori su Dropbox" src="https://img.shields.io/badge/Segnala%20errori%20-0061FF?style=for-the-badge&logo=dropbox">
-</a>
+<p>
+  <a href="https://github.com/emanuelenardi">
+  <img alt="Segnala errori su Dropbox" src="https://img.shields.io/badge/Segnala%20errori%20-0061FF?style=for-the-badge&logo=dropbox">
+  </a>
 
-<a href="https://github.com/emanuelenardi/latex-algorithms/issues">
-<img alt="Apri un issue" src="https://img.shields.io/badge/suggerisci%20miglioramenti-d73a49?style=for-the-badge&logo=github">
-</a>
+  <a href="https://github.com/emanuelenardi/latex-algorithms/issues">
+  <img alt="Apri un issue" src="https://img.shields.io/badge/suggerisci%20miglioramenti-d73a49?style=for-the-badge&logo=github">
+  </a>
 
-<a href="https://github.com/emanuelenardi">
-<img alt="Contattaci su Telegram" src="https://img.shields.io/badge/entra nel gruppo di discussione-24292e?style=for-the-badge&logo=telegram&logoColor=white">
-</a>
+  <a href="https://github.com/emanuelenardi">
+  <img alt="Contattaci su Telegram" src="https://img.shields.io/badge/entra nel gruppo di discussione-24292e?style=for-the-badge&logo=telegram&logoColor=white">
+  </a>
+</p>
 <!-- markdownlint-restore -->
 
 I contributi sono sempre benvenuti, non importa quanto piccoli o grandi siano.
@@ -193,15 +195,15 @@ Gli elaborati presenti su questa repository sono rilasciati sotto licenza [CC BY
 ## 🧐 Download
 
 <!-- markdownlint-disable -->
+<p>
+  <a href="https://github.com/emanuelenardi/latex-algorithms/releases/">
+  <img alt="Sponsorizzazione" src="https://img.shields.io/badge/Sponsorizza%20progetto-00457C?style=for-the-badge&logo=paypal&logoColor=white">
+  </a>
 
-<a href="https://github.com/emanuelenardi/latex-algorithms/releases/">
-<img alt="Sponsorizzazione" src="https://img.shields.io/badge/Sponsorizza%20progetto-00457C?style=for-the-badge&logo=paypal&logoColor=white">
-</a>
-
-<a href="https://github.com/emanuelenardi/latex-algorithms/releases/">
-<img alt="Download release" src="https://img.shields.io/badge/-Scarica%20release-blue?style=for-the-badge&logo=github">
-</a>
-
+  <a href="https://github.com/emanuelenardi/latex-algorithms/releases/">
+  <img alt="Download release" src="https://img.shields.io/badge/-Scarica%20release-blue?style=for-the-badge&logo=github">
+  </a>
+</p>
 <!-- markdownlint-restore -->
 
 L'ultima versione della dispensa con i singoli capitoli è disponibile [nelle release](https://github.com/emanuelenardi/latex-algorithms/releases/lastest).
