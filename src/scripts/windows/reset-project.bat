@@ -2,7 +2,7 @@
 call "%~dp0\common.bat"
 set INITIAL_WORKING_DIRECTORY=%cd%
 
-echo: & echo =========== CANCELLO IL PREAMBOLO PRE-COMPILATO DEL MAIN =============
+echo !\n!=========== CANCELLO IL PREAMBOLO PRE-COMPILATO DEL MAIN =============
 cd %SETTINGS_DIR%
 del /s preamble.main.fmt >nul 2>&1
 
