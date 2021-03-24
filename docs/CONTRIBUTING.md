@@ -1,8 +1,7 @@
 # 1. Contribuire a questo progetto
 
 Ciao! 👋🏻 Sono entusiasta che tu voglia contribuire a questo progetto.
-Il tuo aiuto è essenziale per mantenerlo alla grande!
-I contributi sono sempre benvenuti, non importa quanto piccoli o grandi siano.
+Il tuo aiuto sarà essenziale per mantenerlo alla grande!
 
 - [1. Contribuire a questo progetto](#1-contribuire-a-questo-progetto)
   - [1.1. Requisiti per la compilazione 📌](#11-requisiti-per-la-compilazione-)
@@ -27,15 +26,43 @@ I contributi sono sempre benvenuti, non importa quanto piccoli o grandi siano.
 
 ## 1.1. Requisiti per la compilazione 📌
 
+<!-- markdownlint-disable -->
+<p>
+  </a>
+  <a href="https://git-scm.com/">
+  <img alt="Install Git" src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white">
+
+  </a>
+  <a href="https://www.tug.org/texlive/acquire-netinstall.html">
+  <img alt="Install TeX Live" src="https://img.shields.io/badge/TeX%20Live-008080?style=for-the-badge&logo=latex&logoColor=white">
+  </a>
+
+  </a>
+  <a href="https://www.java.com/it/download/">
+  <img alt="Install Java" src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white">
+  </a>
+
+  </a>
+  <a href="https://www.python.org/downloads/">
+  <img alt="Install Python" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+  </a>
+
+  </a>
+  <a href="https://pygments.org/">
+  <img alt="Install Python Pygments" src="https://img.shields.io/badge/Python%20Pygments-3776AB?style=for-the-badge&logo=python&logoColor=white">
+  </a>
+</p>
+<!-- markdownlint-restore -->
+
 Per poter compilare questo progetto è necessario avere sulla propria macchina:
 
-- git
-- un'installazione completa di [TeX-Live](https://www.tug.org/texlive/acquire-netinstall.html) 2020 (servono all'incirca 7GB liberi sul disco);
-- Python (`2.x.x` o `3..x.x` è indifferente);
-- la libreria Python [`pygmetize`](https://pygments.org/) (per la colorazione del codice all'interno del documento);
-- java (per la compilazione dei documenti tramite [arara](https://github.com/islandoftex/arara)).
+- [Git](https://git-scm.com/)
+- un'installazione completa di [TeX Live](https://www.tug.org/texlive/acquire-netinstall.html) 2020 (servono all'incirca 7GB liberi sul disco);
+- [Python](https://www.python.org/downloads/) (`2.x.x` o `3..x.x` è indifferente);
+- la [libreria Python `pygmetize`](https://pygments.org/) (per la colorazione del codice all'interno del documento);
+- [Java](https://www.java.com/it/download/) (per la compilazione dei documenti tramite [arara 🦜](https://github.com/islandoftex/arara) che viene scaricato con TeX Live).
 
-### 1.1.1. Installazione dei requisiti su Windows 
+### 1.1.1. Installazione dei requisiti su Windows
 
 Per l'installazione su windows eseguire i passi nei seguenti link:
 
@@ -47,6 +74,7 @@ Per l'installazione su windows eseguire i passi nei seguenti link:
 ### 1.1.2. Installazione dei requisiti su linux
 
 Su linux è sufficiente eseguire le seguenti righe
+
 ```bash
 sudo apt -y update && sudo apt -y upgrade && sudo apt autoremove
 sudo apt install git
@@ -60,6 +88,7 @@ tlmgr update --self --all
 ### 1.1.3. Controllo installazione 👀
 
 Per accertarti di avere tutti gli strumenti adatti per compilare questo progetto (sia su linux che su windows) esegui le seguenti righe su un terminale:
+
 ```bash
 git --version
 python --version
@@ -120,6 +149,15 @@ I tag disponibili sono `#major`, `#minor` e `#patch` (predefinito se non specifi
 
 ## 1.4. Cosa succede quando si pubblica il codice su Github ✨
 
+<!-- markdownlint-disable -->
+<p>
+  </a>
+  <a href="https://github.com/features/actions">
+  <img src="https://img.shields.io/badge/get%20started%20with-Github%20actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white">
+  </a>
+</p>
+<!-- markdownlint-restore -->
+
 Quando il codice viene pubblicato tramite un `push` sui branch `main` e `preview` viene eseguita la github action [`build`](https://github.com/emanuelenardi/latex-algorithms/blob/main/.github/workflows/build.yml).
 
 La regola build è suddivisa in tre _job_ i quali svolgono compiti specifici.
@@ -152,6 +190,12 @@ I _job_ `send_docs` e `create_release` dipendono dal _job_ `build_docs`, quindi 
 
 ## 1.5. Estensioni VSCode consigliate 📦
 
+<!-- markdownlint-disable -->
+<a href="https://code.visualstudio.com/">
+<img src="https://img.shields.io/badge/download-Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=visual-studio-code">
+</a>
+<!-- markdownlint-restore -->
+
 All'interno del file `.vscode\extensions.json` sono presenti alcuni suggerimenti di estensioni da installare.
 Di seguito sono elencate le motivazioni di quei suggerimenti, in modo tale che possiate scegliere autonomamente se installarle o meno.
 
@@ -165,6 +209,12 @@ Di seguito sono elencate le motivazioni di quei suggerimenti, in modo tale che p
 
 ## 1.6. Docker 🐳
 
+<!-- markdownlint-disable -->
+<a href="https://www.docker.com/get-started">
+<img src="https://img.shields.io/badge/get%20started%20with-Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white">
+</a>
+<!-- markdownlint-restore -->
+
 Per coloro che non vogliono installare tutte le dipendenze sul proprio sistema c'è la possibilità di utilizzare [docker](https://www.redhat.com/it/topics/containers/what-is-docker).
 
 Se hai già docker installato sul tuo sistema salta a "[Come configurare il progetto](###-Come-configurare-il-progetto)".
@@ -172,6 +222,7 @@ Se hai già docker installato sul tuo sistema salta a "[Come configurare il prog
 ### 1.6.1. Installare docker
 
 > Per installare docker su Windows 10 è necessario aver prima installato [WSL 2](https://docs.microsoft.com/it-it/windows/wsl/install-win10).
+> Per ulteriori informazioni consultare [wsl](https://code.visualstudio.com/docs/remote/wsl) e [wsl tutorial](https://code.visualstudio.com/docs/remote/wsl-tutorial).
 
 - [Procedura di installazione per Windows 10 Home](https://docs.docker.com/docker-for-windows/install-windows-home/) ([download diretto](https://hub.docker.com/editions/community/docker-ce-desktop-windows/))
 - [Procedura di installazione per Mac](https://docs.docker.com/docker-for-mac/install/) ([download diretto](https://hub.docker.com/editions/community/docker-ce-desktop-mac/))
@@ -198,6 +249,18 @@ sudo systemctl enable containerd.service
 Vedi "[_Optional post-installation steps for Linux_](https://docs.docker.com/engine/install/linux-postinstall/)" per ulteriori dettagli.
 
 ### 1.6.2. Come configurare il progetto con VSCode
+
+<!-- markdownlint-disable -->
+<p>
+  </a>
+  <a href="https://github.com/emanuelenardi/latex-algorithms/">
+  <img src="https://img.shields.io/badge/Clone-Git%20Repository-F05032?style=for-the-badge&logo=git&logoColor=white">
+  </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">
+  <img src="https://img.shields.io/badge/download-Remote%20--%20Containers-007ACC?style=for-the-badge&logo=visual-studio-code">
+  </a>
+</p>
+<!-- markdownlint-restore -->
 
 Scarica una copia del progetto
 
@@ -232,9 +295,26 @@ Infatti senza aver prima eseguito lo script `compile-preambles`(`.sh` per linux/
 
 ### 1.7.2. Algoritmi e pseudocodice
 
-- [algorithm2e](algorithm2e-doc)
+<!-- markdownlint-disable -->
+<p>
+
+  <a href="https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/standalone/standalone.pdf">
+  <img alt="standalone package" src="https://img.shields.io/badge/standalone-008080?style=for-the-badge&logo=latex&logoColor=white">
+  </a>
+
+  <a href="https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf">
+  <img alt="algorithm2e package" src="https://img.shields.io/badge/algorithm2e-008080?style=for-the-badge&logo=latex&logoColor=white">
+  </a>
+
+  <a href="https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/minted/minted.pdf">
+  <img alt="minted package" src="https://img.shields.io/badge/minted-008080?style=for-the-badge&logo=latex&logoColor=white">
+  </a>
+</p>
+<!-- markdownlint-restore -->
+
+<!-- - [algorithm2e](algorithm2e-doc)
 - [standalone](standalone-doc)
-- [minted](minted-doc)
+- [minted](minted-doc) -->
 
 Per la generazione del pseudocodice è stato utilzzato il pacchetto [algorithm2e](https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf) in combinazione con il pacchetto [standalone](https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/standalone/standalone.pdf) per la compilazione del singolo algoritmo.
 
@@ -242,9 +322,25 @@ Per la colorazione dei codici è stato utilizzato il pacchetto [minted](minted-d
 
 ### 1.7.3. Grafici e alberi
 
-- [tikz](tikz-doc)
-- [forest](forest-doc)
+<!-- markdownlint-disable -->
+<p>
+
+  <a href="https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/standalone/standalone.pdf">
+  <img alt="standalone package" src="https://img.shields.io/badge/standalone-008080?style=for-the-badge&logo=latex&logoColor=white">
+  </a>
+  <a href="https://ctan.mirror.garr.it/mirrors/ctan/graphics/pgf/base/doc/pgfmanual.pdf">
+  <img alt="pgf-tikz package" src="https://img.shields.io/badge/algorithm2e-008080?style=for-the-badge&logo=latex&logoColor=white">
+  </a>
+
+  <a href="https://ctan.mirror.garr.it/mirrors/ctan/graphics/pgf/contrib/forest/forest-doc.pdf">
+  <img alt="forest package" src="https://img.shields.io/badge/minted-008080?style=for-the-badge&logo=latex&logoColor=white">
+  </a>
+</p>
+<!-- markdownlint-restore -->
+
+<!-- - [tikz](tikz-doc)
 - [standalone](standalone-doc)
+- [forest](forest-doc) -->
 
 Per la generazione dei grafici sono stati utilizzati i pacchetti [tikz](tikz-doc) e [forest](forest-doc) in combinazione con il pacchetto [standalone](standalone-doc) per la compilazione del singolo grafico.
 
@@ -260,7 +356,7 @@ Per approndondire consulta "[_Ultrafast PDFLaTeX with precompiling_](https://tex
 - All'interno del file `src\settings\preamble.main.sty` è presente la dichiarazione di un if a basso livello e viene impostato di default a `true`.
 
   ![Preambolo](preamble-main-sty.png)
-  
+
   Questo permette di eseguire in modo condizionato del codice nei sotto capitoli, nel documento principale (`src/main.tex`) è infatti specificata l'opzione `\subfilefalse` come prima istruzione dopo il caricamento del file dump del preambolo.
 
 - Il codice presente nei singoli capitoli listato fra i flag `\ifsubfile` e `\fi` viene eseguito soltanto all'interno dei singoli capitoli.
@@ -282,8 +378,7 @@ Per approndondire consulta "[_Ultrafast PDFLaTeX with precompiling_](https://tex
   > **Nota** In questo caso la cartella in cui la cache di minted viene generata è `outputdir=build` e non più `outputdir=../build` come nei singoli capitoli.
 
 [algorithm2e-doc]: https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf
-[standalone-doc]: https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/standalone/standalone.pdf
-[minted-doc]: https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/minted/minted.pdf
-[tikz-doc]: https://ctan.mirror.garr.it/mirrors/ctan/graphics/pgf/base/doc/pgfmanual.pdf
 [forest-doc]: https://ctan.mirror.garr.it/mirrors/ctan/graphics/pgf/contrib/forest/forest-doc.pdf
+[minted-doc]: https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/minted/minted.pdf
 [standalone-doc]: https://ctan.mirror.garr.it/mirrors/ctan/macros/latex/contrib/standalone/standalone.pdf
+[tikz-doc]: https://ctan.mirror.garr.it/mirrors/ctan/graphics/pgf/base/doc/pgfmanual.pdf
