@@ -2,12 +2,12 @@
 set INITIAL_WORKING_DIRECTORY=%cd%
 call "%~dp0\common.bat"
 
-echo !\n!==================== COMPILO DOCUMENTO PRINCIPALE ====================!\n!
+echo: & echo ==================== COMPILO DOCUMENTO PRINCIPALE ====================& echo:
 cd %SOURCE_DIR%
 arara -v main
 
 cd %BUILD_DIR%
-echo !\n!===================== EFFETTUO PULIZIA FILE AUX =====================!\n!
+echo: & ===================== EFFETTUO PULIZIA FILE AUX =====================& echo:
 @REM evito di cancellare la cache per le run successive
 @REM rmdir /q /s _minted-cache >nul 2>&1
 @REM Delete all files EXCEPT a given extension
