@@ -67,8 +67,8 @@
 
 <p align=center>
   <a href="#-anteprima">👀 Anteprima</a> •
-  <a href="#-segnalazione-errori">🐞 Segnalazione errori</a> •
-  <a href="#️-contribuire">✏️ Contribuire</a> •
+  <a href="#-segnalazione-errori">🐞 Segnala errori</a> •
+  <a href="#️-contribuire">✏️ Contribuisci</a> •
   <a href="#-download">🧐 Download</a>
 </p>
 <!-- markdownlint-restore -->
