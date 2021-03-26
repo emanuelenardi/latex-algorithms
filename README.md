@@ -65,7 +65,7 @@
   alt="Github action workflow">
 </p>
 
-<p style="text-align:center;">
+<p align=center>
   <a href="#-anteprima">👀 Anteprima</a> •
   <a href="#-segnalazione-errori">🐞 Segnalazione errori</a> •
   <a href="#️-contribuire">✏️ Contribuire</a> •
