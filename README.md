@@ -148,7 +148,7 @@
 
 <!-- markdownlint-disable -->
 <p>
-  <a href="https://github.com/DiscussioneDispensaAlgoritmi">
+  <a href="https://t.me/DiscussioneDispensaAlgoritmi">
   <img alt="Gruppo di discussione Telegram" src="https://img.shields.io/badge/entra nel gruppo di discussione-24292e?style=for-the-badge&logo=telegram&logoColor=white">
   </a>
   <a href="https://www.dropbox.com/sh/4c9e4n0umodm1wa/AAC4mZ3PqjjdvEWaCpzJBbB6a">
@@ -166,7 +166,7 @@ Se trovi errori di qualsiasi natura non farti problemi a segnalarli sul [gruppo 
 
 <!-- markdownlint-disable -->
 <p>
-  <a href="https://github.com/DiscussioneDispensaAlgoritmi">
+  <a href="https://t.me/DiscussioneDispensaAlgoritmi">
   <img alt="Gruppo di discussione Telegram" src="https://img.shields.io/badge/entra nel gruppo di discussione-24292e?style=for-the-badge&logo=telegram&logoColor=white">
   </a>
   <a href="https://github.com/emanuelenardi/latex-algorithms/issues">
