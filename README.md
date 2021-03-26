@@ -206,6 +206,7 @@ Gli elaborati presenti su questa repository sono rilasciati sotto licenza [CC BY
 <!-- markdownlint-restore -->
 
 L'ultima versione della dispensa con i singoli capitoli è disponibile [nelle release](https://github.com/emanuelenardi/latex-algorithms/releases/lastest).
+
 Se hai trovato utili questi appunti metti la ⭐!
 
 ## 🐻 Autore
@@ -213,8 +214,8 @@ Se hai trovato utili questi appunti metti la ⭐!
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td style="text-align:center;"><a href="https://github.com/emanuelenardi"><img src="https://avatars.githubusercontent.com/u/15109661?v=4?s=100" width="200px;" alt=""/><br /><sub><b>Emanuele Nardi</b></sub></a>
-    <td style="text-align:left;">
+    <td align="center"><a href="https://github.com/emanuelenardi"><img src="https://avatars.githubusercontent.com/u/15109661?v=4?s=100" width="200px;" alt=""/><br /><sub><b>Emanuele Nardi</b></sub></a>
+    <td>
     Se i contenuti da me prodotti ed offerti ti fossero stati d'aiuto, potresti prendere in considerazione di <a href="https://paypal.me/emanuelenardi">offrirmi un caffé!</a> ☕<br>Ti ringrazio per il supporto 😄
   </tr>
 </table>
