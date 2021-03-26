@@ -1,42 +1,33 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/its-not-a-lie-if-you-believe-it.svg)](https://forthebadge.com)
 [![ForTheBadge makes-people-smile](http://ForTheBadge.com/images/badges/makes-people-smile.svg)](http://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-black-magic.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-overtime.svg)](https://forthebadge.com)
 
 # Dispensa di Algoritmi e Strutture Dati
 
 ![logo](src/assets/figures/logo/logo-unitn.png)
 <!-- markdownlint-disable -->
-<h4 style="text-align:center;">Appunti in preparazione all'esame di Algoritmi e Strutture Dati</h4>
+<h4 align=center>Appunti in preparazione all'esame di Algoritmi e Strutture Dati</h4>
 <!-- markdownlint-restore -->
 
 <!-- markdownlint-disable -->
-<p style="text-align:center;">
-
-  <a href="https://github.com/emanuelenardi/latex-algorithms/actions">
-  <img src="https://github.com/emanuelenardi/latex-algorithms/workflows/Build%20LaTeX%20document/badge.svg"
-  alt="Github action workflow">
-
-<br>
+<p align=center>
 
   <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-  <img src="https://img.shields.io/badge/Licenza-CC%20BY--NC--SA%204.0-lightgrey?style=flat"
+  <img src="https://img.shields.io/badge/license-BY--NC--SA%204.0-lightgrey?style=flat&logo=creative-commons&logoColor=white"
   alt="License">
 
   <a href="https://github.com/emanuelenardi">
-  <img src="https://img.shields.io/badge/Autore-Emanuele%20Nardi-lightgray?style=flat&logo=github"
+  <img src="https://img.shields.io/badge/author-Emanuele%20Nardi-lightgray?style=flat&logo=github"
   alt="Author">
 
 <br>
 
   <a href="https://GitHub.com/emanuelenardi/latex-algorithms/graphs/commit-activity">
-  <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"
-  alt="Maintainer">
+  <img src="https://img.shields.io/badge/maintained%3F-yes-green.svg"
+  alt="Maintained">
 
   <a href="https://github.com/emanuelenardi">
-  <img src="https://img.shields.io/badge/Manutentore-Emanuele%20Nardi-blue?style=flat&logo=telegram"
+  <img src="https://img.shields.io/badge/maintainer-Emanuele%20Nardi-blue?style=flat&logo=telegram"
   alt="Maintainer">
 
   <a href="https://github.com/emanuelenardi/latex-algorithms/graphs/contributors/">
@@ -44,7 +35,7 @@
   alt="GitHub contributors">
 
   <a href="https://t.me/DiscussioneDispensaAlgoritmi">
-  <img src="https://img.shields.io/badge/Gruppo-Discussione%20Dispensa%20Algoritmi-blue?style=flat&logo=telegram"
+  <img src="https://img.shields.io/badge/group-Discussione%20Dispensa%20Algoritmi-blue?style=flat&logo=telegram"
   alt="Telegram Discussion Group">
 
 <br>
@@ -62,31 +53,30 @@
   alt="Github all releases">
 
   <a href="https://github.com/emanuelenardi/latex-algorithms/commits/main">
-  <img src="https://img.shields.io/github/last-commit/emanuelenardi/latex-algorithms?style=flat&logo=github&logoColor=white"
+  <img src="https://img.shields.io/github/last-commit/emanuelenardi/latex-algorithms"
   alt="GitHub last commit">
 
   <a href="https://github.com/builtbybel/burnbytes/issues">
-  <img src="https://img.shields.io/github/issues-raw/emanuelenardi/latex-algorithms?style=flat&logo=github&logoColor=white"
+  <img src="https://img.shields.io/github/issues-raw/emanuelenardi/latex-algorithms"
   alt="GitHub issues">
 
+  <a href="https://github.com/emanuelenardi/latex-algorithms/actions">
+  <img src="https://github.com/emanuelenardi/latex-algorithms/workflows/Build%20LaTeX%20document/badge.svg"
+  alt="Github action workflow">
 </p>
 
 <p style="text-align:center;">
-  <a href="#-contenuto">📖 Contenuto</a> •
   <a href="#-anteprima">👀 Anteprima</a> •
   <a href="#-segnalazione-errori">🐞 Segnalazione errori</a> •
   <a href="#️-contribuire">✏️ Contribuire</a> •
-  <a href="#-licenza">📃 Licenza</a> •
-  <a href="#-download">🧐 Download</a> •
-  <a href="#-autore">🐻 Autore</a> •
-  <a href="#-ringraziamenti">🙌🏻🙇🏻 Ringraziamenti</a>
+  <a href="#-download">🧐 Download</a>
 </p>
 <!-- markdownlint-restore -->
 
 ## 📖 Contenuto
 
 <!-- markdownlint-disable -->
-<table style="text-align:left; vertical-align: top;">
+<table>
 <tr><th>1° Semetre</th><th>2° Semetre</th></tr>
 <tr><td>
 
@@ -106,7 +96,7 @@
 | 11 | "Scelta"                        | 10     |
 | 12 | Divide et Impera                | 7      |
 
-</td><td>
+</td><td valign=top>
 
 | #  | titolo                              | pagine |
 |----|-------------------------------------|--------|
@@ -144,10 +134,8 @@
 </a>
 <!-- markdownlint-restore -->
 
-Premi sull'immagine per vedere il PDF online 👇🏻
-
 <!-- markdownlint-disable -->
-<p style="text-align:center;">
+<p align=center>
     <a href="https://issuu.com/nardiemanuele">
 	<img alt="Anteprima su Issuu" src="https://github.com/emanuelenardi/latex-algorithms/blob/main/src/assets/figures/cover/preview-issuu.jpg" width="480">
     </a>
@@ -156,30 +144,39 @@ Premi sull'immagine per vedere il PDF online 👇🏻
 
 ## 🐞 Segnalazione errori
 
-Se trovi errori di qualsiasi natura non avere remore a segnalarli sul [gruppo di discussione Telegram](https://t.me/DiscussioneDispensaAlgoritmi), li correggerò il prima possibile e aggiornerò l'[errata corrige](https://github.com/emanuelenardi/latex-algorithms/wiki/Errata-corrige).
+<!-- markdownlint-disable -->
+<p>
+  <a href="https://github.com/DiscussioneDispensaAlgoritmi">
+  <img alt="Contattaci su Telegram" src="https://img.shields.io/badge/entra nel gruppo di discussione-24292e?style=for-the-badge&logo=telegram&logoColor=white">
+  </a>
+  <a href="https://github.com/emanuelenardi">
+  <img alt="Segnala errori su Dropbox" src="https://img.shields.io/badge/Segnala%20errori%20-d73a49?style=for-the-badge&logo=dropbox">
+  </a>
+  <a href="https://github.com/emanuelenardi">
+  <img alt="Segnala errori su Dropbox" src="https://img.shields.io/badge/Visualizza%20errata%20corrige-0061FF?style=for-the-badge&logo=github">
+  </a>
+</p>
+<!-- markdownlint-restore -->
 
-Suggerimenti e miglioramenti [sono i benvenuti](https://github.com/emanuelenardi/latex-algorithms/issues)!
+Se trovi errori di qualsiasi natura non avere remore a segnalarli sul [gruppo di discussione Telegram](https://t.me/DiscussioneDispensaAlgoritmi), li correggerò il prima possibile e aggiornerò l'[errata corrige](https://github.com/emanuelenardi/latex-algorithms/wiki/Errata-corrige).
 
 ## ✏️ Contribuire
 
 <!-- markdownlint-disable -->
 <p>
-  <a href="https://github.com/emanuelenardi">
-  <img alt="Segnala errori su Dropbox" src="https://img.shields.io/badge/Segnala%20errori%20-0061FF?style=for-the-badge&logo=dropbox">
-  </a>
-
-  <a href="https://github.com/emanuelenardi/latex-algorithms/issues">
-  <img alt="Apri un issue" src="https://img.shields.io/badge/suggerisci%20miglioramenti-d73a49?style=for-the-badge&logo=github">
-  </a>
-
-  <a href="https://github.com/emanuelenardi">
+  <a href="https://github.com/DiscussioneDispensaAlgoritmi">
   <img alt="Contattaci su Telegram" src="https://img.shields.io/badge/entra nel gruppo di discussione-24292e?style=for-the-badge&logo=telegram&logoColor=white">
+  </a>
+  <a href="https://github.com/emanuelenardi/latex-algorithms/issues">
+  <img alt="Apri un issue" src="https://img.shields.io/badge/suggerisci%20miglioramenti-28a745?style=for-the-badge&logo=github">
   </a>
 </p>
 <!-- markdownlint-restore -->
 
-I contributi sono sempre benvenuti, non importa quanto piccoli o grandi siano.
-I nuovi collaboratori sono sempre benvenuti! Leggi le [linee guida](docs/CONTRIBUTING.md) per essere coinvolto.
+I contributi sono sempre apprezzati, non importa quanto piccoli.
+Hai un'idea? Hai notato un errore nell'impaginazione? [Suggerisci un miglioramento](https://github.com/emanuelenardi/latex-algorithms/issues)!
+
+I nuovi collaboratori sono sempre benvenuti! Leggi le [linee guida](docs/CONTRIBUTING.md) per iniziare.
 
 ## 📃 Licenza
 
@@ -196,7 +193,7 @@ Gli elaborati presenti su questa repository sono rilasciati sotto licenza [CC BY
 
 <!-- markdownlint-disable -->
 <p>
-  <a href="https://github.com/emanuelenardi/latex-algorithms/releases/">
+  <a href="https://paypal.me/emanuelenardi">
   <img alt="Sponsorizzazione" src="https://img.shields.io/badge/Sponsorizza%20progetto-00457C?style=for-the-badge&logo=paypal&logoColor=white">
   </a>
 
@@ -211,15 +208,15 @@ Se hai trovato utili questi appunti metti la ⭐!
 
 ## 🐻 Autore
 
+<!-- markdownlint-disable -->
 <table>
   <tr>
     <td style="text-align:center;"><a href="https://github.com/emanuelenardi"><img src="https://avatars.githubusercontent.com/u/15109661?v=4?s=100" width="200px;" alt=""/><br /><sub><b>Emanuele Nardi</b></sub></a>
     <td style="text-align:left;">
-    Se i contenuti da me prodotti ed offerti ti fossero stati d'aiuto, potresti prendere in considerazione di <a href="https://paypal.me/emanuelenardi">offrirmi un caffé!</a> ☕
+    Se i contenuti da me prodotti ed offerti ti fossero stati d'aiuto, potresti prendere in considerazione di <a href="https://paypal.me/emanuelenardi">offrirmi un caffé!</a> ☕<br>Ti ringrazio per il supporto 😄
   </tr>
 </table>
-
-Ti ringrazio per il tuo supporto 😄
+<!-- markdownlint-restore -->
 
 ## 🙌🏻🙇🏻 Ringraziamenti
 
