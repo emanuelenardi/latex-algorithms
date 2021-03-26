@@ -134,6 +134,8 @@
 </a>
 <!-- markdownlint-restore -->
 
+É possibile visualizzare un anteprima sfogliabile della dispensa direttamente online.
+
 <!-- markdownlint-disable -->
 <p align=center>
     <a href="https://issuu.com/nardiemanuele">
@@ -147,25 +149,25 @@
 <!-- markdownlint-disable -->
 <p>
   <a href="https://github.com/DiscussioneDispensaAlgoritmi">
-  <img alt="Contattaci su Telegram" src="https://img.shields.io/badge/entra nel gruppo di discussione-24292e?style=for-the-badge&logo=telegram&logoColor=white">
+  <img alt="Gruppo di discussione Telegram" src="https://img.shields.io/badge/entra nel gruppo di discussione-24292e?style=for-the-badge&logo=telegram&logoColor=white">
   </a>
-  <a href="https://github.com/emanuelenardi">
+  <a href="https://www.dropbox.com/sh/4c9e4n0umodm1wa/AAC4mZ3PqjjdvEWaCpzJBbB6a">
   <img alt="Segnala errori su Dropbox" src="https://img.shields.io/badge/Segnala%20errori%20-d73a49?style=for-the-badge&logo=dropbox">
   </a>
-  <a href="https://github.com/emanuelenardi">
-  <img alt="Segnala errori su Dropbox" src="https://img.shields.io/badge/Visualizza%20errata%20corrige-0061FF?style=for-the-badge&logo=github">
+  <a href="https://github.com/emanuelenardi/latex-algorithms/wiki/Errata-corrige">
+  <img alt="Visualizza errata corrige" src="https://img.shields.io/badge/Visualizza%20errata%20corrige-0061FF?style=for-the-badge&logo=github">
   </a>
 </p>
 <!-- markdownlint-restore -->
 
-Se trovi errori di qualsiasi natura non avere remore a segnalarli sul [gruppo di discussione Telegram](https://t.me/DiscussioneDispensaAlgoritmi), li correggerò il prima possibile e aggiornerò l'[errata corrige](https://github.com/emanuelenardi/latex-algorithms/wiki/Errata-corrige).
+Se trovi errori di qualsiasi natura non farti problemi a segnalarli sul [gruppo di discussione Telegram](https://t.me/DiscussioneDispensaAlgoritmi), li correggerò il prima possibile e aggiornerò l'[errata corrige](https://github.com/emanuelenardi/latex-algorithms/wiki/Errata-corrige).
 
 ## ✏️ Contribuire
 
 <!-- markdownlint-disable -->
 <p>
   <a href="https://github.com/DiscussioneDispensaAlgoritmi">
-  <img alt="Contattaci su Telegram" src="https://img.shields.io/badge/entra nel gruppo di discussione-24292e?style=for-the-badge&logo=telegram&logoColor=white">
+  <img alt="Gruppo di discussione Telegram" src="https://img.shields.io/badge/entra nel gruppo di discussione-24292e?style=for-the-badge&logo=telegram&logoColor=white">
   </a>
   <a href="https://github.com/emanuelenardi/latex-algorithms/issues">
   <img alt="Apri un issue" src="https://img.shields.io/badge/suggerisci%20miglioramenti-28a745?style=for-the-badge&logo=github">
