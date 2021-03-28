@@ -10,6 +10,7 @@
 *.lot
 *.pdf
 *.pyg
+*.out
 *.synctex.gz
 *.synctex(busy)
 *.toc
