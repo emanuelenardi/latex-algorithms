@@ -9,6 +9,18 @@
 \DontPrintSemicolon
 \LinesNotNumbered
 
+\makeatletter
+\newcommand\saveAlgoCounter[1]{%
+    \expandafter\xdef\csname saveAlgoCounter@#1\endcsname{\thealgocf}}% save \thealgocf
+% SEE https://tex.stackexchange.com/questions/200211/
+\newcommand{\repeatAlgoCaption}[2]{%
+    \expandafter\let\expandafter\thealgocf\csname saveAlgoCounter@#1\endcsname% use saved \thealgocf
+    \captionsetup{list=no}% not displayed in the list of algorithms
+    \caption{#2 (ripetuto da pagina~\pageref{#1})}% page reference of the repeted algorithm
+    \addtocounter{algocf}{-1}% the next figure after the repeat gets the right number
+}
+\makeatother
+
 % https://tex.stackexchange.com/questions/130355/
 \makeatletter
 \renewcommand*\l@algocf{\@dottedtocline{1}{1em}{3.2em}}% {1}{1em}{2.3em}

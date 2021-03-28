@@ -13,6 +13,8 @@
 \chapter{Introduzione}
 \tagThisPage
 
+\section{Alcune definizioni}
+
 \begin{definition}[problema computazionale]
 Dato un dominio di input e un dominio di output, un \emph{problema computazionale} è rappresentato dalla \textbf{relazione matematica} che associa un elemento del dominio in output ad ogni elemento del dominio di input.
 \end{definition}
@@ -24,7 +26,7 @@ Dato un problema computazionale, un \emph{algoritmo} è un procedimento \textbf{
 Un esempio classico, ma ingannevole, di algoritmo è quello della preparazione di una ricetta: l'input sono gli ingredienti, l'esecutore è il cuoco, l'algoritmo è la ricetta e l'output è rappresentato dal piatto cucinato.
 \`E ingannevole perché non esiste un modello formale del cuoco, ossia qualcosa che descriva esattamente cosa un cuoco può fare e quali sono i passi elementari dell'algoritmo.
 
-\section*{Algoritmi nella storia}
+\section{Algoritmi nella storia}
 
 Gli algoritmi sono molto antichi ed esistevano ancor prima del concetto di elaboratore.
 
@@ -33,7 +35,7 @@ Algoritmi di tipo numerico furono studiati da matematici babilonesi ed indiani.
 Esistono algoritmi in uso fino a tempi recenti che furono studiati dai matematici greci più di 2000 anni fa.
 Come ad esempio l'algoritmo di Euclide per il massimo comune divisore e gli algoritmi geometrici come il calcolo di tangenti, sezioni di angoli, etc.
 
-\subsection*{Origine del nome}
+\subsection{Origine del nome}
 
 L'\emph{origine del nome \textbf{algoritmo}}  è dovuto al matematico, astronomo, astrologo e geografo Abu Abdullah Muhammad bin Musa \textbf{al-Khwarizmi}.
 Ha scritto un testo chiamato \enquote{Algoritmi de numero indorum}, traduzione di un testo arabo ormai perso, che ha introdotto i numeri indiani (da noi comunemente detti numeri arabi) nel mondo occidentale.
@@ -97,9 +99,9 @@ In alcuni casi daremo anche per scontato alcuni passaggi, ad esempio scriveremo 
 Esempi di pseudocodice\index{pseudocodice} sono i seguenti.
 
 \begin{algorithm}[H]
-\caption{Implementazione na\"if della ricerca del minimo}
+\caption{Implementazione na\"if della ricerca del minimo}%
+\label{alg:ricerca-minimo-banale}
 
-\BlankLine
 \prototype{\Int \minFunction{\Array{\Int} \(S\), \Int \(n\)}}{
 
     \BlankLine
@@ -199,9 +201,8 @@ Ad esempio potremmo considerare il \emph{numero di operazioni \enquote{rilevanti
 Nel caso della ricerca del minimo, l'operazione più rilevante è il numero di confronti di minoranza (\(<\)), nella caso della ricerca dell'indice invece è il numero di confronti di eguaglianza (\(\Equal\)).
 
 \begin{algorithm}[H]
-\caption{Implementazione na\"if della ricerca del minimo}
+\repeatAlgoCaption{alg:ricerca-minimo-banale}{Implementazione na\"if della ricerca del minimo}
 
-\BlankLine
 \prototype{\Int \minFunction{\Array{\Int} \(S\), \Int \(n\)}}{
 
     \BlankLine
@@ -230,7 +231,7 @@ Nel caso della ricerca del minimo, l'operazione più rilevante è il numero di c
 \paragraph{Calcolo della complessità}
 Come calcoliamo la complessità?
 L'operazione rilevante all'interno di questo algoritmo è il confronto fra gli elementi agli indici \(i\) e \(j\) (\(S[j] < S[i]\)), la quale è ripetuta all'interno di due cicli annidati che scorrono gli \(n\) elementi del vettore, tranne quelli che hanno lo stesso indice.
-Quindi il numero di confronti totali per questa soluzione del problema del minimo è \(n \cdot n - n = n^2 - n\).
+Quindi il numero di confronti totali per questa soluzione del problema del minimo è \(n \cdot (n - 1) = n^2 - n\), essendo \(n^2\) dominante, questo algoritmo risulta avere una complessità di \(n^2\) (più avanti saremo più precisi).
 Si può fare meglio di così?
 Certo che sì!
 
@@ -326,10 +327,11 @@ Prendiamo ancora un'ultima volta come esempio l'algoritmo della ricerca del mini
 
 L'invariante di ciclo per questo algoritmo è la seguente: all'inizio di ogni iterazione del ciclo, la variabile \(min\) contiene il minimo parziale degli elementi \(S[1\dots i-1]\).
 Quindi quando analizzo l'elemento \(i\)-esimo so che \(min\) contiene il minimo fra tutti gli elementi precendenti.
-
-\textbf{Inizializzazione} (caso base): quando entriamo nel ciclo la variabile \(min\) contiene il minimo fra \(S[1\dots i-1]\) ed è vero poiché \(i = 2\) quindi \(i-1 = 1\) e la variabile contiene il minimo fra il primo elemento ed il primo elemento.
-\textbf{Conservazione} (passo induttivo): nel momento in cui termino il ciclo la variabile \(min\) contiene il minimo parziale fra \(i\) ed \(n\).
-\textbf{Conclusione}: al termine del ciclo \(i\) è pari a \(n+1\), quindi la variabile \(min\) contiene il minimo parziale fra gli elementi compresi fra \(1\) e \(i-1\), ma visto che \(i\) vale \(n+1\), allora conterrà gli elementi il minimo fra gli elementi compresi fra \(n+1-1 = n\).
+\begin{enumerate}
+    \item \textbf{inizializzazione} (caso base): quando entriamo nel ciclo la variabile \(min\) contiene il minimo fra \(S[1\dots i-1]\) ed è vero poiché \(i = 2\) quindi \(i-1 = 1\) e la variabile contiene il minimo fra il primo elemento ed il primo elemento.
+    \item \textbf{conservazione} (passo induttivo): nel momento in cui termino il ciclo la variabile \(min\) contiene il minimo parziale fra \(i\) ed \(n\).
+    \item \textbf{conclusione}: al termine del ciclo \(i\) è pari a \(n+1\), quindi la variabile \(min\) contiene il minimo parziale fra gli elementi compresi fra \(1\) e \(i-1\), ma visto che \(i\) vale \(n+1\), allora conterrà gli elementi il minimo fra gli elementi compresi fra \(n+1-1 = n\).
+\end{enumerate}
 L'invariante di ciclo risulta quindi rispettata e rappresenta la correttezza del nostro algoritmo.
 
 Questa analisi risulta eccessivamente dettagliata per un algoritmo così semplice, ma in futuro dovremo utilizzare l'invariante di ciclo per dimostrare algoritmi più complessi, è quindi di fondamentale importanza impararne i pr\`incipi.
