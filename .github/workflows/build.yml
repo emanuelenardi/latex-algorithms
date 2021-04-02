@@ -90,7 +90,7 @@ jobs:
           pre_release_branches: preview
           default_bump: patch
           custom_release_rules: perf:major, feat:minor, fix:patch, hotfix:patch, pre-feat:preminor, pre-feat:preminor
-          dry_run: true
+          # dry_run: true
 
       # Compile LaTeX document
       - name: Step 4 ⚙️ - (1/2) Compile LaTeX documents

@@ -64,18 +64,25 @@
 \declaretheoremstyle[%
 	spaceabove=6pt,%
 	spacebelow=6pt,%
-	headfont=\normalfont\em,%
-	postheadspace=1em,%
+	headfont=\em,%
+	% postheadspace=1em,%
 	qed=\qedsymbol%
 ]{myProofStyle}
 
+% NOTE riduco lo spazio prima e dopo le definizioni
+\declaretheoremstyle[%
+	spaceabove=2pt,%
+	spacebelow=2pt,%
+	headfont=\bfseries,%
+]{myDefinitionStyle}
+
 % \let\theorem\oldtheorem
 \let\proof\oldproof
-% \let\definition\olddefinition
+\let\definition\olddefinition
 
 % \declaretheorem[name=Teorema, style=myProofStyle]{theorem}
 \declaretheorem[name=Dimostrazione, style=myProofStyle, unnumbered]{proof}
-% \declaretheorem[name=Definizione, numberwithin=section]{definition}
+\declaretheorem[name=Definizione, style=myDefinitionStyle, numberwithin=section]{definition}
 
 % NOTE con o senza (*) contatori
 \theoremstyle{plain}% default
@@ -89,8 +96,8 @@
 \newtheorem*{exam}{Esercizio d'esame}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definizione}[section]
-\newtheorem*{definition*}{Definizione}
+% \newtheorem{definition}{Definizione}[section]
+% \newtheorem*{definition*}{Definizione}
 \newtheorem*{notation*}{Notazione}
 \newtheorem{corollario}{Corollario}
 \newtheorem*{corollario*}{Corollario}
