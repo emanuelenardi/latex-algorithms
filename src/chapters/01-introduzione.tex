@@ -6,6 +6,8 @@
 \usepackage{../settings/subfile}
 \setcounter{chapter}{0}
 
+% \usepackage{../settings/debug}
+
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
@@ -24,7 +26,7 @@ Dato un problema computazionale, un \emph{algoritmo} è un procedimento \textbf{
 \end{definition}
 
 Un esempio classico, ma ingannevole, di algoritmo è quello della preparazione di una ricetta: l'input sono gli ingredienti, l'esecutore è il cuoco, l'algoritmo è la ricetta e l'output è rappresentato dal piatto cucinato.
-\`E ingannevole perché non esiste un modello formale del cuoco, ossia qualcosa che descriva esattamente cosa un cuoco può fare e quali sono i passi elementari dell'algoritmo.
+\`E ingannevole perché non esiste un modello formale del cuoco, ossia qualcosa che descriva esattamente cosa un cuoco può fare e quali siano i passi elementari dell'algoritmo.
 
 \section{Algoritmi nella storia}
 
@@ -37,16 +39,16 @@ Come ad esempio l'algoritmo di Euclide per il massimo comune divisore e gli algo
 
 \subsection{Origine del nome}
 
-L'\emph{origine del nome \textbf{algoritmo}}  è dovuto al matematico, astronomo, astrologo e geografo Abu Abdullah Muhammad bin Musa \textbf{al-Khwarizmi}.
+L'origine del nome algoritmo è dovuto al matematico, astronomo, astrologo e geografo Abu Abdullah Muhammad bin Musa \textbf{al-Khwarizmi}.
 Ha scritto un testo chiamato \enquote{Algoritmi de numero indorum}, traduzione di un testo arabo ormai perso, che ha introdotto i numeri indiani (da noi comunemente detti numeri arabi) nel mondo occidentale.
 
-Ha inoltre scritto un'altra opera \enquote{Al-Kitab al-muhtasar fi hisab \textbf{al-gabr} wa-l-muqabala} che è stata tradotta in latino come \enquote{Liber algebrae et almucabala} dalla quale ha avuto \emph{origine il nome \textbf{algebra}}.
+Ha inoltre scritto un'altra opera \enquote{Al-Kitab al-muhtasar fi hisab \textbf{al-gabr} wa-l-muqabala} che è stata tradotta in latino come \enquote{Liber algebrae et almucabala} dalla quale ha avuto origine il nome algebra.
 
 \section{Primi esempi di problemi}
 
 Per iniziare a comprendere ciò che intendiamo per problema computazionale iniziamo a vedere degli algoritmi che sono espressi in modo volutamente banale.
 
-\subsection{Minimo}
+\subsection{Minimo di un insieme}
 
 \paragraph{Definizione del problema}
 Il minimo di un insieme \(S\) è l'elemento di \(S\) che è minore o uguale ad ogni altro elemento di \(S\).
@@ -54,7 +56,7 @@ Possiamo esprimere matematicamente il problema nel seguente modo:
 \[
     min(S) = a \Leftrightarrow \exists a \in S \colon \forall b \in S \colon a \leqslant b
 \]
-Partiamo da una soluzione semplice ma ingenua, che deriva dalla definizione del problema.
+Partiamo da una soluzione semplice ma ingenua (na\"if), che deriva dalla definizione del problema.
 
 \paragraph{Algoritmo na\"if}
 Per trovare il minimo di un insieme, confronto ogni elemento con tutti gli altri; l'elemento che è minore di tutti è il minimo.
@@ -92,11 +94,9 @@ Le descrizioni degli algoritmi precedenti presentano diversi problemi:
 \subsection{Come descrivere un algoritmo}
 
 Come abbiamo già anticipato è necessario avere una descrizione il più possibile formale, ma senza soffermarsi sulle particolarità di un determinato linguaggio di programmazione.
-Per questo motivo nel seguito utilizzeremo lo \enquote{Pseudo-codice}.
+Per questo motivo nel seguito utilizzeremo lo \enquote{pseudocodice} .
 
 In alcuni casi daremo anche per scontato alcuni passaggi, ad esempio scriveremo \enquote{ordina gli elementi} e non sarà di nostro interesse sapere quale sarà lo specifico algoritmo di ordinamento utilizzato.
-
-Esempi di pseudocodice\index{pseudocodice} sono i seguenti.
 
 \begin{algorithm}[H]
 \caption{Implementazione na\"if della ricerca del minimo}\label{alg:ricerca-minimo-banale}
@@ -149,14 +149,16 @@ Nota che specificheremo sempre com'è fatto l'input, ossia passeremo in ingresso
 }
 \end{algorithm}
 
+\begin{note}
 I linguaggi di programmazione assumono che l'indice dei vettori parta da \(0\), ma per spiegarne alcuni è molto più semplice concentrarsi sugli indici che vanno da \(1\) a \(n\) e tralasciare questi dettagli implementativi.
+\end{note}
 
 \subsubsection{Convenzioni dello pseudocodice}
 
 Di seguito sono riportate le convenzioni utilizzate sui lucidi e sugli appunti:
 \begin{itemize}
     \item l'assegnamento verrà indicato con \(a \Assign b\);
-    \item uno \foreign{swap} verrà indicato come \Swap{\(a\)}{\(b\)}, il quale corrisponde ai comandi \(tmp \leftrightarrow a\); \(a \Assign b\); \(b \Assign tmp\);
+    \item uno \foreign{swap} verrà indicato come \Swap{\(a\)}{\(b\)}, il quale corrisponde ai comandi \(tmp \Assign a\); \(a \Assign b\); \(b \Assign tmp\);
     \item i vettori come \Array{T} \(A = \new\) \Array{T}[1][n];
     \item le matrici come \Matrix{T} \(A = \new\) \Matrix{T}[1\dots n][1\dots n];
     \item i tipi come \Int, \Real, \Bool, \dots;
@@ -175,8 +177,8 @@ Quando valutiamo un algoritmo dobbiamo chiederci se risulta \emph{corretto} ed \
 Per quanto riguarda l'efficienza dobbiamo ancora stabilire come valutare se un programma è efficiente, e se lo è in assoluto.
 Nota che alcuni problemi non possono essere risolti in modo efficiente ma esistono soluzioni \enquote{ottime}, ossia non è possibile essere più efficienti di così.
 
-Per controllare la correttezza dobbiamo domandarci se il nostro algoritmo rispetta la relazione input-output del problema computazionale.
-Nota che alcuni problemi non possono essere risolti, mentre alcuni vengono risolti in modo approssimato.
+Mentre per controllare la correttezza dobbiamo domandarci se il nostro algoritmo rispetta la relazione input-output del problema computazionale.
+Vedremo che alcuni problemi non possono essere risolti, mentre alcuni possono essere risolti in modo approssimato.
 
 \subsection{Efficienza}
 
@@ -187,7 +189,7 @@ Le risorse si possono categorizzare in:
 \begin{itemize}
     \item \textbf{tempo}: ossia il tempo impiegato per completare l'algoritmo (definiremo più avanti come lo misureremo);
     \item \textbf{spazio}: la quantità di memoria utilizzata;
-    \item \textbf{banda}: la quantità di bit spediti (interessante solo per gli algoritmi distribuiti).
+    \item \textbf{banda}: la quantità di bit spediti (interessante solo per gli algoritmi distribuiti, che non vedremo in questo corso).
 \end{itemize}
 
 \subsubsection{Definizione di tempo}
@@ -198,6 +200,8 @@ Il tempo effettivamente impiegato per eseguire un algoritmo dipende da troppi pa
 Ad esempio potremmo considerare il \emph{numero di operazioni \enquote{rilevanti}}, ovvero il numero di operazioni che caratterizzano lo scopo dell'algoritmo.
 
 \subsection{Primi esempi di calcolo della complessità}
+
+\subsubsection{Calcolo della complessità nella ricerca del minimo di un insieme}
 
 Nel caso della ricerca del minimo, l'operazione più rilevante è il numero di confronti di minoranza (\(<\)), nella caso della ricerca dell'indice invece è il numero di confronti di eguaglianza (\(\Equal\)).
 
@@ -229,15 +233,17 @@ Nel caso della ricerca del minimo, l'operazione più rilevante è il numero di c
 }
 \end{algorithm}
 
-\paragraph{Calcolo della complessità}
+\paragraph{Complessità}
 Come calcoliamo la complessità?
-L'operazione rilevante all'interno di questo algoritmo è il confronto fra gli elementi agli indici \(i\) e \(j\) (\(S[j] < S[i]\)), la quale è ripetuta all'interno di due cicli annidati che scorrono gli \(n\) elementi del vettore, tranne quelli che hanno lo stesso indice.
-Quindi il numero di confronti totali per questa soluzione del problema del minimo è \(n \cdot (n - 1) = n^2 - n\), essendo \(n^2\) dominante, questo algoritmo risulta avere una complessità di \(n^2\) (più avanti saremo più precisi).
+L'operazione rilevante all'interno di questo algoritmo è il confronto fra gli elementi agli indici \(i\) e \(j\) (\(S[j] < S[i]\)), la quale è ripetuta all'interno di due cicli annidati che scorrono gli \(n\) elementi del vettore, tranne quelli che hanno lo stesso indice (\(n-1\)).
+Quindi il numero di confronti totali per questa soluzione del problema del minimo è \(n \cdot (n - 1) = n^2 - n\), essendo \(n^2\) dominante su \(n\), questo algoritmo risulta avere una complessità di \(n^2\) (più avanti saremo più precisi).
 Si può fare meglio di così?
 Certo che sì!
 
 \begin{algorithm}[H]
-\caption{Implementazione efficiente per la ricerca del minimo}
+\caption{Implementazione efficiente per la ricerca del minimo}\label{alg:ricerca-minimo-efficiente}
+% https://tex.stackexchange.com/questions/590230/
+\saveAlgoCounter{alg:ricerca-minimo-efficiente}
 
 \BlankLine
 \prototype{\Int \minFunction{\Array{\Int} \(S\), \Int \(n\)}}{
@@ -256,6 +262,8 @@ Certo che sì!
 \end{algorithm}
 
 Con questa implementazione effettuiamo \(n-1\) confronti perché il primo elemento non deve essere \mbox{confrontato.}
+
+\subsubsection{Calcolo della complessità nella ricerca dell'indice di un elemento}
 
 \begin{algorithm}[H]
 \caption{Implementazione efficiente della ricerca dell'indice di un elemento}
@@ -276,22 +284,31 @@ Con questa implementazione effettuiamo \(n-1\) confronti perché il primo elemen
 \end{algorithm}
 
 Questo algoritmo effettua \(n\) confronti (\(S[i] \Equal v\)), uno per ogni elemento del vettore.
-Si può fare meglio di così?
+Si può fare meglio di
 
-Sfruttando il fatto che la \emph{sequenza è ordinata} possiamo applicare la \textbf{ricerca binaria}.
+\subsubsection{Calcolo della complessità nella ricerca binaria}
+
+Sfruttando il fatto che \emph{la sequenza è ordinata} possiamo applicare la ricerca binaria.
 Prendiamo l'elemento centrale (di indice \(m\)) del sottovettore considerato: se l'elemento contenuto all'indice \(m\) è pari all'elemento cercato (\(A[m] \Equal v\)) allora ho trovato il valore e lo restituisco al chiamante, altrimenti se l'elemento contenuto all'indice \(m\) è più piccolo dell'elemento cercato (\(A[m] < v\)) allora dovrò continuare la ricerca nella \enquote{metà di destra} (\(m+1\), \(j\)), infine se l'elemento contenuto all'indice \(m\) è più grande dell'elemento cercato (\(A[m] > v\)) dovrò continuare la ricerca nella \enquote{metà di sinistra} (\(i\), \(m-1\)).
 Nel caso sfortunato in cui l'elemento non esistesse all'interno del vettore gli indici si incroceranno, ed è questo che il caso base controlla all'inizio di ogni chiamata della funzione.
 
 \begin{algorithm}[H]
-	\caption{Ricerca binaria all'interno di un vettore}
+	\caption{Ricerca binaria all'interno di un vettore}\label{alg:binarySearch}
+    % https://tex.stackexchange.com/questions/590230/
+    \saveAlgoCounter{alg:binarySearch}
     \input{binarySearch}
 \end{algorithm}
 
+\vspace{-1.25ex}
 \paragraph{Complessità}
-Ad ogni passo il numero di elementi che considero viene dimezzato, quindi la complessità è logaritmica (più precisamente \(\ceil{\log}\)).
+Ad ogni passo il numero di elementi che considero viene dimezzato, quindi la complessità è logaritmica.
+Più precisamente effettuo due controlli: il primo (\(A[m] \Equal v\)) per controllare se ho troviamo il valore cercato e il secondo (\(A[m] < v\)) per capire in quale parte del vettore devo effettuare la ricerca.
+Dopodiché effettuo la ricerca nella parte del vettore interessata effettuando \(\log_2 n\) divisioni del vettore.
+Ad esempio se ho un vettore lungo \(n=8\) elementi, effettuerò \(3\) chiamate ricorsive.
+Per una complessità risultante di \(2\ceil{\log_2 n}\).
 
 \begin{note}
-Tutte le volte che scriveremo un logaritmo sarà da intendere con base 2. Siamo informatici!
+Tutte le volte che scriveremo un logaritmo sarà da intendere con base 2.
 \end{note}
 
 \subsection{Correttezza}
@@ -310,11 +327,12 @@ Una condizione sempre vera all'inizio dell'iterazione di un ciclo.
 Una condizione sempre vera al termine dell'esecuzione di un metodo della classe.
 \end{definition}
 
-Facciamo un esempio di invariante di ciclo, in quanto la utilizzeremo più avanti nella nostra trattazione.
+% Facciamo un esempio di invariante di ciclo, in quanto la utilizzeremo più avanti nella nostra trattazione.
 
 \subsubsection{Invariante di ciclo}
 
-Il concetto di \textbf{invariante di ciclo} ci aiuta a dimostrare la correttezza di un \textbf{algoritmo iterativo}.
+Il concetto di invariante di ciclo \emph{ci aiuta a dimostrare la correttezza di un algoritmo iterativo}.
+
 Distinguiamo tre fasi:
 \begin{enumerate}
 	\item \textbf{inizializzazione} (caso base): la condizione è vera alla prima iterazione di un ciclo;
@@ -324,14 +342,14 @@ Distinguiamo tre fasi:
 
 \subsubsection{Invariante di ciclo nella ricerca del minimo}
 
-Prendiamo ancora un'ultima volta come esempio l'algoritmo della ricerca del minimo.
+Prendiamo ancora un'ultima volta come esempio l'algoritmo della ricerca del minimo (\cref{alg:ricerca-minimo-efficiente} a \cpageref{alg:ricerca-minimo-efficiente}).
 
 L'invariante di ciclo per questo algoritmo è la seguente: all'inizio di ogni iterazione del ciclo, la variabile \(min\) contiene il minimo parziale degli elementi \(S[1\dots i-1]\).
 Quindi quando analizzo l'elemento \(i\)-esimo so che \(min\) contiene il minimo fra tutti gli elementi precendenti.
 \begin{enumerate}
     \item \textbf{inizializzazione} (caso base): quando entriamo nel ciclo la variabile \(min\) contiene il minimo fra \(S[1\dots i-1]\) ed è vero poiché \(i = 2\) quindi \(i-1 = 1\) e la variabile contiene il minimo fra il primo elemento ed il primo elemento.
     \item \textbf{conservazione} (passo induttivo): nel momento in cui termino il ciclo la variabile \(min\) contiene il minimo parziale fra \(i\) ed \(n\).
-    \item \textbf{conclusione}: al termine del ciclo \(i\) è pari a \(n+1\), quindi la variabile \(min\) contiene il minimo parziale fra gli elementi compresi fra \(1\) e \(i-1\), ma visto che \(i\) vale \(n+1\), allora conterrà gli elementi il minimo fra gli elementi compresi fra \(n+1-1 = n\).
+    \item \textbf{conclusione}: al termine del ciclo \(i\) è pari a \(n+1\), quindi la variabile \(min\) contiene il minimo parziale fra gli elementi compresi fra \(1\) e \(i-1\), ma dato che \(i\) vale \(n+1\), allora conterrà il minimo fra gli elementi compresi fra \(n+1-1 = n\).
 \end{enumerate}
 L'invariante di ciclo risulta quindi rispettata e rappresenta la correttezza del nostro algoritmo.
 
@@ -339,14 +357,13 @@ Questa analisi risulta eccessivamente dettagliata per un algoritmo così semplic
 
 \subsubsection{Dimostrazione per induzione nella ricerca binaria}
 
-La \textbf{dimostrazione per induzione} è utile anche nel caso in cui si abbia a che fare con un \textbf{algoritmo ricorsivo}.
-
-Infatti è possibile dimostrare la correttezza della ricerca binaria per induzione sulla dimensione \(n\) dell'input.
+La dimostrazione per induzione ci è \emph{utile nel caso in cui abbiamo a che fare con un algoritmo ricorsivo}.
+Infatti è possibile dimostrare la correttezza della ricerca binaria (\cref{alg:binarySearch}) per induzione sulla dimensione \(n\) dell'input.
 Dove \(n\) è il numero di elementi passati alla funzione.
 
-Il \emph{caso base}  si avvera quando non passiamo nessun elemento alla funzione (\(n=0\)), ossia quando gli indici si sono incrociati (\(i > j\)) poiché non abbiamo trovato l'elemento cercato all'interno del vettore.
-Per \emph{ipotesi} supponiamo che l'algoritmo sia corretto per tutti i valori \(n'\) più piccoli di \(n\).
-Il \emph{passo induttivo} è quindi costituito da tre casi:
+Il \textbf{caso base}  si avvera quando non passiamo nessun elemento alla funzione (\(n=0\)), ossia quando gli indici si sono incrociati (\(i > j\)) poiché non abbiamo trovato l'elemento cercato all'interno del vettore.
+Per \textbf{ipotesi} supponiamo che l'algoritmo sia corretto per tutti i valori \(n'\) più piccoli di \(n\).
+Il \textbf{passo induttivo} è quindi costituito da tre casi:
 \begin{enumerate}
 	\item trovo l'elemento e lo restituisco (il caso più semplice, \(A[m] \Equal v\));
 	\item l'elemento confrontato è più piccolo di quello che sto cercando (\(A[m] < v\)) e, in quanto i valori sono ordinati, l'elemento cercato si troverà sicuramente nella metà di destra delimitata dagli indici \(m+1\) e \(j\), i quali determinano una porzione del vettore \(n'\) più piccola del vettore di partenza, quindi l'algoritmo risulta corretto per induzione;
@@ -355,7 +372,7 @@ Il \emph{passo induttivo} è quindi costituito da tre casi:
 
 \section*{Conclusioni}
 
-Noi abbiamo analizzato soltato due aspetti degli algoritmi, ossia la loro \emph{correttezza} ed \emph{efficienza}.
+Abbiamo analizzato soltato due aspetti degli algoritmi, ossia la loro \emph{correttezza} ed \emph{efficienza}.
 Ci sono tanti altri aspetti che si potrebbero guardare come ad esempio la semplicità, la modularità, la mantenibilità, l'espandibilità e la robustezza.
 I quali risultano però di secondaria importanza per un corso di algoritmi, e vengono trattati in modo approndito in un corso di ingegneria del software.
 
