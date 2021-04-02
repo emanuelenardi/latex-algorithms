@@ -74,8 +74,8 @@ echo "${separator}"
 percent_total=$(expr $optsize_tot '*' 100 / $orgsize_tot)
 orgsize_tot_mb=$(echo "scale=2; $orgsize_tot / 1000000" | bc)
 optsize_tot_mb=$(echo "scale=2; $optsize_tot / 1000000" | bc)
-printf "Before compression: %-4s Mb\n" "$orgsize_tot_mb"
-printf "After compression:  %-4s Mb, %s%% of old\n" "$optsize_tot_mb" "$percent_total"
+printf "Before compression: %5s Mb\n" "$orgsize_tot_mb"
+printf "After compression:  %5s Mb, %s%% of old\n" "$optsize_tot_mb" "$percent_total"
 echo "${separator}"
 
 cd $INITIAL_WORKING_DIRECTORY
