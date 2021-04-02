@@ -5,7 +5,6 @@ on:
       - main                    # Push events on main branch
       - preview                 # Push events on develop branch
     paths-ignore:
-      - '*'                            # ignores root files
       - '.*/**'                        # ignores dotted folders
       - '!.github/workflows/build.yml' # un-ignores this workflow
       - 'docs/**'                      # ignores documentation
@@ -15,7 +14,12 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
     paths-ignore:
-      - '**.md'
+      - '.*/**'                        # ignores dotted folders
+      - '!.github/workflows/build.yml' # un-ignores this workflow
+      - 'docs/**'                      # ignores documentation
+      - '**.bat'                       # ignores windows scripts
+      - '**.yml'                       # ignores yaml files
+      - '**.md'                        # ignores doc files
 jobs:
 
   build_docs:
