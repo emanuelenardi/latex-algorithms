@@ -1,7 +1,8 @@
 name: Lint Code Base
 on:
-  branches:
-    - main
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -16,7 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Lint Code Base
-        uses: github/super-linter@v3
+        uses: github/super-linter@v3.15.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
