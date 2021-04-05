@@ -1,5 +1,6 @@
 {
     "files.autoSave": "onFocusChange",
+    "latex-workshop.chktex.enabled": true,
     "latex-workshop.latex.recipes": [
         {
             "name": "arara 🦜",
