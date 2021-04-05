@@ -165,7 +165,7 @@ QuoteStyle = Logical
 # intervals are supported.
 #
 
-TabSize = 8
+TabSize = 4
 
 #####################################################################
 #
@@ -384,7 +384,7 @@ Silent
     \xspace
 
     \addlinespace \cr \fill \frontmatter
-    \toprule \midrule \bottomrule
+    \toprule \midrule \lightrule \bottomrule
 
 }[
 # Here you can put regular expressions to match Silent macros.  It was
@@ -547,7 +547,7 @@ TextCmd
 VerbEnvir
 {
     verbatim comment listing verbatimtab rawhtml errexam picture texdraw
-    filecontents pgfpicture tikzpicture minted lstlisting IPA ignore
+    filecontents pgfpicture tikzpicture minted lstlisting IPA ignore algorithm
 }
 
 #####################################################################
