@@ -589,32 +589,32 @@
 
 % REVIEW Cap. 18 - NP
 
-% WARNING 'textls' crea problemi nei titoli, usare 'texorpdfstring{}{}'
-% TODO non utilizzare questi comandi nei titoli dei capitoli
 % NOTE "ls" sta per "letter spacing"
+% WARNING 'textls' crea problemi nei titoli
+% TODO non utilizzare questi comandi nei titoli dei capitoli
 % How to do extra spacing when using small caps for abbreviations?
 % https://tex.stackexchange.com/a/13035/127473
-\newcommand*{\abbrev}[1]{\textls[50]{\textsc{#1}}}
+% \newcommand*{\abbrev}[1]{\textls[50]{\textsc{#1}}}
 
 % NOTE problemi
-\newcommand{\shortestPath}{\abbrev{shortest-path}}
-\newcommand{\graphColoring}{\abbrev{graph-coloring}}
+\newcommand{\shortestPath}{\textsc{shortest-path}}
+\newcommand{\graphColoring}{\textsc{graph-coloring}}
 % ATTENTION: "sudoku" esiste già
-\newcommand{\sudokuProblem}{\abbrev{sudoku}}
-\newcommand{\sudokuPrecolored}{\abbrev{sudoku-precolored}}
-\newcommand{\indipendentSet}{\abbrev{indipendent-set}}
-\newcommand{\vertexCover}{\abbrev{vertex-cover}}
-\newcommand{\sat}{\abbrev{sat}}
-\newcommand{\treeSat}{\abbrev{3-sat}}
-\newcommand{\clique}{\abbrev{clique}}
-\newcommand{\tsp}{\abbrev{tsp}}
-\newcommand{\exactCover}{\abbrev{exact cover}}
-\newcommand{\partition}{\abbrev{partition}}
-\newcommand{\subSetSumProblem}{\abbrev{subset-sum}}
-\newcommand{\cliqueProblem}{\abbrev{clique}}
+\newcommand{\sudokuProblem}{\textsc{sudoku}}
+\newcommand{\sudokuPrecolored}{\textsc{sudoku-precolored}}
+\newcommand{\indipendentSet}{\textsc{indipendent-set}}
+\newcommand{\vertexCover}{\textsc{vertex-cover}}
+\newcommand{\sat}{\textsc{sat}}
+\newcommand{\treeSat}{\textsc{3-sat}}
+\newcommand{\clique}{\textsc{clique}}
+\newcommand{\tsp}{\textsc{tsp}}
+\newcommand{\exactCover}{\textsc{exact cover}}
+\newcommand{\partition}{\textsc{partition}}
+\newcommand{\subSetSumProblem}{\textsc{subset-sum}}
+\newcommand{\cliqueProblem}{\textsc{clique}}
 % ATTENTION: "knapsack" esiste già
-\newcommand{\knapsackProblem}{\abbrev{knapsack}}
-\newcommand{\hamiltonianCircuit}{\abbrev{hamiltonian-circuit}}
+\newcommand{\knapsackProblem}{\textsc{knapsack}}
+\newcommand{\hamiltonianCircuit}{\textsc{hamiltonian-circuit}}
 
 % NOTE nomenclatura
 \newcommand{\PTIME}{\mbox{\(\mathbb{P}\)}}
@@ -654,9 +654,9 @@
 \newcommand{\DP}{\mathit{DP}}
 % \SetKwFunction{clique}{clique}
 
-\newcommand{\treePartition}{\abbrev{3-partition}}
-\newcommand{\firstFit}{\abbrev{first-fit}}
-\newcommand{\deltaTsp}{\(\Delta\)-\abbrev{tsp}}
+\newcommand{\treePartition}{\textsc{3-partition}}
+\newcommand{\firstFit}{\textsc{first-fit}}
+\newcommand{\deltaTsp}{\(\Delta\)-\textsc{tsp}}
 
 % \newcommand{\deltatsp}{\probrefi{$\Delta$tsp}{deltatsp@$\Delta$\textsc{tsp}}}
 

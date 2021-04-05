@@ -5,7 +5,7 @@
 
 % NOTE mostra i margini di pagina
 \usepackage{showframe}
-\renewcommand*\ShowFrameColor{\color{red}}
+\renewcommand*\ShowFrameColor{\color{red!50}}
 
 \ifsubfile\else
     \pagestyle{debug}
@@ -17,10 +17,3 @@
 % NOTE mostra le etichette
 \usepackage[inner]{showlabels}
 \renewcommand\showlabelfont{\small\color{ForestGreen}}
-
-% NOTE controlla che le etichette siano state usate
-\usepackage{refcheck}
-% NOTE "It shows a warning whenever a float is placed more than tolerance pages from its original page"
-\usepackage[tolerance=1]{chkfloat}
-
-% \usepackage{layouts}

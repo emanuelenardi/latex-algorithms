@@ -7,11 +7,22 @@
 \usepackage{./libraries/set-minted}
 \mintedpath{{assets/codes/04/}}
 
+\usepackage[autostyle, italian=quotes]{csquotes}
+
 \usepackage{./settings/pagestyles}
 \usepackage{./settings/versioning}
 
 % NOTE utilizzato nel capitolo "05-analisi-ammortizzata"
 \usepackage{transparent}
+
+% NOTE gestione dei warning
+\usepackage{silence}
+\WarningFilter{latexfont}{Font shape}
+\WarningFilter{latexfont}{Some font shapes were not available}
+
+\hbadness=10000
+\hfuzz=\maxdimen\newdimen\hfuzz
+\vfuzz=2pt
 
 % arara: pdflatex: {
 % arara: --> options: ['--output-directory=build'],

@@ -6,6 +6,9 @@
 \usepackage{../settings/subfile}
 \setcounter{chapter}{19}
 
+\hbadness=10000
+\hfuzz=\maxdimen\newdimen\hfuzz
+
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
@@ -233,7 +236,7 @@ Quindi la complessità è \(\Omicron(nk) = \Omicron(n \cdot 2^t)\), esponenziale
 {\subSetSumProblem} fa parte della famiglia dei problemi {\NP}-completi.
 
 \newpage
-\subsection{Problemi fortemente, debolmente {\NP}-completi}
+\subsection{Problemi fortemente, debolmente \texorpdfstring{\NP}{\textsf{NP}}-completi}
 
 \begin{definition}[dimensioni del problema]
 Dato un problema decisionale \(R\) e una sua istanza \(I\).
@@ -301,7 +304,7 @@ Se un problema \NP-completo non è fortemente \NP-completo, allora è \alert{deb
 Il problema cricca ({\cliqueProblem}), ad esempio, è fortemente \NP-completo, mentre quello della somma di sottoinsieme {\subSetSumProblem} non lo è.
 \end{observation}
 
-\subsection{Esempio di problema debolmente \NP-completo}
+\subsection{Esempio di problema debolmente \texorpdfstring{\NP}{\textsf{NP}}-completo}
 
 Sappiamo che il problema {\subSetSumProblem} è \NP-completo.
 
@@ -335,7 +338,7 @@ Gli algoritmi per {\subSetSumProblem} basati su programmazione dinamica e memoiz
 Nessun problema fortemente \NP-completo può essere risolto da un algoritmo pseudo-polinomiale, a meno che non sia \(\PTIME = \NP\).
 \end{theorem}
 
-\subsection{Esempi di problemi fortemente \NP-completi}
+\subsection{Esempi di problemi fortemente \texorpdfstring{\NP}{\textsf{NP}}-completi}
 
 \subsubsection{Cricca (\cliqueProblem)}
 
@@ -590,7 +593,7 @@ Abbiamo applicato la stessa riduzione che avevamo applicato per il problema {\ts
 Il grafo \(G\) ha un circuito hamiltoniano se e solo se è possibile trovare un percorso da commesso viaggiatore lungo \(n\).
 Valgono le diseguaglianze triangolari:
 \[
-	d[i][j] \leqslant 2 \leqslant d[i][k] + d[k][j]\qedhere
+	d[i][j] \leqslant 2 \leqslant d[i][k] + d[k][j]\qed
 \]
 Questo particolare grafo gode di disuguaglianza triangolare perché \(d[i][j]\) può avere valore massimo 2, mentre \(d[i][k]\) e \(d[k][j]\) hanno come valori minimi 1.
 \end{proof}
@@ -620,7 +623,7 @@ Interpretiamo {\deltaTsp} come il problema di trovare un circuito hamiltoniano d
 	\caption{Il costo totale risulta 21. Il costo totale risulta 19.}
 \end{figure}
 
-\subsubsection{Algoritmo di approssimazione per {\deltaTsp}}
+\subsubsection{Algoritmo di approssimazione per \texorpdfstring{\deltaTsp}{delta-Tsp}}
 
 Se si considera un circuito hamiltoniano e si cancella un suo arco, si ottiene un albero di copertura.
 
@@ -640,7 +643,7 @@ Togliamo un arco, otteniamo un albero di copertura con peso inferiore \(\mathit{
 Contraddizione, visto che \(\mathit{mst}\) è il costo minimo fra tutti gli alberi di copertura.
 \end{proof}
 
-\subsubsection{Algoritmo per {\deltaTsp}}
+\subsubsection{Algoritmo per \texorpdfstring{\deltaTsp}{delta-Tsp}}
 
 Si individua un minimo albero di copertura di peso \(\mathit{mst}\) e se ne percorrono gli archi due volte, prima in un senso e poi nell'altro.
 In questo modo, si visita ogni città almeno una volta.

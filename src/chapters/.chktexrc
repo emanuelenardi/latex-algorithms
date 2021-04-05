@@ -386,7 +386,11 @@ Silent
     \addlinespace \cr \fill \frontmatter
     \toprule \midrule \lightrule \bottomrule
 
+    \cleardoublepage
+    \input
+    \hfuzz
     \ifstandalone
+    \tagThisPage
 
 }[
 # Here you can put regular expressions to match Silent macros.  It was

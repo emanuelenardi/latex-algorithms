@@ -252,7 +252,7 @@ Possiamo dimostrare l'inverso? Ossia che \(\sat \leqslant_p \treeSat\)?
     \sat \leqslant_p \indipendentSet \leqslant_p \vertexCover
 \]
 
-\section{Classi \PTIME, \PSPACE}
+\section{Classi \texorpdfstring{\PTIME}{\textsf{P}}, \texorpdfstring{\PSPACE}{\textsf{PSPACE}}}
 
 \paragraph{Algoritmo}
 Dati un problema di decisione \(R\) e un algoritmo \(A\) (scritto in un modello di calcolo Turing-equivalente) che lavora in tempo \(f_t(n)\) e spazio \(f_s(n)\), diciamo che A risolve \(R\) se \(A\) restituisce \(s\) su un'istanza \(x\) se e solo se \((x,s) \in R\).
@@ -280,7 +280,7 @@ La classe {\PSPACE} è la classe dei problemi decisionali risolvibili in spazio 
 \(\PTIME \subseteq \PSPACE\).
 \end{note}
 
-\section{Classe \NP}
+\section{Classe \texorpdfstring{\NP}{\textsf{NP}}}
 
 \subsection{Certificato}
 
@@ -339,7 +339,7 @@ Il tempo per risolvere \(R_1\) sarà quindi \(T_1(n) = \Omicron(n^{k_f} n^{k_2})
 Possiamo dedurre che \(T_1(n)\) è polinomiale.
 \end{proof}
 
-\section{Problemi \NP-completi}
+\section{Problemi \texorpdfstring{\NP}{\textsf{NP}}-completi}
 
 Introduciamo alcune definizioni.
 
@@ -383,7 +383,7 @@ In \enquote{\foreign{Reducibility Among Combinatorial Problems}} Richard Karp ha
     \includegraphics[width=0.8\textwidth]{karp-problems}
 \end{figure}
 
-\subsection{Problemi {\NP}-Completi \enquote{Classici}}
+\subsection{Problemi \texorpdfstring{\NP}{\textsf{NP}}-Completi \enquote{Classici}}
 
 \begin{minipage}[c]{.7\textwidth}
 \subsubsection*{Cricca (\cliqueProblem)}

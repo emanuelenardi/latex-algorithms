@@ -3,11 +3,12 @@
 \ifsubfile
 % ATTENTION non modificare "development", viene modificata automaticamente in deploy
 \newcommand{\docversion}{development}
-\usepackage{../settings/subfile}
-\setcounter{chapter}{4}
 
 \usepackage[newfloat, cachedir=_minted-cache, outputdir=../build]{minted}
 \usepackage{../libraries/set-minted}
+
+\usepackage{../settings/subfile}
+\setcounter{chapter}{4}
 
 % \usepackage{debug}
 \usepackage{transparent}
@@ -325,7 +326,7 @@ Inserire un elemento \enquote{in fondo} alla sequenza (operazione di \texttt{app
         \vspace{5pt}
         \includegraphics[width=\linewidth, page=3, trim=0 180pt 0 40pt, clip]{vector-insert}}
         % \includegraphics[width=\linewidth, page=3, trim=0 180pt 0 40pt, clip]{vector-remove}
-        \caption{Rimozione di un elemento}\label{fig:vector-insert}
+        \caption{Rimozione di un elemento}\label{fig:vector-remove}
     \end{subfigure}
     \hfill\null
     \caption{Operazioni di inserimento \enquote{in mezzo}, inserimento in coda e rimozione di un elemento in un vettore}
@@ -382,6 +383,7 @@ Il costo effettivo di un'operazione \textsf{add()} è dato dalla seguente espres
 \]
 
 \begin{center}
+\captionsetup{type=table}
 \captionof{table}{costo effettivo di un'operazione di raddoppiamento di un vettore}
 \begin{tabular}{@{} L*{17}{C} @{}}
     \toprule
@@ -417,6 +419,7 @@ Il costo effettivo di un'operazione \textsf{add()} è dato dalla seguente espres
 \]
 
 \begin{center}
+\captionsetup{type=table}
 \captionof{table}{costo effettivo di un'operazione di incremento di un vettore}
 \begin{tabular}{@{} L*{17}{C} @{}}
     \toprule

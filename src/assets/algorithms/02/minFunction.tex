@@ -2,8 +2,10 @@
 
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
+\ifstandalone
 \begin{document}
 \begin{algorithm}[H]
+\fi
 
 \BlankLine
 \prototype{\Int \minFunction{\Array{\Int} \(S\), \Int \(n\)}}{
@@ -30,5 +32,7 @@
         }
     }
 }
+\ifstandalone
 \end{algorithm}
 \end{document}
+\fi
