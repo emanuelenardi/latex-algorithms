@@ -7,9 +7,7 @@
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Algoritmo di Huffman]{}
 \fi
 
 \prototype{\Tree \huffman{\Array{\Int} \(c\), \Array{\Int} \(f\), \Int \(n\)}}{
@@ -48,6 +46,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

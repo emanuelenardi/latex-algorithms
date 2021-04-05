@@ -252,7 +252,7 @@ UserWarnRegex
   # POSIX:([^[:alnum:]]|^)intro([^[:alnum:]]|$)
 
   # Pretty tables--see http://texdoc.net/texmf-dist/doc/latex/booktabs/booktabs.pdf
-  (?!#-2:Use! \toprule,! midrule,! or! \bottomrule! from! booktabs)\\hline
+  (?!#-2:Use! toprule,! midrule,! or! bottomrule! from! booktabs)\\hline
   # This relies on it being on a single line, and not having anything
   # else on that line.  With PCRE we could match balanced [] and {},
   # but I wonder if it's worth the complexity...
@@ -386,12 +386,18 @@ Silent
     \addlinespace \cr \fill \frontmatter
     \toprule \midrule \lightrule \bottomrule
 
-    \cleardoublepage
-    \input
-    \hfuzz
-    \ifstandalone
-    \tagThisPage
+    \hfill
 
+    \input \cleardoublepage \tagThisPage \hfuzz
+
+    \ifstandalone \ifsubfile
+
+    \ifpart \ifgreedy
+    \Item \Nil \succNode
+    \Omicron \Theta \Omega
+    \setContains \setSize \setInsert \setRemove \setUnion \setIntersection \lookup
+    \mergeSort \quickSort
+    \hatevilleSolution
 }[
 # Here you can put regular expressions to match Silent macros.  It was
 # designed for  the case where you  have many custom macros  sharing a
@@ -553,7 +559,8 @@ TextCmd
 VerbEnvir
 {
     verbatim comment listing verbatimtab rawhtml errexam picture texdraw
-    filecontents pgfpicture tikzpicture minted lstlisting IPA ignore algorithm
+    filecontents pgfpicture tikzpicture minted lstlisting IPA ignore
+    algorithm tabular
 }
 
 #####################################################################

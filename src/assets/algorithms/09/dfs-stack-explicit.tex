@@ -4,10 +4,7 @@
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\algorithmstyle{ruled}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Visita in profondità iterativa]{Visita in profondità, iterativa con stack esplicito e visita in \emph{pre}-ordine}
 \fi
 
 \BlankLine
@@ -47,7 +44,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
-\algorithmstyle{tworuled}
 \end{document}
 \fi

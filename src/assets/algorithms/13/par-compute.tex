@@ -1,18 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
-\SetKwFunction{computePar}{computePar}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[Versione bottom-up]{}%
-\label{alg:computePar}
 \fi
 
 \prototype{\computePar{\Int stuff}}{
@@ -55,6 +47,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi

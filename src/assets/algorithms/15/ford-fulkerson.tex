@@ -1,15 +1,10 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
 \begin{document}
-\NoCaptionOfAlgo
 \begin{algorithm}[H]
-\caption[]{}
 \fi
 
 \SetKwFunction{nomeFunzione}{nomeFunzione}
@@ -24,6 +19,5 @@
 
 \ifstandalone
 \end{algorithm}
-\RestoreCaptionOfAlgo
 \end{document}
 \fi
