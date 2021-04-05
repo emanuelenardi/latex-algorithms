@@ -11,24 +11,24 @@
 \tcp{effettua una rotazione verso destra}
 \prototype{\Tree \rightRotation{\Tree x}}{
 	\tcp{entrambi potrebbero essere \Nil}
-	\lnl{case:primo-step}%
+	\lnl{case:rightRotation-primo-step}%
 	\Tree \(y \Assign x.\treeLeft\)\;
 	\Tree \(p \Assign x.\treeParent\)\;
 
 	\BlankLine
-	\lnl{case:secondo-step}%
+	\lnl{case:rightRotation-secondo-step}%
 	\(x.\treeLeft \Assign y.\treeRight\) \Comment*[l]{il sottoalbero \(B\) diventa figlio sinistro di \(x\)}
 	\If{\(y.\treeRight \Neq \Nil\)}{
 		\(y.\treeRight.\treeParent \Assign x\)\;
 	}
 
 	\BlankLine
-	\lnl{case:terzo-step}%
+	\lnl{case:rightRotation-terzo-step}%
 	\(y.\treeRight \Assign x\) \Comment*[l]{\(x\) diventa figlio destro di \(y\)}
 	\(x.\treeParent \Assign y\)\;
 
 	\BlankLine
-	\lnl{case:quarto-step}%
+	\lnl{case:rightRotation-quarto-step}%
 	\(y.\treeParent \Assign p\) \Comment*[l]{\(y\) diventa figlio di \(p\)}
 	\If{\(p \Neq \Nil\)}{
 		\If{\(p.\treeRight \Equal x\)}{

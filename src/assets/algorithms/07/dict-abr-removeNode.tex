@@ -20,7 +20,7 @@
 	\BlankLine
 	\tcp{se il nodo da rimuovere è presente nell'albero\dots}
 	\If{\(u \neq \Nil\)}{
-		\lnl{case:primo-caso}%
+		\lnl{case:remove-primo-caso}%
 		\tcp{\dots e non ha figli}
 		\uIf{\(u.\treeLeft \Equal \Nil\) \And \(u.\treeRight \Equal \Nil\)}{
 		% \uIf(\tcp*[h]{nessun figlio}){\(u.\treeLeft \Equal \Nil\) \And \(u.\treeRight \Equal \Nil\)}{
@@ -31,7 +31,7 @@
 			\BlankLine
 			\tcp{rimuovo direttamente il nodo}
 			\delete \(u\)\;
-		}\lnlset{terzo-caso}{3}%
+		}\lnlset{remove-terzo-caso}{3}%
 		\tcp{\dots ed ha due figli}
 		\uIf{\(u.\treeLeft \neq \Nil\) \And \(u.\treeRight \neq \Nil\)}{
 		% \uIf(\tcp*[h]{due figli}){\(u.\treeLeft \neq \Nil\) \And \(u.\treeRight \neq \Nil\)}{
@@ -51,7 +51,7 @@
 			\BlankLine
 			\tcp{rimuovo il successore}
 			\delete \(s\)\;
-		}\lnl{case:secondo-caso}%
+		}\lnl{case:remove-secondo-caso}%
 		\tcp{\dots ed ha un solo figlio (sinistro)}
 		\uIf{\(u.\treeLeft \neq \Nil\) \And \(u.\treeRight \Equal \Nil\)}{
 		% \uIf(\tcp*[h]{solo un figlio (sinistro)}){\(u.\treeLeft \neq \Nil\) \And \(u.\treeRight \Equal \Nil\)}{
