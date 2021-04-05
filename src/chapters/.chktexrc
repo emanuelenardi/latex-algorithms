@@ -392,7 +392,7 @@ Silent
 
     \ifstandalone \ifsubfile
 
-    \ifpart \ifgreedy
+    \ifpart \ifgreedy \ifpd
     \Item \Nil \succNode
     \Omicron \Theta \Omega
     \setContains \setSize \setInsert \setRemove \setUnion \setIntersection \lookup
@@ -559,8 +559,8 @@ TextCmd
 VerbEnvir
 {
     verbatim comment listing verbatimtab rawhtml errexam picture texdraw
-    filecontents pgfpicture tikzpicture minted lstlisting IPA ignore
-    algorithm tabular
+    filecontents pgfpicture tikzpicture tikzset minted lstlisting IPA ignore
+    algorithm forest tabular blockarray
 }
 
 #####################################################################
