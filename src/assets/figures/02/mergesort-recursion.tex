@@ -8,8 +8,8 @@
 
 \usepackage{xparse}
 \NewDocumentCommand{\Omicron}{o}{
-	\IfValueTF{#1}
-		{\mathcal{O}(#1)}% checktex ##
+	\IfValueTF{#1}% checktex ##
+		{\mathcal{O}(#1)}
 		{\mathcal{O}}
 }
 

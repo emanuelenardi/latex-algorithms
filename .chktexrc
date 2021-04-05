@@ -560,7 +560,7 @@ VerbEnvir
 {
     verbatim comment listing verbatimtab rawhtml errexam picture texdraw
     filecontents pgfpicture tikzpicture minted lstlisting IPA ignore
-    algorithm tabular
+    algorithm tabular blockarray block
 }
 
 #####################################################################
