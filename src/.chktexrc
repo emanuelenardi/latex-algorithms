@@ -392,12 +392,15 @@ Silent
 
     \ifstandalone \ifsubfile
 
-    \ifpart \ifgreedy
+    \ifpart \ifgreedy \ifpd \ifmaxFlow
     \Item \Nil \succNode
     \Omicron \Theta \Omega
     \setContains \setSize \setInsert \setRemove \setUnion \setIntersection \lookup
     \mergeSort \quickSort
     \hatevilleSolution
+
+    \draw
+
 }[
 # Here you can put regular expressions to match Silent macros.  It was
 # designed for  the case where you  have many custom macros  sharing a
@@ -507,6 +510,8 @@ WipeArg
     \citetext:{} \citeyear:*{} \citeyearpar:{}
     # tipa which uses "
     \textipa:{}
+    # NOTE only temporary
+    \tikzset:{}
 }
 
 #####################################################################
@@ -560,7 +565,7 @@ VerbEnvir
 {
     verbatim comment listing verbatimtab rawhtml errexam picture texdraw
     filecontents pgfpicture tikzpicture tikzset minted lstlisting IPA ignore
-    algorithm tabular
+    algorithm tabular blockarray block
 }
 
 #####################################################################
