@@ -386,6 +386,8 @@ Silent
     \addlinespace \cr \fill \frontmatter
     \toprule \midrule \lightrule \bottomrule
 
+    \ifstandalone
+
 }[
 # Here you can put regular expressions to match Silent macros.  It was
 # designed for  the case where you  have many custom macros  sharing a
