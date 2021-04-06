@@ -218,7 +218,7 @@ Si hanno due casi:
 
 La relazione di ricorrenza che ne segue è la sequente:
 \[
-	T(n) =% chktex 24
+	T(n) =% chktex 36
 	\begin{cases*}
 		c                      & se \(n = 0\)\\
 		T(\nicefrac{n}{2}) + d & se \(n > 0\)
@@ -250,7 +250,7 @@ Finora abbiamo analizzato precisamente due algoritmi e abbiamo ottenuto due \emp
 	\item Ricerca: \(T(n) = d \log n + e\). Chiamiamo questa funzione \textbf{logaritmica}, utilizzando la notazione \(\Omicron(\log n)\);
 	\item Minimo: \(T(n) = a + b\). Chiamiamo questa funzione \textbf{lineare}, utilizzando la notazione \(\Omicron(n)\).
 \end{itemize}
-Abbiamo visto anche una terza funzione che deriva dall'implementazione banale (\emph{na\"{i}f}) dell'algoritmo per la ricerca del minimo:
+Abbiamo visto anche una terza funzione che deriva dall'implementazione banale (\emph{na{\"}{\i}f}) dell'algoritmo per la ricerca del minimo:
 \begin{itemize}
 	\item Minimo: \(T(n) = fn^2 + gn + h\). Chiamiamo questa funzione \textbf{quadratica}, utilizzando la notazione \(\Omicron(n^2)\).
 \end{itemize}
@@ -375,7 +375,6 @@ che è vera per ogni \(c \geqslant 19\) (abbiamo così trovato la costante molti
 \begin{figure}[H]\centering
 	\includegraphics[width=.6\textwidth]{plot-0}
 	\caption[]{Risoluzione grafica dell'esercizio.}
-	\label{fig:plot-0}
 \end{figure}
 
 \begin{note}
@@ -717,7 +716,7 @@ Le dimensioni delle chiamate ricorsive vengono ridotte ad una semplice costante.
 Possiamo quindi concludere che \(T(n) = \Omicron(n^{1.58\dots})\).
 
 \begin{note}
-L'algoritmo ingenuo (\foreign{na\"if}) non è sempre il migliore a meno che non sia possibile dimostrare il contrario.
+L'algoritmo ingenuo (\foreign{na{\"}{\i}f}) non è sempre il migliore a meno che non sia possibile dimostrare il contrario.
 \end{note}
 
 Negli anni sono stati proposti diversi algoritmi, che il limite inferiore al problema della moltiplicazione sia \(\Omega(n \log n)\) è una congettura.
@@ -751,7 +750,7 @@ Un approccio \enquote{demente} è quello di generare tutte le possibili permutaz
 \clearpage
 \subsection{Selection sort}
 
-Un approccio banale (\foreign{na\"if}) è quello di cercare il minimo e metterlo nella posizione corretta, riducendo il problema agli \(n-1\) valori rimanenti.
+Un approccio banale (\foreign{na{\"}{\i}f}) è quello di cercare il minimo e metterlo nella posizione corretta, riducendo il problema agli \(n-1\) valori rimanenti.
 
 \begin{algorithm}[H]
 	\caption{selectionSort}

@@ -214,7 +214,7 @@ No, non lo è, infatti \(k\) è parte dell'input, non una dimensione dell'input.
 Quindi la complessità è \(\Omicron(nk) = \Omicron(n \cdot 2^t)\), esponenziale.
 
 \begin{table}[htbp]\centering
-	\caption[Complessità di {\subSetSumProblem}]{Di seguito sono riportate le complessità dei vari algoritmi per la risoluzione del problema di somma di sottoinsiemi. Notiamo che nell'applicazione dell'algoritmo di programmazione dinamica, i valori \(k\) contenuti nell'insieme di input influenzano la complessità dell'algoritmo; mentre nell'applicazione dell'algoritmo di memoization i valori fanno parte dell'input, quindi ciò che influenza la complessità è la dimensione della rappresentazione dei dati dell'insieme, non i valori contenuti in esso. Infine nell'applicazione della tecnica di backtracking la complessità non è influenzata dai dati in ingresso.}
+	\caption[Complessità di {\subSetSumProblem}]{Di seguito sono riportate le complessità dei vari algoritmi per la risoluzione del problema di somma di sottoinsiemi. Notiamo che nell'applicazione dell'algoritmo di programmazione dinamica, i valori \(k\) contenuti nell'insieme di input influenzano la complessità dell'algoritmo; mentre nell'applicazione dell'algoritmo di memoization i valori fanno parte dell'input, quindi ciò che influenza la complessità è la dimensione della rappresentazione dei dati dell'insieme, non i valori contenuti in esso. Infine nell'applicazione della tecnica di backtracking la complessità non è influenzata dai dati in ingresso.}%
 	\label{tab:subsetsum-complexity}
 	\begin{tabular}{@{} *{5}{l} @{}}
 		\toprule
@@ -245,8 +245,7 @@ Il \alert{valore \texttt{\#}} è il più grande numero intero che appare in \(I\
 \end{definition}
 
 \begin{table}[H]\centering
-	\caption{Problemi decisionali e relative grandezze}
-	\label{tab:problem-dimensions}
+	\caption{Problemi decisionali e relative grandezze}\label{tab:problem-dimensions}
 	\begin{tabular}{@{} l *{3}{l} @{}}
 		\toprule
 			\textbf{Nome} & \multicolumn{1}{c}{\textbf{Istanza} \(I\)} & \multicolumn{1}{c}{\textbf{No.\ più grande} \texttt{\#}} & \multicolumn{1}{c}{\textbf{Dimensione} \(d\)} \\

@@ -344,7 +344,7 @@ Silent
 
     \mainmatter \cleardoublepage
 
-    \mainmatter \ddots \dotfill \flushbottom \flushright \fussy \indent \linebreak
+    \mainmatter \ddots \dotfill \flushbottom \flushright \raggedright \fussy \indent \linebreak
     \onecolumn \pagebreak \pushtabs \poptabs \scriptsize \sloppy
     \twocolumn \vdots
     \today \kill \newline \thicklines \thinlines
@@ -390,7 +390,6 @@ Silent
 
     \addlinespace \cr \fill \frontmatter
     \toprule \midrule \lightrule \bottomrule
-    \textwidth
 
     \hfill \null
 
@@ -398,7 +397,7 @@ Silent
 
     \ifstandalone \ifsubfile \subfiletrue \subfilefalse
 
-    \True \False \Or \And
+    \Not \True \False \Or \And
     \ifpd \pdtrue \ifpart \parttrue \ifgreedy \greedytrue \ifmaxFlow \maxFlowtrue \iflink \linktrue
     \Item \Int \Nil
     \succNode \predNode \insertNode \shortcut \Node
@@ -406,8 +405,7 @@ Silent
     \setContains \setEmpty \setInsert \setIntersection \setRemove \setSize \setUnion \lookup
     \subSetSum \hatevilleSolution \fibonacciRic \minFunction \maxFunction
     \erdos \topSort \ConnectedComponents
-    \hateville
-    \selection
+    \hateville \knapsack \selection \select
     \insertionSort \mergeSort \quickSort \shellSort \spaghettiSort \pivot \countingSort \pigeonholeSort
 
     \draw \foreach
