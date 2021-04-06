@@ -15,18 +15,18 @@
 % tex.stackexchange.com/questions/18521
 \tikzset{
 	table/.style={
-		,matrix of nodes
-		,row sep		= -\pgflinewidth
-		,column sep		= -\pgflinewidth
-		,nodes			= {rectangle, text width = 2em, align = center}
-		,text depth		= 1ex
-		,text height	= 2.0ex
-		% ,nodes in empty cells
+		,matrix of nodes% chktex 26
+		,row sep		= -\pgflinewidth% chktex 26 chktex 1
+		,column sep		= -\pgflinewidth% chktex 26 chktex 1
+		,nodes			= {rectangle, text width = 2em, align = center}% chktex 26
+		,text depth		= 1ex% chktex 26
+		,text height	= 2.0ex% chktex 26
+		% ,nodes in empty cells% chktex 26
 	}
-	% ,letters/.style	 = {rectangle, fill = blue!50!white}
-	,e/.style		 = {fill = none, text = textcolor}
-	,row 1/.style    = {font=\ttfamily, nodes = {fill = cellcolor, text depth = 0.4ex, text height=2ex}}
-	,column 1/.style = {font=\ttfamily, nodes = {fill = cellcolor}}
+	% ,letters/.style	 = {rectangle, fill = blue!50!white}% chktex 26
+	,e/.style		 = {fill = none, text = textcolor}% chktex 26
+	,row 1/.style    = {font=\ttfamily, nodes = {fill = cellcolor, text depth = 0.4ex, text height=2ex}}% chktex 26
+	,column 1/.style = {font=\ttfamily, nodes = {fill = cellcolor}}% chktex 26
 }
 
 % arara: pdflatex: { draft: yes }

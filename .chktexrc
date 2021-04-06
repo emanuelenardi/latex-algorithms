@@ -342,7 +342,7 @@ Silent
 
     \textrm \textem \textbf \textit \textsl \textsf \textsc \texttt
 
-    \clearpage \ddots \dotfill \flushbottom \fussy \indent \linebreak
+    \clearpage \ddots \dotfill \flushbottom \flushright \fussy \indent \linebreak
     \onecolumn \pagebreak \pushtabs \poptabs \scriptsize \sloppy
     \twocolumn \vdots
     \today \kill \newline \thicklines \thinlines
@@ -400,7 +400,7 @@ Silent
     \Omicron \Theta \Omega
     \setContains \setEmpty \setInsert \setIntersection \setRemove \setSize \setUnion \lookup
     \hatevilleSolution \fibonacciRic \maxFunction
-    \mergeSort \quickSort \shellSort \spaghettiSort
+    \mergeSort \quickSort \shellSort \spaghettiSort \pivot
 
     \draw \foreach
 
@@ -521,7 +521,6 @@ WipeArg
     # tipa which uses "
     \textipa:{}
     # NOTE personal
-    \chessboard:[]
     \texttt:{}
     \setlength:{}{}
     \Xcline:{}{}

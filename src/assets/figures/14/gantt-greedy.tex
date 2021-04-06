@@ -36,29 +36,29 @@
 \fi
 
 \begin{ganttchart}[
-	,expand chart = \textwidth
+	,expand chart = \textwidth % chktex 26
 	% NOTE unità
-	% ,x unit = .5cm % default 1cm
-	,y unit title = .5cm
-	,y unit chart = .4cm % default 1cm
+	% ,x unit = .5cm % default 1cm % chktex 26
+	,y unit title = .5cm % chktex 26
+	,y unit chart = .4cm % default 1cm % chktex 26
 	%
 	% NOTE stili
-	,canvas/.style = {shape=rectangle, fill=white, draw=none, ultra thin}
-	,bar/.append style = {fill=barcolor, draw=white}
-	,vrule/.append style = {gray, thick}
-	,vgrid={*{1}{lightgray, ultra thin}}
+	,canvas/.style = {shape=rectangle, fill=white, draw=none, ultra thin} % chktex 26
+	,bar/.append style = {fill=barcolor, draw=white} % chktex 26
+	,vrule/.append style = {gray, thick} % chktex 26
+	,vgrid={*{1}{lightgray, ultra thin}} % chktex 26
 	%
 	% NOTE fonts
-	,title label font = \em\footnotesize\color{darker}
+	,title label font = \em\footnotesize\color{darker} % chktex 26
 	% OPTIMIZE proposta stile per lucidi
-	% ,bar label font = \tiny\color{white}
-	% ,bar height = .5
-	% ,inline
-	,bar label font = \footnotesize\color{darker}
-	% ,bar label text = #1,
-	,title/.style = {draw=none, fill=none}
+	% ,bar label font = \tiny\color{white} % chktex 26
+	% ,bar height = .5 % chktex 26
+	% ,inline % chktex 26
+	,bar label font = \footnotesize\color{darker} % chktex 26
+	% ,bar label text = #1, % chktex 26
+	,title/.style = {draw=none, fill=none} % chktex 26
 	% NOTE elimina lo spazio del titolo se non mostrato
-	,include title in canvas = false
+	,include title in canvas = false % chktex 26
 ]{1}{14}
 	% \gantttitle{Prenotazione di una sala conferenze}{15}
 	\\\gantttitlelist{1,...,14}{1}
