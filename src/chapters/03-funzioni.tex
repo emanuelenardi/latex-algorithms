@@ -140,7 +140,7 @@ Ad esempio \(2 \log n = \Theta(\log n)\), ignoriamo quindi le costanti numeriche
 f_1 (n) = \Omicron(g_1 (n)) \land f_2 n = \Omicron(g_2(n)) &\Rightarrow \Arrow{per definizione}\\
 f_1 (n) \leqslant c_1 g_1 (n) \land f_2 (n) \leqslant c_2 g_2 (n) &\Rightarrow \Arrow[jump=2]{raccolgo}\\
 f_1 (n) + f_2 (n) \leqslant c_1 g_1 (n) + c_2 g_2 (n) &\Rightarrow\\
-f_1 (n) + f_2 (n) \leqslant \maxFunction\{c_1, c_2\}(2 \cdot \maxFunction(g_1(n), g_2(n)) &\Rightarrow \Arrow{per definizione}\\
+f_1 (n) + f_2 (n) \leqslant \maxFunction\{c_1, c_2\}(2 \cdot \maxFunction(g_1(n), g_2(n))) &\Rightarrow \Arrow{per definizione}\\
 f_1 (n) + f_2 (n) = \Omicron(g_1(n) + g_2(n))
 \end{WithArrows}\]
 \end{proof}
@@ -835,7 +835,7 @@ Prendiamo ad esempio il primo esercizio \(T(n) = 4T(\frac{n}{2})\) e vediamo che
 
 \begin{proof}[teorema delle ricorrenze lineari con partizione bilanciata]
 Assumiamo che \(n\) sia una potenza intera di \(b\), ossia che \(n = b^k\), \(k = \log_b n\) poiché ci permetterà di semplificare i calcoli successivi ed è ininfluente sul risultato.
-Ad esempio supponiamo che l'input abbia dimensione \(b^k + 1\) (\(2^8 + 1 = 257\) bit), se estendiamo l'input fino ad una dimensione \(b^{k+1}\) (\(2^8+1 = 512\) bit, facendo del \foreign{padding}, l'input sarebbe stato esteso al massimo di un fattore costante \(b\) (\(2\) nel nostro caso), il che è ininfluente al fine della complessità computazionale.
+Ad esempio supponiamo che l'input abbia dimensione \(b^k + 1\) (\(2^8 + 1 = 257\) bit), se estendiamo l'input fino ad una dimensione \(b^{k+1}\) (\(2^8+1 = 512\) bit), facendo del \foreign{padding}, l'input sarebbe stato esteso al massimo di un fattore costante \(b\) (\(2\) nel nostro caso), il che è ininfluente al fine della complessità computazionale.
 
 Calcoliamo l'albero delle ricorrenze per la seguente equazione di ricorrenza:
 \[
