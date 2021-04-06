@@ -899,7 +899,7 @@ La distanza percorsa finora è \(\cost[i]\), ossia il costo che ho sostenuto per
 Viene calcolata ricorsivamente dalla sommando il costo sostenuto per arrivare alla città precedente (\(\cost[i-1]\)) e la distanza intercorsa fra la città precedente e quella attuale.
 
 \begin{minipage}[c]{.45\textwidth}
-Il limite inferiore (\foreign{lower bound}) della distanza per "uscire" da \(S[i]\) (ha un costo di \(O(n)\)):
+Il limite inferiore (\foreign{lower bound}) della distanza per \enquote{uscire} da \(S[i]\) (ha un costo di \(O(n)\)):
 \[
 	\out  = \min_{h \notin S} \{ d[S[i], h] \}
 \]
@@ -941,7 +941,7 @@ Se posso effettuare ancora delle scelte (\(i < n\)), è possibile calcolare un p
 
 \(\minCost\) è una variabile globale.
 Invece di inizializzarla a \(+\infty\), possiamo scegliere una permutazione a caso (un cammino qualunque), in questo modo abbiamo già una stima iniziale.
-Ad esempio la permutazione 1-2-3-4-5 ha un costo pari a \(21\).
+Ad esempio la permutazione 1-2-3-4-5 ha un costo pari a \(21\).% chktex 8
 Per evitare che lo stesso circuito sia generato più volte, si parte da un nodo fissato (ad esempio 1).
 
 \begin{figure}[H]

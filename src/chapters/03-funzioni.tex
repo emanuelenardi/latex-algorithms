@@ -44,8 +44,8 @@ che è vera per \(c \geqslant (\abs{a_k} + \abs{a_{k-1}} + \cdots + \abs{a_1} + 
 \textbf{Limite inferiore}: \(\exists d>0, \exists m \geqslant 0: f(n) \geqslant d n^k, \forall n \geqslant m\)
 \[\begin{WithArrows}
 	f(n) &= a_k n^k + a_{k-1} n^{k-1} + \cdots + a_1 n + a_0 \Arrow[tikz={text width=4cm}]{normalizzo aggiungendo un segno negativo}\\
-	&\geqslant a_kn^k - \abs{a_{k-1}} n^{k-1} - \cdots  - \abs{a_1} n - \abs{a_0} \Arrow{\(\forall n \geqslant 1\), elevo alla \(k-1\)}\\
-	&\geqslant a_kn^k - \abs{a_{k-1}} n^{k-1} - \cdots  - \abs{a_1} n^{k-1} - \abs{a_0} n^{k-1} \\
+	&\geqslant a_k n^k - \abs{a_{k-1}} n^{k-1} - \cdots  - \abs{a_1} n - \abs{a_0} \Arrow{\(\forall n \geqslant 1\), elevo alla \(k-1\)}\\
+	&\geqslant a_k n^k - \abs{a_{k-1}} n^{k-1} - \cdots  - \abs{a_1} n^{k-1} - \abs{a_0} n^{k-1} \\
 	&\stackrel{?}{\geqslant} d n^k
 \end{WithArrows}\]
 L'ultima equazione è vera se:
