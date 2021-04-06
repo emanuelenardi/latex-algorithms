@@ -27,7 +27,7 @@ La complessità viene definita come una funzione che, data la dimensione dell'in
 Come definiamo quindi la dimensione dell'input?
 Come misuriamo il tempo?
 
-\section{Valutare la dimensione dell'input}
+\section{Valutare la dimensione dell'input}%
 \label{sec:valutare-dimensione-input}
 
 Esistono due criteri per valutare la dimensione dell'input:
@@ -109,7 +109,7 @@ Proviamo a calcolare la complessità dell'algoritmo che ricerca il minimo.
 \paragraph{Ragionamento sul calcolo della complessità}
 L'assegnazione del minimo parziale viene eseguita solo una volta.
 Il ciclo viene eseguito \(n\) volte.
-Considerando \emph{il caso pessimo}, ovvero un vettore ordinato in modo decrescente, il controllo \(A[i] < min\) viene eseguito \(n-1\) volte in quanto ogni elemento che incontreremo sarà minore del precedente.
+Considerando \emph{il caso pessimo}, ovvero un vettore ordinato in modo decrescente, il controllo \(A[i] < \min\) viene eseguito \(n-1\) volte in quanto ogni elemento che incontreremo sarà minore del precedente.
 Infine l'istruzione di ritorno viene eseguita una volta sola.
 
 Bisogna tenere ben a mente che:
@@ -218,7 +218,7 @@ Si hanno due casi:
 
 La relazione di ricorrenza che ne segue è la sequente:
 \[
-	T(n) =
+	T(n) =% chktex 24
 	\begin{cases*}
 		c                      & se \(n = 0\)\\
 		T(\nicefrac{n}{2}) + d & se \(n > 0\)
@@ -259,8 +259,7 @@ Abbiamo visto anche una terza funzione che deriva dall'implementazione banale (\
 
 \begin{table}[hb]
 	\centering
-	\caption[Classi di complessità degli algoritmi]{Classi di complessità}
-	\label{tab:classi-complessita}
+	\caption[Classi di complessità degli algoritmi]{Classi di complessità}\label{tab:classi-complessita}
 	\begin{tabular}{@{} c *{4}{S[table-format=4]} l @{}}
 	\toprule
 		\(f(n)\) & \(n = 10^1\) & \(n = 10^2\) & \(n = 10^3\) & \(n = 10^4\) & Tipo \\
@@ -325,8 +324,7 @@ Nota che \(f(n) = \Theta[g(n)]\) avviene se e solo se \(f(n) = \Omicron(g(n))\) 
 
 \begin{figure}[H]\centering
 	\includegraphics[width=.6\textwidth]{plot-3}
-	\caption{Notazione asintotica \(\Theta\).}
-	\label{fig:plot-3}
+	\caption{Notazione asintotica \(\Theta\).}% chktex 21
 \end{figure}
 
 \section{Complessità di un algoritmo e di un problema}
@@ -365,7 +363,7 @@ In particolare ci serviranno a renderci conto che non stiamo dimostrando equazio
 	f(n) &= 10 n^3 + 2 n^2 + 7 \Arrow[jump = 2]{\( \forall n \geqslant 1 \)} \\
 	&\leqslant 10 n^3 + 2 n^{3} + 7 \\
 	&\leqslant 10 n^3 + 2 n^3 + 7 n^3 \Arrow{sommiamo i termini} \\
-	&= 19 n^3 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant cn^3\) ?}\\
+	&= 19 n^3 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant cn^3\)?}\\
 	&\overset{?}{\leqslant} cn^3 \Arrow{metto a confronto}\\
 	19 n^3 &\leqslant cn^3 \Arrow{semplifico}\\
 	19 \cancel{n^3} &\leqslant c\cancel{n^3}
@@ -398,7 +396,7 @@ Risolviamo quindi l'esercizio precedente in modo diverso.
 	f(n) &= 10 n^3 + 2 n^2 + 7 \Arrow{\( \forall n \geqslant 1 \)} \\
 	&\leqslant 10 n^3 + 2 n^{3} + 7 \Arrow{\(\forall n \geqslant \sqrt[3]{7}\)} \\
 	&\leqslant 10 n^3 + 2 n^3 + n^3 \Arrow{sommiamo i termini} \\
-	&= 13 n^3 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant cn^3\) ?}\\
+	&= 13 n^3 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant cn^3\)?}\\
 	&\overset{?}{\leqslant} cn^3 \Arrow{metto a confronto}\\
 	13 n^3 &\leqslant cn^3 \Arrow{semplifico}\\
 	13 \cancel{n^3} &\leqslant c\cancel{n^3}
@@ -422,7 +420,7 @@ che è vera per ogni \( c \geqslant 13 \) e per ogni \( n \geqslant \sqrt[3]{7} 
 \[
 \begin{WithArrows}
 	f(n) &= 3 n^2 + 7 n \Arrow{\( \forall n \geqslant 0 \)} \\
-	&\geqslant 3 n^2 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant c_1 n^2\) ?}\\
+	&\geqslant 3 n^2 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant c_1 n^2\)?}\\
 	&\overset{?}{\geqslant} c_1 n^2 \Arrow{metto a confronto}\\
 	3 n^2 &\leqslant c_1 n^2 \Arrow{semplifico}\\
 	3 \cancel{n^2} &\leqslant c_1 \cancel{n^2}
@@ -457,7 +455,7 @@ Con questi paramentri:
 \begin{itemize}
 	\item \(c_1 = 3\);
 	\item \(c_1 = 10\);
-	\item \(m = max\{m_1, m_2\} = max\{0, 1\} = 1\), ossia un valore dopo il quale la nostra proprietà è provata.
+	\item \(m = \max\{m_1, m_2\} = \max\{0, 1\} = 1\), ossia un valore dopo il quale la nostra proprietà è provata.
 \end{itemize}
 
 \begin{note}
@@ -467,7 +465,6 @@ Abbiamo dimostrato quindi che \(f(n) = \Theta(n^2)\).
 \begin{figure}[H]\centering
 	\includegraphics[width=.6\textwidth]{plot-1}
 	\caption[]{Risoluzione grafica dell'esercizio.}
-	\label{fig:plot-1}
 \end{figure}
 
 \clearpage
@@ -484,7 +481,6 @@ Otteniamo che \(n^2 \leqslant cn \Leftrightarrow c \geqslant n\) (ad esempio con
 \begin{figure}[H]\centering
 	\includegraphics[width=.6\textwidth]{plot-nvsn2}
 	\caption[]{Per qualunque fattore \(c\) scelto (ossia la pendenza della retta) la curva quadratica crescerà sempre più velocemente da un certo punto in poi.}
-	\label{fig:plot-nvsn2}
 \end{figure}
 
 \subsubsection*{Dimostrare un limite inferiore inesistente}
@@ -523,11 +519,11 @@ L'algoritmo banale dettato dalla definizione costa \num{4.02}, in quanto bisogna
 La seguente è la soluzione di Gauss al problema, datata 1805.
 
 Input: \(a\), \(b\), \(c\), \(d\), Output: \(A1 = ac - bd\), \(A2 = ad + bc\)
-\let\oldtimes\times
+\let\oldtimes\times% chktex 1
 \renewcommand\times{\mathcolor{red}{\bs{\oldtimes}}}
-\let\oldplus\plus
+\let\oldplus\plus% chktex 1
 \renewcommand\plus{\mathcolor{red}{\bs{\oldplus}}}
-\let\oldminus\minus
+\let\oldminus\minus% chktex 1
 \renewcommand\minus{\mathcolor{red}{\bs{\oldminus}}}
 \[\begin{WithArrows}
 m_1	&= a \times c \Arrow[tikz=-, jump=2, tikz=darker]{calcolo i valori intermedi} \\
@@ -586,7 +582,6 @@ L'algoritmo elementare del prodotto richiede di moltiplicare ogni bit con ogni a
 
 \begin{figure}[H]
 	\centering
-	\label{fig:mul}
 	\includegraphics[width=.4\textwidth]{mul}
 	\caption[]{Moltiplicazione di due numeri binari.}
 \end{figure}
@@ -751,7 +746,7 @@ Esistono tre tipi di analisi:
 
 Data una sequenza \(A = a_1, a_2, \dots, a_n\) di \(n\) valori in input, il problema dell'ordinamento consiste nel restituire in output una sequenza \(B = b_1, b_2, \dots, b_n\) che sia una permutazione di \(A\), tale per cui \mbox{\(b_1 \leqslant b_2 \leqslant \dots \leqslant b_n\)} (ovvero che ci sia un ordinamento \emph{totale}).
 
-Un approccio \enquote{demente} è quello di generare tutte le possibili permutazioni (complessità \(n!\)) fino a quando non se ne trova una ordinata.
+Un approccio \enquote{demente} è quello di generare tutte le possibili permutazioni (complessità \(n!\)) fino a quando non se ne trova una ordinata.% chktex 40
 
 \clearpage
 \subsection{Selection sort}

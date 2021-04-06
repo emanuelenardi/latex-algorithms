@@ -252,7 +252,7 @@ Negli anni sono state usate diverse tecniche, ora in disuso:
 \begin{itemize}
 	\item Alberi AVL (1962): \(\beta(v) \leqslant 1\) per ogni nodo \(v\), il bilanciamento dell'albero avveniva tramite rotazioni;
 	\item B-Alberi (1972): \(\beta(v) = 0\) per ogni nodo \(v\), sono specializzati per strutture in memoria secondaria;
-	\item Alberi 2-3 (1983): \(\beta(v) = 0\) per ogni nodo \(v\), in cui ogni nodo può avere o 2 o 3 figli, se ad un nodo viene aggiunto un ulteriore figlio, il ramo viene spezzato in due rami con 2 figli ciascuno, mentre se ad un ramo con 2 figli ne viene tolto uno allora l'unico figlio rimanente viene collegato al padre, questo potrebbe riportare il problema al primo caso; il bilanciamento viene ottenuto quindi tramite merge/split, il grado è variabile.
+	\item Alberi 2-3 (1983): \(\beta(v) = 0\) per ogni nodo \(v\), in cui ogni nodo può avere o 2 o 3 figli, se ad un nodo viene aggiunto un ulteriore figlio, il ramo viene spezzato in due rami con 2 figli ciascuno, mentre se ad un ramo con 2 figli ne viene tolto uno allora l'unico figlio rimanente viene collegato al padre, questo potrebbe riportare il problema al primo caso; il bilanciamento viene ottenuto quindi tramite merge/split, il grado è variabile.% chktex 8
 \end{itemize}
 
 \begin{note}[Meccanismo di rotazione]
@@ -435,7 +435,7 @@ La rotazione a destra è simmetrica e viene spiegata ed illustrata per completez
 \clearpage
 \subsection*{Inserimento di un nodo in un albero binario bilanciato}
 
-Per inserire un nodo in un albero Red-Black si usa la stessa procedura usata per gli alberi binari di ricerca e si colora il nuovo nodo di \RED.
+Per inserire un nodo in un albero Red-Black si usa la stessa procedura usata per gli alberi binari di ricerca e si colora il nuovo nodo di \RED.% chktex 8
 Il vincolo che potremmo violare è il terzo, quello che prevede che entrambi i figli di un nodo rosso siano neri.
 
 \begin{algorithm}[H]

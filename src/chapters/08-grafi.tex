@@ -564,7 +564,7 @@ In tali casi, si preferisce utilizzare una visita in ampiezza, oppure in profond
 
 La procedura si ottiene semplicemente sostituendo una pila alla coda utilizzata nella visita in ampiezza.
 
-Un nodo può essere inserito nella pila più volte (tante volte quanti sono gli archi entranti in quel nodo, il numero di archi entranti in tutti i nodi è limitato superiormente dal numero di archi \(m\), quindi \(\Omicron(m)\), in quanto il controllo se un nodo è già stato inserito viene fatto all'estrazione, non all'inserimento come avveniva in precedenza.
+Un nodo può essere inserito nella pila più volte (tante volte quanti sono gli archi entranti in quel nodo), il numero di archi entranti in tutti i nodi è limitato superiormente dal numero di archi \(m\), quindi \(\Omicron(m)\), in quanto il controllo se un nodo è già stato inserito viene fatto all'estrazione, non all'inserimento come avveniva in precedenza.
 
 \paragraph{Complessità della visita in ampiezza con stack esplicito}
 Inserimenti ed estrazioni sono pari al numero degli archi, quindi \(\Omicron(m)\), visitare gli archi costa \(\Omicron(m)\) e le visite dei nodi costano \(\Omicron(n)\), per una complessità risultante di \(\Omicron(m+n)\), invariata rispetto agli algoritmi precedenti.
@@ -893,7 +893,7 @@ Perché possiamo dimostrare delle proprietà sul tipo di archi e usarle per cost
 \begin{theorem}
 Data una visita in profondità di un grafo \(G = (V, E)\), per ogni coppia di nodi \((u, v) \in V\), solo una delle condizioni seguenti è vera:
 \begin{itemize}
-	\item Gli intervalli \([dt[u], ft[u]\) e \([dt[v], ft[v]]\) sono non-sovrapposti;
+	\item Gli intervalli \([dt[u], ft[u]]\) e \([dt[v], ft[v]]\) sono non-sovrapposti;
 	\(u,v\) non sono discendenti l'uno dell'altro nella foresta \foreign{depth-first};
 	\item L'intervallo \([dt[u], ft[u]]\) è contenuto in \([dt[v], ft[v]]\);
 	\(u\) è un discendente di \(v\) in un albero \foreign{depth-first};

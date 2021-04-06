@@ -439,10 +439,10 @@ Modificando di conseguenza anche la codifica dei caratteri ed ottenendo una codi
 
 \vspace{10pt}
 \paragraph{Definizione formale del problema}
-Dati in input un file \(F\) composto da caratteri di un certo alfabeto (che chiameremo \(\Sigma\)).
+Dati in input un file \(F\) composto da caratteri di un certo alfabeto (che chiameremo \(\Sigma\)).% chktex 21
 Dobbiamo cercare di rappresentare il nostro file con il minor numero di bit possibili.
 Supponiamo che l'albero \(T\) rappresenti la nostra codifica.
-Per ogni carattere appartente all'alfabeto (\(c \in \Sigma\)), definiamo come \(d_{T}(c)\) la profondità della foglia che rappresenta il carattere \(c\).
+Per ogni carattere appartente all'alfabeto (\(c \in \Sigma\)), definiamo come \(d_{T}(c)\) la profondità della foglia che rappresenta il carattere \(c\).% chktex 21
 Quindi il codice per rappresentare \(c\) richiederà \(d_{T}(c)\) bit.
 Infine se \(f[c]\) è il numero di occorrenze di \(c\) in \(F\), allora la \emph{dimensione della codifica} è
 \begin{equation*}
@@ -472,7 +472,7 @@ Una certa codifica è progettata per un file specifico.
 
 Siccome ogni volta devo estrarre i due elementi più piccoli faccio affidamento ad una {\minHeapConstructor}.
 
-1. inserisco tutte le lettere con la priorità data dalla loro frequenza e con un nodo contenente sia la frequenza che la lettera associata.
+Inserisco tutte le lettere con la priorità data dalla loro frequenza e con un nodo contenente sia la frequenza che la lettera associata.
 Dopodiché estraggo i due elementi più piccoli, credo un nuovo nodo contenente i due elementi appena estratti e restituisco il nodo così fatto al chiamante.
 
 \paragraph{Funzionamento dell'algoritmo}
@@ -559,11 +559,6 @@ Un arco \([u,v]\) è detto sicuro per \(A\) se \(A \cup \{[u,v]\}\) è ancora un
 }
 
 \end{algorithm}
-
-\subsection{Dimostrazione}
-La dimostrazione banale è lasciata come esercizio al lettore.
-Scherzo, scherzo!
-(ma non la riporto comunque ;-))
 
 \subsection{Algoritmo di Kruskal}
 

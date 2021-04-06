@@ -390,6 +390,7 @@ Silent
 
     \addlinespace \cr \fill \frontmatter
     \toprule \midrule \lightrule \bottomrule
+    \textwidth
 
     \hfill \null
 
@@ -399,10 +400,14 @@ Silent
 
     \True \False \Or \And
     \ifpd \pdtrue \ifpart \parttrue \ifgreedy \greedytrue \ifmaxFlow \maxFlowtrue \iflink \linktrue
-    \Item \Nil \succNode
+    \Item \Int \Nil
+    \succNode \predNode \insertNode \shortcut \Node
     \Omicron \Theta \Omega
     \setContains \setEmpty \setInsert \setIntersection \setRemove \setSize \setUnion \lookup
-    \subSetSum \hatevilleSolution \fibonacciRic \maxFunction
+    \subSetSum \hatevilleSolution \fibonacciRic \minFunction \maxFunction
+    \erdos \topSort \ConnectedComponents
+    \hateville
+    \selection
     \insertionSort \mergeSort \quickSort \shellSort \spaghettiSort \pivot \countingSort \pigeonholeSort
 
     \draw \foreach
@@ -524,7 +529,7 @@ WipeArg
     # tipa which uses "
     \textipa:{}
     # NOTE personal
-    \texttt:{}
+    \texttt:{} \textsf:{}
     \setlength:{}{}
     \Xcline:{}{}
     \tikzset:{}

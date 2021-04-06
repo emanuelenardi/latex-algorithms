@@ -519,7 +519,7 @@ Possiamo quindi scrivere la formula per calcolare il massimo guadagno dati \(i\)
     \begin{dcases}
         0                                                   & i=0\ \Or\ c=0     \\
         -\infty                                             & c<0               \\
-        \maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c])) & \text{altrimenti} \\
+        \maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c])  & \text{altrimenti} \\
     \end{dcases}
 \]
 
@@ -671,7 +671,7 @@ Applicata in questo modo, non c’è alcun vantaggio nell'utilizzare la tecnica 
 Permette tuttavia di tradurre in fretta le espressioni ricorsive.
 
 Se invece di usare una tabella utilizzassimo un dizionario non dovremmo pagare il costo d'inizializzazione.
-Il costo di esecuzione è pari a \(\Omicron(min(2^n, nC))\).
+Il costo di esecuzione è pari a \(\Omicron(\min(2^n, nC))\).
 
 \begin{code}
 \begin{minted}{python}
@@ -758,7 +758,7 @@ Dato uno zaino senza limiti di scelta di capacità \(C\) e \(n\) oggetti caratte
     DP[c] =
     \begin{dcases}
     0                                           & c = 0 \\
-    max_{w[i] \leqslant c}\{DP[c-w[i]] + p[i]\} & c > 0 \\
+    \max_{w[i] \leqslant c}\{DP[c-w[i]] + p[i]\} & c > 0 \\
     \end{dcases}
 \]
 
