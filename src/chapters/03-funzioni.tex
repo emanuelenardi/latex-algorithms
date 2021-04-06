@@ -295,7 +295,7 @@ T(n) &= b + T(\frac{n}{2}) \Arrow{\(T\left(\frac{n}{2} \cdot \frac{1}{2} \right)
 	 &= b + b + T(\frac{n}{4}) \Arrow{\(T\left(\frac{n}{4} \cdot \frac{1}{2} \right) + b\)}\\
 	 &= b + b + b + T(\frac{n}{8}) \Arrow[jump=2]{svolgo \(\log n\) operazioni}\\
 	 &\phantom{= b + b + b}\vdots\\
-	 &= \underbracket[0.01mm]{b + b + \ldots + b }_{\log n}+ T(1) \Arrow{semplifico}\\
+	 &= \underbracket[0.01mm]{b + b + \cdots + b }_{\log n} + T(1) \Arrow{semplifico}\\
 	 &= b\log n + T(1) \Arrow{eliminazione delle costanti}\\
 	 &= \Theta(\log n)
 \end{WithArrows}\]
