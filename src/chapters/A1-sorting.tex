@@ -20,25 +20,25 @@ Durante il corso abbiamo visto alcuni algoritmi di ordinamento, le loro compless
 \begin{table}[H]\centering
     \caption{Complessità degli algoritmi di ordinamento}\label{tab:sorting-complexity}
     \begin{tabular}{@{} l cc l @{}}
-        \toprule
+    \toprule
         \textbf{Algoritmo} & \textbf{Caso ottimo} & \textbf{Caso pessimo} & \textbf{Tecnica utilizzata}\\
-        \midrule
+    \midrule
         SelectionSort & \(\Omega(n)\) & \(\Omicron(n)\) & \multicolumn{1}{c}{-}\\
-        \lightrule
+    \lightrule
         InsertionSort & \(\Omega(n)\) & \(\Omicron(n^2)\) & \multicolumn{1}{c}{-}\\
-        \lightrule
+    \lightrule
         ShellSort & \(\Omega(n)\) & \(\Omicron(n^{3/2})\) & ricerca locale\\
-        \lightrule
+    \lightrule
         MergeSort & \multicolumn{2}{c}{\(\Theta(n \log n)\)} & dividi-et-impera\\
-        \lightrule
+    \lightrule
         HeapSort & \multicolumn{2}{c}{\(\Theta(n \log n)\)} & \multicolumn{1}{c}{-}\\
-        \lightrule
+    \lightrule
         QuickSort & \(\Omega(n \log n)\) & \(\Omicron(n^2)\) & \multicolumn{1}{c}{-}\\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\shellSort ha una complessità \enquote{migliore} di \insertionSort \(n^{3/2} = n \sqrt{n})\).
+\shellSort ha una complessità \enquote{migliore} di \insertionSort \(n^{3/2} = n \sqrt{n}\).
 Sappiamo inoltre che \quickSort nel caso medio ha una complessità di \(n \log n\).
 
 Possiamo arrivare alla conclusione che tutti questi algoritmi sono \emph{basati su confronti}: le decisioni sull'ordinamento vengono prese in base al confronto (\(<\), \(=\), \(>\)) fra due valori.
@@ -69,11 +69,11 @@ Gli alberi di decisione hanno due proprietà:
 Si considerino tutti gli alberi di decisione ottenibili da algoritmi di ordinamento basati su confronti.
 
 \begin{lemma}
-Un albero di decisione per l'ordinamento di \(n\) elementi contiene \textbf{almeno} \(n!\) foglie.
+Un albero di decisione per l'ordinamento di \(n\) elementi contiene \textbf{almeno} \(n!\) foglie.% chktex 40
 \end{lemma}
 
-Questo accade perché le foglie rappresentano il modo in cui dobbiamo scambiare i valori e siccome \(n!\) è una qualsiasi delle permutazioni in cui riceviamo il nostro input, l'albero di decisione corrispondente deve avere una foglia per ogni suo elemento.
-Potrebbe averne anche più di una foglia, in quanto l'algoritmo potrebbe non essere efficiente ed effettuare più ordinamenti di quanto ne siano necessari, ma deve averne \emph{almeno} \(n!\).
+Questo accade perché le foglie rappresentano il modo in cui dobbiamo scambiare i valori e siccome \(n!\) è una qualsiasi delle permutazioni in cui riceviamo il nostro input, l'albero di decisione corrispondente deve avere una foglia per ogni suo elemento.% chktex 40
+Potrebbe averne anche più di una foglia, in quanto l'algoritmo potrebbe non essere efficiente ed effettuare più ordinamenti di quanto ne siano necessari, ma deve averne \emph{almeno} \(n!\).% chktex 40
 
 Ora possiamo restringerci al caso dell'albero binario in quanto abbiamo valori distinti e lo possiamo fare senza perdere generalità.
 
@@ -88,7 +88,7 @@ L'altezza sarà \(\log k\) solo se l'albero è perfettamente bilanciato.
 Il numero di confronti necessari per ordinare \(n\) elementi nel caso peggiore è \(\Omega(n \log n)\).
 \end{theorem}
 
-Abbiamo \(n!\) foglie, quindi l'altezza dell'albero è \(\sim \log n!\) e abbiamo che \(\sim n \log n\).
+Abbiamo \(n!\) foglie, quindi l'altezza dell'albero è \(\sim \log n!\) e abbiamo che \(\sim n \log n\).% chktex 40
 
 \section{Algortimi non basati sui confronti}
 

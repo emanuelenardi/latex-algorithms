@@ -7,8 +7,8 @@
 \newcommand\setrow[9]{
 	\setcounter{col}{1}
 	\foreach \n in {#1, #2, #3, #4, #5, #6, #7, #8, #9} {
-		\edef\x{\value{col} - 0.5}
-		\edef\y{9.5 - \value{row}}
+		\edef\x{\value{col} - 0.5}% chktex 8
+		\edef\y{9.5 - \value{row}}% chktex 8
 		\node[anchor=center] at (\x, \y) {\n};
 		\stepcounter{col}
 	}

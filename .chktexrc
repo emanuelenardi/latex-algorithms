@@ -342,7 +342,9 @@ Silent
 
     \textrm \textem \textbf \textit \textsl \textsf \textsc \texttt
 
-    \clearpage \ddots \dotfill \flushbottom \flushright \fussy \indent \linebreak
+    \mainmatter \cleardoublepage
+
+    \mainmatter \ddots \dotfill \flushbottom \flushright \fussy \indent \linebreak
     \onecolumn \pagebreak \pushtabs \poptabs \scriptsize \sloppy
     \twocolumn \vdots
     \today \kill \newline \thicklines \thinlines
@@ -393,20 +395,21 @@ Silent
 
     \cleardoublepage \tagThisPage \hfuzz
 
-    \ifstandalone \ifsubfile
+    \ifstandalone \ifsubfile \subfiletrue \subfilefalse
 
-    \ifpart \ifgreedy \ifpd \ifmaxFlow
+    \True \False \Or \And
+    \ifpd \pdtrue \ifpart \parttrue \ifgreedy \greedytrue \ifmaxFlow \maxFlowtrue \iflink \linktrue
     \Item \Nil \succNode
     \Omicron \Theta \Omega
     \setContains \setEmpty \setInsert \setIntersection \setRemove \setSize \setUnion \lookup
-    \hatevilleSolution \fibonacciRic \maxFunction
-    \mergeSort \quickSort \shellSort \spaghettiSort \pivot
+    \subSetSum \hatevilleSolution \fibonacciRic \maxFunction
+    \insertionSort \mergeSort \quickSort \shellSort \spaghettiSort \pivot \countingSort \pigeonholeSort
 
     \draw \foreach
 
     \columnbreak
 
-    \mytitlefont \Logo \Author \firstReviserName \secondReviserName
+    \mytitlefont \Logo \Author \firstReviserName \secondReviserName \thirdReviserName \fourthReviserName
 
     \phantomsection
     \appendixpage
