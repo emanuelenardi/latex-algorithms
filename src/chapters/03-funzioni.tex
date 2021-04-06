@@ -438,7 +438,7 @@ T(n) &= \sum_{i=0}^{\log n-1} \frac{n^2}{2^{2i}} \cdot 4i + 4^{\log_2 n} \Arrow{
 	 &= n^2 \sum_{i=0}^{\log n-1} \frac{2^{2i}}{2^{2i}} + n^2 \Arrow{semplifico: \(\frac{2^{2i}}{2^{2i}} = 1\)}\\
 	 &= n^2 \sum_{i=0}^{\log n-1} 1 + n^2 \Arrow{svolgo la sommatoria: \(\sum_{i=0}^{\log n-1} 1 = \log n\)}\\
 	 &= n^2 \log n + n^2 \Arrow{regola generale}\\
-	 &= \Theta(n^2 log n)
+	 &= \Theta(n^2 \log n)
 \end{WithArrows}\]
 
 \section*{Conclusioni}
@@ -471,7 +471,7 @@ T(n) &= n \sum_{i=0}^{\log n} {\left( \frac{1}{2} \right)}^{i} \Arrow{estensione
 	 &= 2n
 \end{WithArrows}\]
 
-Sapendo già il risultato proviamo -- per tentativi -- a dimostrare che \fbox{\(T(n) = \Omicron(n)\)}
+Sapendo già il risultato proviamo --- per tentativi --- a dimostrare che \fbox{\(T(n) = \Omicron(n)\)}
 
 \textbf{Limite superiore}: Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \leqslant cn, \forall n \geqslant m\)
 \begin{itemize}
@@ -773,7 +773,7 @@ Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \le
 		T(5) &= 9T(1) + 5 = 14 \leqslant c(5^2 - 5) \Leftrightarrow c \geqslant \nicefrac{14}{20}\\
 		T(6) &= 9T(2) + 6
 	\end{align*}
-	Non è necessario andare oltre poiché T(6) dipende da T(2) che è già stato dimostrato.
+	Non è necessario andare oltre poiché \(T(6)\) dipende da \(T(2)\) che è già stato dimostrato.
 
 	Riassumendo i parametri scelti sono:
 	\begin{itemize}[label=\textbullet]
@@ -876,7 +876,7 @@ Sommando i costi totali del \(k\)-esimo livello e dei livelli fino al \(k-1\), s
 T(n) &= da^k + \sum_{i=0}^{k-1} a^i \cdot c b^{(k-i)\beta} \Arrow{moltiplico}\\
 	 &= da^k + \sum_{i=0}^{k-1} a^i \cdot c b^{k\beta} \cdot b^{-i\beta} \Arrow{porto fuori i termini\\non dipendenti da \(i\)}\\
 	 &= da^k + cb^{k\beta} \sum_{i=0}^{k-1} \frac{a^i}{b^{i\beta}} \Arrow{raccolgo \(i\)}\\
-	 &= da^k + cb^{k\beta} \sum_{i=0}^{k-1} \left( \frac{a}{b^{\beta}} \right)^{i}
+	 &= da^k + cb^{k\beta} \sum_{i=0}^{k-1} {\left( \frac{a}{b^{\beta}} \right)}^{i}% chktex 3
 \end{WithArrows}\]
 A questo punto ho una formula chiusa ma non ancora nella sua forma definitiva.
 
@@ -891,7 +891,7 @@ Facciamo alcune osservazioni.
 \end{itemize}
 Grazie alle osservazioni appena fatto possiamo sostituire i parametri nell'equazione finale:
 \[\begin{WithArrows}[displaystyle]
-T(n) &= da^k + cb^{k\beta} \sum_{i=0}^{k-1} \left( \frac{a}{b^{\beta}} \right)^{i} \Arrow{sostituisco: \(\alpha^k \rightarrow n^{\alpha}\)\\sostituisco: \(a \rightarrow b^{\alpha}\), \(q = \frac{b^{\alpha}}{b^{\beta}}\)}\\
+T(n) &= da^k + cb^{k\beta} \sum_{i=0}^{k-1} {\left( \frac{a}{b^{\beta}} \right)}^{i} \Arrow{sostituisco: \(\alpha^k \rightarrow n^{\alpha}\)\\sostituisco: \(a \rightarrow b^{\alpha}\), \(q = \frac{b^{\alpha}}{b^{\beta}}\)}\\
 	 &= dn^{\alpha} + cb^{k\beta} \sum_{i=0}^{k-1} q^{i}
 \end{WithArrows}\]
 Da qui si aprono tre possibilità, ossia che
