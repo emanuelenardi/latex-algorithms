@@ -94,7 +94,7 @@ Le descrizioni degli algoritmi precedenti presentano diversi problemi:
 \subsection{Come descrivere un algoritmo}
 
 Come abbiamo già anticipato è necessario avere una descrizione il più possibile formale, ma senza soffermarsi sulle particolarità di un determinato linguaggio di programmazione.
-Per questo motivo nel seguito utilizzeremo lo \enquote{pseudocodice} .
+Per questo motivo nel seguito utilizzeremo lo \enquote{pseudocodice}.
 
 In alcuni casi daremo anche per scontato alcuni passaggi, ad esempio scriveremo \enquote{ordina gli elementi} e non sarà di nostro interesse sapere quale sarà lo specifico algoritmo di ordinamento utilizzato.
 
@@ -344,16 +344,16 @@ Distinguiamo tre fasi:
 
 Prendiamo ancora un'ultima volta come esempio l'algoritmo della ricerca del minimo (\cref{alg:ricerca-minimo-efficiente} a \cpageref{alg:ricerca-minimo-efficiente}).
 
-L'invariante di ciclo per questo algoritmo è la seguente: all'inizio di ogni iterazione del ciclo, la variabile \(min\) contiene il minimo parziale degli elementi \(S[1\dots i-1]\).
-Quindi quando analizzo l'elemento \(i\)-esimo so che \(min\) contiene il minimo fra tutti gli elementi precendenti.
+L'invariante di ciclo per questo algoritmo è la seguente: all'inizio di ogni iterazione del ciclo, la variabile \(\min\) contiene il minimo parziale degli elementi \(S[1\dots i-1]\).
+Quindi quando analizzo l'elemento \(i\)-esimo so che \(\min\) contiene il minimo fra tutti gli elementi precendenti.
 \begin{enumerate}
-    \item \textbf{inizializzazione} (caso base): quando entriamo nel ciclo la variabile \(min\) contiene il minimo fra \(S[1\dots i-1]\) ed è vero poiché \(i = 2\) quindi \(i-1 = 1\) e la variabile contiene il minimo fra il primo elemento ed il primo elemento.
-    \item \textbf{conservazione} (passo induttivo): nel momento in cui termino il ciclo la variabile \(min\) contiene il minimo parziale fra \(i\) ed \(n\).
-    \item \textbf{conclusione}: al termine del ciclo \(i\) è pari a \(n+1\), quindi la variabile \(min\) contiene il minimo parziale fra gli elementi compresi fra \(1\) e \(i-1\), ma dato che \(i\) vale \(n+1\), allora conterrà il minimo fra gli elementi compresi fra \(n+1-1 = n\).
+    \item \textbf{inizializzazione} (caso base): quando entriamo nel ciclo la variabile \(\min\) contiene il minimo fra \(S[1\dots i-1]\) ed è vero poiché \(i = 2\) quindi \(i-1 = 1\) e la variabile contiene il minimo fra il primo elemento ed il primo elemento.
+    \item \textbf{conservazione} (passo induttivo): nel momento in cui termino il ciclo la variabile \(\min\) contiene il minimo parziale fra \(i\) ed \(n\).
+    \item \textbf{conclusione}: al termine del ciclo \(i\) è pari a \(n+1\), quindi la variabile \(\min\) contiene il minimo parziale fra gli elementi compresi fra \(1\) e \(i-1\), ma dato che \(i\) vale \(n+1\), allora conterrà il minimo fra gli elementi compresi fra \(n+1-1 = n\).
 \end{enumerate}
 L'invariante di ciclo risulta quindi rispettata e rappresenta la correttezza del nostro algoritmo.
 
-Questa analisi risulta eccessivamente dettagliata per un algoritmo così semplice, ma in futuro dovremo utilizzare l'invariante di ciclo per dimostrare algoritmi più complessi, è quindi di fondamentale importanza impararne i pr\`incipi.
+Questa analisi risulta eccessivamente dettagliata per un algoritmo così semplice, ma in futuro dovremo utilizzare l'invariante di ciclo per dimostrare algoritmi più complessi, è quindi di fondamentale importanza impararne i pr\`{\i}ncipi.
 
 \subsubsection{Dimostrazione per induzione nella ricerca binaria}
 
