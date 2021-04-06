@@ -221,7 +221,7 @@ La relazione di ricorrenza che ne segue è la sequente:
 	T(n) =% chktex 36
 	\begin{cases*}
 		c                      & se \(n = 0\)\\
-		T(\nicefrac{n}{2}) + d & se \(n > 0\)
+		T(\nicefrac{n}{2}) + d & se \(n > 0\)% chktex 36
 	\end{cases*}
 \]
 
@@ -250,7 +250,7 @@ Finora abbiamo analizzato precisamente due algoritmi e abbiamo ottenuto due \emp
 	\item Ricerca: \(T(n) = d \log n + e\). Chiamiamo questa funzione \textbf{logaritmica}, utilizzando la notazione \(\Omicron(\log n)\);
 	\item Minimo: \(T(n) = a + b\). Chiamiamo questa funzione \textbf{lineare}, utilizzando la notazione \(\Omicron(n)\).
 \end{itemize}
-Abbiamo visto anche una terza funzione che deriva dall'implementazione banale (\emph{na{\"}{\i}f}) dell'algoritmo per la ricerca del minimo:
+Abbiamo visto anche una terza funzione che deriva dall'implementazione banale (\emph{na\"{\i}f}) dell'algoritmo per la ricerca del minimo:
 \begin{itemize}
 	\item Minimo: \(T(n) = fn^2 + gn + h\). Chiamiamo questa funzione \textbf{quadratica}, utilizzando la notazione \(\Omicron(n^2)\).
 \end{itemize}
@@ -406,7 +406,6 @@ che è vera per ogni \( c \geqslant 13 \) e per ogni \( n \geqslant \sqrt[3]{7} 
 \begin{figure}[H]\centering
 	\includegraphics[width=.6\textwidth]{plot-0bis}
 	\caption[]{Risoluzione grafica dell'esercizio.}
-	\label{fig:plot-0bis}
 \end{figure}
 
 \clearpage
@@ -436,7 +435,7 @@ Abbiamo dimostrato quindi che \(f(n) = \Omega(n^2)\).
 \[\begin{WithArrows}
 	f(n) &= 3 n^2 + 2 n^2 + 7 n \Arrow{\( \forall n \geqslant 1 \)} \\
 	&\leqslant 3 n^2 + 7 n^2 \Arrow{raccogliamo} \\
-	&\leqslant 10 n^2 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant c_2 n^2\) ?}\\
+	&\leqslant 10 n^2 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant c_2 n^2\)?}\\
 	&\overset{?}{\leqslant} c_2 n^2 \Arrow{metto a confronto}\\
 	10 n^2 &\leqslant c_2 n^2 \Arrow{semplifico}\\
 	10 \cancel{n^2} &\leqslant c_2 \cancel{n^2}
@@ -716,7 +715,7 @@ Le dimensioni delle chiamate ricorsive vengono ridotte ad una semplice costante.
 Possiamo quindi concludere che \(T(n) = \Omicron(n^{1.58\dots})\).
 
 \begin{note}
-L'algoritmo ingenuo (\foreign{na{\"}{\i}f}) non è sempre il migliore a meno che non sia possibile dimostrare il contrario.
+L'algoritmo ingenuo (\foreign{na\"{\i}f}) non è sempre il migliore a meno che non sia possibile dimostrare il contrario.
 \end{note}
 
 Negli anni sono stati proposti diversi algoritmi, che il limite inferiore al problema della moltiplicazione sia \(\Omega(n \log n)\) è una congettura.
@@ -750,7 +749,7 @@ Un approccio \enquote{demente} è quello di generare tutte le possibili permutaz
 \clearpage
 \subsection{Selection sort}
 
-Un approccio banale (\foreign{na{\"}{\i}f}) è quello di cercare il minimo e metterlo nella posizione corretta, riducendo il problema agli \(n-1\) valori rimanenti.
+Un approccio banale (\foreign{na\"{\i}f}) è quello di cercare il minimo e metterlo nella posizione corretta, riducendo il problema agli \(n-1\) valori rimanenti.
 
 \begin{algorithm}[H]
 	\caption{selectionSort}

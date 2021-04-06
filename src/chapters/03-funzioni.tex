@@ -31,10 +31,10 @@ Abbiamo concluso la prima parte delle lezioni che ci introduceva alle equazioni 
 \textbf{Limite superiore}: \(\exists c>0, \exists m \geqslant 0: f(n) \leqslant cn^k, \forall n \geqslant m\)
 
 \[\begin{WithArrows}
-f(n) &= a_k n^k + a_{k-1} n^{k-1} + \ldots + a_1 n + a_0 \Arrow{\(a_k > 0\) per def., rendo gli altri positivi}\\
-	 &\leqslant a_k n^k + \abs{a_{k-1}} n^{k-1} +  \ldots  + \abs{a_1} n + \abs{a_0} \Arrow{\(\forall n \geqslant 1\), elevo tutte le potenze a \(k\)} \\
-	 &\leqslant a_k n^k + \abs{a_{k-1}} n^k +  \ldots  + \abs{a_1} n^k + \abs{a_0} n^k \Arrow{raccolgo \(n^k\)}\\
-	 &= (a_k + \abs{a_{k-1}}  +  \ldots  + \abs{a_1} + \abs{a_0})\, n^k \Arrow{esiste una costante \(c\)\\che rende la disequazione vera?} \\
+f(n) &= a_k n^k + a_{k-1} n^{k-1} + \cdots + a_1 n + a_0 \Arrow{\(a_k > 0\) per def., rendo gli altri positivi}\\
+	 &\leqslant a_k n^k + \abs{a_{k-1}} n^{k-1} +  \cdots  + \abs{a_1} n + \abs{a_0} \Arrow{\(\forall n \geqslant 1\), elevo tutte le potenze a \(k\)} \\
+	 &\leqslant a_k n^k + \abs{a_{k-1}} n^k +  \cdots  + \abs{a_1} n^k + \abs{a_0} n^k \Arrow{raccolgo \(n^k\)}\\
+	 &= (a_k + \abs{a_{k-1}}  +  \cdots  + \abs{a_1} + \abs{a_0})\, n^k \Arrow{esiste una costante \(c\)\\che rende la disequazione vera?} \\
 	 &\stackrel{?}{\leqslant} cn^k
 \end{WithArrows}\]
 che è vera per \(c \geqslant (\abs{a_k} + \abs{a_{k-1}} + \ldots + \abs{a_1} + \abs{a_0} )\) (il coefficiente) e per \(m = 1\).
@@ -43,16 +43,16 @@ che è vera per \(c \geqslant (\abs{a_k} + \abs{a_{k-1}} + \ldots + \abs{a_1} + 
 \begin{proof}
 \textbf{Limite inferiore}: \(\exists d>0, \exists m \geqslant 0: f(n) \geqslant d n^k, \forall n \geqslant m\)
 \[\begin{WithArrows}
-	f(n) &= a_k n^k + a_{k-1} n^{k-1} + \ldots + a_1 n + a_0 \Arrow[tikz={text width=4cm}]{normalizzo aggiungendo un segno negativo}\\
-	&\geqslant a_kn^k - \abs{a_{k-1}} n^{k-1} - \ldots  - \abs{a_1} n - \abs{a_0} \Arrow{\(\forall n \geqslant 1\), elevo alla \(k-1\)}\\
-	&\geqslant a_kn^k - \abs{a_{k-1}} n^{k-1} - \ldots  - \abs{a_1} n^{k-1} - \abs{a_0} n^{k-1} \\
+	f(n) &= a_k n^k + a_{k-1} n^{k-1} + \cdots + a_1 n + a_0 \Arrow[tikz={text width=4cm}]{normalizzo aggiungendo un segno negativo}\\
+	&\geqslant a_kn^k - \abs{a_{k-1}} n^{k-1} - \cdots  - \abs{a_1} n - \abs{a_0} \Arrow{\(\forall n \geqslant 1\), elevo alla \(k-1\)}\\
+	&\geqslant a_kn^k - \abs{a_{k-1}} n^{k-1} - \cdots  - \abs{a_1} n^{k-1} - \abs{a_0} n^{k-1} \\
 	&\stackrel{?}{\geqslant} d n^k
 \end{WithArrows}\]
 L'ultima equazione è vera se:
 \[
-d \leqslant a_k - \frac{\abs{a_{k-1}}}{n} - \frac{\abs{a_{k-2}}}{n} -\ldots - \frac{\abs{a_1}}{n} - \frac{\abs{a_0}}{n} > 0
+d \leqslant a_k - \frac{\abs{a_{k-1}}}{n} - \frac{\abs{a_{k-2}}}{n} -\cdots - \frac{\abs{a_1}}{n} - \frac{\abs{a_0}}{n} > 0
 \iff
-n > \frac{\abs{a_{k-1}} + \ldots + \abs{a_0}}{a_k} = m\qedhere
+n > \frac{\abs{a_{k-1}} + \cdots + \abs{a_0}}{a_k} = m\qedhere
 \]
 % Costituito da una componente positiva (\(a_k\)) e da una componente negativa che per valori crescenti di \(n\) tende a \(0\).
 \end{proof}

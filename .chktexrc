@@ -403,10 +403,11 @@ Silent
     \succNode \predNode \insertNode \shortcut \Node
     \Omicron \Theta \Omega
     \setContains \setEmpty \setInsert \setIntersection \setRemove \setSize \setUnion \lookup
+    \heapDecrease
     \subSetSum \hatevilleSolution \fibonacciRic \minFunction \maxFunction
     \erdos \topSort \ConnectedComponents
     \hateville \knapsack \selection \select
-    \insertionSort \mergeSort \quickSort \shellSort \spaghettiSort \pivot \countingSort \pigeonholeSort
+    \insertionSort \mergeSort \quickSort \heapSort \shellSort \spaghettiSort \pivot \countingSort \pigeonholeSort \bucketSort
 
     \draw \foreach
 
