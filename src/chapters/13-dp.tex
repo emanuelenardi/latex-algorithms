@@ -745,7 +745,7 @@ Come modifichiamo la formula ricorsiva?
     \begin{dcases}
         0                                                   & i=0\ \Or\ c=0     \\
         -\infty                                             & c<0               \\
-        \maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c])) & \text{altrimenti} \\
+        \maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c])  & \text{altrimenti} \\
     \end{dcases}
 \]
 In un caso come questo, è possibile semplificare la formula riducendo lo spazio occupato.

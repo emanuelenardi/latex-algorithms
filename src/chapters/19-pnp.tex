@@ -163,6 +163,7 @@ Questo è un esempio di covering problem, un problema in cui si cerca di ottener
 
 \subsection{Riduzione per problemi duali}
 
+% checktex 167
 \subsubsection{Se \texorpdfstring{\(S \subseteq V\)}{S sottoinsieme di V} è un insieme indipendente, allora \texorpdfstring{\(V - S\)}{V - S} è una copertura di vertici}
 
 Se \(S\) è un insieme indipendente:
@@ -174,6 +175,7 @@ Se \(S\) è un insieme indipendente:
 	\includegraphics[page=3, width=0.4\textwidth]{independent}
 \end{figure}
 
+% checktex 179
 \subsubsection{Se \texorpdfstring{\(V - S\)}{V - S} è una copertura di vertici, allora \texorpdfstring{\(S \subseteq V\)}{S sottoinsieme di V} è un insieme indipendente}
 
 Supponiamo per assurdo che \(S\) non sia un insieme indipendente:
@@ -206,10 +208,10 @@ Ad esempio se prendiamo l'espressione \((x \lor \bar{y} \lor z) \land (\bar{x} \
 Possiamo dedurne quindi che la formula booleana iniziale è soddisfacibile, in quanto esiste almeno un'interpretazione delle variabili che la rende vera.
 
 Riduciamo il problema generale ad una forma che include solo tre letterali.
-Chiameremo questo problema 3-\sat.
+Chiameremo questo problema 3-{\sat}.
 Data una espressione in forma normale congiuntiva in cui le clausole hanno esattamente 3 letterali, il problema della soddisfacibilità consiste nel decidere se esiste una assegnazione di valori di verità alle variabili che rende l'espressione vera.
 
-Vogliamo dimostrare che il problema 3-\sat è riducibile polinomialmente a quello dell'insieme indipendente. Ossia
+Vogliamo dimostrare che il problema 3-{\sat} è riducibile polinomialmente a quello dell'insieme indipendente. Ossia
 \[
     {\treeSat} \leqslant_p \indipendentSet
 \]

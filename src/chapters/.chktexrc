@@ -279,7 +279,10 @@ UserWarnRegex
 
 TeXInputs
 {
-
+    src/chapters/
+    src/chapters/intro/
+    src/chapters/middle/
+    src/chapters/outro/
 }
 
 #####################################################################
@@ -386,20 +389,27 @@ Silent
     \addlinespace \cr \fill \frontmatter
     \toprule \midrule \lightrule \bottomrule
 
-    \hfill
+    \hfill \null
 
-    \input \cleardoublepage \tagThisPage \hfuzz
+    \cleardoublepage \tagThisPage \hfuzz
 
     \ifstandalone \ifsubfile
 
     \ifpart \ifgreedy \ifpd \ifmaxFlow
     \Item \Nil \succNode
     \Omicron \Theta \Omega
-    \setContains \setSize \setInsert \setRemove \setUnion \setIntersection \lookup
-    \mergeSort \quickSort
-    \hatevilleSolution
+    \setContains \setEmpty \setInsert \setIntersection \setRemove \setSize \setUnion \lookup
+    \hatevilleSolution \fibonacciRic \maxFunction
+    \mergeSort \quickSort \shellSort \spaghettiSort
 
-    \draw
+    \draw \foreach
+
+    \columnbreak
+
+    \mytitlefont \Logo \Author \firstReviserName \secondReviserName
+
+    \phantomsection
+    \appendixpage
 
 }[
 # Here you can put regular expressions to match Silent macros.  It was
@@ -510,7 +520,11 @@ WipeArg
     \citetext:{} \citeyear:*{} \citeyearpar:{}
     # tipa which uses "
     \textipa:{}
-    # NOTE only temporary
+    # NOTE personal
+    \chessboard:[]
+    \texttt:{}
+    \setlength:{}{}
+    \Xcline:{}{}
     \tikzset:{}
 }
 
@@ -564,8 +578,8 @@ TextCmd
 VerbEnvir
 {
     verbatim comment listing verbatimtab rawhtml errexam picture texdraw
-    filecontents pgfpicture tikzpicture tikzset minted lstlisting IPA ignore
-    algorithm tabular blockarray block
+    filecontents pgfpicture tikzpicture tikzset forest minted lstlisting IPA ignore
+    algorithm tabu tabular blockarray block enumerate
 }
 
 #####################################################################
