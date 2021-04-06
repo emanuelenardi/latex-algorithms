@@ -23,7 +23,7 @@ on:
 jobs:
 
   lint_code_base:
-    name: 0. 🧹 Lint Code Base
+    name: 🧹✨ Lint Code Base
     runs-on: ubuntu-latest
     steps:
 
