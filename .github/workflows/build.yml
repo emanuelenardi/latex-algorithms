@@ -43,6 +43,7 @@ jobs:
   build_docs:
     name: 0. ⚙️ Compila documento
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       RUN_NUMBER: ${{ github.run_number }}
