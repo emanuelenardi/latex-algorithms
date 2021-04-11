@@ -15,15 +15,15 @@
 
 \section*{Introduzione}
 
-Durante il corso abbiamo visto alcuni algoritmi di ordinamento, le loro complessità sono riassunte nella tabella~\ref{tab:sorting-complexity}.
+Durante il corso abbiamo visto alcuni algoritmi di ordinamento, le loro complessità sono riassunte nella~\cref{tab:sorting-complexity}.
 
 \begin{table}[H]\centering
     \caption{Complessità degli algoritmi di ordinamento}\label{tab:sorting-complexity}
     \begin{tabular}{@{} l cc l @{}}
     \toprule
-        \textbf{Algoritmo} & \textbf{Caso ottimo} & \textbf{Caso pessimo} & \textbf{Tecnica utilizzata}\\
+        \textbf{algoritmo} & \textbf{caso ottimo} & \textbf{caso pessimo} & \textbf{tecnica}\\
     \midrule
-        SelectionSort & \(\Omega(n)\) & \(\Omicron(n)\) & \multicolumn{1}{c}{-}\\
+        SelectionSort & \(\Omega(n)\) & \(\Omicron(n^2)\) & \multicolumn{1}{c}{-}\\
     \lightrule
         InsertionSort & \(\Omega(n)\) & \(\Omicron(n^2)\) & \multicolumn{1}{c}{-}\\
     \lightrule
@@ -34,7 +34,7 @@ Durante il corso abbiamo visto alcuni algoritmi di ordinamento, le loro compless
         HeapSort & \multicolumn{2}{c}{\(\Theta(n \log n)\)} & \multicolumn{1}{c}{-}\\
     \lightrule
         QuickSort & \(\Omega(n \log n)\) & \(\Omicron(n^2)\) & \multicolumn{1}{c}{-}\\
-        \bottomrule
+    \bottomrule
     \end{tabular}
 \end{table}
 
@@ -44,7 +44,7 @@ Sappiamo inoltre che \quickSort nel caso medio ha una complessità di \(n \log n
 Possiamo arrivare alla conclusione che tutti questi algoritmi sono \emph{basati su confronti}: le decisioni sull'ordinamento vengono prese in base al confronto (\(<\), \(=\), \(>\)) fra due valori.
 Esistono altri modi per ordinare gli oggetti, ma gli algoritmi generali devono essere necessariamente basati sui confronti.
 
-Gli algoritmi migliori che abbiamo visto finora hanno una complessità di \(\Omicron(n \log n)\), \insertionSort e \shellSort sono più veloci (\(\Omega(n)\)) solo in casi speciali, è quindi lecito chiederci se sia possibile fare meglio di così.
+Gli algoritmi migliori che abbiamo visto finora hanno una complessità di \(\Omicron(n \log n)\), \insertionSort e \shellSort sono più veloci (\(\Omega(n)\)) solo in casi speciali, è quindi lecito chiedersi se sia possibile fare meglio di così.
 
 \section*{Dimostrazione del limite inferiore del problema dell'ordinamento}
 
@@ -55,12 +55,12 @@ Consideriamo un qualunque algoritmo basato su confronti.
 Assumiamo che tutti i valori siano distinti (non abbiamo perdita di generalità).
 L'algoritmo può essere quindi rappresentato tramite un \emph{albero di decisione}, ossia un albero binario che rappresenta i confronti con gli elementi.
 
-% \begin{figure}[H]\centering
-%     \input{../assets/figures/sorting/decision-tree}
-%     \caption{Albero di decisione}
-% \end{figure}
+\begin{figure}[H]\centering
+    \input{../assets/figures/sorting/decision-tree}
+    \caption{Albero di decisione}\label{fig:albero-decisione}
+\end{figure}
 
-Gli alberi di decisione hanno due proprietà:
+Gli alberi di decisione, come quello mostrato in~\cref{fig:albero-decisione}, hanno due proprietà:
 \begin{enumerate}
     \item il \emph{cammino radice-foglia} rappresenta la sequenza di confronti eseguiti dall'algoritmo corrispondente;
     \item l'\emph{altezza dell'albero} rappresenta il numero di confronti eseguiti dall'algoritmo corrispondente nel caso pessimo.
@@ -72,7 +72,7 @@ Si considerino tutti gli alberi di decisione ottenibili da algoritmi di ordiname
 Un albero di decisione per l'ordinamento di \(n\) elementi contiene \textbf{almeno} \(n!\) foglie.% chktex 40
 \end{lemma}
 
-Questo accade perché le foglie rappresentano il modo in cui dobbiamo scambiare i valori e siccome \(n!\) è una qualsiasi delle permutazioni in cui riceviamo il nostro input, l'albero di decisione corrispondente deve avere una foglia per ogni suo elemento.% chktex 40
+Questo accade perché le foglie rappresentano il modo in cui dobbiamo scambiare i valori e siccome \(n!\) è una qualsiasi delle permutazioni in cui riceviamo il nostro input, l'albero di decisione corrispondente deve avere una foglia per ogni suo elemento. % chktex 40
 Potrebbe averne anche più di una foglia, in quanto l'algoritmo potrebbe non essere efficiente ed effettuare più ordinamenti di quanto ne siano necessari, ma deve averne \emph{almeno} \(n!\).% chktex 40
 
 Ora possiamo restringerci al caso dell'albero binario in quanto abbiamo valori distinti e lo possiamo fare senza perdere generalità.
@@ -119,7 +119,7 @@ L'intervallo non deve necessariamente iniziare in \(1\) e finire in \(k\); qualu
 \end{note}
 
 \begin{algorithm}[H]
-    \caption{Algoritmo di ordinamento Counting Sort}
+    \caption{Counting Sort}
     \input{countingSort}
 \end{algorithm}
 
@@ -138,8 +138,8 @@ Ad esempio se \(k\) è \(\Omicron(n^3)\) questo algoritmo è peggiore di tutti q
 
 Se dobbiamo ordinare chiavi numeriche basse e valori associati, allora possiamo usare \pigeonholeSort.
 Sfruttiamo lo stesso meccanismo di \countingSort, ma anziché contare le occorrenze le inseriamo all'interno di una lista concatenata.
-L'inserimento di un elemento in una lista ha costo \(\Omicron(1)\), quindi l'algoritmo ha \(\Omicron(n)\) a patto che sia possibile limitare l'input a \(k\) elementi (possibilmente piccolo).
-Il costo complessivo risulta quindi \(\Omicron(n+k)\) e vale considerazione precedente.so
+L'inserimento di un elemento in una lista ha costo \(\Omicron(1)\), quindi l'algoritmo ha complessità \(\Omicron(n)\) a patto che sia possibile limitare l'input a \(k\) elementi (possibilmente piccolo).
+Il costo complessivo risulta quindi \(\Omicron(n+k)\) e vale considerazione precedente.
 
 \begin{note}
 \pigeonholeSort è un'estensione del \countingSort che permette di ordinare in tempo lineare coppie (chiave, valore), invece che singoli interi.
@@ -150,12 +150,12 @@ Le chiavi devono essere comprese fra \(1\) e \(k\) (con \(k\) possibilmente picc
     \includegraphics[width=.8\textwidth]{pigeonhole}
 \end{figure}
 
-% \begin{algorithm}[H]
-%     \caption{Algoritmo di ordinamento PigeonholeSort}
-%     \input{pigeonholeSort}
-% \end{algorithm}
+\begin{algorithm}[H]
+    \caption{PigeonholeSort}
+    \input{pigeonholeSort}
+\end{algorithm}
 
-% \clearpage
+\clearpage
 \subsection{Bucket Sort}
 
 Se i valori in input sono:
@@ -163,10 +163,10 @@ Se i valori in input sono:
     \item valori reali uniformemente distribuiti nell'intervallo \([0, 1)\);
     \item oppure è possibile normalizzarli nell'intervallo \([0,1)\) in tempo lineare, in quanto sono uniformemente distribuiti, allora
 \end{enumerate}
-è possibile usare \bucketSort, ossia una versione di \pigeonholeSort dove utilizziamo dei concetti probabilistici (l'ipotesi di uniformità) per sapere quanti elementi ci aspettiamo che siano contenuti in ogni lista.
+è possibile usare \bucketSort, ossia una versione di \pigeonholeSort dove utilizziamo dei concetti probabilistici (ossia l'ipotesi di uniformità) per sapere quanti elementi ci aspettiamo che siano contenuti in ogni lista.
 
 \paragraph{Come funziona}
-Divide l'intervallo in \(n\) sottovettori di dimensione \(\nicefrac{1}{n}\), detti \foreign{bucket}, e poi distribuisce gli \(n\) numeri nei \foreign{bucket}.
+Divide l'intervallo in \(n\) sottovettori di dimensione \(\nicefrac{1}{n}\), detti \foreign{bucket} (secchi), e poi distribuisce gli \(n\) numeri nei \foreign{bucket}.
 % Per l'ipotesi di uniformità, il numero atteso di valori nei bucket è \(1\).
 I valori così inseriti possono essere riordinati tramite \insertionSort.
 
@@ -195,34 +195,63 @@ Ordinando quindi prima per valore e poi per posizione.
 % Basta usare come chiave di ordinamento la coppia (chiave, posizione iniziale).
 \end{note}
 
-\section{Rissunto algoritmi di ordinamento}
+\section{Riassunto algoritmi di ordinamento}
 
-\insertionSort ha una compleesità di \(\Omega(n)\) nel caso ottimo e di \(\Omicron(n^2)\) nel caso pessimo.
-\`{E} stabile, sul posto, iterativo.
-Adatto per piccoli valori (non utilizzare \quickSort) e sequenze quasi ordinate.
+\begin{itemize}
+    \item \insertionSort ha una compleesità di \(\Omega(n)\) nel caso ottimo e di \(\Omicron(n^2)\) nel caso pessimo.
+    \`{E} stabile, sul posto, iterativo.
+    Adatto per piccoli valori (non utilizzare \quickSort) e sequenze quasi ordinate;
 
-\mergeSort ha una complessità di \(\Theta(n \log n)\), è stabile ma richiede \(\Omicron(n)\) spazio aggiuntivo, è ricorsivo (richiede \(\Omicron(\log n)\) spazio nello \foreign{stack}).
-Buona performance in \foreign{cache}, buona parallelizzazione.
+    \item \mergeSort ha una complessità di \(\Theta(n \log n)\), è stabile ma richiede \(\Omicron(n)\) spazio aggiuntivo, è ricorsivo (richiede \(\Omicron(\log n)\) spazio nello \foreign{stack}).
+    Buona performance in \foreign{cache}, buona parallelizzazione;
 
-\heapSort ha una complessità di \(\Theta(n \log n)\), non stabile, sul posto, iterativo.
-Cattiva performance in cache, cattiva parallelizzazione viene quindi preferito in sistemi embedded dove parallelizzazione e memoria aggiuntiva non vengono considerati.
+    \item \heapSort ha una complessità di \(\Theta(n \log n)\), non stabile, sul posto, iterativo.
+    Cattiva performance in \foreign{cache}, cattiva parallelizzazione viene quindi preferito in sistemi embedded dove parallelizzazione e memoria aggiuntiva non vengono considerati;
 
-\quickSort \(\Omicron(n \log n)\) in media, \(\Omicron(n^2)\) nel caso peggiore, non stabile, ricorsivo (richiede \(\Omicron(\log n)\) spazio nello \foreign{stack}).
-Buona performance in cache, buona parallelizzazione, buoni fattori moltiplicativi.
-\`{E} una delle scelte migliori grazie al meccanismo di randomizzazione permette nel caso medio di avere una complessità di \(n \log n\).
+    \item \quickSort \(\Omicron(n \log n)\) in media, \(\Omicron(n^2)\) nel caso peggiore, non stabile, ricorsivo (richiede \(\Omicron(\log n)\) spazio nello \foreign{stack}).
+    Buona performance in cache, buona parallelizzazione, buoni fattori moltiplicativi.
+    \`{E} una delle scelte migliori grazie al meccanismo di randomizzazione che permette nel caso medio di avere una complessità di \(n \log n\);
 
-\countingSort \(\Theta(n+k)\), richiede \(\Omicron(k)\) memoria aggiuntiva, iterativo.
-Molto veloce quando \(k = \Omicron(n)\).
+    \item \countingSort \(\Theta(n+k)\), richiede \(\Omicron(k)\) memoria aggiuntiva, iterativo.
+    Molto veloce quando \(k = \Omicron(n)\);
 
-\pigeonholeSort \(\Theta(n+k)\), stabile, richiede \(\Omicron(n+k)\) memoria aggiuntiva, iterativo.
-Molto veloce quando \(k = \Omicron(n)\).
+    \item \pigeonholeSort \(\Theta(n+k)\), stabile, richiede \(\Omicron(n+k)\) memoria aggiuntiva, iterativo.
+    Molto veloce quando \(k = \Omicron(n)\);
 
-\countingSort e \pigeonholeSort vengono utilizzati quando sappiamo qualcosa sui dati in input.
+    \countingSort e \pigeonholeSort vengono utilizzati quando sappiamo qualcosa sui dati in input.
 
-\bucketSort \(\Omicron(n)\) nel caso i valori siano distribuiti uniformemente, stabile, richiede \(\Omicron(n)\) spazio aggiuntivo.
+    \item \bucketSort \(\Omicron(n)\) nel caso i valori siano distribuiti uniformemente, stabile, richiede \(\Omicron(n)\) spazio aggiuntivo;
 
-\shellSort \(\Omicron(n \sqrt{n})\), stabile, adatto per piccoli valori, sequenze quasi ordinate.
-\`{E} una versione migliorata di \insertionSort.
+    \item \shellSort \(\Omicron(n \sqrt{n})\), stabile, adatto per piccoli valori, sequenze quasi ordinate.
+    \`{E} una versione migliorata di \insertionSort.
+\end{itemize}
+
+\begin{table}[H]\centering
+    \caption{Complessità degli algoritmi di ordinamento}\label{tab:sorting-complexity-all}
+    \begin{tabular}{@{} l cc lll @{}}
+    \toprule
+        \textbf{algoritmo} & \textbf{caso ottimo} & \textbf{caso pessimo} & \textbf{tecnica} & \textbf{memoria aggiuntiva} & \textbf{stabile}\\
+    \midrule
+        SelectionSort & \(\Omega(n)\) & \(\Omicron(n^2)\) & \multicolumn{1}{c}{-}\\
+    \lightrule
+        InsertionSort & \(\Omega(n)\) & \(\Omicron(n^2)\) & \multicolumn{1}{c}{-}\\
+    \lightrule
+        ShellSort & \(\Omega(n)\) & \(\Omicron(n^{3/2})\) & ricerca locale\\
+    \lightrule
+        MergeSort & \multicolumn{2}{c}{\(\Theta(n \log n)\)} & dividi-et-impera\\
+    \lightrule
+        HeapSort & \multicolumn{2}{c}{\(\Theta(n \log n)\)} & \multicolumn{1}{c}{-}\\
+    \lightrule
+        QuickSort & \(\Omega(n \log n)\) & \(\Omicron(n^2)\) & \multicolumn{1}{c}{-}\\
+    \lightrule
+        countingSort &  & \\
+    \lightrule
+        pigeonholeSort &  & \\
+    \lightrule
+        bucketSort &  & \\
+    \bottomrule
+    \end{tabular}
+\end{table}
 
 \ifsubfile
 \end{document}
