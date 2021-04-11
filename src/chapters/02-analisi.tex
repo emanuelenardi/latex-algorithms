@@ -6,6 +6,8 @@
 \usepackage{../settings/subfile}
 \setcounter{chapter}{1}
 
+\usepackage{../settings/debug}
+
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
 \begin{document}
@@ -16,13 +18,13 @@
 \section{Introduzione}
 
 Il nostro obiettivo è \emph{stimare la complessità in tempo} degli algoritmi.
-Dovremmo stimare anche quella in spazio, ma la complessità in spazio dipende da quella in tempo.
-Daremo delle definizioni, parleremo di modelli di calcolo, faremo qualche esempio di valutazione precisa e introdurremo una notazione.
+Dovremmo stimare anche quella spaziale, ma la complessità spaziale dipende da quella temporale.
+Daremo delle definizioni, parleremo di modelli di calcolo, faremo qualche esempio di valutazione precisa e introdurremo una notazione per indicare la complessità degli algoritmi.
 Faremo tutto questo per stimare il tempo per un dato input, per stimare il più grande input gestibile in tempi ragionevoli, per avere un metodo di confronto fra diversi algoritmi ed in particolare per ottimizzare le parti più importanti di un particolare algoritmo.
 
-\subsection*{Definizione di complessità}
-
-La complessità viene definita come una funzione che, data la dimensione dell'input, restituisce il tempo, considerato come un valore intero.
+\begin{definition}[Complessità]
+Una funzione che, data la dimensione dell'input, restituisce il tempo, considerato come un valore intero.
+\end{definition}
 
 Come definiamo quindi la dimensione dell'input?
 Come misuriamo il tempo?
@@ -38,7 +40,7 @@ Esistono due criteri per valutare la dimensione dell'input:
 
 Ad esempio, consideriamo \(n\) interi rappresentati tramite \(32\) bit.
 Nel criterio di costo uniforme hanno un costo pari ad \(n\), mentre nel criterio di costo logaritmico hanno un costo pari a \(32n\).
-In molti casi, infatti, possiamo assumere che gli \enquote{elementi} siano rappresentati da un numero costante di bit e che le due misure coincidano a meno di una costante moltiplicativa.
+In molti casi, infatti, possiamo assumere che gli \enquote{elementi} siano rappresentati da un numero costante di bit e che le due misure coincidano a meno di una costante moltiplicativa che possiamo ignorare.
 
 Il criterio che abbiamo utilizzato fin'ora --- e che useremo d'ora in poi --- è il criterio del costo uniforme (in casi particolari utilizzeremo il criterio di costo logaritmico).
 
@@ -57,13 +59,13 @@ Ma allora come possiamo distinguere in maniera precisa un'operazione elementare 
 Per farlo abbiamo bisogno di un modello di calcolo, ossia una rappresentazione astratta di un calcolatore.
 Il quale deve:
 \begin{enumerate}
-	\item permettere di nascondere i dettagli (tramite \emph{astrazione})
-	\item riflettere la situazione reale (\emph{realismo})
+	\item permettere di nascondere i dettagli (tramite \emph{astrazione});
+	\item riflettere la situazione reale (\emph{realismo});
 	\item permettere di trarre conclusioni \enquote{formali} sul contesto.
 \end{enumerate}
 La pagina di Wikipedia dei modelli di calcolo presenta centinaia di modelli di calcolo diversi.
 La macchina di Turing ne è un esempio.
-\`{E} una macchina ideale che manipola, seconodo un insieme prefissato di regole, i dati contenuti su un nastro di lunghezza infinita.
+\`{E} una macchina ideale che manipola, secondo un insieme prefissato di regole, i dati contenuti su un nastro di lunghezza infinita.
 Ad ogni passo, la Macchina di Turing:
 \begin{enumerate}
 	\item legge il simbolo sotto la testina;
@@ -75,12 +77,12 @@ Nel corso di laurea magistrale è possibile approfondire questo aspetto, per i n
 
 Noi utilizzeremo il modello di calcolo RAM, che sta per Random Access Machine, ossia una macchina che ha una quantità infinita di celle (di dimensione finita) e accesso in tempo costante indipendentemente dalla posizione (diversamente da ciò che avviene nei nastri); un singolo processore con un set di istruzioni simile a quelli reali, i cui costi di esecuzione sono uniformi e ininfluenti ai fini della valutazione (faremo un esempio più avanti).
 
-\subsection{Calcolo della complessità}
+\subsubsection{Calcolo della complessità della ricerca del minimo in un insieme}
 
 Proviamo a calcolare la complessità dell'algoritmo che ricerca il minimo.
 
 \begin{algorithm}[H]
-\caption{Calcolo della complessità della ricerca del minimo in un vettore}
+\repeatAlgoCaption{alg:ricerca-minimo-efficiente}{Calcolo della complessità per la ricerca del minimo}
 
 \BlankLine
 % \tcp{calcola il minimo di un vettore arbitrariamente lungo}
@@ -114,8 +116,8 @@ Infine l'istruzione di ritorno viene eseguita una volta sola.
 
 Bisogna tenere ben a mente che:
 \begin{itemize}
-	\item ogni istruzione richiede un tempo costante per essere eseguita e
-	\item viene eseguita un certo numero di volte, dipendente da \(n\) e
+	\item ogni istruzione richiede un tempo costante per essere eseguita;
+	\item viene eseguita un certo numero di volte, dipendente da \(n\);
 	\item la costante è potenzialmente diversa da istruzione a istruzione.
 \end{itemize}
 
@@ -127,12 +129,14 @@ T(n)	&= c_1 + c_2n + c_3(n-1) + c_4(n-1) + c_5 \Arrow{raccogliamo}\\
 \end{WithArrows}\]
 
 Possiamo quindi notare che le costanti vanno a semplificarsi nei parametri \(a\) e \(b\).
-% Le singole operazioni hanno dei costi dipendenti da \(n\)
+Le singole operazioni hanno dei costi dipendenti da \(n\).
+
+\subsubsection{Calcolo della complessità della ricerca binaria}
 
 Proviamo a calcolare la complessità dell'algoritmo che ricerca un numero intero all'interno di un vettore ordinato.
 
 \begin{algorithm}[H]
-\caption{Calcolo della complessità della ricerca di un numero intero in un vettore ordinato}
+\repeatAlgoCaption{alg:binarySearch}{Calcolo della complessità della ricerca binaria}
 
 \BlankLine
 % \tcp{effettua una ricerca binaria su un vettore}
@@ -506,11 +510,11 @@ Abbiamo in input \(a\), \(b\), \(c\), \(d\) e dobbiamo restituire in output \(ac
 Consideriamo un modello di calcolo dove la moltiplicazione costa \num{1} e le addizioni e sottrazioni costano \num{0.01}.
 \begin{enumerate}
 	\item Quanto costa l'algoritmo dettato dalla definizione?
-	\item Riesci a fare meglio di così?
+	\item Si riesce a fare meglio di così?
 	\item Qual è il ruolo del modello di calcolo?
 \end{enumerate}
 
-L'algoritmo banale dettato dalla definizione costa \num{4.02}, in quanto bisogna fare 4 moltiplicazioni, 1 somma ed una sottrazione.
+L'algoritmo banale dettato dalla definizione costa \num{4.02}, in quanto bisogna fare quattro moltiplicazioni, una somma ed una sottrazione.
 
 \subsubsection*{Soluzione di Gauss per la moltipicazione di numeri complessi}
 
@@ -548,7 +552,7 @@ Oppure è possibile dimostrare che non si può?
 In questo caso usiamo il criterio del costo logaritmico.
 \end{note}
 
-L'algoritmo elementare della somma richiede di esaminare tutti gli \(n\) bit, il costo totale risulta \(cn\), dove \(c\) è il costo per sommare due bit e generare il riporto.
+L'algoritmo elementare della somma richiede di esaminare tutti gli \(n\) bit, il costo totale risulta \(cn\), dove \(c\) è il costo per sommare tre bit e generare il riporto.
 
 \begin{quote}
 Esiste un metodo più efficiente?
@@ -574,10 +578,15 @@ Un problema ha complessità \(\Omega(f(n))\) \emph{se tutti i possibili algoritm
 Il problema della somma dei numeri binari ha complessità \(\Omega(n)\).
 \end{note}
 
+???????????????????????????????????????????????
+Dato che
+ quindi affermare che il problema della somma dei numeri binari ha complessità \(\Theta(n)\).
+
 \subsection{Moltiplicare numeri binari}
 
 L'algoritmo elementare del prodotto richiede di moltiplicare ogni bit con ogni altro bit, per un costo totale di \(c n^2\).
 
+??????????????????????????????? importa figura
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.4\textwidth]{mul}
@@ -587,13 +596,13 @@ L'algoritmo elementare del prodotto richiede di moltiplicare ogni bit con ogni a
 Si potrebbe concludere che il problema della moltiplicazione è molto più costoso del problema dell'addizione: ne è conferma la nostra esperienza.
 
 \begin{note}
-Per provare che il problema del prodotto è più costoso del problema della somma, dobbiamo provare che non esiste una soluzione in tempo lineare al problema del prodotto.
+Per provare che il problema del prodotto è più costoso del problema della somma, dobbiamo provare che non esista una soluzione in tempo lineare al problema del prodotto.
 \end{note}
 
-Abbiamo infatti erroneamente confrontato gli algoritmi, non i problemi!
+Abbiamo erroneamente confrontato gli algoritmi e non i problemi!
 Sappiamo solo che l'algoritmo della somma che ci hanno insegnato è più efficiente di quello della moltiplicazione.
 
-Nel 1960, Kolmogorov enunciò che la moltiplicazione avesse limite inferiore pari a \(\Omega(n^2)\), una settimana dopo un suo studente Karatsuba riuscì a provare il contrario.
+Nel 1960, Kolmogorov enunciò che la moltiplicazione avesse limite inferiore pari a \(\Omega(n^2)\), una settimana dopo un suo studente, Karatsuba riuscì a provare il contrario.
 Osserviamo la sua soluzione.
 
 \clearpage
@@ -604,11 +613,12 @@ Karatsuba adottò un approccio divide-et-impera.
 \begin{definition}[approccio divide-et-impera]
 Si svolge in tre parti:
 \begin{itemize}
-	\item \textbf{Divide}: dividi il problema in sottoproblemi di dimensione inferiore;
-	\item \textbf{Impera}: risolvi i sottoproblemi in maniera ricorsiva;
-	\item (\textbf{Combina}): unisci le soluzioni dei sottoproblemi in modo da ottenere la risposta del problema principale.
+	\item \textbf{divide}: dividi il problema in sottoproblemi di dimensione inferiore;
+	\item \textbf{impera}: risolvi i sottoproblemi in maniera ricorsiva;
+	\item (\textbf{combina}): unisci le soluzioni dei sottoproblemi in modo da ottenere la risposta del problema principale.
 \end{itemize}
 \end{definition}
+?????????????????????????????????????????????????????????
 \[\begin{WithArrows}
 X  &= a \cdot 2^{\nicefrac{n}{2}} + b \\
 Y  &= c \cdot 2^{\nicefrac{n}{2}} + d \\
@@ -651,7 +661,7 @@ Non sappiamo ancora trattare questo genere di problemi, quindi facciamo solo deg
 \end{note}
 
 \paragraph{Analisi della ricorsione}
-% (vedi figura) % TODO inserire immagine ricorsione
+% TODO inserire immagine ricorsione
 Al primo passo la chiamata ricorsiva avviene su una dimesione \(n\), al secondo passo vengono effettuate \(4\) chiamate ricorsive su una dimesione \(\nicefrac{n}{2}\), al terzo passo vengono effettuate \(4^2 = 16\) chiamate ricorsive su una dimesione \(\nicefrac{n}{2^2}\)\dots
 al livello \(i\)-esimo vengono effettuate \(4^i\) chiamate ricorsive su una dimesione \(\nicefrac{n}{2^i}\).
 Una volta arrivati al passo \(\log_2 n\) vengono effettuate \(4^{\log n}\) chiamate ricorsive su una dimesione pari al caso base \(T(1)\), per la proprietà dei logaritmi \(4^{\log n} = n^{\log 4} = n^2\), le dimensioni delle chiamate ricorsive vengono ridotte ad una semplice costante.
@@ -707,7 +717,7 @@ L'equazione di ricorrenza risultante è:
 \]
 
 \paragraph{Analisi della ricorsione}
-% TODO inserire immagine Ricorsione
+% TODO inserire immagine ricorsione
 Al primo passo la chiamata ricorsiva avviene su una dimesione \(n\), al secondo passo vengono effettuate \(3\) chiamate ricorsive su una dimesione \(\nicefrac{n}{2}\), al terzo passo vengono effettuate \(3^2 = 9\) chiamate ricorsive su una dimesione \(\nicefrac{n}{3^2}\)\dots
 al livello \(i\)-esimo vengono effettuate \(3^i\) chiamate ricorsive su una dimesione \(\nicefrac{n}{2^i}\).
 Una volta arrivati al passo \(\log_2 n\) vengono effettuate \(3^{\log n}\) chiamate ricorsive su una dimesione pari al caso base \(T(1)\), per la proprietà dei logaritmi \(3^{\log n} = n^{\log 3} = n^{1.58\dots}\).
@@ -727,7 +737,6 @@ Nella GNU Multiple Precision Arithmetic Library vengono utilizzati diversi algor
 \section{Algoritmi di ordinamento}
 
 In questa lezione impareremo a capire quando è meglio utilizzare un algoritmo di ordinamento rispetto ad un altro.
-
 In alcuni casi, gli algoritmi si comportano diversamente a seconda delle caratteristiche dell'input.
 Conoscere in anticipo tali caratteristiche permette di scegliere l'algoritmo migliore in quella determinata situazione.
 
@@ -736,7 +745,7 @@ Conoscere in anticipo tali caratteristiche permette di scegliere l'algoritmo mig
 Esistono tre tipi di analisi:
 \begin{enumerate}
 	\item analisi del \textbf{caso pessimo}: è la tipologia più importante, il tempo di esecuzione nel caso peggiore è il limite superiore al tempo di esecuzione per qualsiasi input. Per alcuni algoritmi il caso peggiore si verifica molto spesso (ad esempio nella ricerca di dati non presenti nel database);
-	\item analisi del \textbf{caso medio}: è difficile da definire (cosa si intende per \enquote{medio} ?), dobbiamo avere una conoscenza pregressa sulle distribuzioni;
+	\item analisi del \textbf{caso medio}: è difficile da definire (cosa si intende per \enquote{medio}?), dobbiamo avere una conoscenza pregressa sulle distribuzioni;
 	\item analisi del \textbf{caso ottimo}: può avere senso se si conoscono informazioni particolari sull'input.
 \end{enumerate}
 
@@ -786,26 +795,29 @@ In altre parole, il caso migliore, peggiore e medio coincidono.
 \clearpage
 \subsection{Insertion sort}
 
-Un algoritmo che si basa sul principio di ordinamento di una \enquote{mano} di carte da gioco è il seguente:
+Un algoritmo che si basa sul principio di ordinamento di una \enquote{mano} di carte da gioco è l'\insertionSort.
 
 \begin{algorithm}[H]
 	\caption{insertionSort}
 	\input{insertionSort}
 \end{algorithm}
 
-% TODO scrivere spiegazione insertionSort
-% \paragraph{Spiegazione}
-% Diamo per scontato che il primo elemento sia ordinato.
+% TODO inserire illustrazione
 
+% TODO scrivere spiegazione insertionSort
+\paragraph{Spiegazione}
+
+\begin{note}
 Questo è un algoritmo molto efficiente per ordinare piccoli insiemi di elementi.
+\end{note}
 
 \paragraph{Analisi della complessità}
-Il \emph{costo di esecuzione} di questo algoritmo non \emph{dipende} solo dalla dimensione del vettore, ma anche \emph{dalla distribuzione dei dati in ingresso}.
+Il costo di esecuzione di questo algoritmo non \emph{dipende} solo dalla dimensione del vettore, ma anche \emph{dalla distribuzione dei dati in ingresso}.
 Nel caso in cui il vettore sia già \emph{ordinato} il costo è \(\Omicron(n)\), in quanto non si entra mai nel secondo ciclo dato che la condizione risulta falsa.
 Nel caso in cui il vettore sia \emph{ordinato in ordine inverso} è \(\Omega(n^2)\).
 In media (informalmente) possiamo assumere che metà dei valori sia ordinata rispetto la loro disposizione finale e quindi metà di loro dovrà fare \(n\) passi per arrivare alla destinazione per una complessità di \(n \cdot \nicefrac{n}{2} = \Omicron(n^2)\).
 
-Infine quando sappiamo che i valori sono quasi ordinati o che \(n\) è molto piccolo (nell'ordine di 16 o 32 elementi) allora questo algoritmo risulta efficiente.
+Quando sappiamo che i valori sono quasi ordinati o che \(n\) è molto piccolo (nell'ordine di 16 o 32 elementi) allora questo algoritmo risulta efficiente.
 
 \clearpage
 \subsection{Merge sort}
@@ -831,8 +843,10 @@ L'idea alla base di questo algoritmo sfrutta il fatto che è possibile \emph{uni
 \end{algorithm}
 
 % TODO scrivere spiegazione mergeSort
-% \paragraph{Spiegazione}
-% Quando un'array diventa vuoto, copia tutti i valori dall'array rimanente nell'array ordinato.
+\paragraph{Spiegazione}
+Le sequenze di lunghezza \(\leqslant 1\) sono già ordinate e costituiscono il caso base.
+Dopodiché viene chiamata la funzione \merge che unisce i risultati copiando i valori già ordinati su un vettore di appoggio.
+????????????????????????????????
 
 \clearpage
 \paragraph{Analisi della complessità}
@@ -842,7 +856,7 @@ L'equazione di ricorrenza risultante è la seguente:
 	T &=
 	\begin{dcases}
 		\Theta(1) & n = 1\\
-		\T*{\nicefrac{n}{2}} + \T*{\nicefrac{n}{2}} + \Theta(n) & n > 1 \\
+		\T{\floor{\nicefrac{n}{2}}} + \T{\ceil{\nicefrac{n}{2}}} + \Theta(n) & n > 1 \\
 	\end{dcases}\\
 	&=
 	\begin{dcases}
@@ -850,35 +864,32 @@ L'equazione di ricorrenza risultante è la seguente:
 		2\T{\nicefrac{n}{2}} + dn & n > 1\\
 	\end{dcases}\\
 \end{align*}
+
+\vspace{-25pt}
 Qual è il costo computazionale di \mergeSort?
 
 \begin{figure}[H]\centering
 	\includegraphics{mergesort-recursion}
-	\caption[]{Analisi per livelli del costo di \mergeSort}
+	\caption[Analisi per livelli del costo di mergeSort]{Analisi per livelli del costo di \mergeSort}
 \end{figure}
+
+\paragraph{Analisi della ricorsione}
+Al primo passo la chiamata ricorsiva avviene su una dimensione \(n\), al secondo passo vengono effettuate \(2\) chiamate ricorsive su una dimensione \(\nicefrac{n}{2}\), al terzo passo vengono effettuate \(2^2 = 4\) chiamate ricorsive su una dimensione \(\nicefrac{n}{2^2}\)\dots al livello \(i\)-esimo vengono effettuate \(2^i\) chiamate ricorsive su una dimensione di \(\nicefrac{n}{2^i}\).
+Una volta arrivati al passo \(\log_2 n\) vengono effettate \(2^{\log n}\) chiamate ricorsive su una dimensione pari al caso base \(T(1)\), per la proprietà dei logaritmi \(2^{\log n} = n^{\log 2} = n\).
 
 L'analisi per livelli è la seguente:
 \[\begin{WithArrows}
 	&\Omicron \left( \sum_{i=0}^{k} \Ccancel{2^i} \frac{n}{\Ccancel{2^i}} \right) \Arrow{semplifico}\\
 	&= \Omicron \left( \sum_{i=0}^{k} n \right) \Arrow{equivalente}\\
-	&= \Omicron((k+1) \cdot n) \Arrow{\(k+1\) elementi, semplico perché è una costante}\\
+	&= \Omicron((k+1) \cdot n) \Arrow{semplico 1 perché è  costante}\\
 	&= \Omicron(k \cdot n) \Arrow{\(k = \log n\)}\\
 	&= \Omicron(n \log n)
 \end{WithArrows}\]
 
+\paragraph{Conclusioni}
 \(\Omicron(n \log n)\) è asintoticamente migliore di \(\Omicron(n^2)\).
 Questo algoritmo è preferibile --- per grandi dimensioni di \(n\) --- al \selectionSort e all'\insertionSort.
 
-% NOTE fra dice che è abbastanza inutile 😞
-% \section{Conclusioni}
-%
-% Abbiamo visto tre algoritmi di ordinamento:
-% \begin{itemize}
-% 	\item \selectionSort
-% 	\item \insertionSort
-% 	\item \mergeSort
-% \end{itemize}
-% Nell'ultima lezione vedremo molti altri algoritmi di ordinamento.
 \ifsubfile
 \end{document}
 \fi

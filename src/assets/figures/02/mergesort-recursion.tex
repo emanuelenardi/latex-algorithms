@@ -13,6 +13,8 @@
 		{\mathcal{O}}
 }
 
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
 \begin{document}
 
 % \ovalbox{
@@ -51,7 +53,7 @@
                 }
               }
             }
-            child [grow=down] {node (v) {$\Omicron(n \cdot \log n)$}edge from parent[draw=none]}
+            % child [grow=down] {node (v) {$\Omicron(n \cdot \log n)$}edge from parent[draw=none]}
           }
         }
       }
@@ -64,11 +66,11 @@
 \path (k) -- (g) node [midway] {+};
 \path (d) -- (e) node [midway] {+};
 \path (o) -- (p) node [midway] {+};
-\path (o) -- (e) node (x) [midway] {\(\cdots\)}
-  child [grow=down] {
-    node (y) {\(\Omicron\left(\displaystyle\sum_{i = 0}^k 2^i \cdot \frac{n}{2^i}\right)\)}
-    edge from parent[draw=none]
-  };
+\path (o) -- (e) node (x) [midway] {\(\cdots\)};
+%   child [grow=down] {
+%     node (y) {\(\Omicron\left(\displaystyle\sum_{i = 0}^k 2^i \cdot \frac{n}{2^i}\right)\)}
+%     edge from parent[draw=none]
+%   };
 \path (q) -- (r) node [midway] {+};
 \path (s) -- (r) node [midway] {+};
 \path (s) -- (t) node [midway] {+};
@@ -76,14 +78,14 @@
 \path (t) -- (u) node [midway] {+};
 \path (z) -- (u) node [near start] {\color{black}=};
 \path (j) -- (t) node [near start] {\color{black}=};
-\path (y) -- (x) node [midway] {\(\Downarrow\)};
-\path (v) -- (y)
-  node (w) [midway] {\(\Omicron\left(\displaystyle\sum_{i = 0}^k n\right) = \Omicron(k \cdot n)\)};
-\path (q) -- (v) node [midway] {=};
+% \path (y) -- (x) node [midway] {\(\Downarrow\)};
+% \path (v) -- (y)
+  % node (w) [midway] {\(\Omicron\left(\displaystyle\sum_{i = 0}^k n\right) = \Omicron(k \cdot n)\)};
+% \path (q) -- (v) node [midway] {=};
 \path (e) -- (x) node [midway] {+};
 \path (o) -- (x) node [midway] {+};
-\path (y) -- (w) node [midway] {\(=\)};
-\path (v) -- (w) node [midway] {\(\Leftrightarrow\)};
+% \path (y) -- (w) node [midway] {\(=\)};
+% \path (v) -- (w) node [midway] {\(\Leftrightarrow\)};
 \path (r) -- (c) node [midway] {\color{black}\(\cdots\)};
 \end{tikzpicture}
 }

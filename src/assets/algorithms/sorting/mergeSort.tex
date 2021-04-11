@@ -9,14 +9,20 @@
 
 \BlankLine
 \tcp{ordina i sottovettori}
-\prototype{\mergeSort{\Item{} \(A\), \Int \(primo\), \Int \(ultimo\)}}{
+\prototype{\mergeSort{\Item{} \(A\), \Int \(first\), \Int \(last\)}}{
 
 	\BlankLine
-	\If(\Comment*[h]{devono esistere almeno due elementi}){\(primo < ultimo\)}{
-		\Int \(mezzo \Assign \floor{\frac{primo + ultimo}{2}}\)\;
-		\mergeSort{\(A\), \(primo\), \(mezzo\)}\;
-		\mergeSort{\(A\), \(mezzo+1\), \(ultimo\)}\;
-		\merge{\(A\), \(primo\), \(ultimo\), \(mezzo\)}\Comment*[l]{unisce le soluzioni}\;
+	\If(\Comment*[h]{devono esistere almeno due elementi}){\(first < last\)}{
+
+		\BlankLine
+		\Int \(mid \Assign \floor*{\frac{first + last}{2}}\)\;
+
+		\BlankLine
+		\mergeSort{\(A\), \(first\), \(mid\)}\;
+		\mergeSort{\(A\), \(mid+1\), \(last\)}\;
+
+		\BlankLine
+		\merge{\(A\), \(first\), \(last\), \(mid\)}\Comment*[l]{unisce le soluzioni}
 	}
 }
 
