@@ -52,7 +52,7 @@ L'ultima equazione è vera se:
 \[
 d \leqslant a_k - \frac{\abs{a_{k-1}}}{n} - \frac{\abs{a_{k-2}}}{n} -\cdots - \frac{\abs{a_1}}{n} - \frac{\abs{a_0}}{n} > 0
 \iff
-n > \frac{\abs{a_{k-1}} + \cdots + \abs{a_0}}{a_k} = m\qedhere
+n > \frac{\abs{a_{k-1}} + \cdots + \abs{a_0}}{a_k} = m\qed
 \]
 % Costituito da una componente positiva (\(a_k\)) e da una componente negativa che per valori crescenti di \(n\) tende a \(0\).
 \end{proof}
@@ -1000,6 +1000,7 @@ Le soluzioni sono indicate fra parentesi.
 	\item \(T(n) = T(n-2) - T(n-1) + 1\) \hfill[costo esponenziale]
 \end{itemize}
 
+\clearpage
 \section{Algoritmo della somma massimale di un sottovettore}
 
 Date le nostre nuove conoscenze possiamo calcolare con precisione la complessità delle varie versioni degli algoritmi proposti per la soluzione al problema della somma massimale di un sottovettore.
