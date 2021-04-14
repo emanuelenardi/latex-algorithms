@@ -6,7 +6,7 @@
 \begin{document}
 \begin{algorithm}[H]
 \fi
-\begin{minipage}[t]{.48\textwidth}
+\begin{minipage}[t]{.5\textwidth}
 
 % \BlankLine
 \List \Comment*[r]{bidirezionale con sentinella}
@@ -48,11 +48,11 @@
 
 \BlankLine
 \prototype{\Bool \listEnd{\Pos p}}{
-	\Return \(p = \This\)\;
+	\Return \(p \Equal \This\)\;
 }
 
 \end{minipage}\hfill%
-\begin{minipage}[t]{.45\textwidth}
+\begin{minipage}[t]{.5\textwidth}
 
 % \BlankLine
 \prototype{\Item \listRead{\Pos p}}{
@@ -61,7 +61,7 @@
 
 \BlankLine
 \prototype{\listWrite{\Pos p}}{
-	\Return \(p.\Value\)\;
+	\(p.\Value\) \Assign \(v\)\;
 }
 
 \BlankLine
@@ -69,21 +69,21 @@
 \tcp{di avere sempre un predecessore}
 	\prototype{\Pos \listInsert{\Pos p, \Item v}}{
 	\List \(t\) \Assign \new \listConstructor\;
-	\(t.\Value = v\)\;
-	\(t.\Pred = p.\Pred\)\;
-	\(p.\Pred.\Succ = t\)\;
-	\(t.\Succ = p\)\;
-	\(p.\Pred = t\)\;
+	\(t.\Value\) \Assign \(v\)\;
+	\(t.\Pred\) \Assign \(p.\Pred\)\;
+	\(p.\Pred.\Succ\) \Assign \(t\)\;
+	\(t.\Succ\) \Assign \(p\)\;
+	\(p.\Pred\) \Assign \(t\)\;
 
 	\BlankLine
-	\Return \(p\)\;
+	\Return \(t\)\;
 }
 
 \BlankLine
-\prototype{\Pos \listRemove{\Pos p}}{
-	\(p.\Pred.\Succ = p.\Succ\)\;
-	\(p.\Succ.\Pred = p.\Pred\)\;
-	\List \(t = p.\Succ\)\;
+\prototype{\Pos \listRemove{\Pos \(p\)}}{
+	\(p.\Pred.\Succ\) \Assign \(p.\Succ\)\;
+	\(p.\Succ.\Pred\) \Assign \(p.\Pred\)\;
+	\List \(t\) \Assign \(p.\Succ\)\;
 
 	\BlankLine
 	\Delete \(p\)\;

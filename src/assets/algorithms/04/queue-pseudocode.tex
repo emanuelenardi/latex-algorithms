@@ -14,16 +14,16 @@
 
 \Item{} \(A\)	\Comment*[r]{elementi}
 \Int \(n\)		\Comment*[r]{dimensione attuale}
-\Int \(testa\)	\Comment*[r]{testa}
+\Int \(head\)	\Comment*[r]{testa della coda}
 \Int \(m\)		\Comment*[r]{dimesione massima}
 
 \BlankLine
 \tcp{crea una cosa vuota}
 \prototype{\Queue \queueConstructor{\Int dim}}{
-	\Queue \(t =\) \new \Queue\;
+	\Queue \(t =\) \new \queueConstructor\;
 	\(t.A =\) \new \Array{\Int}[0][dim-1]\;
 	\(t.m = dim\)\;
-	\(t.testa = 0\)\;
+	\(t.head = 0\)\;
 	\(t.n = 0\)\;
 
 	\BlankLine
@@ -36,7 +36,7 @@
 	\precondition{\(n > 0\)}
 
 	\BlankLine
-	\Return A[testa]\;
+	\Return A[head]\;
 }
 
 % \vspace{5pt}
@@ -50,13 +50,13 @@
 }
 
 \BlankLine
-\tcp{estrae l'elemento in testa alla coda e lo restituisce al chiamante}
+\tcp{estrae l'elemento in head alla coda e lo restituisce al chiamante}
 \prototype{\Item \queueRemove}{
 	\precondition{\(n > 0\)}
 
 	\BlankLine
-	\Item \(t = A[testa]\)\;
-	\(testa = (testa+1) \bmod m\)\;
+	\Item \(t = A[head]\)\;
+	\(head = (head+1) \bmod m\)\;
 	\Decrement{n}\;
 
 	\BlankLine
@@ -69,7 +69,7 @@
 	\precondition{\(n < m\)}
 
 	\BlankLine
-	\(A[(testa+n) \bmod m]\) = \(v\)\;
+	\(A[(head+n) \bmod m]\) = \(v\)\;
 	\Increment{n}\;
 }
 
