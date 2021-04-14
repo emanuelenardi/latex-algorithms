@@ -284,7 +284,7 @@ Non è detto che gli esponenti siano interi.
 \section{Analisi per livelli}
 
 % TODO aggiungere testo
-Quando si calcola ?????????
+% Quando si calcola ?????????
 Nell'analisi per livelli (o dell'albero di ricorsione) andiamo sostanzialmente a \enquote{srotolare} la ricorrenza in un albero, i cui nodi rappresentano i costi dei vari livelli della ricorsione.
 
 \subsection{Esempi di analisi per livelli}
@@ -464,7 +464,7 @@ T(n) &= \sum_{i=0}^{\log n-1} \frac{n^2}{2^{2i}} \cdot 4i + 4^{\log n} \Arrow{se
 	 &= n^2 \sum_{i=0}^{\log n-1} \frac{2^{2i}}{2^{2i}} + n^2 \Arrow{semplifico: \(\frac{2^{2i}}{2^{2i}} = 1\)}\\
 	 &= n^2 \sum_{i=0}^{\log n-1} 1 + n^2 \Arrow{svolgo la sommatoria: \(\sum_{i=0}^{\log n-1} 1 = \log n\)}\\
 	 &= n^2 \log n + n^2 \Arrow{regola generale \(n^2 \log n \subset n^2\)}\\
-	 &= \Theta(n^2 log n)
+	 &= \Theta(n^2 \log n)
 \end{WithArrows}\]
 
 \section*{Conclusioni}
