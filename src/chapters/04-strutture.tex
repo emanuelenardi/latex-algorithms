@@ -97,7 +97,7 @@ L'ordine all'interno della sequenza è importante.
 
 Le operazioni ammesse su una sequenza sono:
 \begin{itemize}
-	\item L'aggiunta e la rimozione elementi, specificando la posizione (tipicamente un intero), l'elemento \(s_1\) si trova in posizione \({pos}_i\) ed esistono posizioni fittizie \({pos}_0\) e \({pos}_{n+1}\);
+	\item L'aggiunta e la rimozione elementi, specificando la posizione (tipicamente un intero), l'elemento \(s_i\) si trova in posizione \({pos}_i\) ed esistono posizioni fittizie \({pos}_0\) e \({pos}_{n+1}\);
 	\item Accesso diretto alla testa e coda;
 	\item Accesso sequenziale a tutti gli altri elementi.
 \end{itemize}
@@ -118,10 +118,11 @@ Nei~\cref{lst:java-sequence,lst:cpp-sequence,lst:python-sequence} vengono presen
 \caption{Implementazione delle liste in Java}%
 \label{lst:java-sequence}%
 \begin{minted}{java}
-List<String> lista = new LinkedList<String>();
-lista.add("two");
-lista.addFirst("one");
-lista.addLast("three");
+LinkedList<String> list = new LinkedList<>();
+
+list.add("two");
+list.addFirst("one");
+list.addLast("three");
 
 Result: [ "one", "two", "three" ]
 \end{minted}
@@ -180,7 +181,6 @@ Nei~\cref{lst:java-set,lst:cpp-set,lst:python-set} vengono presentati alcuni ese
 \caption{Implementazione degli insiemi in Java}%
 \label{lst:java-set}
 \begin{minted}{java}
-List<String> lista = new LinkedList<String>();
 Set<String> docenti = new TreeSet<>();
 docenti.add("Alberto");
 docenti.add("Cristian");
@@ -199,7 +199,7 @@ std::set<std::string> frutta;
 frutta.insert("mele");
 frutta.insert("pere");
 frutta.insert("banane");
-frutta.insert("mele");
+frutta.insert("mele"); // duplicato, non viene inserito
 frutta.remove("mele")
 
 Result: { "banane", "pere" }
@@ -213,12 +213,12 @@ Result: { "banane", "pere" }
 \begin{minted}{python}
 items = { "rock", "paper", "scissors", "rock" }
 print(items)
-print("Spock" in items)
-print("lizard" not in items)
+print("Spock" in items)      # verifica di contenimento
+print("lizard" not in items) # verifica di non contenimento
 
 Result: { "rock", "paper", "scissors" }
-False
-True
+False # "Spock" non è contenuto nell'insieme "items"
+True  # "lizard" non è contenuto nell'insieme "items"
 \end{minted}
 \end{listing}
 \vspace{-10pt}
@@ -279,7 +279,7 @@ while (std::cin >> s && s != "end")
 v = {}
 v[10] = 5
 v["alberto"] = 42
-v[10]+v["alberto"]
+print(v[10]+v["alberto"])
 
 Result: 47
 \end{minted}
@@ -326,7 +326,7 @@ Una lista è una sequenza di nodi, contenenti dati arbitrari e 1-2 puntatori all
 La contiguità nella lista non implica che ci sia continuità nella memoria.
 Tutte le operazioni effettuate sulla lista hanno complessità \(\Omicron(1)\), ma per fare una ricerca dobbiamo spendere \(\Omicron(n)\).
 
-Esistono diverse implmentazioni della lista, le quali possono essere:
+Esistono diverse implementazioni della lista, le quali possono essere:
 \begin{itemize}
 	\item bidirezionale o monodirezionale;
 	\item con sentinella o senza;
@@ -336,7 +336,7 @@ Esistono diverse implmentazioni della lista, le quali possono essere:
 % TODO inserire immagine delle liste
 
 \begin{algorithm}[H]
-	\caption{Struttura dati lista bidirezionale con sentinella in pseudocodice}
+	\caption{Struttura dati lista bidirezionale con sentinella}
 	\input{list-pseudocode}
 \end{algorithm}
 
@@ -383,11 +383,11 @@ Sfrutteremo questo meccanismo implicito per visitare gli alberi, attraverso una 
 Le pile possono essere implementate come:
 \begin{itemize}
 	\item liste bidirezionali, dove il puntatore punta all'elemento \textsf{top} (non utilizzate);
-	\item tramite vettore, dove la dimesione è limitata quindi si crea un \foreign{overhead} più basso.
+	\item tramite vettore, dove la dimensione è limitata quindi si crea un \foreign{overhead} più basso.
 \end{itemize}
 
 \begin{algorithm}[H]
-	\caption{Struttura dati pila basata su vettore in pseudocodice}
+	\caption{Struttura dati pila basata su vettore}
 	\input{stack-pseudocode}
 \end{algorithm}
 
@@ -412,12 +412,12 @@ La politica \textsc{FIFO} è onesta (\foreign{fair}) rispetto l'ordine in cui i 
 
 Le code possono essere implementate come:
 \begin{itemize}
-	\item liste monodirezionali, dove sono presenti due puntatori: uno alla testa (\foreign{head}) per l'estrazione, ed uno alla coda per l'inserimento;
+	\item liste monodirezionali, dove sono presenti due puntatori: uno alla testa (\foreign{head}) per l'estrazione, ed uno alla coda (\foreign{tail}) per l'inserimento;
 	\item vettori circolari, il quale ha una dimensione limitata e crea un \foreign{overhead} più basso.
 \end{itemize}
 
 \begin{algorithm}[H]
-	\caption{Struttura dati coda basata su vettore circolare in pseudocodice}
+	\caption{Struttura dati coda basata su vettore circolare}
 	\input{queue-pseudocode}
 \end{algorithm}
 
