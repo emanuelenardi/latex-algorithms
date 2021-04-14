@@ -407,7 +407,7 @@ Silent
     \subSetSum \hatevilleSolution \fibonacciRic \minFunction \maxFunction
     \erdos \topSort \ConnectedComponents
     \hateville \knapsack \selection \select \lowerBound
-    \selectionSort \insertionSort \mergeSort \quickSort \heapSort \shellSort \spaghettiSort \pivot \countingSort \pigeonholeSort \bucketSort
+    \selectionSort \insertionSort \mergeSort \merge \quickSort \heapSort \shellSort \spaghettiSort \pivot \countingSort \pigeonholeSort \bucketSort
 
     \draw \foreach
 
