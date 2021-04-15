@@ -12,7 +12,7 @@
 
 \tcp{effettua l'ordinamento di un vettore}
 \prototype{\selectionSort{\Array{\Item} A, \Int n}}{
-	\From(\tcp*[h]{l'ultimo elemento è ordinato}){\Int \(i \Assign 1\) \DownTo \(n-1\)}{
+	\From(\tcp*[h]{scorro tutto il vettore}){\Int \(i \Assign 1\) \DownTo \(n-1\)}{
 		\Int \(j \Assign \minFunction{A, i, n}\)\Comment*[l]{ricerca il nuovo minimo}
 		% \Swap{\(A[i]\)}{\(A[j]\)}\Comment*[l]{lo metto nella posizione corretta}
 		\(A[i] \leftrightarrow A[j]\)\Comment*[l]{lo metto nella posizione corretta}

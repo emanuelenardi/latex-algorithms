@@ -490,7 +490,7 @@ Abbiamo dimostrato quindi che \(f(n) = \Theta(n^2)\).
 
 \textbf{Limite superiore}: Dobbiamo dimostrare che \( \exists c > 0, \exists m \geqslant 0 \colon \alert{n^2 \bs{\geqslant} cn}, \forall n \geqslant m \).
 
-Otteniamo che \(n^2 \leqslant cn \Leftrightarrow c \geqslant n\) (ad esempio con \(n=2\), \(2^2 \leqslant c \cdot 2 \Leftrightarrow c \geqslant 2\)), questo significa che \(c\) cresce con il crescere di \(n\), non possiamo quindi scegliere una \emph{costante} \(c\) che verifichi la proprietà.
+Otteniamo che \(n^2 \leqslant cn \Leftrightarrow c \geqslant n\) (ad esempio con \(n=2\), \(2^2 \leqslant c \cdot 2 \Leftrightarrow c \geqslant 2\)), questo significa che \(c\) cresce al crescere di \(n\), \textbf{non possiamo quindi scegliere una costante} \(c\) che verifichi la proprietà.
 
 \begin{figure}[H]\centering
 	\includegraphics[width=.6\textwidth, page=5]{functions-plot}
@@ -501,9 +501,9 @@ Otteniamo che \(n^2 \leqslant cn \Leftrightarrow c \geqslant n\) (ad esempio con
 
 \exercise{\( f(n) = n^2 \overset{?}{=} \Omega(n^3) \)}
 
-\textbf{Limite inferiore}: Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0, n^2 \geqslant cn^3, \forall n \geqslant m\).
+\textbf{Limite inferiore}: Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0: n^2 \geqslant cn^3, \forall n \geqslant m\).
 
-Otteniamo che \(n^2 \geqslant cn^3 \Leftrightarrow c \leqslant \frac{1}{n}\) (ad esempio con \(n=2\), \(2^2 \geqslant c \cdot 2 \Leftrightarrow c \leqslant \frac{1}{2}\)), questo significa che \(c\) diminuisce al crescere di \(n\), non possiamo quindi scegliere una costante \(c\) che verifichi la proprietà.
+Otteniamo che \(n^2 \geqslant cn^3 \Leftrightarrow c \leqslant \frac{1}{n}\) (ad esempio con \(n=2\), \(2^2 \geqslant c \cdot 2 \Leftrightarrow c \leqslant \frac{1}{2}\)), questo significa che \(c\) diminuisce al crescere di \(n\), \textbf{non possiamo quindi scegliere una costante} \(c\) che verifichi la proprietà.
 
 \clearpage
 \section{Complessità degli algoritmi e dei problemi a confronto}
@@ -522,7 +522,7 @@ Abbiamo in input \(a\), \(b\), \(c\), \(d\) e dobbiamo restituire in output \(ac
 Consideriamo un modello di calcolo dove la moltiplicazione costa \num{1} e le addizioni e sottrazioni costano \num{0.01}.
 \begin{enumerate}
 	\item Quanto costa l'algoritmo dettato dalla definizione?
-	\item Si riesce a fare meglio di così?
+	\item Si può fare meglio di così?
 	\item Qual è il ruolo del modello di calcolo?
 \end{enumerate}
 
@@ -590,15 +590,13 @@ Un problema ha complessità \(\Omega(f(n))\) \emph{se tutti i possibili algoritm
 Il problema della somma dei numeri binari ha complessità \(\Omega(n)\).
 \end{note}
 
-???????????????????????????????????????????????
-Dato che
- quindi affermare che il problema della somma dei numeri binari ha complessità \(\Theta(n)\).
+Possiamo quindi affermare che avendo come limite superiore \(\Omicron(n)\) e come limite inferiore \(\Omega(n)\), il problema della somma dei numeri binari ha complessità \(\Theta(n)\).
 
 \subsection{Moltiplicare numeri binari}
 
 L'algoritmo elementare del prodotto richiede di moltiplicare ogni bit con ogni altro bit, per un costo totale di \(c n^2\).
 
-??????????????????????????????? importa figura
+% NOTE chiedere a Montresor se mi passa la figura
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.4\textwidth]{mul}
@@ -614,7 +612,7 @@ Per provare che il problema del prodotto è più costoso del problema della somm
 Abbiamo erroneamente confrontato gli algoritmi e non i problemi!
 Sappiamo solo che l'algoritmo della somma che ci hanno insegnato è più efficiente di quello della moltiplicazione.
 
-Nel 1960, Kolmogorov enunciò che la moltiplicazione avesse limite inferiore pari a \(\Omega(n^2)\), una settimana dopo un suo studente, Karatsuba riuscì a provare il contrario.
+Nel 1960, Kolmogorov enunciò che la moltiplicazione avesse limite inferiore pari a \(\Omega(n^2)\), una settimana dopo un suo studente, Karatsuba, riuscì a provare il contrario.
 Osserviamo la sua soluzione.
 
 \clearpage
@@ -630,15 +628,16 @@ Si svolge in tre parti:
 	\item (\textbf{combina}): unisci le soluzioni dei sottoproblemi in modo da ottenere la risposta del problema principale.
 \end{itemize}
 \end{definition}
-?????????????????????????????????????????????????????????
+Eseguiamo una moltiplicazione con il paradigma di dividi et impera.
 \[\begin{WithArrows}
 X  &= a \cdot 2^{\nicefrac{n}{2}} + b \\
 Y  &= c \cdot 2^{\nicefrac{n}{2}} + d \\
 XY &= ac \cdot 2^n + (ad + bc) \cdot 2^{\nicefrac{n}{2}} + db
 \end{WithArrows}\]
+L'\cref{alg:moltiplicazione-binari} illustra la soluzione trovata.
 
 \begin{algorithm}[H]
-\caption{Moltiplicazione di due numeri binari}
+\caption{Moltiplicazione di due numeri binari}\label{alg:moltiplicazione-binari}
 
 \BlankLine
 % \tcp{moltiplica due numeri binari}
@@ -658,7 +657,7 @@ XY &= ac \cdot 2^n + (ad + bc) \cdot 2^{\nicefrac{n}{2}} + db
 \end{algorithm}
 
 \paragraph{Complessità}
-Moltiplicare per \(2^t\) è equivalente ad eseguire uno \foreign{shift} di \(t\) posizioni, in tempo lineare, quindi l'equazione di ricorrenza risultante è
+Moltiplicare per \(2^t\) equivale ad eseguire uno \foreign{shift} di \(t\) posizioni, in tempo lineare, quindi l'equazione di ricorrenza risultante è
 \[
 	T(n) =
 	\begin{dcases}
@@ -673,16 +672,15 @@ Non sappiamo ancora trattare questo genere di problemi, quindi facciamo solo deg
 \end{note}
 
 \paragraph{Analisi della ricorsione}
-% TODO inserire immagine ricorsione
 Al primo passo la chiamata ricorsiva avviene su una dimesione \(n\), al secondo passo vengono effettuate \(4\) chiamate ricorsive su una dimesione \(\nicefrac{n}{2}\), al terzo passo vengono effettuate \(4^2 = 16\) chiamate ricorsive su una dimesione \(\nicefrac{n}{2^2}\)\dots
 al livello \(i\)-esimo vengono effettuate \(4^i\) chiamate ricorsive su una dimesione \(\nicefrac{n}{2^i}\).
-Una volta arrivati al passo \(\log_2 n\) vengono effettuate \(4^{\log n}\) chiamate ricorsive su una dimesione pari al caso base \(T(1)\), per la proprietà dei logaritmi \(4^{\log n} = n^{\log 4} = n^2\), le dimensioni delle chiamate ricorsive vengono ridotte ad una semplice costante.
+Una volta arrivati al passo \(\log_2 n\) vengono effettuate \(4^{\log_2 n}\) chiamate ricorsive su una dimesione pari al caso base \(T(1)\), per la proprietà dei logaritmi \(4^{\log_2 n} = n^{\log_2 4} = n^2\), le dimensioni delle chiamate ricorsive vengono ridotte ad una semplice costante.
 Possiamo quindi concludere che \(T(n) = \Omicron(n^2)\).
 
 \clearpage
 \subsubsection*{Moltiplicazione di Karatsuba}
 
-\`{E} possibile ridurre ulteriormente la complessità.
+\`{E} possibile ridurre ulteriormente la complessità calcolando un valore intermedio.
 \[\begin{WithArrows}
 	A_1 &= a \times c \Arrow[jump=2, tikz=darker]{calcolo un valore intermedio} \\
 	A_2 &= b \times d \\
@@ -691,10 +689,12 @@ Possiamo quindi concludere che \(T(n) = \Omicron(n^2)\).
 \end{WithArrows}\]
 
 \paragraph{Principio}
-Effettuo un'unica moltiplicazione che mi permette di calcolare un valore intermedio che contiene la somma di tutte le combinazioni (\(m\)), e ricavo \(ad + bc\) tramite due sottrazioni (nello stesso modo in cui lavorava Gauss) evitando così una moltiplicazione.
+Effettuo un'unica moltiplicazione che mi permette di calcolare un valore intermedio che contiene la somma di tutte le combinazioni (\(m\)), e ricavo \(ad + bc\) tramite due sottrazioni (nello stesso modo in cui lavorava Gauss per la moltiplicazione dei numeri binari) evitando così una moltiplicazione.
+
+L'\cref{alg:moltiplicazione-karatsuba} si ricava da questo principio.
 
 \begin{algorithm}[H]
-\caption{Moltiplicazione di Karatsuba}
+\caption{Moltiplicazione di Karatsuba}\label{alg:moltiplicazione-karatsuba}
 
 \BlankLine
 \prototype{\Array{\Bool} \karatsuba{\Array{\Bool} X, \Array{\Bool} Y, \Int n}}{
@@ -729,17 +729,17 @@ L'equazione di ricorrenza risultante è:
 \]
 
 \paragraph{Analisi della ricorsione}
-% TODO inserire immagine ricorsione
 Al primo passo la chiamata ricorsiva avviene su una dimesione \(n\), al secondo passo vengono effettuate \(3\) chiamate ricorsive su una dimesione \(\nicefrac{n}{2}\), al terzo passo vengono effettuate \(3^2 = 9\) chiamate ricorsive su una dimesione \(\nicefrac{n}{3^2}\)\dots
 al livello \(i\)-esimo vengono effettuate \(3^i\) chiamate ricorsive su una dimesione \(\nicefrac{n}{2^i}\).
-Una volta arrivati al passo \(\log_2 n\) vengono effettuate \(3^{\log n}\) chiamate ricorsive su una dimesione pari al caso base \(T(1)\), per la proprietà dei logaritmi \(3^{\log n} = n^{\log 3} = n^{1.58\dots}\).
+Una volta arrivati al passo \(\log_2 n\) vengono effettuate \(3^{\log_2 n}\) chiamate ricorsive su una dimesione pari al caso base \(T(1)\), per la proprietà dei logaritmi \(3^{\log_2 n} = n^{\log_2 3} = n^{1.58\dots}\).
 Le dimensioni delle chiamate ricorsive vengono ridotte ad una semplice costante.
 Possiamo quindi concludere che \(T(n) = \Omicron(n^{1.58\dots})\).
 
 \begin{note}
-L'algoritmo ingenuo (\foreign{na\"{\i}f}) non è sempre il migliore a meno che non sia possibile dimostrare il contrario.
+L'algoritmo ingenuo (\foreign{na\"{\i}f}) è sempre il migliore a meno che non sia possibile dimostrare il contrario.
 \end{note}
 
+\paragraph{Conclusioni}
 Negli anni sono stati proposti diversi algoritmi, che il limite inferiore al problema della moltiplicazione sia \(\Omega(n \log n)\) è una congettura.
 Una congettura è un'affermazione o un giudizio fondato sull'intuito, ritenuto probabilmente vero, ma non ancora rigorosamente dimostrato, cioè dunque relegato solamente a rango di ipotesi.
 
@@ -751,6 +751,8 @@ Nella GNU Multiple Precision Arithmetic Library vengono utilizzati diversi algor
 In questa lezione impareremo a capire quando è meglio utilizzare un algoritmo di ordinamento rispetto ad un altro.
 In alcuni casi, gli algoritmi si comportano diversamente a seconda delle caratteristiche dell'input.
 Conoscere in anticipo tali caratteristiche permette di scegliere l'algoritmo migliore in quella determinata situazione.
+
+Vedremo solo tre algoritmi, nell'appendice ne vedremo molti altri.
 
 \section*{Tipologia di analisi}
 
@@ -771,24 +773,20 @@ Un approccio \enquote{demente} è quello di generare tutte le possibili permutaz
 \subsection{Selection sort}
 
 Un approccio banale (\foreign{na\"{\i}f}) è quello di cercare il minimo e metterlo nella posizione corretta, riducendo il problema agli \(n-1\) valori rimanenti.
+Dalla definizione del problema si ottiene l'\cref{alg:selectionSort}.
 
 \begin{algorithm}[H]
-	\caption{selectionSort}
+	\caption{selectionSort}\label{alg:selectionSort}
 	\input{selectionSort}
 \end{algorithm}
 
 \begin{figure}[H]\centering
-	\includegraphics[width=.4\textwidth]{selection}
+	\includegraphics[width=.4\textwidth]{selectionSort}
 	\caption[]{Funzinamento dell'algoritmo \selectionSort.}
 \end{figure}
 
-% TODO scrivere spiegazione selectionSort
-% \paragraph{Spiegazione}
-% Diamo per scontato che il primo elemento sia ordinato.
-
 \begin{hint}
-Provalo su carta!
-Un algoritmo dev'essere provato per essere capito!
+Provalo su carta, un algoritmo dev'essere provato per essere capito!
 \end{hint}
 
 \paragraph{Analisi della complessità}
@@ -796,13 +794,16 @@ Il ciclo effettua \(n\) chiamate della funzione \minFunction (una per ciascuna i
 Ad ogni iterazione il vettore su cui viene calcolato il minimo risulta più piccolo di un elemento.
 \[\begin{WithArrows}
 	&\sum_{i=1}^{n-1} (n-1) \Arrow{\(10+9+\cdots+1 \Leftrightarrow 1+2+\cdots+10\)} \\
-	&= \sum_{i=1}^{n-1} i \\
+	&= \sum_{i=1}^{n-1} i \Arrow{Gauss}\\
 	&= \frac{n(n-1)}{2} \Arrow{svolgo i calcoli} \\
-	&= n^2 - \frac{n}{2} \\
+	&= n^2 - \frac{n}{2} \Arrow{regola generale: \(n^k \subset n\)}\\
 	&= \Theta(n^2)
 \end{WithArrows}\]
 Posso dire che è \(\Theta(n^2)\), e non solo che \(\Omega(n^2)\), perché indipendentemente dall'ordine iniziale ci metterà sempre lo stesso tempo.
 In altre parole, il caso migliore, peggiore e medio coincidono.
+
+\paragraph{Conclusioni}
+L'algoritmo \selectionSort è \(\Theta(n^2)\) indipendentemente dall'ordine degli elementi.
 
 \clearpage
 \subsection{Insertion sort}
@@ -814,17 +815,24 @@ Un algoritmo che si basa sul principio di ordinamento di una \enquote{mano} di c
 	\input{insertionSort}
 \end{algorithm}
 
-% TODO inserire illustrazione
+\begin{figure}[H]
+	\includegraphics[width=.5\textwidth, page=1]{insertionSort}
+	\includegraphics[width=.5\textwidth, page=3]{insertionSort}
 
-% TODO scrivere spiegazione insertionSort
+	\vspace{10pt}
+	\includegraphics[width=.5\textwidth, page=2]{insertionSort}
+\end{figure}
+
 \paragraph{Spiegazione}
+Si memorizza l'elemento da ordinare in una variabile temporanea e si scorre il vettore fino a trovare la posizione corretta nella quale verrà inserito.
+Una volta trovata si spostano tutti gli elementi precendenti copiandoli uno alla volta scorrendo l'indice \(j\) a ritroso, dopodiché si copia l'elemento da ordinare copiato nella variabile temporanea nella posizione giusta.
 
 \begin{note}
 Questo è un algoritmo molto efficiente per ordinare piccoli insiemi di elementi.
 \end{note}
 
 \paragraph{Analisi della complessità}
-Il costo di esecuzione di questo algoritmo non \emph{dipende} solo dalla dimensione del vettore, ma anche \emph{dalla distribuzione dei dati in ingresso}.
+Il costo di esecuzione di questo algoritmo non \textbf{dipende} solo dalla dimensione del vettore, ma anche \textbf{dalla distribuzione dei dati in ingresso}.
 Nel caso in cui il vettore sia già \emph{ordinato} il costo è \(\Omicron(n)\), in quanto non si entra mai nel secondo ciclo dato che la condizione risulta falsa.
 Nel caso in cui il vettore sia \emph{ordinato in ordine inverso} è \(\Omega(n^2)\).
 In media (informalmente) possiamo assumere che metà dei valori sia ordinata rispetto la loro disposizione finale e quindi metà di loro dovrà fare \(n\) passi per arrivare alla destinazione per una complessità di \(n \cdot \nicefrac{n}{2} = \Omicron(n^2)\).
@@ -857,8 +865,7 @@ L'idea alla base di questo algoritmo sfrutta il fatto che è possibile \emph{uni
 % TODO scrivere spiegazione mergeSort
 \paragraph{Spiegazione}
 Le sequenze di lunghezza \(\leqslant 1\) sono già ordinate e costituiscono il caso base.
-Dopodiché viene chiamata la funzione \merge che unisce i risultati copiando i valori già ordinati su un vettore di appoggio.
-????????????????????????????????
+Dopodiché viene chiamata la funzione \merge che unisce i risultati copiando i valori già ordinati sul vettore d'appoggio.
 
 \clearpage
 \paragraph{Analisi della complessità}
@@ -899,7 +906,7 @@ L'analisi per livelli è la seguente:
 \end{WithArrows}\]
 
 \paragraph{Conclusioni}
-\(\Omicron(n \log n)\) è asintoticamente migliore di \(\Omicron(n^2)\).
+\(\Omicron(n \log n)\) è asintoticamente migliore di \(\Omicron(n^2)\) (la complessità di \selectionSort).
 Questo algoritmo è preferibile --- per grandi dimensioni di \(n\) --- al \selectionSort e all'\insertionSort.
 
 \ifsubfile
