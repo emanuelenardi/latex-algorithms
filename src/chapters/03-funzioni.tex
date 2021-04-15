@@ -10,7 +10,7 @@
 \usepackage{../settings/subfile}
 \setcounter{chapter}{2}
 
-\usepackage{../settings/debug}
+% \usepackage{../settings/debug}
 
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, synctex: no }
@@ -80,7 +80,7 @@ f(n) &= \Theta(n^0) = \Theta(1) \\
 La complessità di \(f(n) = 5 + \sin(n)\) è pari a \(\Theta(1)\), in quanto \(\sin(n)\) oscilla fra \(1\) e \(-1\).
 
 \begin{figure}[H]\centering
-	\includegraphics[width=.6\textwidth]{plot-2}
+	\includegraphics[width=.6\textwidth, page=4]{functions-plot}
 	\caption[]{\(\sin(n)\) oscilla fra \(1\) e \(-1\).}
 \end{figure}
 
