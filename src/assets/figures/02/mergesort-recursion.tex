@@ -44,18 +44,18 @@
     child {node (c){$\vdots$}
       child {node [circle,draw] (o) {$\frac{n}{2^k}$}}
       child {node [circle,draw] (p) {$\frac{n}{2^k}$}
-        child [grow=right] {node (q) {$=$} edge from parent[draw=none]
-          child [grow=right] {node (q) {$\Omicron_{k = \log n}(n)$} edge from parent[draw=none]
-            child [grow=up] {node (r) {$\vdots$} edge from parent[draw=none]
-              child [grow=up] {node (s) {$\Omicron_2(n)$} edge from parent[draw=none]
-                child [grow=up] {node (t) {$\Omicron_1(n)$} edge from parent[draw=none]
-                  child [grow=up] {node (u) {$\Omicron_0(n)$} edge from parent[draw=none]}
-                }
-              }
-            }
-            % child [grow=down] {node (v) {$\Omicron(n \cdot \log n)$}edge from parent[draw=none]}
-          }
-        }
+        % child [grow=right] {node (q) {$=$} edge from parent[draw=none]
+        %   child [grow=right] {node (q) {$\Omicron_{k = \log n}(n)$} edge from parent[draw=none]
+        %     child [grow=up] {node (r) {$\vdots$} edge from parent[draw=none]
+        %       child [grow=up] {node (s) {$\Omicron_2(n)$} edge from parent[draw=none]
+        %         child [grow=up] {node (t) {$\Omicron_1(n)$} edge from parent[draw=none]
+        %           child [grow=up] {node (u) {$\Omicron_0(n)$} edge from parent[draw=none]}
+        %         }
+        %       }
+        %     }
+        %     child [grow=down] {node (v) {$\Omicron(n \cdot \log n)$}edge from parent[draw=none]}
+        %   }
+        % }
       }
     }
   }
@@ -71,13 +71,13 @@
 %     node (y) {\(\Omicron\left(\displaystyle\sum_{i = 0}^k 2^i \cdot \frac{n}{2^i}\right)\)}
 %     edge from parent[draw=none]
 %   };
-\path (q) -- (r) node [midway] {+};
-\path (s) -- (r) node [midway] {+};
-\path (s) -- (t) node [midway] {+};
-\path (s) -- (l) node [near end] {\color{black}=};
-\path (t) -- (u) node [midway] {+};
-\path (z) -- (u) node [near start] {\color{black}=};
-\path (j) -- (t) node [near start] {\color{black}=};
+% \path (q) -- (r) node [midway] {+};
+% \path (s) -- (r) node [midway] {+};
+% \path (s) -- (t) node [midway] {+};
+% \path (s) -- (l) node [near end] {\color{black}=};
+% \path (t) -- (u) node [midway] {+};
+% \path (z) -- (u) node [near start] {\color{black}=};
+% \path (j) -- (t) node [near start] {\color{black}=};
 % \path (y) -- (x) node [midway] {\(\Downarrow\)};
 % \path (v) -- (y)
   % node (w) [midway] {\(\Omicron\left(\displaystyle\sum_{i = 0}^k n\right) = \Omicron(k \cdot n)\)};
@@ -86,7 +86,7 @@
 \path (o) -- (x) node [midway] {+};
 % \path (y) -- (w) node [midway] {\(=\)};
 % \path (v) -- (w) node [midway] {\(\Leftrightarrow\)};
-\path (r) -- (c) node [midway] {\color{black}\(\cdots\)};
+% \path (r) -- (c) node [midway] {\color{black}\(\cdots\)};
 \end{tikzpicture}
 }
 % }

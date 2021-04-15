@@ -6,7 +6,7 @@
 \usepackage{../settings/subfile}
 \setcounter{chapter}{1}
 
-\usepackage{../settings/debug}
+% \usepackage{../settings/debug}
 
 % arara: pdflatex: { options: ["--output-directory=../build"], draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], synctex: no }
@@ -174,13 +174,13 @@ Proviamo a calcolare la complessità dell'algoritmo che ricerca un numero intero
 \end{algorithm}
 
 \begin{note}
-Ci è permesso fare questo ragionamento poiché il vettore è ordinato in ordine decrescente.
+Ci è permesso fare questo ragionamento \emph{poiché il vettore è ordinato} in ordine decrescente.
 \end{note}
 
 \paragraph{Ragionamento sul calcolo della complessità}
-Il vettore viene diviso due parti: la parte sinistra di dimensione \(\floor{\frac{n-1}{2}}\) e la parte destra di dimensione \(\floor{\nicefrac{n}{2}}\).
+Il vettore viene diviso due parti: la parte sinistra di dimensione \(\floor{\nicefrac{n-1}{2}}\) e la parte destra di dimensione \(\floor{\nicefrac{n}{2}}\).
 Se \(n\) è pari allora il vettore viene diviso in due parti uguali, altrimenti il vettore \enquote{di destra} avrà un elemento in più.
-Si andrà cercare sulla metà sinistra o sulla metà destra a seconda che l'elemento cercato sia più grande o più piccolo rispettivamente.
+Si andrà a cercare sulla metà sinistra o sulla metà destra a seconda che l'elemento cercato sia più grande o più piccolo rispettivamente.
 Anche in questo caso consideriamo il caso peggiore, ovvero il caso in cui l'elemento non sia presente.
 Non prendiamo in considerazione il caso fortunato, ossia quello in cui l'elemento che stiamo cercando sia l'elemento che guardiamo per primo.
 Nelle chiamate ricorsive dobbiamo considerare (nel costo complessivo) anche il costo delle sotto-chiamate ricorsive con dimensione dell'input pari alla dimesione del vettore passato.
@@ -230,45 +230,56 @@ La relazione di ricorrenza che ne segue è la sequente:
 \]
 
 \begin{note}
-Per calcolare la complessità di una funzione ricorsiva abbiamo bisogno di una funzione di ricorrenza anch'essa ricorsiva.
+Per calcolare la complessità di una funzione ricorsiva abbiamo bisogno di una funzione di ricorrenza a sua volta ricorsiva.
 \end{note}
 
-Le \textbf{equazioni di ricorrenza} così fatte \(\T{n} = d \log(n) + e\) sono dette \textbf{in} \enquote{\textbf{forma chiusa}} e rappresentano la complessità dell'algoritmo (non necessano quindi ulteriori sviluppi).
+Le \textbf{equazioni di ricorrenza} così fatte \(\T{n} = d \log(n) + e\) sono dette \enquote{\textbf{in forma chiusa}} in quanto non necessitano di ulteriori sviluppi e rappresentano la complessità finale dell'algoritmo.
 
 Risolviamo quindi l'equazione di ricorrenza \emph{tramite espansione}:
-\[\begin{WithArrows}
-T(n) 	&= T(\nicefrac{n}{2}) + d \Arrow{\(\left(T\left(\frac{n}{2} \cdot \frac{1}{2}\right) + d\right) + d\)} \\
-		&= T(\nicefrac{n}{4}) + 2d \Arrow{\(\left(T\left(\frac{n}{4} \cdot \frac{1}{2}\right) + 2d\right) + d\)} \\
-		&= T(\nicefrac{n}{8}) + 3d \\
-		&\phantom{= T(1)}\vdots \Arrow{\(n = 2^k \Rightarrow k = \log n\)} \\
-		&= T(1) + kd \Arrow{T(0) = c}\\
-		&= T(0) + (k+1)\,d \\
-		&= kd+(c+d) \\%\Arrow{\(k = \log n\)}\\
-		&= d \log n + e.
+\[\begin{WithArrows}[displaystyle]
+T(n) 	&= T(\nicefrac{n}{2}) + d \Arrow{\(\left(T\left(\frac{n}{2} \cdot \frac{1}{2}\right) + d\right) + d = T\left(\frac{n}{4}\right) + 2d\)} \\
+		&= T(\nicefrac{n}{2^2}) + 2d \Arrow{\(\left(T\left(\frac{n}{4} \cdot \frac{1}{2}\right) + 2d\right) + d = T\left(\frac{n}{8}\right) + 3d\)} \\
+		&= T(\nicefrac{n}{2^3}) + 3d \Arrow[jump=2]{ho diviso \(k\) volte}\\
+		&\phantom{= T(1) }\vdots \\
+		&= T(\nicefrac{n}{2^k}) + kd \Arrow{\(\frac{n}{2^k} = 1 \Leftrightarrow n = 2^k \Leftrightarrow \log_2 n = k\)}\\
+		&= T(1) + kd \Arrow{\(T(1) = T\left(\floor*{\frac{1}{2}}\right) + d = T(0) + d\)}\\
+		&= T(0) + (k+1)\,d \Arrow{\(T(0) = c\), moltiplico \(d\)}\\
+		&= kd+(c+d) \Arrow{sostituisco: \(k = \log_2 n\), raccolgo: \((c+d) = e\)}\\
+		&= d \log n + e
 \end{WithArrows}\]
+
+Ad ogni passaggio andiamo a svolgere la chiamata ricorsiva sostituendo \(T(n)\) con il rispettivo valore di \(T(\nicefrac{n}{2})\) e sommiamo la costante \(d\).
+Dopo aver diviso il vettore per \(2^k\) volte, arriveremo al punto in cui avremmo un vettore composto da un solo elemento.
+In tal caso avremo effettuato \(k\) suddivisioni.
 
 \section{Ordini di complessità}
 
 Finora abbiamo analizzato precisamente due algoritmi e abbiamo ottenuto due \emph{funzioni di complessità}:
 \begin{itemize}
-	\item Ricerca: \(T(n) = d \log n + e\). Chiamiamo questa funzione \textbf{logaritmica}, utilizzando la notazione \(\Omicron(\log n)\);
-	\item Minimo: \(T(n) = a + b\). Chiamiamo questa funzione \textbf{lineare}, utilizzando la notazione \(\Omicron(n)\).
+	\item ricerca: \(T(n) = d \log n + e\). Chiamiamo questa funzione \textbf{logaritmica}, utilizzando la notazione \(\Omicron(\log n)\);
+	\item minimo: \(T(n) = a + b\). Chiamiamo questa funzione \textbf{lineare}, utilizzando la notazione \(\Omicron(n)\).
 \end{itemize}
 Abbiamo visto anche una terza funzione che deriva dall'implementazione banale (\emph{na\"{\i}f}) dell'algoritmo per la ricerca del minimo:
 \begin{itemize}
-	\item Minimo: \(T(n) = fn^2 + gn + h\). Chiamiamo questa funzione \textbf{quadratica}, utilizzando la notazione \(\Omicron(n^2)\).
+	\item minimo banale: \(T(n) = fn^2 + gn + h\). Chiamiamo questa funzione \textbf{quadratica}, utilizzando la notazione \(\Omicron(n^2)\).
 \end{itemize}
 
-% \section{Classi di complessità}
+\section{Classi di complessità}
 
-\begin{table}[hb]
+\begin{figure}[H]\centering
+	\includegraphics[width=0.75\textwidth]{big-O-complexity}
+\end{figure}
+
+Nella~\cref{tab:classi-complessita} è mostrata la crescita del numero di operazioni al crescere della complessità di \(n\).
+
+\begin{table}[H]
 	\centering
 	\caption[Classi di complessità degli algoritmi]{Classi di complessità}\label{tab:classi-complessita}
 	\begin{tabular}{@{} c *{4}{S[table-format=4]} l @{}}
 	\toprule
-		\(f(n)\) & \(n = 10^1\) & \(n = 10^2\) & \(n = 10^3\) & \(n = 10^4\) & Tipo \\
+		\(f(n)\) & \(n = 10^1\) & \(n = 10^2\) & \(n = 10^3\) & \(n = 10^4\) & tipo \\
 	\midrule
-		\(\log n\) & 3 & 6 & 9 & 13 & logaritmico \\
+		\(\log n\) & 3 & 6 & 9 & 13 & logaritmica \\
 	\lightrule
 		\(\sqrt{n}\) & 3 & 10 & 31 & 100 & sublineare \\
 	\lightrule
@@ -276,9 +287,9 @@ Abbiamo visto anche una terza funzione che deriva dall'implementazione banale (\
 	\lightrule
 		\(n \log n\) & 30 & 664 & 9965 & 132877 & loglineare \\
 	\lightrule
-		\(n^2\) & \(10^2\) & \(10^4\) & \(10^6\) & \(10^8\)& quadratico \\
+		\(n^2\) & \(10^2\) & \(10^4\) & \(10^6\) & \(10^8\)& quadratica \\
 	\lightrule
-		\(n^3\) & \(10^3\) & \(10^6\) & \(10^9\) & \(10^{12}\) & cubico \\
+		\(n^3\) & \(10^3\) & \(10^6\) & \(10^9\) & \(10^{12}\) & cubica \\
 	\lightrule
 		\(2^n\) & 1024 & \(10^{30}\) & \(10^{300}\) & \(10^{3000}\) & esponenziale \\
 	\bottomrule
@@ -304,7 +315,7 @@ Eventuali fattori moltiplicativi non ci interessano.
 \end{note}
 
 La notazione si legge \(f(n)\) è \enquote{O grande} di \(g(n)\) e si scrive \(f(n) = \Omicron(g(n))\).
-Questo è un abuso di notazione, dovemmo scrivere \(f(n) \in \Omicron(g(n))\), in quanto \(\Omicron\) è un insieme (più precisamente una famiglia di funzioni).
+Questo è un abuso di notazione, dovemmo scrivere infatti \(f(n) \in \Omicron(g(n))\), in quanto \(\Omicron\) è un insieme (più precisamente una famiglia di funzioni).
 Questa notazione è però diventata d'uso comune, poiché ci si può fare una specie di aritmetica sopra, infatti è la notazione che troverete nella letteratura e sta a significare che \(g(n)\) è un limite asintotico superiore per \(f(n)\), ossia che \(f(n)\) cresce al più (al massimo) come \(g(n)\).
 
 \begin{definition}[notazione \(\Omega\)]
@@ -324,10 +335,11 @@ Sia \(g(n)\) una funzione di costo; indichiamo con \(\Theta[g(n)]\) l'insieme de
 \end{definition}
 
 La notazione si legge \(f(n)\) è \enquote{Theta} di \(g(n)\), si scrive \(f(n) = \Theta[g(n)]\) e sta a significare che \(f(n)\) cresce \emph{esattamente} come \(g(n)\) al di là di fattori moltiplicativi.
-Nota che \(f(n) = \Theta[g(n)]\) avviene se e solo se \(f(n) = \Omicron(g(n))\) e \(f(n) = \Theta[g(n)]\).
+Nota che \(f(n) = \Theta[g(n)]\) avviene se e solo se \(f(n) = \Omicron(g(n))\) e \(f(n) = \Omega[g(n)]\), ossia se le funzioni sono sia un limite superiore, che un limite inferiore per la funzione.
 
+% TODO chiedere a Montresor l'equazione della funzione
 \begin{figure}[H]\centering
-	\includegraphics[width=.6\textwidth]{plot-3}
+	\includegraphics[width=.6\textwidth]{plot-3}% page=4
 	\caption{Notazione asintotica \(\Theta\).}% chktex 21
 \end{figure}
 
@@ -357,27 +369,27 @@ La complessità in tempo relativa \emph{a tutte le possibili soluzioni}.
 \subsubsection*{Primo esercizio}
 
 Iniziamo con degli esercizi banali che ci permetteranno di introdurre delle tecniche che utilizzeremo con le ricorrenze.
-In particolare ci serviranno a renderci conto che non stiamo dimostrando equazioni, ma disequazioni.
+In particolare ci serviranno a renderci conto che non \textbf{stiamo dimostrando} equazioni, ma \textbf{disequazioni}.
 
 \exercise{\( f(n) = 10 n^3 + 2 n^2 + 7 \overset{?}{=} \mathcal{O}(n^3) \)}
 
 \textbf{Limite superiore}: Dobbiamo dimostrare che \( \exists c > 0, \exists m \geqslant 0: f(n) \bs{\leqslant} cn^3, \forall n \geqslant m\)
 \[
 \begin{WithArrows}
-	f(n) &= 10 n^3 + 2 n^2 + 7 \Arrow[jump = 2]{\( \forall n \geqslant 1 \)} \\
+	f(n) &= 10 n^3 + 2 n^2 + 7 \Arrow[jump = 2]{\(\forall n \geqslant 1\),\\effettuo una maggiorazione} \\
 	&\leqslant 10 n^3 + 2 n^{3} + 7 \\
-	&\leqslant 10 n^3 + 2 n^3 + 7 n^3 \Arrow{sommiamo i termini} \\
+	&\leqslant 10 n^3 + 2 n^3 + 7 n^3 \Arrow{sommo i termini} \\
 	&= 19 n^3 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant cn^3\)?}\\
 	&\overset{?}{\leqslant} cn^3 \Arrow{metto a confronto}\\
 	19 n^3 &\leqslant cn^3 \Arrow{semplifico}\\
-	19 \cancel{n^3} &\leqslant c\cancel{n^3}
+	19 &\leqslant c
 \end{WithArrows}
 \]
 
 che è vera per ogni \(c \geqslant 19\) (abbiamo così trovato la costante moltiplicativa) e per ogni \(n \geqslant 1\) (introdotta nei calcoli), quindi \(m = 1\) (che deriva da \(\forall n \geqslant m\)).
 
 \begin{figure}[H]\centering
-	\includegraphics[width=.6\textwidth]{plot-0}
+	\includegraphics[width=.6\textwidth, page=1]{functions-plot}
 	\caption[]{Risoluzione grafica dell'esercizio.}
 \end{figure}
 
@@ -396,19 +408,19 @@ Risolviamo quindi l'esercizio precedente in modo diverso.
 \textbf{Limite superiore}: Dobbiamo dimostrare che \( \exists c > 0, \exists m \geqslant 0: f(n) \bs{\leqslant} cn^3, \forall n \geqslant m\)
 \[
 \begin{WithArrows}
-	f(n) &= 10 n^3 + 2 n^2 + 7 \Arrow{\( \forall n \geqslant 1 \)} \\
+	f(n) &= 10 n^3 + 2 n^2 + 7 \Arrow{\(\forall n \geqslant 1\), eseguo una maggiorazione \enquote{più stretta}} \\
 	&\leqslant 10 n^3 + 2 n^{3} + 7 \Arrow{\(\forall n \geqslant \sqrt[3]{7}\)} \\
-	&\leqslant 10 n^3 + 2 n^3 + n^3 \Arrow{sommiamo i termini} \\
+	&\leqslant 10 n^3 + 2 n^3 + n^3 \Arrow{sommo i termini} \\
 	&= 13 n^3 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant cn^3\)?}\\
 	&\overset{?}{\leqslant} cn^3 \Arrow{metto a confronto}\\
 	13 n^3 &\leqslant cn^3 \Arrow{semplifico}\\
-	13 \cancel{n^3} &\leqslant c\cancel{n^3}
+	13 &\leqslant c
 \end{WithArrows}
 \]
 che è vera per ogni \( c \geqslant 13 \) e per ogni \( n \geqslant \sqrt[3]{7} \) (ad esempio con \(n=2\) abbiamo \(n^3 = 2^3 = 8\) che soddisfa la nostra condizione), quindi usiamo \( m = 2 \) (abbiamo semplificato, sarebbe \(m = \sqrt[3]{7}\), ma possiamo prendere un qualunque valore si trovi dopo \(n\) in modo totalmente arbitrario).
 
 \begin{figure}[H]\centering
-	\includegraphics[width=.6\textwidth]{plot-0bis}
+	\includegraphics[width=.6\textwidth, page=2]{functions-plot}
 	\caption[]{Risoluzione grafica dell'esercizio.}
 \end{figure}
 
@@ -421,14 +433,14 @@ che è vera per ogni \( c \geqslant 13 \) e per ogni \( n \geqslant \sqrt[3]{7} 
 \( \exists c_1 > 0, \exists m_1 \geqslant 0: \alert{f(n) \bs{\geqslant} c_1 n^2}, \forall n \geqslant m_1 \)
 \[
 \begin{WithArrows}
-	f(n) &= 3 n^2 + 7 n \Arrow{\( \forall n \geqslant 0 \)} \\
+	f(n) &= 3 n^2 + 7 n \Arrow{\(\forall n \geqslant 0\), eseguo una minorazione} \\
 	&\geqslant 3 n^2 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant c_1 n^2\)?}\\
-	&\overset{?}{\geqslant} c_1 n^2 \Arrow{metto a confronto}\\
+	&\overset{?}{\leqslant} c_1 n^2 \Arrow{metto a confronto}\\
 	3 n^2 &\leqslant c_1 n^2 \Arrow{semplifico}\\
-	3 \cancel{n^2} &\leqslant c_1 \cancel{n^2}
+	3 &\leqslant c_1
 \end{WithArrows}
 \]
-che è vera per ogni \( c_1 \bs{\leqslant} 3 \) e per ogni \( n \geqslant 0 \) (introdotta nei calcoli), quindi \( m_1 = 0 \).
+che è vera per ogni \(c_1 \bs{\leqslant} 3\) e per ogni \(n \geqslant 0\) (introdotta nei calcoli), quindi \( m_1 = 0 \) (che deriva sempre da \(\forall n \geqslant m\)).
 
 \begin{note}
 Abbiamo dimostrato quindi che \(f(n) = \Omega(n^2)\).
@@ -437,12 +449,12 @@ Abbiamo dimostrato quindi che \(f(n) = \Omega(n^2)\).
 \textbf{Limite superiore}: Dobbiamo dimostrare che
 \( \exists c_2 > 0, \exists m_2 \geqslant 0: \alert{f(n) \bs{\leqslant} c_2 n^2}, \forall n \geqslant m_2 \)
 \[\begin{WithArrows}
-	f(n) &= 3 n^2 + 2 n^2 + 7 n \Arrow{\( \forall n \geqslant 1 \)} \\
-	&\leqslant 3 n^2 + 7 n^2 \Arrow{raccogliamo} \\
+	f(n) &= 3 n^2 + 2 n^2 + 7 n \Arrow{\(\forall n \geqslant 1\), effettuo una maggiorazione} \\
+	&\leqslant 3 n^2 + 7 n^2 \Arrow{raccolgo} \\
 	&\leqslant 10 n^2 \Arrow[tikz={text width=4cm}]{esiste una certa costante \(c\) per la quale \(f(n) \leqslant c_2 n^2\)?}\\
 	&\overset{?}{\leqslant} c_2 n^2 \Arrow{metto a confronto}\\
 	10 n^2 &\leqslant c_2 n^2 \Arrow{semplifico}\\
-	10 \cancel{n^2} &\leqslant c_2 \cancel{n^2}
+	10 &\leqslant c_2
 \end{WithArrows}\]
 che è vera per ogni \( c_2 \bs{\geqslant} 10 \) e per ogni \( n \geqslant 1 \), %\\
 quindi \( m_2 = 1 \).
@@ -465,7 +477,7 @@ Abbiamo dimostrato quindi che \(f(n) = \Theta(n^2)\).
 \end{note}
 
 \begin{figure}[H]\centering
-	\includegraphics[width=.6\textwidth]{plot-1}
+	\includegraphics[width=.6\textwidth, page=3]{functions-plot}
 	\caption[]{Risoluzione grafica dell'esercizio.}
 \end{figure}
 
@@ -481,7 +493,7 @@ Abbiamo dimostrato quindi che \(f(n) = \Theta(n^2)\).
 Otteniamo che \(n^2 \leqslant cn \Leftrightarrow c \geqslant n\) (ad esempio con \(n=2\), \(2^2 \leqslant c \cdot 2 \Leftrightarrow c \geqslant 2\)), questo significa che \(c\) cresce con il crescere di \(n\), non possiamo quindi scegliere una \emph{costante} \(c\) che verifichi la proprietà.
 
 \begin{figure}[H]\centering
-	\includegraphics[width=.6\textwidth]{plot-nvsn2}
+	\includegraphics[width=.6\textwidth, page=5]{functions-plot}
 	\caption[]{Per qualunque fattore \(c\) scelto (ossia la pendenza della retta) la curva quadratica crescerà sempre più velocemente da un certo punto in poi.}
 \end{figure}
 
@@ -878,8 +890,8 @@ Al primo passo la chiamata ricorsiva avviene su una dimensione \(n\), al secondo
 Una volta arrivati al passo \(\log_2 n\) vengono effettate \(2^{\log n}\) chiamate ricorsive su una dimensione pari al caso base \(T(1)\), per la proprietà dei logaritmi \(2^{\log n} = n^{\log 2} = n\).
 
 L'analisi per livelli è la seguente:
-\[\begin{WithArrows}
-	&\Omicron \left( \sum_{i=0}^{k} \Ccancel{2^i} \frac{n}{\Ccancel{2^i}} \right) \Arrow{semplifico}\\
+\[\begin{WithArrows}[displaystyle]
+	&  \Omicron \left( \sum_{i=0}^{k} 2^i \frac{n}{2^i} \right) \Arrow{semplifico}\\
 	&= \Omicron \left( \sum_{i=0}^{k} n \right) \Arrow{equivalente}\\
 	&= \Omicron((k+1) \cdot n) \Arrow{semplico 1 perché è  costante}\\
 	&= \Omicron(k \cdot n) \Arrow{\(k = \log n\)}\\
