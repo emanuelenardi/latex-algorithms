@@ -1,0 +1,55 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\documentclass[tikz]{standalone}
+
+\definecolor{direct}{HTML}{004518}
+\definecolor{logarithmic}{HTML}{00A54F}
+\definecolor{linear}{HTML}{C9DA2A}
+\definecolor{nlogarithmic}{HTML}{FFC30D}
+\definecolor{squared}{HTML}{F8931D}
+\definecolor{cubed}{HTML}{F36523}
+\definecolor{factorial}{HTML}{ED1B24}
+
+\usepackage{pgfplots}
+\pgfplotsset{samples = 200}
+
+\usepackage[utf8]{inputenc}
+\newcommand{\Omicron}{\mathcal{O}}
+
+% arara: pdflatex: { shell: yes }
+% arara: gnuplot: { input: [ bigO-complexity.pgf-plot.gnuplot ] }
+% arara: clean: { extensions: [aux, log, pgf-plot.gnuplot, pgf-plot.table] }
+\begin{document}
+
+\begin{tikzpicture}[
+    mystyle/.style={above, style = {font=\large}}
+]
+    \begin{axis}[
+        % grid = major,
+        clip = true, ticks = none,
+        width = 15cm, height = 10cm,
+        enlargelimits = false,
+        scale only axis = true,
+        every axis plot/.append style = {very thick},
+        axis line style = ultra thick,
+        clip mode = individual,
+        domain = 0:10,
+        restrict y to domain=0:10,
+        restrict x to domain=0:10,
+        axis x line = left, axis y line = left,
+        xmin = 0, xmax = 11,
+        ymin = 0, ymax = 11,
+        xlabel = {Elementi}, ylabel = {Operazioni},
+        label style = {font=\large\bfseries\sffamily},
+        xlabel style = {at={(axis description cs:0.5,-0.05)}, anchor=south},
+        ylabel style = {at={(axis description cs:0.05,0.5)}, anchor=south},
+    ]
+    \addplot[color=direct]       {1}                 node[mystyle]{\(\Omicron(1)\)};
+    \addplot[color=logarithmic]  {log2 x}            node[mystyle]{\(\Omicron(\log n)\)};
+    \addplot[color=linear]       {x}                 node[mystyle]{\(\Omicron(n)\)};
+    \addplot[color=squared]      {x^2}               node[mystyle]{\(\Omicron(n^2)\)};
+    \addplot[color=nlogarithmic] {x*(log2 x)}        node[mystyle]{\(\Omicron(n\log n)\)};
+    \addplot[color=cubed]        {x^3}               node[mystyle]{\(\Omicron(n^3)\)};
+    \addplot[color=factorial]    gnuplot{gamma(x+1)} node[mystyle, yshift=0.6cm]{\(\Omicron(n!)\)};
+    \end{axis}
+\end{tikzpicture}
+\end{document}
