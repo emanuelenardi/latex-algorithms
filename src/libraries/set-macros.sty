@@ -31,24 +31,8 @@
 \NewDocumentCommand{\params}{ m o }
 	{ \tcp{\eqparbox{parameters}{\(#1\):} #2}\vspace{-3pt} }
 
-% NOTE 🔖 [Big O and related notations](texblog.org/2014/06/24/)
-\NewDocumentCommand{\Omicron}{o}{
-	\IfValueTF{#1}
-		{\mathcal{O}(#1)}
-		{\mathcal{O}}
-}
-\let\oldTheta\Theta
-\RenewDocumentCommand{\Theta}{o}{
-	\IfValueTF{#1}
-		{\oldTheta(#1)}
-		{\oldTheta}
-}
-\let\oldOmega\Omega
-\RenewDocumentCommand{\Omega}{o}{
-	\IfValueTF{#1}
-		{\oldOmega(#1)}
-		{\oldOmega}
-}
+% SEE https://texblog.org/2014/06/24/big-o-and-related-notations-in-latex/
+\NewDocumentCommand{\Omicron}{}{\mathcal{O}}
 
 % NOTE capitolo algoritmi ingordi
 \newcommand{\myCircle}{\tikz\draw circle(.7ex);}
