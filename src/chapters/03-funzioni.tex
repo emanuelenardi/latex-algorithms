@@ -48,26 +48,25 @@ che è vera per \(c \geqslant (\abs{a_k} + \abs{a_{k-1}} + \cdots + \abs{a_1} + 
 \[\begin{WithArrows}
 	f(n) &= a_k n^k + a_{k-1} n^{k-1} + \cdots + a_1 n + a_0 \Arrow[tikz={text width=4cm}]{normalizzo aggiungendo un segno negativo}\\
 	&\geqslant a_k n^k - \abs{a_{k-1}} n^{k-1} - \cdots  - \abs{a_1} n - \abs{a_0} \Arrow{\(\forall n \geqslant 1\), elevo alla \(k-1\)}\\
-	&\geqslant a_k n^k - \abs{a_{k-1}} n^{k-1} - \cdots  - \abs{a_1} n^{k-1} - \abs{a_0} n^{k-1} \\
+	&\geqslant a_k n^k - \abs{a_{k-1}} n^{k-1} - \cdots  - \abs{a_1} n^{k-1} - \abs{a_0} n^{k-1} \Arrow{esiste una costante \(c\)\\che rende la disequazione vera?}\\
 	&\stackrel{?}{\geqslant} d n^k
 \end{WithArrows}\]
 L'ultima equazione è vera se:
 \[
 d \leqslant a_k - \frac{\abs{a_{k-1}}}{n} - \frac{\abs{a_{k-2}}}{n} -\cdots - \frac{\abs{a_1}}{n} - \frac{\abs{a_0}}{n} > 0
 \iff
-n > \frac{\abs{a_{k-1}} + \cdots + \abs{a_0}}{a_k} = m\qed
+n > \frac{\abs{a_{k-1}} + \cdots + \abs{a_0}}{a_k} = m\qedhere
 \]
 % Costituito da una componente positiva (\(a_k\)) e da una componente negativa che per valori crescenti di \(n\) tende a \(0\).
 \end{proof}
 Abbiamo dimostrato sia il limite superiore che quello inferiore, possiamo affermare che è un \(\Theta\).
 
-% TODO aggiungere correzioni
-Ad esempio \(17n^3 - 47n^2 + 123n + 17 = \Theta(n^3)\).
-Oppure \(2n^2 + 7 = \Theta(n^2)\).
+Ad esempio prendendo \(17n^3 - 47n^2 + 123n + 17\) posso affermare che è \(\Theta(n^3)\), prendo in considerazione il grado massimo del polinomio.
+Se prendo \(2n^2 + 7\), posso affermare che è \(\Theta(n^2)\).
 
 \subsection{Funzioni di costo particolari}
 
-La complessità di \(f(n) = 5\) è pari a \(\Theta(1)\), questa classe di complessità rappresenta quegli algoritmi che sono così ben congegnati che indipendentemente dalla dimensione dell'input impiegano un tempo costante a risolvere il problema.
+La complessità di \(f(n) = 5\) è pari a \(\Theta(1)\), questa classe di complessità rappresenta quegli algoritmi che sono così ben congegnati che, indipendentemente dalla dimensione dell'input, impiegano un tempo costante per risolvere il problema.
 Ad esempio richiedere il minimo in un vettore ordinato.
 
 Dimostriamolo.
@@ -84,21 +83,30 @@ La complessità di \(f(n) = 5 + \sin(n)\) è pari a \(\Theta(1)\), in quanto \(\
 	\caption[]{\(\sin(n)\) oscilla fra \(1\) e \(-1\).}
 \end{figure}
 
-
 \subsection{Proprietà delle notazioni}
+
+Vedremo sei proprietà:
+\begin{enumerate}
+	\item \textbf{dualità};
+	\item \textbf{eliminazione delle costanti};
+	\item \textbf{sommatoria};
+	\item \textbf{cicli annidati};
+	\item \textbf{simmetria};
+	\item \textbf{transitività}.
+\end{enumerate}
 
 \begin{theorem}[dualità]
 Se \(f(n)\) è limitata superiormente da \(g(n)\), allora \(g(n)\) è limitata inferiormente da \(f(n)\).
 \[ f(n) = \mathcal{O}(g(n)) \Leftrightarrow g(n) = \Omega(f(n)) \]
 \end{theorem}
-La dimostrazione avviene tramite passaggi algebrici.
+La dimostrazione avviene tramite semplici passaggi algebrici.
 \begin{proof}
 \[\begin{WithArrows}
 	f(n) = \mathcal{O}(g(n)) %
 	&\Leftrightarrow f(n) \leqslant \bs{c}\ g(n), \forall n \geqslant m %
 	\Arrow{ribalto la disequazione, \(c>0\)} \\
 	&\Leftrightarrow g(n) > \bs{\frac{1}{c}}\: f(n), \forall n \geqslant m %
-	\Arrow{rinomino \(\frac{1}{c}\) a \(c'\)} \\
+	\Arrow{rinomino \(\frac{1}{c}\) con \(c'\)} \\
 	&\Leftrightarrow g(n) > \bs{c'}\, f(n), \forall n \geqslant m, c' = \frac{1}{c} %
 	\Arrow{passo alla notazione dei quantificatori} \\
 	&\Leftrightarrow g(n) = \Omega(f(n))
