@@ -7,7 +7,7 @@ cd %SOURCE_DIR%
 arara -v main
 
 cd %BUILD_DIR%
-echo: & ===================== EFFETTUO PULIZIA FILE AUX =====================& echo:
+echo: & echo ===================== EFFETTUO PULIZIA FILE AUX =====================& echo:
 @REM evito di cancellare la cache per le run successive
 @REM rmdir /q /s _minted-cache >nul 2>&1
 @REM Delete all files EXCEPT a given extension
