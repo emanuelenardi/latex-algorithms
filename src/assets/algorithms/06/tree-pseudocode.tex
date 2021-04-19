@@ -38,7 +38,7 @@
 \begin{minipage}[t]{.5\textwidth}
 
 \tcp{elimina ricorsivamente il sottoalbero sinistro}
-\prototype{\deleteLeft{}}{
+\prototype{\deleteLeft}{
 	\If{\(\varLeft \Neq \Nil\)}{
 		\(\varLeft.\deleteLeft\)\;
 		\(\varLeft.\deleteRight\)\;
@@ -47,7 +47,7 @@
 }
 
 \tcp{elimina ricorsivamente il sottoalbero destro}
-\prototype{\deleteRight{}}{
+\prototype{\deleteRight}{
 	\If{\(\varRight \Neq \Nil\)}{
 		\(\varRight.\deleteLeft\)\;
 		\(\varRight.\deleteRight\)\;

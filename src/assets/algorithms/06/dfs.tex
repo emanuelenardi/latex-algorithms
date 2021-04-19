@@ -7,7 +7,6 @@
 \begin{algorithm}[H]
 \fi
 
-\BlankLine
 \prototype{\dfsProc{\Tree \(t\)}}{
 	\If{\(t \neq \Nil\)}{
 
@@ -16,7 +15,7 @@
 		\Print \(t\)\;
 
 		\BlankLine
-		\dfsProc{\(t.\treeLeft{}\)}\;
+		\dfsProc{\(t.\treeLeft\)}\;
 
 		\BlankLine
 		\tcp{effettuo visita}
