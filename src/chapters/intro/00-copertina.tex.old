@@ -1,0 +1,15 @@
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay, opacity=.75]
+    \node[inner sep=0pt, yshift=-1.6cm] at (current page.center){%
+        \includegraphics[width=\paperwidth, trim={1mm 1mm 1mm 1mm}, clip]{seed_7821}};
+\end{tikzpicture}
+\begin{center}
+{\mytitlefont
+{\bfseries\Huge \par}
+{\Huge{\fontsize{50}{60}\selectfont Algoritmi e Strutture Dati }\par}
+\vspace{1cm}
+{\Large Emanuele Nardi\par}
+\vfill
+{Anno Accademico 2020/2021}%
+}
+\end{center}

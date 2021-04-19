@@ -1,15 +1,57 @@
-\thispagestyle{empty}
-\begin{tikzpicture}[remember picture, overlay, opacity=.75]
-    \node[inner sep=0pt, yshift=-1.6cm] at (current page.center){%
-        \includegraphics[width=\paperwidth, trim={1mm 1mm 1mm 1mm}, clip]{seed_7821}};
-\end{tikzpicture}
-\begin{center}
-{\mytitlefont
-{\bfseries\Huge \par}
-{\Huge{\fontsize{50}{60}\selectfont Algoritmi e Strutture Dati }\par}
-\vspace{1cm}
-{\Large Emanuele Nardi\par}
-\vfill
-{Anno Accademico 2020/2021}%
+\pagestyle{empty}
+
+\definecolor{CoverColor}{HTML}{A52A2A}
+\newcommand\CoverTitle{ALGORITMI}
+\newcommand\CoverSubTitle{Appunti delle lezioni}
+\newcommand\Year{2021}
+
+\begin{tikzpicture}[
+    remember picture, overlay,
+    hexagons/.style={draw, regular polygon, regular polygon sides=6, rounded corners, minimum size=\i cm, ultra thick}
+]
+% Background
+\fill[CoverColor] (current page.south west) rectangle (current page.north east);
+
+% Background Polygons
+\foreach \i in {0.5,...,22} {
+    \node[CoverColor!60, hexagons] at ($(current page.north west)+(2.5,0)$) {};
 }
-\end{center}
+
+\foreach \i in {0.5,...,22} {
+    \node[CoverColor!90, hexagons] at ($(current page.north east)+(0,-9.5)$) {};
+}
+
+\foreach \i in {21,...,6} {
+    \node[CoverColor!85, hexagons] at ($(current page.south east)+(-0.2,-0.45)$) {};
+}
+
+% Title
+\node[CoverColor!5, left, minimum height=3cm, minimum width=0.625*\paperwidth] at ($(current page.north east)+(0,-9.5)$) {
+    {\fontsize{25}{30}\selectfont \bfseries \CoverTitle}
+};
+
+% Subtitle
+\node[CoverColor!10, left, minimum height=2cm, minimum width=0.625*\paperwidth] at ($(current page.north east)+(0,-11)$) {
+    {\huge \textit{\CoverSubTitle}}
+};
+
+% Version
+\node[CoverColor!10, left, minimum height=2cm, minimum width=0.625*\paperwidth] at ($(current page.north east)+(0,-12)$) {
+    {\large\ttfamily {\docversion} - {\today}}
+};
+
+% Author Name
+\node[CoverColor!5, left, minimum height=2cm, minimum width=0.625*\paperwidth] at ($(current page.north east)+(0,-13)$) {
+    {\Large \textsc{\Author}}
+};
+
+% Year
+\foreach \i in {2.5,...,22} {
+    \node[CoverColor!60, hexagons] at ($(current page.west)+(2.5,-5)$) {};
+}
+
+\node[fill=CoverColor!70, text=CoverColor!5, regular polygon, regular polygon sides=6, minimum size=2.5 cm, inner sep=0, ultra thick, rounded corners] at ($(current page.west)+(2.5,-5)$) {
+    {\LARGE \bfseries \Year}
+};
+
+\end{tikzpicture}
