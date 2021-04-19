@@ -85,13 +85,15 @@ Due alberi \(T\) e \(U\) che hanno gli stessi nodi, gli stessi figli per ogni no
 In altre parole, anche se due alberi hanno lo stesso numero di nodi ed ognuno di questi nodi ha lo stesso numero di figli non è che detto che l'albero risultante sia identico.
 \end{note}
 
+% TODO importare la figura
+
 \begin{algorithm}[H]
 	\caption{Specifica albero binario}
 	\input{tree-binary-interface}
 \end{algorithm}
 
 \begin{note}
-Le funzioni \emph{senza parametri} sono indicate con un carattere senza grazie e privi di parentesi tonde vuote al fine di alleggerire la lettura del codice.
+\textbf{Le funzioni senza parametri sono indicate con un carattere senza grazie e privi di parentesi tonde} vuote al fine di alleggerire la lettura del codice.
 \end{note}
 
 \subsection{Memorizzazione di un albero binario}
@@ -107,22 +109,22 @@ Vengono memorizzati i seguenti campi:
 	\item \emph{left}: riferimento al figlio sinistro;
 	\item \emph{right}: riferimento al figlio destro.
 \end{itemize}
-Uno qualunque di questi oggetti potrebbe essere pari a \Nil, stando ad indicare che non esiste nessun sottoalbero.
+Uno qualunque di questi oggetti potrebbe essere pari a \Nil, il quale indica che non esiste nessun sottoalbero.
 
 \subsection{Implementazione}
 
 \begin{algorithm}[H]
-	\caption{Implementazione albero binario in pseudocodice}
+	\caption{Implementazione albero binario}
 	\input{tree-pseudocode}
 \end{algorithm}
 
 \subsection{Visite}
 
-La visita di un albero (o la ricerca) è una strategia per passare attraverso (visitare) tutti i nodi di un albero.
+La visita di un albero (o la ricerca) è una strategia per passare attraverso (cioè visitare) tutti i nodi di un albero.
 Si possono distinguere due tipi di visite:
 \begin{enumerate}
-	\item visita in profondità: chiamata anche \foreign{Depth-First Search} (DFS), per visitare un albero visita ricorsivamente ognuno dei suoi sottoalberi; esistono tre varianti in base a quando il nodo viene visitato (pre, in o post-ordine); questa particolare visita sfrutta implicitamente il meccanismo di una pila (\foreign{stack}) tramite le chiamate ricorsive effettuate;
-	\item visita in ampiezza: chiamata anche \foreign{Breadth First Search} (BFS), per visitare un albero visita ogni livello, uno dopo l'altro partendo dalla radice; richiede esplicitamente l'utilizzo di una coda (\foreign{queue}).
+	\item \textbf{visita in profondità}: chiamata anche \foreign{Depth-First Search} (DFS), per visitare un albero visita ricorsivamente ognuno dei suoi sottoalberi; esistono tre varianti in base a quando il nodo viene visitato (pre, in o post-ordine); questa particolare visita sfrutta implicitamente il meccanismo di una pila (\foreign{stack}) tramite le chiamate ricorsive effettuate;
+	\item \textbf{visita in ampiezza}: chiamata anche \foreign{Breadth First Search} (BFS), per visitare un albero visita ogni livello, uno dopo l'altro partendo dalla radice; richiede esplicitamente l'utilizzo di una coda (\foreign{queue}).
 \end{enumerate}
 
 \begin{algorithm}[H]
@@ -130,7 +132,11 @@ Si possono distinguere due tipi di visite:
 	\input{dfsSchema}
 \end{algorithm}
 
-A seconda di dove scrivo il codice in questo schema ottengo una visita diversa.
+A seconda di dove stampo il valore del nodo ottengo un tipo di visita diversa.
+
+\paragraph{Esercizio 5.3 del libro (corretto)}
+Gli ordini di visita di un albero binario di 9 nodi sono i seguenti: A, E, B, F, G, C, D, I, H (\emph{pre}-visita). B, E, G, F, C, A, I, D, H (\emph{in}-visita) e B, G, C, F, E, I, H, D, A (\emph{post}-visita).
+Si ricostruisca l'albero binario.
 
 \clearpage
 \subsection{Applicazioni}
@@ -148,7 +154,7 @@ Una possibile applicazione della visita post-ordine è quella di effettuare un c
 
 \subsection*{Visita in ordine (in-visita)}
 
-Una possibile applicazione della visita post-ordine è quella di stampare espressioni con operatori binari.
+Una possibile applicazione della visita post-ordine è quella di stampare espressioni \mbox{con operatori binari}.
 
 \begin{algorithm}[H]
 	\caption{Stampa espressioni con operatori binari}
@@ -182,7 +188,7 @@ Un albero binario è anche un albero generale e lo visitiamo esattamente come lo
 \subsection{Visita in ampiezza}
 
 Mentre nella visita in profondità il meccanismo della pila (\foreign{stack}) era implicito nelle chiamate ricorsive, in questo caso è necessario utilizzare \emph{esplicitamente} una coda (\foreign{queue}).
-Un'altra differenza fra i due algoritmi è che quello in profondità è un algoritmo ricorsivo, l'altro è iterativo.
+Un'altra differenza fra i due algoritmi è che quello in profondità è un algoritmo ricorsivo, mentre l'altro è iterativo.
 Quando tutti i nodi di un livello vengono estratti dalla coda, la coda contiene solo ed unicamente i nodi del livello successivo.
 
 \begin{algorithm}[H]
