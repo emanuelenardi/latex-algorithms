@@ -890,7 +890,7 @@ L'esempio combina le due difficoltà insieme, ma è stato creato artificiosament
 	\[\begin{WithArrows}
 		T(n) &= 9T\left(\floor*{\frac{n}{3}}\right) + n\Arrow{sost.\ ip.\ ind.\ con \(k=\floor*{\frac{n}{3}}\)}\\
 			 &\leqslant 9c\left(\floor*{\frac{n}{3}}^2 - b\floor*{\frac{n}{3}}\right) + n\Arrow{rimuovo l'intero inferiore}\\
-			 &\leqslant 9c\left(\left(\frac{n}{3}\right)^2 - b\frac{n}{3}\right) + n\Arrow{svolgo la potenza}\\
+			 &\leqslant 9c\left(\left(\frac{n}{3}\right)^2 - b\frac{n}{3}\right) + n\Arrow{svolgo la potenza}\\% chktex 3
 			 &\leqslant 9c\left( \frac{n^2}{9} - b \frac{n}{3} \right)\Arrow{moltiplico}\\
 			 &\Rightarrow cn^2 - 3bn + n \leqslant cn^2 - bn\Arrow{semplifico}\\
 			 &\Leftrightarrow -3bn + n \leqslant -bn\Arrow{semplifico}\\
