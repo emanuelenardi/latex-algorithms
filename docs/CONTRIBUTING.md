@@ -57,7 +57,7 @@ Il tuo aiuto sarà essenziale per mantenerlo alla grande!
 Per poter compilare questo progetto è necessario avere sulla propria macchina:
 
 - [Git](https://git-scm.com/)
-- un'installazione completa di [TeX Live](https://www.tug.org/texlive/acquire-netinstall.html) 2020 (servono all'incirca 7GB liberi sul disco);
+- un'installazione completa di [TeX Live](https://www.tug.org/texlive/acquire-netinstall.html) 2021 (servono all'incirca 7GB liberi sul disco);
 - [Python](https://www.python.org/downloads/) (`2.x.x` o `3..x.x` è indifferente);
 - la [libreria Python `pygmetize`](https://pygments.org/) (per la colorazione del codice all'interno del documento);
 - [Java](https://www.java.com/it/download/) (per la compilazione dei documenti tramite [arara 🦜](https://github.com/islandoftex/arara) che viene scaricato con TeX Live).
