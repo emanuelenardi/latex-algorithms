@@ -57,7 +57,7 @@ Il tuo aiuto sarà essenziale per mantenerlo alla grande!
 Per poter compilare questo progetto è necessario avere sulla propria macchina:
 
 - [Git](https://git-scm.com/)
-- un'installazione completa di [TeX Live](https://www.tug.org/texlive/acquire-netinstall.html) 2021 (servono all'incirca 7GB liberi sul disco);
+- un'installazione parziale di [TeX Live](https://www.tug.org/texlive/acquire-netinstall.html) 2021 (servono all'incirca 2.5GB liberi sul disco);
 - [Python](https://www.python.org/downloads/) (`2.x.x` o `3..x.x` è indifferente);
 - la [libreria Python `pygmetize`](https://pygments.org/) (per la colorazione del codice all'interno del documento);
 - [Java](https://www.java.com/it/download/) (per la compilazione dei documenti tramite [arara 🦜](https://github.com/islandoftex/arara) che viene scaricato con TeX Live).
@@ -68,6 +68,11 @@ Per l'installazione su windows eseguire i passi nei seguenti link:
 
 - installare git ([download diretto](https://git-scm.com/download/win));
 - installare Tex-Live per Windows ([download diretto](http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe));
+
+![Installazione di TeXlive](assets/texlive-installation.png)
+
+![Collezioni di TeXlive](assets/texlive-collections.png)
+
 - installare una versione di [Python](https://www.python.org/downloads/), dopodiché eseguire `pip install Pygments` su un terminale;
 - installare [Java](https://www.java.com/en/download/).
 
@@ -355,7 +360,7 @@ Per approndondire consulta "[_Ultrafast PDFLaTeX with precompiling_](https://tex
 
 - All'interno del file `src\settings\preamble.main.sty` è presente la dichiarazione di un if a basso livello e viene impostato di default a `true`.
 
-  ![Preambolo](preamble-main-sty.png)
+  ![Preambolo](assets/preamble-main-sty.png)
 
   Questo permette di eseguire in modo condizionato del codice nei sotto capitoli, nel documento principale (`src/main.tex`) è infatti specificata l'opzione `\subfilefalse` come prima istruzione dopo il caricamento del file dump del preambolo.
 
@@ -365,7 +370,7 @@ Per approndondire consulta "[_Ultrafast PDFLaTeX with precompiling_](https://tex
 
 - Analizziamo il preambolo di un capitolo che utilizza il pacchetto `minted`, ad esempio il capitolo `03-funzione` per illustrarne il funzionamento.
 
-  ![Preambolo di un capitolo](preamble-chapters.png)
+  ![Preambolo di un capitolo](assets/preamble-chapters.png)
 
   Questo codice inserisce il contenuto di `src/settings/subfile` (con path relativo) all'interno del capitolo.
   Imposta il contatore del capitolo a 2, quindi il verrà stampato "Capitolo 3".
@@ -373,7 +378,7 @@ Per approndondire consulta "[_Ultrafast PDFLaTeX with precompiling_](https://tex
 
 - Segue il codice del file `src/main.tex`:
 
-  ![Preambolo del documento principale](preamble-main.png)
+  ![Preambolo del documento principale](assets/preamble-main.png)
 
   > **Nota** In questo caso la cartella in cui la cache di minted viene generata è `outputdir=build` e non più `outputdir=../build` come nei singoli capitoli.
 
