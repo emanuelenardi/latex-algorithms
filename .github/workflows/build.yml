@@ -112,7 +112,7 @@ jobs:
           release_branches: main
           pre_release_branches: preview
           default_bump: patch
-          custom_release_rules: perf:major, feat:minor, fix:patch, hotfix:patch, pre-feat:preminor, pre-feat:preminor
+          custom_release_rules: major:major, minor:minor, perf:major, feat:minor, fix:patch, hotfix:patch, pre-feat:preminor, pre-feat:preminor
           # dry_run: true
 
       # Compile LaTeX document
