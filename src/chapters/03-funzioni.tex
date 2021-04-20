@@ -541,7 +541,7 @@ Il metodo di sostituzione è un metodo in cui si cerca di \enquote{indovinare} (
 
 \subsection*{Primo esercizio}
 
-L'equazione di ricorrenza:
+Esaminiamo la seguente equazione di ricorrenza:
 \[
 	T(n) =
 	\begin{dcases}
@@ -572,7 +572,7 @@ Sapendo già il risultato proviamo --- per tentativi --- a dimostrare che \fbox{
 	\item \textbf{ipotesi induttiva} \(\forall k < n \,\colon T(n) \leqslant ck\), ossia assumiamo che per tutti i valori più piccoli di \(n\) la dimostrazione sia già stata fatta;
 	\item \textbf{passo induttivo} dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
-	T(n) &= T(\floor*{\frac{n}{2}}) + n \Arrow{sost. ip. ind. con \(k = \floor*{\frac{n}{2}}\)}\\
+	T(n) &= T(\floor*{\frac{n}{2}}) + n \Arrow{sost.\ ip.\ ind.\ con \(k = \floor*{\frac{n}{2}}\)}\\
 	&\leqslant c \floor*{\frac{n}{2}} + n \Arrow{semplifico l'intero inferiore}\\
 	&\leqslant c \frac{n}{2} + n \Arrow{raccolgo \(n\)}\\
 	&= \left(\frac{c}{2} + 1\right)n \Arrow{obiettivo}\\
@@ -600,7 +600,7 @@ Usiamo la costante \(d\) al solo scopo di non confonderla la costante \(c\) usat
 	\item \textbf{ipotesi induttiva} \(\forall k < n \,\colon T(k) \geqslant ck\), ossia assumiamo che per tutti i valori più piccoli di \(n\) la mia dimostrazione sia già stata fatta;
 	\item \textbf{ipotesi induttiva} dimostriamo la disequazione per \(T(n)\)
 	\[\begin{WithArrows}
-	T(n) &= T\left(\floor*{\frac{n}{2}}\right) + n \Arrow{sost. ip. ind. con \(k = \frac{n}{2}\)}\\
+	T(n) &= T\left(\floor*{\frac{n}{2}}\right) + n \Arrow{sost.\ ip.\ ind.\ con \(k = \frac{n}{2}\)}\\
 		 &\geqslant d \floor*{\frac{n}{2}} + n \Arrow{semplifico l'intero inferiore}\\
 		 &\geqslant d \frac{n}{2} - 1 + n \Arrow{raccolgo \(n\)}\\
 		 &= \left( \frac{d}{2} - \frac{1}{n} + 1 \right) n \Arrow{obiettivo}\\
@@ -610,8 +610,7 @@ Usiamo la costante \(d\) al solo scopo di non confonderla la costante \(c\) usat
 	\end{WithArrows}\]
 
 	Abbiamo quindi provato che \(T(n) \geqslant dn\), con due diversi valori della nostra costante \(d\): nel caso base è risultata \(d \leqslant 1\), mentre nel passo induttivo è risultata pari a \(d \leqslant 2 - \frac{2}{n}\).
-	Possiamo accettare solo un valore di \(d\) che \emph{rispetti entrambe le disequazioni} per ogni valore di \(n \geqslant 1\), in questo caso è \(d = 1\).
-	\(d = 1\) è un valore che soddisfa entrambre le disequazioni, dimostra quindi la nostra tesi.
+	Possiamo accettare solo un valore di \(d\) che \emph{rispetti entrambe le disequazioni} per ogni valore di \(n \geqslant 1\), in questo caso \(d = 1\) è un valore che soddisfa entrambre le disequazioni, dimostra quindi la nostra tesi.
 
 	Quanto abbiamo dimostrato vale per \(n = 1\) e per tutti i valori di \(n\) successivi, di conseguenza \(m = 1\).
 
@@ -626,6 +625,7 @@ Nota che non abbiamo fatto nemmeno ricorso all'ipotesi induttiva.
 \newpage
 \subsection*{Cosa succede se si sbaglia l'intuizione}
 
+Esaminiamo la seguente equazione di ricorrenza:
 \[
 T(n) =
 	\begin{dcases}
@@ -635,7 +635,7 @@ T(n) =
 \]
 
 \begin{note}
-L'equazione di riccorrenza rappresenta il caso in cui \selectionSort sia espresso in forma ricorsiva.
+L'equazione di ricorrenza rappresenta il caso in cui \selectionSort sia espresso in forma ricorsiva.
 \end{note}
 \begin{figure}[H]
 	\centering
@@ -656,7 +656,7 @@ Effettuiamo un tentativo e proviamo a dimostrare che \fbox{\(T(n) = \Omicron(n)\
 	\item \textbf{ipotesi induttiva} \(\forall k < n \,\colon T(k) \leqslant ck\).
 	\item \textbf{passo induttivo} dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
-	T(n) &= T(n-1) + n \Arrow{sost. ip. ind. con \(k = n-1\)}\\
+	T(n) &= T(n-1) + n \Arrow{sost.\ ip.\ ind.\ con \(k = n-1\)}\\
 		 &\leqslant c(n-1) + n \Arrow{moltiplico \(n\)}\\
 		 &\leqslant cn - c + n \Arrow{raccolgo \(n\)}\\
 		 &\leqslant (c+1)n - c \Arrow{rimuovo l'elemento negativo}\\
@@ -665,7 +665,7 @@ Effettuiamo un tentativo e proviamo a dimostrare che \fbox{\(T(n) = \Omicron(n)\
 		 &\Rightarrow c+1 \leqslant c
 	\end{WithArrows}\]
 
-	Possiamo notare che \textbf{l'ultima disequazione risulta impossibile}.
+	Possiamo notare che l'ultima disequazione risulta impossibile.
 	Dunque quando proviamo a dimostrare qualcosa di sbagliato non riusciremo a dimostrarlo.
 \end{itemize}
 
@@ -700,7 +700,7 @@ Effettuiamo un tentativo per \fbox{\(T(n) = \Omicron(n)\)}.
 	\item \textbf{ipotesi induttiva}: \(\forall k < n \,\colon T(k) \leqslant ck\).
 	\item \textbf{passo induttivo}: dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
-	T(n) &= T\left(\floor*{\frac{n}{2}}\right) + T\left(\ceil*{\frac{n}{2}}\right) + 1 \Arrow{sost. ip. ind. con \(k=\frac{n}{2}\)}\\
+	T(n) &= T\left(\floor*{\frac{n}{2}}\right) + T\left(\ceil*{\frac{n}{2}}\right) + 1 \Arrow{sost.\ ip.\ ind.\ con \(k=\frac{n}{2}\)}\\
 		 &= c\left(\floor*{\frac{n}{2}}\right) + c\left(\ceil*{\frac{n}{2}}\right) + 1 \Arrow{semplifico: \(\floor*{\frac{n}{2}} + \ceil*{\frac{n}{2}} = n\)}\\
 		 &= cn + 1 \Arrow{obiettivo}\\
 		 &\Rightarrow cn + 1 \overset{?}{\leqslant} cn \Arrow{semplifico}\\
@@ -720,7 +720,7 @@ Effettuiamo un tentativo per \fbox{\(T(n) = \Omicron(n)\)}.
 
 	\item \textbf{passo induttivo} dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
-	T(n) &= T(\floor{ \frac{n}{2} }) + T(\ceil{ \frac{n}{2} }) + 1 \Arrow{sost. ip. ind. con \(k=\frac{n}{2}\)}\\
+	T(n) &= T(\floor{ \frac{n}{2} }) + T(\ceil{ \frac{n}{2} }) + 1 \Arrow{sost.\ ip.\ ind.\ con \(k=\frac{n}{2}\)}\\
 	&= c(\floor{ \frac{n}{2} }) - b + c(\ceil{ \frac{n}{2} }) - b + 1 \Arrow{semplifico l'intero inferiore e raccolgo \(b\)}\\
 	&= cn -2b + 1 \Arrow{obiettivo}\\
 	&\Rightarrow cn -2b + 1 \overset{?}{\leqslant} cn - b\Arrow[jump=2]{semplifico}\\
@@ -745,7 +745,7 @@ Dobbiamo dimostrare che \(\exists d > 0, \exists m \geqslant 0 \,\colon T(n) \ge
 \begin{itemize}
 	\item \textbf{passo induttivo}
 	\[\begin{WithArrows}
-	T(n) &= T\left(\floor*{ \frac{n}{2} }\right) + T\left(\ceil*{ \frac{n}{2} }\right) + 1 \Arrow{sost. ip. ind.}\\
+	T(n) &= T\left(\floor*{ \frac{n}{2} }\right) + T\left(\ceil*{ \frac{n}{2} }\right) + 1 \Arrow{sost.\ ip.\ ind.}\\
 	&\geqslant d\left(\floor*{ \frac{n}{2} }\right) + d\left(\ceil*{ \frac{n}{2} }\right) + 1 \Arrow{semplifico l'intero inferiore}\\
 	&= dn + 1 \Arrow{obiettivo}\\
 	&= dn + 1 \overset{?}{\geqslant} dn \Arrow{semplifico}\\
@@ -760,6 +760,7 @@ Dobbiamo dimostrare che \(\exists d > 0, \exists m \geqslant 0 \,\colon T(n) \ge
 
 \subsection*{Problemi con i casi base}
 
+Esaminiamo la seguente equazione di ricorrenza:
 \[
 	T(n) =
 	\begin{cases}
@@ -784,12 +785,12 @@ Effettuiamo un tentativo per \fbox{\(T(n) = \Omicron(n \log n)\)}
 Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \leqslant cn \log n, \forall n \geqslant m\).
 
 \begin{itemize}
-	\item \textbf{Ipotesi induttiva}: \(\exists c > 0, \forall k < n \,\colon T(k) \leqslant ck \log k\)
-	\item \textbf{Passo di induzione}: Dimostriamo la disequazione per \(T(n)\):
+	\item \textbf{ipotesi induttiva}: \(\exists c > 0, \forall k < n \,\colon T(k) \leqslant ck \log k\)
+	\item \textbf{passo di induzione}: Dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
-	T(n) &= 2T(\floor*{ \frac{n}{2} }) + n \Arrow{sost. ip. ind. con \(k = \floor*{\frac{n}{2}}\)}\\
+	T(n) &= 2T(\floor*{ \frac{n}{2} }) + n \Arrow{sost.\ ip.\ ind.\ con \(k = \floor*{\frac{n}{2}}\)}\\
 		 &\leqslant 2c\floor*{ \frac{n}{2} } \log \floor*{ \frac{n}{2} } + n \Arrow{rimuovo l'intero inferiore}\\
-		 &\leqslant 2c \frac{n}{2} \log \frac{n}{2} + n \Arrow{semplifico il \(2\)}\\
+		 &\leqslant 2c \frac{n}{2} \log \frac{n}{2} + n \Arrow{semplifico}\\
 		 &= cn \log \frac{n}{2} + n \Arrow{\(\log \frac{n}{2} = \log n - \log_2 2 = \log n - 1\)}\\
 		 &= cn (\log n - 1) + n \Arrow{moltiplico \(c\)}\\
 		 &= cn \log n - cn + n \Arrow{obiettivo}\\
@@ -812,7 +813,7 @@ Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \le
 Riassumendo:
 \begin{itemize}
 	\item[] Abbiamo provato che \(T(n) \leqslant cn \log n\)
-	\begin{itemize}[label=\textbullet]
+	\begin{itemize}
 		\item nel passo induttivo: \(\forall c \geqslant 1\)
 		\item nel caso base: \(\forall c \geqslant 2, c \geqslant \frac{5}{3\log 3}\)
 	\end{itemize}
@@ -821,8 +822,10 @@ Riassumendo:
 	Questo vale per \(n=2\), \(n=3\), e per tutti i valori di \(n\) successivi, quindi \(m = 2\).
 \end{itemize}
 
+\newpage
 \subsection*{Ultimo esercizio}
 
+Esaminiamo la seguente equazione di ricorrenza:
 \[
 	T(n) =
 	\begin{dcases}
@@ -838,14 +841,14 @@ Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \le
 	\item \textbf{ipotesi induttiva}: \(\exists c > 0 \,\colon T(k) \leqslant ck^2, \forall k < n\)
 	\item \textbf{passo induttivo} dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
-	T(n) &= 9T\left( \floor{\frac{n}{3}} \right) + n \Arrow{sost. ip. ind. con \(k = \floor{\frac{n}{3}}\)}\\
-		 &\leqslant 9 c{\left( \floor{\frac{n}{3}} \right)}^{2} + n \Arrow{rimuovo l'intero inferiore}\\
-		 &\leqslant 9 c \left( \frac{n^2}{9} \right) + n \Arrow{semplifico il \(9\)}\\
+	T(n) &= 9T\left( \floor*{\frac{n}{3}} \right) + n \Arrow{sost.\ ip.\ ind.\ con \(k = \floor*{\frac{n}{3}}\)}\\
+		 &\leqslant 9 c{\left( \floor*{\frac{n}{3}} \right)}^{2} + n \Arrow{rimuovo l'intero inferiore}\\
+		 &\leqslant 9 c \left( \frac{n^2}{9} \right) + n \Arrow{semplifico}\\
 		 &= cn^2 + n \Arrow{obiettivo}\\
-		 &= cn^2 + n \leqslant cn^2
+		 &\Rightarrow cn^2 + n \leqslant cn^2
 	\end{WithArrows}\]
 	L'ultima disequazione risulta falsa per un termine di ordine inferiore: proviamo quindi a modificare l'ipotesi induttiva e a ripetere il passo induttivo.
-	\item \textbf{ipotesi induttiva più stretta} \(\exists c > 0 \,\colon T(k) \leqslant c(k^2 - k), \forall k < n\)
+	\item \textbf{ipotesi induttiva (più stretta)} \(\exists c > 0 \,\colon T(k) \leqslant c(k^2 - k), \forall k < n\)
 	\item \textbf{passo induttivo} dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
 	T(n) &= 9T\left( \floor{\frac{n}{3}} \right) + n \Arrow{sost. ip. ind. con \(k = \floor{\frac{n}{3}}\)}\\
@@ -853,8 +856,8 @@ Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \le
 		 &\leqslant 9c \left( {\left(\frac{n}{3}\right)}^{2} - \frac{n}{3} \right) + n \Arrow{svolgo la potenza}\\
 		 &\leqslant 9c \left( \frac{n^2}{9} - \frac{n}{3} \right) + n \Arrow{moltiplico}\\
 		 &\leqslant cn^2 - 3cn + n \Arrow{obiettivo}\\
-		 &\leqslant cn^2 - 3cn + n \overset{?}{\leqslant} cn^2 - cn \Arrow[jump=2]{semplifico}\\
-		 &\Leftrightarrow 2 cn \geqslant cn\\
+		 &\Rightarrow cn^2 - 3cn + n \overset{?}{\leqslant} cn^2 - cn \Arrow[jump=2]{semplifico}\\
+		 &\Leftrightarrow 2 cn \geqslant n\\
 		 &\Leftrightarrow c \geqslant \frac{1}{2}
 	\end{WithArrows}\]
 	\item \textbf{caso base}
@@ -869,13 +872,34 @@ Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \le
 	Non è necessario andare oltre poiché \(T(6)\) dipende da \(T(2)\) che è già stato dimostrato.
 
 	Riassumendo i parametri scelti sono:
-	\begin{itemize}[label=\textbullet]
+	\begin{itemize}
 		\item \(c \geqslant \maxFunction \left\{ \frac{1}{2},\frac{11}{2},\frac{12}{6},\frac{13}{12},\frac{14}{20} \right\}\)
 		\item \(m = 1\)
 	\end{itemize}
-	Nota che l'esempio combina le due difficoltà insieme, ma è stato creato artificiosamente: infatti se avessimo scelto come ipotesi più stretta \(T(n) \leqslant cn^2 - bn\), il problema sui casi base non si sarebbe posto.
-
 	Abbiamo quindi dimostrato che \(T(n) \leqslant c(n^2 - n) \leqslant cn^2, \forall n \geqslant 1, \forall c \geqslant \frac{14}{20}\), ossia che \(T(n) = \Omicron(n)\)
+\end{itemize}
+
+\begin{note}
+L'esempio combina le due difficoltà insieme, ma è stato creato artificiosamente: infatti se avessimo scelto come ipotesi più stretta \(T(k) \leqslant ck^2 - bk\), il problema sui casi base non si sarebbe posto.
+\end{note}
+
+\begin{itemize}
+	\item \textbf{ipotesi induttiva (più stretta)}: \(\exists c > 0: T(k) \leqslant ck^2 - bk\), \(\forall b>0\).
+
+	\item \textbf{passo induttivo}: dimostriamo la disequazione per \(T(n)\):
+	\[\begin{WithArrows}
+		T(n) &= 9T\left(\floor*{\frac{n}{3}}\right) + n\Arrow{sost.\ ip.\ ind.\ con \(k=\floor*{\frac{n}{3}}\)}\\
+			 &\leqslant 9c\left(\floor*{\frac{n}{3}}^2 - b\floor*{\frac{n}{3}}\right) + n\Arrow{rimuovo l'intero inferiore}\\
+			 &\leqslant 9c\left(\left(\frac{n}{3}\right)^2 - b\frac{n}{3}\right) + n\Arrow{svolgo la potenza}\\
+			 &\leqslant 9c\left( \frac{n^2}{9} - b \frac{n}{3} \right)\Arrow{moltiplico}\\
+			 &\Rightarrow cn^2 - 3bn + n \leqslant cn^2 - bn\Arrow{semplifico}\\
+			 &\Leftrightarrow -3bn + n \leqslant -bn\Arrow{semplifico}\\
+			 &\Leftrightarrow -2bn \leqslant -n\Arrow{inverto il segno}\\
+			 &\Leftrightarrow 2bn \geqslant n\Arrow{semplifico}\\
+			 &\Leftrightarrow b \geqslant \frac{1}{2}
+	\end{WithArrows}\]
+
+	\item \textbf{caso base}: i casi base dipendono da \(c\) e dato che vale \(\forall k\) e per \(b \geqslant \frac{1}{2}\) non devo dimostrarli.
 \end{itemize}
 
 \subsection*{Riassumendo}
@@ -900,7 +924,7 @@ Bisogna fare attenzione:
 Esiste un'ampia classe di ricorrenze che possono essere risolte facilmente facendo ricorso ad alcuni teoremi, ognuno dei quali si occupa di una classe particolare di equazioni di ricorrenza.
 
 \begin{theorem}[ricorrenze lineari con partizione bilanciata]
-Siano \(a\) e \(b\) costanti intere tale che \(a \geqslant 1\) e \(b \geqslant 2\), e \(c\), \(\beta\) costanti reali tali che \(c > 0\) e \(\beta \geqslant 0\).
+Siano \(a\) e \(b\) costanti intere tali che \(a \geqslant 1\) e \(b \geqslant 2\), e \(c\), \(\beta\) costanti reali tali che \(c > 0\) e \(\beta \geqslant 0\).
 Sia \(T(n)\) data dalla relazione di ricorrenza:
 \[
 	T(n) =
@@ -922,11 +946,11 @@ Posto \(\alpha = \frac{\log a}{\log b} = \log_{b} a\), allora:
 
 \paragraph{Commento}
 Affrontiamo le equazioni di ricorrenza in cui la dimensione viene divisa in \(b\) parti, dove \(b\) dev'essere almeno pari a 2; l'algoritmo ricorsivo dev'essere richiamato \(a\) volte, dove \(a\) è almeno 1.
-Nella versione estesa, che vedremo fra poco, vedremo che i parametri \(a\) e \(b\) verranno \enquote{rilassati}.
+Nella versione estesa di questo teorema, che vedremo fra poco, vedremo che i parametri \(a\) e \(b\) verranno \enquote{rilassati}.
 
-Prendiamo ad esempio il primo esercizio \(T(n) = 4T(\frac{n}{2})\) e vediamo che si può risolvere semplicemente calcolando \(\alpha = \log_b a = \log_2 4 = 2 > \beta = 1\), possiamo quindi concludere che \(T(n) = \Theta(n^{\alpha}) = \Theta(n^2)\).
+Prendiamo ad esempio il primo esercizio \(T(n) = 4T(\frac{n}{2})\) e vediamo che si può risolvere semplicemente osservando che \(a=4\), \(b=2\) e calcolando \(\alpha = \log_b a = \log_2 4 = 2 > \beta = 1\), possiamo quindi concludere che \(T(n) = \Theta(n^{\alpha}) = \Theta(n^2)\).
 
-\begin{proof}[teorema delle ricorrenze lineari con partizione bilanciata]
+\begin{proof}[Teorema delle ricorrenze lineari con partizione bilanciata]
 Assumiamo che \(n\) sia una potenza intera di \(b\), ossia che \(n = b^k\), \(k = \log_b n\) poiché ci permetterà di semplificare i calcoli successivi ed è ininfluente sul risultato.
 Ad esempio supponiamo che l'input abbia dimensione \(b^k + 1\) (\(2^8 + 1 = 257\) bit), se estendiamo l'input fino ad una dimensione \(b^{k+1}\) (\(2^8+1 = 512\) bit), facendo del \foreign{padding}, l'input sarebbe stato esteso al massimo di un fattore costante \(b\) (\(2\) nel nostro caso), il che è ininfluente al fine della complessità computazionale.
 
@@ -975,7 +999,7 @@ A questo punto ho una formula chiusa ma non ancora nella sua forma definitiva.
 
 \
 Facciamo alcune osservazioni.
-\begin{itemize}[label=\textbullet]
+\begin{itemize}
 	\item \(a^k = a^{\log_b n} = a^{\frac{\log n}{\log b}} = 2^{\log_2 a \frac{\log n}{\log b}} = 2^{\log_2 n \frac{\log a}{\log b}} = n^{\frac{\log a}{\log b}} = n^{\alpha}\)
 
 	\item \(\alpha = \frac{\log a}{\log b} \Leftrightarrow \alpha\log b = \log a \Leftrightarrow \log b^{\alpha} = \log a \Leftrightarrow a = b^{\alpha}\)
@@ -988,10 +1012,10 @@ T(n) &= da^k + cb^{k\beta} \sum_{i=0}^{k-1} {\left( \frac{a}{b^{\beta}} \right)}
 	 &= dn^{\alpha} + cb^{k\beta} \sum_{i=0}^{k-1} q^{i}
 \end{WithArrows}\]
 Da qui si aprono tre possibilità, ossia che
-\begin{enumerate*}
-	\item \(\alpha > \beta\)
-	\item \(\alpha = \beta\)
-	\item \(\alpha < \beta\)
+\begin{enumerate*}[label={\circle{\arabic*}}]
+	\item \(\alpha > \beta\);
+	\item \(\alpha = \beta\);
+	\item \(\alpha < \beta\).
 \end{enumerate*}
 Studiamole una per una.
 
@@ -999,7 +1023,7 @@ Studiamole una per una.
 	\item Caso \fbox{\(\alpha > \beta\)}, ne segue che \(q = b^{\alpha - \beta} > 1\)
 	\[\begin{WithArrows}[displaystyle]
 	T(n) &= dn^{\alpha} + cb^{k\beta} \sum_{i=0}^{k-1} q^{i} \Arrow{serie geometrica finita}\\
-		 &= n^{\alpha}d + cb^{k\beta} \left[ \frac{q^k - 1}{q-1} \right] \Arrow{introduco la disequazione}\\
+		 &= n^{\alpha}d + cb^{k\beta} \left[ \frac{q^k - 1}{q-1} \right] \Arrow{introduco la disequazione\\semplifico il \(-1\)}\\
 		 &\leqslant n^{\alpha}d + cb^{k\beta} \frac{q^k}{q-1} \Arrow{sostituisco: \(q = \frac{a}{b^{\beta}} \Rightarrow q^k = \frac{a^k}{b^{k\beta}}\)}\\
 		 &= n^{\alpha}d + \frac{cb^{k\beta}a^k}{b^{k\beta}} \frac{1}{q-1} \Arrow{semplifico: \(b^{k\beta}\)}\\
 		 &= n^{\alpha}d + \frac{ca^k}{q-1} \Arrow{sostituisco: \(a^k = n^{\alpha}\)}\\
@@ -1013,26 +1037,26 @@ Studiamole una per una.
 	\[\begin{WithArrows}[displaystyle]
 	T(n) &= dn^{\alpha} + cb^{k\beta} \sum_{i=0}^{k-1} q^{i} \Arrow{\(q^i = 1^i = 1\)\\\(1+2+\cdots+k-1 = k\)}\\
 		 &= n^{\alpha}d + cn^{\beta}k \Arrow{sostituisco: \(\beta = \alpha\)}\\
-		 &= n^{\alpha}d + cn^{\alpha}k \Arrow{raccolgo per \(n^{\alpha}\)}\\
+		 &= n^{\alpha}d + cn^{\alpha}k \Arrow{raccolgo: \(n^{\alpha}\)}\\
 		 &= n^{\alpha}(d + ck) \Arrow{sostituisco: \(k = \log_b n\)}\\
-		 &= n^{\alpha}(d + c\textstyle\frac{\log n}{\log b})
+		 &= n^{\alpha}\left(d + c\textstyle\frac{\log n}{\log b}\right)
 	\end{WithArrows}\]
 	Visto che \(d\), \(c\) e \(\log b\) sono tutti termini positivi e costanti e che non abbiamo introdotto disequazioni, possiamo affermare che \(T(n) = \Theta(n^{\alpha}\log n)\).
 
 	\item Caso \fbox{\(\alpha < \beta\)}, ne segue che \(q = b^{\alpha - \beta} < 1\)
 	\[\begin{WithArrows}[displaystyle]
 	T(n) &= dn^{\alpha} + cb^k \sum_{i=0}^{k-1} q^i \Arrow{serie geometrica finita}\\
-		 &= dn^{\alpha} + cb^k \left[ \frac{q^k - 1}{q-1} \right] \Arrow{inversione, \(1-q > 0\)}\\
-		 &= dn^{\alpha} + cb^k \left[ \frac{1 - q^k}{1-q} \right] \Arrow{introduco\\la disequazione}\\
-		 &\leqslant dn^{\alpha} + cb^k \left[ \frac{1}{1-q} \right] \Arrow{sostituisco: \(b^k = n\)}\\
-		 &= n^{\alpha}d + \frac{cn^{\beta}}{1-q}
+		 &= dn^{\alpha} + cb^k \left[ \frac{1 - q^k}{1-q} \right] \Arrow{introduco la disequazione\\e semplifico al numeratore \(q^k\)}\\
+		 &\leqslant dn^{\alpha} + cb^k \left[ \frac{1}{1-q} \right] \Arrow{sostituisco: \(b^k = n^{\beta}\)}\\
+		 &\leqslant n^{\alpha}d + \frac{cn^{\beta}}{1-q}
 	\end{WithArrows}\]
-	\(n^{\alpha} < n^{\beta}\) quindi considero il polinomio di grado maggiore, di conseguenza \(T(n)\) è \(\Omicron(n^{\beta})\).
+	Dato che \(\alpha < \beta\), il termine \(n^{\alpha}\) domina su \(n^{\beta}\), considero quindi il polinomio di grado maggiore, di conseguenza \(T(n)\) è \(\Omicron(n^{\beta})\).
 	Poiché \(T(n) = \Omega(n^{\beta})\) per via del termine non ricorsivo, possiamo affermare che \(T(n) = \Theta(n^{\beta})\).
 \end{enumerate}
 Fine dimostrazione.
 \end{proof}
 
+\newpage
 \begin{theorem}[ricorrenze lineari con partizione bilanciata estesa]
 Sia \(a \geqslant 1\), \(b > 1\), \(f(n)\) asintoticamente positiva, e sia
 \[
@@ -1058,12 +1082,12 @@ Nel secondo caso se \(f(n) = n^{\beta}\) ritorniamo esattamente al secondo caso 
 
 \subsection*{Esercizi}
 
-Le soluzioni sono indicate fra parentesi.
+Le soluzioni sono indicate fra parentesi, prova a svolgerli autonomamente prima di guardarle.
 \begin{itemize}
-	\item \(T(n) = 9T(\frac{n}{3}) + n\) \hfill[\(\Omicron(n^{2-\varepsilon})\), con \(\varepsilon < 1\)]
-	\item \(T(n) = T(\frac{2}{3} n) + 1\)  \hfill[\(\Theta(n^0)\)]
-	\item \(T(n) = 3T(\frac{n}{4}) + n\log n\) \hfill[\(c = \nicefrac{3}{4}\), \(m = 1\)]
-	\item \(T(n) = 2T(\frac{n}{2}) + n\log n\) \hfill[nessun caso applicabile]
+	\item \(T(n) = 9T\left(\frac{n}{3}\right) + n\) \hfill[\(\Omicron(n^{2-\varepsilon})\), con \(\varepsilon < 1\)]
+	\item \(T(n) = T\left(\frac{2}{3} n\right) + 1\)  \hfill[\(\Theta(n^0)\)]
+	\item \(T(n) = 3T\left(\frac{n}{4}\right) + n\log n\) \hfill[\(c = \nicefrac{3}{4}\), \(m = 1\)]
+	\item \(T(n) = 2T\left(\frac{n}{2}\right) + n\log n\) \hfill[nessun caso applicabile]
 \end{itemize}
 
 \begin{theorem}[ricorrenze lineari di ordine costante]
@@ -1088,9 +1112,9 @@ Questo teorema tratta ricorrenze lineari \emph{di ordine costante} perché tutte
 \subsection*{Esercizi}
 
 Le soluzioni sono indicate fra parentesi.
-\begin{itemize}[label=\textbullet]
-	\item \(T(n) = T(n-10) + n^2\) \hfill[costo polinomiale]
-	\item \(T(n) = T(n-2) - T(n-1) + 1\) \hfill[costo esponenziale]
+\begin{itemize}
+	\item \(T(n) = T(n-10) + n^2\) \hfill[\(\Theta(n^3)\)]
+	\item \(T(n) = T(n-2) + T(n-1) + 1\) \hfill[\(\Theta(2^n)\)]
 \end{itemize}
 
 \clearpage
@@ -1130,11 +1154,11 @@ Vogliamo provare che \(T(n) = \Omicron(n^3)\).
 \textbf{limite superiore}:
 \(\exists c_2 > 0, \exists m \geqslant 0 : T(n) \leqslant c_2 n^3\), \(\forall n \geqslant m\).
 \[\begin{WithArrows}[displaystyle]
-T(n) &= \sum_{i=0}^{n-1} \sum_{j=i}^{n-1} (j - i + 1) \Arrow{spiegazione}\\
-	 &\leqslant \sum_{i=0}^{n-1} \sum_{j=i}^{n-1} n \Arrow{spiegazione}\\
-	 &\leqslant \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} n \Arrow{spiegazione}\\
-	 &=\sum_{i=0}^{n-1} n^2 \Arrow{spiegazione}\\
-	 &= n^3 \leqslant c_2 n^3
+T(n) &= \sum_{i=0}^{n-1} \sum_{j=i}^{n-1} (j - i + 1) \Arrow{}\\
+	 &\leqslant \sum_{i=0}^{n-1} \sum_{j=i}^{n-1} n \Arrow{}\\
+	 &\leqslant \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} n \Arrow{}\\
+	 &\Rightarrow \sum_{i=0}^{n-1} n^2 \Arrow{}\\
+	 &\Rightarrow n^3 \leqslant c_2 n^3
 \end{WithArrows}\]
 Questa disequazione è vera per \(n \geqslant m = 0\) and \(c_2 \geqslant 1\).
 \end{proof}
@@ -1144,10 +1168,11 @@ Vogliamo provare che \(T(n) = \Omega(n^3)\).
 \textbf{limite inferiore}:
 \(\exists c_1 > 0, \exists m \geqslant 0 : T(n) \leqslant c_1 n^3\), \(\forall n \geqslant m\).
 \[\begin{WithArrows}[displaystyle]
-T(n) &= \sum_{i=0}^{n-1} \sum_{j=i}^{n-1} (j - i + 1) \\
-	 &\geqslant \sum_{i=0}^{\nicefrac{n}{2}} \sum_{j=i}^{n+\nicefrac{n}{2}-1} (j - i + 1) \Arrow{spiegazione}\\
-	 &= \sum_{i=0}^{\nicefrac{n}{2}} \sum_{j=i}^{n+\nicefrac{n}{2}-1} \nicefrac{n}{2} \Arrow{spiegazione}\\
-	 &= \sum_{i=0}^{\nicefrac{n}{2}} \nicefrac{n^2}{4} \geqslant \nicefrac{n^3}{8} \geqslant c_1 n^3
+T(n) &= \sum_{i=0}^{n-1} \sum_{j=i}^{n-1} (j - i + 1) \Arrow{}\\
+	 &\geqslant \sum_{i=0}^{\nicefrac{n}{2}} \sum_{j=i}^{n+\nicefrac{n}{2}-1} (j - i + 1) \Arrow{}\\
+	 &\Leftrightarrow \sum_{i=0}^{\nicefrac{n}{2}} \sum_{j=i}^{n+\nicefrac{n}{2}-1} \nicefrac{n}{2} \Arrow{}\\
+	 &\Leftrightarrow \sum_{i=0}^{\nicefrac{n}{2}} \frac{n^2}{4}\Arrow{\(\frac{n^2}{4} \cdot \frac{n}{2} = \frac{n^3}{8}\)}\\
+	 &\geqslant \frac{n^3}{8} \geqslant c_1 n^3
 \end{WithArrows}\]
 Questa disequazione è vera per \(n \geqslant m = 0\) and \(c_1 \geqslant 8\).
 \end{proof}
@@ -1181,8 +1206,8 @@ Vogliamo provare che \(T(n) = \Theta(n^2)\)
 
 \begin{proof}
 \[\begin{WithArrows}[displaystyle]
-T(n) &= \sum_{i=0}^{n-1} n-i \Arrow{spiegazione}\\
-     &= \sum_{i=1}^{n} i \Arrow{spiegazione}\\
+T(n) &= \sum_{i=0}^{n-1} n-i \Arrow{\(10+9+ \cdots +1+0 \Leftrightarrow 0+1+ \cdots +9+10\)}\\
+     &= \sum_{i=1}^{n} i \Arrow{Gauss}\\
      &= \frac{n (n + 1)}{2} = \Theta(n^2)
 \end{WithArrows}\]
 Questo non richiede ulteriori spiegazioni.
@@ -1221,11 +1246,11 @@ int maxsum_rec(int[] A, int i, int j) {
 % \label{code:version-3}
 \end{code}
 
-Per questo, definiamo la equazione di ricorrenza:
+Per questo, definiamo l'equazione di ricorrenza:
 \[\begin{WithArrows}[displaystyle]
 T(n) = 2T(\nicefrac{n}{2}) + n
 \end{WithArrows}\]
-Utilizzando il teorema, possiamo vedere che \(\alpha = \log_2 2 = 1\) e \(\beta = 1\), quindi \(T(n) = \Theta(n \log n)\).
+Utilizzando il teorema dell'esperto possiamo vedere che \(\alpha = \log_2 2 = 1\) e \(\beta = 1\), quindi \(T(n) = \Theta(n \log n)\).
 
 \subsubsection*{Complessità della quarta versione}
 
@@ -1246,7 +1271,12 @@ int maxsum4(int A[], int n) {
 % \label{code:version-4}
 \end{code}
 
-\`{E} facile vedere che la complessità di questa versione è \(\Theta(n)\).
+\`{E} facile vedere che la complessità di questa versione è \(\Theta(n)\), in quanto il ciclo interno viene eseguito \(n\) volte.
+
+\paragraph{Fattori moltiplicativi}
+A volte, i fattori moltiplicativi di una funzione di complessità sono talmente alti che se ne sconsiglia l’uso per piccoli valori di \(n\).
+
+% TODO aggiungere grafico
 
 \ifsubfile
 \end{document}
