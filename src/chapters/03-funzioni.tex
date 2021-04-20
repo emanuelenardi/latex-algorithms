@@ -26,7 +26,7 @@ Abbiamo concluso la prima parte delle lezioni che ci introduceva alle equazioni 
 
 \subsection{Regola generale}
 
-\begin{theorem}[regola generale]
+\begin{theorem}[Regola generale]
 \(f(n) = a_k n^k + a_{k-1} n^{k-1} + \ldots a_1 n + a_0, a_k >0 \Rightarrow f(n) = \Theta(n^k)\)
 \end{theorem}
 
@@ -85,6 +85,7 @@ La complessità di \(f(n) = 5 + \sin(n)\) è pari a \(\Theta(1)\), in quanto \(\
 
 \subsection{Proprietà delle notazioni}
 
+% TODO descrivere ogni proprietà
 Vedremo sei proprietà:
 \begin{enumerate}
 	\item \textbf{dualità};
@@ -95,7 +96,7 @@ Vedremo sei proprietà:
 	\item \textbf{transitività}.
 \end{enumerate}
 
-\begin{theorem}[dualità]
+\begin{theorem}[Dualità]
 Se \(f(n)\) è limitata superiormente da \(g(n)\), allora \(g(n)\) è limitata inferiormente da \(f(n)\).
 \[ f(n) = \mathcal{O}(g(n)) \Leftrightarrow g(n) = \Omega(f(n)) \]
 \end{theorem}
@@ -113,7 +114,7 @@ La dimostrazione avviene tramite semplici passaggi algebrici.
 \end{WithArrows}\]
 \end{proof}
 
-\begin{theorem}[eliminazione delle costanti]
+\begin{theorem}[Eliminazione delle costanti]
 \[\begin{WithArrows}
 f(n) = \Omicron(g(n)) \Leftrightarrow af(n) = \Omicron(g(n)), \forall a > 0 \\
 f(n) = \Omega(g(n)) \Leftrightarrow af(n) = \Omega(g(n)), \forall a > 0
@@ -124,43 +125,43 @@ La dimostrazione avviene sempre tramite semplici passaggi algebrici.
 \[\begin{WithArrows}
 f(n) = \Omicron(g(n)) &\Leftrightarrow f(n) \leqslant c\,g(n), \forall n \geqslant m \Arrow{Introduco una costante \(a\)}\\
 	  &\Leftrightarrow f(n) \leqslant ac\,g(n), \forall n \geqslant m, \forall a \geqslant 0 \Arrow{raccolgo \(ac\) sotto un'unica costante \(c'\)}\\
-	  &\Leftrightarrow f(n) \leqslant c'g(n), \forall n \geqslant m, c' = ac > 0 \Arrow{per definizione}\\
+	  &\Leftrightarrow f(n) \leqslant c'g(n), \forall n \geqslant m, c' = ac > 0 \Arrow{per definizione di \(\Omicron\)}\\
 	  &\Leftrightarrow a f(n) = \Omicron(g(n))
 \end{WithArrows}\]
 \end{proof}
 
 Ad esempio \(2 \log n = \Theta(\log n)\), ignoriamo quindi le costanti numeriche.
 
-\begin{theorem}[sommatoria, sequenza di algoritmi]
+\begin{theorem}[Sommatoria, sequenza di algoritmi]
 	\begin{align*}
 	&
 	\begin{dcases}
 	f_1(n) = \Omicron(g_1(n)) \\
 	f_2(n) = \Omicron(g_2(n)) \\
 	\end{dcases}
-	\Rightarrow f_1(n) + f_2(n) = \Omicron(\maxFunction(g_1(n),g_2(n)))\\
+	\Rightarrow f_1(n) + f_2(n) = \Omicron\big(\maxFunction\big(g_1(n),g_2(n)\big)\big)\\
 	&
 	\begin{dcases}
 	f_1(n) = \Omega(g_1(n)) \\
 	f_2(n) = \Omega(g_2(n)) \\
 	\end{dcases}
-	\Rightarrow f_1(n) + f_2(n) = \Omega(\maxFunction(g_1(n),g_2(n)))\\
+	\Rightarrow f_1(n) + f_2(n) = \Omega\big(\maxFunction\big(g_1(n),g_2(n)\big)\big)\\
 	\end{align*}
 \end{theorem}
 \begin{proof}
 \[\begin{WithArrows}
-f_1 (n) = \Omicron(g_1 (n)) \land f_2 n = \Omicron(g_2(n)) &\Rightarrow \Arrow{per definizione}\\
-f_1 (n) \leqslant c_1 g_1 (n) \land f_2 (n) \leqslant c_2 g_2 (n) &\Rightarrow \Arrow[jump=2]{raccolgo}\\
+f_1 (n) = \Omicron(g_1 (n)) \land f_2 n = \Omicron(g_2(n)) &\Rightarrow \Arrow{per definizione di \(\Omicron\)}\\
+f_1 (n) \leqslant c_1 g_1 (n) \land f_2 (n) \leqslant c_2 g_2 (n) &\Rightarrow \Arrow[jump=2]{raccolgo \(c_1,c_2 > 0\)}\\
 f_1 (n) + f_2 (n) \leqslant c_1 g_1 (n) + c_2 g_2 (n) &\Rightarrow\\
-f_1 (n) + f_2 (n) \leqslant \maxFunction\{c_1, c_2\}(2 \cdot \maxFunction(g_1(n), g_2(n))) &\Rightarrow \Arrow{per definizione}\\
+f_1 (n) + f_2 (n) \leqslant \maxFunction\{c_1, c_2\}(2 \cdot \maxFunction(g_1(n), g_2(n))) &\Rightarrow \Arrow{per definizione di \(\Omicron\)}\\
 f_1 (n) + f_2 (n) = \Omicron(g_1(n) + g_2(n))
 \end{WithArrows}\]
 \end{proof}
 
-Ad esempio se ripeto due volte un algoritmo lineare, l'algoritmo risultante sarà comunque lineare.
-Mentre se ho un algoritmo lineare ed un algoritmo quadratico, la complessità risultante è una combinazione delle due, il limite superiore della complessità totale sarà quindi quadratica.
+Ad esempio se applico due volte un algoritmo lineare, l'algoritmo risultante sarà comunque lineare.
+Mentre se ho un algoritmo lineare ed un algoritmo quadratico, la complessità risultante sarà una combinazione delle due, il limite superiore della complessità totale sarà quindi quadratica.
 
-\begin{theorem}[cicli annidati]
+\begin{theorem}[Cicli annidati]
 Se \(f_1(n)\) viene ripetuto \(f_2(n)\) volte, allora \(f_1(n) \cdot f_2(n)\) è limitato superiormente dal prodotto delle complessità e limitato inferiormente dal prodotto delle complessità.
 \begin{align*}
 	&
@@ -180,15 +181,15 @@ Se \(f_1(n)\) viene ripetuto \(f_2(n)\) volte, allora \(f_1(n) \cdot f_2(n)\) è
 La dimostrazione è molto semplice.
 \begin{proof}
 \[\begin{WithArrows}
-f_1 (n) = \Omicron(g_1 (n)) \land f_2 n = \Omicron(g_2(n)) &\Rightarrow \Arrow{per definizione}\\
+f_1 (n) = \Omicron(g_1 (n)) \land f_2 n = \Omicron(g_2(n)) &\Rightarrow \Arrow{per definizione di \(\Omicron\)}\\
 f_1 (n) \leqslant c_1 g_1 (n) \land f_2 (n) \leqslant c_2 g_2 (n) &\Rightarrow \Arrow{raccolgo, \(c_1 c_2 > 0\)}\\
 f_1 (n) \cdot f_2 (n) \leqslant c_1 c_2 g_1(n) g_2(n)
 \end{WithArrows}\]
 \end{proof}
 
-Ad esempio, se ripeto \(n\) volte un algoritmo di costo \(\log n\), l'algoritmo complessivo avrà un costo di \(n \log n\).
+Ad esempio, se applico \(n\) volte un algoritmo di costo \(\log n\), l'algoritmo complessivo avrà un costo di \(n \log n\).
 
-\begin{theorem}[simmetria]
+\begin{theorem}[Simmetria]
 Se \(f(n)\) è limitata superiormente ed inferiormente da \(g(n)\), allora anche \(g(n)\) è limitata inferiormente e superiormente da \(f(n)\).
 	\[ f(n) = \Theta(g(n)) \Leftrightarrow g(n) = \Theta(f(n)) \]
 \end{theorem}
@@ -203,7 +204,7 @@ f(n) = \Theta(g(n)) &\quad\Rightarrow\quad f(n) = \Omega(g(n)) \quad\Rightarrow\
 \end{WithArrows}\]
 \end{proof}
 
-\begin{theorem}[transitività]
+\begin{theorem}[Transitività]
 Se \(f(n)\) è limitata superiormente da \(g(n)\), e \(g(n)\) è limitata superiormente da \(h(n)\), allora \(f(n)\) è limitata superiormente da \(h(n)\).
 \[
 \begin{dcases}
@@ -226,9 +227,9 @@ La dimostrazione è banale:
 \end{WithArrows}\]
 \end{proof}
 
-\subsection*{Altre funzioni di costo}
+\subsubsection*{Funzioni logaritmiche contro funzioni lineari}
 
-Vogliamo provare che \fbox{\(\log n = \Omicron(n)\)}
+Vogliamo provare che \fbox{\(\log n = \Omicron(n)\)}.
 
 Dimostriamo per induzione che \(\exists c > 0, \exists m \geqslant 0\,\colon \log n \leqslant cn, \forall n \geqslant m\).
 
@@ -236,7 +237,7 @@ Dimostriamo per induzione che \(\exists c > 0, \exists m \geqslant 0\,\colon \lo
 	\item \textbf{caso base} \((n=1)\):
 	\[\begin{WithArrows}
 	\log n &\leqslant cn \Arrow{\(n = 1\)}\\
-	\log 1 &\leqslant c \cdot 1 \Arrow{semplifico}\\
+	\log 1 &\leqslant c \cdot 1 \Arrow{\(\log_2 1 = 0 \Leftrightarrow 2^0 = 1\)}\\
 	0 &\leqslant c
 	\end{WithArrows}\]
 	\item \textbf{ipotesi induttiva}: \(\log k \leqslant ck, \forall k \leqslant n\)
@@ -244,20 +245,55 @@ Dimostriamo per induzione che \(\exists c > 0, \exists m \geqslant 0\,\colon \lo
 	\[\begin{WithArrows}
 	\log(n+1) \leqslant \log(n+n) &= \log2n \quad \forall n \geqslant 1 \Arrow{\(\log ab = \log a + \log b\)}\\
 	&= \log 2 + \log n \Arrow{\(\log_2 2 = 1\)}\\
-	&= 1 + \log n \Arrow{per ipotesi induttiva}\\
+	&= 1 + \log n \Arrow{per ipotesi induttiva \(\log k \leqslant ck\)}\\
 	&\leqslant 1 + cn \Arrow{obiettivo}\\
 	&\overset{?}{\leqslant} c(n+1) \Arrow{metto a confronto}\\
 	1 + cn &\leqslant c(n+1) \Arrow{moltiplico}\\
-	1 + \Ccancel{cn} &\leqslant \Ccancel{cn} + c \Arrow{semplifico}\\
+	1 + cn &\leqslant cn + c \Arrow{semplifico}\\
 	1 &\leqslant c
 	\end{WithArrows}\]
 \end{itemize}
 
-% TODO inserisci grafico
+\subsubsection*{Altri esercizi}
 
-% TODO inserisci esercizi
+\begin{itemize}
+	\item \(\log_a n = \Theta(\log n)\) perché \(\log_a n = (\log_a 2) \cdot (\log_2 n) = \Theta(\log n)\);
 
-% TODO inserisci notazione o piccolo e omega piccolo
+	\item \(\log n^{\alpha} = \Theta(\log n)\), per \(a > 0\) perché \(\log n^{\alpha} = a \log n = \Theta(\log n)\);
+
+	\item \(2^{n+1} = \Theta(2^n)\) perché \(2^{n+1} = 2 \cdot 2^n = \Theta(2^n)\);
+
+	\item \(2^n \neq \Theta(3^n)\), ovviamente \(2^n = \Omicron(3^n)\), ma \(3^n = \left(\frac{3}{2} \cdot 2\right)^n = \left(\frac{3}{2}\right)^n \cdot 2^n\).
+	Quindi non esiste \(c > 0\) tale per cui \(\left(\frac{3}{2}\right)^n \cdot 2^n \leqslant c2^n\), e quindi \(2^n \neq \Omega(3^n)\).
+\end{itemize}
+
+\subsection*{Notazione \texorpdfstring{\(o\), \(\omega\)}{o piccolo, omega}  }
+
+\begin{definition*}[Notazioni \(o\), \(\omega\)]
+Sia \(g(n)\) una funzione di costo; indichiamo con \(o(g(n))\) l'insieme delle funzioni \(f(n)\) tali per cui:
+\[
+	\forall c, \exists m : f(n) < cg(n), \forall n \geqslant m.
+\]
+Sia \(g(n)\) una funzione di costo; indichiamo con \(\omega(g(n))\) l'insieme delle funzioni \(f(n)\) tali per cui:
+\[
+	\forall c, \exists m : f(n) > cg(n), \forall n \geqslant m.
+\]
+\end{definition*}
+Si leggono \enquote{\(f(n)\) è o piccolo}, \enquote{omega piccolo} di \(g(n)\).
+Si scrivono \(f(n) = o(g(n))\) oppure \(f(n) = \omega(g(n))\).
+
+Utilizzando il concetto di limite, date due funzioni \(f(n)\) e \(g(n)\) si possono fare le seguenti affermazioni:
+\begin{align*}
+	\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0       \Rightarrow f(n) &= o(g(n))\\
+	\lim_{n \to \infty} \frac{f(n)}{g(n)} = c\neq 0 \Rightarrow f(n) &= \Theta(g(n))\\
+	\lim_{n \to \infty} \frac{f(n)}{g(n)} = +\infty \Rightarrow f(n) &= \omega(g(n))
+\end{align*}
+
+Si noti che:
+\begin{align*}
+	f(n) = o(g(n)) \Rightarrow f(n) = \Omicron(g(n))\\
+	f(n) = \omega(g(n)) \Rightarrow f(n) = \Omega(g(n))
+\end{align*}
 
 \subsection*{Classificazione delle funzioni}
 
@@ -289,17 +325,32 @@ Non è detto che gli esponenti siano interi.
 \(n\) cresce meno velocemente di \(n \log n\), il quale a sua volta cresce meno velocemente di \(n \log^2 n\).
 
 \clearpage
+\section{Tecniche di Analisi}
+
+Per analizzare la complessità di un algoritmo ricorsivo, occorre impostare relazioni di ricorrenza e individuarne l'ordine di grandezza.
+Ci sono tre modi diversi per risolvere tali relazioni:
+\begin{itemize}
+	\item \textbf{espandere le relazioni stesse}, sostituendo successivamente nella nella relazione di partenza scritta per \(T(n)\) quella riscritta, per esempio, per \(T(n-1)\), poi quella per \(T(n-2)\), e così via finché, chiarita la struttura della somma così ottenuta, non resta che una formula \enquote{chiusa} per \(T(n)\) che comprende termini in \(n\) e costanti;
+
+	\item \textbf{usare la soluzione generale} di alcune relazioni di ricorrenza \enquote{comuni} che sono espresse in forma parametrica, e ricavare la soluzione di \(T(n)\) semplificemente sostituendo al posto dei parametri i valori costanti che appaiono nella relazione per \(T(n)\);
+
+	\item \textbf{\enquote{tentare} con una soluzione \(f(n)\)}, lasciando qualche parametro non specificato, e dimostrare, generalmente per induzione su \(n\), che \(T(n)\) è \(\Omicron(f(n))\) oppure \(\Omega(f(n))\).
+\end{itemize}
+In mancanza di metodi più generali, si può sempre applicare la tecnica di espansione, che in linea di principio garantisce di trovare una soluzione, ma che in pratica può richiedere di risolvere o maggiorare sommatorie molto complicate.
+Nel seguito verrà trattata una versione particolare della tecnica di espansione, detta \emph{per livelli} e verrano introdotte le altre due.
+
+Per l'analisi del caso medio, purtroppo, sono note poche tecniche generali e le formule che vengono impostate per analizzare la complessità sono in genere di difficilissima soluzione.
+Vedremo due esempi di analisi \enquote{trattabili} introducendo una struttura di dati chiamata \emph{tabella hash}.
+
+Infine, per l'analisi ammortizzata di una sequenza di operazioni su una struttura di dati, vedremo alcune tecniche molto semplici, quali il metodo di \emph{aggregazione}, quello degli \emph{accantonamenti} e quello del \emph{potenziale}.
+
 \section{Analisi per livelli}
 
-% TODO aggiungere testo
-% Quando si calcola ?????????
 Nell'analisi per livelli (o dell'albero di ricorsione) andiamo sostanzialmente a \enquote{srotolare} la ricorrenza in un albero, i cui nodi rappresentano i costi dei vari livelli della ricorsione.
-
-\subsection{Esempi di analisi per livelli}
 
 \subsubsection*{Analisi per livelli dell'algoritmo della ricerca binaria}
 
-Equazione di ricorrenza della ricerca binaria:
+Equazione di ricorrenza:
 \[
 	T(n) =
 	\begin{dcases}
@@ -315,10 +366,12 @@ T(n) &= b + T(\frac{n}{2}) \Arrow{\(T\left(\frac{n}{2} \cdot \frac{1}{2} \right)
 	 &= b + b + T(\frac{n}{4}) \Arrow{\(T\left(\frac{n}{4} \cdot \frac{1}{2} \right) + b\)}\\
 	 &= b + b + b + T(\frac{n}{8}) \Arrow[jump=2]{svolgo \(\log n\) operazioni}\\
 	 &\phantom{= b + b + b}\vdots\\
-	 &= \underbracket[0.01mm]{b + b + \cdots + b }_{\log n} + T(1) \Arrow{semplifico}\\
+	 &= \underbracket[0.01mm]{b + b + \cdots + b }_{\log n} + T(1) \Arrow{semplifico: \(T(1) = 1\)}\\
 	 &= b\log n + T(1) \Arrow{eliminazione delle costanti}\\
 	 &= \Theta(\log n)
 \end{WithArrows}\]
+
+Possiamo concludere che l'algoritmo di ricerca binaria ha complessità \(\Theta(\log n)\).
 
 \subsubsection*{Analisi per livelli del primo tentativo della moltiplicazione di Karatsuba}
 
@@ -334,19 +387,18 @@ Equazione di ricorrenza:
 \`{E} possibile risolvere questa ricorrenza nel modo seguente:
 \[\begin{WithArrows}[displaystyle]
 T(n) &= n + 4T(\nicefrac{n}{2}) \Arrow{\(4T\left(\frac{n}{2} \cdot \frac{1}{2} \right) + \frac{n}{2}\)}\\
-	 &{\color{gray} = n + 4\left(4T\left(\frac{n}{2} \cdot \frac{1}{2}\right) + \frac{n}{2} \right)} \Arrow[tikz={color=gray}]{semplifico}\\
+	 &{\color{gray}\; = n + 4\left(4T\left(\frac{n}{2} \cdot \frac{1}{2}\right) + \frac{n}{2} \right)} \Arrow[tikz={color=gray}]{semplifico}\\
 	 &= n + 4\nicefrac{n}{2} + 16 T(\nicefrac{n}{4}) \Arrow{\(4T\left(\frac{n}{4} \cdot \frac{1}{2} \right) + \frac{n}{4}\), \(4\nicefrac{n}{2} = 2n\)}\\
-	 &{\color{gray} = n + 2n + 16\left(4T\left(\frac{n}{4} \cdot \frac{1}{2}\right) + \frac{n}{4} \right)} \Arrow[tikz={color=gray}]{semplifico}\\
+	 &{\color{gray}\; = n + 2n + 16\left(4T\left(\frac{n}{4} \cdot \frac{1}{2}\right) + \frac{n}{4} \right)} \Arrow[tikz={color=gray}]{semplifico}\\
 	 &= n + 2n + 16\nicefrac{n}{4} + 64 T(\nicefrac{n}{8}) \Arrow[jump=2]{svolgo \(\log n\) operazioni}\\
 	 &\phantom{= n + 2n + 16}\vdots \\
-	 &= \underbracket[0.01mm]{n + 2n + 4n + 8 n + \cdots + 2^{\log n-1}n}_{sommatoria} + 4^{\log n} T(1) \Arrow{raccolgo}\\
+	 &= \underbracket[0.01mm]{n + 2n + 4n + 8 n + \cdots + 2^{\log n-1}n}_{sommatoria} + 4^{\log n} T(1) \Arrow{raccolgo, semplifico}\\
 	 &= n \sum_{j=0}^{\log n-1} 2^j + 4^{\log n}
 \end{WithArrows}\]
 
-Ciò che abbiamo ottenuto è una forma chiusa, non più un'equazione di ricorrenza: non è ancora nella sua forma definitiva, dobbiamo ancora trattarla.
+Ciò che abbiamo ottenuto è una forma chiusa, non più un'equazione di ricorrenza; ma non è ancora nella sua forma definitiva, dobbiamo ancora trattarla.
 
-\newpage
-Ricordiamo che la serie geometrica finita vale per \(\forall x \neq 1\) ed è la seguente:
+Ricordiamo che la serie geometrica decrescente infinita vale per \(\forall x \neq 1\) ed è la seguente:
 \[
 	\sum_{j=0}^k x^j = \frac{x^{k+1}-1}{x-1}
 \]
@@ -357,11 +409,11 @@ T(n) &= n \sum_{j=0}^{\log n-1} 2^j + 4^{\log n} \Arrow{applico serie geometrica
 	 &= n \cdot \frac{2^{\log n}-1}{2-1} + 4^{\log n} \Arrow{cambio di base: \(2^{\log n} = n^{\log_2 2} = n^{1}\)}\\
 	 &= n(n-1) + 4^{\log n} \Arrow{moltiplico: \(n(n-1) = n^2 - n\)\\cambio di base: \(4^{\log n} = n^{\log 4} = n^2\)}\\[2ex]
 	 &= n^2 - n + n^2 \Arrow{raccolgo \(n^2\)}\\
-	 &= 2n^2 - n \Arrow{regola generale}\\
+	 &= 2n^2 - n \Arrow{regola generale: \(n^2 \subset n\)}\\
 	 &= \Theta(n^2)
 \end{WithArrows}\]
 
-Possiamo concludere che \(T(n) = n + 4T(\nicefrac{n}{2}) = \Theta(n^2)\).
+Possiamo concludere che la moltiplicazione di Karatsuba ha complessità \(\Theta(n^2)\).
 
 \clearpage
 \subsection*{Modifichiamo l'esempio precendente}
@@ -374,12 +426,13 @@ T(n) =
 	1 & n \leqslant 1
 \end{dcases}
 \]
+Abbiamo introdotto una componente al cubo \(n^3\).
 
 Per semplicità consideriamo \(n = 2^{\ell}\).
 \begin{center}
 \begin{tabular}{@{} *{5}{c} @{}}
 	\toprule
-		livello & dim. & costo chiam. & no. chiamate & costo livello \\
+		\textbf{livello} & \textbf{dim.} & \textbf{costo chiam.} & \textbf{no. chiamate} & \textbf{costo livello} \\
 	\midrule
 		\(0\) & \(n\)   & \(n^3\)     & \(1\)  & \(n^3\) \\
 	\addlinespace
@@ -409,21 +462,21 @@ Ricordiamo che la serie geometrica infinita vale per \(\forall x, \abs{x} < 1\) 
 \]
 dove nel nostro caso \(x = \frac{1}{2}\).
 
-Sommando il costo di tutti i \(i\)-esimi livelli e del livello \(\ell\)-esimo otteniamo:
+Sommando il costo delle chiamate di tutti i \(\ell-1\) livelli ed il livello \(\ell\)-esimo otteniamo:
 \[\begin{WithArrows}[displaystyle]
-T(n) &= \sum_{i=0}^{\log n-1} 4^i \cdot \frac{n^3}{2^{3i}} + 4^{\log n} \Arrow{semplifico: \(4^i = 2^{2i}\),\\porto fuori: \(n^3\)}\\
+T(n) &= \sum_{i=0}^{\log n-1} 4^i \cdot \frac{n^3}{2^{3i}} + 4^{\log n} \Arrow{semplifico: \(4^i = 2^{2i}\),\\porto fuori: \(n^3\), poiché non dipende da \(i\)}\\
 	 &= n^3 \sum_{i=0}^{\log n-1} \frac{2^{2i}}{2^{3i}} + 4^{\log n} \Arrow{semplifico: \(\frac{2^{2i}}{2^{3i}} = {\left(\frac{1}{2}\right)}^{i}\)}\\
-	 &= n^3 \sum_{i=0}^{\log n-1} {\left(\frac{1}{2}\right)}^{i} + 4^{\log n} \Arrow{cambio di base, \(4^{\log n} = n^{\log 4} = n^2\)}\\
+	 &= n^3 \sum_{i=0}^{\log n-1} {\left(\frac{1}{2}\right)}^{i} + 4^{\log n} \Arrow{cambio di base: \(4^{\log n} = n^{\log 4} = n^2\)}\\
 	 &= n^3 \sum_{i=0}^{\log n-1} {\left(\frac{1}{2}\right)}^{i} + n^2 \Arrow{estensione della sommatoria ad \(\infty\)}\\
 	 &\leqslant n^3 \sum_{i=0}^{\infty} {\left(\frac{1}{2}\right)}^{i} + n^2 \Arrow{applico serie geometrica infinita decrescente}\\
 	 &= n^3 \frac{1}{1-\frac{1}{2}} + n^2 \Arrow{semplifico: \(\frac{1}{1-\frac{1}{2}} = 2\)}\\
 	 &= 2n^3 + n^2
 \end{WithArrows}\]
-Abbiamo dimostrato che \(T(n) \leqslant 2n^3 + n^2\), possiamo quindi affermare che \(T(n) = \Omicron(n^3)\), ma non possiamo affermare che \(T(n) = \Theta(n^3)\) poiché abbiamo dimostrato solo un limite superiore.
+Abbiamo dimostrato che \(T(n) \leqslant 2n^3 + n^2\), possiamo quindi affermare per la regola generale che \(T(n) = \Omicron(n^3)\), ma non possiamo affermare che \(T(n) = \Theta(n^3)\) poiché abbiamo dimostrato solo un limite superiore.
 
-\begin{hint}
+\begin{note}
 Tutte le volte che notiamo in un'equazione di riccorrenza una parte polinomiale, come ad esempio \(n^3\), possiamo dire con certezza che l'equazione è \(\Omega(n^3)\).
-\end{hint}
+\end{note}
 
 Ora possiamo affermare che \(T(n) = \Theta(n^3)\).
 
@@ -443,7 +496,7 @@ Di conseguenza cambia anche il costo del livello.
 \begin{center}
 \begin{tabular}{@{} *{5}{c} @{}}
 	\toprule
-		livello & dim. & costo chiam. & no. chiamate & costo livello \\
+		\textbf{livello} & \textbf{dim.} & \textbf{costo chiam.} & \textbf{no. chiamate} & \textbf{costo livello} \\
 	\midrule
 		\(0\) & \(n\)   & \(n^2\)     & \(1\)  & \(n^2\) \\
 	\addlinespace
@@ -466,19 +519,19 @@ Di conseguenza cambia anche il costo del livello.
 \end{tabular}
 \end{center}
 
-Sommando il costo di tutti i \(\ell-1\) livelli ed il livello \(\ell\)-esimo otteniamo:
+Sommando il costo delle chiamate di tutti i \(\ell-1\) livelli ed il livello \(\ell\)-esimo otteniamo:
 \[\begin{WithArrows}[displaystyle]
-T(n) &= \sum_{i=0}^{\log n-1} \frac{n^2}{2^{2i}} \cdot 4i + 4^{\log n} \Arrow{semplifico: \(4^i = 2^{2i}\)\\cambio di base: \(4^{\log n} = n^{\log_2 4} = n^2\)\\porto fuori: \(n^2\) (non dipende da \(i\))}\\
+T(n) &= \sum_{i=0}^{\log n-1} \frac{n^2}{2^{2i}} \cdot 4i + 4^{\log n} \Arrow{semplifico: \(4^i = 2^{2i}\)\\cambio di base: \(4^{\log n} = n^{\log_2 4} = n^2\)\\porto fuori \(n^2\) poiché non dipende da \(i\)}\\
 	 &= n^2 \sum_{i=0}^{\log n-1} \frac{2^{2i}}{2^{2i}} + n^2 \Arrow{semplifico: \(\frac{2^{2i}}{2^{2i}} = 1\)}\\
 	 &= n^2 \sum_{i=0}^{\log n-1} 1 + n^2 \Arrow{svolgo la sommatoria: \(\sum_{i=0}^{\log n-1} 1 = \log n\)}\\
-	 &= n^2 \log n + n^2 \Arrow{regola generale \(n^2 \log n \subset n^2\)}\\
+	 &= n^2 \log n + n^2 \Arrow{regola generale: \(n^2 \log n \subset n^2\)}\\
 	 &= \Theta(n^2 \log n)
 \end{WithArrows}\]
 
 \section*{Conclusioni}
 
-Per riassumere, se consideriamo i termini non ricorrenti, \(n\) ha prodotto \(n^2\), \(n^2\) ha prodotto \(n^2 \log n\) e \(n^3\) ha prodotto \(n^3\).
-Quando avremo a disposizione lo strumento \enquote{\foreign{master theorem}} riusciremo semplicemente guardando l'equazione di ricorrenza a capire quale complessità essa produce.
+Per riassumere, se consideriamo i termini non ricorrenti nelle equazioni di ricorrenza, \(n\) ha prodotto \(n^2\), \(n^2\) ha prodotto \(n^2 \log n\) e \(n^3\) ha prodotto \(n^3\).
+Quando avremo a disposizione lo strumento \enquote{\foreign{master theorem}} riusciremo \emph{semplicemente guardando l'equazione} di ricorrenza a capire quale complessità essa produce.
 
 \clearpage
 \section{Metodo di sostituzione}
@@ -488,6 +541,7 @@ Il metodo di sostituzione è un metodo in cui si cerca di \enquote{indovinare} (
 
 \subsection*{Primo esercizio}
 
+L'equazione di ricorrenza:
 \[
 	T(n) =
 	\begin{dcases}
@@ -495,17 +549,21 @@ Il metodo di sostituzione è un metodo in cui si cerca di \enquote{indovinare} (
 		1 & n \leqslant 1
 	\end{dcases}
 \]
+Questa equazione di ricorrenza genera una serie di chiamate ricorsive su una dimensione del vettore dimezzata ad ogni chiamata come si vede in~\cref{fig:achille}.
+\begin{figure}[H]\centering
+	\includegraphics[width=.7\textwidth, trim=0 12cm 5cm 0, clip, page=7]{achille}
+	\caption[]{Rappresentazione della ricorrenza.}\label{fig:achille}
+\end{figure}
 Risolvendolo tramite il metodo precendente otteniamo:
 \[\begin{WithArrows}[displaystyle]
 T(n) &= n \sum_{i=0}^{\log n} {\left( \frac{1}{2} \right)}^{i} \Arrow{estensione della sommatoria ad \(\infty\)}\\
 	 &\leqslant n \sum_{i=0}^{\infty} {\left( \frac{1}{2} \right)}^{i}
-	 \Arrow{Serie geometrica decrescente infinita:\\
-	 \(\forall x, \abs{x} < 1: \sum_{i=0}^{\infty} x^i = \frac{1}{1-x}\), dove \(x = \frac{1}{2}\)}\\
+	 \Arrow{applico serie geometrica decrescente infinita dove \(x = \frac{1}{2}\)}\\
 	 &\leqslant n \frac{1}{1-\frac{1}{2}} \Arrow{\(\frac{1}{1-\frac{1}{2}} = 2\)}\\
 	 &= 2n
 \end{WithArrows}\]
 
-Sapendo già il risultato proviamo --- per tentativi --- a dimostrare che \fbox{\(T(n) = \Omicron(n)\)}
+Sapendo già il risultato proviamo --- per tentativi --- a dimostrare che \fbox{\(T(n) = \Omicron(n)\)}.
 
 \textbf{Limite superiore}: dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \leqslant cn, \forall n \geqslant m\)
 \begin{itemize}
@@ -517,8 +575,8 @@ Sapendo già il risultato proviamo --- per tentativi --- a dimostrare che \fbox{
 	T(n) &= T(\floor*{\frac{n}{2}}) + n \Arrow{sost. ip. ind. con \(k = \floor*{\frac{n}{2}}\)}\\
 	&\leqslant c \floor*{\frac{n}{2}} + n \Arrow{semplifico l'intero inferiore}\\
 	&\leqslant c \frac{n}{2} + n \Arrow{raccolgo \(n\)}\\
-	&= (\frac{c}{2} + 1)n \Arrow{obiettivo}\\
-	&= (\frac{c}{2} + 1)n \overset{?}{\leqslant} cn \Arrow[jump=2]{semplifico}\\
+	&= \left(\frac{c}{2} + 1\right)n \Arrow{obiettivo}\\
+	&\Rightarrow \left(\frac{c}{2} + 1\right)n \overset{?}{\leqslant} cn \Arrow[jump=2]{semplifico}\\
 	&\Rightarrow \frac{c}{2} + 1 \leqslant c\\
 	&\Rightarrow c \geqslant 2
 	\end{WithArrows}\]
@@ -529,8 +587,7 @@ Quindi la nostra ipotesi è valida per qualsiasi valore di c t.c.\ \(c \geqslant
 
 Quanto abbiamo dimostrato vale per \(n = 1\) e per tutti i valori di \(n\) successivi, di conseguenza \(m = 1\).
 
-\newpage
-Al solo scopo didattico (in quanto lo potremmo dedurlo dal termine non ricorsivo) proviamo passo passo anche il limite inferiore, ossia proviamo a dimostrare che \fbox{\(T(n) = \Omega(n)\)}
+Al solo scopo didattico (in quanto potremmo dedurlo dal termine non ricorsivo) proviamo passo passo anche il limite inferiore, ossia proviamo a dimostrare che \fbox{\(T(n) = \Omega(n)\)}
 
 \textbf{Limite inferiore}: dobbiamo dimostrare che \(\exists d > 0, \exists m \geqslant 0 \,\colon T(n) \geqslant dn, \forall n \geqslant m\).
 
@@ -540,11 +597,11 @@ Usiamo la costante \(d\) al solo scopo di non confonderla la costante \(c\) usat
 \begin{itemize}
 	\item \textbf{caso base} \(T(1)\):
 	\[T(1) = 1 \overset{?}{\geqslant} d \cdot 1 \iff d \leqslant 1\]
-	\item \textbf{ipotesi induttiva} \(\forall k < n \,\colon T(k) \geqslant ck\), ossia assumiamo che per tutti i valori più piccoli di \(n\) la mia dimostrazione sia già stata fatta.
+	\item \textbf{ipotesi induttiva} \(\forall k < n \,\colon T(k) \geqslant ck\), ossia assumiamo che per tutti i valori più piccoli di \(n\) la mia dimostrazione sia già stata fatta;
 	\item \textbf{ipotesi induttiva} dimostriamo la disequazione per \(T(n)\)
 	\[\begin{WithArrows}
-	T(n) &= T(\floor{\frac{n}{2}}) + n \Arrow{sost. ip. ind. con \(d = \frac{n}{2}\)}\\
-		 &\geqslant d \floor{\frac{n}{2}} + n \Arrow{semplifico l'intero inferiore}\\
+	T(n) &= T\left(\floor*{\frac{n}{2}}\right) + n \Arrow{sost. ip. ind. con \(k = \frac{n}{2}\)}\\
+		 &\geqslant d \floor*{\frac{n}{2}} + n \Arrow{semplifico l'intero inferiore}\\
 		 &\geqslant d \frac{n}{2} - 1 + n \Arrow{raccolgo \(n\)}\\
 		 &= \left( \frac{d}{2} - \frac{1}{n} + 1 \right) n \Arrow{obiettivo}\\
 		 &\Rightarrow \left( \frac{d}{2} - \frac{1}{n} + 1 \right) n \overset{?}{\geqslant} dn \Arrow[jump=2]{semplifico}\\
@@ -558,11 +615,11 @@ Usiamo la costante \(d\) al solo scopo di non confonderla la costante \(c\) usat
 
 	Quanto abbiamo dimostrato vale per \(n = 1\) e per tutti i valori di \(n\) successivi, di conseguenza \(m = 1\).
 
-	Per concludere abbiamo provato che \(T(n) = T(\floor*{\frac{n}{2}}) + n\) è limitata sia superiormente \(T(n) = \Omicron(n)\), sia inferiormente \(T(n) = \Omega(n)\), possiamo quindi affermare con assoluta certezza che \(T(n) = \Theta(n)\).
+	Per concludere abbiamo provato che \(T(n) = T\left(\floor*{\frac{n}{2}}\right) + n\) è limitata sia superiormente, che inferiormente da \(n\), possiamo quindi affermare con assoluta certezza che \(T(n) = \Theta(n)\).
 \end{itemize}
 
 Nota che avremmo potuto evitare la dimostrazione del limite inferiore osservando che
-\[\textstyle T(n) = T(\floor{\frac{n}{2}}) + n \geqslant n \overset{?}{\geqslant} dn\]
+\[\textstyle T(n) = T\left(\floor*{\frac{n}{2}}\right) + n \geqslant n \overset{?}{\geqslant} dn\]
 l'ultima disequazione risulta vera per \(d \leqslant 1\), la quale è una condizione identica a quella del caso base.
 Nota che non abbiamo fatto nemmeno ricorso all'ipotesi induttiva.
 
@@ -578,11 +635,11 @@ T(n) =
 \]
 
 \begin{note}
-L'equazione di riccorrenza rappresenta il caso in cui selection sort sia espresso in forma ricorsiva.
+L'equazione di riccorrenza rappresenta il caso in cui \selectionSort sia espresso in forma ricorsiva.
 \end{note}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.6\textwidth]{ennemenouno}
+	\includegraphics[width=.65\textwidth]{ennemenouno}
 	\caption[]{Rappresentazione della ricorrenza lineare.}
 \end{figure}
 
@@ -600,53 +657,53 @@ Effettuiamo un tentativo e proviamo a dimostrare che \fbox{\(T(n) = \Omicron(n)\
 	\item \textbf{passo induttivo} dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
 	T(n) &= T(n-1) + n \Arrow{sost. ip. ind. con \(k = n-1\)}\\
-	&= c(n-1) + n \Arrow{moltiplico}\\
-	&= cn - c + n \Arrow{raccolgo \(n\)}\\
-	&= (c+1)n - c \Arrow{rimuovo l'elemento negativo}\\
-	&\leqslant (c+1)n \Arrow{obiettivo}\\
-	&= (c+1)n \overset{?}{\leqslant} cn \Arrow{semplifico}\\
-	&\Rightarrow c+1 \leqslant c
+		 &\leqslant c(n-1) + n \Arrow{moltiplico \(n\)}\\
+		 &\leqslant cn - c + n \Arrow{raccolgo \(n\)}\\
+		 &\leqslant (c+1)n - c \Arrow{rimuovo l'elemento negativo}\\
+		 &\leqslant (c+1)n \Arrow{obiettivo}\\
+		 &\Rightarrow (c+1)n \overset{?}{\leqslant} cn \Arrow{semplifico}\\
+		 &\Rightarrow c+1 \leqslant c
 	\end{WithArrows}\]
 
-	Possiamo notare che l'ultima disequazione risulta impossibile.
+	Possiamo notare che \textbf{l'ultima disequazione risulta impossibile}.
 	Dunque quando proviamo a dimostrare qualcosa di sbagliato non riusciremo a dimostrarlo.
 \end{itemize}
 
 \newpage
 \subsection*{Difficoltà matematica}
 
+Prendiamo in considerazione l'equazione di ricorrenza di \mergeSort:
 \[
 T(n) =
 	\begin{cases}
-	T(\floor{ \frac{n}{2} }) + T(\ceil{ \frac{n}{2} }) + 1 & n > 1 \\
+	T\left(\floor*{ \frac{n}{2} }\right) + T\left(\ceil*{ \frac{n}{2} }\right) + 1 & n > 1 \\
 	1 & n \leqslant 1
 	\end{cases}
 \]
 
 \begin{note}
-\`{E} possibile ottenere questa equazione di riccorrenza dall'algoritmo che calcola il minimo di un vettore non ordinato in maniera ricorsiva.
+\`{E} possibile ottenere questa equazione di riccorrenza dall'algoritmo che calcola il minimo di un vettore non ordinato espresso in maniera ricorsiva.
 \end{note}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.6\textwidth]{tree1}
+\begin{figure}[H]\centering
+	\includegraphics[width=.7\textwidth]{tree1}
 	\caption[]{Rappresentazione della ricorsione.}
 \end{figure}
 
+Sommando il costo di tutti i livelli otteniamo:
 \[
 	T(n) = \sum_{i=0}^{\log n} 2^i = n + \frac{n}{2} + \frac{n}{4} + \cdots + 1 = \Omicron(n)
 \]
 
-Effettuiamo un tentativo per \fbox{\(T(n) = \Omicron(n)\)}
-
+Effettuiamo un tentativo per \fbox{\(T(n) = \Omicron(n)\)}.
 \begin{itemize}
 	\item \textbf{ipotesi induttiva}: \(\forall k < n \,\colon T(k) \leqslant ck\).
 	\item \textbf{passo induttivo}: dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
-	T(n) &= T(\floor{ \frac{n}{2} }) + T(\ceil{ \frac{n}{2} }) + 1 \Arrow{sost. ip. ind.}\\
-		 &= c(\floor{ \frac{n}{2} }) + c(\ceil{ \frac{n}{2} }) + 1 \Arrow{semplifichiamo, \(\floor{ \frac{n}{2} } + \ceil{ \frac{n}{2} } = n\)}\\
+	T(n) &= T\left(\floor*{\frac{n}{2}}\right) + T\left(\ceil*{\frac{n}{2}}\right) + 1 \Arrow{sost. ip. ind. con \(k=\frac{n}{2}\)}\\
+		 &= c\left(\floor*{\frac{n}{2}}\right) + c\left(\ceil*{\frac{n}{2}}\right) + 1 \Arrow{semplifico: \(\floor*{\frac{n}{2}} + \ceil*{\frac{n}{2}} = n\)}\\
 		 &= cn + 1 \Arrow{obiettivo}\\
-		 &= cn + 1 \overset{?}{\leqslant} cn \Arrow{semplifico}\\
+		 &\Rightarrow cn + 1 \overset{?}{\leqslant} cn \Arrow{semplifico}\\
 		 &\Rightarrow 1 \leqslant 0
 	\end{WithArrows}\]
 
@@ -655,7 +712,7 @@ Effettuiamo un tentativo per \fbox{\(T(n) = \Omicron(n)\)}
 
 	Proviamo quindi ad utilizzare un'ipotesi induttiva \emph{più stretta}.
 
-	\item \textbf{ipotesi induttiva più stretta}: \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \leqslant cn - b, \forall n \geqslant m\), \(b > 0\).
+	\item \textbf{ipotesi induttiva (più stretta)}: \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \leqslant cn - b, \forall n \geqslant m\), \(b > 0\).
 
 	Abbiamo introdotto una costante \(b > 0\) nella nostra tesi, questa modifica ci permetterà di dimostrare correttamente il passo induttivo.
 
@@ -663,10 +720,10 @@ Effettuiamo un tentativo per \fbox{\(T(n) = \Omicron(n)\)}
 
 	\item \textbf{passo induttivo} dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
-	T(n) &= T(\floor{ \frac{n}{2} }) + T(\ceil{ \frac{n}{2} }) + 1 \Arrow{sost. ip. ind.}\\
-	&= c(\floor{ \frac{n}{2} }) - b + c(\ceil{ \frac{n}{2} }) - b + 1 \Arrow{semplifichiamo}\\
+	T(n) &= T(\floor{ \frac{n}{2} }) + T(\ceil{ \frac{n}{2} }) + 1 \Arrow{sost. ip. ind. con \(k=\frac{n}{2}\)}\\
+	&= c(\floor{ \frac{n}{2} }) - b + c(\ceil{ \frac{n}{2} }) - b + 1 \Arrow{semplifico l'intero inferiore e raccolgo \(b\)}\\
 	&= cn -2b + 1 \Arrow{obiettivo}\\
-	&= cn -2b + 1 \overset{?}{\leqslant} cn - b\Arrow[jump=2]{semplifico}\\
+	&\Rightarrow cn -2b + 1 \overset{?}{\leqslant} cn - b\Arrow[jump=2]{semplifico}\\
 	&\Leftrightarrow -2b + 1 \leqslant -b\\
 	&\Leftrightarrow b \geqslant 1
 	\end{WithArrows}\]
@@ -688,10 +745,11 @@ Dobbiamo dimostrare che \(\exists d > 0, \exists m \geqslant 0 \,\colon T(n) \ge
 \begin{itemize}
 	\item \textbf{passo induttivo}
 	\[\begin{WithArrows}
-	T(n) &= T(\floor{ \frac{n}{2} }) + T(\ceil{ \frac{n}{2} }) + 1 \Arrow{sost. ip. ind.}\\
-	&\geqslant d(\floor{ \frac{n}{2} }) + d(\ceil{ \frac{n}{2} }) + 1 \Arrow{semplifichiamo}\\
+	T(n) &= T\left(\floor*{ \frac{n}{2} }\right) + T\left(\ceil*{ \frac{n}{2} }\right) + 1 \Arrow{sost. ip. ind.}\\
+	&\geqslant d\left(\floor*{ \frac{n}{2} }\right) + d\left(\ceil*{ \frac{n}{2} }\right) + 1 \Arrow{semplifico l'intero inferiore}\\
 	&= dn + 1 \Arrow{obiettivo}\\
-	&= dn + 1 \overset{?}{\geqslant} dn
+	&= dn + 1 \overset{?}{\geqslant} dn \Arrow{semplifico}\\
+	&= 1 \geqslant 0
 	\end{WithArrows}\]
 	L'ultima disequazione risulta vera \(\forall d\).
 	\item \textbf{caso base}
@@ -705,7 +763,7 @@ Dobbiamo dimostrare che \(\exists d > 0, \exists m \geqslant 0 \,\colon T(n) \ge
 \[
 	T(n) =
 	\begin{cases}
-		2T(\floor{ \frac{n}{2} }) + n & n > 1 \\
+		2T\left(\floor*{ \frac{n}{2} }\right) + n & n > 1 \\
 		1 & n \leqslant 1
 	\end{cases}
 \]
@@ -729,24 +787,24 @@ Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \le
 	\item \textbf{Ipotesi induttiva}: \(\exists c > 0, \forall k < n \,\colon T(k) \leqslant ck \log k\)
 	\item \textbf{Passo di induzione}: Dimostriamo la disequazione per \(T(n)\):
 	\[\begin{WithArrows}
-	T(n) &= 2T(\floor{ \frac{n}{2} }) + n \Arrow{sost. ip. ind. con \(k = \floor{\frac{n}{2}}\)}\\
-		 &\leqslant 2c\floor{ \frac{n}{2} } \log \floor{ \frac{n}{2} } + n \Arrow{rimuovo l'intero inferiore}\\
-		 &\leqslant \Ccancel{2}c \frac{n}{\Ccancel{2}} \log \frac{n}{2} + n \Arrow{semplifico}\\
+	T(n) &= 2T(\floor*{ \frac{n}{2} }) + n \Arrow{sost. ip. ind. con \(k = \floor*{\frac{n}{2}}\)}\\
+		 &\leqslant 2c\floor*{ \frac{n}{2} } \log \floor*{ \frac{n}{2} } + n \Arrow{rimuovo l'intero inferiore}\\
+		 &\leqslant 2c \frac{n}{2} \log \frac{n}{2} + n \Arrow{semplifico il \(2\)}\\
 		 &= cn \log \frac{n}{2} + n \Arrow{\(\log \frac{n}{2} = \log n - \log_2 2 = \log n - 1\)}\\
-		 &= cn (\log n - 1) + n \Arrow{moltiplico}\\
+		 &= cn (\log n - 1) + n \Arrow{moltiplico \(c\)}\\
 		 &= cn \log n - cn + n \Arrow{obiettivo}\\
-		 &\leqslant cn \log n - cn + n \overset{?}{\leqslant} cn \log n \Arrow[jump=2]{semplifico}\\
+		 &\Rightarrow cn \log n - cn + n \overset{?}{\leqslant} cn \log n \Arrow[jump=2]{semplifico}\\
 		 &\Leftrightarrow -cn + n \leqslant 0\\
 		 &\Leftrightarrow c \geqslant 1
 	\end{WithArrows}\]
 	\item \textbf{caso base}: dimostriamo la disequazione per \(T(1)\)
 	\[T(1) = 1 \overset{?}{\leqslant} 1 \cdot c \log 1 = 0 \Rightarrow 1 \nleq 0\]
-	\`{E} falso, ma non è un problema, non a caso si chiama notazione asintotica: il valore di \(m\) lo possiamo scegliere noi.
+	Il caso base risulta falso, ma non è un problema, non a caso si chiama notazione asintotica: il valore di \(m\) lo possiamo scegliere noi.
 	\item \textbf{caso base}: dimostriamo la disequazione per \(T(2)\), \(T(3)\)
 	\begin{align*}
-		T(2) &= 2T(\floor{\frac{2}{2}}) + 2 = 4 \leqslant 1 \cdot c \cdot 2 \log 2 \Leftrightarrow c \geqslant 2\\
-		T(3) &= 2T(\floor{\frac{3}{2}}) + 3 = 5 \leqslant 1 \cdot c \cdot 3 \log 3 \Leftrightarrow c \geqslant \frac{5}{3 \log 3}\\
-		T(4) &= 2T(\floor{\frac{4}{2}}) + 4 = 2T(\floor{2}) + 4
+		T(2) &= 2T(\floor{\nicefrac{2}{2}}) + 2 = 4 \leqslant 1 \cdot c \cdot 2 \log 2 \Leftrightarrow c \geqslant 2\\
+		T(3) &= 2T(\floor{\nicefrac{3}{2}}) + 3 = 5 \leqslant 1 \cdot c \cdot 3 \log 3 \Leftrightarrow c \geqslant \frac{5}{3 \log 3}\\
+		T(4) &= 2T(\floor{\nicefrac{4}{2}}) + 4 = 2T(\floor{2}) + 4
 	\end{align*}
 	Non è necessario provare la terza disequazione, in quanto viene espressa in base ai casi base diversi da \(T(1)\) che sono già stati dimostrati e quindi possono costituire la base per la nostra induzione.
 \end{itemize}
@@ -758,7 +816,7 @@ Riassumendo:
 		\item nel passo induttivo: \(\forall c \geqslant 1\)
 		\item nel caso base: \(\forall c \geqslant 2, c \geqslant \frac{5}{3\log 3}\)
 	\end{itemize}
-	Visto che sono tutte disequazioni con il segno \(\geqslant\), è sufficiente utilizzare \(c \geqslant \maxFunction\left\{ 1,2,\frac{5}{3 \log 3} \right\}\)
+	Visto che sono tutte disequazioni con il segno \enquote{\(\geqslant\)}, è sufficiente utilizzare \(c \geqslant \maxFunction\left\{ 1,2,\frac{5}{3 \log 3} \right\}\)
 
 	Questo vale per \(n=2\), \(n=3\), e per tutti i valori di \(n\) successivi, quindi \(m = 2\).
 \end{itemize}
@@ -773,7 +831,7 @@ Riassumendo:
 	\end{dcases}
 \]
 
-Effettuiamo un tentantivo \fbox{\(T(n) = \Omicron(n^2)\)}
+Effettuiamo un tentantivo \fbox{\(T(n) = \Omicron(n^2)\)}.
 
 Dobbiamo dimostrare che \(\exists c > 0, \exists m \geqslant 0 \,\colon T(n) \leqslant cn^2, \forall n \geqslant m\)
 \begin{itemize}
@@ -885,7 +943,7 @@ Calcoliamo l'albero delle ricorrenze per la seguente equazione di ricorrenza:
 \begin{center}
 	\begin{tabular}{@{} *{5}{c} @{}}
 		\toprule
-			livello & dim. & costo chiam. & no. chiamate & costo livello \\
+			\textbf{livello} & \textbf{dim.} & \textbf{costo chiam.} & \textbf{no. chiamate} & \textbf{costo livello} \\
 		\midrule
 			\(0\) & \(b^k\) & \(c\,b^{k\beta}\) & \(1\) & \(cb^{k\beta}\) \\
 		\addlinespace
