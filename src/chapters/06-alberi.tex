@@ -53,12 +53,12 @@ La profondità massima delle sue foglie.
 	\centering
 	\begin{itemize}[itemsep=5pt]
 		\item \(A\) è la radice (\foreign{root});
-		\item \(B\), \(C\) sono radici dei sottoalberi (\foreign{roots of their subtrees});
+		\item \(B\), \(C\) sono radici dei sottoalberi;
 		\item \(D\), \(E\) sono fratelli (\foreign{siblings});
 		\item \(D\), \(E\) sono figli (\foreign{children}) di \(B\);
 		\item \(B\) è il padre (\foreign{parent}) di \(D\), \(E\);
 		\item \(H\), \(I\), \(J\), \(K\), \(L\), \(M\), \(G\) sono foglie (\foreign{leafs});
-		\item gli altri nodi sono nodi interni (\foreign{internal nodes});
+		\item gli altri nodi sono nodi interni;
 		\item \(E\) è lo zio (il fratello del padre) di \(I\);
 		\item \(B\) è il nonno di \(I\), \(I\) è il nipote di \(B\).
 		% \item \(A\) è il bis-nonno di \(I\).
@@ -80,12 +80,14 @@ La profondità massima delle sue foglie.
 Un albero binario è un albero radicato in cui ogni nodo ha al massimo due figli, che vengono identificati come figlio sinistro e figlio destro.
 \end{definition}
 
-\begin{note}
-Due alberi \(T\) e \(U\) che hanno gli stessi nodi, gli stessi figli per ogni nodo e la stessa radice, sono distinti qualora un nodo \(u\) sia designato come figlio sinistro di un nodo \(v\) in \(T\) come figlio destro del medesimo nodo in \(U\).
-In altre parole, anche se due alberi hanno lo stesso numero di nodi ed ognuno di questi nodi ha lo stesso numero di figli non è che detto che l'albero risultante sia identico.
-\end{note}
+\begin{figure}[H]\centering
+	\includegraphics[width=.5\textwidth]{tree-difference}
+\end{figure}
 
-% TODO importare la figura
+\begin{note}
+	Due alberi \(T\) e \(U\) che hanno gli stessi nodi, gli stessi figli per ogni nodo e la stessa radice, sono distinti qualora un nodo \(u\) sia designato come figlio \emph{sinistro} di un nodo \(v\) in \(T\), e come figlio \emph{destro} del medesimo nodo in \(U\).
+	In altre parole, anche se due alberi hanno lo stesso numero di nodi ed ognuno di questi nodi ha lo stesso numero di figli non è che detto che l'albero risultante sia identico.
+\end{note}
 
 \begin{algorithm}[H]
 	\caption{Specifica albero binario}
@@ -138,8 +140,7 @@ A seconda di dove stampo il valore del nodo ottengo un tipo di visita diversa.
 Gli ordini di visita di un albero binario di 9 nodi sono i seguenti: A, E, B, F, G, C, D, I, H (\emph{pre}-visita). B, E, G, F, C, A, I, D, H (\emph{in}-visita) e B, G, C, F, E, I, H, D, A (\emph{post}-visita).
 Si ricostruisca l'albero binario.
 
-\clearpage
-\subsection{Applicazioni}
+\subsection{Applicazioni delle visite}
 
 In genere post-visita e in-visita sono quelle più applicate, la pre-visita meno.
 
@@ -152,9 +153,11 @@ Una possibile applicazione della visita post-ordine è quella di effettuare un c
 	\input{conteggioNodi}
 \end{algorithm}
 
+% TODO scrivere in quali esami è stata utilizzata questa funzione
+
 \subsection*{Visita in ordine (in-visita)}
 
-Una possibile applicazione della visita post-ordine è quella di stampare espressioni \mbox{con operatori binari}.
+Una possibile applicazione della visita in-ordine è quella di stampare espressioni \mbox{con operatori binari}.
 
 \begin{algorithm}[H]
 	\caption{Stampa espressioni con operatori binari}
@@ -188,7 +191,7 @@ Un albero binario è anche un albero generale e lo visitiamo esattamente come lo
 \subsection{Visita in ampiezza}
 
 Mentre nella visita in profondità il meccanismo della pila (\foreign{stack}) era implicito nelle chiamate ricorsive, in questo caso è necessario utilizzare \emph{esplicitamente} una coda (\foreign{queue}).
-Un'altra differenza fra i due algoritmi è che quello in profondità è un algoritmo ricorsivo, mentre l'altro è iterativo.
+Un'altra differenza fra i due algoritmi è che quello in profondità è un algoritmo ricorsivo, mentre questo è iterativo.
 Quando tutti i nodi di un livello vengono estratti dalla coda, la coda contiene solo ed unicamente i nodi del livello successivo.
 
 \begin{algorithm}[H]
@@ -240,7 +243,7 @@ Viene implementato come una lista di fratelli.
 La memorizzazione che viene utilizzata nel \foreign{file system} è esattamente questa.
 
 \begin{algorithm}[H]
-	\caption{Implementazione albero \enquote{primo figlio, prossimo fratello} in pseudocodice}%
+	\caption{Implementazione albero \enquote{primo figlio, prossimo fratello}}%
 	\input{tree-listChildren-interface}
 \end{algorithm}
 

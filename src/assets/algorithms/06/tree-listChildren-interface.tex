@@ -12,16 +12,16 @@
 \begin{algorithm}[H]
 \fi
 
-\Tree \varParent \Comment*[r]{Riferimento al padre}
-\Tree \varChild \Comment*[r]{Riferimento al primo figlio}
-\Tree \varSibling \Comment*[r]{Riferimento al prossimo fratello}
-\Item \varValue \Comment*[r]{Valore memorizzato nel nodo}
+\Tree \varParent \Comment*[r]{riferimento al padre}
+\Tree \varChild \Comment*[r]{riferimento al primo figlio}
+\Tree \varSibling \Comment*[r]{riferimento al prossimo fratello}
+\Item \varValue \Comment*[r]{valore memorizzato nel nodo}
 
 \begin{minipage}{.5\textwidth}
 
 \BlankLine
 \prototype{\Tree \treeConstructor{\Item \(v\)}}{
-	\Tree \(t =\) \new \Tree\;
+	\Tree \(t\) \Assign \new \Tree\;
 	\(t.\varValue \Assign v\)\;
 	\(t.\varParent \Assign t.\varChild \Assign t.\varSibling \Assign \Nil\)\;
 
