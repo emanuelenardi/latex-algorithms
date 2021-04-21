@@ -33,7 +33,7 @@ Un modello matematico, dato da una collezione di valori e un insieme di operazio
 
 \begin{definition}[Tipi di dato primitivi]
 Sono dei tipi di dati che vengono forniti direttamente dal linguaggio.
-Come ad esempio: int (\texttt{+,-,*,/, \%}), boolean (\texttt{!, \&\&, ||}).
+Come ad esempio: int (\texttt{+,-,*,/,\%}), boolean (\texttt{!, \&\&, ||}).
 \end{definition}
 
 Ogni tipo di dato deve distinguere \emph{specifica} ed \emph{implementazione} di un tipo di dato astratto.
@@ -47,10 +47,10 @@ La \emph{specifica} è astratta, il \enquote{manuale d'uso} che nasconde i detta
 			Specifica & Implementazione \\
 		\midrule
 			Numeri reali & IEEE-754\\
-		\addlinespace
+		\lightrule
 			\multirow{2}{*}{Pile} & Pile basate su vettori\\
 								  & Pile basate su puntatori\\
-	    \addlinespace
+	    \lightrule
 			\multirow{2}{*}{Code} & Code basate su vettori circolari\\
 								  & Code basate su puntatori\\
 		\bottomrule
@@ -92,7 +92,7 @@ Le strutture dati possono essere caratterizzate in vari modi:
 
 \section{Sequenza}
 
-Una sequenza è una struttura dati \emph{dinamica}, \emph{lineare} che rappresenta una sequenza \emph{ordinata} di valori, dove un valore può comparire più di una volta.
+Una sequenza è una struttura dati \emph{dinamica}, \emph{lineare} che rappresenta una sequenza \emph{ordinata} di valori, dove lo stesso valore può comparire più volte..
 L'ordine all'interno della sequenza è importante.
 
 Le operazioni ammesse su una sequenza sono:
@@ -329,7 +329,7 @@ Tutte le operazioni effettuate sulla lista hanno complessità \(\Omicron(1)\), m
 Esistono diverse implementazioni della lista, le quali possono essere:
 \begin{itemize}
 	\item bidirezionale o monodirezionale;
-	\item con sentinella o senza;
+	\item con sentinella o senza sentinella;
 	\item circolare o non circolare.
 \end{itemize}
 
@@ -400,7 +400,7 @@ Le pile possono essere implementate come:
 \clearpage
 \subsection{Coda}
 
-La coda è una struttura dati \emph{dinamica} \emph{lineare} in cui l'elemento rimosso dall'operazione di cancellazione è predeterminato, ed è quello che \enquote{è rimasto per più tempo nell'insieme} (con strategia, \textsc{FIFO}, \foreign{First-In-First-Out}).
+La coda è una struttura dati \emph{dinamica} \emph{lineare} in cui l'elemento rimosso dall'operazione di cancellazione è predeterminato, ed è quello che \enquote{è rimasto per più tempo nell'insieme} (con strategia \textsc{FIFO}, \foreign{First-In-First-Out}).
 
 \begin{algorithm}[H]
 	\caption[Specifica coda]{Specifica \textsc{Queue}}
