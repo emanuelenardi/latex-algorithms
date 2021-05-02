@@ -49,21 +49,21 @@
 \begin{minipage}{.5\textwidth}
 
 \BlankLine
-\prototype{\deleteChild{}}{
+\prototype{\deleteChild}{
 	\(\Tree\ newChild\ \Assign \varChild.\treeSibling\)\;
 	\delete{\varChild}\;
 	\(\varChild \Assign newChild\)\;
 }
 
 \BlankLine
-\prototype{\deleteSibling{}}{
+\prototype{\deleteSibling}{
 	\(\Tree\ newBrother\ \Assign \varSibling.\treeSibling\)\;
 	\treeDelete{\varSibling}\;
 	\(\varSibling \Assign newBrother\)\;
 }
 
 \BlankLine
-\tcp{metodo ausiliare}
+\tcp{metodo ausiliario}
 \prototype{\treeDelete{\Tree \(t\)}}{
 	\Tree \(u\) \Assign \(t\).\treeChild\;
 

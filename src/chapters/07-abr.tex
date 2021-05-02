@@ -26,15 +26,15 @@ La struttura dati dizionario è un insieme dinamico che implementa le seguenti f
 \begin{table}[H]
 	\centering
 	% \captionsetup{format=hang}
-	\caption{Possibili implementazioni della struttura dati dizionario\\e relative complessità}%
+	\caption{Possibili implementazioni della struttura dati dizionario e relative complessità}%
 	\label{tab:complessita-implementazioni-dizionario}
 	\begin{tabular}{@{} l *{3}{c} @{}}
 	\toprule
-		Struttura dati & \dictLookup & \dictInsert & \dictRemove\\
+		\textbf{Struttura dati} & \dictLookup & \dictInsert & \dictRemove\\
 	\midrule
-	Vettore ordinato & \(\Omicron(\log n)\) & \(\Omicron(n)\) & \(\Omicron(n)\)\\
-	Vettore non ordinato & \(\Omicron(n)\) & \({\Omicron(1)}^{*}\) & \({\Omicron(1)}^{*}\)\\
-	Lista non ordinata & \(\Omicron(n)\) & \({\Omicron(1)}^{*}\) & \({\Omicron(1)}^{*}\)\\
+		Vettore ordinato & \(\Omicron(\log n)\) & \(\Omicron(n)\) & \(\Omicron(n)\)\\
+		Vettore non ordinato & \(\Omicron(n)\) & \({\Omicron(1)}^{*}\) & \({\Omicron(1)}^{*}\)\\
+		Lista non ordinata & \(\Omicron(n)\) & \({\Omicron(1)}^{*}\) & \({\Omicron(1)}^{*}\)\\
 	\bottomrule
 	\end{tabular}
 
@@ -53,14 +53,12 @@ Le chiavi devono appartenere ad un insieme \emph{totalmente ordinato}, ossia dev
 \begin{property*}
 Le seguenti proprietà permettono di realizzare un algoritmo di ricerca dicotomica:
 \begin{enumerate}
-	\item Le chiavi contenute nei nodi del sottoalbero sinistro di \(u\) sono minori di \(u\).\varKey;
-	\item Le chiavi contenute nei nodi del sottoalbero destro di \(u\) sono maggiori di \(u\).\varKey.
+	\item le chiavi contenute nei nodi del sottoalbero sinistro di \(u\) sono minori di \(u\).\varKey;
+	\item le chiavi contenute nei nodi del sottoalbero destro di \(u\) sono maggiori di \(u\).\varKey.
 \end{enumerate}
 \end{property*}
 
-\begin{note}
 Queste proprietà valgono per ogni nodo e riguardano l'intero sottoalbero.
-\end{note}
 
 Vedremo un algoritmo per verificare se un albero binario è un albero binario di ricerca più avanti (\verifyABR), il quale controllerà se queste proprietà sono soddisfatte.
 
@@ -98,6 +96,8 @@ Vedremo un algoritmo per verificare se un albero binario è un albero binario di
 	\item \(u\) ha figlio destro: il successore è il minimo del sottoalbero destro di \(u\);
 	\item \(u\) non ha figlio destro: risalendo attraverso i padri, il sucessore è il primo avo \(v\) tale per cui \(u\) sta nel sottoalbero sinistro di \(v\).
 \end{enumerate}
+
+Per passare da successore a predecessore \emph{right} diventa \emph{left} e \minFunction diventa \maxFunction.
 
 \begin{note}
 Posso trovare \Nil se passo alla funzione \succNode il nodo massimo o alla funzione \predNode il minimo (usciranno dal ciclo restituendo \(p\) che sarà pari a \Nil).
