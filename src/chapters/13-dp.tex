@@ -41,9 +41,9 @@ Le soluzioni dei sottoproblemi confluiscono nella tabella delle soluzioni, nel c
 Il termine \foreign{Dynamic Programming} è stato coniato da Richard Bellman agli inizi degli anni '50, nell'ambito dell'ottimizzazione matematica.
 Inizialmente, si riferiva al processo di risolvere un problema compiendo le migliori decisioni una dopo l'altra.
 \enquote{\foreign{Dynamic}} doveva dare un senso \enquote{temporale}, mentre \enquote{\foreign{Programming}} si riferiva all'idea di creare \enquote{programmazioni ottime}, per esempio nella logistica.
-\`{E} possibile approfondire all'indirizzo \url{https://en.wikipedia.org/wiki/Dynamic_programming#History}.
+\`{E} possibile approfondire l'argomento sulla \href{https://en.wikipedia.org/wiki/Dynamic_programming#History}{pagina di Wikipedia \ExternalLink}.
 
-La \emph{programmazione dinamica} è caratterizzata da 4 fasi principali:
+La programmazione dinamica è caratterizzata da 4 fasi principali:
 \begin{enumerate}
     \item caratterizzare \emph{matematicamente} la struttura di una soluzione ottima;
     \item definire ricorsivamente il valore di una soluzione ottima;
@@ -70,7 +70,7 @@ Con nessuna tessera (\(n=0\)) esiste una sola disposizione possibile.
 Avendo a disposizione una tessera (\(n=1\)) è possibile disporla solo verticalmente.
 
 Se posiziono una tessera in verticale, risolverò il problema di dimensione \(n-1\), mentre se la posiziono in orizzontale ne devo mettere due, risolvendo così il problema di dimensione \(n-2\).
-Queste ultime due possibilità si sommano insieme (conteggio).
+Queste ultime due possibilità si sommano insieme (effettuando un conteggio).
 \[
     DP(n) =
     \begin{dcases}
@@ -101,7 +101,7 @@ L'equazione di ricorrenza associata a \fibonacciRic è la seguente:
     \end{dcases}
 \]
 \`{E} una ricorrenza lineare di ordine costante, per calcolare la sua complessità applichiamo quindi il \foreign{master theorem}: i fattori moltiplicativi di \(T(n-1)\) e \(T(n-2)\) sono \(a_1 = 1\) e \(a_2 = 1\) rispettivamente, possiamo raccogliergli in \(a = a_1 + a_2 = 2\), il fattore \(\beta\) risulta pari a \(0\), in quanto \(n^0=1\).
-Possiamo concludere che la complessità dell'algoritmo è \(\Theta(a^n \cdot n^\beta) = \Theta(2^n)\).
+Usando il teorema delle ricorrenze lineari di ordine costante possiamo concludere che la complessità dell'algoritmo è \(\Theta(a^n \cdot n^\beta) = \Theta(2^n)\).
 
 L'albero di ricorsione generato dall'algoritmo è quello mostrato in~\cref{fig:fibonacci-tree}.
 
@@ -168,7 +168,7 @@ Sotto il modello di costo logaritmico (vedi~\cref{sec:valutare-dimensione-input}
     \caption{Confronto delle varie versioni della funzione di fibonacci}\label{tab:fibonacci-versions}
     \begin{tabular}{@{} ll cc @{}}
     \toprule
-        Funzione & Tipologia & \(T(n)\) & \(S(n)\) \\
+        \textbf{funzione} & \textbf{tipologia} & \(T(n)\) & \(S(n)\) \\
     \midrule
         \fibonacciRic &  ricorsiva & \(\Omicron(n2^n)\) & \(\Omicron(n^2)\) \\
     \lightrule
@@ -179,7 +179,7 @@ Sotto il modello di costo logaritmico (vedi~\cref{sec:valutare-dimensione-input}
     \end{tabular}
 \end{table}
 
-Si può fare meglio di così utilizzando l'esponenziazione di matrici basata su quadrati (per approfondimenti consultare \url{https://brilliant.org/wiki/fast-fibonacci-transform/}).
+Si può fare meglio di così utilizzando l'esponenziazione di matrici basata su quadrati (per approfondimenti consultare la \href{https://brilliant.org/wiki/fast-fibonacci-transform/}{pagina di Brilliant \ExternalLink}).
 
 \clearpage
 \section{Hateville}
@@ -205,7 +205,7 @@ se risolviamo il primo siamo ad un passo dalla soluzione del secondo, mentre se 
 Con un vettore di donazioni \(D = [4, 3, 6]\) la raccolta massima è \(10\), dato dall'insieme di indici \(\{1, 3\}\).
 Mentre con un vettore di donazioni \(D = [10, 5, 5, 10]\) la raccolta massima è \(20\), dato dall'insieme di indici \(\{1, 4\}\).
 
-La domanda che dobbiamo porci è la seguente: è possibile ridefinire una formula ricorsiva che ci permetta di calcolare il sottoinsieme di case che, se selezionate, dà origine alla maggior quantità di donazioni?
+La domanda che dobbiamo porci è la seguente: è possibile definire una formula ricorsiva che ci permetta di calcolare il sottoinsieme di case che, se selezionate, dà origine alla maggior quantità di donazioni?
 
 \subsection{Definizione ricorsiva}
 
@@ -236,7 +236,7 @@ Consideriamo il vicino \(i\)-esimo.
 \end{itemize}
 La funzione \(highest\) restituisce l'insieme di valore massimo.
 
-\subsection*{Sottostruttura ottima}
+\subsection{Sottostruttura ottima}
 
 Quando voglio provare che una soluzione di programmazione dinamica è corretta devo riuscire a dimostrare che le mie possibili scelte sono quelle giuste.
 Per dimostrarlo utilizziamo il teorema di sottostruttura ottima, che dice sostanzialmente che il modo in cui ho applicato la ricorsione è corretto.
@@ -332,7 +332,7 @@ Convincersi che gli insiemi risultanti sono corretti.
 
 A questo punto dobbiamo risolvere ancora due problemi:
 \begin{enumerate}
-    \item dobbiamo definire la funzione \(highest\) (ma è banale);
+    \item dobbiamo definire la funzione \(highest\) che seleziona l'insieme con l'insieme massimale (ma è banale);
     \item dobbiamo memorizzare gli insiemi nella tabella.
 \end{enumerate}
 Memorizzare gli insiemi delle scelte nella tabella è costoso, quindi lo non faremo.
@@ -355,7 +355,7 @@ Possiamo quindi riempire la tabella di programmazione dinamica nel seguente modo
 
 Nel caso avessi \(0\) donatori allora la somma delle donazioni sarà \(0\).
 Mentre nel caso abbia un solo donatore (\(i=1\)) allora prenderò la sua donazione (\(D[1]\)).
-Infine nel caso avessi \(2\) o più donatori allora prendere una scelta: o scarterò quella donazione, quindi non considererò più quell'indice (\(DP[i-1]\)), o la accetter (\(+ DP[i]\)) e dovrò scartare a priori la scelta del suo vicino (\(DP[i-2]\)).
+Infine nel caso avessi \(2\) o più donatori allora dovrà fare una scelta: o scarterò quella donazione, quindi non considererò più quell'indice (\(DP[i-1]\)), o la accetterò (\(+ DP[i]\)) e dovrò scartare a priori la scelta del suo vicino (\(DP[i-2]\)).
 La sceltà è rappresentata dalla funzione \maxFunction che selezionerà quale fra le due scelte sarà quella più conveniente.
 
 \begin{note}
