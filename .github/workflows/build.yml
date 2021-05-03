@@ -106,7 +106,7 @@ jobs:
       - name: Step 3 🏷️ - Bump version & push tag
         if: ${{ success() }}
         id: tag-version
-        uses: anothrNick/github-tag-action@v1.34.0
+        uses: anothrNick/github-tag-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_BRANCHES: main
