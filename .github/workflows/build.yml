@@ -114,9 +114,10 @@ jobs:
         uses: anothrNick/github-tag-action@1.35.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
           RELEASE_BRANCHES: main
           DEFAULT_BUMP: patch
-          # DRY_RUN: true
+          DRY_RUN: false
 
       # Compile LaTeX document
       - name: Step 4 ⚙️ - (1/2) Compile LaTeX documents
