@@ -4,13 +4,13 @@
 
 \usepackage{framed}
 
-\definecolor{myred}{RGB}{219,80,74}
-\definecolor{myyellow}{RGB}{255,111,89}
+\definecolor{numberColor}{HTML}{254441}
+\definecolor{lineColor}{HTML}{43AA8B}
 % this is the environment used to typeset the chapter entries in the ToC
 % it is a modification of the leftbar environment of the framed package
 \renewenvironment{leftbar}
     {\def\FrameCommand{\hspace{6em}%
-      {\color{myyellow}\vrule width 2pt depth 6pt}\hspace{1em}}%
+      {\color{lineColor}\vrule width 2pt depth 6pt}\hspace{1em}}%
         \MakeFramed{\parshape 1 0cm \dimexpr\textwidth-6em\relax\FrameRestore}\vskip2pt%
     }
     {\endMakeFramed}
@@ -28,12 +28,12 @@
 	{\vspace*{2\baselineskip}}%
     {\begin{minipage}{\textwidth}%
         \parbox{4.5em}{%
-    		\hfill\Huge\sffamily\bfseries\color{myred}\thecontentspage}%
+    		\hfill\Huge\sffamily\bfseries\color{numberColor}\thecontentspage}%
    		\vspace*{-2.3\baselineskip}\leftbar\textsc{\small\chaptername~\thecontentslabel}\\%
 		\sffamily}%
     {\begin{minipage}{\textwidth}%
         \parbox{4.5em}{%
-            \hfill\Huge\sffamily\bfseries\color{myred}\thecontentspage}%
+            \hfill\Huge\sffamily\bfseries\color{numberColor}\thecontentspage}%
         \vspace*{-2.3\baselineskip}\leftbar\textsc{}\\%
         \sffamily}%
 	  {\endleftbar\end{minipage}\nopagebreak}%
@@ -42,25 +42,25 @@
 \titlecontents{section}
     [8.4em]
     {\sffamily\contentslabel{3em}}{}{}
-    {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
+    {\hspace{0.5em}\nobreak\itshape\color{numberColor}\contentspage}
 
 \titlecontents{subsection}
     [9.4em]
     {\sffamily\contentslabel{3em}}{}{}
-    {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
+    {\hspace{0.5em}\nobreak\itshape\color{numberColor}\contentspage}
 
 \titlecontents{subsubsection}
     [10.4em]
     {\sffamily\contentslabel{3em}}{}{}
-    {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
+    {\hspace{0.5em}\nobreak\itshape\color{numberColor}\contentspage}
 
 % % NOTE non vengono inseriti nel TOC
 % \titlecontents{paragraph}
 %     [12.4em]
 %     {\sffamily\contentslabel{3em}}{}{}
-%     {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
+%     {\hspace{0.5em}\nobreak\itshape\color{numberColor}\contentspage}
 
 % \titlecontents{subparagraph}
 %     [12.4em]
 %     {\sffamily\contentslabel{3em}}{}{}
-%     {\hspace{0.5em}\nobreak\itshape\color{myred}\contentspage}
+%     {\hspace{0.5em}\nobreak\itshape\color{numberColor}\contentspage}
