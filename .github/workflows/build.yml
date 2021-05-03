@@ -1,10 +1,6 @@
 name: Compila documento LaTeX
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: Bump Version
-        required: false
   push:
     branches:
       - main                    # Push events on main branch
