@@ -1,6 +1,11 @@
 name: Compila documento LaTeX
 on:
   workflow_dispatch:
+    inputs:
+      message:
+        description: 'Commit message'
+        required: true
+        default: '⚙️ Workflow azionato manualmente'
   push:
     branches:
       - main                    # Push events on main branch
@@ -215,7 +220,7 @@ jobs:
             build #${{ env.RUN_NUMBER }} ⚙️ *fallita* ❌
             [see log run](${{ env.RUN_URL }}) 👀
 
-            ``${{ github.event.head_commit.message }}``
+            ``${{ github.event.head_commit.message }}${{ github.event.inputs.message }}``
           format: markdown
           disable_web_page_preview: true
 
@@ -263,7 +268,7 @@ jobs:
             [main on Dropbox](${{ env.DROPBOX_SHARED_FOLDER }}) 🗄️
             [see log run](${{ env.RUN_URL }}) 👀
 
-            ``${{ github.event.head_commit.message }}``
+            ``${{ github.event.head_commit.message }}${{ github.event.inputs.message }}``
           format: markdown
           disable_web_page_preview: true
           document: ${{ env.ZIP_NAME }}.zip
