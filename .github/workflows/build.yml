@@ -2,10 +2,9 @@ name: Compila documento LaTeX
 on:
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
+      version:
+        description: Bump Version
+        required: false
   push:
     branches:
       - main                    # Push events on main branch
@@ -112,7 +111,7 @@ jobs:
       - name: Step 3 🏷️ - Bump version & push tag
         if: ${{ success() }}
         id: tag-version
-        uses: anothrNick/github-tag-action@master
+        uses: anothrNick/github-tag-action@1.35.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_BRANCHES: main

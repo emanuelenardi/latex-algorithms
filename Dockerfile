@@ -1,7 +1,8 @@
 FROM texlive/texlive:latest
 
-LABEL maintainer="Emanuele Nardi <emanuele.nardi@studenti.unitn.it>"
-LABEL repository="emanuelenardi/latex-algorithms"
+LABEL "repository"="https://github.com/emanuelenardi/latex-algorithms"
+LABEL "homepage"="https://github.com/emanuelenardi/latex-algorithms"
+LABEL "maintainer"="Emanuele Nardi <emanuele.nardi@studenti.unitn.it>"
 
 ARG UNAME=user
 ARG UID=1000
