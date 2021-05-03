@@ -79,8 +79,11 @@ Queste ultime due possibilità si sommano insieme (effettuando un conteggio).
     \end{dcases}
 \]
 
-La serie generata è una successione di Fibonacci.
-\(DP[n]\) infatti è pari al \(n + 1\)-esimo numero della serie.
+La serie generata dall'applicazione della formula ricorsiva è una successione di Fibonacci (1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, \dots).
+Infatti \(DP[n]\) è pari al \((n + 1)\)-esimo numero della serie di Fibonacci, introdotta da Leonardo Pisano detto il Fi'Bonacci (1175–1235).
+La serie descrive la crescita di una popolazione di conigli.
+Si ritrova spesso in natura: ad esempio nelle pigne, nelle conchiglie, nella parte centrale dei girasoli, etc.\
+e anche in informatica: negli Alberi AVL minimi, negli Heap di Fibonacci, etc.\
 
 \subsubsection{Algoritmo ricorsivo}
 
@@ -103,7 +106,7 @@ L'equazione di ricorrenza associata a \fibonacciRic è la seguente:
 \`{E} una ricorrenza lineare di ordine costante, per calcolare la sua complessità applichiamo quindi il \foreign{master theorem}: i fattori moltiplicativi di \(T(n-1)\) e \(T(n-2)\) sono \(a_1 = 1\) e \(a_2 = 1\) rispettivamente, possiamo raccogliergli in \(a = a_1 + a_2 = 2\), il fattore \(\beta\) risulta pari a \(0\), in quanto \(n^0=1\).
 Usando il teorema delle ricorrenze lineari di ordine costante possiamo concludere che la complessità dell'algoritmo è \(\Theta(a^n \cdot n^\beta) = \Theta(2^n)\).
 
-L'albero di ricorsione generato dall'algoritmo è quello mostrato in~\cref{fig:fibonacci-tree}.
+L'albero di ricorsione generato dall'algoritmo è quello mostrato in~\cref{fig:fibonacci-tree} a~\cpageref{fig:fibonacci-tree}.
 
 \begin{figure}[H]\centering
     \includegraphics[width=.7\textwidth]{fibonacci-tree}
@@ -114,12 +117,13 @@ L'albero di ricorsione generato dall'algoritmo è quello mostrato in~\cref{fig:f
 
 \subsubsection{Come evitare di risolvere un problema più di una volta}
 
-Dalla~\cref{fig:fibonacci-tree} possiamo notare che molti sottoproblemi vengono ripetuti.
+Dalla~\cref{fig:fibonacci-tree} possiamo notare che molti sottoproblemi vengono risolti ripetutamente.
 Per evitare che questo avvenga memorizziamo il risultato ottenuto risolvendo un particolare
 problema in una \textbf{tabella DP}, la quale sarà un vettore, una matrice o un dizionario dipendentemente dalle nostre esigenze.
-La tabella conterrà un elemento per ogni sottoproblema che dobbiamo risolvere.
-Memorizzeremo i casi base nelle relative posizioni.
-Dopodiché l'iterazione sarà \foreign{bottom-up}: partiremo dai casi base e andremo verso problemi via via sempre più grandi fino a risolvere il problema originale.
+La tabella conterrà un elemento per ogni sottoproblema che dobbiamo risolvere e memorizzeremo i casi base nelle relative posizioni.
+Dopodiché l'iterazione sarà \foreign{bottom-up} (dal basso verso l'alto): partiremo dai casi base e andremo verso problemi via via sempre più grandi fino a risolvere il problema originale.
+
+Viene naturale la formulazione di un algoritmo iterativo basato su questo principio.
 
 \begin{algorithm}[H]
     \caption[Algoritmo iterativo per Domino]
@@ -130,14 +134,14 @@ Dopodiché l'iterazione sarà \foreign{bottom-up}: partiremo dai casi base e and
 \begin{table}[H]\centering
     \caption[]
             {I casi base vengono inseriti manualmente nelle relative posizioni.\\
-             Ogni valore \(i\)-esimo successivo viene computato sulla base dei suoi valori precedenti \(i-1\) e \(1-2\)}
+             Ogni valore \(i\)-esimo successivo viene computato sulla base dei suoi valori precedenti (\(i-1\) e \(1-2\)).}
     \includegraphics[width=.4\textwidth]{fib-table1}
 \end{table}
 
 \paragraph{Analisi della complessità}
 % La complessità in tempo è lineare, come lo è la complessità spaziale.
 La complessità in tempo è \(T(n) = \Theta(n)\), quella in spazio è \(S(n) = \Theta(n)\).
-\`{E} possibile migliorare l'algoritmo riducendo lo spazio utilizzato.
+\`{E} possibile migliorare ulteriormente l'algoritmo riducendo lo spazio utilizzato.
 
 \subsubsection{Ottimizzazione dello spazio utilizzato}
 
@@ -162,7 +166,7 @@ Questa implementazione ha costo costante nello spazio \(S(n) = \Theta(1)\).
 \end{table}
 \renewcommand\arraystretch{1}
 
-Sotto il modello di costo logaritmico (vedi~\cref{sec:valutare-dimensione-input}), le tre versioni hanno le complessità mostrate nella~\cref{tab:fibonacci-versions}.
+Sotto il modello di costo logaritmico (vedi\ifsubfile~sezione \enquote{valutare la dimensione dell'input}\else~\cref{sec:valutare-dimensione-input}\fi), le tre versioni hanno le complessità mostrate nella~\cref{tab:fibonacci-versions}.
 
 \begin{table}[H]\centering
     \caption{Confronto delle varie versioni della funzione di fibonacci}\label{tab:fibonacci-versions}
@@ -170,16 +174,16 @@ Sotto il modello di costo logaritmico (vedi~\cref{sec:valutare-dimensione-input}
     \toprule
         \textbf{funzione} & \textbf{tipologia} & \(T(n)\) & \(S(n)\) \\
     \midrule
-        \fibonacciRic &  ricorsiva & \(\Omicron(n2^n)\) & \(\Omicron(n^2)\) \\
+        \fibonacciRic  & ricorsiva & \(\Omicron(n2^n)\) & \(\Omicron(n^2)\) \\
     \lightrule
-        \fibonacciIter &  iterativa & \(\Omicron(n^2)\) & \(\Omicron(n^2)\) \\
+        \fibonacciIter & iterativa & \(\Omicron(n^2)\)  & \(\Omicron(n^2)\) \\
     \lightrule
-        \fibonacci &  finale & \(\Omicron(n^2)\) & \(\Omicron(n)\) \\
+        \fibonacci     & iterativa & \(\Omicron(n^2)\)  & \(\Omicron(n)\) \\
     \bottomrule
     \end{tabular}
 \end{table}
 
-Si può fare meglio di così utilizzando l'esponenziazione di matrici basata su quadrati (per approfondimenti consultare la \href{https://brilliant.org/wiki/fast-fibonacci-transform/}{pagina di Brilliant \ExternalLink}).
+Si può migliorare ulteriormente la complessità utilizzando l'esponenziazione di matrici basata su quadrati (per approfondimenti consultare la \href{https://brilliant.org/wiki/fast-fibonacci-transform/}{pagina di Brilliant \ExternalLink}).
 
 \clearpage
 \section{Hateville}
@@ -199,10 +203,10 @@ I problemi che possono esserci posti sono due:
     \item scrivere un algoritmo che restituisca la quantità massima di fondi che può essere raccolta;
     \item scrivere un algoritmo che restituisca il sottoinsieme di indici \(S \subseteq \{1, \dots, n\}\) tale per cui la donazione totale \(T = \sum_{i \in S} D[i]\) è massimale.
 \end{enumerate}
-se risolviamo il primo siamo ad un passo dalla soluzione del secondo, mentre se risolviamo il primo abbiamo risolto necessariamente il primo.
+Se risolviamo il primo siamo ad un passo dalla soluzione del secondo, mentre se risolviamo il primo abbiamo risolto necessariamente il primo.
 
 \paragraph{Esempi di esecuzione}
-Con un vettore di donazioni \(D = [4, 3, 6]\) la raccolta massima è \(10\), dato dall'insieme di indici \(\{1, 3\}\).
+Con un vettore di donazioni \(D = [4, 3, 6, 5]\) la raccolta massima è \(10\), dato dall'insieme di indici \(\{1, 3\}\).
 Mentre con un vettore di donazioni \(D = [10, 5, 5, 10]\) la raccolta massima è \(20\), dato dall'insieme di indici \(\{1, 4\}\).
 
 La domanda che dobbiamo porci è la seguente: è possibile definire una formula ricorsiva che ci permetta di calcolare il sottoinsieme di case che, se selezionate, dà origine alla maggior quantità di donazioni?
@@ -224,7 +228,7 @@ Consideriamo il vicino \(i\)-esimo.
     Proviamo ad esprimerlo in funzione dei problemi precedenti (dopotutto il problema viene risolto in maniera ricorsiva):
     \[HV(i) = HV(i-1)\]
 
-    \item cosa succede se \textbf{accetto} la sua donazione?
+    \item mentre cosa succede se \textbf{accetto} la sua donazione?
     Accetto la donazione \(i\)-esima e scarto i vicini.
     In simboli:
     \[HV(i) = \{i\} \cup HV(i-2)\]
@@ -242,9 +246,9 @@ Quando voglio provare che una soluzione di programmazione dinamica è corretta d
 Per dimostrarlo utilizziamo il teorema di sottostruttura ottima, che dice sostanzialmente che il modo in cui ho applicato la ricorsione è corretto.
 
 Proviamo quindi a dimostrare le scelte fatte.
-Il problema dato dalle prime \(i\) case è indicato con \(HV_{p}(i)\) e una (ce ne può essere più di una) soluzione ottima per questo problema è indicato con \(HV_{s}(i)\).
+Il problema dato dalle prime \(i\) case è indicato con \(P_i\) e una (ce ne può essere più di una) soluzione ottima per questo problema è indicato con \(S_i\).
 
-Se \(i \not\in HV_{s}(i)\) allora \(HV_{s}(i) = HV_{s}(i-1)\) (ossia se l'\(i\)-esimo elemento non appartiene alla soluzione del problema \(HV_{s}i\) allora abbiamo scartare quella donazione \(HV_{s}(i-1)\)), altrimenti se l'abbiamo accettata e quindi \(i \in HV_{s}i\) allora \(HV_{s}(i) = HV_{s}(i-2) \cup \{i\}\).
+Ne consegue che se \(i \not\in S_i\) allora \(S_i = S_{i-1}\) (ossia se l'\(i\)-esimo elemento non appartiene alla soluzione del problema \(S_i\) allora abbiamo scartato quella donazione \(S_{i-1}\)), altrimenti se l'abbiamo accettata e quindi \(i \in S_i\) allora \(S_i = S_{i-2} \cup \{i\}\).
 
 Se abbiamo la soluzione ottima, allora possiamo dimostrare che abbiamo la soluzione ottima per i rispettivi sottoproblemi (da qui sottostruttura).
 
@@ -254,8 +258,8 @@ Nella maggior parte dei casi non è necessaria una dimostrazione della soluzione
 
 \subsection{Dimostrazione sottostruttura ottima}
 
-Ricordiamo che indichiamo con \(HV_{p}(i)\) il problema dato dalle prime \(i\) case e con \(HV_{s}(i)\) una delle possibili soluzioni ottime per questo problema.
-Indichiamo inoltre con \(\abs{HV_{s}(i)}\) l'ammontare di donazioni per la soluzione ottima \(HV_{s}(i)\).
+Ricordiamo che indichiamo con \(P_i\) il problema dato dalle prime \(i\) case e con \(S_i\) una delle possibili soluzioni ottime per questo problema.
+Indichiamo inoltre con \(\abs{S_i}\) l'ammontare di donazioni per la soluzione ottima \(S_i\).
 
 \begin{note}
 Dobbiamo dimostrare separatamente il caso in cui prendiamo la donazione \(i\)-esima e il caso in cui non la prendiamo, in quanto sono eventi mutualmente esclusivi.
@@ -263,23 +267,23 @@ Dobbiamo dimostrare separatamente il caso in cui prendiamo la donazione \(i\)-es
 
 Entrambe le dimostrazioni procedono per assurdo.
 
-\begin{proof}[Dimostrazione caso 1: \(i {\protect\not\in} HV_{s}(i)\)]
-Se non abbiamo preso la donazione \(i\)-esima vogliamo dimostrare che la soluzione ottima \(HV_{s}(i)\) è una soluzione ottima anche per il problema precedente \(HV_{p}(i-1)\).
+\begin{proof}[Dimostrazione caso 1: \(i \protect\not\in S_i\)]
+Se non abbiamo preso la donazione \(i\)-esima vogliamo dimostrare che la soluzione ottima \(S_i\) è una soluzione ottima anche per il problema precedente \(P_{i-1}\).
 
-Se così non fosse esisterebbe una soluzione (migliore) \(HV_{s}^{'} (i-1)\) per il problema \(HV_{p}(i-1)\) tale che l'ammontare delle donazioni del problema precedente sarebbe maggiore (in simboli \(\abs{HV_{s}^{'} (i-1)} > \abs{HV_{s}(i)}\)).
-Ma allora \(HV_{s}^{'} (i-1)\) sarebbe una soluzione per \(HV_{p}(i)\)% (tale che \(\abs{HV_{s}^{'} (i-1)} > \abs{HV_{s}(i)}\))
+Se così non fosse esisterebbe una soluzione (migliore) \(S^{'}_{i-1}\) per il problema \(P_{i-1}\) tale che l'ammontare delle donazioni del problema precedente sarebbe maggiore (in simboli \(\abs{S^{'}_{i-1}} > \abs{S_i}\)).
+Ma allora \(S^{'}_{i-1}\) sarebbe una soluzione per \(P_i\)% (tale che \(\abs{S^{'}_{i-1}} > \abs{S_i}\))
 , che è assurdo.
-Quindi \(HV_{s}(i)\) è una soluzione ottima anche per \(HV_{p}(i-1)\).
+Quindi \(S_i\) è una soluzione ottima anche per \(P_{i-1}\).
 \end{proof}
 
-\begin{proof}[Dimostrazione caso 2: \(i \in HV_{s}(i)\)]
-Se abbiamo preso l'\(i\)-esima donazione vogliamo dimostrare che \(i-1\) non appartiene alla soluzione ottima (in simboli \(i-1 \not\in HV_{s}(i)\)), altrimenti non sarebbe una soluzione ammissibile.
-Quindi, se dalla soluzione ottima \(HV_{s}(i)\) togliessimo la donazione \(i\)-esima (\(HV_{s}(i) - \{i\}\)) questa dovrebbe essere una soluzione ottima per \(HV_{p} (i-2)\).
+\begin{proof}[Dimostrazione caso 2: \(i \in S_i\)]
+Se abbiamo preso l'\(i\)-esima donazione vogliamo dimostrare che \(i-1\) non appartiene alla soluzione ottima (in simboli \(i-1 \not\in S_i\)), altrimenti non sarebbe una soluzione ammissibile.
+Quindi, se dalla soluzione ottima \(S_i\) togliessimo la donazione \(i\)-esima (\(S_i - \{i\}\)) questa dovrebbe essere una soluzione ottima per \(P_{i-2}\).
 
-Se così non fosse, esisterebbe una soluzione \(HV_{s}^{'} (i-2)\) per il problema \(HV_{p} (i-2)\) tale che il suo guadagno sarebbe maggiore (in simboli \(\abs{HV_{s}^{'} (i-2)} > \abs{HV_{s} (i) - \{i\}}\)).
-Ma allora \(HV_{s}^{'} (i-2) \cup \{i\}\) sarebbe una soluzione per \(HV_{p}(i)\)% (tale che \(\abs{HV_{s}^{'} (i-2) \cup \{i\}} > \abs{HV_{s} (i)}\))
+Se così non fosse, esisterebbe una soluzione \(S^{'}_{i-2}\) per il problema \(P_{i-2}\) tale che il suo guadagno sarebbe maggiore (in simboli \(\abs{S^{'}_{i-2}} > \abs{S_i - \{i\}}\)).
+Ma allora \(S^{'}_{i-2} \cup \{i\}\) sarebbe una soluzione per \(P_i\)% (tale che \(\abs{S^{'}_{i-2} \cup \{i\}} > \abs{S_i}\))
 , che è assurdo.
-Quindi \(i-1 \not\in HV_s(i)\).
+Quindi \(i-1 \not\in S_i\).
 \end{proof}
 
 \subsection{Completare la ricorsione}
@@ -298,7 +302,7 @@ Possiamo quindi scrivere la formula per calcolare la somma massima date \(i\) ca
     \end{dcases}
 \]
 
-Non vale la pena scrivere un algoritmo ricorsivo, basato su divide-et-impera, per risolvere il problema di Hateville poiché si risolverebbero molti sottoproblemi più volte.
+Per risolvere il problema di Hateville non vale la pena scrivere un algoritmo ricorsivo basato su divide-et-impera, poiché si risolverebbero molti sottoproblemi più volte.
 
 \subsection{Memorizzare una tabella}
 
@@ -341,8 +345,7 @@ Così facendo eviteremo di memorizzare gli insiemi nella tabella e potremmo comu
 
 \subsubsection{Tabella di programmazione dinamica}
 
-Indichiamo con \(DP[i]\) il \textbf{valore} della  massima quantità di donazioni che possiamo ottenere dalle prime \(i\) case di Hateville, e con \(DP[n]\) il valore della soluzione ottima.
-%
+Indichiamo con \(DP[i]\) il \textbf{valore} della  massima quantità di donazioni che possiamo ottenere dalle prime \(i\) case di Hateville e con \(DP[n]\) il valore della soluzione ottima.
 Possiamo quindi riempire la tabella di programmazione dinamica nel seguente modo:
 \[
     DP[i] =
@@ -364,7 +367,7 @@ Infatti non effettuiamo più l'unione di insiemi ma la somma fra i valori conten
 \end{note}
 
 Dall'equazione di ricorrenza possiamo scrivere in modo naturale un algoritmo iterativo che risolve questo particolare problema.
-Nel caso volessimo implementare un algoritmo ricorsivo allora dovremmo utilizzare la tecnica della \foreign{memoization} che vedremo più avanti.
+Nel caso volessimo implementare un algoritmo ricorsivo, allora dovremmo utilizzare la tecnica della \foreign{memoization} che vedremo più avanti.
 
 \begin{algorithm}[H]
     \caption{Algoritmo iterativo che risolve il problema Hateville}
@@ -455,7 +458,7 @@ Effettuo prima la chiamata ricorsiva e poi l'inserimento dell'indice all'interno
 La complessità computazionale di \hatevilleSolution è \(T(n) = \Theta(n)\), quella spaziale è \(S(n) = \Theta(n)\).
 
 \begin{note}
-Non è possibile migliorare la complessità spaziale di \hateville poiché è necessario ricostruire la soluzione.
+Non è possibile migliorare la complessità spaziale di \hateville, poiché è necessario ricostruire la soluzione.
 \end{note}
 
 \clearpage
@@ -835,7 +838,7 @@ Conviene tuttavia memorizzare l'indice da cui deriva il massimo.
 % % TODO Ossia trovare il numero di caratteri minimo che serve per
 %
 % \begin{definition}[Tabella di programmazione dinamica]
-% Sia \(DP[0 \ldots m, 0 \ldots n]\) una tabella di programmazione dinamica tale che \(DP[i][j]\) contiene il minimo valore \(k\) per cui esiste un'occorrenza \(k\)-approssimata di \(P(i)\) in \(T(j)\), che termina nella posizione \(j\).
+% Sia \(DP[0 \ldots m, 0 \ldots n]\) una tabella di programmazione dinamica tale che \(DP[i][j]\) contiene il minimo valore \(k\) per cui esiste un'occorrenza \(k\)-approssimata di \(P_i\) in \(T(j)\), che termina nella posizione \(j\).
 % \end{definition}
 %
 % Esistono quattro possibilità:

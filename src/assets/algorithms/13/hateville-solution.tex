@@ -41,7 +41,7 @@
 	\uElseIf(\tcp*[h]{un solo donatore}){\(i \Equal 1\)}{
 		\Return \(\{1\}\)\;
 	}
-	\uElseIf(\Comment*[l]{se non c'è variazione fra valori consecutivi}){\(DP[i] \Equal DP[i-1]\)}{
+	\uElseIf(\tcp*[h]{se non c'è variazione fra valori consecutivi}){\(DP[i] \Equal DP[i-1]\)}{
 		\Return \hatevilleSolution{\(DP\), \(D\), \(i-1\)} \tcp{scarto l'indice}
 	}
 	\Else(\tcp*[h]{c'è variazione fra valori consecutivi}){
