@@ -26,12 +26,12 @@
 
 	\BlankLine
 	\tcp{restituisco il valore \(n\)-esimo}
-	\Return \hatevilleSolution{\(DP\), \(D\), \(n\)}\;
+	\Return \hatevilleSolution{\(DP\), \(n\)}\;
 }
 
 \BlankLine
 \tcp{ricostruisce l'insieme degli indici dato il valore massimale}
-\prototype{\Int \hatevilleSolution{\Array{\Int} \(DP\), \Array{\Int} \(D\), \Int \(i\)}}{
+\prototype{\Set \hatevilleSolution{\Array{\Int} \(DP\) \Int \(i\)}}{
 	\params{i}[indice di scorrimento]
 
 	\BlankLine
@@ -42,10 +42,10 @@
 		\Return \(\{1\}\)\;
 	}
 	\uElseIf(\tcp*[h]{se non c'è variazione fra valori consecutivi}){\(DP[i] \Equal DP[i-1]\)}{
-		\Return \hatevilleSolution{\(DP\), \(D\), \(i-1\)} \tcp{scarto l'indice}
+		\Return \hatevilleSolution{\(DP\), \(i-1\)} \tcp{scarto l'indice}
 	}
 	\Else(\tcp*[h]{c'è variazione fra valori consecutivi}){
-		\Set \(sol =\) \hatevilleSolution{\(DP\), \(D\), \(i-2\)} \tcp{chiamo ricorsivamente l'algoritmo sull'indice \(i-2\)}
+		\Set \(sol =\) \hatevilleSolution{\(DP\), \(i-2\)} \tcp{chiamo ricorsivamente l'algoritmo sull'indice \(i-2\)}
 		\(sol\).\setInsert{i} \tcp{inserisco l'indice nell'insieme}
 
 		\BlankLine
