@@ -39,7 +39,8 @@
             \eIf(\tcp*[h]{se la capacità residua è sufficiente}){\(w[i] \leqslant c\)}{
 
                 \BlankLine
-                \(DP[i][c] = \maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c])\) \tcp{decido se prenderlo o scartarlo}
+                \tcp{decido se prenderlo o scartarlo}
+                \(DP[i][c] = \maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c])\)
             }{
                 \(DP[i][c] = DP[i-1][c]\) \tcp{lo scarto}
             }

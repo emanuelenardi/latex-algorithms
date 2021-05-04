@@ -10,8 +10,6 @@
 \usepackage{../settings/subfile}
 \setcounter{chapter}{12}
 
-% \usepackage{debug}
-
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, draft: yes, synctex: no }
 % arara: pdflatex: { options: ["--output-directory=../build"], shell: yes, synctex: no }
 \begin{document}
@@ -25,7 +23,7 @@
 
 La programmazione dinamica è un metodo per spezzare ricorsivamente un problema in
 sottoproblemi, i quali vengono risolti una volta sola e la loro soluzione viene memorizzata in una tabella.
-Nel caso il sottoproblema debba essere risolto nuovamente, si recupera la soluzione dalla tabella.
+Nel caso in cui il sottoproblema debba essere risolto nuovamente, si recupera la soluzione dalla tabella.
 La tabella è facilmente indirizzabile: la sua consultazione (\lookup) costa \(\Omicron(1)\).
 
 \begin{figure}[!ht]
@@ -34,20 +32,22 @@ La tabella è facilmente indirizzabile: la sua consultazione (\lookup) costa \(\
     \caption{Approccio generale ad un problema per capire quale tecnica utilizzare}
 \end{figure}
 
-Le soluzioni dei sottoproblemi confluiscono nella tabella delle soluzioni, nel caso stia risolvendo un problema di conteggio allora posso restituire immediatamente la soluzione, altrimenti ho un meccanismo (la tabella) per ricostruire la soluzione ottima.
+Prima devo identificare la tipologia del problema.
+Devo poi domandarmi: i sottoproblemi vengono ripetuti?
+Le soluzioni dei sottoproblemi confluiscono nella tabella delle soluzioni, nel caso in cui stiamo risolvendo un problema di conteggio allora è possibile restituire immediatamente la soluzione, altrimenti attraverso la tabella posso ricostruire la soluzione ottima.
 
 \subsection*{La programmazione dinamica nella storia}
 
 Il termine \foreign{Dynamic Programming} è stato coniato da Richard Bellman agli inizi degli anni '50, nell'ambito dell'ottimizzazione matematica.
 Inizialmente, si riferiva al processo di risolvere un problema compiendo le migliori decisioni una dopo l'altra.
 \enquote{\foreign{Dynamic}} doveva dare un senso \enquote{temporale}, mentre \enquote{\foreign{Programming}} si riferiva all'idea di creare \enquote{programmazioni ottime}, per esempio nella logistica.
-\`{E} possibile approfondire l'argomento sulla \href{https://en.wikipedia.org/wiki/Dynamic_programming#History}{pagina di Wikipedia \ExternalLink}.
+% \`{E} possibile approfondire l'argomento sulla \href{https://en.wikipedia.org/wiki/Dynamic_programming#History}{pagina di Wikipedia \ExternalLink}.
 
 La programmazione dinamica è caratterizzata da 4 fasi principali:
 \begin{enumerate}
     \item caratterizzare \emph{matematicamente} la struttura di una soluzione ottima;
     \item definire ricorsivamente il valore di una soluzione ottima;
-    \item calcolare il valore di una soluzione ottima con approccio \foreign{bottom-up} ed utilizzare una tabella per memorizzare la soluzione dei sottoproblemi  ed utilizzarla per evitare di ripetere i calcoli più volte;
+    \item calcolare il valore di una soluzione ottima con approccio \foreign{bottom-up} ed utilizzare una tabella per memorizzare la soluzione dei sottoproblemi e consultarl per evitare di ripetere i calcoli più volte;
     \item ricostruire la soluzione ottima.
 \end{enumerate}
 
@@ -104,7 +104,7 @@ L'equazione di ricorrenza associata a \fibonacciRic è la seguente:
     \end{dcases}
 \]
 \`{E} una ricorrenza lineare di ordine costante, per calcolare la sua complessità applichiamo quindi il \foreign{master theorem}: i fattori moltiplicativi di \(T(n-1)\) e \(T(n-2)\) sono \(a_1 = 1\) e \(a_2 = 1\) rispettivamente, possiamo raccogliergli in \(a = a_1 + a_2 = 2\), il fattore \(\beta\) risulta pari a \(0\), in quanto \(n^0=1\).
-Usando il teorema delle ricorrenze lineari di ordine costante possiamo concludere che la complessità dell'algoritmo è \(\Theta(a^n \cdot n^\beta) = \Theta(2^n)\).
+Usando il teorema delle ricorrenze lineari di ordine costante possiamo concludere che la complessità dell'algoritmo è \(T(n) = \Theta(a^n \cdot n^\beta) = \Theta(2^n)\).
 
 L'albero di ricorsione generato dall'algoritmo è quello mostrato in~\cref{fig:fibonacci-tree} a~\cpageref{fig:fibonacci-tree}.
 
@@ -141,13 +141,13 @@ Viene naturale la formulazione di un algoritmo iterativo basato su questo princi
 \paragraph{Analisi della complessità}
 % La complessità in tempo è lineare, come lo è la complessità spaziale.
 La complessità in tempo è \(T(n) = \Theta(n)\), quella in spazio è \(S(n) = \Theta(n)\).
-\`{E} possibile migliorare ulteriormente l'algoritmo riducendo lo spazio utilizzato.
+\`{E} possibile migliorare ulteriormente l'algoritmo riducendo lo spazio utilizzato, in quanto per calcolare l'\(n\)-esimo elemento abbiamo bisogno di calcolare tutti i suoi valori precedenti, ma abbiamo bisogno solo di mantenere in memeoria i due valori precendenti.
 
 \subsubsection{Ottimizzazione dello spazio utilizzato}
 
 \begin{algorithm}[H]
     \caption[Algoritmo iterativo che ottimizza lo spazio utilizzato per Domino]
-            {Algoritmo \emph{iterativo che ottimizza lo spazio utilizzato} per Domino}
+            {Algoritmo \emph{iterativo che ottimizza lo spazio} utilizzato per Domino}
     \input{fibonacci-space-optimize}
 \end{algorithm}
 \paragraph{Analisi della complessità}
@@ -159,14 +159,14 @@ Questa implementazione ha costo costante nello spazio \(S(n) = \Theta(1)\).
     \begin{tabular}{@{} C ? *{7}{C|} C @{}}
         n & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
     \thickrule
-        {DP[n]_0} & - & - & 1 & 1 & 2 & 3 & 5 & 8 \\
-        {DP[n]_1} & \emph{1} & \emph{1} & 1 & 2 & 3 & 5 & 8 & 13 \\
+        {DP[n]_0} & -        & -        & 1 & 1 & 2 & 3 & 5  & 8 \\
+        {DP[n]_1} & \emph{1} & \emph{1} & 1 & 2 & 3 & 5 & 8  & 13 \\
         {DP[n]_2} & \emph{1} & \emph{1} & 2 & 3 & 5 & 8 & 13 & 21 \\
     \end{tabular}
 \end{table}
 \renewcommand\arraystretch{1}
 
-Sotto il modello di costo logaritmico (vedi\ifsubfile~sezione \enquote{valutare la dimensione dell'input}\else~\cref{sec:valutare-dimensione-input}\fi), le tre versioni hanno le complessità mostrate nella~\cref{tab:fibonacci-versions}.
+Sotto il modello di costo logaritmico (vedi\ifsubfile~sezione \enquote{valutare la dimensione dell'input}\else~\cref{sec:valutare-dimensione-input}~\enquote{valutare la dimensione dell'input}\fi), le tre versioni hanno le complessità mostrate nella~\cref{tab:fibonacci-versions}.
 
 \begin{table}[H]\centering
     \caption{Confronto delle varie versioni della funzione di fibonacci}\label{tab:fibonacci-versions}
@@ -203,7 +203,7 @@ I problemi che possono esserci posti sono due:
     \item scrivere un algoritmo che restituisca la quantità massima di fondi che può essere raccolta;
     \item scrivere un algoritmo che restituisca il sottoinsieme di indici \(S \subseteq \{1, \dots, n\}\) tale per cui la donazione totale \(T = \sum_{i \in S} D[i]\) è massimale.
 \end{enumerate}
-Se risolviamo il primo siamo ad un passo dalla soluzione del secondo, mentre se risolviamo il primo abbiamo risolto necessariamente il primo.
+Se risolviamo il primo problema siamo ad un passo dalla soluzione del secondo, mentre se risolviamo il secondo problema abbiamo risolto necessariamente il primo.
 
 \paragraph{Esempi di esecuzione}
 Con un vettore di donazioni \(D = [4, 3, 6, 5]\) la raccolta massima è \(10\), dato dall'insieme di indici \(\{1, 3\}\).
@@ -229,7 +229,7 @@ Consideriamo il vicino \(i\)-esimo.
     \[HV(i) = HV(i-1)\]
 
     \item mentre cosa succede se \textbf{accetto} la sua donazione?
-    Accetto la donazione \(i\)-esima e scarto i vicini.
+    Accetto la donazione \(i\)-esima e scarto il vicino spostando l'indice.
     In simboli:
     \[HV(i) = \{i\} \cup HV(i-2)\]
 
@@ -466,7 +466,7 @@ Non è possibile migliorare la complessità spaziale di \hateville, poiché è n
 \section{Zaino}
 
 \paragraph{Definizione informale del problema}
-Dato un insieme di oggetti, ognuno caratterizzato da un \emph{peso} ed un \emph{profitto}, e uno \enquote{zaino} con un limite di capacità, individuare un sottoinsieme di oggetti il cui peso sia inferiore alla capacità dello zaino e in cui il valore totale degli oggetti sia massimale, ossia il più alto o uguale al valore di qualunque altro sottoinsieme di oggetti.
+Dato un insieme di oggetti, ognuno caratterizzato da un \emph{peso} ed un \emph{profitto}, e uno \enquote{zaino} con un limite di capacità, bisogna individuare un sottoinsieme di oggetti il cui peso sia inferiore alla capacità dello zaino e in cui il valore totale degli oggetti sia massimale, ossia il più alto o uguale al valore di qualunque altro sottoinsieme di oggetti.
 
 \paragraph{Definizione formale del problema}
 Dati un vettore \(w\), dove \(w[i]\) è il \textbf{peso} (\foreign{weight}) dell'oggetto \(i\)-esimo, un vettore \(p\), dove \(p[i]\) è il \textbf{profitto} (\foreign{profit}) dell'oggetto \(i\)-esimo, e la \textbf{capacità} \(C\) dello zaino.
@@ -475,7 +475,7 @@ Bisogna trovare un insieme \(S \subseteq \{1, \dots, n\}\) tale che:
     \item il \textbf{valore totale} deve essere minore o uguale alla capacità;
     \[w(S) = \sum_{i \in S} w[i] \leqslant C\]
     \item il \textbf{profitto totale} deve essere massimizzato.
-    \[p(S) = \sum_{i \in S} p[i]\]
+    \[\text{argmax}_{S}\; p(S) = \sum_{i \in S} p[i]\]
 \end{itemize}
 
 \paragraph{Esempi di esecuzione}
@@ -505,7 +505,7 @@ Consideriamo l'oggetto \(i\)-esimo.
     \[DP[i][c] = DP[i-1][c - w[i]] + p[i]\]
 
     \item a questo punto come faccio a \textbf{decidere} quale delle due opzioni scegliere?
-    Semplicemente prendo quello che mi dà un guadagno maggiore.
+    Semplicemente prendo quello che mi dà un guadagno maggiore tramite la funzione \maxFunction.
     In simboli:
     \[DP[i][c] = \maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c])\]
 \end{itemize}
@@ -517,7 +517,7 @@ Se non abbiamo più oggetti o se abbiamo finito la capacità dello zaino allora 
 E nel caso prendessimo un oggetto la nostra capacità diventasse negativa?
 In quel caso mettiamo come valore convenzionale \(-\infty\).
 
-Possiamo quindi scrivere la formula per calcolare il massimo guadagno dati \(i\) oggetti ed una capacità \(c\):
+Possiamo quindi scrivere la formula per calcolare il massimo guadagno dati \(i\) oggetti ed una \mbox{capacità \(c\)}:
 \[
     DP[i][c] =
     \begin{dcases}
@@ -537,7 +537,7 @@ Dalla formula possiamo ricavare il seguente algoritmo iterativo.
 \end{algorithm}
 
 \paragraph{Esempio di esecuzione}
-Con un vettore dei pesi \(w = [4, 2, 3, 4]\) e un vettore dei profitti \(p = [10, 7, 8, 6]\) ed una capacità di \(C=9\), la tabella di programmazione generata è la seguente:
+Con un vettore dei pesi \(w = [4, 2, 3, 4]\) e un vettore dei profitti \(p = [10, 7, 8, 6]\) ed una capacità di \(C=9\), la tabella generata è la seguente:
 \begin{table}[H]\centering
     \renewcommand*{\arraystretch}{1.4}
     \begin{tabular}{ c ? *{9}{C|} C }
@@ -559,9 +559,10 @@ Con un vettore dei pesi \(w = [4, 2, 3, 4]\) e un vettore dei profitti \(p = [10
 I valori in \textbf{grassetto} indicato numero di oggetti (\(i\)) e la capacità (\(c\)) dello zaino, mentre i valori in \emph{corsivo} sono i valori inizializzati della tabella.
 
 La tabella viene riempita per righe.
-Per capire come funziona l'algoritmo prendiamo in considerazione la seconda riga che corrisponde alla possibilità di prendere \(i=2\) oggetti: una volta raggiunta la capacità di \(c=2\) possiamo prendere l'oggetto con peso \(7\), una volta raggiunta la capacità di \(c=4\) devo scegliere il massimo profitto prendere l'oggetto \(10\) (\(DP[i-1][c - w[i]] + p[i]\)) e \(7\), ossia ignorarlo \(DP[i-1][c]\).
-Quando raggiungo la capacità di \(c=6\) posso prendere entrambi gli oggetti per un profitto totale di \(17\).
+Per capire come funziona l'algoritmo prendiamo in considerazione la terza riga che corrisponde alla possibilità di prendere \(2\) oggetti (\(i=2\)): una volta raggiunta capacità \(2\) (\(c=2\)) possiamo prendere l'oggetto con peso \(7\), una volta raggiunta capacità \(4\) devo decidere se prendere l'oggetto \(10\) (\(DP[i-1][c - w[i]] + p[i]\)) oppure ignorarlo (copiando il valore della riga precedente tramite \(DP[i-1][c]\)) tenendomi \(7\).
+Quando raggiungo capacità \(6\) (\(c=6\)) svolgo il seguente calcolo: \(\maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c]) = \maxFunction(DP[2-1][6-2]+7, DP[2-1][6]) = \maxFunction(DP[1][4]+7,DP[1][6]) = \maxFunction(10+7,10) = 17\).
 
+\newpage
 \subsection{Algoritmo ricorsivo}
 
 \paragraph{Complessità}
@@ -654,15 +655,15 @@ def knapsack(w,p,C):
     \begin{tabular}{ c ? *{9}{C|} C }
         \diagbox[width=25pt, height=25pt]{i}{c} & \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9}\\
     \thickrule
-        \textbf{0} & \emph{0} & \emph{0} & \emph{0} & \emph{0} & \emph{0} & \emph{0} & \emph{0} & \emph{0} & \emph{0} & \emph{0} \\
+        \textbf{0} & & & & & & & & & & \\
     \hline
-        \textbf{1} & \emph{0} & -1 & \red{0} & \red{0} & \red{10} & \red{10} & \red{10} & \red{10} & -1 & \red{10}\\
+        \textbf{1} & & -1 & \red{0} & \red{0} & \red{10} & \red{10} & \red{10} & \red{10} & -1 & \red{10}\\
     \hline
-        \textbf{2} & \emph{0} & -1 & \red{7} & -1 & -1 & \red{10} & \red{17} & -1 & -1 & \red{17}\\
+        \textbf{2} & & -1 & \red{7} & -1 & -1 & \red{10} & \red{17} & -1 & -1 & \red{17}\\
     \hline
-        \textbf{3} & \emph{0} & -1 & -1 & -1 & -1 & \red{15} & 17 & -1 & -1 & \red{25}\\
+        \textbf{3} & & -1 & -1 & -1 & -1 & \red{15} & 17 & -1 & -1 & \red{25}\\
     \hline
-        \textbf{4} & \emph{0} & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & \red{25}\\
+        \textbf{4} & & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & \red{25}\\
     \end{tabular}
     \renewcommand*{\arraystretch}{1.0}
 \end{table}
@@ -674,7 +675,7 @@ Il costo di inizializzazione della tabella è pari a \(\Omicron(nC)\).
 Applicata in questo modo, non c’è alcun vantaggio nell'utilizzare la tecnica di \foreign{memoization}.
 Permette tuttavia di tradurre in fretta le espressioni ricorsive.
 
-Se invece di usare una tabella utilizzassimo un dizionario non dovremmo pagare il costo d'inizializzazione.
+Se invece di usare una tabella utilizzassimo un dizionario implementato tramite una tabella hash non dovremmo pagare il costo d'inizializzazione.
 Il costo di esecuzione è pari a \(\Omicron(\min(2^n, nC))\).
 
 \begin{code}
@@ -734,6 +735,7 @@ def knapsack(w, p, C):
 La ricostruzione della soluzione in Python è lasciata come esercizio.
 \end{note}
 
+\newpage
 \section{Zaino senza limiti}
 
 Con \emph{senza limiti} ci si riferisce alla scelta degli oggetti.
@@ -743,13 +745,13 @@ Dato uno zaino di capacità \(C\) e \(n\) oggetti caratterizzati da peso \(w\) e
 
 \subsubsection{Definizione matematica del valore della soluzione}
 
-Come modifichiamo la formula ricorsiva?
+Non dovendo più tenere traccia di quali oggetti abbiamo preso e quali no, possiamo modificare la formula ricorsiva.
 \[
     DP[i][c] =
     \begin{dcases}
         0                                                   & i=0\ \Or\ c=0     \\
         -\infty                                             & c<0               \\
-        \maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c])  & \text{altrimenti} \\
+        \maxFunction(DP[i][c - w[i]] + p[i], DP[i-1][c])  & \text{altrimenti} \\
     \end{dcases}
 \]
 In un caso come questo, è possibile semplificare la formula riducendo lo spazio occupato.
@@ -775,22 +777,22 @@ Dato uno zaino senza limiti di scelta di capacità \(C\) e \(n\) oggetti caratte
 Non è detto che tutti gli elementi debbano essere riempiti.
 La complessità in spazio è pari a \(\Theta(C)\).
 Questo approccio rende più difficile ricostruire la soluzione.
-Possiamo ispezionare tutti gli elementi per capire da dove deriva il massimo.
-Conviene tuttavia memorizzare l'indice da cui deriva il massimo.
+Potremmo ispezionare tutti gli elementi per capire da dove deriva il massimo, ma conviene tuttavia salvare l'indice in cui è memorizzato.
 
 \begin{algorithm}[H]
     \caption{Zaino senza limiti con \foreign{memoization} e ricostruzione della soluzione}
     \input{knapsack-limitless-memo-solution}
 \end{algorithm}
 
-% \begin{itemize}
-% 	\item \(c \Equal 0\)
-% 	\item \(\Pos[c] < 0\)
-% \end{itemize}
+L'algoritmo restituisce una lista di indici selezionati (per la precisione un multinsieme, dove gli indici possono comparire più volte).
+\begin{itemize}
+	\item Se \(c \Equal 0\) vuol dire che lo zaino è stato riempito perfettamente;
+	\item Se \(\Pos[c] < 0\), lo zaino non può essere riempito interamente (ad esempio potremmo avere pesi pari con un capacità dispari).
+\end{itemize}
 
-% \paragraph{Analisi della complessità}
-% Ognuno degli elementi costa \(\Theta(n)\) per essere riempito, mal che vada devo riempire tutte le \(C\) caselle delle tabelle.
-% Quindi nel caso pessimo ho una complessità di \(\Omicron(nC)\)
+\paragraph{Analisi della complessità}
+Ognuno degli elementi costa \(\Theta(n)\) per essere riempito, mal che vada devo riempire tutte le \(C\) caselle delle tabelle.
+Quindi nel caso pessimo ho una complessità di \(\Omicron(nC)\)
 
 % \section{Sottosequenza comune massimale}
 %

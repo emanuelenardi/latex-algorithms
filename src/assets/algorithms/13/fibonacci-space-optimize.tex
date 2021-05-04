@@ -10,9 +10,9 @@
 \prototype{\Int \fibonacci{\Int \(n\)}}{
 
 	\BlankLine
-	\Int \(DP_0 \Assign 1\)\;
-	\Int \(DP_1 \Assign 1\)\;
-	\Int \(DP_2 \Assign 1\)\;
+	\Int \(DP_0 \Assign 1\) \Comment*[l]{contiene \(n-2\)}
+	\Int \(DP_1 \Assign 1\) \Comment*[l]{contiene \(n-1\)}
+	\Int \(DP_2 \Assign 1\) \Comment*[l]{contiene \(n\)}
 
 	\BlankLine
 	\From{\(i \Assign 2\) \DownTo \(n\)}{
