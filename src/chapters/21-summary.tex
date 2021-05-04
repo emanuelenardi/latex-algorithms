@@ -13,12 +13,66 @@
 \chapter{Riassunto}
 \tagThisPage
 
-\section{Analisi della complessità}
+\section*{Analisi della complessità}
+
+\subsection*{Metodo dell'esperto (o delle ricorrenze comuni)}
+
+\begin{theorem}[ricorrenze lineari con partizione bilanciata]
+Siano \(a\) e \(b\) costanti intere tali che \(a \geqslant 1\) e \(b \geqslant 2\), e \(c\), \(\beta\) costanti reali tali che \(c > 0\) e \(\beta \geqslant 0\).
+Sia \(T(n)\) data dalla relazione di ricorrenza:
+\[
+	T(n) =
+	\begin{dcases}\textstyle
+		a\T{\frac{n}{b}} + cn^{\beta} & n > 1 \\
+		d & n \leqslant 1 \\
+	\end{dcases}
+\]
+Posto \(\alpha = \frac{\log a}{\log b} = \log_{b} a\), allora:
+\[
+	T(n) =
+	\begin{dcases}
+		\Theta(n^{\alpha}) & \alpha > \beta \\
+		\Theta(n^{\alpha}\log n) & \alpha = \beta \\
+		\Theta(n^{\beta}) & \alpha < \beta \\
+	\end{dcases}
+\]
+\end{theorem}
+
+\begin{theorem}[ricorrenze lineari con partizione bilanciata estesa]
+Sia \(a \geqslant 1\), \(b > 1\), \(f(n)\) asintoticamente positiva, e sia
+\[
+	T(n) =
+	\begin{dcases}\textstyle
+		a\T{\frac{n}{b}} + f(n) & n > 1 \\
+		d & n \leqslant 1 \\
+	\end{dcases}
+\]
+Sono dati tre casi:
+\begin{enumerate}
+	\item \(\exists \varepsilon > 0 \colon f(n) = \Omicron(n^{\alpha-\varepsilon})\) allora \(T(n) = \Theta(n^{\alpha})\);
+	\item \(f(n) = \Theta(n^\alpha)\) allora \(T(n) = \Theta(f(n)\log n)\);
+	\item \(\exists \varepsilon > 0 \,\colon f(n) = \Omicron(n^{\alpha + \varepsilon}) \land\\\exists c \,\colon 0 < c < 1, \exists m > 0 \,\colon\\a f(\frac{n}{b}) \leqslant c f(n), \forall n \geqslant m\) allora \(T(n) = \Theta(f(n))\).
+\end{enumerate}
+\end{theorem}
+\begin{theorem}[ricorrenze lineari di ordine costante]
+Siano \(\{a_1, a_2, \dots, a_n\}\) costanti intere non negative, con \(h\) costante positiva, \(c\) e \(\beta\) costanti reali tali che \(c > 0\) e \(\beta \geqslant 0\), e sia \(T(n)\) definita dalla relazione di ricorrenza:
+\[
+	T(n) =
+	\begin{dcases}
+		\sum_{1 \leqslant i \leqslant h} a_i \T{n-1} + cn^{\beta} & n > m \\
+		\Theta(1) & n \leqslant m \leqslant h \\
+	\end{dcases}
+\]
+Posto \(a = \sum_{1 \leqslant i \leqslant h} a_i\), allora:
+\begin{enumerate}
+	\item \(T(n)\) è \(\Theta(n^{\beta+1})\), se \(a = 1\);
+	\item \(T(n)\) è \(\Theta(a^n n^{\beta})\), se \(a \geqslant 2\).
+\end{enumerate}
+\end{theorem}
 
 \href{https://www.bigocheatsheet.com/}{Big-O Complexity Cheatsheet {\ExternalLink}}
 
-
-\section{Strutture dati}
+\section*{Strutture dati}
 
 \begin{algorithm}[H]
 	\caption[]{Specifica \textsc{Sequence}}
@@ -123,7 +177,7 @@ La tecnica del Divide-et-Impera si suddivide in tre fasi principali:
 	\item (\textbf{Combina}): \enquote{unisce} le soluzioni dei sottoproblemi.
 \end{itemize}
 
-\section*{Algoritmi di Dividi-et-Impera}
+\subsection*{Algoritmi Dividi-et-Impera}
 
 \begin{algorithm}[H]
 	\caption{mergeSort}
@@ -137,14 +191,104 @@ La tecnica del Divide-et-Impera si suddivide in tre fasi principali:
 	\input{quickSort-pivot}
 \end{algorithm}
 
-\section*{Algoritmi di programmazione dinamica}
+\section*{Algoritmi di programmazione dinamica con \emph{memoization}}
+
+\subsection*{Hateville}
+
+\paragraph{Descrizione del problema}
+Hateville è un villaggio particolare, composto da \(n\) case, numerate da \(1\) a \(n\) lungo una singola strada.
+Ad Hateville ognuno odia i propri vicini della porta accanto, da entrambi i lati.
+Quindi il vicino \(i\) odia i vicini \(i-1\) e \(i+1\) (se esistenti).
+Hateville vuole organizzare una sagra e vi ha affidato il compito di raccogliere i fondi.
+Ogni abitante \(i\) ha intenzione di donare una quantità \(D[i]\), ma non intende partecipare ad una raccolta fondi a cui partecipano uno o entrambi i propri vicini.
+
+Dobbiamo scrivere un algoritmo che restituisca la quantità massima di fondi che può essere raccolta.
+
+\subsubsection*{Soluzione}
+
+\[
+    DP[i] =
+    \begin{dcases}
+        0                                  & i = 0 \\
+        D[1]                               & i = 1 \\
+    \maxFunction(DP[i-1], DP[i-2] + DP[i]) & i \geqslant 2 \\
+    \end{dcases}
+\]
 
 \begin{algorithm}[H]
     \caption{Ricostruire la soluzione generale di Hateville}
     \input{hateville-solution}
 \end{algorithm}
 
-\section*{Algoritmi di programmazione dinamica con \emph{memoization}}
+\subsection*{Zaino}
+
+\paragraph{Definizione formale del problema}
+Dati un vettore \(w\), dove \(w[i]\) è il \textbf{peso} (\foreign{weight}) dell'oggetto \(i\)-esimo, un vettore \(p\), dove \(p[i]\) è il \textbf{profitto} (\foreign{profit}) dell'oggetto \(i\)-esimo, e la \textbf{capacità} \(C\) dello zaino.
+Bisogna trovare un insieme \(S \subseteq \{1, \dots, n\}\) tale che:
+\begin{itemize}
+    \item il \textbf{valore totale} deve essere minore o uguale alla capacità;
+    \[w(S) = \sum_{i \in S} w[i] \leqslant C\]
+    \item il \textbf{profitto totale} deve essere massimizzato.
+    \[p(S) = \sum_{i \in S} p[i]\]
+\end{itemize}
+
+\subsubsection*{Soluzione}
+
+Se \textbf{non prendo} quell'oggetto la capacità non cambia e non c'è profitto.
+Avanzo semplicemente con l'indice (\(i-1\)).
+Se \textbf{prendo} quell'oggetto sottraiamo il peso dalla capacità (\(c - w[i]\)) e aggiungiamo il relativo profitto (\(+ p[i]\)).
+Avanzo con l'indice (\(i-1\)).
+Se non abbiamo più oggetti o se abbiamo finito la capacità dello zaino allora il nostro guadagno sarà \(0\).
+Per evitare di prendere un oggetto quando la capacità diventerebbe negativa mettiamo come valore convenzionale \(-\infty\).
+
+\[
+    DP[i][c] =
+    \begin{dcases}
+        0                                                   & i=0\ \Or\ c=0     \\
+        -\infty                                             & c<0               \\
+        \maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c])  & \text{altrimenti} \\
+    \end{dcases}
+\]
+
+\begin{algorithm}[H]
+    \caption{Algoritmo \emph{iterativo} per la soluzione al problema dello zaino}
+    \input{knapsack-dp}
+\end{algorithm}
+
+\paragraph{Complessità}
+La complessità di \knapsack è \(\Theta(nC)\).
+Osserviamo che \(C\) è parte dell'input (non è la dimensione del problema).
+Applicchiamo quindi il criterio di costo logaritmico: per rappresentare \(C\) sono necessari \(k = \log_2 C\) bit, quindi la complessità è \(T(n) = \Omicron(n2^k)\). \knapsack è un algoritmo esponenziale.
+
+\begin{algorithm}[H]
+    \caption{Algoritmo \emph{ricorsivo} per la soluzione al problema dello zaino}
+    \input{knapsack-recursive}
+\end{algorithm}
+
+\paragraph{Complessità}
+Non è detto che tutti gli elementi debbano essere riempiti.
+La complessità in spazio è pari a \(\Theta(C)\).
+
+\subsection*{Zaino senza limiti}
+
+Dato uno zaino senza limiti di scelta di capacità \(C\) e \(n\) oggetti caratterizzati da peso \(w\) e profitto \(p\), definiamo \(DP[c]\) come il massimo profitto che può essere ottenuto da tali oggetti in uno zaino di capacità \(c \leqslant C\).
+
+\[
+    DP[c] =
+    \begin{dcases}
+    0                                           & c = 0 \\
+    \max_{w[i] \leqslant c}\{DP[c-w[i]] + p[i]\} & c > 0 \\
+    \end{dcases}
+\]
+
+\begin{algorithm}[H]
+    \caption{Zaino senza limiti con \foreign{memoization} e ricostruzione della soluzione}
+    \input{knapsack-limitless-memo-solution}
+\end{algorithm}
+
+\paragraph{Analisi della complessità}
+Ognuno degli elementi costa \(\Theta(n)\) per essere riempito, mal che vada devo riempire tutte le \(C\) caselle delle tabelle.
+Quindi nel caso pessimo ho una complessità di \(\Omicron(nC)\)
 
 \ifsubfile
 \end{document}
