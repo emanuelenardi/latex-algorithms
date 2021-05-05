@@ -29,20 +29,24 @@
     }
 
     \BlankLine
-    \tcp{calcolo caso per caso}
-    \From{\(i \Assign 1\) \DownTo \(n\)}{
-
-        \BlankLine
-        \From{\(c \Assign 1\) \DownTo \(C\)}{
+    \tcp{riempio la tabella calcolando caso per caso}
+    \From(\tcp*[h]{considero un oggetto alla volta}){\(i \Assign 1\) \DownTo \(n\)}{
+        \From(\tcp*[h]{per capacità crescenti dello zaino}){\(c \Assign 1\) \DownTo \(C\)}{
 
             \BlankLine
-            \eIf(\tcp*[h]{se la capacità residua è sufficiente}){\(w[i] \leqslant c\)}{
+            \uIf(\tcp*[h]{se la capacità residua è sufficiente}){\(w[i] \leqslant c\)}{
 
                 \BlankLine
                 \tcp{decido se prenderlo o scartarlo}
                 \(DP[i][c] = \maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c])\)
-            }{
-                \(DP[i][c] = DP[i-1][c]\) \tcp{lo scarto}
+                \BlankLine
+
+            }
+            \Else(\tcp*[h]{la capacità residua è insufficiente}){
+
+                \BlankLine
+                \tcp{lo scarto}
+                \(DP[i][c] = DP[i-1][c]\)
             }
         }
     }

@@ -271,7 +271,7 @@ La complessità in spazio è pari a \(\Theta(C)\).
 
 \subsection*{Zaino senza limiti}
 
-Dato uno zaino senza limiti di scelta di capacità \(C\) e \(n\) oggetti caratterizzati da peso \(w\) e profitto \(p\), definiamo \(DP[c]\) come il massimo profitto che può essere ottenuto da tali oggetti in uno zaino di capacità \(c \leqslant C\).
+Dato uno zaino senza limiti di scelta di capacità \(C\) e \(n\) oggetti caratterizzati da peso \(w\) e profitto \(p\), definiamo \(DP[c]\) come il massimo profitto che può essere ottenuto da tali oggetti in uno \mbox{zaino di capacità \(c \leqslant C\)}.
 
 \[
     DP[c] =
@@ -286,7 +286,7 @@ Dato uno zaino senza limiti di scelta di capacità \(C\) e \(n\) oggetti caratte
     \input{knapsack-limitless-memo-solution}
 \end{algorithm}
 
-\paragraph{Analisi della complessità}
+\paragraph{Complessità}
 Ognuno degli elementi costa \(\Theta(n)\) per essere riempito, mal che vada devo riempire tutte le \(C\) caselle delle tabelle.
 Quindi nel caso pessimo ho una complessità di \(\Omicron(nC)\)
 

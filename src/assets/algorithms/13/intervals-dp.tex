@@ -16,16 +16,17 @@
 	\Matrix{\Int} \(DP\) \Assign \new \Array{\Int}{0}{n}\;
 
 	\BlankLine
-	\tcp{Riempio la tabella}
+	\tcp{riempio la tabella}
 	\(DP[0] \Assign 0\)\;
 
 	\BlankLine
-	\tcp{Calcolo delle soluzioni}
+	\tcp{calcolo delle soluzioni}
 	\From{\(i \Assign 1\) \DownTo \(n\)}{
 		\(DP[i]\) \Assign \MathMax{\(DP[i-1]\), \(w[i] + DP[pred[i]]\)}\;
 	}
 
-	\tcp{Costruisco l'insieme dei predecessori}
+	\BlankLine
+	\tcp{costruisco l'insieme dei predecessori}
 	\(i \Assign n\)\;
 	\Set \(S \Assign \setConstructor\)\;
 

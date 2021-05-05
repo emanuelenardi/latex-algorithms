@@ -19,6 +19,7 @@
 \epigraph{\enquote{Those who cannot remember the past are condemned to repeat it.}}%
          {--- \textup{\textsc{George Santayana}, \emph{The Life of Reason} (1905)}}
 
+\begin{comment}
 \section*{Introduzione}
 
 La programmazione dinamica è un metodo per spezzare ricorsivamente un problema in
@@ -374,8 +375,8 @@ Nel caso volessimo implementare un algoritmo ricorsivo, allora dovremmo utilizza
     \input{hateville}
 \end{algorithm}
 
-Stiamo calcolando la soluzione per ogni possibile sottoproblema (\(n+1\)) qual è il valore massimo della soluzione.
-Questa soluzione ha complessità \(\Theta(n)\) in quanto dobbiamo fare \(\Theta(n)\) per ottenere il risultato.
+Tramite questo algoritmo calcoliamo il valore massimo della soluzione per ogni possibile sottoproblema.
+Questa soluzione ha complessità \(\Theta(n)\) in quanto dobbiamo fare \(n\) passi per ottenere il risultato.
 
 \subsubsection{Soluzione con linguaggi di programmazione}
 
@@ -452,7 +453,7 @@ Utilizziamo quindi questa informazione per ricostruire la soluzione in modo rico
     \input{hateville-solution}
 \end{algorithm}
 
-Effettuo prima la chiamata ricorsiva e poi l'inserimento dell'indice all'interno dell'insieme così alla fine dell'esecuzione gli indici saranno nell'ordine corretto.
+Prima viene eseguita la chiamata ricorsiva e poi viene inserito l'indice all'interno dell'insieme, così alla fine dell'esecuzione dell'algoritmo gli indici saranno nell'ordine corretto.
 
 \paragraph{Analisi della complessità}
 La complessità computazionale di \hatevilleSolution è \(T(n) = \Theta(n)\).
@@ -514,8 +515,7 @@ Consideriamo l'oggetto \(i\)-esimo.
 
 Ragioniamo sui casi base.
 Se non abbiamo più oggetti o se abbiamo finito la capacità dello zaino allora il nostro guadagno sarà \(0\).
-E nel caso prendessimo un oggetto la nostra capacità diventasse negativa?
-In quel caso mettiamo come valore convenzionale \(-\infty\).
+Per evitare che la capacità diventi negativa mettiamo come valore convenzionale \(-\infty\).
 
 Possiamo quindi scrivere la formula per calcolare il massimo guadagno dati \(i\) oggetti ed una \mbox{capacità \(c\)}:
 \[
@@ -556,19 +556,19 @@ Con un vettore dei pesi \(w = [4, 2, 3, 4]\) e un vettore dei profitti \(p = [10
     \renewcommand*{\arraystretch}{1.0}
 \end{table}
 
-I valori in \textbf{grassetto} indicato numero di oggetti (\(i\)) e la capacità (\(c\)) dello zaino, mentre i valori in \emph{corsivo} sono i valori inizializzati della tabella.
+I valori in \textbf{grassetto} indicano il numero di oggetti (\(i\)) e la capacità (\(c\)) dello zaino, mentre i valori in \emph{corsivo} sono i valori inizializzati della tabella.
 
 La tabella viene riempita per righe.
-Per capire come funziona l'algoritmo prendiamo in considerazione la terza riga che corrisponde alla possibilità di prendere \(2\) oggetti (\(i=2\)): una volta raggiunta capacità \(2\) (\(c=2\)) possiamo prendere l'oggetto con peso \(7\), una volta raggiunta capacità \(4\) devo decidere se prendere l'oggetto \(10\) (\(DP[i-1][c - w[i]] + p[i]\)) oppure ignorarlo (copiando il valore della riga precedente tramite \(DP[i-1][c]\)) tenendomi \(7\).
+Per capire come funziona l'algoritmo prendiamo in considerazione la terza riga che corrisponde alla possibilità di prendere \(2\) oggetti (\(i=2\)): una volta raggiunta capacità \(2\) (\(c=2\)) possiamo prendere l'oggetto con profitto \(7\), una volta raggiunta capacità \(4\) devo decidere se prendere l'oggetto \(10\) (\(DP[i-1][c - w[i]] + p[i]\)) oppure ignorarlo (copiando il valore della riga precedente tramite \(DP[i-1][c]\)) tenendomi \(7\).
 Quando raggiungo capacità \(6\) (\(c=6\)) svolgo il seguente calcolo: \(\maxFunction(DP[i-1][c - w[i]] + p[i], DP[i-1][c]) = \maxFunction(DP[2-1][6-2]+7, DP[2-1][6]) = \maxFunction(DP[1][4]+7,DP[1][6]) = \maxFunction(10+7,10) = 17\).
 
 \newpage
 \subsection{Algoritmo ricorsivo}
 
 \paragraph{Complessità}
-La complessità di \knapsack è \(\Theta(nC)\).
+La complessità di \knapsack è \(\Omicron(nC)\).
 Osserviamo che \(C\) è parte dell'input (non è la dimensione del problema).
-Applicchiamo quindi il criterio di costo logaritmico: per rappresentare \(C\) sono necessari \(k = \log_2 C\) bit, quindi la complessità è \(T(n) = \Omicron(n2^k)\). \knapsack è un algoritmo esponenziale.
+Applicchiamo quindi il criterio di costo logaritmico: per rappresentare \(C\) sono necessari \(k = \log_2 C\) bit, quindi la complessità è \(T(n) = \Omicron(n2^k)\). \knapsack è un algoritmo pseudo-esponenziale.
 
 \begin{algorithm}[H]
     \caption{Algoritmo \emph{ricorsivo} per la soluzione al problema dello zaino}
@@ -785,38 +785,88 @@ Potremmo ispezionare tutti gli elementi per capire da dove deriva il massimo, ma
 \end{algorithm}
 
 L'algoritmo restituisce una lista di indici selezionati (per la precisione un multinsieme, dove gli indici possono comparire più volte).
+Alla fine dell'esecuzione dell'algoritmo:
 \begin{itemize}
-	\item Se \(c \Equal 0\) vuol dire che lo zaino è stato riempito perfettamente;
-	\item Se \(\Pos[c] < 0\), lo zaino non può essere riempito interamente (ad esempio potremmo avere pesi pari con un capacità dispari).
+	\item se \(c \Equal 0\) vuol dire che lo zaino è stato riempito perfettamente;
+	\item se \(pos[c] < 0\), lo zaino non può essere riempito interamente (ad esempio potremmo avere pesi pari con un capacità dispari).
 \end{itemize}
 
-\paragraph{Analisi della complessità}
+\paragraph{Complessità}
 Ognuno degli elementi costa \(\Theta(n)\) per essere riempito, mal che vada devo riempire tutte le \(C\) caselle delle tabelle.
 Quindi nel caso pessimo ho una complessità di \(\Omicron(nC)\)
+\end{comment}
 
-% \section{Sottosequenza comune massimale}
-%
-% % TODO trovare l'esame
-% % Questo problema è stato affrontato in modo \emph{molto} approfondito nella soluzione dell'esame del
-% \begin{definition}[sottosequenza]
-%
-% \end{definition}
-%
-% \begin{definition}[sottosequenza comune]
-%
-% \end{definition}
-%
-% \begin{definition}[sottosequenza comune massimale]
-%
-% \end{definition}
-%
-% \paragraph{Defizione formale del problema}
-% Date due sequenze \(P\) e \(T\) di lunghezza \(n\) e \(m\), rispettivamente, trovare la più lunga sottosequenza comune di \(P\) e \(T\).
-%
-% Una soluzione banale è quella di cercare tutte le sottosequenze e di prendere quella di lunghezza maggiore.
-%
-% La quale ha una complessità che non vogliamo pagare in quanto ci sono soluzioni più efficienti.
-%
+\section{Sottosequenza comune massimale}
+
+Il DNA viene rappresentato attraverso una stringadi molecole basi (Adenina, Citosina, Guanina, Timina).
+
+\paragraph*{Definizione informale del problema}
+Date due sequenze di DNA, dobbiamo trovare quanto siano \enquote{simili}.
+
+\begin{definition}[sottosequenza]
+Una sequenza \(P\) è una sottosequenza di \(T\) se \(P\) è ottenuto da \(T\) rimuovendo uno o più dei suoi elementi.
+\end{definition}
+
+Alternativamente: \(P\) è definito come il sottoinsieme degli
+indici \(\{ 1, \dots, n \}\) degli elementi di \(T\) che compaiono anche in \(P\).
+
+I rimanenti elementi sono elencati nello stesso ordine, senza essere necessariamente contigui.
+
+\begin{note}
+La sequenza vuota \(\emptyset\) è sottosequenza di ogni altra sequenza.
+\end{note}
+
+\begin{definition}[sottosequenza comune]
+Una sequenza \(X\) è una sottosequenza comune (\foreign{common subsequence}) di due sequence \(T\), \(U\), se è sottosequenza sia di \(T\) che di \(U\).
+In simboli:
+\[
+    X \in \mathcal{CS}(T, U)
+\]
+\end{definition}
+
+\begin{definition}[sottosequenza comune massimale]
+Una sequenza \(X\) è una sottosequenza comune massimale (\foreign{longest common subsequence}) di due sequenze \(T\), \(U\), se non esiste altra sottosequenza comune \(Y \in \mathcal{CS}(T, U)\) tale che \(Y\) sia più lunga di \(X\) (\(\abs{Y} > \abs{X}\)).
+In simboli:
+\[
+    X \in \mathcal{LCS}(T, U)
+\]
+\end{definition}
+
+\paragraph{Defizione formale del problema}
+Date due sequenze \(T\) e \(U\), trovare la più lunga sottosequenza comune di \(T\) e \(U\).
+
+\paragraph*{Esempio di esecuzione}
+Qual è l'output con le stringhe \(T =\) \enquote{\texttt{AAAATTGA}} e \(U =\) \enquote{\texttt{TAACGATA}}?
+
+Una soluzione banale è quella di cercare tutte le sottosequenze e di prendere quella di lunghezza maggiore.
+La quale ha una complessità che non vogliamo pagare in quanto ci esistono soluzioni più efficienti.
+
+\begin{algorithm}[H]
+\caption{Approccio di \enquote{forza bruta} al problema della sottosequenza comune massimale}
+\prototype{\Int \LongestCommonSubsequence{\Item{} \(T\), \Item{} \(U\)}}{
+
+    \BlankLine
+    \Item{} \(\mathit{maxsofar}\) \Assign \Nil\;
+
+    \BlankLine
+    \ForEach{\text{subsequence }\(X\)\text{ of }\(T\)}{
+        \If{\(X\text{ is subsequence of }U\)}{
+
+            \BlankLine
+            \If{\(\lenght(X) > \lenght(\mathit{maxsofar})\)}{
+                \(\mathit{maxsofar} = X\)\;
+            }
+        }
+    }
+}
+\end{algorithm}
+
+\paragraph*{Analisi della complessità}
+Data una sequenza \(T\) lunga \(n\), le sottosequenze di \(T\) sono \(2^n\).
+Verificare se una sequenza è sottosequenza di un'altra costa \(\Omicron(m+n)\).
+La complessità computazionale di {\LongestCommonSubsequence} è \(T(n) = \Theta(2^n(m+n))\).
+Si può fare meglio di così?
+
 % \subsection{Descrizione matematica della soluzione ottima}
 % % TODO continua
 %
