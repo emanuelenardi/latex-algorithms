@@ -11,12 +11,16 @@
 
 	\BlankLine
 	\tcp{inizializzo i casi base}
-	\Matrix{\Int} \(DP\) \Assign \new \Matrix{\Int}{0\dots m}{0\dots n}\;
+	\Matrix{\Int} \(DP\) \Assign \new \Matrix{\Int}[0\dots m][0\dots n]\;
 
+	\BlankLine
 	\From(\Comment*[f]{Caso base: \( j \Assign 0 \)}){
 		\(j \Assign 0\) \DownTo \(n\)}{
-			\(DP[0][j] \Assign 0\)}\;
+			\(DP[0][j] \Assign 0\)
+	}
 
+
+	\BlankLine
 	\From(\Comment*[f]{Caso base: \( i \Assign 0 \)}){
 		\(i \Assign 1\) \DownTo \(m\)}{
 			\(DP[i][0] \Assign i\)\;
@@ -43,22 +47,22 @@
 	}
 
 	\BlankLine
-	\tcp{cerco la posizione del minimo}
-	\Int \(\Min \Assign DP[m][0]\) \Comment*[h]{minimo}\;
-	\Int \(\Pos \Assign 0\) \Comment*[h]{posizione del minimo}\;
+	\tcp{inizializzo la posizione del minimo}
+	\Int \(\pos \Assign 0\)\;
 
 	\BlankLine
+	\tcp{cerco la posizione del minimo sull'ultima riga}
+	\From{\(j \Assign 1\) \DownTo \(n\)}{
 
-	\From(\Comment*[h]{trova il minimo sull'ultima riga}){\(j \Assign 1\) \DownTo \(n\)}{
-		\If{\(DP[m][j] < \Min\)}{
-			\(\Min \Assign DP[m][j]\)\;
-			\(\Pos \Assign j\)\;
+		\BlankLine
+		\If(\tcp*[h]{se trovo un nuovo minimo}){\(DP[m][j] < DP[m][pos]\)}{
+			\(\pos \Assign j\) \tcp{aggiorno la sua posizione}
 		}
 	}
 
 	\BlankLine
-	\Return \Pos
-	\Comment*[h]{potrei anche restituire \(DP[m][\Pos]\) che è il valore min associato}\;
+	\tcp{restituisco la posizione del minimo}
+	\Return \(\pos\)\;
 }
 
 \ifstandalone

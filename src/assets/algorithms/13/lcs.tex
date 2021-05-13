@@ -1,0 +1,35 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Int \LongestCommonSubsequence{\Item{} \(T\), \Item{} \(U\), \Int \(n\), \Int \(m\)}}{
+
+    \BlankLine
+    \tcp{creo la tabella di programmazione dinamica}
+    \Matrix{\Int} \(DP\) \Assign \new \Matrix{\Int}[0\dots n][0\dots m]\;
+
+    \BlankLine
+    \tcp{la inizializzo}
+    \From{\(i \Assign 0\) \DownTo \(n\)}{
+        \(DP[i][0] = 0\) \tcp{}
+    }
+
+    \BlankLine
+    \From{\(c \Assign 0\) \DownTo \(C\)}{
+        \(DP[0][c] = 0\) \tcp{}
+    }
+
+
+    \BlankLine
+    \Return \(DP[n][m]\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

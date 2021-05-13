@@ -585,6 +585,7 @@ La funzione ricorsiva scaturita dalla funzione \knapsack è la seguente:
     \end{dcases}
     = \Omicron(2^n)
 \]
+Per il teorema delle ricorrenze lineari di ordine costante questo algoritmo ha complessità \(\Omicron(2^n)\).
 Non si può fare meglio di così.
 
 \subsection{Memoization}
@@ -616,12 +617,12 @@ Prendiamo l'esempio precedente.
     \renewcommand*{\arraystretch}{1.0}
 \end{table}
 
-I valori segnati in \red{rosso} sono gli unici necessari alla computazione della soluzione.
+I valori segnati in \red{rosso} sono gli unici necessari alla computazione della soluzione (\(DP[n][C]\)).
 
 La \foreign{memoization} (annotazione) è una tecnica che fonde l'approccio di \emph{memorizzazione} della programmazione dinamica con l'approccio \foreign{top-down} di divide-et-impera.
 
-Quando devo risolvere un sottoproblema prima controllo se l'ho già risolto, guardando nella cella corrispondente della tabella dove memorizzo i risultati, altrimenti lo calcolo al momento (\foreign{on-the-fly}) chiamando ricorsivamente i sottoproblemi e scrivendo i rispettivi risultati nella tabella.
-In questo modo mi assicuro di fare il calcolo una volta sola ed evito di calcolare valori che non verranno mai usati.
+Quando devo risolvere un sottoproblema prima controllo se l'ho già risolto, guardando nella cella corrispondente della tabella dove memorizzo i risultati, ed utilizzo quella soluzione altrimenti lo calcolo al momento (\foreign{on-the-fly}) chiamando ricorsivamente i sottoproblemi e scrivendo i rispettivi risultati nella tabella.
+In questo modo mi assicuro di fare il calcolo una volta sola ed evito di calcolare valori che non verranno mai utilizzati.
 
 Per indicare che il problema non è ancora stato risolto la inizializzo ad un valore speciale (\(-1\)).
 
@@ -630,6 +631,7 @@ Per indicare che il problema non è ancora stato risolto la inizializzo ad un va
     \input{knapsack-memo}
 \end{algorithm}
 La tabella viene inizializzata esternamente, nella funzione \foreign{wrapper}, con un valore che non viene usato durante la procedura (\(-1\) nel caso vengano usati \emph{solo} valori positivi, \(-\infty\) nel caso vengano usati sia valori positivi che valori negativi).
+Prima di computare un sottoproblema mi preoccupo di controllare se è già stato risolto (\(DP[i][c] < 0\)), se non è stao risolvo, lo risolvo al momento, altrimento calcolo quel valore e lo scrivo nella tabella.
 
 \begin{minted}{python}
 def knapsackRec(w, p, i, c, DP):
@@ -680,11 +682,6 @@ Il costo di esecuzione è pari a \(\Omicron(\min(2^n, nC))\).
 
 \begin{code}
 \begin{minted}{python}
-def knapsack(w,p,C):
-    n = len(w)
-    DP = {} # Hash-table dictionary
-    return knapsackRec(w,p,n,C,DP)
-
 def knapsackRec(w, p, i, c, DP):
     if c < 0:
         return -math.inf
@@ -692,10 +689,15 @@ def knapsackRec(w, p, i, c, DP):
         return 0
     else:
         if not (i,c) in DP: # la soluzione non è contenuta nell'insieme delle soluzioni
-        nottaken = knapsackRec(w, p, i-1, c, DP)
-        taken = knapsackRec(w, p, i-1, c-w[i-1], DP) + p[i-1]
-        DP[i,c] = max(nottaken, taken)
+            nottaken = knapsackRec(w, p, i-1, c, DP)
+            taken = knapsackRec(w, p, i-1, c-w[i-1], DP) + p[i-1]
+            DP[i,c] = max(nottaken, taken)
         return DP[i,c]
+
+def knapsack(w,p,C):
+    n = len(w)
+    DP = {} # Hash-table dictionary
+    return knapsackRec(w,p,n,C,DP)
 \end{minted}
 \captionof{listing}{Implementazione di zaino con dizionario in Python}
 \end{code}
@@ -738,14 +740,14 @@ La ricostruzione della soluzione in Python è lasciata come esercizio.
 \newpage
 \section{Zaino senza limiti}
 
-Con \emph{senza limiti} ci si riferisce alla scelta degli oggetti.
+Con \emph{senza limiti} ci si riferisce alla scelta degli oggetti, ossia che è possibile prendere lo stesso oggetto più volte.
 
 \paragraph{Definizione del problema}
 Dato uno zaino di capacità \(C\) e \(n\) oggetti caratterizzati da peso \(w\) e profitto \(p\), definiamo \(DP[i][c]\) come il massimo profitto che può essere ottenuto dai primi \(i \leqslant n\) oggetti contenuti in uno zaino di capacità \(c \leqslant C\), \emph{senza porre limiti al numero di volte che un oggetto può essere selezionato}.
 
 \subsubsection{Definizione matematica del valore della soluzione}
 
-Non dovendo più tenere traccia di quali oggetti abbiamo preso e quali no, possiamo modificare la formula ricorsiva.
+Non dovendo più tenere traccia di quali oggetti abbiamo preso e quali no, possiamo modificare la formula ricorsiva non dovendo più manipolare l'indice \(i\).
 \[
     DP[i][c] =
     \begin{dcases}
@@ -798,7 +800,7 @@ Quindi nel caso pessimo ho una complessità di \(\Omicron(nC)\)
 
 \section{Sottosequenza comune massimale}
 
-Il DNA viene rappresentato attraverso una stringadi molecole basi (Adenina, Citosina, Guanina, Timina).
+Il DNA viene rappresentato attraverso una stringa di molecole basi (\textbf{A}denina, \textbf{C}itosina, \textbf{G}uanina, \textbf{T}imina).
 
 \paragraph*{Definizione informale del problema}
 Date due sequenze di DNA, dobbiamo trovare quanto siano \enquote{simili}.
@@ -832,33 +834,18 @@ In simboli:
 \]
 \end{definition}
 
-\paragraph{Defizione formale del problema}
+\paragraph{Definizione formale del problema}
 Date due sequenze \(T\) e \(U\), trovare la più lunga sottosequenza comune di \(T\) e \(U\).
 
 \paragraph*{Esempio di esecuzione}
 Qual è l'output con le stringhe \(T =\) \enquote{\texttt{AAAATTGA}} e \(U =\) \enquote{\texttt{TAACGATA}}?
 
 Una soluzione banale è quella di cercare tutte le sottosequenze e di prendere quella di lunghezza maggiore.
-La quale ha una complessità che non vogliamo pagare in quanto ci esistono soluzioni più efficienti.
+La quale ha una complessità che non vogliamo pagare in quanto esistono soluzioni più efficienti.
 
 \begin{algorithm}[H]
-\caption{Approccio di \enquote{forza bruta} al problema della sottosequenza comune massimale}
-\prototype{\Int \LongestCommonSubsequence{\Item{} \(T\), \Item{} \(U\)}}{
-
-    \BlankLine
-    \Item{} \(\mathit{maxsofar}\) \Assign \Nil\;
-
-    \BlankLine
-    \ForEach{\text{subsequence }\(X\)\text{ of }\(T\)}{
-        \If{\(X\text{ is subsequence of }U\)}{
-
-            \BlankLine
-            \If{\(\lenght(X) > \lenght(\mathit{maxsofar})\)}{
-                \(\mathit{maxsofar} = X\)\;
-            }
-        }
-    }
-}
+    \caption{Approccio di \enquote{forza bruta} al problema della sottosequenza comune massimale}
+    \input{lcs-bruteforce}
 \end{algorithm}
 
 \paragraph*{Analisi della complessità}
@@ -867,11 +854,141 @@ Verificare se una sequenza è sottosequenza di un'altra costa \(\Omicron(m+n)\).
 La complessità computazionale di {\LongestCommonSubsequence} è \(T(n) = \Theta(2^n(m+n))\).
 Si può fare meglio di così?
 
-% \subsection{Descrizione matematica della soluzione ottima}
-% % TODO continua
-%
+\subsection{Descrizione matematica della soluzione ottima}
+
+\begin{definition}[Prefisso, \foreign{prefix}]
+Data una sequenza \(T\) composta dai caratteri \(t_1 t_2 \dots t_n\), \(T(i)\) denota il prefisso di \(T\) dato dai primi \(i\) caratteri, ossia:
+\[
+    T(i) = t_1 t_2 \dots t_i
+\]
+\end{definition}
+
+Ad esempio se prendiamo in considerazione la stringa \(T =\) \texttt{"ABDCCAABD"}, il prefisso composto dai primi \(3\) caratteri è \(T(3) =\) "ABD", il prefisso composto dai primi \(6\) caratteri è \(T(6) =\) \texttt{"ABDCCA"}.
+Infine il prefisso composto dai primi \(0\) caratteri è \(T(0) =\) "", ossia la stringa vuota.
+
+\subsubsection*{Descrizione matematica della soluzione ottima}
+
+Date due sequenze \(T\) e \(U\) di lunghezza \(n\) e \(m\), scriviamo una formula ricorsiva \(LCS(T(i), U(j))\) che restituisca la LCS dei prefissi \(T(i)\) e \(U(j)\).
+
+\begin{itemize}
+    \item \textbf{caso 1 (ultimo carattere coincide)}: consideriamo due prefissi \(T(i)\) e \(U(j)\) tali per cui l'ultimo loro carattere coincide: \(t_i = u_j\).
+    Ad esempio:
+    \[
+        T(i) = \texttt{"ALBERTO"}, U(j) = \texttt{"PIERO"}
+    \]
+    Per calcolare la LCS di \(T(i)\) e \(U(j)\) prendiamo tutto tranne l'ultimo carattere.
+    \[
+        \LCS\big(T(i), U(j)) = LCS(T(i-1), U(j-1)\big) \oplus t_i
+    \]
+    dove \(\oplus\) è l'operatore di concatenazione.
+
+    Ad esempio:
+    \[
+        \LCS(\texttt{"ALBERTO"}, \texttt{"PIERO"}) = LCS(\texttt{"ALBERT"}, \texttt{"PIER"}) \oplus \texttt{"O"}
+    \]
+
+    \item \textbf{caso 2 (ultimo carattere differente)}: consideriamo due prefissi \(T(i)\) e \(U(j)\) tali per cui l'ultimo loro carattere è differente: \(t_i \neq u_j\).
+    Ad esempio:
+    \[
+        T(i) = \texttt{"ALBERT"}, U(j) = \texttt{"PIER"}
+    \]
+    Per calcolare la LCS di \(T(i)\) e \(U(j)\) prendiamo la stringa più lunga fra la prima stringa meno un carattere confrontata con la seconda, e la prima confrontata con la seconda meno un carattere.
+    \[
+        \LCS\big(T(i), U(j)) = \longest(\LCS(T(i-1), U(j), \LCS(T(i), U(j-1))))
+    \]
+    Ad esempio:
+    \[
+        \LCS(\texttt{"ALBERT"}, \texttt{"PIER"}) = \longest(\LCS(\texttt{"ALBER"}, \texttt{"PIER"}), \LCS(\texttt{"ALBERT"}, \texttt{"PIE"}))
+    \]
+
+    \item \textbf{caso base (prefisso vuoto)}: consideriamo il caso in cui uno dei due prefissi è vuoto, ad esempio \(i=0\) oppure \(j=0\).
+    Ad esempio:
+    \[
+        T(i) = \texttt{ALBERTO}, U(0) = \emptyset
+    \]
+    Quando uno dei due prefissi è vuoto la più lunga sottosequenza di \(T(i)\) e \(U(j)\) è vuota.
+    Ossia:
+    \[
+        \LCS\big(T(i), U(0)\big) = \emptyset
+    \]
+    Ad esempio:
+    \[
+        \LCS(\texttt{"ALBERTO}, \emptyset) = \emptyset
+    \]
+\end{itemize}
+
+Raggruppando tutti i casi descritti possiamo scrivere la formula completa:
+\[
+    \LCS\big(T(i), U(j)\big) =
+    \begin{dcases}
+        \emptyset & i=0\ \Or\ j=0\\
+        \LCS\big(T(i-1), U(j-1)\big) \oplus t_i & i>0\ \And\ j>0\ \And\ t_i = u_j\\
+        \longest\Big(\LCS\big(T(i-1), U(j)\big), \LCS\big(T(i), U(j-1)\big)\Big) & i>0\ \And\ j>0\ \And\ t_i \neq u_j\\
+    \end{dcases}
+\]
+Il fatto che la formula sia corretta dovrebbe essere provato.
+La dimostrazione avviene per assurdo.
+
+\subsubsection*{Sottostruttura ottima}
+
+\begin{theorem}
+Date le due sequenze \(T = (t_1, \dots, t_n)\) e \(U = (u_1, \dots, u_m)\), sia \(X = (x_1, \dots, x_k)\) una \LCS di \(T\) e \(U\).
+Sono dati tre casi:
+\begin{enumerate}
+    \item \eqparbox{pattern}{\(t_n = u_m\)} \(\Rightarrow x_k = t_n = u_m\ \And\ X(k-1) \in \mathcal{LCS}(T(n-1), U(m-1))\);
+    \item \eqparbox{pattern}{\(t_n \neq u_m \land x_k \neq t_n\)} \(\Rightarrow X \in \mathcal{LCS}(T(n-1), U)\);
+    \item \eqparbox{pattern}{\(t_n \neq u_m \land x_k \neq u_m\)} \(\Rightarrow X \in \mathcal{LCS}(T, U(m-1))\).
+\end{enumerate}
+\end{theorem}
+Dimostriamo punto per punto.
+\begin{enumerate}
+    \item \textbf{punto 1, parte A} \fbox{\(t_n = u_m \Rightarrow x_k = t_n = u_m\)}
+
+    Per assurdo: \(x_k \neq t_n = u_m\).
+    Si consideri \(Y = X t_n\).
+    Allora \(Y \in \mathcal{CS}(T,U)\) e \(\abs{Y} > \abs{X}\), contraddizione.
+    % TODO importa immagine
+
+    \item \textbf{punto 1, parte B} \fbox{\(X(k-1) \in \mathcal{LCS}(T(n-1), U(m-1))\)}
+
+    Per assurdo: \(X(k-1) \not\in \mathcal{LCS}(T(n-1), U(m-1))\).
+    Allora \(\exists Y \in \mathcal{LCS}(T(n-1), U(m-1))\) tale che \(\abs{Y} > \abs{X(k-1)}\).
+    Quindi \(Y t_n \in \mathcal{CS}(T,U)\) e \(\abs{Y t_n} > \abs{X(k-1)t_n} = X\), contraddizione.
+    % TODO importa immagine
+
+    \item \textbf{punto 2} \fbox{\(t_n \neq u_m \land x_k \neq t_n \Rightarrow X \in \mathcal{LCS}(T(n-1), U)\)}
+
+    Per assurdo: \(X \not\in \mathcal{LCS}(T(n-1), U)\).
+    Allora \(\exists Y \in \mathcal{LCS(T(n-1), U)}\) tale che \(\abs{Y} > \abs{X}\).
+    Quindi è anche vero che \(Y \in \mathcal{LCS(T, U)}\).
+    Quindi \(X\) non è una LCS di \(T\) e \(U\), assurdo.
+    % TODO importa immagine
+
+    \item \textbf{punto 3} è simmetrico al punto 2.
+\end{enumerate}
+
+\subsubsection*{Ricorrenza per il valore della soluzione ottimale}
+
+Due due sequenze \(T\) e \(U\) di lunghezza \(n\) e \(m\), scrivere una formula ricorsiva \(DP[i][j]\) che restituisca \textbf{la lunghezza} della LCS dei prefissi \(T(i)\) e \(U(j)\).
+
+\[
+    DP[i][j] =
+    \begin{dcases}
+    0                                       & i=0\ \Or\ j=0\\
+    DP[i-1][j-1] + 1                        & i>0\ \And\ j>0\ \And\ t_i=u_j\\
+    \maxFunction\{DP[i-1][j], DP[i][j-1]\}  & i>0\ \And\ j>0\ \And\ t_i \neq u_j\\
+    \end{dcases}
+\]
+
+La cella \(DP[n][m]\) contiene la lunghezza della LCS del problema originale.
+
+\begin{algorithm}[H]
+    \caption{Sottosequenza Comune Massimale}
+    \input{lcs}
+\end{algorithm}
+
 % \section{String matching approssimato}
-%
+
 % \begin{itemize}
 % 	\item Una stringa \(P = p_1 \ldots p_m\) (\emph{pattern})
 % 	\item Una stringa \(T = p_1 \ldots p_n\) (\emph{testo}), con \(m \leqslant n\)
@@ -1201,13 +1318,13 @@ Si può fare meglio di così?
 % Modifichiamo leggermente la funzione sopra nel modo seguente:
 % \begin{algorithm}[H]
 % \caption{Stuff}
-%
+
 % 	\prototype{\computePar{\Int c, \Int i, \Int n}}{
 % 		\omitted\;
 % 		\printPar\((last[], 1, n)\)\;
 % 	}
 %
-% 	\input{assets/algorithms/13/par-print}
+% 	\input{par-print}
 %
 % \end{algorithm}
 % La funziona stampa semplicemente il risultato.
@@ -1271,11 +1388,9 @@ Si può fare meglio di così?
 % La una prenotazione di una sala conferenze è un esempio di questo genere di problemi. %
 % Riesci a trovare la soluzione ottima? La soluzione si trova sulla pagina successiva.
 %
-% \begin{figure}[H]
-% 	\centering
-% 	\includestandalone{./assets/figures/13/gantt}
-% 	\caption{Un esempio di intervalli disgiunti: prenotazione di una sala conferenze, a sinistra sono indicati i \emph{pesi} di ogni intervallo}%
-% 	\label{fig:gantt}
+% \begin{figure}[H]\centering
+% 	\includestandalone[page=1]{gantt}
+% 	\caption{Un esempio di intervalli disgiunti: prenotazione di una sala conferenze, a sinistra sono indicati i \emph{pesi} di ogni intervallo}\label{fig:gantt}
 % \end{figure}
 %
 % \section{Pre-elaborazione}
@@ -1305,9 +1420,8 @@ Si può fare meglio di così?
 % \end{itemize}
 %
 % \begin{figure}[H]\centering
-% 	\includestandalone{assets/figures/13/gantt_pd}
-% 	\caption{Soluzione ottima}%
-% 	\label{fig:gantt-solution-pd}
+% 	\includestandalone[part=2]{gantt}
+% 	\caption{Soluzione ottima}\label{fig:gantt-solution-pd}
 % \end{figure}
 %
 % \paragraph{Complessità}
@@ -1318,9 +1432,8 @@ Si può fare meglio di così?
 % Una seconda possibile pre-elaborazione consiste nel pre-calcolare il \emph{predecessore} \(pred_i\) di \(i\), dove \(j\) si riferisce all'intervallo subito antecedente a quello considerato (\( j < i \) è il massimo indice tale che \( b_j \leqslant a_i \))
 %
 % \begin{figure}[H]\centering
-% 	\includegraphics{assets/figures/13/gantt_part}
-% 	\caption{Predecessore}%
-% 	\label{fig:pred}
+% 	\includegraphics[part=3]{gantt}
+% 	\caption{Predecessore}\label{fig:pred}
 % \end{figure}
 %
 % \begin{figure}[H]

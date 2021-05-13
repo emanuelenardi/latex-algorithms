@@ -1,0 +1,33 @@
+%&../preamble
+
+% arara: pdflatex: { synctex: no }
+% arara: latexmk: { clean: partial }
+\ifstandalone
+\begin{document}
+\begin{algorithm}[H]
+\fi
+
+\prototype{\Int \LongestCommonSubsequence{\Item{} \(T\), \Item{} \(U\)}}{
+
+    \BlankLine
+    \Item{} \(\maxsofar\) \Assign \Nil\;
+
+    \BlankLine
+    \ForEach{\text{subsequence }\(X\)\text{ of }\(T\)}{
+        \If{\(X\text{ is subsequence of }U\)}{
+
+            \BlankLine
+            \If{\(\lenght(X) > \lenght(\maxsofar)\)}{
+                \(\maxsofar = X\)\;
+            }
+        }
+    }
+
+    \BlankLine
+    \Return \(\maxsofar\)\;
+}
+
+\ifstandalone
+\end{algorithm}
+\end{document}
+\fi

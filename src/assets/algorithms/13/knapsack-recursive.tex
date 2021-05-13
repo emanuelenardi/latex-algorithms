@@ -20,12 +20,12 @@
     \params{c}[capacità residua]
 
     \BlankLine
-    \uIf{\(c < 0\)}{
+    \uIf(\tcp*[h]{non posso prendere quell'elemento}){\(c < 0\)}{
         \Return \(-\infty\)\;
         \BlankLine
 
     }
-    \uElseIf{\(i \Equal 0\) \Or \(c \Equal 0\)}{
+    \uElseIf(\tcp*[h]{non ho più elementi da prendere o lo zaino è pieno}){\(i \Equal 0\) \Or \(c \Equal 0\)}{
         \Return \(0\)\;
         \BlankLine
 

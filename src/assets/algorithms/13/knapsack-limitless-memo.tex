@@ -7,6 +7,8 @@
 \begin{algorithm}[H]
 \fi
 
+\newcommand{\maxSoFar}{\mathit{maxsofar}}
+
 \BlankLine
 \tcp{funzione wrapper}
 \prototype{\Int \knapsack{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(C\)}}{
@@ -36,7 +38,7 @@
 	\BlankLine
 	\If{\(DP[c] < 0\)}{
 		\BlankLine
-		\(DP[c] \Assign 0\)\;
+		\Int \(\maxSoFar \Assign 0\)\;
 
 		\BlankLine
 		\From{\(i \Assign 1\) \DownTo \(n\)}{
@@ -46,9 +48,12 @@
 
 				\BlankLine
 				\Int \(val\) \Assign \knapsackRec{\(w\), \(p\), \(n\), \(c-w[i]\), \(DP\)} \(+\ p[i]\)\;
-				\(DP[c] \Assign \maxFunction{\(DP[c]\), \(val\)}\)\;
+				\(\maxSoFar \Assign \maxFunction{\(\maxSoFar\), \(val\)}\)\;
 			}
 		}
+
+		\BlankLine
+		\(DP[c] = \maxSoFar\)
 	}
 
 	\BlankLine

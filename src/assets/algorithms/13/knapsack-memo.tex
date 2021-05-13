@@ -12,16 +12,15 @@
 \prototype{\Int \knapsack{\Array{\Int} \(w\), \Array{\Int} \(p\), \Int \(n\), \Int \(C\)}}{
 
     \BlankLine
-    \(DP\) \Assign \new \Matrix{\Int}[1\dots n][1\dots C]\;
+    \Matrix{\Int}[][] \(DP\) \Assign \new \Matrix{\Int}[1\dots n][1\dots C]\;
 
     \BlankLine
+    \tcp{inizializzo la tabella (\(n \cdot C\))}
     \From{\(i \Assign 1\) \DownTo \(n\)}{
-
-        \BlankLine
         \From{\(c \Assign 1\) \DownTo \(C\)}{
 
             \BlankLine
-            \(DP[i][c] = -1\) \tcp{non ho ancora risolto questo sotto-problema}
+            \(DP[i][c] = -1\) \tcp{non ho ancora risolto questo sottoproblema}
         }
     }
 
@@ -46,9 +45,11 @@
     \Else{
 
         \BlankLine
+        \tcp{se non ho già risolto questo sottoproblema...}
         \If{\(DP[i][c] < 0\)}{
 
             \BlankLine
+            \tcp{...lo risolvo}
             \Int \(nottaken\) \Assign \knapsackRec{\(w\), \(p\), \(i-1\), \(c\), \(DP\)}\;
             \Int \(taken\) \Assign \knapsackRec{\(w\), \(p\), \(i-1\), \(c-w[i]\), \(DP\)} \(+ p[i]\)\;
 
@@ -57,6 +58,7 @@
         }
 
         \BlankLine
+        \tcp{restituisco il sottoproblema}
         \Return \(DP[i][c]\)\;
     }
 }
