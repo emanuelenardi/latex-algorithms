@@ -1,6 +1,11 @@
 name: Compila documento LaTeX
 on:
   workflow_dispatch:
+    inputs:
+      message:
+        description: 'Commit message'
+        required: true
+        default: '⚙️ Workflow azionato manualmente'
   push:
     branches:
       - main                    # Push events on main branch
