@@ -290,6 +290,46 @@ Dato uno zaino senza limiti di scelta di capacità \(C\) e \(n\) oggetti caratte
 Ognuno degli elementi costa \(\Theta(n)\) per essere riempito, mal che vada devo riempire tutte le \(C\) caselle delle tabelle.
 Quindi nel caso pessimo ho una complessità di \(\Omicron(nC)\)
 
+\section{Sottosequenza comune massimale}
+
+\[
+    DP[i][j] =
+    \begin{dcases}
+    0                                       & i=0\ \Or\ j=0\\
+    DP[i-1][j-1] + 1                        & i>0\ \And\ j>0\ \And\ t_i=u_j\\
+    \maxFunction\{DP[i-1][j], DP[i][j-1]\}  & i>0\ \And\ j>0\ \And\ t_i \neq u_j\\
+    \end{dcases}
+\]
+
+\subsection{Resto}
+
+\begin{equation*}
+	DP[i] =
+	\begin{dcases}
+		0 & i = 0 \\
+		\min_{1 \leqslant j \leqslant n} \{ DP[i-t[j]] \mid t[j] \leqslant i \} + 1 & i > 0
+	\end{dcases}
+\end{equation*}
+
+\begin{algorithm}[H]
+	\caption{Problema del resto risolto tramite programmazione dinamica}
+	\input{resto-greedy}
+\end{algorithm}
+
+\subsection{Algoritmo di Kruskal}
+
+\begin{algorithm}[H]
+	\caption{Algoritmo di Kruskal per la generazione di un MST}
+	\input{kruskal}
+\end{algorithm}
+
+\section{Algoritmo di Prim}
+
+\begin{algorithm}[H]
+	\caption{Algoritmo di Prim per la generazione di un MST}
+	\input{prim}
+\end{algorithm}
+
 \ifsubfile
 \end{document}
 \fi

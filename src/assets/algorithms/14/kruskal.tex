@@ -8,40 +8,49 @@
 \fi
 
 \prototype{\Set \kruskal{\Edge{} \(A\), \Int \(n\), \Int \(m\)}}{
-\tcp{\Edge{}: vettore di archi}
+	\params{A}[vettore di archi]
+	\params{n}[numero di archi]
+	\params{m}[numero di archi]
 
+	\BlankLine
 	\BlankLine
 	\lnl{kruskal:init}%
-	\Set \(T\) \Assign \setConstructor \Comment*[h]{insieme (inizialmente vuoto) che conterrà gli archi dell'albero minimo}\;
-	\mfSet \(M\) \Assign \mfConstructor{n} \Comment*[h]{insieme disgiunto grande }\;
+	\Set \(T\) \Assign \setConstructor \tcp{insieme (inizialmente vuoto) che conterrà gli archi dell'albero minimo}
+	\mfSet \(M\) \Assign \mfConstructor{n} \tcp{insieme disgiunto grande }
 
 	\BlankLine
-	\tcp{ordino per peso crescente}
+	\tcp{ordina gli archi per peso crescente}
 	\lnl{kruskal:order}%
-	\{ ordina \(A[1][m]\) in modo che \(A[1].\peso \leqslant \cdots \leqslant A[m].\peso\) \}\;
+	\{ ordina \(A[1, \dots, m]\) in modo che \(A[1].\peso \leqslant \cdots \leqslant A[m].\peso\) \}\;
 %
 	\BlankLine
-	\Int \(c \Assign 0\) \Comment*[h]{quanti archi ho aggiunto}\;
-	\Int \(i \Assign 1\) \Comment*[h]{quale arco sto guardando}\;
+	\Int \(\Count \Assign 0\) \tcp{tiene conto del numero di archi aggiunti}
+	\Int \(i \Assign 1\) \tcp{punta all'arco corrente}
+
+	\BlankLine
+	\tcp{il ciclo termina quando l'albero è costruito}
 	\lnl{kruskal:op}%
-	\While(\Comment*[h]{Termina quando l'albero è costruito}){\(c < n-1\) \And \(i \leqslant m\)}{
-%
+	\While{\(\Count < n-1\) \And \(i \leqslant m\)}{
+		\params{c < n-1}[ho raggiunto tutti gli archi necessari per fare un albero]
+		\params{i \leqslant m}[ho esaurito tutti gli archi da guardare (per controllo)]
+
 		\BlankLine
-		\tcp{\(c < n-1\): ho raggiunto tutti gli archi necessari per fare un albero}
-		\tcp{\(i \leqslant m\): ho esaurito tutti gli archi da guardare (per controllo)}
+		\BlankLine
 		\If(\Comment*[h]{non fanno parte dello stesso albero}){\(M.\mfFind{\(A[i].u\)} \Neq M.\mfFind{\(A[i].v\)}\)}{
 
 			\BlankLine
-			\(M.\mfMerge{\(A[i].u\), \(A[i].v\)}\) \Comment*[l]{unisco gli insiemi disgiunti}
-			\(T.\setInsert{\(A[i]\)}\) \Comment*[l]{inserisco l'arco all'albero}
-			\(c \Assign c + 1\) \Comment*[l]{ho aggiunto un altro arco}
+			\(M.\mfMerge{\(A[i].u\), \(A[i].v\)}\) \tcp{unisco gli insiemi disgiunti}
+			\(T.\setInsert{\(A[i]\)}\) \tcp{inserisco l'arco all'albero}
+			\(\Increment{c}\) \tcp{ho aggiunto un altro arco}
 		}
 
 		\BlankLine
-		\(i \Assign i + 1\) \Comment*[l]{guardo il prossimo arco}
+		\(\Increment{i}\) \tcp{punta all'arco successivo}
 	}
 
-	\Return \(T\) \Comment*[l]{Ritorna l'albero di copertura minimo}
+	\BlankLine
+	\tcp{restituisco l'albero di copertura minimo}
+	\Return \(T\)\;
 }
 
 \ifstandalone

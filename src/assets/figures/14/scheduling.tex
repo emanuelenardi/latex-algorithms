@@ -1,0 +1,37 @@
+% SEE tex.stackexchange.com/questions/296387/
+\documentclass[multi=page, tikz, border=2mm]{standalone}
+\usepackage{../tikz-preamble}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+
+\begin{page}
+    \begin{tikzpicture}[thick, font = \ttfamily\bfseries]
+        \node[job, minimum width = 2.0cm] at (0,0)   { 4 };
+        \node[job, minimum width = 0.5cm] at (2,0)   { 1 };
+        \node[job, minimum width = 3.0cm] at (2.5,0) { 6 };
+        \node[job, minimum width = 1.5cm] at (5.5,0) { 3 };
+        \node[] at (0,	-0.50){0};
+        \node[] at (2,	-0.50){4};
+        \node[] at (2.5,-0.50){5};
+        \node[] at (5.5,-0.50){11};
+        \node[] at (7,	-0.50){14};
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}[thick, font = \ttfamily\bfseries]
+        \node[job, minimum width = 0.5cm] at (0.0,0) { 1 };
+        \node[job, minimum width = 1.5cm] at (0.5,0) { 3 };
+        \node[job, minimum width = 2.0cm] at (2.0,0) { 4 };
+        \node[job, minimum width = 3.0cm] at (4.0,0) { 6 };
+        \node[] at (0.0, -0.50){0};
+        \node[] at (0.5, -0.50){1};
+        \node[] at (2.0, -0.50){4};
+        \node[] at (4.0, -0.50){8};
+        \node[] at (7,   -0.50){14};
+    \end{tikzpicture}
+\end{page}
+\end{document}

@@ -7,13 +7,17 @@
 \begin{algorithm}[H]
 \fi
 
-\prototype{\restoGreedy{\Array{\Int} \(t\), \Int \(n\), \Int \(R\), \Array{\Int} \(x\)}}{
+\prototype{\Array{\Int} \restoGreedy{\Array{\Int} \(t\), \Int \(n\), \Int \(R\), \Array{\Int} \(x\)}}{
 
-	\{ Ordina le monete in modo \emph{decrescente} \}\;
+	\BlankLine
+	\Array{\Int} \(x\) \Assign \new \Array{\Int}[1][n] \tcp{memorizza il numero di tagli da restituire}
+
+	\BlankLine
+	\{ ordina le monete in modo \emph{decrescente} \}
 	\tcp{\(\Omicron(n)\) se già ordinato, \(\Omicron(n \log n)\) altrimenti}
 
 	\BlankLine
-	\From(\Comment*[h]{\(\Omicron(n)\)}){\(i \Assign 1\) \DownTo \(n\)} {
+	\From(\tcp*[h]{\(\Omicron(n)\)}){\(i \Assign 1\) \DownTo \(n\)} {
 
 		\BlankLine
 		\tcp{il numero di monete di taglio massimo}
@@ -24,7 +28,9 @@
 		\(R \Assign R - x[i] \cdot t[i]\)\;
 	}
 
-	\Return \(R\)
+	\BlankLine
+	\tcp{restituisce il numero di tagli da restituire}
+	\Return \(x\)
 }
 
 \ifstandalone

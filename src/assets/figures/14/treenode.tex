@@ -1,0 +1,48 @@
+% SEE tex.stackexchange.com/questions/236501
+% SEE tex.stackexchange.com/questions/425238
+% SEE tex.stackexchange.com/questions/220859
+\documentclass[multi=page]{standalone}
+\usepackage{../../../libraries/set-forest}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\begin{page}
+	\begin{forest} binary tree, binary numbering, yellow
+		[
+			[
+				[a
+				[,phantom][,phantom]
+				]
+				[[b][c]]]
+			[
+			[
+				[d][e]
+			]
+				[,phantom
+					[,phantom][,phantom]
+				]
+			]
+		]
+	\end{forest}
+\end{page}
+
+\begin{page}
+	\begin{forest} binary tree, binary numbering, yellow
+		[
+			[[a
+				[,phantom][,phantom]
+			][[b][c]]]
+			[
+			% [
+			[d][e]
+			% ]
+			% 	[,phantom
+			% 		[,phantom][,phantom]
+			% 	]
+			]
+		]
+	\end{forest}
+\end{page}
+\end{document}

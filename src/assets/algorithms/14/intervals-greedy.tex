@@ -10,25 +10,26 @@
 \prototype{\Set \independentSet{\Array{\Int} \(a\), \Array{\Int} \(b\)}}{
 
 	\BlankLine
-	\{ ordina \(a\) e \(b\) in modo che \(b[1] \leqslant b[2] \leqslant \cdots \le b[n]\) \}\;
+	\{ ordina \(a\) e \(b\) in modo che \(b[1] \leqslant b[2] \leqslant \cdots \leqslant b[n]\) \}
 	\tcp{\(\Omicron(n)\) se già ordinati, \(\Omicron(n \log n)\) altrimenti}
 
 	\BlankLine
-	\Set \(S \Assign \setConstructor\)\;
-	\(S\).\setInsert(1) \Comment*[h]{inserisco il primo intervallo}\;
-	\Int \Last \(\Assign 1\) \Comment*[h]{ultimo intervallo inserito}\;
+	\Set \(S \Assign\) \setConstructor \tcp{conterrà l'insieme di intervalli}
+	\(S\).\setInsert{\(1\)} \tcp{inserisco il primo intervallo}
+	\Int \Last \(\Assign\) \(1\) \tcp{puntatore all'ultimo intervallo inserito}
 
 	\BlankLine
-	\From{\(i \Assign 2\) \DownTo \(n\)}{
-		\If{\(a[i] \geqslant b[\Last]\)}{
-			\tcp{gli intervalli sono indipendenti}
+	\From(\tcp*[h]{dal secondo intervallo in poi...}){\(i \Assign 2\) \DownTo \(n\)}{
+		\If(\tcp*[h]{...controllo se gli intervalli sono indipendenti}){\(a[i] \geqslant b[\Last]\)}{
 
 			\BlankLine
-			\(S\).\setInsert(i) \Comment*[h]{lo inserisco}\;
-			\(\Last \Assign i\) \Comment*[h]{lo rendo l'ultimo inserito}\;
+			\(S\).\setInsert{\(i\)} \tcp{inserisco il nuovo intervallo...}
+			\(\Last \Assign i\) \tcp{...e aggiorno il puntatore}
 		}
 	}
 
+	\BlankLine
+	\tcp{restituisco l'insieme indipendente di intervalli disgiunti}
 	\Return \(S\)\;
 }
 

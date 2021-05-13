@@ -7,22 +7,27 @@
 \begin{algorithm}[H]
 \fi
 
-\prototype{\zaino{\Array{\Real} \(p\), \Array{\Real} \(v\), \Real \(C\), \Int \(n\), \Array{\Real} \(x\)}}{
+\prototype{\Array{\Real} \zaino{\Array{\Real} \(p\), \Array{\Real} \(w\), \Real \(C\), \Int \(n\)}}{
 
 	\BlankLine
-	\{ ordina \(p\) e \(v\) in modo che \(\frac{p[1]}{w[1]} \geqslant \frac{p[2]}{w[2]} \geqslant \cdots \geqslant \frac{p[n]}{w[n]}\)\}\;
+	\Array{\Real} \(x\) \Assign \new \Array{\Real}[1][n]
 
 	\BlankLine
+	\{ ordina \(p\) e \(w\) in modo che \(\frac{p[1]}{w[1]} \geqslant \frac{p[2]}{w[2]} \geqslant \cdots \geqslant \frac{p[n]}{w[n]}\)\}
 	\tcp{\(\Omicron(n)\) se già ordinato, \(\Omicron(n \log n)\) altrimenti}
 
 	\BlankLine
 	\BlankLine
 	\From{\(i \Assign 1\) \DownTo \(n\)}{
-		\(x[i] \Assign \MathMin\left( \dfrac{C}{w[i]}, 1 \right)\) \Comment*[h]{ne prendo solo una frazione?}\;
+		\(x[i] \Assign \MathMin\left( \dfrac{C}{w[i]}, 1 \right)\)
+		\tcp{frazione dell'oggetto \(i\)-esimo da prendere, \(x[i] \in [0,1]\)}
 
 		\BlankLine
 		\(C \Assign C - x[i] \cdot w[i]\) \Comment*[h]{aggiorno la capacità residua}\;
 	}
+
+	\BlankLine
+	\Return \(x\)\;
 }
 
 \ifstandalone

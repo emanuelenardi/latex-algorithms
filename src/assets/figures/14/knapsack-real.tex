@@ -1,0 +1,81 @@
+\documentclass[multi=page, tikz, border=2mm]{standalone}
+\usepackage{../tikz-preamble}
+
+% arara: pdflatex: { draft: yes }
+% arara: pdflatex: { synctex: no }
+% arara: latexmk:  { clean: partial }
+\begin{document}
+\begin{page}
+    \begin{tikzpicture}[
+        thick,
+        font=\ttfamily\bfseries\footnotesize
+    ]
+    \tikzset{
+        myrect/.style = {rectangle, draw=black, align=center,anchor=west,fill=yellow!40,minimum height=0.5cm}
+    }
+    \node[myrect,minimum width=4.00cm,fill=blue!40] at (0.0,0) { 200\$ };
+    \node[myrect,minimum width=3.00cm,fill=red!20] at (4.0,0) { 120\$};
+    \node[align=left,anchor=west] at (7.5,0) {200\$ +120\$ = 320\$};
+    \node[] at (0.0,-0.50){0};
+    \node[] at (4.00,-0.50){40};
+    \node[] at (7.00,-0.50){70};
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}[
+    thick,
+    font=\ttfamily\bfseries\footnotesize
+    ]
+    \tikzset{
+        myrect/.style = {rectangle, draw=black, align=center,anchor=west,fill=yellow!40,minimum height=0.5cm}
+    }
+    \node[myrect,minimum width=1.0cm,fill=yellow!40] at (0.0,0) { 60\$ };
+    \node[myrect,minimum width=3.0cm,fill=red!20] at (1.0,0) { 120\$};
+    \node[myrect,minimum width=3.0cm,fill=blue!40] at (4.0,0) { 3/4*200\$};
+    \node[align=left,anchor=west] at (7.5,0) {60\$ + 120\$ + 150\$ = 330\$};
+    \node[] at (0.0,-0.50){0};
+    \node[] at (1.0,-0.50){10};
+    \node[] at (4.0,-0.50){40};
+    \node[] at (7.0,-0.50){70};
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}[
+        thick,
+        font=\ttfamily\bfseries\footnotesize
+    ]
+    \tikzset{
+        myrect/.style = {rectangle, draw=black, align=center,anchor=west,fill=yellow!40,minimum height=0.5cm}
+    }
+    \node[myrect,minimum width=1.0cm,fill=yellow!40] at (0.0,0) { 60\$ };
+    \node[myrect,minimum width=4.0cm,fill=blue!40] at (1.0,0) { 200\$};
+    \node[myrect,minimum width=2.0cm,fill=red!20] at (5.0,0) { 2/3*120\$};
+    \node[align=left,anchor=west] at (7.5,0) {60\$ +200\$ + 80\$ = 340\$};
+    \node[] at (0.0,-0.50){0};
+    \node[] at (1.0,-0.50){10};
+    \node[] at (5.0,-0.50){50};
+    \node[] at (7.0,-0.50){70};
+    \end{tikzpicture}
+\end{page}
+
+\begin{page}
+    \begin{tikzpicture}[
+        thick,
+        font=\ttfamily\bfseries\footnotesize
+    ]
+    \tikzset{
+        myrect/.style = {rectangle, draw=black, align=center,anchor=west,fill=yellow!40,minimum height=0.5cm}
+    }
+    \node[myrect,minimum width=1.0cm,fill=yellow!40] at (0.0,0) { 60\$ };
+    \node[myrect,minimum width=4.0cm,fill=blue!40] at (1.0,0) { 200\$};
+    \node[myrect,minimum width=2.0cm,fill=white] at (5.0,0) {};
+    \node[align=left,anchor=west] at (7.5,0) {60\$ +200\$  = 260\$};
+    \node[] at (0.0,-0.50){0};
+    \node[] at (1.0,-0.50){10};
+    \node[] at (5.0,-0.50){50};
+    \node[] at (7.0,-0.50){70};
+    \end{tikzpicture}
+\end{page}
+\end{document}
