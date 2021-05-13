@@ -55,6 +55,7 @@
 
 % CHANGED Pos -> varPos
 \newcommand{\varPos}{\fontvar{pos}}
+\newcommand{\pos}{\fontvar{pos}}
 
 % CHANGED Postype -> Pos
 \SetKwData{Pos}{Pos}
@@ -448,6 +449,9 @@
 % \SetKwArray{last}{last}
 % \SetKwArray{pred}{pred}
 
+\newcommand{\LCS}{\textit{LCS}}
+\newcommand{\longest}{\textit{longest}}
+
 \SetKwFunction{fibonacciRic}{domino1}
 \SetKwFunction{fibonacciIter}{domino2}
 \SetKwFunction{fibonacci}{domino3}
@@ -464,6 +468,7 @@
 
 \SetKwFunction{LongestCommonSubsequence}{LCS}
 \SetKwFunction{lenght}{len}
+\newcommand{\maxsofar}{\mathit{maxsofar}}
 
 % \SetKwFunction{tartaglia}{tartaglia}
 % \SetKwFunction{floyd}{floydWarshall}
@@ -487,11 +492,12 @@
 
 % REVIEW Cap. 14 - Greedy
 
-\newcommand{\peso}{\fontvar{peso}}
+\newcommand{\peso}{\fontvar{weight}}
+\newcommand{\Count}{\fontvar{count}}
 
 \SetKwFunction{resto}{resto}
-\SetKwFunction{restoDP}{restoDP}
-\SetKwFunction{restoGreedy}{restoGreedy}
+\SetKwFunction{restoDP}{moneyChange}
+\SetKwFunction{restoGreedy}{moneyChange}
 
 \SetKwFunction{mstGenerico}{mst-generico}
 \SetKwFunction{CamminiMinimi}{CamminiMinimi}
@@ -551,9 +557,6 @@
 % \SetKwFunction{ricercaBruta}{ricercaBruta}
 % \SetKwFunction{Kmp}{kmp}
 % \SetKwFunction{computeBack}{calcolaBack}
-
-% WARNING count è già definita
-% \newcommand{\Count}{\fontvar{count}}
 
 
 % REVIEW Cap. 15 - Ricerca Locale
