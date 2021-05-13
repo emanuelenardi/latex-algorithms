@@ -1,6 +1,11 @@
 name: Lint documento LaTeX
 on:
   workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
   push:
     branches:
       - main                    # Push events on main branch
