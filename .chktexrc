@@ -408,7 +408,6 @@ Silent
     \erdos \topSort \ConnectedComponents
     \hateville \knapsack \selection \select \lowerBound
     \selectionSort \insertionSort \mergeSort \merge \quickSort \heapSort \shellSort \spaghettiSort \pivot \countingSort \pigeonholeSort \bucketSort
-    \LCS
 
     \draw \foreach
 
