@@ -344,7 +344,7 @@ Silent
 
     \mainmatter \cleardoublepage
 
-    \mainmatter \ddots \dotfill \flushbottom \flushright \raggedright \fussy \indent \linebreak
+    \mainmatter \ddots \dotfill \flushbottom \flushright \raggedright \raggedleft \fussy \indent \linebreak
     \onecolumn \pagebreak \pushtabs \poptabs \scriptsize \sloppy
     \twocolumn \vdots
     \today \kill \newline \thicklines \thinlines
@@ -408,6 +408,7 @@ Silent
     \erdos \topSort \ConnectedComponents
     \hateville \knapsack \selection \select \lowerBound
     \selectionSort \insertionSort \mergeSort \merge \quickSort \heapSort \shellSort \spaghettiSort \pivot \countingSort \pigeonholeSort \bucketSort
+    \LCS
 
     \draw \foreach
 
