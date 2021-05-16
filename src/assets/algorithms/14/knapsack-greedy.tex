@@ -10,9 +10,10 @@
 \prototype{\Array{\Real} \zaino{\Array{\Real} \(p\), \Array{\Real} \(w\), \Real \(C\), \Int \(n\)}}{
 
 	\BlankLine
-	\Array{\Real} \(x\) \Assign \new \Array{\Real}[1][n]
+	\Array{\Real} \(x\) \Assign \new \Array{\Real}[1][n] \tcp{conterrà le frazioni di oggetti presi}
 
 	\BlankLine
+	\tcp{ordino gli oggetti per profitto specifico decrescente}
 	\{ ordina \(p\) e \(w\) in modo che \(\frac{p[1]}{w[1]} \geqslant \frac{p[2]}{w[2]} \geqslant \cdots \geqslant \frac{p[n]}{w[n]}\)\}
 	\tcp{\(\Omicron(n)\) se già ordinato, \(\Omicron(n \log n)\) altrimenti}
 
@@ -27,6 +28,7 @@
 	}
 
 	\BlankLine
+	\tcp{restituisco le frazioni di oggetti da prendere}
 	\Return \(x\)\;
 }
 

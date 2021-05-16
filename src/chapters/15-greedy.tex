@@ -380,7 +380,7 @@ Ad esempio prendiamo i tre oggetti nella tabella con una capacità \(C\) di 70.
 \begin{table}[H]\centering
 	\begin{tabular}{@{} *{3}{r} @{}}
 		\toprule
-			i & \(p_i\) & \(w_i\) \\
+			\(i\) & \(p_i\) & \(w_i\) \\
 		\midrule
 			1 & 60\$ & 10\\
 		\lightrule
@@ -458,7 +458,7 @@ Supponiamo di avere un file di \(n\) caratteri.
 Composto da caratteri nell'alfabeto \texttt{abcdef} di cui conosciamo la frequenza relativa.
 
 \begin{table}[H]\centering
-	\caption{Possibili didascalie dei caratteri}
+	\caption{Possibili codifiche dei caratteri}
 	\begin{tabular}{@{} l *{7}{c} @{}}
 		\toprule
 		\textbf{Caratteri} & \texttt{a} & \texttt{b} & \texttt{c} & \texttt{d} & \texttt{e} & \texttt{f} & \textbf{dim.}\\
@@ -537,7 +537,7 @@ Dove
 	\item \(d_{T}(c)\): bit necessari per rappresentare la codifica di \(c\).
 \end{itemize*}
 
-Quindi una codifica \(C\) è data da un particolare albero \(T\), dove viene rappresentata e da un particolare file \(F\).
+Quindi una codifica \(C\) è data da un particolare albero \(T\) dove viene rappresentata e da un particolare file \(F\).
 
 \subsection{Principio dell'algoritmo di Huffman}
 
@@ -588,27 +588,26 @@ decodifica.
 \subsection{Algoritmo}
 
 \begin{algorithm}[H]
-	\caption{Codifica del resto tramite la compressione di Huffman}
+	\caption{Codifica del testo tramite la compressione di Huffman}
 	\input{huffman}
 \end{algorithm}
 
-Siccome ogni volta devo estrarre i due elementi più piccoli faccio affidamento ad una {\minHeapConstructor}.
-
+Ogni volta devo estrarre i due elementi più piccoli facendo affidamento ad una {\minHeapConstructor}.
 Inserisco tutte le lettere con la priorità data dalla loro frequenza e con un nodo contenente sia la frequenza che la lettera associata.
-Dopodiché estraggo i due elementi più piccoli, credo un nuovo nodo contenente i due elementi appena estratti e restituisco il nodo così fatto al chiamante.
+Dopodiché estraggo i due elementi più piccoli, creo un nuovo nodo contenente i due elementi appena estratti e reinserisco il nodo creato nella {\minHeapConstructor}.
 
 \paragraph{Funzionamento dell'algoritmo}
 \begin{enumerate}
 	\item rimuovo i due nodi con frequenza minore;
-	\item creo un nodo un'etichetta nulla e con frequenza pari alla somma delle frequenze dei nodi eliminati;
+	\item creo un nodo con etichetta nulla e con frequenza pari alla somma delle frequenze dei nodi eliminati;
 	\item collego i due nodi con il nodo creato;
 	\item aggiungo il nodo così creato alla lista, mantenendo l'ordine;
-	\item si termina quando reasta un solo nodo nella lista;
+	\item si termina quando resta un solo nodo nella lista;
 	\item al termine, si etichettano gli archi dell'albero con bit \texttt{0}, \texttt{1}.
 \end{enumerate}
 
 \paragraph{Complessità}
-Effettuo \(n\) volte operazioni che costano \(\log n\), come le operazioni di {\heapInsert} o di {\heapDeleteMin} per una complessità totale di \(\Omicron(n \log n)\).
+Effettuo \(n\) volte operazioni che costano \(\log n\), come le operazioni di inserimento nella lista ({\heapInsert}) o di cancellazione del minimo ({\heapDeleteMin}) per una complessità totale di \(\Omicron(n \log n)\).
 
 \subsection{Dimostrazione di correttezza}
 
@@ -626,7 +625,7 @@ Dato un problema sull'alfabeto \(\Sigma\), è possibile costruire un sottoproble
 
 \paragraph{Ipotesi}
 Siano \(\Sigma\) un alfabeto, \(f\) un vettore di frequenze.
-Siano \(x\), \(y\) i due Caratteri con frequenza più bassa.
+Siano \(x\), \(y\) i due caratteri con frequenza più bassa.
 
 \paragraph{Tesi}
 Esiste un codice prefisso ottimo per \(\Sigma\) in cui \(x\), \(y\) hanno la stessa profondità massima e i loro codici differiscono solo per l'ultimo bit (sono foglie sorelle).
@@ -674,7 +673,7 @@ Dimostriamo che \(C(f, T'') \leqslant C(f, T') \leqslant C(f, T)\).
 Ma poiché \(T\) è ottimo, sappiamo anche che \(C(f,T) \leqslant C(f,T'')\).
 Quindi \(T''\) è anch'esso ottimo.
 
-\section{Albero di copertura minimi}
+\section{Alberi di copertura di peso minimo}
 
 \paragraph{Problema}
 Dato un grafo pesato, determinare come interconnettere tutti i suoi nodi minimizzando il costo del peso associato ai suoi archi (agli archi che andiamo a scegliere).
@@ -720,6 +719,18 @@ Trovare l'albero di copertura il cui \emph{peso totale} sia minimo rispetto a og
 w(T) = \sum_{\mathclap{e \in T}}\; w(e) = \sum_{(u,v) \in E_T}\; w(u,v)
 \end{equation*}
 
+% TODO finire di scrivere la sezione
+% \subsection{Differenza fra cammini e alberi di copertura di peso minimo}
+
+% Notare la differenza fra un albero dei cammini minimi da singola sorgente A \cref{fig:} e un albero di copertura di peso minimo
+
+% % TODO importare le tre sottofigure
+% 1. grafo iniziale
+% 2. un albero dei cammini minimi da singola sorgente A
+% 3. un albero di copertura di peso minimo
+
+% \caption{Ricorda la differenza fra i due problemi}
+
 \subsection{Algoritmo generico}
 
 Progetteremo un algoritmo di tipo \enquote{goloso} generico, dopodiché mostreremo due \enquote{istanze} di questo algoritmo ({\kruskal} e {\prim}).
@@ -727,7 +738,7 @@ Progetteremo un algoritmo di tipo \enquote{goloso} generico, dopodiché mostrere
 L'approccio si basa sull'idea di accrescere un sottoinsieme \(A\) di archi in modo tale che venga sempre rispettata la seguente invariante: \(A\) è un sottoinsieme di qualche albero di connessione minimo.
 
 \begin{definition}[Arco sicuro]
-Un arco \([u,v]\) è detto sicuro per \(A\) se \(A \cup \{[u,v]\}\) è ancora un sottoinsieme di qualche albero di connessione minimo.
+Un arco \((u,v)\) è detto sicuro per \(A\) se \(A \cup \{(u,v)\}\) è ancora un sottoinsieme di qualche albero di connessione minimo.
 \end{definition}
 
 \begin{algorithm}[H]
@@ -758,12 +769,12 @@ Un taglio \((S, V-S)\) di un grafo non orientato \(G = (V,E)\) è una partizione
 \end{definition*}
 \vspace{-10pt}
 
-Un arco \((u,v)\) \emph{attraversa} il taglio se \(u \in S\) e \(v \in V-S\).
-Un taglio \emph{rispetta} un insieme di archi \(A\) se nessun arco di \(A\) attraversa il taglio.
+Si dice che un arco \((u,v)\) \emph{attraversa} il taglio se \(u \in S\) e \(v \in V-S\).
+Si dice inoltre che un taglio \emph{rispetta} un insieme di archi \(A\) se nessun arco di \(A\) attraversa il taglio.
 \vspace{-10pt}
 
 \begin{definition*}[arco leggero]
-Un arco che attraversa un taglio è \emph{leggero} nel taglio se il suo peso è minimo fra i pesi degli archi che attraversano un taglio.
+Un arco che attraversa un taglio è detto \emph{leggero} nel taglio se il suo peso è minimo fra i pesi degli archi che attraversano un taglio.
 \end{definition*}
 \vspace{-10pt}
 
@@ -784,20 +795,20 @@ Allora \((u,v)\) è sicuro per \(A\).
 \begin{figure}[H]\centering
 	\begin{subfigure}[b]{.5\linewidth}\centering
 		\includegraphics[page=5]{mst}
-		\caption{Arco blu sicuro}
+		\caption{Arco blu sicuro perché il taglio rispetta A}
 	\end{subfigure}%
 		\begin{subfigure}[b]{.5\linewidth}\centering
 		\includegraphics[page=6]{mst}
-	\caption{Arco blu non sicuro}
+	\caption{Arco blu arco non sicuro perché il taglio non rispetta A}
 	\end{subfigure}
 
 	\begin{subfigure}[b]{.5\linewidth}\centering
 		\includegraphics[page=7]{mst}
-		\caption{Arco blu sicuro}
+		\caption{Arco blu sicuro perché leggero}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.5\linewidth}\centering
 		\includegraphics[page=8]{mst}
-	\caption{Arco blu non sicuro}
+	\caption{Arco blu non sicuro perché non leggero}
 	\end{subfigure}%
 \end{figure}
 
