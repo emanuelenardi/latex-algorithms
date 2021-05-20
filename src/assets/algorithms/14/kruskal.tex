@@ -16,7 +16,7 @@
 	\BlankLine
 	\lnl{kruskal:init}%
 	\Set \(T\) \Assign \setConstructor \tcp{insieme (inizialmente vuoto) che conterrà gli archi dell'albero minimo}
-	\mfSet \(M\) \Assign \mfConstructor{n} \tcp{insieme disgiunto grande }
+	\mfSet \(M\) \Assign \mfConstructor{n} \tcp{insieme disgiunto grande quanto gli \(n\) nodi}
 
 	\BlankLine
 	\tcp{ordina gli archi per peso crescente}
@@ -36,10 +36,10 @@
 
 		\BlankLine
 		\BlankLine
-		\If(\Comment*[h]{se non fanno parte dello stesso albero...}){\(M.\mfFind{\(A[i].u\)} \Neq M.\mfFind{\(A[i].v\)}\)}{
+		\If(\Comment*[h]{se non fanno parte dello stesso insieme...}){\(M.\mfFind{\(A[i].u\)} \Neq M.\mfFind{\(A[i].v\)}\)}{
 
 			\BlankLine
-			\(M.\mfMerge{\(A[i].u\), \(A[i].v\)}\) \tcp{...unisco gli insiemi disgiunti...}
+			\(M.\mfMerge{\(A[i].u\), \(A[i].v\)}\) \tcp{...unisco gli insiemi...}
 			\(T.\setInsert{\(A[i]\)}\) \tcp{...e inserisco l'arco nell'albero di copertura minimo}
 			\(\Increment{\Count}\) \tcp{aggiorno il contatore degli archi aggiunti}
 		}

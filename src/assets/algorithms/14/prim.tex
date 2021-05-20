@@ -8,10 +8,9 @@
 \fi
 
 \prototype{\prim{\Graph \(G\), \Node \(r\), \Array{\Int} \(p\)}}{
-	\tcp{\eqparbox{prim}{\(r\):} nodo dalla quale parto, la radice}
-	\tcp{\eqparbox{prim}{\(p\):} vettore dei padri}
+	\params{prim}{r}[nodo dalla quale parto, la radice]
+	\params{prim}{p}[vettore dei padri]
 
-	\BlankLine
 	\BlankLine
 	\Heap \(Q\) \Assign \minHeapConstructor\;
 	\PriorityItem{} \(\pos\)  \Assign \new \PriorityItem{1\dots G.\(n\)}\;
@@ -46,12 +45,12 @@
 
 			\BlankLine
 			\If{\(\Pos[v] \Neq \Nil\) \And \(\weight{u,v} < \Pos[v].\priority\)}{
-				\tcp{\eqparbox{prim-cycle}{\(\Pos[v] \Neq \Nil\):} è già stato visitato}
-				\tcp{\eqparbox{prim-cycle}{\(\weight{u,v} < \Pos[v].\priority\):} commenta}
+				\params{prim-cycle}{\Pos[v] \Neq \Nil}[è già stato visitato]
+				\params{prim-cycle}{\weight{u,v} < \Pos[v].\priority}[il peso del lato è minore della priorità del nodo]
 
 				\BlankLine
 				\BlankLine
-				\(Q.\heapDecrease{\(\Pos[v]\), \(\weight{u,v}\)}\) \tcp{commenta}
+				\(Q.\heapDecrease{\(\Pos[v]\), \(\weight{u,v}\)}\) \tcp{decremento la priorità del nodo}
 				\(p[v] \Assign u\) \tcp{il padre di \(v\) diventa \(u\)}
 			}
 		}

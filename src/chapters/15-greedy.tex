@@ -852,10 +852,10 @@ L'algoritmo è ingordo perchè ad ogni passo si aggiunge alla foresta un arco co
 \paragraph{Implementazione}
 Per l'implementazione si usa una struttura Merge-Find Set ({\mfConstructor}).
 
-\paragraph{Commento}
+\paragraph{Commento sull'input}
 L'input non è un grafo \(G\), ma un vettore di archi (\(\textsc{edge}[\,]\)) perché abbiamo bisogno di ordinare gli archi in base al peso.
 La rappresentazione dei grafi per liste di adiacenza non permette di ordinare gli archi in base al peso.
-La trasformazione non viene rappresentata nel seguente algoritmo.
+La trasformazione in un vettore di archi non viene rappresentata nel seguente algoritmo.
 
 \begin{algorithm}[H]
 	\caption{Algoritmo di Kruskal per la generazione di un MST}
@@ -908,7 +908,7 @@ La trasformazione non viene rappresentata nel seguente algoritmo.
 \end{figure}
 
 \paragraph{Analisi della complessità}
-Il tempo di esecuzione per l'algoritmo di Kruskal dipende dalla realizzazione della struttura dati Merge-Find Set.
+Il tempo di esecuzione per l'algoritmo di Kruskal dipende dalla realizzazione della struttura dati Merge-Find Set ({\mfConstructor}).
 Utilizziamo la versione con euristica sul rango più compressione dei cammini, le cui operazioni hanno costo ammortizzato costante (\(\Omicron(1)\)).
 \begin{itemize}[topsep=0pt, itemsep=0pt]
 	\item[\circled{\ref{kruskal:init}}]
@@ -934,6 +934,7 @@ Durante l'esecuzione dell'algoritmo esiste un solo albero, il quale rappresenta 
 
 L'albero parte da un vertice arbitrario \(r\) (la radice) e cresce fino a quando non ricopre tutti i vertici.
 Ad ogni passo viene aggiunto un arco leggero che collega un vertice in \(V_A\) con un vertice in \(V - V_{A}\), dove \(V_{A}\) è l'insieme di nodi raggiunti da archi in \(A\).
+% Non esiste il concetto di albero radicato nel albero di copertura di peso minimo, è solo un artefatto dell'algoritmo.
 
 \paragraph{Correttezza}
 \((V_A, V - V_A)\) è un taglio che rispetta \(A\) (per definizione).
@@ -943,7 +944,7 @@ Per il corollario, gli archi leggeri che attraversano il taglio sono sicuri.
 Abbiamo bisogno di una struttura dati per i nodi non ancora presenti nell'albero.
 Durante l'esecuzione, i vertici che devono essere inseriti si trovano in una coda con min-priorità \(Q\) ordinata in base alla seguente definizione di priorità: \enquote{la priorità del nodo \(v\) è il peso minimo di un arco che collega \(v\) ad un vertice nell'albero, o \(+\infty\) se tale arco non esiste}.
 
-L'albero è memorizzato tramite un \emph{vettore dei padri}, in cui \(A\) è mantenuto implicitamente, infatti è definito \(A = \{ [v, p[v]] \mid v \in V - Q - \{ r \} \}\) (\(Q\) archi non ancora raggiunti, \(\{r\}\) radice).
+L'albero è memorizzato tramite un \emph{vettore dei padri}, in cui \(A\) è mantenuto implicitamente, infatti è definito \(A = \{ [v, p[v]] \mid v \in V - Q - \{ r \} \}\) (in cui \(Q\) sono gli archi non ancora raggiunti, \(\{r\}\) radice).
 
 \begin{algorithm}[H]
 	\caption{Algoritmo di Prim per la generazione di un MST}
@@ -995,7 +996,7 @@ Nel caso si utilizzi un heap binario:
 
 \begin{itemize}[topsep=0pt, itemsep=0pt]
 	\item[\circled{\ref{prim:init}}]
-	l'inizializzazione costa \(\Omicron(m \log n)\);
+	l'inizializzazione costa \(\Omicron(n \log n)\);
 
 	\item[\circled{\ref{prim:ciclo-esterno}}]
 	il ciclo principale viene eseguito \(n-1\) per una complessità di \(\Omicron(n)\) volte dove ogni operazione di {\heapDeleteMin} costa \(\Omicron(\log n)\);
@@ -1027,7 +1028,7 @@ Per un totale di \(\Omicron(n + n^2 + m \cdot 1) = \Omicron(n^2)\).
 Cambiando la struttura dati cambia la complessità dell'algoritmo.
 \end{note}
 
-In definitiva se il grafo è \emph{sparso} conviene utilizzare l'heap binario (\(\Omicron(m \log n)\)), mentre se il grafo è \emph{denso} (o addirittura completo) conviene utilizzare il vettore non ordinato (\(\Omicron(n^2)\)).
+La scelta della struttura dati dipende dal numero di archi: se il grafo è \emph{sparso} (con numero di archi \(m = \Omicron(n)\) o \(m = \Omicron(n \log n)\)) conviene utilizzare l'heap binario (\(\Omicron(n \log n)\) o \(\Omicron(n \log^2 n)\)) o l'algoritmo {\prim}, mentre se il grafo è \emph{denso} o addirittura completo (con numero di archi \(m = \Theta(n^2)\)) conviene utilizzare il vettore non ordinato (\(\Omicron(n^2) \subset \Omicron(n^2 \log n)\)).
 
 \clearpage
 \subsection{Cenni storici}
