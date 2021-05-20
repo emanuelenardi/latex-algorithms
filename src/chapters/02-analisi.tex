@@ -796,7 +796,7 @@ Ad ogni iterazione il vettore su cui viene calcolato il minimo risulta più picc
 	&\sum_{i=1}^{n-1} (n-1) \Arrow{\(10+9+\cdots+1 \Leftrightarrow 1+2+\cdots+10\)} \\
 	&= \sum_{i=1}^{n-1} i \Arrow{Gauss}\\
 	&= \frac{n(n-1)}{2} \Arrow{svolgo i calcoli} \\
-	&= n^2 - \frac{n}{2} \Arrow{regola generale: \(n^k \subset n\)}\\
+	&= n^2 - \frac{n}{2} \Arrow{regola generale: \(\Omicron(n^k) \supset \Omicron(n)\)}\\
 	&= \Theta(n^2)
 \end{WithArrows}\]
 Posso dire che è \(\Theta(n^2)\), e non solo che \(\Omega(n^2)\), perché indipendentemente dall'ordine iniziale ci metterà sempre lo stesso tempo.
