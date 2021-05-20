@@ -8,9 +8,9 @@
 \fi
 
 \prototype{\Set \kruskal{\Edge{} \(A\), \Int \(n\), \Int \(m\)}}{
-	\params{A}[vettore di archi]
-	\params{n}[numero di archi]
-	\params{m}[numero di archi]
+	\params{kruskal}{A}[vettore di archi]
+	\params{kruskal}{n}[numero di archi]
+	\params{kruskal}{m}[numero di archi]
 
 	\BlankLine
 	\BlankLine
@@ -31,21 +31,21 @@
 	\tcp{il ciclo termina quando l'albero è costruito}
 	\lnl{kruskal:op}%
 	\While{\(\Count < n-1\) \And \(i \leqslant m\)}{
-		\params{c < n-1}[ho raggiunto tutti gli archi necessari per fare un albero]
-		\params{i \leqslant m}[ho esaurito tutti gli archi da guardare (per controllo)]
+		\params{kruskal-cycle}{\Count < n-1}[ho raggiunto tutti gli archi necessari per fare un albero]
+		\params{kruskal-cycle}{i \leqslant m}[ho esaurito tutti gli archi da guardare (per controllo)]
 
 		\BlankLine
 		\BlankLine
-		\If(\Comment*[h]{non fanno parte dello stesso albero}){\(M.\mfFind{\(A[i].u\)} \Neq M.\mfFind{\(A[i].v\)}\)}{
+		\If(\Comment*[h]{se non fanno parte dello stesso albero...}){\(M.\mfFind{\(A[i].u\)} \Neq M.\mfFind{\(A[i].v\)}\)}{
 
 			\BlankLine
-			\(M.\mfMerge{\(A[i].u\), \(A[i].v\)}\) \tcp{unisco gli insiemi disgiunti}
-			\(T.\setInsert{\(A[i]\)}\) \tcp{inserisco l'arco all'albero}
-			\(\Increment{c}\) \tcp{ho aggiunto un altro arco}
+			\(M.\mfMerge{\(A[i].u\), \(A[i].v\)}\) \tcp{...unisco gli insiemi disgiunti...}
+			\(T.\setInsert{\(A[i]\)}\) \tcp{...e inserisco l'arco nell'albero di copertura minimo}
+			\(\Increment{\Count}\) \tcp{aggiorno il contatore degli archi aggiunti}
 		}
 
 		\BlankLine
-		\(\Increment{i}\) \tcp{punta all'arco successivo}
+		\(\Increment{i}\) \tcp{controllo l'arco successivo}
 	}
 
 	\BlankLine

@@ -1,8 +1,5 @@
 %&../preamble
 
-% \documentclass[varwidth=6in]{standalone}
-% \usepackage{../preamble}
-
 % arara: pdflatex: { synctex: no }
 % arara: latexmk: { clean: partial }
 \ifstandalone
@@ -11,9 +8,9 @@
 \fi
 
 \prototype{\Tree \huffman{\Array{\Int} \(c\), \Array{\Int} \(f\), \Int \(n\)}}{
-	\params{\Array{c}[1][n]}[caratteri dell'alfabeto]
-	\params{\Array{f}[1][n]}[frequenze dei caratteri]
-	\params{n}[dimensione dell'alfabeto]
+	\params{huffman}{\Array{c}[1][n]}[caratteri dell'alfabeto]
+	\params{huffman}{\Array{f}[1][n]}[frequenze dei caratteri]
+	\params{huffman}{n}[dimensione dell'alfabeto]
 
 	\BlankLine
 	\Heap \(Q\) \Assign \minHeapConstructor\;

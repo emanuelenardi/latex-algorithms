@@ -585,7 +585,7 @@ decodifica.
 	\end{figure}
 \end{itemize}
 
-\subsection{Algoritmo}
+\subsection{Algoritmo di Huffman}
 
 \begin{algorithm}[H]
 	\caption{Codifica del testo tramite la compressione di Huffman}
@@ -909,19 +909,19 @@ La trasformazione non viene rappresentata nel seguente algoritmo.
 
 \paragraph{Analisi della complessità}
 Il tempo di esecuzione per l'algoritmo di Kruskal dipende dalla realizzazione della struttura dati Merge-Find Set.
-Utilizziamo la versione con euristica sul rango più compressione dei cammini, le cui operazioni con costo ammortizzato costante (\(\Omicron(1)\)).
+Utilizziamo la versione con euristica sul rango più compressione dei cammini, le cui operazioni hanno costo ammortizzato costante (\(\Omicron(1)\)).
 \begin{itemize}[topsep=0pt, itemsep=0pt]
 	\item[\circled{\ref{kruskal:init}}]
 	l'inizializzazione richiede \(\Omicron(n)\) in quanto devono essere creati tutti gli alberi separati;
 
 	\item[\circled{\ref{kruskal:order}}]
-	l'ordinamento degli archi (\(m\)) richiede \(\Omicron(m \log n)\), siccome il numero degli archi è limitato superiormente da \(n^2\) posso scrivere \(\Omicron(m \log n^2)\), per le proprietà dei logaritmi \(\Omicron(m \log n)\);
+	l'ordinamento degli \(m\) archi richiede \(\Omicron(m \log m)\), ma siccome il numero degli archi è limitato superiormente da \(n^2\) posso scrivere \(\Omicron(m \log n^2)\), per le proprietà dei logaritmi \(\Omicron(2 m \log n)\), ignorando le costanti moltiplicative \(\Omicron(m \log n)\);
 
 	\item[\circled{\ref{kruskal:op}}]
 	nel caso peggiore vengono eseguite \(\Omicron(m)\) operazioni sulla foresta di insiemi disgiunti (due {\mfFind} ed una {\mfMerge}), con tempo ammortizzato \(\Omicron(1)\).
-
-	Per un totale di \(\Omicron(n + m \log n + m) = \Omicron(m \log m) = \Omicron(m \log n^2) = \Omicron(m \log n)\).
 \end{itemize}
+Quindi l'inizializzazione costa \(\Omicron(n)\), l'ordinamento degli archi \(\Omicron(m \log n)\) e vengono eseguite \(\Omicron(m \cdot 1)\) operazioni sulla foresta di insiemi disgiunti.
+Sommando i costi ottengo \(\Omicron(n + m \log n + m) = \Omicron(m \log m) = \Omicron(m \log n^2) = \Omicron(m \log n)\).
 
 \section{Algoritmo di Prim}
 
@@ -1003,7 +1003,7 @@ Nel caso si utilizzi un heap binario:
 	\item[\circled{\ref{prim:ciclo-interno}}]
 	il ciclo interno viene eseguito \(\Omicron(m)\) volte dove ogni operazione di {\heapDecrease} costa \(\Omicron(\log n)\).
 \end{itemize}
-Per un totale di \(\Omicron(n + m \log n + n \log n) = \Omicron(m \log n)\).
+Per un totale di \(\Omicron(n + n \log n + m \log n) = \Omicron(m \log n)\).
 
 \begin{note}
 L'algoritmo risulta asintoticamente uguale a quello di Kruskal.
@@ -1016,7 +1016,7 @@ Nel caso si utilizzi vettore un non ordinato:
 	l'inizializzazione costa \(\Omicron(n)\);
 
 	\item[\circled{\ref{prim:ciclo-esterno}}]
-	il ciclo principale viene eseguito \(n-1\) per una complessità di \(\Omicron(n)\) volte dove ogni operazione di {\heapDeleteMin} costa \(\Omicron(n)\);
+	il ciclo principale viene eseguito \(n-1\) per una complessità di \(\Omicron(n)\) volte dove ogni operazione di {\heapDeleteMin} costa \(\Omicron(n)\), per un totale di \(\Omicron(n^2)\);
 
 	\item[\circled{\ref{prim:ciclo-interno}}]
 	il ciclo interno viene eseguito \(\Omicron(m)\) volte dove ogni operazione di {\heapDecrease} costa \(\Omicron(1)\).
@@ -1029,6 +1029,7 @@ Cambiando la struttura dati cambia la complessità dell'algoritmo.
 
 In definitiva se il grafo è \emph{sparso} conviene utilizzare l'heap binario (\(\Omicron(m \log n)\)), mentre se il grafo è \emph{denso} (o addirittura completo) conviene utilizzare il vettore non ordinato (\(\Omicron(n^2)\)).
 
+\clearpage
 \subsection{Cenni storici}
 
 \begin{figure}[H]

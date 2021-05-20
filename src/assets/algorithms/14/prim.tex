@@ -8,26 +8,26 @@
 \fi
 
 \prototype{\prim{\Graph \(G\), \Node \(r\), \Array{\Int} \(p\)}}{
-	\params{r}[nodo dalla quale parto, la radice]
-	\params{p}[vettore dei padri]
+	\tcp{\eqparbox{prim}{\(r\):} nodo dalla quale parto, la radice}
+	\tcp{\eqparbox{prim}{\(p\):} vettore dei padri}
 
 	\BlankLine
 	\BlankLine
 	\Heap \(Q\) \Assign \minHeapConstructor\;
-	\PriorityItem{} \(\pos\)  \Assign \new \PriorityItem{1\dots G.n}\;
+	\PriorityItem{} \(\pos\)  \Assign \new \PriorityItem{1\dots G.\(n\)}\;
 
 	\BlankLine
-	\tcp{Per ciascun nodo appartenente al grafo, esclusa la radice che ne fa già parte}
+	\tcp{per ciascun nodo appartenente al grafo, esclusa la radice che ne fa già parte}
 	\tcp{inserisco i nodi nella coda, memorizzando la loro posizione}
 	\lnlset{prim:init}{1}%
-	\ForEach{\(u \in G.\VV() - \{ r \}\)}{
+	\ForEach{\(u \in G.\VV - \{ r \}\)}{
 
 		\BlankLine
 		\(\pos[u] \Assign Q.\heapInsert(u, +\infty)\) \tcp{\(+\infty\) indica che devono ancora essere raggiunti}
 	}
 
 	\BlankLine
-	\tcp{Inserisco il "nodo di partenza"}
+	\tcp{inserisco il "nodo di partenza"}
 	\(\Pos[r] \Assign Q.\heapInsert{r, 0}\)\;
 	\(p[r] \Assign 0\) \Comment*[l]{convenzione per indicare che non ha padre}
 
@@ -46,13 +46,13 @@
 
 			\BlankLine
 			\If{\(\Pos[v] \Neq \Nil\) \And \(\weight{u,v} < \Pos[v].\priority\)}{
-				\params{\Pos[v] \Neq \Nil}[è già stato visitato]
-				\params{\weight{u,v} < \Pos[v].\priority}[commenta]
+				\tcp{\eqparbox{prim-cycle}{\(\Pos[v] \Neq \Nil\):} è già stato visitato}
+				\tcp{\eqparbox{prim-cycle}{\(\weight{u,v} < \Pos[v].\priority\):} commenta}
 
 				\BlankLine
 				\BlankLine
 				\(Q.\heapDecrease{\(\Pos[v]\), \(\weight{u,v}\)}\) \tcp{commenta}
-				\(p[v] \Assign u\) \tcp{commenta}
+				\(p[v] \Assign u\) \tcp{il padre di \(v\) diventa \(u\)}
 			}
 		}
 	}

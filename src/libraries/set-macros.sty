@@ -28,8 +28,8 @@
 
 % NOTE per avere i parametri allineati a sx con un box di dimensione pari alla stringa più lunga
 \usepackage{eqparbox}
-\NewDocumentCommand{\params}{ m o }
-	{ \tcp{\eqparbox{parameters}{\(#1\):} #2}\vspace{-3pt} }
+\NewDocumentCommand{\params}{ m m o }
+	{ \tcp{\eqparbox{#1}{\(#2\):} #3}\vspace{-3pt} }
 
 % SEE https://texblog.org/2014/06/24/big-o-and-related-notations-in-latex/
 \NewDocumentCommand{\Omicron}{}{\mathcal{O}}

@@ -115,16 +115,16 @@ In base alle \(i\) scelte già effettuate decido quali sono le mie future scelte
 \caption{Schema generale per il problema dell'enumerazione}
 
 \prototype{\Bool \enumeration{\Item{} S, \Int n, \Int i, \dots}}{
-	\params{S}[vettore contenente le soluzioni parziali \(S[1][i]\)]
-	\params{n}[il numero massimo di scelte possibili]
-	\params{i}[indice corrente]
-	\params{\dots}[parametri addizionali dipendenti dal problema]
+	\params{enumeration}{S}[vettore contenente le soluzioni parziali \(S[1][i]\)]
+	\params{enumeration}{n}[il numero massimo di scelte possibili]
+	\params{enumeration}{i}[indice corrente]
+	\params{enumeration}{\dots}[parametri addizionali dipendenti dal problema]
 
 	\BlankLine
 	\BlankLine
 	\Set \(C = \getChoices{S, n, i, \dots}\) \Comment*[h]{Determina \(C\) in funzione di \(S[1][i-1]\)}
 
-	\params{C}[l'insieme dei possibili candidati per estendere la soluzione]
+	\params{getChoices}{C}[l'insieme dei possibili candidati per estendere la soluzione]
 
 	\BlankLine
 	\ForEach(\tcp*[h]{per ogni possibile scelta fra quelle possibili}){\(c \in C\)}{
@@ -303,9 +303,9 @@ Elencare tutti i sottoinsiemi di dimensione \(k\) di un insieme \(\{1, \dots, n\
 \caption{Elenca tutti i sottoinsiemi di dimensione \(k\) di un insieme \(\{1, \dots, n\}\)}
 
 \prototype{\subSets{\Array{\Int} S, \Int n, \Int k, \Int i, \Int count}}{
-	\params{n}[numeri di elementi]
-	\params{k}[numeri di elementi considerati]
-	\params{i}[la scelta che ho già fatto]
+	\params{subSets}{n}[numeri di elementi]
+	\params{subSets}{k}[numeri di elementi considerati]
+	\params{subSets}{i}[la scelta che ho già fatto]
 
 	\BlankLine
 	\tcp{se ho già raggiunto \(k\) o non ci sono abbastanza bit per arrivare a \(k\) non ho più bisogno di visitare il sotto-albero delle scelte relativo)}
@@ -353,8 +353,8 @@ L'insieme dei candidati dipende dalla soluzione parziale \emph{corrente}.
 \caption{Stampa tutte le permutazioni di un insieme \(A\)}
 
 \prototype{\permutations{\Set \(A\), \Int \(n\), \Item[] \(S\), \Int \(i\)}}{
-	\params{A}[insieme dalla quale prendo gli oggetti]
-	\params{n}[numero di permutazioni]
+	\params{permutations}{A}[insieme dalla quale prendo gli oggetti]
+	\params{permutations}{n}[numero di permutazioni]
 
 	\BlankLine
 	\ForEach{\(c \in A\)}{

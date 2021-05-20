@@ -10,12 +10,11 @@
 \BlankLine
 \tcp{visita ricorsiva di ciascuna componente}
 \prototype{\ccdfs{\Graph G, \Int counter, \Node u, \Array{\Int} id}}{
+	\params{ccdfs}{counter}[identificatore di quante cc ho trovato fin'ora]
+	\params{ccdfs}{u}[il nodo che sto visitando]
+	\params{ccdfs}{id}[l'identificativo della componente]
 
-	\vspace{2pt}
-	\params{counter}[identificatore di quante cc ho trovato fin'ora]
-	\params{u}[il nodo che sto visitando]
-	\params{id}[l'identificativo della componente]
-
+	\BlankLine
 	\BlankLine
 	\tcp{memorizzo l'identificativo della cc}
 	\(id[v] \Assign counter\)\;
